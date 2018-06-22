@@ -1,26 +1,17 @@
-MD5 := md5sum -c
-
-pokered_obj := audio_red.o main_red.o text_red.o wram_red.o
-pokeblue_obj := audio_blue.o main_blue.o text_blue.o wram_blue.o
+objs := audio.o main.o text.o wram.o
 
 .SUFFIXES:
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
-.PHONY: all clean red blue compare tools
+.PHONY: clean tools
 
-roms := pokered.gbc pokeblue.gbc
+roms := poketre.gbc
 
-all: $(roms)
-red: pokered.gbc
-blue: pokeblue.gbc
-
-# For contributors to make sure a change didn't affect the contents of the rom.
-compare: red blue
-	@$(MD5) roms.md5
+tre: $(roms)
 
 clean:
-	rm -f $(roms) $(pokered_obj) $(pokeblue_obj) $(roms:.gbc=.sym)
+	rm -f $(roms) $(objs) $(roms:.gbc=.sym)
 	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pic' \) -exec rm {} +
 	$(MAKE) clean -C tools/
 
@@ -37,28 +28,20 @@ endif
 
 %.asm: ;
 
-%_red.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
-$(pokered_obj): %_red.o: %.asm $$(dep)
-	rgbasm -D _RED -h -o $@ $*.asm
+%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
+$(objs): %.o: %.asm $$(dep)
+	rgbasm -h -o $@ $*.asm
 
-%_blue.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
-$(pokeblue_obj): %_blue.o: %.asm $$(dep)
-	rgbasm -D _BLUE -h -o $@ $*.asm
+opts  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON TRE2"
 
-pokered_opt  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON RED"
-pokeblue_opt = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON BLUE"
-
-%.gbc: $$(%_obj)
-	rgblink -d -n $*.sym -l pokered.link -o $@ $^
-	rgbfix $($*_opt) $@
+%.gbc: $$(objs)
+	rgblink -d -n $*.sym -l poketre.link -o $@ $^
+	rgbfix $(opts) $@
 	sort $*.sym -o $*.sym
 
-gfx/blue/intro_purin_1.2bpp: rgbgfx += -h
-gfx/blue/intro_purin_2.2bpp: rgbgfx += -h
-gfx/blue/intro_purin_3.2bpp: rgbgfx += -h
-gfx/red/intro_nido_1.2bpp: rgbgfx += -h
-gfx/red/intro_nido_2.2bpp: rgbgfx += -h
-gfx/red/intro_nido_3.2bpp: rgbgfx += -h
+gfx/intro_nido_1.2bpp: rgbgfx += -h
+gfx/intro_nido_2.2bpp: rgbgfx += -h
+gfx/intro_nido_3.2bpp: rgbgfx += -h
 
 gfx/game_boy.2bpp: tools/gfx += --remove-duplicates
 gfx/theend.2bpp: tools/gfx += --interleave --png=$<

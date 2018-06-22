@@ -1872,12 +1872,7 @@ SECTION "bank1A",ROMX,BANK[$1A]
 INCLUDE "engine/battle/decrement_pp.asm"
 
 Version_GFX:
-IF DEF(_RED)
-	INCBIN "gfx/red/redgreenversion.1bpp" ; 10 tiles
-ENDC
-IF DEF(_BLUE)
-	INCBIN "gfx/blue/blueversion.1bpp" ; 8 tiles
-ENDC
+	INCBIN "gfx/redgreenversion.1bpp" ; 10 tiles
 Version_GFXEnd:
 
 Dojo_GFX:
