@@ -4,7 +4,7 @@ objs := audio.o main.o text.o wram.o
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
-.PHONY: clean tools
+.PHONY: tre clean tools
 
 roms := poketre.gbc
 
