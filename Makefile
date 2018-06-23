@@ -4,11 +4,11 @@ objs := audio.o main.o text.o wram.o
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
-.PHONY: tre clean tools
+.PHONY: rom clean tools
 
-roms := poketre.gbc
+roms := poketre2.gbc
 
-tre: $(roms)
+rom: $(roms)
 
 clean:
 	rm -f $(roms) $(objs) $(roms:.gbc=.sym)
@@ -35,13 +35,13 @@ $(objs): %.o: %.asm $$(dep)
 opts  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON TRE2"
 
 %.gbc: $$(objs)
-	rgblink -d -n $*.sym -l poketre.link -o $@ $^
+	rgblink -d -n $*.sym -l poketre2.link -o $@ $^
 	rgbfix $(opts) $@
 	sort $*.sym -o $*.sym
 
-gfx/intro_nido_1.2bpp: rgbgfx += -h
-gfx/intro_nido_2.2bpp: rgbgfx += -h
-gfx/intro_nido_3.2bpp: rgbgfx += -h
+gfx/intro_meowth_1.2bpp: rgbgfx += -h
+gfx/intro_meowth_2.2bpp: rgbgfx += -h
+gfx/intro_meowth_3.2bpp: rgbgfx += -h
 
 gfx/game_boy.2bpp: tools/gfx += --remove-duplicates
 gfx/theend.2bpp: tools/gfx += --interleave --png=$<

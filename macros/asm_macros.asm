@@ -1,5 +1,5 @@
 
-lb: MACRO ; r, hi, lo
+lb: MACRO ; r, hi, lo (bytes)
 	ld \1, (\2) << 8 + ((\3) & $ff)
 ENDM
 
@@ -185,4 +185,8 @@ ENDM
 tx_pre_jump: MACRO
 	tx_pre_id \1
 	jp PrintPredefTextID
+ENDM
+
+ldPal: MACRO
+	ld \1, \2 << 6 | \3 << 4 | \4 << 2 | \5
 ENDM
