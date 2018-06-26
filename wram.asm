@@ -332,7 +332,7 @@ wOAMBuffer:: ; c300
 
 wTileMap:: ; c3a0
 ; buffer for tiles that are visible on screen (20 columns by 18 rows)
-	ds 20 * 18
+	ds SCREEN_WIDTH * SCREEN_HEIGHT
 
 wSerialPartyMonsPatchList:: ; c508
 ; list of indexes to patch with SERIAL_NO_DATA_BYTE after transfer

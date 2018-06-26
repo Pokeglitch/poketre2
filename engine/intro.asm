@@ -8,11 +8,14 @@ ANIMATION_END EQU 80
 PlayIntro:
 	xor a
 	ld [hJoyHeld], a
+	ld [hWY], a
 	inc a
-	ld [H_AUTOBGTRANSFERENABLED], a
-	call PlayShootingStar
-	call PlayIntroScene
-	call GBFadeOutToWhite
+	ld [H_AUTOBGTRANSFERENABLED], a	
+	ld b, SET_PAL_GAME_FREAK_INTRO
+	call RunPaletteCommand
+	call DrawVersionScreen	
+	call DrawCreatedByScreen
+	call PlayIntroBattle
 	xor a
 	ld [hSCX], a
 	ld [H_AUTOBGTRANSFERENABLED], a
@@ -39,26 +42,7 @@ DrawEkansTiles:
 	ld h, [hl]
 	ld l, a ; hl = location to draw
 	pop af ; a = first sprite offset
-	lb de, 0, SCREEN_WIDTH
-	
-; draw the tiles
-.row_loop
-	push hl
-	push bc
-	
-.col_loop
-	ld [hli], a
-	inc a
-	dec c
-	jr nz, .col_loop
-	
-	pop bc
-	pop hl
-	dec b
-	ret z
-	
-	add hl, de
-	jr .row_loop	
+	jp DrawSprite
 	
 EkansSpriteDims:
 ; starting tile id, height, width, location on screen
@@ -69,7 +53,29 @@ EkansSpriteDims:
 	db (FightIntroBackMon3 - FightIntroBackMon) / BYTES_PER_TILE, 5, 9
 	dwCoord 11, 9
 	
-PlayIntroScene:
+PlayIntroBattle:
+	xor a
+	ld [wCurOpponent], a
+	call DrawIntroBattleBackground
+	call LoadIntroBattleGraphics
+	
+	ld hl, rLCDC
+	res 5, [hl]
+	set 3, [hl]
+	
+	ld c, 16
+	call DelayFrames
+	
+	ld a, BANK(Music_IntroBattle)
+	ld [wAudioROMBank], a
+	ld [wAudioSavedROMBank], a
+	ld a, MUSIC_INTRO_BATTLE
+	ld [wNewSoundID], a
+	call PlaySound
+	
+	call ClearSprites
+	call Delay3
+
 	ld b, SET_PAL_NIDORINO_INTRO
 	call RunPaletteCommand
 	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
@@ -187,7 +193,11 @@ PlayIntroScene:
 	ld a, (FightIntroFrontMon3 - FightIntroFrontMon) / BYTES_PER_TILE
 	ld [wIntroNidorinoBaseTile], a
 	ld de, IntroNidorinoAnimation7
-	jp AnimateIntroNidorino
+	call AnimateIntroNidorino
+	
+	ldPal a, BLACK, BLACK, BLACK, BLACK
+	ld [rBGP], a	;blackout Pal
+	ret
 
 AnimateIntroNidorino:
 	ld a, [de]
@@ -328,64 +338,127 @@ CopyTileIDsFromList_ZeroBaseTileID:
 	ld c, 0
 	predef_jump CopyTileIDsFromList
 
-LoadIntroGraphics:
-	ld hl, FightIntroBackMon
-	ld de, vChars2
-	ld bc, FightIntroBackMonEnd - FightIntroBackMon
-	ld a, BANK(FightIntroBackMon)
-	call FarCopyData2
-	ld hl, FightIntroFrontMon
-	ld de, vChars0
-	ld bc, FightIntroFrontMonEnd - FightIntroFrontMon
-	ld a, BANK(FightIntroFrontMon)
-	jp FarCopyData2
+LoadIntroBattleGraphics:
+	ld de, FightIntroBackMon
+	ld hl, vChars2
+	lb bc, BANK(FightIntroBackMon), (FightIntroBackMonEnd - FightIntroBackMon) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld de, FightIntroFrontMon
+	ld hl, vChars0
+	lb bc, BANK(FightIntroFrontMon), (FightIntroFrontMonEnd - FightIntroFrontMon) / BYTES_PER_TILE
+	jp CopyVideoData
 
-PlayShootingStar:
-	ld b, SET_PAL_GAME_FREAK_INTRO
-	call RunPaletteCommand
-	callba LoadCopyrightAndTextBoxTiles
-	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
-	ld [rBGP], a
-	ld c, 180
-	call DelayFrames
-	call ClearScreen
-	call DisableLCD
-	xor a
-	ld [wCurOpponent], a
-	call IntroDrawBlackBars
-	call LoadIntroGraphics
-	call EnableLCD
-	ld hl, rLCDC
-	res 5, [hl]
-	set 3, [hl]
-	ld c, 16
-	call DelayFrames
-	ld a, BANK(Music_IntroBattle)
-	ld [wAudioROMBank], a
-	ld [wAudioSavedROMBank], a
-	ld a, MUSIC_INTRO_BATTLE
-	ld [wNewSoundID], a
-	call PlaySound
-	call IntroClearMiddleOfScreen
-	call ClearSprites
-	jp Delay3
-
-IntroDrawBlackBars:
+DrawIntroBattleBackground:
 ; clear the screen and draw black bars on the top and bottom
-	call IntroClearScreen
+	call ClearScreen
+	call IntroClearScreen	
 	coord hl, 0, 0
 	ld c, SCREEN_WIDTH * 4
 	call IntroPlaceBlackTiles
 	coord hl, 0, 14
 	ld c, SCREEN_WIDTH * 4
 	call IntroPlaceBlackTiles
+	
+	; Draw the black bars to the full width of the bg map
+	ld hl, vBGMap1 + 12
+	call SetBGTransferDestination
+	
+	; return the tilemap transfer destination back to the normal position
 	ld hl, vBGMap1
-	ld c, BG_MAP_WIDTH * 4
-	call IntroPlaceBlackTiles
-	ld hl, vBGMap1 + BG_MAP_WIDTH * 14
-	ld c,  BG_MAP_WIDTH * 4
-	jp IntroPlaceBlackTiles
+	; fallthrough
+	
+SetBGTransferDestination:
+	ld a, l
+	ld [H_AUTOBGTRANSFERDEST], a
+	ld a, h
+	ld [H_AUTOBGTRANSFERDEST + 1], a
+	jp Delay3
 
+DrawVersionScreen:
+	ld de, VersionGFX
+	ld hl, vChars2
+	lb bc, BANK(VersionGFX), (VersionGFXEnd-VersionGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	; Fill the screen with black tiles
+	lb bc, SCREEN_HEIGHT, SCREEN_WIDTH
+	coord hl, 0, 0
+	call IntroBlackoutScreen
+	
+	xor a
+	lb bc, 6, 18
+	coord hl, 1, 5
+	
+	push bc
+	push hl
+	
+	call DrawSprite
+	call DisplayIntroScreen
+	
+	; Fill the text area with black tiles
+	pop hl
+	pop bc
+	; fall through
+	
+IntroBlackoutScreen:
+	ld a, 72 ; black tile in the version gfx and created by gfx
+	jp FillScreenArea
+	
+DrawCreatedByScreen:
+	ld de, CreatedByGFX
+	ld hl, vChars2
+	lb bc, BANK(CreatedByGFX), (CreatedByGFXEnd-CreatedByGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	xor a
+	lb bc, 8, 10
+	coord hl, 5, 4
+	call DrawSprite
+	
+	ld a, 80
+	lb bc, 2, 16
+	coord hl, 2, 16
+	call DrawSprite
+	
+	call DisplayIntroScreen
+	ret
+	
+DisplayIntroScreen:
+	ld c, 5
+	call DelayFrames
+	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
+	ld [rBGP], a	;turn on Pal
+	ld c, 160
+	call DelayFrames
+	ldPal a, BLACK, BLACK, BLACK, BLACK
+	ld [rBGP], a	;blackout Pal
+	ret
+	
+; to draw a b x c sprite at hl with increasing tile
+; ids, starting at a
+DrawSprite:
+	lb de, 0, SCREEN_WIDTH
+	
+; draw the tiles
+.row_loop
+	push hl
+	push bc
+	
+.col_loop
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .col_loop
+	
+	pop bc
+	pop hl
+	dec b
+	ret z
+	
+	add hl, de
+	jr .row_loop
+	
 IntroNidorinoAnimation0:
 	db 0, 0
 	db ANIMATION_END
@@ -474,3 +547,12 @@ FightIntroFrontMon2:
 FightIntroFrontMon3:
 	INCBIN "gfx/intro_meowth_3.2bpp"
 FightIntroFrontMonEnd:
+
+VersionGFX:
+	INCBIN "gfx/version.2bpp"
+VersionGFXEnd:
+
+CreatedByGFX:
+	INCBIN "gfx/created_by.2bpp"
+	INCBIN "gfx/url.2bpp"
+CreatedByGFXEnd:

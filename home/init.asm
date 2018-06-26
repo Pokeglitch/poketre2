@@ -27,14 +27,16 @@ rLCDC_DEFAULT EQU %11100011
 	ld [rSCY], a
 	ld [rSB], a
 	ld [rSC], a
-	ld [rWX], a
-	ld [rWY], a
 	ld [rTMA], a
 	ld [rTAC], a
-	ld [rBGP], a
-	ld [rOBP0], a
-	ld [rOBP1], a
-
+	ld hl, rWX
+	ld [hld], a ; rWX
+	ld [hld], a ; rWY
+	ld [hld], a ; rOBP1
+	ld [hld], a ; rOBP0
+	dec a
+	ld [hl], a ; rBGP = $FF, all black
+	
 	ld a, rLCDC_ENABLE_MASK
 	ld [rLCDC], a
 	call DisableLCD
