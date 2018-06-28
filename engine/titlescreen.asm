@@ -1,28 +1,17 @@
-; copy text of fixed length NAME_LENGTH (like player name, rival name, mon names, ...)
-CopyFixedLengthText:
-	ld bc, NAME_LENGTH
-	jp CopyData
-
-SetDefaultNamesBeforeTitlescreen:
-	ld hl, NintenText
-	ld de, wPlayerName
-	call CopyFixedLengthText
-	ld hl, SonyText
-	ld de, wRivalName
-	call CopyFixedLengthText
+PRESS_START_Y EQU 112
+PRESS_START_X EQU 52
+	
+DisplayTitleScreen:
+	ld a, BANK(Music_TitleScreen)
+	ld [wAudioROMBank], a
+	ld [wAudioSavedROMBank], a
+	
 	xor a
-	ld [hWY], a
 	ld [wLetterPrintingDelayFlags], a
 	ld hl, wd732
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld a, BANK(Music_TitleScreen)
-	ld [wAudioROMBank], a
-	ld [wAudioSavedROMBank], a
-
-DisplayTitleScreen:
-	xor a
 	ld [hTilesetType], a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -67,7 +56,7 @@ DisplayTitleScreen:
 	call DelayFrames
 
 	call InitPressStartText
-	ld de, 0 ; load counter
+	ld de, 0 ; initialize the oam flash counter
 
 .loop
 	call FlashPressStartText
@@ -85,7 +74,7 @@ DisplayTitleScreen:
 InitPressStartText:	
 	ld hl, wOAMBuffer
 	lb bc, (TitleScreenPressStartTextGFXEnd - TitleScreenPressStartTextGFX) / BYTES_PER_TILE, (TitleScreenBackgroundGFXEnd - TitleScreenBackgroundGFX) / BYTES_PER_TILE ; # of tiles, starting tile
-	lb de, 112, 52 ; starting OAM coordinates
+	lb de, PRESS_START_Y, PRESS_START_X ; starting OAM coordinates
 
 .loop
 	ld a,d
@@ -108,9 +97,9 @@ FlashPressStartText:
 	ld c, (TitleScreenPressStartTextGFXEnd - TitleScreenPressStartTextGFX) / BYTES_PER_TILE
 	ld a, d
 	bit 3, a
-	ld a, 112 ; TODO - make constant
+	ld a, PRESS_START_Y
 	jr z, .skip
-	ld a, 0
+	ld a, 0 ; otherwise move offscreen
 
 .skip
 	ld hl, wOAMBuffer

@@ -111,7 +111,7 @@ rLCDC_DEFAULT EQU %11100011
 
 	predef PlayIntro
 	
-	jp SetDefaultNamesBeforeTitlescreen
+	jp DisplayTitleScreen
 
 ClearVram:
 	ld hl, $8000
