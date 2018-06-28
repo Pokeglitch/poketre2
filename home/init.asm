@@ -110,14 +110,7 @@ rLCDC_DEFAULT EQU %11100011
 	ld [wUpdateSpritesEnabled], a
 
 	predef PlayIntro
-
-	call DisableLCD
-	call ClearVram
-	call GBPalNormal
-	call ClearSprites
-	ld a, rLCDC_DEFAULT
-	ld [rLCDC], a
-
+	
 	jp SetDefaultNamesBeforeTitlescreen
 
 ClearVram:

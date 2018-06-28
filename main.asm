@@ -160,7 +160,6 @@ LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
 
 SECTION "Graphics", ROMX, BANK[GFX]
 
-PokemonLogoGraphics:            INCBIN "gfx/pokemon_logo.2bpp"
 FontGraphics:                   INCBIN "gfx/font.1bpp"
 FontGraphicsEnd:
 ABTiles:                        INCBIN "gfx/AB.2bpp"
@@ -876,7 +875,6 @@ VictreebelPicBack::    INCBIN "pic/monback/victreebelb.pic"
 
 SECTION "Battle (bank D)", ROMX, BANK[$D]
 
-INCLUDE "engine/titlescreen2.asm"
 INCLUDE "engine/battle/link_battle_versus_text.asm"
 INCLUDE "engine/slot_machine.asm"
 INCLUDE "engine/overworld/pewter_guys.asm"
@@ -1871,10 +1869,6 @@ SECTION "bank1A",ROMX,BANK[$1A]
 
 INCLUDE "engine/battle/decrement_pp.asm"
 
-Version_GFX:
-	INCBIN "gfx/redgreenversion.1bpp" ; 10 tiles
-Version_GFXEnd:
-
 Dojo_GFX:
 Gym_GFX:           INCBIN "gfx/tilesets/gym.2bpp"
 Dojo_Block:
@@ -2082,3 +2076,16 @@ INCLUDE "engine/evolution.asm"
 INCLUDE "engine/overworld/elevator.asm"
 
 INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "bank3D",ROMX,BANK[$3D]
+TitleScreenBackgroundGFX: INCBIN "gfx/title_screen_bg.2bpp"
+TitleScreenBackgroundGFXEnd:
+
+TitleScreenPressStartTextGFX: INCBIN "gfx/title_screen_press_start_text.2bpp"
+TitleScreenPressStartTextGFXEnd:
+
+TitleScreenPokemonTRETextGFX: INCBIN "gfx/title_screen_pokemon_tre_text.2bpp"
+TitleScreenPokemonTRETextGFXEnd:
+
+TitleScreenTeamRocketEditionTextGFX: INCBIN "gfx/title_screen_team_rocket_edition_text.2bpp"
+TitleScreenTeamRocketEditionTextGFXEnd:

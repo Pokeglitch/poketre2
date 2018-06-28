@@ -10,17 +10,19 @@ PlayIntro:
 	ld [hJoyHeld], a
 	ld [hWY], a
 	inc a
-	ld [H_AUTOBGTRANSFERENABLED], a	
-	ld b, SET_PAL_GAME_FREAK_INTRO
-	call RunPaletteCommand
+	ld [H_AUTOBGTRANSFERENABLED], a
 	call DrawVersionScreen	
 	call DrawCreatedByScreen
 	call PlayIntroBattle
+	call GBPalBlackOut
+	call DelayFrame
+	
 	xor a
-	ld [hSCX], a
-	ld [H_AUTOBGTRANSFERENABLED], a
+	ld [hSCX], a ; reset the window location
+	
 	call ClearSprites
 	call DelayFrame
+	
 	ret
 
 ; c = which sprite to draw
@@ -60,8 +62,7 @@ PlayIntroBattle:
 	call LoadIntroBattleGraphics
 	
 	ld hl, rLCDC
-	res 5, [hl]
-	set 3, [hl]
+	res 5, [hl] ; turn off the window
 	
 	ld c, 16
 	call DelayFrames
@@ -76,12 +77,8 @@ PlayIntroBattle:
 	call ClearSprites
 	call Delay3
 
-	ld b, SET_PAL_NIDORINO_INTRO
-	call RunPaletteCommand
-	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
-	ld [rBGP], a
-	ld [rOBP0], a
-	ld [rOBP1], a
+	call GBPalStandard
+	
 	ld a, -16
 	ld [hSCX], a
 	ld c, 0
@@ -193,11 +190,7 @@ PlayIntroBattle:
 	ld a, (FightIntroFrontMon3 - FightIntroFrontMon) / BYTES_PER_TILE
 	ld [wIntroNidorinoBaseTile], a
 	ld de, IntroNidorinoAnimation7
-	call AnimateIntroNidorino
-	
-	ldPal a, BLACK, BLACK, BLACK, BLACK
-	ld [rBGP], a	;blackout Pal
-	ret
+	; fall through
 
 AnimateIntroNidorino:
 	ld a, [de]
@@ -271,7 +264,7 @@ InitIntroNidorinoOAM:
 	ret
 
 IntroClearScreen:
-	ld hl, vBGMap1
+	ld hl, vBGMap0
 	ld bc, BG_MAP_WIDTH * SCREEN_HEIGHT
 	jr IntroClearCommon
 
@@ -361,11 +354,11 @@ DrawIntroBattleBackground:
 	call IntroPlaceBlackTiles
 	
 	; Draw the black bars to the full width of the bg map
-	ld hl, vBGMap1 + 12
+	ld hl, vBGMap0 + 12
 	call SetBGTransferDestination
 	
 	; return the tilemap transfer destination back to the normal position
-	ld hl, vBGMap1
+	ld hl, vBGMap0
 	; fallthrough
 	
 SetBGTransferDestination:
@@ -420,20 +413,15 @@ DrawCreatedByScreen:
 	lb bc, 2, 16
 	coord hl, 2, 16
 	call DrawSprite
-	
-	call DisplayIntroScreen
-	ret
+	; fall through
 	
 DisplayIntroScreen:
 	ld c, 5
 	call DelayFrames
-	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
-	ld [rBGP], a	;turn on Pal
+	call GBPalStandard
 	ld c, 160
 	call DelayFrames
-	ldPal a, BLACK, BLACK, BLACK, BLACK
-	ld [rBGP], a	;blackout Pal
-	ret
+	jp GBPalBlackOut
 	
 ; to draw a b x c sprite at hl with increasing tile
 ; ids, starting at a

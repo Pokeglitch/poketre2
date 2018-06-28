@@ -4459,7 +4459,7 @@ IsInRestOfArray::
 
 RestoreScreenTilesAndReloadTilePatterns::
 	call ClearSprites
-	ld a, $1
+	ld a, 1
 	ld [wUpdateSpritesEnabled], a
 	call ReloadMapSpriteTilePatterns
 	call LoadScreenTilesFromBuffer2
@@ -4479,15 +4479,28 @@ Delay3::
 
 GBPalNormal::
 ; Reset BGP and OBP0.
-	ld a, %11100100 ; 3210
+	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
 	ld [rBGP], a
-	ld a, %11010000 ; 3100
+	ldPal a, BLACK, LIGHT_GRAY, WHITE, WHITE
 	ld [rOBP0], a
 	ret
 
+GBPalStandard::
+; All pallete standard
+; Black out all palettes.
+	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
+	jr GBPalCommon
+	
+GBPalBlackOut::
+; Black out all palettes.
+	ldPal a, BLACK, BLACK, BLACK, BLACK
+	jr GBPalCommon
+	
 GBPalWhiteOut::
 ; White out all palettes.
 	xor a
+	
+GBPalCommon:
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
@@ -4495,7 +4508,7 @@ GBPalWhiteOut::
 
 
 RunDefaultPaletteCommand::
-	ld b, $ff
+	ld b, -1
 RunPaletteCommand::
 	ld a, [wOnSGB]
 	and a
