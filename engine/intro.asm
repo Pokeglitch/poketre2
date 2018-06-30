@@ -359,14 +359,7 @@ DrawIntroBattleBackground:
 	
 	; return the tilemap transfer destination back to the normal position
 	ld hl, vBGMap0
-	; fallthrough
-	
-SetBGTransferDestination:
-	ld a, l
-	ld [H_AUTOBGTRANSFERDEST], a
-	ld a, h
-	ld [H_AUTOBGTRANSFERDEST + 1], a
-	jp Delay3
+	jp SetBGTransferDestination
 
 DrawVersionScreen:
 	ld de, VersionGFX

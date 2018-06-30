@@ -89,7 +89,6 @@ InitPressStartText:
 	inc hl
 	dec b
 	jr nz, .loop
-
 	ret
 	
 FlashPressStartText:

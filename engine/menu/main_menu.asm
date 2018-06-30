@@ -1,15 +1,128 @@
 MainMenu:
+	call GBPalBlackOut
+	
+	ld a, $B3 ; TODO - what constant is this?
+	call PlaySound
+	
 ; Check save file
 	call InitOptions
 	xor a
 	ld [wOptionsInitialized], a
-	inc a
-	ld [wSaveFileStatus], a
 	call CheckForPlayerNameInSRAM
-	jr nc, .mainMenuLoop
+	
+	ld hl, vChars0
+	ld de, TitleScreenMenuGFX
+	lb bc, BANK(TitleScreenMenuGFX), (TitleScreenMenuGFXEnd - TitleScreenMenuGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld hl, TitleScreenMenuSmallTiles
+	ld a, 2
+	jr nc, .skipLoadSAV
 
 	predef LoadSAV
+	
+	ld hl, vChars0 + $270
+	ld de, TitleScreenMenuLargeGFX
+	lb bc, BANK(TitleScreenMenuLargeGFX), (TitleScreenMenuLargeGFXEnd - TitleScreenMenuLargeGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld hl, TitleScreenMenuLargeTiles
+	ld a, 1
 
+.skipLoadSAV
+	ld [wSaveFileStatus], a
+	
+	; TODO - is this necessary?
+	xor a
+	ld [$dd24], a
+	
+	; draw the screen
+	ld de, wTileMap
+	ld bc, TitleScreenMenuLargeTiles - TitleScreenMenuSmallTiles
+	call CopyData
+	
+	call Delay3 ; takes 3 frames to redraw the screen
+	
+	call GBPalStandard
+	
+	ld c, 20
+	call DelayFrames
+	
+	ld hl, vChars1
+	ld de, WhiteOnBlackFontGFX
+	lb bc, BANK(WhiteOnBlackFontGFX), (WhiteOnBlackFontGFXEnd - WhiteOnBlackFontGFX) / BYTES_PER_TILE
+	call CopyVideoData
+
+	; Don't overwrite the end of the "team rocket edition" gfx
+	ld hl, vChars1 + $4A0
+	ld de, TitleScreenMenuTextGFX
+	lb bc, BANK(TitleScreenMenuTextGFX), (TitleScreenMenuTextGFXEnd - TitleScreenMenuTextGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld hl, $C3DF ; todo - coords
+	ld de, MainMenuTextWithContinue
+	ld a, [wSaveFileStatus]
+	dec a
+	jr z, .printText
+
+	ld de, MainMenuTextWithoutContinue
+	
+.printText
+	call PlaceString
+	call Delay3
+	
+	call InitMainMenuOAM
+	
+Debug::
+	ld c, 20
+	call DelayFrames
+	
+	; TODO - turn on OAM sprites, set PAL?
+	
+	ret
+	
+	
+; TODO - get rid of hex constants (they are starting coords in pixels)
+InitMainMenuOAM:
+	ld hl, wOAMBuffer
+	
+	; CONTINUE
+	ld de, $2838
+	ld c, 8
+	call CopyStringToOAM
+
+	; ADVENTURE
+	ld de, $3834
+	ld c, 9
+	call CopyStringToOAM
+
+	; CHALLENGE
+	ld de, $4834
+	ld c, 9
+	call CopyStringToOAM
+
+	; SETTINGS
+	ld de, $5838
+	ld c, 8
+	call CopyStringToOAM
+	ret
+	
+CopyStringToOAM:
+	ld a, d
+	ld [hli], a
+	ld a, e
+	ld [hli], a
+	add a, PIXELS_PER_TILE
+	ld e, a
+	ld [hli], $EA ; transparent tile
+	set 7, [hl] ; set priority (TODO - necessary?)
+	inc hl
+	dec c
+	jr nz, CopyStringToOAM
+	ret
+	
+;==============================
+	
 .mainMenuLoop
 	ld c, 20
 	call DelayFrames

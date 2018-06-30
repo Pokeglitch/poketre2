@@ -48,6 +48,7 @@ gfx/theend.2bpp: tools/gfx += --interleave --png=$<
 gfx/tilesets/%.2bpp: tools/gfx += --trim-whitespace
 gfx/title_screen_bg.2bpp: tools/gfx += --trim-whitespace
 gfx/title_screen_pokemon_tre_text.2bpp: tools/gfx += --trim-whitespace
+gfx/title_screen_menu_text.2bpp: tools/gfx += --trim-whitespace
 
 %.png: ;
 

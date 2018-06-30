@@ -2077,7 +2077,7 @@ INCLUDE "engine/overworld/elevator.asm"
 
 INCLUDE "engine/items/tm_prices.asm"
 
-SECTION "bank3D",ROMX,BANK[$3D]
+SECTION "TitlescreenGFX", ROMX, BANK[$3D]
 TitleScreenBackgroundGFX: INCBIN "gfx/title_screen_bg.2bpp"
 TitleScreenBackgroundGFXEnd:
 
@@ -2089,3 +2089,15 @@ TitleScreenPokemonTRETextGFXEnd:
 
 TitleScreenTeamRocketEditionTextGFX: INCBIN "gfx/title_screen_team_rocket_edition_text.2bpp"
 TitleScreenTeamRocketEditionTextGFXEnd:
+
+TitleScreenMenuGFX: INCBIN "gfx/title_screen_menu.2bpp"
+TitleScreenMenuGFXEnd:
+
+TitleScreenMenuLargeGFX: INCBIN "gfx/title_screen_menu_large.2bpp"
+TitleScreenMenuLargeGFXEnd:
+
+WhiteOnBlackFontGFX: INCBIN "gfx/white_on_black_font.2bpp"
+WhiteOnBlackFontGFXEnd:
+
+TitleScreenMenuTextGFX: INCBIN "gfx/title_screen_menu_text.2bpp"
+TitleScreenMenuTextGFXEnd:
