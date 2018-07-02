@@ -1,8 +1,18 @@
 MainMenu:
-	call GBPalBlackOut
-	
-	ld a, $B3 ; TODO - what constant is this?
+	; todo - make constant
+	ld a, $B3
 	call PlaySound
+	
+	; disable OAM
+	ld hl, rLCDC
+	res 1, [hl] ; todo - make sure it isn't already reset
+	
+	; set the oam palettes
+	ld hl, rOBP0
+	ldPal a, BLACK, BLACK, DARK_GRAY, BLACK
+	ld [hli], a
+	ldPal a, BLACK, BLACK, WHITE, BLACK
+	ld [hl], a
 	
 ; Check save file
 	call InitOptions
@@ -10,122 +20,276 @@ MainMenu:
 	ld [wOptionsInitialized], a
 	call CheckForPlayerNameInSRAM
 	
-	ld hl, vChars0
-	ld de, TitleScreenMenuGFX
-	lb bc, BANK(TitleScreenMenuGFX), (TitleScreenMenuGFXEnd - TitleScreenMenuGFX) / BYTES_PER_TILE
-	call CopyVideoData
-	
-	ld hl, TitleScreenMenuSmallTiles
-	ld a, 2
+	coord hl, 2, 3
+	lb bc, 6, 16
+	ld a, 2 ; todo - constant
 	jr nc, .skipLoadSAV
 
 	predef LoadSAV
 	
-	ld hl, vChars0 + $270
-	ld de, TitleScreenMenuLargeGFX
-	lb bc, BANK(TitleScreenMenuLargeGFX), (TitleScreenMenuLargeGFXEnd - TitleScreenMenuLargeGFX) / BYTES_PER_TILE
+	; todo - make constant/formula
+	ld hl, vChars0 + $D00
+	ld de, TitleScreenLargerBoxTopGFX
+	lb bc, BANK(TitleScreenLargerBoxTopGFX), (TitleScreenLargerBoxTopGFXEnd - TitleScreenLargerBoxTopGFX) / BYTES_PER_TILE
 	call CopyVideoData
 	
-	ld hl, TitleScreenMenuLargeTiles
-	ld a, 1
-
+	coord hl, 2, 2
+	lb bc, 7, 16
+	ld a, 1 ; todo - constant
+	
 .skipLoadSAV
 	ld [wSaveFileStatus], a
-	
+
 	; TODO - is this necessary?
 	xor a
 	ld [$dd24], a
 	
-	; draw the screen
-	ld de, wTileMap
-	ld bc, TitleScreenMenuLargeTiles - TitleScreenMenuSmallTiles
+	push bc
+	
+	; draw the top box
+	lb bc, 1, 16 ; todo - constant/formula
+	ld a, $D0 ; todo - constant/formula
+	call DrawSprite
+	
+	ld bc, SCREEN_WIDTH
+	add hl, bc	; set hl to correct position
+	
+	pop bc
+	call ClearScreenArea
+	
+	ld hl, MainMenuLargeBoxBottomTiles
+	coord de, 2, 10
+	ld bc, MainMenuLargeBoxBottomTilesEnd - MainMenuLargeBoxBottomTiles
 	call CopyData
 	
-	call Delay3 ; takes 3 frames to redraw the screen
+	push hl
 	
-	call GBPalStandard
+	ld c, 5
+	call DelayFrames ; takes 3 frames to redraw the screen
 	
-	ld c, 20
+	; bottom box
+	
+	; todo - constant/formula
+	ld hl, vChars0 + $430
+	ld de, TitleScreenSmallBoxTopGFX
+	lb bc, BANK(TitleScreenSmallBoxTopGFX), (TitleScreenSmallBoxBottomGFXEnd - TitleScreenSmallBoxTopGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld hl, MainMenuSmallBoxTopTiles
+	coord de, 2, 11
+	ld bc, MainMenuSmallBoxTopTilesEnd - MainMenuSmallBoxTopTiles
+	call CopyData
+	
+	coord hl, 2, 12
+	lb bc, 3, 16
+	call ClearScreenArea
+	
+	ld hl, MainMenuSmallBoxBottomTiles
+	coord de, 9, 15
+	ld bc, MainMenuSmallBoxBottomTilesEnd - MainMenuSmallBoxBottomTiles
+	call CopyData
+	
+	ld c, 5
 	call DelayFrames
 	
 	ld hl, vChars1
-	ld de, WhiteOnBlackFontGFX
-	lb bc, BANK(WhiteOnBlackFontGFX), (WhiteOnBlackFontGFXEnd - WhiteOnBlackFontGFX) / BYTES_PER_TILE
-	call CopyVideoData
-
-	; Don't overwrite the end of the "team rocket edition" gfx
-	ld hl, vChars1 + $4A0
-	ld de, TitleScreenMenuTextGFX
-	lb bc, BANK(TitleScreenMenuTextGFX), (TitleScreenMenuTextGFXEnd - TitleScreenMenuTextGFX) / BYTES_PER_TILE
+	ld de, WhiteOnBlackFontLettersGFX
+	lb bc, BANK(WhiteOnBlackFontLettersGFX), (WhiteOnBlackFontLettersGFXEnd - WhiteOnBlackFontLettersGFX) / BYTES_PER_TILE
 	call CopyVideoData
 	
-	ld hl, $C3DF ; todo - coords
-	ld de, MainMenuTextWithContinue
-	ld a, [wSaveFileStatus]
-	dec a
-	jr z, .printText
-
-	ld de, MainMenuTextWithoutContinue
+	ld hl, vChars1 + $400
+	ld de, TitleScreenMenuLettersGFX
+	lb bc, BANK(TitleScreenMenuLettersGFX), (TitleScreenMenuLettersGFXEnd - TitleScreenMenuLettersGFX) / BYTES_PER_TILE
+	call CopyVideoData
 	
-.printText
-	call PlaceString
-	call Delay3
+	ld hl, vChars1 + $600
+	ld de, WhiteOnBlackFontSymbolsGFX
+	lb bc, BANK(WhiteOnBlackFontSymbolsGFX), (WhiteOnBlackFontSymbolsGFXEnd - WhiteOnBlackFontSymbolsGFX) / BYTES_PER_TILE
+	call CopyVideoData
 	
 	call InitMainMenuOAM
 	
-Debug::
-	ld c, 20
-	call DelayFrames
+	; enable OAM
+	ld hl, rLCDC
+	set 1, [hl]
 	
-	; TODO - turn on OAM sprites, set PAL?
+.update_cursor_loop
+	call UpdateMainMenuCursor
+
+.keypress_loop
+	push bc
+	call JoypadLowSensitivity
+	pop bc
+	ld a, [hJoy5]
+	and A_BUTTON | B_BUTTON | D_UP | D_DOWN | START
+	jr z, .keypress_loop
 	
+	bit BIT_B_BUTTON, a
+	jr nz, .b_pressed
+	
+	bit BIT_D_UP, a
+	jr nz, .up_pressed
+	
+	bit BIT_D_DOWN, a
+	jr nz, .down_pressed
+	
+	; otherwise, a/start
+	
+	;TODO
+	jr .keypress_loop ; temp
+	
+.b_pressed
+	;TODO
+	jr .keypress_loop ; temp
+	
+.down_pressed
+	call ClearMainMenuCursor
+	inc c
+	ld a, 4 ; menu size + 1
+	cp c
+	jr nz, .update_cursor_loop
+	ld c, b ; top option
+	jr .update_cursor_loop
+	
+.up_pressed
+	call ClearMainMenuCursor
+	ld a, c
+	dec c
+	cp b ; was it previously at the first option?
+	jr nz, .update_cursor_loop ; if not, loop
+	ld c, 3 ; otherwise, set to bottom option
+	jr .update_cursor_loop
+	
+MainMenuCursorCommon:
+	ld hl, MainMenuOAMLocationsTable
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld c, a ; c = number of tiles
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = oam start location
+	ld de, 4 ; size of oam sprite data
+	ret
+
+UpdateMainMenuCursor:
+	push bc
+	call MainMenuCursorCommon
+.loop
+	set 4, [hl] ; switch the palette
+	add hl, de
+	dec c
+	jr nz, .loop
+	pop bc
+	ret
+
+ClearMainMenuCursor:
+	push bc
+	call MainMenuCursorCommon
+.loop
+	res 4, [hl] ; switch the palette
+	add hl, de
+	dec c
+	jr nz, .loop
+	pop bc
 	ret
 	
+MainMenuOAMLocationsTable:
+	dbw ContinueTilesEnd - ContinueTiles, wOAMBuffer + 3
+	dbw AdventureTilesEnd - AdventureTiles, wOAMBuffer + 3 + (ContinueTilesEnd - ContinueTiles) * 4
+	dbw ChallengeTilesEnd - ChallengeTiles, wOAMBuffer + 3 + (AdventureTilesEnd - ContinueTiles) * 4
+	dbw SettingTilesEnd - SettingTiles, wOAMBuffer + 3 + (ChallengeTilesEnd - ContinueTiles) * 4
 	
-; TODO - get rid of hex constants (they are starting coords in pixels)
+	
 InitMainMenuOAM:
-	ld hl, wOAMBuffer
+	ld a, [wSaveFileStatus]
+	dec a
+	jr z, .print_continue
 	
-	; CONTINUE
-	ld de, $2838
-	ld c, 8
+	
+	lb bc, 1, 1 ; initial option id
+	push bc
+	
+	ld d, 53
+	ld a, 16
+	ld hl, wOAMBuffer + (ContinueTilesEnd - ContinueTiles) * 4
+	push af
+	
+	jr .skip_continue
+	
+.print_continue	
+	lb bc, 0, 0	; initial option id
+	push bc
+	
+	ld d, 44
+	ld a, 14	
+	ld hl, wOAMBuffer
+	push af
+	
+	ld e, 56
+	ld bc, ContinueTiles
+	ld a, ContinueTilesEnd - ContinueTiles
 	call CopyStringToOAM
 
-	; ADVENTURE
-	ld de, $3834
-	ld c, 9
+	pop af
+	push af
+	add d
+	ld d, a ; next row
+	
+.skip_continue
+	ld [wChosenMenuItem], a
+	
+	ld e, 52
+	ld bc, AdventureTiles
+	ld a, AdventureTilesEnd - AdventureTiles
 	call CopyStringToOAM
 
-	; CHALLENGE
-	ld de, $4834
-	ld c, 9
+	pop af
+	push af
+	add d
+	ld d, a ; next row
+	
+	ld e, 52
+	ld bc, ChallengeTiles
+	ld a, ChallengeTilesEnd - ChallengeTiles
 	call CopyStringToOAM
 
-	; SETTINGS
-	ld de, $5838
-	ld c, 8
+	pop af
+	add d
+	ld d, a ; next row
+	
+	ld e, 56
+	ld bc, SettingTiles
+	ld a, SettingTilesEnd - SettingTiles
 	call CopyStringToOAM
+	
+	pop bc ; restore the initial option id data
 	ret
 	
 CopyStringToOAM:
+	push af
 	ld a, d
 	ld [hli], a
 	ld a, e
 	ld [hli], a
 	add a, PIXELS_PER_TILE
 	ld e, a
-	ld [hli], $EA ; transparent tile
-	set 7, [hl] ; set priority (TODO - necessary?)
-	inc hl
-	dec c
+	ld a, [bc]
+	inc bc
+	ld [hli], a
+	xor a
+	ld [hli], a
+	pop af
+	dec a
 	jr nz, CopyStringToOAM
 	ret
 	
 ;==============================
 	
 .mainMenuLoop
-	ld c, 20
-	call DelayFrames
+; TODO - which of these need to be included in the new routine?
 	xor a ; LINK_STATE_NONE
 	ld [wLinkState], a
 	ld hl, wPartyAndBillsPCSavedMenuItem
@@ -136,36 +300,7 @@ CopyStringToOAM:
 	ld [wDefaultMap], a
 	ld hl, wd72e
 	res 6, [hl]
-	call ClearScreen
-	call RunDefaultPaletteCommand
-	call LoadTextBoxTilePatterns
-	call LoadFontTilePatterns
-	ld hl, wd730
-	set 6, [hl]
-	ld a, [wSaveFileStatus]
-	cp 1
-	jr z, .noSaveFile
-; there's a save file
-	coord hl, 0, 0
-	ld b, 6
-	ld c, 13
-	call TextBoxBorder
-	coord hl, 2, 2
-	ld de, ContinueText
-	call PlaceString
-	jr .next2
-.noSaveFile
-	coord hl, 0, 0
-	ld b, 4
-	ld c, 13
-	call TextBoxBorder
-	coord hl, 2, 2
-	ld de, NewGameText
-	call PlaceString
-.next2
-	ld hl, wd730
-	res 6, [hl]
-	call UpdateSprites
+;================================
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wLastMenuItem], a

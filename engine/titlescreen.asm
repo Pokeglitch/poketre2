@@ -16,20 +16,36 @@ DisplayTitleScreen:
 	ld [hSCX], a
 	ld [hSCY], a
 	
+	; TODO - is this necessary?
 	ld hl, rLCDC
 	set 4, [hl] ; use vChars0 for tiles
 	
-	; load the bg and press start gfx
+	; load the gfx
 	ld hl, vChars0
-	ld de, TitleScreenBackgroundGFX
-	lb bc, BANK(TitleScreenBackgroundGFX), (TitleScreenPressStartTextGFXEnd - TitleScreenBackgroundGFX) / BYTES_PER_TILE
+	ld de, TitleScreenSharedGFX
+	lb bc, BANK(TitleScreenSharedGFX), (TitleScreenLargeBoxBottomGFXEnd - TitleScreenSharedGFX) / BYTES_PER_TILE
 	call CopyVideoData
 	
-	; draw the gfx
-	ld bc, TitleScreenBackgroundGFXEnd - TitleScreenBackgroundGFX
+	; TODO - make a constant?
+	; or just combine solid gfx with expendable, making sure black is at 0x7F?
+	ld hl, vChars0 + $7E0
+	ld de, TitleScreenSolidGFX
+	lb bc, BANK(TitleScreenSolidGFX), (TitleScreenExpendableGFXEnd - TitleScreenSolidGFX) / BYTES_PER_TILE
+	call CopyVideoData
+	
+	ld hl, vChars1 + $500
+	ld de, TitleScreenLargeBoxTopGFX
+	lb bc, BANK(TitleScreenLargeBoxTopGFX), (TitleScreenPressStartGFXEnd - TitleScreenLargeBoxTopGFX) / BYTES_PER_TILE
+	call CopyVideoData
+
+	; draw the background gfx
+	ld bc, TitleScreenBackgroundTilesEnd - TitleScreenBackgroundTiles
 	ld hl, TitleScreenBackgroundTiles
 	ld de, wTileMap
 	call CopyData
+	
+	; make sure the background has been copied before updating the Palettes
+	call Delay3
 	
 	ld a, MUSIC_TITLE_SCREEN
 	ld [wNewSoundID], a
@@ -39,15 +55,29 @@ DisplayTitleScreen:
 	ld c, 32
 	call DelayFrames
 	
-	ld hl, vChars0 + $50
-	ld de, TitleScreenPokemonTRETextGFX
-	lb bc, BANK(TitleScreenPokemonTRETextGFX), (TitleScreenPokemonTRETextGFXEnd - TitleScreenPokemonTRETextGFX) / BYTES_PER_TILE
+	; load the pokemon text
+	; todo - make the constant
+	ld hl, vChars0 + $240
+	ld de, TitleScreenPokemonTextGFX
+	lb bc, BANK(TitleScreenPokemonTextGFX), (TitleScreenPokemonTextGFXEnd - TitleScreenPokemonTextGFX) / BYTES_PER_TILE
 	call CopyVideoData
 
-	ld c, 32
+	ld c, 16
 	call DelayFrames
 	
-	ld hl, vChars0 + $A60
+	; load the tre text
+	; todo - make the constant
+	ld hl, vChars0 + $E00
+	ld de, TitleScreenTRETextGFX
+	lb bc, BANK(TitleScreenTRETextGFX), (TitleScreenTRETextGFXEnd - TitleScreenTRETextGFX) / BYTES_PER_TILE
+	call CopyVideoData
+
+	ld c, 16
+	call DelayFrames
+	
+	; load the team rocket edition text
+	; todo - make the constant
+	ld hl, vChars0 + $540
 	ld de, TitleScreenTeamRocketEditionTextGFX
 	lb bc, BANK(TitleScreenTeamRocketEditionTextGFX), (TitleScreenTeamRocketEditionTextGFXEnd - TitleScreenTeamRocketEditionTextGFX) / BYTES_PER_TILE
 	call CopyVideoData
@@ -73,7 +103,8 @@ DisplayTitleScreen:
 
 InitPressStartText:	
 	ld hl, wOAMBuffer
-	lb bc, (TitleScreenPressStartTextGFXEnd - TitleScreenPressStartTextGFX) / BYTES_PER_TILE, (TitleScreenBackgroundGFXEnd - TitleScreenBackgroundGFX) / BYTES_PER_TILE ; # of tiles, starting tile
+	; TODO - make constant / formula
+	lb bc, (TitleScreenPressStartGFXEnd - TitleScreenPressStartGFX) / BYTES_PER_TILE, $F2 ; # of tiles, starting tile
 	lb de, PRESS_START_Y, PRESS_START_X ; starting OAM coordinates
 
 .loop
@@ -93,7 +124,7 @@ InitPressStartText:
 	
 FlashPressStartText:
 	inc de
-	ld c, (TitleScreenPressStartTextGFXEnd - TitleScreenPressStartTextGFX) / BYTES_PER_TILE
+	ld c, (TitleScreenPressStartGFXEnd - TitleScreenPressStartGFX) / BYTES_PER_TILE
 	ld a, d
 	bit 3, a
 	ld a, PRESS_START_Y

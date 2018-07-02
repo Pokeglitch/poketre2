@@ -416,30 +416,6 @@ DisplayIntroScreen:
 	call DelayFrames
 	jp GBPalBlackOut
 	
-; to draw a b x c sprite at hl with increasing tile
-; ids, starting at a
-DrawSprite:
-	lb de, 0, SCREEN_WIDTH
-	
-; draw the tiles
-.row_loop
-	push hl
-	push bc
-	
-.col_loop
-	ld [hli], a
-	inc a
-	dec c
-	jr nz, .col_loop
-	
-	pop bc
-	pop hl
-	dec b
-	ret z
-	
-	add hl, de
-	jr .row_loop
-	
 IntroNidorinoAnimation0:
 	db 0, 0
 	db ANIMATION_END

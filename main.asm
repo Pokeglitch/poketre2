@@ -2078,26 +2078,56 @@ INCLUDE "engine/overworld/elevator.asm"
 INCLUDE "engine/items/tm_prices.asm"
 
 SECTION "TitlescreenGFX", ROMX, BANK[$3D]
-TitleScreenBackgroundGFX: INCBIN "gfx/title_screen_bg.2bpp"
-TitleScreenBackgroundGFXEnd:
+TitleScreenSharedGFX: INCBIN "gfx/titlescreen/shared.2bpp"
+TitleScreenShareGFXEnd:
 
-TitleScreenPressStartTextGFX: INCBIN "gfx/title_screen_press_start_text.2bpp"
-TitleScreenPressStartTextGFXEnd:
+TitleScreenPokemonBGGFX: INCBIN "gfx/titlescreen/pokemon_bg.2bpp"
+TitleScreenPokemonBGGFXEnd:
 
-TitleScreenPokemonTRETextGFX: INCBIN "gfx/title_screen_pokemon_tre_text.2bpp"
-TitleScreenPokemonTRETextGFXEnd:
+TitleScreenTeamRocketEditionBGGFX: INCBIN "gfx/titlescreen/team_rocket_edition_bg.2bpp"
+TitleScreenTeamRocketEditionBGGFXEnd:
 
-TitleScreenTeamRocketEditionTextGFX: INCBIN "gfx/title_screen_team_rocket_edition_text.2bpp"
+TitleScreenLargeBoxBottomGFX: INCBIN "gfx/titlescreen/large_box_bottom.2bpp"
+TitleScreenLargeBoxBottomGFXEnd:
+
+TitleScreenSolidGFX: INCBIN "gfx/titlescreen/solid.2bpp"
+TitleScreenSolidGFXEnd:
+
+TitleScreenExpendableGFX: INCBIN "gfx/titlescreen/expendable.2bpp"
+TitleScreenExpendableGFXEnd:
+
+TitleScreenLargeBoxTopGFX: INCBIN "gfx/titlescreen/large_box_top.2bpp"
+TitleScreenLargeBoxTopGFXEnd:
+
+TitleScreenTREBGGFX: INCBIN "gfx/titlescreen/tre_bg.2bpp"
+TitleScreenTREBGGFXEnd:
+
+TitleScreenPressStartGFX: INCBIN "gfx/titlescreen/press_start.2bpp"
+TitleScreenPressStartGFXEnd:
+
+TitleScreenPokemonTextGFX: INCBIN "gfx/titlescreen/pokemon_text.2bpp"
+TitleScreenPokemonTextGFXEnd:
+
+TitleScreenTeamRocketEditionTextGFX: INCBIN "gfx/titlescreen/team_rocket_edition_text.2bpp"
 TitleScreenTeamRocketEditionTextGFXEnd:
 
-TitleScreenMenuGFX: INCBIN "gfx/title_screen_menu.2bpp"
-TitleScreenMenuGFXEnd:
+TitleScreenTRETextGFX: INCBIN "gfx/titlescreen/tre_text.2bpp"
+TitleScreenTRETextGFXEnd:
 
-TitleScreenMenuLargeGFX: INCBIN "gfx/title_screen_menu_large.2bpp"
-TitleScreenMenuLargeGFXEnd:
+TitleScreenLargerBoxTopGFX: INCBIN "gfx/titlescreen/larger_box_top.2bpp"
+TitleScreenLargerBoxTopGFXEnd:
 
-WhiteOnBlackFontGFX: INCBIN "gfx/white_on_black_font.2bpp"
-WhiteOnBlackFontGFXEnd:
+TitleScreenSmallBoxTopGFX: INCBIN "gfx/titlescreen/small_box_top.2bpp"
+TitleScreenSmallBoxTopGFXEnd:
 
-TitleScreenMenuTextGFX: INCBIN "gfx/title_screen_menu_text.2bpp"
-TitleScreenMenuTextGFXEnd:
+TitleScreenSmallBoxBottomGFX: INCBIN "gfx/titlescreen/small_box_bottom.2bpp"
+TitleScreenSmallBoxBottomGFXEnd:
+
+WhiteOnBlackFontLettersGFX: INCBIN "gfx/white_on_black_font_letters.2bpp"
+WhiteOnBlackFontLettersGFXEnd:
+
+WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/white_on_black_font_symbols.2bpp"
+WhiteOnBlackFontSymbolsGFXEnd:
+
+TitleScreenMenuLettersGFX: INCBIN "gfx/titlescreen/menu_letters.2bpp"
+TitleScreenMenuLettersGFXEnd:

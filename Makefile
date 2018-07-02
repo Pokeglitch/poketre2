@@ -46,9 +46,8 @@ gfx/intro_meowth_3.2bpp: rgbgfx += -h
 gfx/game_boy.2bpp: tools/gfx += --remove-duplicates
 gfx/theend.2bpp: tools/gfx += --interleave --png=$<
 gfx/tilesets/%.2bpp: tools/gfx += --trim-whitespace
-gfx/title_screen_bg.2bpp: tools/gfx += --trim-whitespace
-gfx/title_screen_pokemon_tre_text.2bpp: tools/gfx += --trim-whitespace
-gfx/title_screen_menu_text.2bpp: tools/gfx += --trim-whitespace
+gfx/titlescreen/team_rocket_edition_bg.2bpp: tools/gfx += --trim-whitespace
+gfx/titlescreen/team_rocket_edition_text.2bpp: tools/gfx += --trim-whitespace
 
 %.png: ;
 
