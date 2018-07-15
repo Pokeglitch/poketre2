@@ -19,17 +19,17 @@ TitleScreenBackgroundTiles:
 	db $7e, $1d, $23, $19, $1a, $1b, $7f, $1c, $7e, $1e, $1f, $20, $21, $7f, $7f, $7f, $22, $7e, $7e, $7e
 TitleScreenBackgroundTilesEnd:
 
-MainMenuLargeBoxBottomTiles:
+TitleScreenMenuBoxBottomTiles:
 	db $71, $72, $73, $7F, $7F, $7F, $7F, $7F, $74, $7F, $7F, $7F, $75, $76, $77, $78
-MainMenuLargeBoxBottomTilesEnd:
+TitleScreenMenuBoxBottomTilesEnd:
 
-MainMenuSmallBoxTopTiles:
+TitleScreenTextBoxTopTiles:
 	db $43, $44, $45, $46, $46, $46, $46, $46, $47, $46, $46, $46, $48, $49, $4A, $4B
-MainMenuSmallBoxTopTilesEnd:
+TitleScreenTextBoxTopTilesEnd:
 
-MainMenuSmallBoxBottomTiles:
+TitleScreenTextBoxBottomTiles:
 	db $4C, $4D, $4E, $7F, $7F, $4F, $50, $51, $52
-MainMenuSmallBoxBottomTilesEnd:
+TitleScreenTextBoxBottomTilesEnd:
 	
 ContinueTiles:
 	db $C1, $C9, $C8, $CC, $C6, $C8, $CD, $C3

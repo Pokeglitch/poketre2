@@ -1863,8 +1863,6 @@ wNumShootingBalls:: ; d08a
 wTradedMonMovingRight:: ; d08a
 ; $01 if mon is moving from left gameboy to right gameboy; $00 if vice versa
 
-wOptionsInitialized:: ; d08a
-
 wNewSlotMachineBallTile:: ; d08a
 
 wCoordAdjustmentAmount:: ; d08a
@@ -1948,7 +1946,7 @@ wLinkCableAnimBulgeToggle:: ; d09f
 ; 0 = small
 ; 1 = big
 
-wIntroNidorinoBaseTile:: ; d09f
+wIntroMeowthBaseTile:: ; d09f
 
 wOutwardSpiralCurrentDirection:: ; d09f
 
@@ -2345,6 +2343,9 @@ wOptions:: ; d355
 ; bit 6 = battle style
 ; 0: Shift
 ; 1: Set
+; bit 5 = challenge mode
+; 0 : off
+; 1 : on
 ; bits 0-3 = text speed (number of frames to delay after printing a letter)
 ; 1: Fast
 ; 3: Medium
@@ -2893,7 +2894,10 @@ wRoute18GateCurScript:: ; d669
 	ds 78
 wGameProgressFlagsEnd::
 
-	ds 56
+wAwardPoints:: ds 2
+wAwardPointsEnd::
+
+	ds 54
 
 wObtainedHiddenItemsFlags::
 	ds 14
@@ -3203,6 +3207,24 @@ wBoxMonNicksEnd:: ; dee2
 
 wBoxDataEnd::
 
+; Permanent save data
+wPermanentData::
+
+wBestTime::
+wBestTimeHours:: ds 1
+wBestTimeMinutes:: ds 1
+wBestTimeEnd::
+
+wBestTimeName:: ds NAME_LENGTH
+
+wHighScore:: ds 3
+wHighScoreEnd::
+
+wHighScoreName:: ds NAME_LENGTH
+
+wPermanentDataEnd::
+
+wPermanentDataChecksum::
 
 SECTION "Stack", WRAM0[$df00]
 	ds $ff

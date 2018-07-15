@@ -10,7 +10,11 @@ sHallOfFame:: ds HOF_TEAM * HOF_TEAM_CAPACITY ; a598
 
 
 SECTION "Save Data", SRAM, BANK[1]
-	ds $598
+
+sPermanentData:: ds 28
+sPermanentDataEnd:: ; includes checksum
+
+	ds 1404
 
 sPlayerName::  ds NAME_LENGTH ; a598
 sMainData::    ds wMainDataEnd   - wMainDataStart ; a5a3

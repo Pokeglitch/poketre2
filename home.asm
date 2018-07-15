@@ -4487,7 +4487,6 @@ GBPalNormal::
 
 GBPalStandard::
 ; All pallete standard
-; Black out all palettes.
 	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
 	jr GBPalCommon
 	

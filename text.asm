@@ -2001,11 +2001,6 @@ SECTION "Text 6", ROMX, BANK[TEXT_6]
 INCLUDE "text/maps/route_24_2.asm"
 INCLUDE "text/maps/route_25.asm"
 
-_FileDataDestroyedText::
-	text "The file data is"
-	line "destroyed!"
-	prompt
-
 _WouldYouLikeToSaveText::
 	text "Would you like to"
 	line "SAVE the game?"

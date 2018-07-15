@@ -19,9 +19,6 @@ SetDefaultNames:
 	ld [wOptions], a
 	pop af
 	ld [wLetterPrintingDelayFlags], a
-	ld a, [wOptionsInitialized]
-	and a
-	call z, InitOptions
 	ld hl, NintenText
 	ld de, wPlayerName
 	ld bc, NAME_LENGTH

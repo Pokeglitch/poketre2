@@ -1,35 +1,19 @@
 LoadSAV:
 ;(if carry -> write
 ;"the file data is destroyed")
-	call ClearScreen
-	call LoadFontTilePatterns
-	call LoadTextBoxTilePatterns
 	call LoadSAV0
 	jr c, .badsum
 	call LoadSAV1
 	jr c, .badsum
 	call LoadSAV2
 	jr c, .badsum
-	ld a, $2 ; good checksum
+	ld a, SAVE_EXISTS ; good checksum
 	jr .goodsum
 .badsum
-	ld hl, wd730
-	push hl
-	set 6, [hl]
-	ld hl, FileDataDestroyedText
-	call PrintText
-	ld c, 100
-	call DelayFrames
-	pop hl
-	res 6, [hl]
-	ld a, $1 ; bad checksum
+	ld a, SAVE_CORRUPTED ; bad checksum
 .goodsum
 	ld [wSaveFileStatus], a
 	ret
-
-FileDataDestroyedText:
-	TX_FAR _FileDataDestroyedText
-	db "@"
 
 LoadSAV0:
 	ld a, SRAM_ENABLE
@@ -45,7 +29,7 @@ LoadSAV0:
 	cp c
 	jp z, .checkSumsMatched
 
-; If the computed checksum didn't match the saved on, try again.
+; If the computed checksum didn't match the saved one, try again.
 	ld hl, sPlayerName
 	ld bc, sMainDataCheckSum - sPlayerName
 	call SAVCheckSum
@@ -682,27 +666,29 @@ HallOfFame_Copy:
 	ld [MBC1SRamEnable], a
 	ret
 
-ClearSAV:
+LoadPermanentData:
 	ld a, SRAM_ENABLE
 	ld [MBC1SRamEnable], a
-	ld a, $1
+	ld a, 1
 	ld [MBC1SRamBankingMode], a
-	xor a
-	call PadSRAM_FF
-	ld a, $1
-	call PadSRAM_FF
-	ld a, $2
-	call PadSRAM_FF
-	ld a, $3
-	call PadSRAM_FF
+	ld [MBC1SRamBank], a
+	
+	ld hl, sPermanentData
+	ld bc, wPermanentDataEnd - wPermanentData
+	
+	push hl
+	push bc
+	call SAVCheckSum
+	cp [hl]
+	pop bc
+	pop hl
+	jr nz, .fail
+	
+	ld de, wPermanentData
+	call CopyData
+	
+.fail
 	xor a
 	ld [MBC1SRamBankingMode], a
 	ld [MBC1SRamEnable], a
 	ret
-
-PadSRAM_FF:
-	ld [MBC1SRamBank], a
-	ld hl, $a000
-	ld bc, $2000
-	ld a, $ff
-	jp FillMemory

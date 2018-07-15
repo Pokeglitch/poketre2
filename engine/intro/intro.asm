@@ -1,10 +1,3 @@
-const_value = -1
-	const MOVE_NIDORINO_RIGHT
-	const MOVE_GENGAR_RIGHT
-	const MOVE_GENGAR_LEFT
-
-ANIMATION_END EQU 80
-
 PlayIntro:
 	xor a
 	ld [hJoyHeld], a
@@ -50,9 +43,9 @@ EkansSpriteDims:
 ; starting tile id, height, width, location on screen
 	db 0, 5, 6
 	dwCoord 11, 9
-	db (FightIntroBackMon2 - FightIntroBackMon) / BYTES_PER_TILE, 7, 7
+	db (FightIntroEkans2 - FightIntroEkans) / BYTES_PER_TILE, 7, 7
 	dwCoord 11, 7
-	db (FightIntroBackMon3 - FightIntroBackMon) / BYTES_PER_TILE, 5, 9
+	db (FightIntroEkans3 - FightIntroEkans) / BYTES_PER_TILE, 5, 9
 	dwCoord 11, 9
 	
 PlayIntroBattle:
@@ -62,7 +55,7 @@ PlayIntroBattle:
 	call LoadIntroBattleGraphics
 	
 	ld hl, rLCDC
-	res 5, [hl] ; turn off the window
+	res LCD_WINDOW_ENABLE_F, [hl] ; turn off the window
 	
 	ld c, 16
 	call DelayFrames
@@ -88,8 +81,8 @@ PlayIntroBattle:
 	ld a, 72
 	ld [wBaseCoordY], a
 	lb bc, 7, 6
-	call InitIntroNidorinoOAM
-	lb de, 80 / 2, MOVE_NIDORINO_RIGHT
+	call InitIntroMeowthOAM
+	lb de, 80 / 2, MOVE_MEOWTH_RIGHT
 	call IntroMoveMon
 	ret c
 
@@ -97,14 +90,14 @@ PlayIntroBattle:
 	ld a, SFX_INTRO_HIP
 	call PlaySound
 	xor a
-	ld [wIntroNidorinoBaseTile], a
-	ld de, IntroNidorinoAnimation1
-	call AnimateIntroNidorino
+	ld [wIntroMeowthBaseTile], a
+	ld de, IntroMeowthAnimation1
+	call AnimateIntroMeowth
 ; hop
 	ld a, SFX_INTRO_HOP
 	call PlaySound
-	ld de, IntroNidorinoAnimation2
-	call AnimateIntroNidorino
+	ld de, IntroMeowthAnimation2
+	call AnimateIntroMeowth
 	ld c, 10
 	call CheckForUserInterruption
 	ret c
@@ -112,13 +105,13 @@ PlayIntroBattle:
 ; hip
 	ld a, SFX_INTRO_HIP
 	call PlaySound
-	ld de, IntroNidorinoAnimation1
-	call AnimateIntroNidorino
+	ld de, IntroMeowthAnimation1
+	call AnimateIntroMeowth
 ; hop
 	ld a, SFX_INTRO_HOP
 	call PlaySound
-	ld de, IntroNidorinoAnimation2
-	call AnimateIntroNidorino
+	ld de, IntroMeowthAnimation2
+	call AnimateIntroMeowth
 	ld c, 30
 	call CheckForUserInterruption
 	ret c
@@ -128,7 +121,7 @@ PlayIntroBattle:
 	call DrawEkansTiles
 	ld a, SFX_INTRO_RAISE
 	call PlaySound
-	lb de, 8 / 2, MOVE_GENGAR_LEFT
+	lb de, 8 / 2, MOVE_EKANS_LEFT
 	call IntroMoveMon
 	ld c, 30
 	call CheckForUserInterruption
@@ -139,20 +132,20 @@ PlayIntroBattle:
 	call DrawEkansTiles
 	ld a, SFX_INTRO_CRASH
 	call PlaySound
-	lb de, 16 / 2, MOVE_GENGAR_RIGHT
+	lb de, 16 / 2, MOVE_EKANS_RIGHT
 	call IntroMoveMon
 ; hip
 	ld a, SFX_INTRO_HIP
 	call PlaySound
-	ld a, (FightIntroFrontMon2 - FightIntroFrontMon) / BYTES_PER_TILE
-	ld [wIntroNidorinoBaseTile], a
-	ld de, IntroNidorinoAnimation3
-	call AnimateIntroNidorino
+	ld a, (FightIntroMeowth2 - FightIntroMeowth) / BYTES_PER_TILE
+	ld [wIntroMeowthBaseTile], a
+	ld de, IntroMeowthAnimation3
+	call AnimateIntroMeowth
 	ld c, 30
 	call CheckForUserInterruption
 	ret c
 
-	lb de, 8 / 2, MOVE_GENGAR_LEFT
+	lb de, 8 / 2, MOVE_EKANS_LEFT
 	call IntroMoveMon
 	ld c, 0
 	call DrawEkansTiles
@@ -164,22 +157,22 @@ PlayIntroBattle:
 	ld a, SFX_INTRO_HIP
 	call PlaySound
 	xor a
-	ld [wIntroNidorinoBaseTile], a
-	ld de, IntroNidorinoAnimation4
-	call AnimateIntroNidorino
+	ld [wIntroMeowthBaseTile], a
+	ld de, IntroMeowthAnimation4
+	call AnimateIntroMeowth
 ; hop
 	ld a, SFX_INTRO_HOP
 	call PlaySound
-	ld de, IntroNidorinoAnimation5
-	call AnimateIntroNidorino
+	ld de, IntroMeowthAnimation5
+	call AnimateIntroMeowth
 	ld c, 20
 	call CheckForUserInterruption
 	ret c
 
-	ld a, (FightIntroFrontMon2 - FightIntroFrontMon) / BYTES_PER_TILE
-	ld [wIntroNidorinoBaseTile], a
-	ld de, IntroNidorinoAnimation6
-	call AnimateIntroNidorino
+	ld a, (FightIntroMeowth2 - FightIntroMeowth) / BYTES_PER_TILE
+	ld [wIntroMeowthBaseTile], a
+	ld de, IntroMeowthAnimation6
+	call AnimateIntroMeowth
 	ld c, 30
 	call CheckForUserInterruption
 	ret c
@@ -187,12 +180,12 @@ PlayIntroBattle:
 ; lunge
 	ld a, SFX_INTRO_LUNGE
 	call PlaySound
-	ld a, (FightIntroFrontMon3 - FightIntroFrontMon) / BYTES_PER_TILE
-	ld [wIntroNidorinoBaseTile], a
-	ld de, IntroNidorinoAnimation7
+	ld a, (FightIntroMeowth3 - FightIntroMeowth) / BYTES_PER_TILE
+	ld [wIntroMeowthBaseTile], a
+	ld de, IntroMeowthAnimation7
 	; fall through
 
-AnimateIntroNidorino:
+AnimateIntroMeowth:
 	ld a, [de]
 	cp ANIMATION_END
 	ret z
@@ -202,19 +195,19 @@ AnimateIntroNidorino:
 	ld [wBaseCoordX], a
 	push de
 	ld c, 6 * 7
-	call UpdateIntroNidorinoOAM
+	call UpdateIntroMeowthOAM
 	ld c, 5
 	call DelayFrames
 	pop de
 	inc de
-	jr AnimateIntroNidorino
+	jr AnimateIntroMeowth
 
-UpdateIntroNidorinoOAM:
+UpdateIntroMeowthOAM:
 	; The sprite is 2 tiles too large for OAM,
 	; so skip the first 2 because they are
 	; blank in each sprite anyway
 	ld hl, wOAMBuffer - 2 * 4
-	ld a, [wIntroNidorinoBaseTile]
+	ld a, [wIntroMeowthBaseTile]
 	ld d, a
 .loop
 	ld a, [wBaseCoordY]
@@ -231,7 +224,7 @@ UpdateIntroNidorinoOAM:
 	jr nz, .loop
 	ret
 
-InitIntroNidorinoOAM:
+InitIntroMeowthOAM:
 	; The sprite is 2 tiles too large for OAM,
 	; so skip the first 2 because they are
 	; blank in each sprite anyway
@@ -292,27 +285,27 @@ IntroPlaceBlackTiles:
 
 IntroMoveMon:
 ; d = number of times to move the mon (2 pixels each time)
-; e: 0 = move Gengar right, 1 = move Gengar left, -1 = move Nidorino right
+; e: 0 = move Ekans right, 1 = move Ekans left, -1 = move Meowth right
 	ld a, e
-	cp MOVE_NIDORINO_RIGHT
-	jr z, .moveNidorinoRight
-	cp MOVE_GENGAR_LEFT
-	jr z, .moveGengarLeft
-; move Gengar right
+	cp MOVE_MEOWTH_RIGHT
+	jr z, .moveMeowthRight
+	cp MOVE_EKANS_LEFT
+	jr z, .moveEkansLeft
+; move Ekans right
 	ld a, [hSCX]
 	dec a
 	dec a
 	jr .next
-.moveNidorinoRight
+.moveMeowthRight
 	push de
 	ld a, 2
 	ld [wBaseCoordX], a
 	xor a
 	ld [wBaseCoordY], a
 	ld c, 6 * 7
-	call UpdateIntroNidorinoOAM
+	call UpdateIntroMeowthOAM
 	pop de
-.moveGengarLeft
+.moveEkansLeft
 	ld a, [hSCX]
 	inc a
 	inc a
@@ -332,14 +325,14 @@ CopyTileIDsFromList_ZeroBaseTileID:
 	predef_jump CopyTileIDsFromList
 
 LoadIntroBattleGraphics:
-	ld de, FightIntroBackMon
+	ld de, FightIntroEkans
 	ld hl, vChars2
-	lb bc, BANK(FightIntroBackMon), (FightIntroBackMonEnd - FightIntroBackMon) / BYTES_PER_TILE
+	lb bc, BANK(FightIntroEkans), (FightIntroEkansEnd - FightIntroEkans) / BYTES_PER_TILE
 	call CopyVideoData
 	
-	ld de, FightIntroFrontMon
+	ld de, FightIntroMeowth
 	ld hl, vChars0
-	lb bc, BANK(FightIntroFrontMon), (FightIntroFrontMonEnd - FightIntroFrontMon) / BYTES_PER_TILE
+	lb bc, BANK(FightIntroMeowth), (FightIntroMeowthEnd - FightIntroMeowth) / BYTES_PER_TILE
 	jp CopyVideoData
 
 DrawIntroBattleBackground:
@@ -416,13 +409,13 @@ DisplayIntroScreen:
 	call DelayFrames
 	jp GBPalBlackOut
 	
-IntroNidorinoAnimation0:
+IntroMeowthAnimation0:
 	db 0, 0
 	db ANIMATION_END
 
-IntroNidorinoAnimation1:
-; This is a sequence of pixel movements for part of the Nidorino animation. This
-; list describes how Nidorino should hop.
+IntroMeowthAnimation1:
+; This is a sequence of pixel movements for part of the Meowth animation. This
+; list describes how Meowth should hop.
 ; First byte is y movement, second byte is x movement
 	db  0, 0
 	db -2, 2
@@ -431,8 +424,8 @@ IntroNidorinoAnimation1:
 	db  2, 2
 	db ANIMATION_END
 
-IntroNidorinoAnimation2:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation2:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db  0,  0
 	db -2, -2
@@ -441,8 +434,8 @@ IntroNidorinoAnimation2:
 	db  2, -2
 	db ANIMATION_END
 
-IntroNidorinoAnimation3:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation3:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db   0, 0
 	db -12, 6
@@ -451,8 +444,8 @@ IntroNidorinoAnimation3:
 	db  12, 6
 	db ANIMATION_END
 
-IntroNidorinoAnimation4:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation4:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db  0,  0
 	db -8, -4
@@ -461,8 +454,8 @@ IntroNidorinoAnimation4:
 	db  8, -4
 	db ANIMATION_END
 
-IntroNidorinoAnimation5:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation5:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db  0, 0
 	db -8, 4
@@ -471,8 +464,8 @@ IntroNidorinoAnimation5:
 	db  8, 4
 	db ANIMATION_END
 
-IntroNidorinoAnimation6:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation6:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db 0, 0
 	db 2, 0
@@ -480,8 +473,8 @@ IntroNidorinoAnimation6:
 	db 0, 0
 	db ANIMATION_END
 
-IntroNidorinoAnimation7:
-; This is a sequence of pixel movements for part of the Nidorino animation.
+IntroMeowthAnimation7:
+; This is a sequence of pixel movements for part of the Meowth animation.
 ; First byte is y movement, second byte is x movement
 	db -8, -16
 	db -7, -14
@@ -489,21 +482,21 @@ IntroNidorinoAnimation7:
 	db -4, -10
 	db ANIMATION_END
 
-FightIntroBackMon:
+FightIntroEkans:
 	INCBIN "gfx/intro_ekans_1.2bpp"
-FightIntroBackMon2:
+FightIntroEkans2:
 	INCBIN "gfx/intro_ekans_2.2bpp"
-FightIntroBackMon3:
+FightIntroEkans3:
 	INCBIN "gfx/intro_ekans_3.2bpp"
-FightIntroBackMonEnd:
+FightIntroEkansEnd:
 
-FightIntroFrontMon:
+FightIntroMeowth:
 	INCBIN "gfx/intro_meowth_1.2bpp"
-FightIntroFrontMon2:
+FightIntroMeowth2:
 	INCBIN "gfx/intro_meowth_2.2bpp"
-FightIntroFrontMon3:
+FightIntroMeowth3:
 	INCBIN "gfx/intro_meowth_3.2bpp"
-FightIntroFrontMonEnd:
+FightIntroMeowthEnd:
 
 VersionGFX:
 	INCBIN "gfx/version.2bpp"

@@ -26,7 +26,8 @@ INCLUDE "data/baseStats/mew.asm"
 
 INCLUDE "engine/battle/safari_zone.asm"
 
-INCLUDE "engine/titlescreen.asm"
+INCLUDE "engine/intro/titlescreen.asm"
+INCLUDE "engine/diploma.asm"
 INCLUDE "engine/load_mon_data.asm"
 
 INCLUDE "data/item_prices.asm"
@@ -47,7 +48,9 @@ INCLUDE "engine/overworld/movement.asm"
 
 INCLUDE "engine/cable_club.asm"
 
-INCLUDE "engine/menu/main_menu.asm"
+INCLUDE "engine/intro/main_menu.asm"
+INCLUDE "engine/link_menu.asm"
+INCLUDE "engine/save_screen.asm"
 
 INCLUDE "engine/oak_speech.asm"
 
@@ -370,8 +373,6 @@ DiglettsCaveEntranceRoute11Blocks:
 DiglettsCaveRoute2Blocks: INCBIN "maps/diglettscaveroute2.blk"
 
 INCLUDE "text/monster_names.asm"
-
-INCLUDE "engine/clear_save.asm"
 
 INCLUDE "engine/predefs7.asm"
 
@@ -916,7 +917,7 @@ SECTION "bank10",ROMX,BANK[$10]
 
 INCLUDE "engine/menu/pokedex.asm"
 INCLUDE "engine/trade.asm"
-INCLUDE "engine/intro.asm"
+INCLUDE "engine/intro/intro.asm"
 INCLUDE "engine/trade2.asm"
 
 
@@ -2087,8 +2088,8 @@ TitleScreenPokemonBGGFXEnd:
 TitleScreenTeamRocketEditionBGGFX: INCBIN "gfx/titlescreen/team_rocket_edition_bg.2bpp"
 TitleScreenTeamRocketEditionBGGFXEnd:
 
-TitleScreenLargeBoxBottomGFX: INCBIN "gfx/titlescreen/large_box_bottom.2bpp"
-TitleScreenLargeBoxBottomGFXEnd:
+TitleScreenMenuBoxBottomGFX: INCBIN "gfx/titlescreen/menu_box_bottom.2bpp"
+TitleScreenMenuBoxBottomGFXEnd:
 
 TitleScreenSolidGFX: INCBIN "gfx/titlescreen/solid.2bpp"
 TitleScreenSolidGFXEnd:
@@ -2096,8 +2097,8 @@ TitleScreenSolidGFXEnd:
 TitleScreenExpendableGFX: INCBIN "gfx/titlescreen/expendable.2bpp"
 TitleScreenExpendableGFXEnd:
 
-TitleScreenLargeBoxTopGFX: INCBIN "gfx/titlescreen/large_box_top.2bpp"
-TitleScreenLargeBoxTopGFXEnd:
+TitleScreenMenuBoxTopSmallGFX: INCBIN "gfx/titlescreen/menu_box_top_small.2bpp"
+TitleScreenMenuBoxTopSmallGFXEnd:
 
 TitleScreenTREBGGFX: INCBIN "gfx/titlescreen/tre_bg.2bpp"
 TitleScreenTREBGGFXEnd:
@@ -2114,14 +2115,14 @@ TitleScreenTeamRocketEditionTextGFXEnd:
 TitleScreenTRETextGFX: INCBIN "gfx/titlescreen/tre_text.2bpp"
 TitleScreenTRETextGFXEnd:
 
-TitleScreenLargerBoxTopGFX: INCBIN "gfx/titlescreen/larger_box_top.2bpp"
-TitleScreenLargerBoxTopGFXEnd:
+TitleScreenMenuBoxTopLargeGFX: INCBIN "gfx/titlescreen/menu_box_top_large.2bpp"
+TitleScreenMenuBoxTopLargeGFXEnd:
 
-TitleScreenSmallBoxTopGFX: INCBIN "gfx/titlescreen/small_box_top.2bpp"
-TitleScreenSmallBoxTopGFXEnd:
+TitleScreenTextBoxTopGFX: INCBIN "gfx/titlescreen/text_box_top.2bpp"
+TitleScreenTextBoxTopGFXEnd:
 
-TitleScreenSmallBoxBottomGFX: INCBIN "gfx/titlescreen/small_box_bottom.2bpp"
-TitleScreenSmallBoxBottomGFXEnd:
+TitleScreenTextBoxBottomGFX: INCBIN "gfx/titlescreen/text_box_bottom.2bpp"
+TitleScreenTextBoxBottomGFXEnd:
 
 WhiteOnBlackFontLettersGFX: INCBIN "gfx/white_on_black_font_letters.2bpp"
 WhiteOnBlackFontLettersGFXEnd:
