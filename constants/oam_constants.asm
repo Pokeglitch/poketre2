@@ -18,4 +18,11 @@ OAM_HFLIP     EQU 1 << OAM_X_FLIP ; horizontal flip
 OAM_VFLIP     EQU 1 << OAM_Y_FLIP ; vertical flip
 OAM_BEHIND_BG EQU 1 << OAM_PRIORITY ; behind bg (except color 0)
 
-OAM_BYTE_SIZE EQU 4
+; OAM byte locations
+	const_def
+	const OAM_Y
+	const OAM_X
+	const OAM_TILE
+	const OAM_FLAGS
+
+OAM_BYTE_SIZE EQU const_value

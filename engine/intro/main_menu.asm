@@ -353,10 +353,10 @@ MainMenuCursorCommon:
 	ret
 	
 .MainMenuOAMLocationsTable
-	dbw ContinueTilesEnd - ContinueTiles,   wOAMBuffer + 3
-	dbw AdventureTilesEnd - AdventureTiles, wOAMBuffer + 3 + (ContinueTilesEnd - ContinueTiles) * 4
-	dbw ChallengeTilesEnd - ChallengeTiles, wOAMBuffer + 3 + (AdventureTilesEnd - ContinueTiles) * 4
-	dbw SettingTilesEnd - SettingTiles,     wOAMBuffer + 3 + (ChallengeTilesEnd - ContinueTiles) * 4
+	dbw ContinueTilesEnd - ContinueTiles,   wOAMBuffer + OAM_FLAGS
+	dbw AdventureTilesEnd - AdventureTiles, wOAMBuffer + OAM_FLAGS + (ContinueTilesEnd - ContinueTiles) * OAM_BYTE_SIZE
+	dbw ChallengeTilesEnd - ChallengeTiles, wOAMBuffer + OAM_FLAGS + (AdventureTilesEnd - ContinueTiles) * OAM_BYTE_SIZE
+	dbw SettingTilesEnd - SettingTiles,     wOAMBuffer + OAM_FLAGS + (ChallengeTilesEnd - ContinueTiles) * OAM_BYTE_SIZE
 	
 ClearMainMenuCursor:
 	push bc
@@ -637,7 +637,7 @@ DisplayOptionMenu:
 	inc a
 	ld [wLetterPrintingDelayFlags], a
 	ld [wUnusedCD40], a
-	ld a,SPEED_Y ; text speed cursor Y coordinate
+	ld a, SPEED_Y ; text speed cursor Y coordinate
 	ld [wTopMenuItemY], a
 	call SetCursorPositionsFromOptions
 	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
