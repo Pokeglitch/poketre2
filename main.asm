@@ -83,8 +83,6 @@ INCLUDE "engine/menu/text_box.asm"
 
 INCLUDE "engine/battle/moveEffects/drain_hp_effect.asm"
 
-INCLUDE "engine/menu/players_pc.asm"
-
 INCLUDE "engine/remove_pokemon.asm"
 
 INCLUDE "engine/display_pokedex.asm"

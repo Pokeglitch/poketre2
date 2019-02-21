@@ -1662,13 +1662,6 @@ _AccessedSomeonesPCText::
 	line "Storage System."
 	prompt
 
-_AccessedMyPCText::
-	text "Accessed my PC."
-
-	para "Accessed Item"
-	line "Storage System."
-	prompt
-
 _TurnedOnPC2Text::
 	text "<PLAYER> turned on"
 	line "the PC."

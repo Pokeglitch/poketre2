@@ -1117,8 +1117,8 @@ DisplayTextID::
 	jp z, DisplayPokemartDialogue
 	cp $ff   ; Pokemon Center NPC
 	jp z, DisplayPokemonCenterDialogue
-	cp $fc   ; Item Storage PC
-	jp z, FuncTX_ItemStoragePC
+	cp $fc   ; Pokemon Center PC (previously Item Storage PC)
+	jp z, FuncTX_PokemonCenterPC
 	cp $fd   ; Bill's PC
 	jp z, FuncTX_BillsPC
 	cp $f9   ; Pokemon Center PC
@@ -1329,7 +1329,6 @@ AddAmountSoldToMoney::
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
-; HL = address of inventory (either wNumBagItems or wNumBoxItems)
 ; [wWhichPokemon] = index (within the inventory) of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory::
@@ -1346,7 +1345,6 @@ RemoveItemFromInventory::
 
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
-; HL = address of inventory (either wNumBagItems or wNumBoxItems)
 ; [wcf91] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
@@ -2091,7 +2089,6 @@ UseItem::
 
 ; confirms the item toss and then tosses the item
 ; INPUT:
-; hl = address of inventory (either wNumBagItems or wNumBoxItems)
 ; [wcf91] = item ID
 ; [wWhichPokemon] = index of item within inventory
 ; [wItemQuantity] = quantity to toss
@@ -2663,12 +2660,6 @@ DecodeArrowMovementRLE::
 	inc hl
 	inc hl
 	jr DecodeArrowMovementRLE
-
-FuncTX_ItemStoragePC::
-	call SaveScreenTilesToBuffer2
-	ld b, BANK(PlayerPC)
-	ld hl, PlayerPC
-	jr bankswitchAndContinue
 
 FuncTX_BillsPC::
 	call SaveScreenTilesToBuffer2
@@ -4559,7 +4550,6 @@ GiveItem::
 	ld [wcf91], a
 	ld a, c
 	ld [wItemQuantity], a
-	ld hl, wNumBagItems
 	call AddItemToInventory
 	ret nc
 	call GetItemName

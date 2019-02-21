@@ -433,7 +433,6 @@ StartMenu_Item:
 	inc a
 	jr z, .tossZeroItems
 .skipAskingQuantity
-	ld hl, wNumBagItems
 	call TossItem
 .tossZeroItems
 	jp ItemMenuLoop

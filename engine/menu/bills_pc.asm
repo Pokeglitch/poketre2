@@ -11,23 +11,19 @@ DisplayPCMainMenu::
 	and a
 	jr nz, .leaguePCAvailable
 	coord hl, 0, 0
-	ld b, 8
-	ld c, 14
+	ld b, 6
 	jr .next
 .noOaksPC
 	coord hl, 0, 0
-	ld b, 6
-	ld c, 14
+	ld b, 4
 	jr .next
 .leaguePCAvailable
 	coord hl, 0, 0
-	ld b, 10
-	ld c, 14
+	ld b, 8
 .next
+	ld c, 14
 	call TextBoxBorder
 	call UpdateSprites
-	ld a, 3
-	ld [wMaxMenuItem], a
 	CheckEvent EVENT_MET_BILL
 	jr nz, .metBill
 	coord hl, 2, 2
@@ -38,39 +34,30 @@ DisplayPCMainMenu::
 	ld de, BillsPCText
 .next2
 	call PlaceString
-	coord hl, 2, 4
-	ld de, wPlayerName
-	call PlaceString
-	ld l, c
-	ld h, b
-	ld de, PlayersPCText
-	call PlaceString
 	CheckEvent EVENT_GOT_POKEDEX
 	jr z, .noOaksPC2
-	coord hl, 2, 6
+	coord hl, 2, 4
 	ld de, OaksPCText
 	call PlaceString
 	ld a, [wNumHoFTeams]
 	and a
 	jr z, .noLeaguePC
-	ld a, 4
-	ld [wMaxMenuItem], a
-	coord hl, 2, 8
+	coord hl, 2, 6
 	ld de, PKMNLeaguePCText
 	call PlaceString
-	coord hl, 2, 10
-	ld de, LogOffPCText
-	jr .next3
-.noLeaguePC
+	ld a, 3
 	coord hl, 2, 8
-	ld de, LogOffPCText
-	jr .next3
-.noOaksPC2
-	ld a, $2
-	ld [wMaxMenuItem], a
+	jr .finish
+.noLeaguePC
+	ld a, 2
 	coord hl, 2, 6
+	jr .finish
+.noOaksPC2
+	ld a, 1
+	coord hl, 2, 4
+.finish
+	ld [wMaxMenuItem], a
 	ld de, LogOffPCText
-.next3
 	call PlaceString
 	ld a, A_BUTTON | B_BUTTON
 	ld [wMenuWatchedKeys], a
@@ -87,7 +74,6 @@ DisplayPCMainMenu::
 
 SomeonesPCText:   db "SOMEONE's PC@"
 BillsPCText:      db "BILL's PC@"
-PlayersPCText:    db "'s PC@"
 OaksPCText:       db "PROF.OAK's PC@"
 PKMNLeaguePCText: db $4a, "LEAGUE@"
 LogOffPCText:     db "LOG OFF@"

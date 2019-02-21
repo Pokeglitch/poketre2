@@ -107,7 +107,6 @@ DisplayPokemartDialogue_:
 	ld [wBoughtOrSoldItemInMart], a
 .skipSettingFlag1
 	call AddAmountSoldToMoney
-	ld hl, wNumBagItems
 	call RemoveItemFromInventory
 	jp .sellMenuLoop
 .unsellableItem
@@ -180,7 +179,6 @@ DisplayPokemartDialogue_:
 .buyItem
 	call .isThereEnoughMoney
 	jr c, .notEnoughMoney
-	ld hl, wNumBagItems
 	call AddItemToInventory
 	jr nc, .bagFull
 	call SubtractAmountPaidFromMoney

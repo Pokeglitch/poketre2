@@ -39,7 +39,6 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call SetDefaultNames
 	predef InitPlayerData2
-	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wcf91], a
 	ld a, 1

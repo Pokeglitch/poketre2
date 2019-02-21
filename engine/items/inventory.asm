@@ -1,26 +1,17 @@
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
-; hl = address of inventory (either wNumBagItems or wNumBoxItems)
 ; [wcf91] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
 AddItemToInventory_:
+	ld hl, wNumBagItems
 	ld a, [wItemQuantity] ; a = item quantity
 	push af
 	push bc
 	push de
 	push hl
 	push hl
-	ld d, PC_ITEM_CAPACITY ; how many items the PC can hold
-	ld a, wNumBagItems & $FF
-	cp l
-	jr nz, .checkIfInventoryFull
-	ld a, wNumBagItems >> 8
-	cp h
-	jr nz, .checkIfInventoryFull
-; if the destination is the bag
 	ld d, BAG_ITEM_CAPACITY ; how many items the bag can hold
-.checkIfInventoryFull
 	ld a, [hl]
 	sub d
 	ld d, a
@@ -94,10 +85,10 @@ AddItemToInventory_:
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
-; hl = address of inventory (either wNumBagItems or wNumBoxItems)
 ; [wWhichPokemon] = index (within the inventory) of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory_:
+	ld hl, wNumBagItems
 	push hl
 	inc hl
 	ld a, [wWhichPokemon] ; index (within the inventory) of the item being removed

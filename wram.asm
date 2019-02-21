@@ -2322,13 +2322,8 @@ wPokedexSeen:: ; d30a
 	flag_array NUM_POKEMON
 wPokedexSeenEnd::
 
-
-wNumBoxItems:: ; d31d
-	ds 1
-wBoxItems:: ; d31e
-; item, quantity
-	ds PC_ITEM_CAPACITY * 2
-	ds 1 ; end
+wFreeSpace1:: ; d31d
+	ds 42
 
 wPlayerMoney:: ; d347
 	ds 3 ; BCD

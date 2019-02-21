@@ -663,7 +663,6 @@ OaksLabScript_RemoveParcel:
 	inc c
 	jr .loop
 .foundParcel
-	ld hl, wNumBagItems
 	ld a, c
 	ld [wWhichPokemon], a
 	ld a, $1
