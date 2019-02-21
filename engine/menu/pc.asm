@@ -94,28 +94,10 @@ AccessedSomeonesPCText:
 	TX_FAR _AccessedSomeonesPCText
 	db "@"
 
-; removes one of the specified item ID [hItemToRemoveID] from bag (if existent)
+; removes one of the specified item ID [hItemToRemoveID] from bag
 RemoveItemByID:
-	ld hl, wBagItems
 	ld a, [hItemToRemoveID]
-	ld b, a
-	xor a
-	ld [hItemToRemoveIndex], a
-.loop
-	ld a, [hli]
-	cp -1 ; reached terminator?
-	ret z
-	cp b
-	jr z, .foundItem
-	inc hl
-	ld a, [hItemToRemoveIndex]
-	inc a
-	ld [hItemToRemoveIndex], a
-	jr .loop
-.foundItem
-	ld a, $1
+	ld [wWhichItem], a
+	ld a, 1
 	ld [wItemQuantity], a
-	ld a, [hItemToRemoveIndex]
-	ld [wWhichPokemon], a
-	ld hl, wNumBagItems
 	jp RemoveItemFromInventory

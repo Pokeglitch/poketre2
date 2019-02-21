@@ -2322,8 +2322,15 @@ wPokedexSeen:: ; d30a
 	flag_array NUM_POKEMON
 wPokedexSeenEnd::
 
-wFreeSpace1:: ; d31d
-	ds 42
+wWhichItem:: ; d31d
+	ds 1
+wBattleItemQuantities:: ; d31e
+	ds 4
+wHealthItemQuantities:: ; d322
+	ds 35
+
+wFreeSpace1:: ; d345
+	ds 2
 
 wPlayerMoney:: ; d347
 	ds 3 ; BCD
@@ -2634,12 +2641,17 @@ wGrassTile:: ; d535
 
 	ds 4
 
-wNumBagItems:: ; d53a
-	ds 1
-wBagItems:: ; d53b
-; item, quantity
-	ds BAG_ITEM_CAPACITY * 2
-	ds 1 ; end
+; TODO - Remove when no longer needed
+wNumBagItems::	
+wFieldItemQuantities:: ; d53a
+	ds 32
+wUnusedItemQuantities:: ; d55a
+	ds 12
+wMachineItemQuantities:: ; d566
+	ds 55
+
+wFreeSpace2:: ; d59d
+	ds 3
 
 wCurrentBoxNum:: ; d5a0
 ; bits 0-6: box number

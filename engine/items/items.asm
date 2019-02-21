@@ -2,6 +2,7 @@ UseItem_:
 	ld a, 1
 	ld [wActionResultOrTookBattleTurn], a ; initialise to success value
 	ld a, [wcf91] ;contains item_ID
+	ld [wWhichItem], a
 	cp HM_01
 	jp nc, ItemUseTMHM
 	ld hl, ItemUsePtrTable
@@ -2585,19 +2586,14 @@ GetSelectedMoveOffset2:
 ; OUTPUT:
 ; clears carry flag if the item is tossed, sets carry flag if not
 TossItem_:
-	ld hl, wNumBagItems
-	push hl
 	ld a, [wcf91]
+	ld [wWhichItem], a
 	call IsItemHM
-	pop hl
 	jr c, .tooImportantToToss
-	push hl
 	call IsKeyItem_
 	ld a, [wIsKeyItem]
-	pop hl
 	and a
 	jr nz, .tooImportantToToss
-	push hl
 	ld a, [wcf91]
 	ld [wd11e], a
 	call GetItemName
@@ -2611,11 +2607,9 @@ TossItem_:
 	call DisplayTextBoxID ; yes/no menu
 	ld a, [wMenuExitMethod]
 	cp CHOSE_SECOND_ITEM
-	pop hl
 	scf
 	ret z ; return if the player chose No
 ; if the player chose Yes
-	push hl
 	ld a, [wWhichPokemon]
 	call RemoveItemFromInventory
 	ld a, [wcf91]
@@ -2624,14 +2618,11 @@ TossItem_:
 	call CopyStringToCF4B ; copy name to wcf4b
 	ld hl, ThrewAwayItemText
 	call PrintText
-	pop hl
 	and a
 	ret
 .tooImportantToToss
-	push hl
 	ld hl, TooImportantToTossText
 	call PrintText
-	pop hl
 	scf
 	ret
 

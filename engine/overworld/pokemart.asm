@@ -68,13 +68,14 @@ DisplayPokemartDialogue_:
 	call DisplayListMenuID
 	jp c, .returnToMainPokemartMenu ; if the player closed the menu
 .confirmItemSale ; if the player is trying to sell a specific item
+	ld a, [wcf91]
+	ld [wWhichItem], a
+	call IsItemHM
+	jr c, .unsellableItem
 	call IsKeyItem
 	ld a, [wIsKeyItem]
 	and a
 	jr nz, .unsellableItem
-	ld a, [wcf91]
-	call IsItemHM
-	jr c, .unsellableItem
 	ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
 	ld [hHalveItemPrices], a ; halve prices when selling

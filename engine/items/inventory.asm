@@ -4,138 +4,117 @@
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
 AddItemToInventory_:
-	ld hl, wNumBagItems
-	ld a, [wItemQuantity] ; a = item quantity
-	push af
-	push bc
-	push de
-	push hl
-	push hl
-	ld d, BAG_ITEM_CAPACITY ; how many items the bag can hold
-	ld a, [hl]
-	sub d
-	ld d, a
-	ld a, [hli]
-	and a
-	jr z, .addNewItem
-.loop
-	ld a, [hli]
-	ld b, a ; b = ID of current item in table
-	ld a, [wcf91] ; a = ID of item being added
-	cp b ; does the current item in the table match the item being added?
-	jp z, .increaseItemQuantity ; if so, increase the item's quantity
-	inc hl
-	ld a, [hl]
-	cp $ff ; is it the end of the table?
-	jr nz, .loop
-.addNewItem ; add an item not yet in the inventory
-	pop hl
-	ld a, d
-	and a ; is there room for a new item slot?
-	jr z, .done
-; if there is room
-	inc [hl] ; increment the number of items in the inventory
-	ld a, [hl] ; the number of items will be the index of the new item
-	add a
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc ; hl = address to store the item
-	ld a, [wcf91]
-	ld [hli], a ; store item ID
-	ld a, [wItemQuantity]
-	ld [hli], a ; store item quantity
-	ld [hl], $ff ; store terminator
-	jp .success
-.increaseItemQuantity ; increase the quantity of an item already in the inventory
+	ld a, [wcf91] ; a = item ID
+	call GetItemRAMPointer ; hl = RAM pointer
 	ld a, [wItemQuantity]
 	ld b, a ; b = quantity to add
 	ld a, [hl] ; a = existing item quantity
 	add b ; a = new item quantity
-	cp 100
-	jp c, .storeNewQuantity ; if the new quantity is less than 100, store it
-; if the new quantity is greater than or equal to 100,
-; try to max out the current slot and add the rest in a new slot
-	sub 99
-	ld [wItemQuantity], a ; a = amount left over (to put in the new slot)
-	ld a, d
-	and a ; is there room for a new item slot?
-	jr z, .increaseItemQuantityFailed
-; if so, store 99 in the current slot and store the rest in a new slot
-	ld a, 99
-	ld [hli], a
-	jp .loop
-.increaseItemQuantityFailed
-	pop hl
-	and a
-	jr .done
-.storeNewQuantity
+	jp c, .fail ;if the quantity overflowed, then fail
+	cp 251
+	ret nc ; if the new quantity exceeds 250, then fail (carry flag already unset)
 	ld [hl], a
-	pop hl
-.success
 	scf
-.done
-	pop hl
-	pop de
-	pop bc
-	pop bc
-	ld a, b
-	ld [wItemQuantity], a ; restore the initial value from when the function was called
 	ret
 
-; function to remove an item (in varying quantities) from the player's bag or PC box
+.fail
+	and a
+	ret
+
+; function to remove an item (in varying quantities) from the player's bag
 ; INPUT:
-; [wWhichPokemon] = index (within the inventory) of the item to remove
+; [wWhichItem] = ID of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory_:
-	ld hl, wNumBagItems
-	push hl
-	inc hl
-	ld a, [wWhichPokemon] ; index (within the inventory) of the item being removed
-	sla a
-	add l
-	ld l, a
-	jr nc, .noCarry
-	inc h
-.noCarry
-	inc hl
+	ld a, [wWhichItem] ; ID of the item being removed
+	call GetItemRAMPointer ; hl = RAM pointer
 	ld a, [wItemQuantity] ; quantity being removed
-	ld e, a
+	ld b, a
 	ld a, [hl] ; a = current quantity
-	sub e
-	ld [hld], a ; store new quantity
-	ld [wMaxItemQuantity], a
-	and a
-	jr nz, .skipMovingUpSlots
-; if the remaining quantity is 0,
-; remove the emptied item slot and move up all the following item slots
-.moveSlotsUp
-	ld e, l
-	ld d, h
-	inc de
-	inc de ; de = address of the slot following the emptied one
-.loop ; loop to move up the following slots
-	ld a, [de]
-	inc de
-	ld [hli], a
-	cp $ff
-	jr nz, .loop
-; update menu info
-	xor a
-	ld [wListScrollOffset], a
-	ld [wCurrentMenuItem], a
-	ld [wBagSavedMenuItem], a
-	ld [wSavedListScrollOffset], a
-	pop hl
-	ld a, [hl] ; a = number of items in inventory
-	dec a ; decrement the number of items
-	ld [hl], a ; store new number of items
-	ld [wListCount], a
-	cp 2
-	jr c, .done
-	ld [wMaxMenuItem], a
-	jr .done
-.skipMovingUpSlots
-	pop hl
-.done
+	sub b
+	ret c ; if the new value is negative, then fail
+	ld [hl], a ; store new quantity
 	ret
+
+; For the item in a, returns the RAM pointer in hl
+; TODO - currently inefficient, in future will just have the group/offset mapped to the item index
+GetItemRAMPointer:
+	push bc
+	ld b, a
+	sub HM_01
+	jr c, .notMachineItem
+	ld c, a
+	ld hl, wMachineItemQuantities
+	jr .finish
+
+.notMachineItem
+	ld hl, BattleItems
+	call GetItemIndexInTable
+	ld hl, wBattleItemQuantities
+	jr nc, .finish
+	
+	ld hl, HealthItems
+	call GetItemIndexInTable
+	ld hl, wHealthItemQuantities
+	jr nc, .finish
+	
+	ld hl, FieldItems
+	call GetItemIndexInTable
+	ld hl, wFieldItemQuantities
+	jr nc, .finish
+
+	ld hl, UnusedItems
+	call GetItemIndexInTable
+	ld hl, wUnusedItemQuantities
+
+.finish
+	ld b,0
+	add hl, bc
+	pop bc
+	ret
+
+; To get the index of the item in b from the table in hl
+; Returns the index in c, or the carry flag if not in the table
+GetItemIndexInTable:
+	ld c, 0
+.loop
+	ld a, [hli]
+	cp b
+	ret z
+	inc c
+	cp -1
+	jr nz, .loop
+	scf
+	ret
+
+
+BattleItems:
+    db GREAT_BALL, MASTER_BALL, POKE_BALL, ULTRA_BALL
+    db -1
+
+HealthItems:
+    db ANTIDOTE, AWAKENING, BURN_HEAL, CALCIUM, CARBOS
+    db DIRE_HIT, ELIXER, ETHER, FRESH_WATER, FULL_HEAL
+    db FULL_RESTORE, GUARD_SPEC, HP_UP, HYPER_POTION, ICE_HEAL
+    db IRON, LEMONADE, MAX_ELIXER, MAX_ETHER, MAX_POTION
+    db MAX_REVIVE, PARLYZ_HEAL, POTION, PP_UP, PP_UP_2
+    db PROTEIN, RARE_CANDY, REVIVE, SODA_POP, SUPER_POTION
+    db X_ACCURACY, X_ATTACK, X_DEFEND, X_SPECIAL, X_SPEED
+    db -1
+
+FieldItems:
+    db BICYCLE, BIKE_VOUCHER, CARD_KEY, COIN_CASE
+    db DOME_FOSSIL, ESCAPE_ROPE, EXP_ALL, FIRE_STONE
+    db GOLD_TEETH, GOOD_ROD, HELIX_FOSSIL, ITEMFINDER
+    db LEAF_STONE, LIFT_KEY, MAX_REPEL, MOON_STONE
+    db NUGGET, OAKS_PARCEL, OLD_AMBER, OLD_ROD
+    db POKE_DOLL, POKE_FLUTE, REPEL, S_S_TICKET
+    db SECRET_KEY, SILPH_SCOPE, SUPER_REPEL, SUPER_ROD
+    db SURFBOARD, THUNDER_STONE, TOWN_MAP, WATER_STONE
+    db -1
+
+UnusedItems:
+    db BOULDERBADGE, CASCADEBADGE, COIN, EARTHBADGE
+    db MARSHBADGE, POKEDEX, RAINBOWBADGE, SAFARI_BALL
+    db SOULBADGE, THUNDERBADGE, UNUSED_ITEM, VOLCANOBADGE
+    db -1

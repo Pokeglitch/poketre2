@@ -1329,7 +1329,7 @@ AddAmountSoldToMoney::
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
-; [wWhichPokemon] = index (within the inventory) of the item to remove
+; [wWhichItem] = ID of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory::
 	ld a, [H_LOADEDROMBANK]
