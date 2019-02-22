@@ -2311,11 +2311,7 @@ DisplayBagMenu:
 	ld [wPrintItemPrices], a
 	ld a, ITEMLISTMENU
 	ld [wListMenuID], a
-	ld a, [wBagSavedMenuItem]
-	ld [wCurrentMenuItem], a
 	call DisplayListMenuID
-	ld a, [wCurrentMenuItem]
-	ld [wBagSavedMenuItem], a
 	ld a, $0
 	ld [wMenuWatchMovingOutOfBounds], a
 	ld [wMenuItemToSwap], a

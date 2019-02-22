@@ -307,25 +307,25 @@ StartMenu_Item:
 	call PrintText
 	jr .exitMenu
 .notInCableClubRoom
-	ld bc, wNumBagItems
-	ld hl, wListPointer
-	ld a, c
-	ld [hli], a
-	ld [hl], b ; store item bag pointer in wListPointer (for DisplayListMenuID)
 	xor a
 	ld [wPrintItemPrices], a
-	ld a, ITEMLISTMENU
-	ld [wListMenuID], a
-	ld a, [wBagSavedMenuItem]
-	ld [wCurrentMenuItem], a
-	call DisplayListMenuID
-	ld a, [wCurrentMenuItem]
-	ld [wBagSavedMenuItem], a
+	
+    ;TODO - the following should already be processed by the new start menu
+    xor a
+    ld [wUpdateSpritesEnabled], a ; Hide sprites
+
+	call DisplayItemMenu
 	jr nc, .choseItem
 .exitMenu
-	call LoadScreenTilesFromBuffer2 ; restore saved screen
+	; TODO - this section will no longer be needed with new start menu....
+	call GBPalWhiteOut
+    ld a, 1
+    ld [wUpdateSpritesEnabled], a ; re-enable sprites
+	call ClearScreen
+	call ReloadMapData
 	call LoadTextBoxTilePatterns
 	call UpdateSprites
+	call GBPalNormal
 	jp RedisplayStartMenu
 .choseItem
 ; erase menu cursor (blank each tile in front of an item name)
@@ -404,7 +404,7 @@ StartMenu_Item:
 	ld a, [wActionResultOrTookBattleTurn]
 	and a
 	jp z, ItemMenuLoop
-	jp CloseStartMenu
+	jp CloseStartMenu 
 .useItem_partyMenu
 	ld a, [wUpdateSpritesEnabled]
 	push af

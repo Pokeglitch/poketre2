@@ -396,9 +396,8 @@ wPartyAndBillsPCSavedMenuItem:: ; cc2b
 ; you return to the main Bill's PC menu.
 	ds 1
 
-wBagSavedMenuItem:: ; cc2c
-; It is used by the bag list to remember the cursor position while the menu
-; isn't active.
+wWhichInventoryTab:: ; cc2c
+; Holds the last active inventory tab
 	ds 1
 
 wBattleAndStartSavedMenuItem:: ; cc2d
