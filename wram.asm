@@ -2323,13 +2323,16 @@ wPokedexSeenEnd::
 
 wWhichItem:: ; d31d
 	ds 1
-wBattleItemQuantities:: ; d31e
-	ds 4
-wHealthItemQuantities:: ; d322
-	ds 35
 
-wFreeSpace1:: ; d345
-	ds 2
+wSavedBattleItemIndex:: ; d31e
+	ds 1
+wBattleItemQuantities:: ; d31f
+	ds 4
+
+wSavedHealthItemIndex:: ; d323
+	ds 1
+wHealthItemQuantities:: ; d324
+	ds 35
 
 wPlayerMoney:: ; d347
 	ds 3 ; BCD
@@ -2641,16 +2644,27 @@ wGrassTile:: ; d535
 	ds 4
 
 ; TODO - Remove when no longer needed
-wNumBagItems::	
-wFieldItemQuantities:: ; d53a
-	ds 32
-wUnusedItemQuantities:: ; d55a
-	ds 12
-wMachineItemQuantities:: ; d566
-	ds 55
+wNumBagItems::
 
-wFreeSpace2:: ; d59d
-	ds 3
+wSavedFieldItemIndex:: ; d53a
+	ds 1
+wFieldItemQuantities:: ; d53b
+	ds 32
+
+; TODO - remove all references to these
+wSavedUnusedItemIndex:: 
+wUnusedItemQuantities::
+
+wItemsVisibleInInventory:: ; d55b
+	ds 5
+
+wFreeSpace:: ; d560
+	ds 8
+
+wSavedMachineItemIndex:: ; d568
+	ds 1
+wMachineItemQuantities:: ; d569
+	ds 55
 
 wCurrentBoxNum:: ; d5a0
 ; bits 0-6: box number

@@ -3,6 +3,7 @@
 ; [wcf91] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
+; TODO - should it just set to 250 instead of fail?
 AddItemToInventory_:
 	ld a, [wcf91] ; a = item ID
 	call GetItemRAMPointer ; hl = RAM pointer
@@ -32,8 +33,22 @@ RemoveItemFromInventory_:
 	ld b, a
 	ld a, [hl] ; a = current quantity
 	sub b
-	ret c ; if the new value is negative, then fail
+	jr nc, .storeNewQuantity
+	
+	; if the new value is negative, set to 0
+	xor a
+
+.storeNewQuantity
 	ld [hl], a ; store new quantity
+	ret
+
+GetQuantityOfItemInBag:
+; In: b = item ID
+; Out: b = how many of that item are in the bag
+	call GetPredefRegisters
+	ld a, b
+	call GetItemRAMPointer
+	ld b, [hl]
 	ret
 
 ; For the item in a, returns the RAM pointer in hl
@@ -89,10 +104,12 @@ GetItemIndexInTable:
 
 
 BattleItems:
+	db -1
     db GREAT_BALL, MASTER_BALL, POKE_BALL, ULTRA_BALL
     db -1
 
 HealthItems:
+	db -1
     db ANTIDOTE, AWAKENING, BURN_HEAL, CALCIUM, CARBOS
     db DIRE_HIT, ELIXER, ETHER, FRESH_WATER, FULL_HEAL
     db FULL_RESTORE, GUARD_SPEC, HP_UP, HYPER_POTION, ICE_HEAL
@@ -103,6 +120,7 @@ HealthItems:
     db -1
 
 FieldItems:
+	db -1
     db BICYCLE, BIKE_VOUCHER, CARD_KEY, COIN_CASE
     db DOME_FOSSIL, ESCAPE_ROPE, EXP_ALL, FIRE_STONE
     db GOLD_TEETH, GOOD_ROD, HELIX_FOSSIL, ITEMFINDER
@@ -114,6 +132,7 @@ FieldItems:
     db -1
 
 UnusedItems:
+	db -1
     db BOULDERBADGE, CASCADEBADGE, COIN, EARTHBADGE
     db MARSHBADGE, POKEDEX, RAINBOWBADGE, SAFARI_BALL
     db SOULBADGE, THUNDERBADGE, UNUSED_ITEM, VOLCANOBADGE

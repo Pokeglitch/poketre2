@@ -105,8 +105,6 @@ INCLUDE "data/hide_show_data.asm"
 
 INCLUDE "engine/overworld/field_move_messages.asm"
 
-INCLUDE "engine/items/inventory.asm"
-
 INCLUDE "engine/overworld/wild_mons.asm"
 
 INCLUDE "engine/items/items.asm"
@@ -123,7 +121,6 @@ INCLUDE "engine/flag_action.asm"
 INCLUDE "engine/heal_party.asm"
 INCLUDE "engine/bcd.asm"
 INCLUDE "engine/init_player_data.asm"
-INCLUDE "engine/get_bag_item_quantity.asm"
 INCLUDE "engine/pathfinding.asm"
 INCLUDE "engine/hp_bar.asm"
 INCLUDE "engine/hidden_object_functions3.asm"
@@ -204,7 +201,9 @@ INCLUDE "engine/battle/moveEffects/conversion_effect.asm"
 INCLUDE "engine/battle/moveEffects/haze_effect.asm"
 INCLUDE "engine/battle/get_trainer_name.asm"
 INCLUDE "engine/random.asm"
+
 INCLUDE "engine/menu/item_menu.asm"
+INCLUDE "engine/items/inventory.asm"
 
 
 SECTION "NPC Sprites 2", ROMX, BANK[NPC_SPRITES_2]
@@ -2136,26 +2135,13 @@ ItemMenuTextBoxBorderGFX: INCBIN "gfx/item_menu/text_box_border.2bpp"
 ItemMenuTextBoxBorderGFXEnd:
 
 ItemMenuBattleTabGFX: INCBIN "gfx/item_menu/battle_tab.2bpp"
-ItemMenuBattleTabGFXEnd:
-
 ItemMenuFieldTabGFX: INCBIN "gfx/item_menu/field_tab.2bpp"
-ItemMenuFieldTabGFXEnd:
-
 ItemMenuHealthTabGFX: INCBIN "gfx/item_menu/health_tab.2bpp"
-ItemMenuHealthTabGFXEnd:
-
 ItemMenuMovesTabGFX: INCBIN "gfx/item_menu/moves_tab.2bpp"
-ItemMenuMovesTabGFXEnd:
-
 ItemMenuTabBottomBorderGFX: INCBIN "gfx/item_menu/tab_bottom_border.2bpp"
-ItemMenuTabBottomBorderGFXEnd:
-
 ItemMenuSelectGFX: INCBIN "gfx/item_menu/select.2bpp"
-ItemMenuSelectGFXEnd:
-
+ItemMenuLightGrayGFX: INCBIN "gfx/item_menu/light_gray.2bpp"
 ItemMenuXGFX: INCBIN "gfx/item_menu/x.2bpp"
-ItemMenuXGFXEnd:
-
 ItemMenuPointerGFX: INCBIN "gfx/item_menu/pointer.2bpp"
 ItemMenuPointerGFXEnd:
 
