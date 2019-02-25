@@ -99,15 +99,13 @@ GetItemIndexInTable:
 	ret
 
 
-; Start-of-list terminator
-	db -1
 
 BattleItems:
     db GREAT_BALL
 	db MASTER_BALL
 	db POKE_BALL
 	db ULTRA_BALL
-    db -1
+BattleItemsEnd:
 
 HealthItems:
     db ANTIDOTE
@@ -145,7 +143,7 @@ HealthItems:
 	db X_DEFEND
 	db X_SPECIAL
 	db X_SPEED
-    db -1
+HealthItemsEnd:
 
 FieldItems:
     db BICYCLE
@@ -180,7 +178,7 @@ FieldItems:
 	db THUNDER_STONE
 	db TOWN_MAP
 	db WATER_STONE
-    db -1
+FieldItemsEnd:
 
 ;UnusedItems:
 ;   db BOULDERBADGE

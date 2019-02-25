@@ -1,9 +1,21 @@
 ; TODO
 
-; Add in printing the names for the "Machines" list
-; - also, dont include any unused items in the pocket item lists
-; Instead of "start of list" terminator, just check if index is -1
-; and instead of end of list terminator, use the "size" of the list
+; Update the Item Lists to not include any unused items in the pocket item lists
+
+; Wrap list around
+; -after the current method of creating the buffer:
+; - if there is an FF at buffer index 0 and 4, then do nothing
+; - if there is an FF at one of the positions, then search from other end of list
+; -- if the next found item index is already in the buffer, then do nothing
+
+; "Start" will toggle the "Hide Items" mode
+; you can choose which items you don't want to appear in the item list
+; - or, open up display settings (i.e., show prices, etc)
+
+; combine all of the pocket information into a single dataset
+
+; Remove the need to "toss" an item
+; Hold Up/Down to scroll entire page at once (? or, combined with START/A/B?)
 
 ;Use Common names
 ; - 'Inventory' instead of Item/Item Screen
@@ -162,9 +174,12 @@ ShiftInventoryBufferDown:
     ; Find the first item in the list
     ld a, [hl] ; the previous "first" item index
     call GetPocketItemAndQuantityPointers
-    ld b, 1
-    ld c, a
-    jp FindPreviousItemsForBuffer
+    dec a
+    dec hl ; shift to previous item
+    ld c, -1
+    ld de, -1
+    ld b, 0
+    jp FindRemainingBufferItems
 
 ShiftInventoryBufferUp:
     ld hl, wItemsVisibleInInventory
@@ -182,11 +197,10 @@ ShiftInventoryBufferUp:
     ld a, [hl] ; the previous "last" item index
     call GetPocketItemAndQuantityPointers
     inc hl
-    inc de
-    inc a ; increment to the next index
+    inc a ; shift to next item
+    ld de, 1
     ld b, 4
-    ld c, a
-    jp FindNextItemsForBuffer
+    jp FindRemainingBufferItems
 
 PocketGFXPointers:
     dw ItemMenuBattleBagGFX
@@ -210,9 +224,13 @@ PocketItemListPointers:
     dw BattleItems
     dw FieldItems
     dw HealthItems
-    ;dw MachineItems
-    ;TODO - temp for now...
-    dw HealthItems
+    dw 0
+
+PocketItemListLengths:
+    db (BattleItemsEnd - BattleItems)
+    db (FieldItemsEnd - FieldItems)
+    db (HealthItemsEnd - HealthItems)
+    db TM_50 - HM_01 + 1 ; Machine
 
 ; To get the pointer (hl) from the list (hl) for pocket (c)
 GetPocketPointer:
@@ -239,16 +257,19 @@ GetPocketIndexPointer:
     pop af
     ret
 
-; To get the pocket item (hl) and quantity (de) pointers based on index (a) and pocket (c)
+; To get the pocket max number of items (c) and quantity (hl) pointers based on index (a) and pocket (c)
 GetPocketItemAndQuantityPointers:
     ld hl, PocketItemQuantityPointers
     call GetPocketIndexPointer
-    ld d, h
-    ld e, l ; de = pointer to quantity of last selected item
-    
-    ld hl, PocketItemListPointers
-    jp GetPocketIndexPointer ; hl = pointer to ID of last selected item
-    
+    push hl
+    ld hl, PocketItemListLengths
+    ld d, 0
+    ld e, c
+    add hl, de
+    ld c, [hl] ; c = length of pocket items list
+    pop hl
+    ret
+
 ; Populate the list of current items visible on the inventory
 InitializeInventoryItemsBuffer:
     push bc
@@ -258,107 +279,79 @@ InitializeInventoryItemsBuffer:
     ld a, [hl] ; a = index to last selected item
 
     call GetPocketItemAndQuantityPointers
-    ld c, a ; c = index of last selected item
-
+    push af
     push hl
-    push de
     push bc
-    call FindNextItemsForBuffer
+    ld de, 1
+    call FindRemainingBufferItems
     pop bc
 
     call GetCurrentItemPointer
     ld a, [hl]
     cp -1
-    jr nz, .dontIncB
+    jr z, .dontDecB
 
-    ; If there is no item at the current cursor position
-    ; then increase the b position so the first "previous" item
-    ; found will be stored at the current cursor position
-    inc b
+    ; Decrease cursor position if item is at current cursor position
+    dec b
 
-.dontIncB
-    pop de
+.dontDecB
     pop hl
-    call FindPreviousItemsForBuffer
+    pop af
+    dec a
+    dec hl ; the current item was already searched, so reduce by 1
+    ld c, -1
+    ld de, -1
+    call FindRemainingBufferItems
     pop bc
     ret
 
-; Search downwards for next items
-FindNextItemsForBuffer:
+; Search for the remaining items
+; a = current index
+; hl = Quantity Position
+; de = direction
+; bc = buffer position, stop index (-1 or max)
+FindRemainingBufferItems:
+
 .loop
+    push af
+    cp c
+    jr z, .endOfList ; if the current index == last index, then fill out remainder with $FF
+
     ld a, [hl]
-    cp -1
-    jr z, .endOfList
-
-    ld a, [de]
     and a
-    jr z, .moveToNextItem
+    jr z, .moveToNextItem ; if the quantity is 0, move to the next item
 
+    pop af
+    push af
+    push hl
     call .storeNextItem
-    ret z
+    pop hl
+    jr z, .finish
 
 .moveToNextItem
-    inc c
-    inc de
-    inc hl
+    pop af
+    add e
+    add hl, de
     jr .loop
 
 .endOfList
-    ld c, a
-
-.endOfListLoop
+    ld a, -1
     call .storeNextItem
-    jr nz, .endOfListLoop
-    ret
+    jr nz, .endOfList
 
-.storeNextItem:
-    call StoreItemToInventoryBuffer
-    inc b
-    ld a, 5
-    cp b
-    ret
-
-FindPreviousItemsForBuffer:
-; Search upwards for previous items
-.loop
-    dec c
-    dec de
-    dec hl
-
-    ld a, [hl]
-    cp -1
-    jr z, .startOfList
-
-    ld a, [de]
-    and a
-    jr z, .loop
-
-    call .storePreviousItem
-    ret z
-
-    jr .loop
-
-.startOfList
-    ld c, a
-
-.startOfListLoop
-    call .storePreviousItem
-    jr nz, .startOfListLoop
-    ret
-
-.storePreviousItem:
-    dec b
-    push af
-    call StoreItemToInventoryBuffer
+.finish
     pop af
     ret
 
-; Store the index (c) to buffer at index (b-1)
-StoreItemToInventoryBuffer:
-    push hl
+.storeNextItem
     call GetCurrentItemPointer
-    ld [hl], c
-    pop hl
+    ld [hl], a
+    ld a, b
+    add e
+    ld b, a
+    cp -1
+    ret z
+    cp 5
     ret
 
 SaveCurrentPocketItemIndex:
@@ -630,9 +623,20 @@ UpdateInventoryList:
     cp -1
     jr z, .noItem
 
+    ld a, c
+    cp 3 ; Machines tab
+    ld a, [hl]
+    jr nz, .notMachines
+
+    add HM_01
+    jr .foundID
+
+.notMachines
     ld hl, PocketItemListPointers
     call GetPocketIndexPointer
     ld a, [hl] ; item id
+
+.foundID
     ld [wd11e], a
     call GetItemName
     
