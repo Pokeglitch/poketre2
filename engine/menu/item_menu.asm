@@ -2,12 +2,6 @@
 
 ; Update the Item Lists to not include any unused items in the pocket item lists
 
-; Wrap list around
-; -after the current method of creating the buffer:
-; - if there is an FF at buffer index 0 and 4, then do nothing
-; - if there is an FF at one of the positions, then search from other end of list
-; -- if the next found item index is already in the buffer, then do nothing
-
 ; "Start" will toggle the "Hide Items" mode
 ; you can choose which items you don't want to appear in the item list
 ; - or, open up display settings (i.e., show prices, etc)
@@ -53,6 +47,7 @@ DisplayItemMenu:
     call InitializeInventoryItemsBuffer
 
 .textLoop
+    call TryWrapAroundInventoryList
     call UpdateInventoryList
 
 .cursorLoop
@@ -309,7 +304,7 @@ InitializeInventoryItemsBuffer:
 ; a = current index
 ; hl = Quantity Position
 ; de = direction
-; bc = buffer position, stop index (-1 or max)
+; bc = buffer position, stop index
 FindRemainingBufferItems:
 
 .loop
@@ -663,3 +658,108 @@ UpdateInventoryList:
 
     pop bc
     ret
+
+; If there are more than 4 elements, then wrap around
+TryWrapAroundInventoryList:
+    push bc
+    ld a, [wItemsVisibleInInventory]
+    ld hl, wItemsVisibleInInventory + 4
+    cp -1
+    ld a, [hld]
+    jr nz, .checkEndOfList
+
+    cp -1
+    jr z, .exit ; if both sides end in -1, then exit
+
+; Find which index to start from
+    push af
+    ld b, 0
+    ld hl, wItemsVisibleInInventory + 1
+    ld de, 1
+    call .findStartBufferPosition
+    ; b = starting buffer position
+
+    xor a
+    call GetPocketItemAndQuantityPointers
+    ; c = max number of items
+    dec c
+
+    push bc
+    ld b, 0
+    add hl, bc ; hl = pocket quantity pointer
+    pop bc
+
+    pop af
+    ld e, c
+    ld c, a ; stop index = last index in buffer
+    
+    ld a, e ; start index = end of list
+    ld de, -1 ; direction = updwards
+    push bc
+    call FindRemainingBufferItems
+    pop bc
+    ; If the list still starts with FF, then undo everything
+    ld a, [wItemsVisibleInInventory]
+    cp -1
+    jr nz, .exit
+    
+    ld hl, wItemsVisibleInInventory+1
+    jr .reset
+
+.checkEndOfList
+    cp -1
+    jr nz, .exit ; if neither side ends in -1, then exit
+
+; Search downwards
+    ld b, 4
+    ld de, -1
+    call .findStartBufferPosition
+    ; b = starting buffer position
+
+    xor a
+    call GetPocketItemAndQuantityPointers
+    ; hl = pocket quantity pointer
+
+    ld a, [wItemsVisibleInInventory]
+    ld c, a ; stop index = first index in buffer
+    xor a ; start index = start of list
+    ld de, 1 ; direction = downwards
+    push bc
+    call FindRemainingBufferItems
+    pop bc
+
+    ;If the list still ends with FF, then undo everything
+    ld a, [wItemsVisibleInInventory + 4]
+    cp -1
+    jr nz, .exit
+    
+    ld hl, wItemsVisibleInInventory
+    ld c, b
+    ld b, 0
+    add hl, bc ; hl = starting position
+    ld a, 4
+    sub c
+    ld b, a
+
+.reset
+    ld a, b
+    and a
+    jr z, .exit
+    ld [hl], -1
+    inc hl
+    dec b
+    jr .reset
+
+.exit
+    pop bc
+    ret
+    
+.findStartBufferPosition
+    ld a, [hl]
+    cp -1
+    ret nz
+    add hl, de
+    ld a, b
+    add e
+    ld b, a
+    jr .findStartBufferPosition
