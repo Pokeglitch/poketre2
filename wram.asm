@@ -2651,10 +2651,6 @@ wSavedFieldItemIndex:: ; d53a
 wFieldItemQuantities:: ; d53b
 	ds 32
 
-; TODO - remove all references to these
-wSavedUnusedItemIndex:: 
-wUnusedItemQuantities::
-
 wItemsVisibleInInventory:: ; d55b
 	ds 5
 

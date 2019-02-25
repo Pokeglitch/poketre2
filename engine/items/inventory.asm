@@ -53,6 +53,7 @@ GetQuantityOfItemInBag:
 
 ; For the item in a, returns the RAM pointer in hl
 ; TODO - currently inefficient, in future will just have the group/offset mapped to the item index
+; It also doesn't consider "unused" items
 GetItemRAMPointer:
 	push bc
 	ld b, a
@@ -76,11 +77,6 @@ GetItemRAMPointer:
 	ld hl, FieldItems
 	call GetItemIndexInTable
 	ld hl, wFieldItemQuantities
-	jr nc, .finish
-
-	ld hl, UnusedItems
-	call GetItemIndexInTable
-	ld hl, wUnusedItemQuantities
 
 .finish
 	ld b,0
@@ -103,37 +99,99 @@ GetItemIndexInTable:
 	ret
 
 
-BattleItems:
+; Start-of-list terminator
 	db -1
-    db GREAT_BALL, MASTER_BALL, POKE_BALL, ULTRA_BALL
+
+BattleItems:
+    db GREAT_BALL
+	db MASTER_BALL
+	db POKE_BALL
+	db ULTRA_BALL
     db -1
 
 HealthItems:
-	db -1
-    db ANTIDOTE, AWAKENING, BURN_HEAL, CALCIUM, CARBOS
-    db DIRE_HIT, ELIXER, ETHER, FRESH_WATER, FULL_HEAL
-    db FULL_RESTORE, GUARD_SPEC, HP_UP, HYPER_POTION, ICE_HEAL
-    db IRON, LEMONADE, MAX_ELIXER, MAX_ETHER, MAX_POTION
-    db MAX_REVIVE, PARLYZ_HEAL, POTION, PP_UP, PP_UP_2
-    db PROTEIN, RARE_CANDY, REVIVE, SODA_POP, SUPER_POTION
-    db X_ACCURACY, X_ATTACK, X_DEFEND, X_SPECIAL, X_SPEED
+    db ANTIDOTE
+	db AWAKENING
+	db BURN_HEAL
+	db CALCIUM
+	db CARBOS
+    db DIRE_HIT
+	db ELIXER
+	db ETHER
+	db FRESH_WATER
+	db FULL_HEAL
+    db FULL_RESTORE
+	db GUARD_SPEC
+	db HP_UP
+	db HYPER_POTION
+	db ICE_HEAL
+    db IRON
+	db LEMONADE
+	db MAX_ELIXER
+	db MAX_ETHER
+	db MAX_POTION
+    db MAX_REVIVE
+	db PARLYZ_HEAL
+	db POTION
+	db PP_UP
+	db PP_UP_2
+    db PROTEIN
+	db RARE_CANDY
+	db REVIVE
+	db SODA_POP
+	db SUPER_POTION
+    db X_ACCURACY
+	db X_ATTACK
+	db X_DEFEND
+	db X_SPECIAL
+	db X_SPEED
     db -1
 
 FieldItems:
-	db -1
-    db BICYCLE, BIKE_VOUCHER, CARD_KEY, COIN_CASE
-    db DOME_FOSSIL, ESCAPE_ROPE, EXP_ALL, FIRE_STONE
-    db GOLD_TEETH, GOOD_ROD, HELIX_FOSSIL, ITEMFINDER
-    db LEAF_STONE, LIFT_KEY, MAX_REPEL, MOON_STONE
-    db NUGGET, OAKS_PARCEL, OLD_AMBER, OLD_ROD
-    db POKE_DOLL, POKE_FLUTE, REPEL, S_S_TICKET
-    db SECRET_KEY, SILPH_SCOPE, SUPER_REPEL, SUPER_ROD
-    db SURFBOARD, THUNDER_STONE, TOWN_MAP, WATER_STONE
+    db BICYCLE
+	db BIKE_VOUCHER
+	db CARD_KEY
+	db COIN_CASE
+    db DOME_FOSSIL
+	db ESCAPE_ROPE
+	db EXP_ALL
+	db FIRE_STONE
+    db GOLD_TEETH
+	db GOOD_ROD
+	db HELIX_FOSSIL
+	db ITEMFINDER
+    db LEAF_STONE
+	db LIFT_KEY
+	db MAX_REPEL
+	db MOON_STONE
+    db NUGGET
+	db OAKS_PARCEL
+	db OLD_AMBER
+	db OLD_ROD
+    db POKE_DOLL
+	db POKE_FLUTE
+	db REPEL
+	db S_S_TICKET
+    db SECRET_KEY
+	db SILPH_SCOPE
+	db SUPER_REPEL
+	db SUPER_ROD
+    db SURFBOARD
+	db THUNDER_STONE
+	db TOWN_MAP
+	db WATER_STONE
     db -1
 
-UnusedItems:
-	db -1
-    db BOULDERBADGE, CASCADEBADGE, COIN, EARTHBADGE
-    db MARSHBADGE, POKEDEX, RAINBOWBADGE, SAFARI_BALL
-    db SOULBADGE, THUNDERBADGE, UNUSED_ITEM, VOLCANOBADGE
-    db -1
+;UnusedItems:
+;   db BOULDERBADGE
+;	db CASCADEBADGE
+;	db COIN
+;	db EARTHBADGE
+;   db MARSHBADGE
+;	db POKEDEX
+;	db RAINBOWBADGE
+;	db SAFARI_BALL
+;   db SOULBADGE
+;	db THUNDERBADGE
+;	db UNUSED_ITEM
+;	db VOLCANOBADGE

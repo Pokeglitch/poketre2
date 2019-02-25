@@ -1,15 +1,20 @@
-; TODO - Use Common names
+; TODO
+
+; Add in printing the names for the "Machines" list
+; - also, dont include any unused items in the pocket item lists
+; Instead of "start of list" terminator, just check if index is -1
+; and instead of end of list terminator, use the "size" of the list
+
+;Use Common names
 ; - 'Inventory' instead of Item/Item Screen
 ; - 'Moves' instead of 'Machine'
 ; - 'Pocket' instead of Tab
 ; - Cursor instead of Pointer
 ; - Buffer instead of 'Visible Items List'
 ; Make sure constants are used in all possible areas
-; the in menu variables for index refer to the Top Value on the screen, not the last selected value
-; Only need 1 $FF between the pocket item id lists, not 2
 ; Cleanup and add proper comments/routine names
-; Add in printing the names for the "Machines" list
-; - and price/quantity
+; Print item price/quantity
+; - Why does the start menu "option" button not work?
 
 TABS_START_TILE_ID = $C0
 TAB_TILE_WIDTH = 5
@@ -202,13 +207,12 @@ PocketItemQuantityPointers:
     dw wMachineItemQuantities
     
 PocketItemListPointers:
-; TODO - when using a single FF betweens lists, move the pointer to after the FF and remove the +1
-    dw BattleItems + 1
-    dw FieldItems + 1
-    dw HealthItems + 1
-    ;dw MachineItems + 1
+    dw BattleItems
+    dw FieldItems
+    dw HealthItems
+    ;dw MachineItems
     ;TODO - temp for now...
-    dw HealthItems + 1
+    dw HealthItems
 
 ; To get the pointer (hl) from the list (hl) for pocket (c)
 GetPocketPointer:
