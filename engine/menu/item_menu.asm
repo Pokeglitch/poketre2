@@ -1,6 +1,16 @@
 ; TODO
-; Add in price/quantity/description
+; Dont store cursor/pocket in bc, always use wInventoryProperties
+; - remove the need for push/pop bc
+
+; Add in price/description/SEL + DIR
+; - Left align the quantity?
+; Add in Sound effects
 ; Check "Drawing Screen.txt" to see whats next
+
+; Add in way to apply the filter
+; - each item has a flag for battle use, battle hold, field use, field hold, sellable
+; -- "Key Items"/TMs are never sellable, they dont need that flag (?)
+; - dont redraw the screen if the filter did not change it
 
 ; Clean up:
 ; - Update the Item Lists to not include any unused items in the pocket item lists
@@ -22,6 +32,9 @@ TAB_BOTTOM_BORDER_HIDDEN_TILE = $D8
 BAGS_GFX_WIDTH = 8
 BAGS_GFX_HEIGHT = 10
 
+BIT_INVENTORY_FILTER = 2
+MASK_ACTIVE_POCKET = %00000011
+
 DisplayItemMenu:
     call GBPalWhiteOutWithDelay3
     call HideSprites
@@ -30,7 +43,8 @@ DisplayItemMenu:
     call DrawItemMenuScreen
 
     ; Load the tab index    
-    ld a, [wWhichInventoryTab]
+    ld a, [wInventoryProperties]
+    and MASK_ACTIVE_POCKET
     ld c, a
 
     ld b, 2 ; initialize the cursor position
@@ -84,25 +98,13 @@ DisplayItemMenu:
 
 
 .leftPressed
-    call SaveCurrentPocketItemIndex
-    dec c
     ld a, -1
-    cp c
-    jr nz, .saveCurrentTab
-    ld c, 3
-    jr .saveCurrentTab
+    call ChangeInventoryPocket
+    jr .tabLoop
 
 .rightPressed
-    call SaveCurrentPocketItemIndex
-    inc c
-    ld a, 4
-    cp c
-    jr nz, .saveCurrentTab
-    ld c, 0
-
-.saveCurrentTab
-    ld a, c
-    ld [wWhichInventoryTab], a
+    ld a, 1
+    call ChangeInventoryPocket
     jr .tabLoop
 
 .startPressed
@@ -155,6 +157,27 @@ DisplayItemMenu:
 .finishedUpdatingBuffer
     pop bc
     jr .textLoop
+
+ChangeInventoryPocket:
+    push af
+    call SaveCurrentPocketItemIndex
+    pop af
+    add c
+    cp -1
+    jr nz, .notNegative
+    ld a, 3
+    jr .saveCurrentPocket
+.notNegative
+    cp 4
+    jr nz, .saveCurrentPocket
+    xor a
+.saveCurrentPocket
+    ld c, a
+    ld a, [wInventoryProperties]
+    and ~MASK_ACTIVE_POCKET
+    add c
+    ld [wInventoryProperties], a
+    ret
 
 ShiftInventoryBufferDown:
     ld hl, wItemsVisibleInInventory + 4
@@ -597,8 +620,8 @@ DrawItemMenuScreen:
 ; fall through
 PlaceFilterTile:
     coord hl, 0, 11
-    ld a, [wItemMenuFlags]
-    bit 0, a ; Is the Filter enabled?
+    ld a, [wInventoryProperties]
+    bit BIT_INVENTORY_FILTER, a ; Is the Filter enabled?
     ld a, $EC ; Empty radio tile
     jr z, .placeTile
     inc a ; Filled radio tile
@@ -671,7 +694,7 @@ UpdateInventoryList:
     push de
     ld de, SCREEN_WIDTH + 1
     add hl, de
-    ld a, $F1 ; 'x' tile
+    ld a, "x"
     ld [hli], a
     lb bc, 1, 3
     pop de
@@ -802,13 +825,12 @@ TryWrapAroundInventoryList:
 ToggleInventoryFilter:
     push bc
     call SaveCurrentPocketItemIndex
-    ld a, [wItemMenuFlags]
-    bit 0, a
-    set 0, a
-    jr z, .storeFilterFlag
-    res 0, a
-.storeFilterFlag
-    ld [wItemMenuFlags], a
+    ld hl, wInventoryProperties
+    bit BIT_INVENTORY_FILTER, [hl]
+    set BIT_INVENTORY_FILTER, [hl]
+    jr z, .drawTile
+    res BIT_INVENTORY_FILTER, [hl]
+.drawTile
     call PlaceFilterTile
     pop bc
     ret

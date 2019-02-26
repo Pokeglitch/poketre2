@@ -396,8 +396,11 @@ wPartyAndBillsPCSavedMenuItem:: ; cc2b
 ; you return to the main Bill's PC menu.
 	ds 1
 
-wWhichInventoryTab:: ; cc2c
-; Holds the last active inventory tab
+wInventoryProperties:: ; cc2c
+; Bits 0-1: Active Pocket
+; Bit 2: Filter Enabled
+; Bit 3: 
+; Bits 4-5: Cursor Position
 	ds 1
 
 wBattleAndStartSavedMenuItem:: ; cc2d
@@ -2654,12 +2657,8 @@ wFieldItemQuantities:: ; d53b
 wItemsVisibleInInventory:: ; d55b
 	ds 5
 
-wItemMenuFlags:: ; d560
-	ds 1
-; 0 - Filter Enabled
-
-wFreeSpace:: ; d561
-	ds 7
+wFreeSpace:: ; d560
+	ds 8
 
 wSavedMachineItemIndex:: ; d568
 	ds 1
