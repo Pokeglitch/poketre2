@@ -2654,8 +2654,12 @@ wFieldItemQuantities:: ; d53b
 wItemsVisibleInInventory:: ; d55b
 	ds 5
 
-wFreeSpace:: ; d560
-	ds 8
+wItemMenuFlags:: ; d560
+	ds 1
+; 0 - Filter Enabled
+
+wFreeSpace:: ; d561
+	ds 7
 
 wSavedMachineItemIndex:: ; d568
 	ds 1

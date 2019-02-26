@@ -18,9 +18,9 @@
 TABS_START_TILE_ID = $C0
 TAB_TILE_WIDTH = 5
 TAB_BOTTOM_BORDER_TILE = $D4
-ITEM_MENU_LIGHT_GRAY_TILE = $D8
+TAB_BOTTOM_BORDER_HIDDEN_TILE = $D8
 BAGS_GFX_WIDTH = 8
-BAGS_GFX_HEIGHT = 9
+BAGS_GFX_HEIGHT = 10
 
 DisplayItemMenu:
     call GBPalWhiteOutWithDelay3
@@ -37,6 +37,8 @@ DisplayItemMenu:
 
 .tabLoop
     call UpdateDisplayForCurrentTab
+
+.filterLoop
     call InitializeInventoryItemsBuffer
 
 .textLoop
@@ -52,11 +54,14 @@ DisplayItemMenu:
     call JoypadLowSensitivity
     pop bc
     ld a, [hJoy5]
-    and ~START ; Ignore START
+    and a
     jr z, .keypressLoop
 
     bit BIT_A_BUTTON, a
     jr nz, .aPressed
+
+    bit BIT_START, a
+    jr nz, .startPressed
 
     bit BIT_SELECT, a
     jr nz, .selectPressed
@@ -99,6 +104,10 @@ DisplayItemMenu:
     ld a, c
     ld [wWhichInventoryTab], a
     jr .tabLoop
+
+.startPressed
+    call ToggleInventoryFilter
+    jr .filterLoop
 
 .aPressed
 .selectPressed
@@ -444,7 +453,7 @@ UpdateDisplayForCurrentTab:
     ld [hli], a
 
     ; "border bottom" tile id
-    ld [hl], ITEM_MENU_LIGHT_GRAY_TILE
+    ld [hl], TAB_BOTTOM_BORDER_HIDDEN_TILE
     inc hl
 
     ; "border bottom" flags
@@ -529,14 +538,16 @@ DrawItemMenuScreen:
     jr nz, .drawTabsLoop
 
    ; Fill in the bottom border
-    ld b, SCREEN_WIDTH
+    ld b, SCREEN_WIDTH - BAGS_GFX_WIDTH
     ld a, TAB_BOTTOM_BORDER_TILE
+    ld de, BAGS_GFX_WIDTH
+    add hl, de
 .drawTabsBottomBorderLoop
     ld [hli], a
     dec b
     jr nz, .drawTabsBottomBorderLoop
 
-    coord hl, 0, 2
+    coord hl, 0, 1
     lb bc, BAGS_GFX_WIDTH, BAGS_GFX_HEIGHT
     ld de, SCREEN_WIDTH - BAGS_GFX_WIDTH
     xor a
@@ -563,7 +574,7 @@ DrawItemMenuScreen:
     ; Cursor
     ld hl, wOAMBuffer + 10 * 4 ; skip the TAB tiles
     ld a, 4 ; number of tiles
-    ld b, $DA ; cursor start tile
+    ld b, $D9 ; cursor start tile
 
 .cursorLoop
     push af
@@ -583,8 +594,22 @@ DrawItemMenuScreen:
     pop af
     dec a
     jr nz, .cursorLoop
+; fall through
+PlaceFilterTile:
+    coord hl, 0, 11
+    ld a, [wItemMenuFlags]
+    bit 0, a ; Is the Filter enabled?
+    ld a, $EC ; Empty radio tile
+    jr z, .placeTile
+    inc a ; Filled radio tile
 
-    ret
+.placeTile
+    ld [hli], a
+    ld de, .filterText
+    jp PlaceString
+
+.filterText:
+    db "Filter@"
 
 UpdateInventoryList:
     push bc
@@ -610,7 +635,7 @@ UpdateInventoryList:
     ld a, [hl]
     cp -1
     jr z, .noItem
-
+    push af
     ld a, c
     cp 3 ; Machines tab
     ld a, [hl]
@@ -627,13 +652,30 @@ UpdateInventoryList:
 .foundID
     ld [wd11e], a
     call GetItemName
-    
-    ld de, wcd6d
+    pop af
     pop hl
     push hl
+    push bc
+    push af
+    ld de, wcd6d
     call PlaceString
 
-    ; TODO - price and quantity
+    pop af
+    pop bc
+    ld hl, PocketItemQuantityPointers
+    call GetPocketIndexPointer
+    ld d, h
+    ld e, l
+    pop hl
+    push hl
+    push de
+    ld de, SCREEN_WIDTH + 1
+    add hl, de
+    ld a, $F1 ; 'x' tile
+    ld [hli], a
+    lb bc, 1, 3
+    pop de
+    call PrintNumber
 
 .noItem
     pop hl
@@ -756,3 +798,18 @@ TryWrapAroundInventoryList:
     add e
     ld b, a
     jr .findStartBufferPosition
+
+ToggleInventoryFilter:
+    push bc
+    call SaveCurrentPocketItemIndex
+    ld a, [wItemMenuFlags]
+    bit 0, a
+    set 0, a
+    jr z, .storeFilterFlag
+    res 0, a
+.storeFilterFlag
+    ld [wItemMenuFlags], a
+    call PlaceFilterTile
+    pop bc
+    ret
+

@@ -2143,8 +2143,7 @@ ItemMenuHealthTabGFX: INCBIN "gfx/item_menu/health_tab.2bpp"
 ItemMenuMovesTabGFX: INCBIN "gfx/item_menu/moves_tab.2bpp"
 ItemMenuTabBottomBorderGFX: INCBIN "gfx/item_menu/tab_bottom_border.2bpp"
 ItemMenuSelectGFX: INCBIN "gfx/item_menu/select.2bpp"
-ItemMenuLightGrayGFX: INCBIN "gfx/item_menu/light_gray.2bpp"
-ItemMenuXGFX: INCBIN "gfx/item_menu/x.2bpp"
+ItemMenuTabBottomBorderHiddenGFX: INCBIN "gfx/item_menu/tab_bottom_border_hidden.2bpp"
 ItemMenuPointerGFX: INCBIN "gfx/item_menu/pointer.2bpp"
 ItemMenuPointerGFXEnd:
 
