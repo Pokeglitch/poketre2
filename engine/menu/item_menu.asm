@@ -1,26 +1,19 @@
 ; TODO
+; Add in price/quantity/description
+; Check "Drawing Screen.txt" to see whats next
 
-; Update the Item Lists to not include any unused items in the pocket item lists
-
-; "Start" will toggle the "Hide Items" mode
-; you can choose which items you don't want to appear in the item list
-; - or, open up display settings (i.e., show prices, etc)
-
-; combine all of the pocket information into a single dataset
-
-; Remove the need to "toss" an item
-; Hold Up/Down to scroll entire page at once (? or, combined with START/A/B?)
-
-;Use Common names
+; Clean up:
+; - Update the Item Lists to not include any unused items in the pocket item lists
+; -- update ram size accordingly
+; - combine all of the pocket information into a single dataset
+; Comment all routines
+; Make sure constants are used in all possible areas
+; Use Common names
 ; - 'Inventory' instead of Item/Item Screen
 ; - 'Moves' instead of 'Machine'
 ; - 'Pocket' instead of Tab
 ; - Cursor instead of Pointer
 ; - Buffer instead of 'Visible Items List'
-; Make sure constants are used in all possible areas
-; Cleanup and add proper comments/routine names
-; Print item price/quantity
-; - Why does the start menu "option" button not work?
 
 TABS_START_TILE_ID = $C0
 TAB_TILE_WIDTH = 5

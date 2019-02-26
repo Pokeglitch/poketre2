@@ -3078,16 +3078,28 @@ LoadFontTilePatterns::
 	bit 7, a ; is the LCD enabled?
 	jr nz, .on
 .off
-	ld hl, FontGraphics
-	ld de, vFont
-	ld bc, FontGraphicsEnd - FontGraphics
-	ld a, BANK(FontGraphics)
-	jp FarCopyDataDouble ; if LCD is off, transfer all at once
+	ld hl, BlackOnWhiteFontLettersGFX
+	ld de, vChars1
+	ld bc, BlackOnWhiteFontLettersGFXEnd - BlackOnWhiteFontLettersGFX
+	ld a, BANK(BlackOnWhiteFontLettersGFX)
+	call FarCopyData
+
+	ld hl, BlackOnWhiteFontSymbolsGFX
+	ld de, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
+	ld bc, BlackOnWhiteFontSymbolsGFXEnd - BlackOnWhiteFontSymbolsGFX
+	ld a, BANK(BlackOnWhiteFontSymbolsGFX)
+	jp FarCopyData ; if LCD is off, transfer all at once
+
 .on
-	ld de, FontGraphics
-	ld hl, vFont
-	lb bc, BANK(FontGraphics), (FontGraphicsEnd - FontGraphics) / $8
-	jp CopyVideoDataDouble ; if LCD is on, transfer during V-blank
+	ld de, BlackOnWhiteFontLettersGFX
+	ld hl, vChars1
+	lb bc, BANK(BlackOnWhiteFontLettersGFX), (BlackOnWhiteFontLettersGFXEnd - BlackOnWhiteFontLettersGFX) / BYTES_PER_TILE
+	call CopyVideoData
+
+	ld de, BlackOnWhiteFontSymbolsGFX
+	ld hl, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
+	lb bc, BANK(BlackOnWhiteFontSymbolsGFX), (BlackOnWhiteFontSymbolsGFXEnd - BlackOnWhiteFontSymbolsGFX) / BYTES_PER_TILE
+	jp CopyVideoData ; if LCD is on, transfer during V-blank
 
 LoadTextBoxTilePatterns::
 	ld a, [rLCDC]

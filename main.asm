@@ -158,8 +158,11 @@ LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
 
 SECTION "Graphics", ROMX, BANK[GFX]
 
-FontGraphics:                   INCBIN "gfx/font.1bpp"
-FontGraphicsEnd:
+BlackOnWhiteFontLettersGFX:		INCBIN "gfx/black_on_white_font_letters.2bpp"
+BlackOnWhiteFontLettersGFXEnd:
+BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/black_on_white_font_symbols.2bpp"
+BlackOnWhiteFontSymbolsGFXEnd:
+
 ABTiles:                        INCBIN "gfx/AB.2bpp"
 HpBarAndStatusGraphics:         INCBIN "gfx/hp_bar_and_status.2bpp"
 HpBarAndStatusGraphicsEnd:
