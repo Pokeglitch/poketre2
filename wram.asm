@@ -2657,7 +2657,8 @@ wFieldPocketQuantities:: ; d53b
 wInventoryBuffer:: ; d55b
 	ds 5
 
-wFreeSpace:: ; d560
+; First four are field, 2nd four are battle
+wSelectActions:: ; d560
 	ds 8
 
 wMovesPocketPosition:: ; d568

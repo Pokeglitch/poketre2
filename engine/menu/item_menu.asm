@@ -1,6 +1,7 @@
 ; TODO
 
 ; Add in price/description/SEL + DIR
+
 ; Add in Sound effects
 ; Check "Drawing Screen.txt" to see whats next
 
@@ -83,6 +84,13 @@ GetCurrentItemQuantityPointer:
     call GetActivePocketAttributePointer
     ld a, [hli]
     jr GetPointerToPositionInList
+
+; To get the current item id
+GetCurrentItemID:
+    ld a, POCKET_ATTRIBUTE_POSITION
+    call GetActivePocketAttributePointer
+    ld a, [hl]
+    ;fall through
 
 ; To get the item id for the given item index (a)
 GetItemIDAtPosition:
@@ -202,6 +210,12 @@ DisplayItemMenu:
     and a
     call z, InitializeCursorPosition
 
+    ; Configure the joypad
+    ld a, 1
+    ld hl, hJoy6
+    ld [hli], a
+    ld [hl], a
+
 .tabLoop
     call UpdateDisplayForActivePocket
 
@@ -218,12 +232,20 @@ DisplayItemMenu:
     ;call UpdateItemDescription
 
 .keypressLoop
-    push bc
     call JoypadLowSensitivity
-    pop bc
+
     ld a, [hJoy5]
-    and a
-    jr z, .keypressLoop
+
+    bit BIT_D_UP, a
+    jr nz, .upPressed
+    
+    bit BIT_D_DOWN, a
+    jr nz, .downPressed
+
+    ld a, [hJoyPressed]
+
+    bit BIT_SELECT, a
+    jr nz, .selectPressed
 
     bit BIT_A_BUTTON, a
     jr nz, .aPressed
@@ -231,22 +253,18 @@ DisplayItemMenu:
     bit BIT_START, a
     jr nz, .startPressed
 
-    bit BIT_SELECT, a
-    jr nz, .selectPressed
-
     bit BIT_D_LEFT, a
     jr nz, .leftPressed
 
     bit BIT_D_RIGHT, a
     jr nz, .rightPressed
 
-    bit BIT_D_UP, a
-    jr nz, .upPressed
+    bit BIT_B_BUTTON, a
+    jr nz, .bPressed
 
-    bit BIT_D_DOWN, a
-    jr nz, .downPressed
+    jr .keypressLoop
 
-    ; Otherwise, B was pressed, so exit with carry
+.bPressed
     scf
     ret
 
@@ -266,7 +284,10 @@ DisplayItemMenu:
     jr .tabLoop
 
 .aPressed
+    jr .keypressLoop
+
 .selectPressed
+    call AssignSelectItem
     jr .keypressLoop
 
 .upPressed
@@ -304,6 +325,9 @@ DisplayItemMenu:
 .shiftBufferUp
     call ShiftInventoryBufferUp
     jr .textLoop
+
+GetJoypadUpDownHeld:
+    ret
 
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
@@ -895,3 +919,52 @@ PopulateLastInventoryBufferSlot:
     add hl, de
     add e ; shift so it doesnt check the previous item
     jp PopulateRemainingInventoryBufferItems
+
+; To assign the current item to the select button + direction
+; TODO - Initialize RAM values to FF
+AssignSelectItem:
+    ; TODO - show on screen when SEL is being held down
+    ; In textbox, say "Press <>/\ /\ to assign XXX to Quick Use"
+    ; - Different message if not opened from battle or start menu
+    ; - Different message if the item does not have a battle/field use
+.keypressLoop
+    call JoypadLowSensitivity
+
+    ; Exit only when no keys are pressed
+    ld a, [hJoyHeld]
+    and a
+    ret z
+    ;TODO - if not from battle or start menu, or item doesnt have battle/field use, then do nothing
+    
+    ;TODO - if this item is in another slot, remove from that slot
+
+    ld c, 3 ; index
+    bit BIT_D_DOWN, a
+    jr nz, .foundDirection
+
+    dec c
+    bit BIT_D_UP, a
+    jr nz, .foundDirection
+
+    dec c
+    bit BIT_D_LEFT, a
+    jr nz, .foundDirection
+
+    dec c
+    bit BIT_D_RIGHT, a
+    jr z, .keypressLoop
+
+.foundDirection
+    ; TODO - add 4 if battle menu
+    ld hl, wSelectActions
+    ld b, 0
+    add hl, bc
+    push hl
+    call GetCurrentItemID
+    pop hl
+    ld [hl], a
+    ; TODO - set the flag to signify if Key or Regular item
+    ; TODO - draw the SEL + Dir on screen for this item
+    ; TODO - if the item being erased is on screen
+    ;        then clear the SEL+DIR for that item
+    jr .keypressLoop
