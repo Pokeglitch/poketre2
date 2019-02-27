@@ -60,23 +60,23 @@ GetItemRAMPointer:
 	sub HM_01
 	jr c, .notMachineItem
 	ld c, a
-	ld hl, wMachineItemQuantities
+	ld hl, wMovesPocketQuantities
 	jr .finish
 
 .notMachineItem
-	ld hl, BattleItems
+	ld hl, BattlePocketItems
 	call GetItemIndexInTable
-	ld hl, wBattleItemQuantities
+	ld hl, wBattlePocketQuantities
 	jr nc, .finish
 	
-	ld hl, HealthItems
+	ld hl, HealthPocketItems
 	call GetItemIndexInTable
-	ld hl, wHealthItemQuantities
+	ld hl, wHealthPocketQuantities
 	jr nc, .finish
 	
-	ld hl, FieldItems
+	ld hl, FieldPocketItems
 	call GetItemIndexInTable
-	ld hl, wFieldItemQuantities
+	ld hl, wFieldPocketQuantities
 
 .finish
 	ld b,0
@@ -100,14 +100,14 @@ GetItemIndexInTable:
 
 
 
-BattleItems:
+BattlePocketItems:
     db GREAT_BALL
 	db MASTER_BALL
 	db POKE_BALL
 	db ULTRA_BALL
-BattleItemsEnd:
+BattlePocketItemsEnd:
 
-HealthItems:
+HealthPocketItems:
     db ANTIDOTE
 	db AWAKENING
 	db BURN_HEAL
@@ -143,9 +143,9 @@ HealthItems:
 	db X_DEFEND
 	db X_SPECIAL
 	db X_SPEED
-HealthItemsEnd:
+HealthPocketItemsEnd:
 
-FieldItems:
+FieldPocketItems:
     db BICYCLE
 	db BIKE_VOUCHER
 	db CARD_KEY
@@ -178,18 +178,4 @@ FieldItems:
 	db THUNDER_STONE
 	db TOWN_MAP
 	db WATER_STONE
-FieldItemsEnd:
-
-;UnusedItems:
-;   db BOULDERBADGE
-;	db CASCADEBADGE
-;	db COIN
-;	db EARTHBADGE
-;   db MARSHBADGE
-;	db POKEDEX
-;	db RAINBOWBADGE
-;	db SAFARI_BALL
-;   db SOULBADGE
-;	db THUNDERBADGE
-;	db UNUSED_ITEM
-;	db VOLCANOBADGE
+FieldPocketItemsEnd:

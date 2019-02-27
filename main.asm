@@ -2134,20 +2134,21 @@ WhiteOnBlackFontSymbolsGFXEnd:
 TitleScreenMenuLettersGFX: INCBIN "gfx/titlescreen/menu_letters.2bpp"
 TitleScreenMenuLettersGFXEnd:
 
-ItemMenuTextBoxBorderGFX: INCBIN "gfx/item_menu/text_box_border.2bpp"
-ItemMenuTextBoxBorderGFXEnd:
+InventoryTextBoxBorderGFX: INCBIN "gfx/inventory/text_box_border.2bpp"
+InventoryTextBoxBorderGFXEnd:
 
-ItemMenuBattleTabGFX: INCBIN "gfx/item_menu/battle_tab.2bpp"
-ItemMenuFieldTabGFX: INCBIN "gfx/item_menu/field_tab.2bpp"
-ItemMenuHealthTabGFX: INCBIN "gfx/item_menu/health_tab.2bpp"
-ItemMenuMovesTabGFX: INCBIN "gfx/item_menu/moves_tab.2bpp"
-ItemMenuTabBottomBorderGFX: INCBIN "gfx/item_menu/tab_bottom_border.2bpp"
-ItemMenuSelectGFX: INCBIN "gfx/item_menu/select.2bpp"
-ItemMenuTabBottomBorderHiddenGFX: INCBIN "gfx/item_menu/tab_bottom_border_hidden.2bpp"
-ItemMenuPointerGFX: INCBIN "gfx/item_menu/pointer.2bpp"
-ItemMenuPointerGFXEnd:
+InventoryScreenGFX:
+	INCBIN "gfx/inventory/battle_tab.2bpp"
+	INCBIN "gfx/inventory/field_tab.2bpp"
+	INCBIN "gfx/inventory/health_tab.2bpp"
+	INCBIN "gfx/inventory/moves_tab.2bpp"
+	INCBIN "gfx/inventory/tab_bottom_border.2bpp"
+	INCBIN "gfx/inventory/select.2bpp"
+	INCBIN "gfx/inventory/tab_bottom_border_hidden.2bpp"
+	INCBIN "gfx/inventory/cursor.2bpp"
+InventoryScreenGFXEnd:
 
-ItemMenuBattleBagGFX: INCBIN "gfx/item_menu/battle_bag.2bpp"
-ItemMenuFieldBagGFX: INCBIN "gfx/item_menu/field_bag.2bpp"
-ItemMenuHealthBagGFX: INCBIN "gfx/item_menu/health_bag.2bpp"
-ItemMenuMovesBagGFX: INCBIN "gfx/item_menu/moves_bag.2bpp"
+InventoryBattlePocketGFX: INCBIN "gfx/inventory/battle_pocket.2bpp"
+InventoryFieldPocketGFX: INCBIN "gfx/inventory/field_pocket.2bpp"
+InventoryHealthPocketGFX: INCBIN "gfx/inventory/health_pocket.2bpp"
+InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"

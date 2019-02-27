@@ -1,66 +1,220 @@
 ; TODO
-; Dont store cursor/pocket in bc, always use wInventoryProperties
-; - remove the need for push/pop bc
 
 ; Add in price/description/SEL + DIR
-; - Left align the quantity?
 ; Add in Sound effects
 ; Check "Drawing Screen.txt" to see whats next
 
 ; Add in way to apply the filter
-; - each item has a flag for battle use, battle hold, field use, field hold, sellable
-; -- "Key Items"/TMs are never sellable, they dont need that flag (?)
-; - dont redraw the screen if the filter did not change it
+; - each item has a flag for battle use, battle hold, field use, field hold, sellable, usable on party
+; - filter mask is input before loading the item screen
 
-; Clean up:
-; - Update the Item Lists to not include any unused items in the pocket item lists
-; -- update ram size accordingly
-; - combine all of the pocket information into a single dataset
-; Comment all routines
-; Make sure constants are used in all possible areas
-; Use Common names
-; - 'Inventory' instead of Item/Item Screen
-; - 'Moves' instead of 'Machine'
-; - 'Pocket' instead of Tab
-; - Cursor instead of Pointer
-; - Buffer instead of 'Visible Items List'
+; Remove "FilteredBag" references (will that become FreeSpace?)
 
-TABS_START_TILE_ID = $C0
-TAB_TILE_WIDTH = 5
-TAB_BOTTOM_BORDER_TILE = $D4
-TAB_BOTTOM_BORDER_HIDDEN_TILE = $D8
-BAGS_GFX_WIDTH = 8
-BAGS_GFX_HEIGHT = 10
+; Update the Item Lists to not include any unused items in the pocket item lists
+; - update ram size accordingly
 
-BIT_INVENTORY_FILTER = 2
+; Tile Constants
+TILE_TEXTBOX_BORDER_START = $79
+TILE_TABS_START = $C0
+TILE_TAB_BOTTOM_SOLID = $D4
+TILE_TAB_BOTTOM_HIDDEN = $D8
+TILE_CURSOR_START = $D9
+TILE_EMPTY_RADIO = $EC
+TILE_FILLED_RADIO = $F3
+
+; GFX Constants
+GFX_TAB_WIDTH = 5
+GFX_POCKETS_WIDTH = 8
+GFX_POCKETS_HEIGHT = 10
+GFX_CURSOR_SIZE = 4
+
+; OAM Constants
+OAM_CURSOR_X = $38
+OAM_CURSOR_Y_START = $1C
+OAM_TAB_TOP_Y = $10
+OAM_TAB_BOTTOM_Y = $18
+
+; Inventory Data Constants
+NUM_POCKETS = 4
+POCKET_ATTRIBUTE_GFX = 0
+POCKET_ATTRIBUTE_POSITION = 1
+POCKET_ATTRIBUTE_ITEMS = 2
+POCKET_ATTRIBUTE_SIZE = 3
+POCKET_ATTRIBUTE_DATA_LENGTH = 7
+INVENTORY_BUFFER_SIZE = 5
+
+; Inventory Properties Constants
 MASK_ACTIVE_POCKET = %00000011
+MASK_CURSOR_POSITION = %00110000
+BIT_INVENTORY_FILTER = 2
+BIT_CURSOR_POSITION_LO = 4
+BIT_CURSOR_POSITION_HI = 5
+
+; Pocket Attributes Table
+PocketAttributesTable:
+    ; Battle Pocket
+    dw InventoryBattlePocketGFX
+    dw wBattlePocketPosition
+    dw BattlePocketItems
+    db (BattlePocketItemsEnd - BattlePocketItems)
+
+    ; Field Pocket
+    dw InventoryFieldPocketGFX
+    dw wFieldPocketPosition
+    dw FieldPocketItems
+    db (FieldPocketItemsEnd - FieldPocketItems)
+
+    ; Health Pocket
+    dw InventoryHealthPocketGFX
+    dw wHealthPocketPosition
+    dw HealthPocketItems
+    db (HealthPocketItemsEnd - HealthPocketItems)
+
+    ; Moves Pocket
+    dw InventoryMovesPocketGFX
+    dw wMovesPocketPosition
+    dw 0
+    db TM_50 - HM_01 + 1
+PocketAttributesTableEnd::
+
+; To get the pointer for the current item's quantity (hl)
+GetCurrentItemQuantityPointer:
+    ld a, POCKET_ATTRIBUTE_POSITION
+    call GetActivePocketAttributePointer
+    ld a, [hli]
+    jr GetPointerToPositionInList
+
+; To get the item id for the given item index (a)
+GetItemIDAtPosition:
+    push af
+    ld a, POCKET_ATTRIBUTE_ITEMS
+    call GetActivePocketAttributePointer
+    pop af
+    call GetPointerToPositionInList
+    ld a, [hl]
+    ret
+
+; To get the pointer to the quantity (hl) for the given item index (a)
+GetItemQuantityPointer:
+    push af
+    ld a, POCKET_ATTRIBUTE_POSITION
+    call GetActivePocketAttributePointer
+    inc hl
+    pop af
+    ; fall through
+
+; To get the pointer (hl) to the given index (a) in the given list (hl)
+GetPointerToPositionInList:
+    add l
+    ld l, a
+    ret nc
+    inc h
+    ret
+
+; To get the pointer for the given attribute (a) for the active pocket
+GetActivePocketAttributePointer:
+    call GetPointerToActivePocketAttributeData
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ret
+
+; To get the pointer to the given attribute (a) for the active pocket
+GetPointerToActivePocketAttributeData:
+    ld hl, PocketAttributesTable
+    add a
+    add l
+    ld l, a
+    jr nc, .noCarry
+    inc h
+
+.noCarry
+    call GetActivePocketID
+    lb bc, 0, POCKET_ATTRIBUTE_DATA_LENGTH
+
+.loop
+    and a
+    ret z
+    add hl, bc
+    dec a
+    jr .loop
+
+; Returns the active pocket id (a)
+GetActivePocketID:
+    ld a, [wInventoryProperties]
+    and MASK_ACTIVE_POCKET
+    ret
+    
+; Update the active pocket based on the given direction (c)
+ChangeActivePocket:
+    call GetActivePocketID
+    add c ; a = new pocket id
+    cp -1
+    jr nz, .notNegative
+    ld a, NUM_POCKETS-1
+    jr .updatePocket
+
+.notNegative
+    cp NUM_POCKETS
+    jr nz, .updatePocket
+    xor a
+    
+.updatePocket
+    ld c, a
+    ld a, [wInventoryProperties]
+    and ~MASK_ACTIVE_POCKET
+    add c
+    ld [wInventoryProperties], a
+    ret
+
+; Returns the cursor position (a)
+GetCursorPosition:
+    ld a, [wInventoryProperties]
+    and MASK_CURSOR_POSITION
+    swap a
+    ret
+
+; Sets the cursor position to 2
+InitializeCursorPosition:
+    ld a, 2
+    ;fall through
+
+; Saves the cursor position (a) to wInventoryProperties
+SaveCursorPosition:
+    ld hl, wInventoryProperties
+    res BIT_CURSOR_POSITION_HI, [hl]
+    res BIT_CURSOR_POSITION_LO, [hl]
+    swap a
+    add [hl]
+    ld [hl], a
+    swap a
+    ret
 
 DisplayItemMenu:
     call GBPalWhiteOutWithDelay3
     call HideSprites
 
     call ClearScreen
-    call DrawItemMenuScreen
+    call InitializeInventoryScreen
 
-    ; Load the tab index    
-    ld a, [wInventoryProperties]
-    and MASK_ACTIVE_POCKET
-    ld c, a
-
-    ld b, 2 ; initialize the cursor position
+    ; Initialize the cursor position if it is 0
+    call GetCursorPosition
+    and a
+    call z, InitializeCursorPosition
 
 .tabLoop
-    call UpdateDisplayForCurrentTab
+    call UpdateDisplayForActivePocket
 
 .filterLoop
-    call InitializeInventoryItemsBuffer
+    call PopulateInventoryBuffer
 
 .textLoop
     call TryWrapAroundInventoryList
-    call UpdateInventoryList
+    call DisplayInventoryList
 
 .cursorLoop
-    call UpdateInventoryCursor
+    call DrawInventoryCursor
+    call SaveActivePocketPosition
     ;call UpdateItemDescription
 
 .keypressLoop
@@ -96,251 +250,338 @@ DisplayItemMenu:
     scf
     ret
 
-
-.leftPressed
-    ld a, -1
-    call ChangeInventoryPocket
-    jr .tabLoop
-
-.rightPressed
-    ld a, 1
-    call ChangeInventoryPocket
-    jr .tabLoop
-
 .startPressed
     call ToggleInventoryFilter
     jr .filterLoop
+
+.leftPressed
+    ld c, -1
+    jr .changePocket
+
+.rightPressed
+    ld c, 1
+
+.changePocket
+    call ChangeActivePocket
+    jr .tabLoop
 
 .aPressed
 .selectPressed
     jr .keypressLoop
 
 .upPressed
-    ld a, -1
+    ld b, -1
     jr .handleNavigation
 
 .downPressed
-    ld a, 1
+    ld b, 1
 
 .handleNavigation
-    push bc
+    call GetCursorPosition
     add b
     ld b, a
-    call GetSelectedItemIndex
+    call GetBufferValueAtPosition
     cp -1
-    jr nz, .navigate
+    jr z, .keypressLoop ; do nothing if the new position is empty
     
-    ; don't update the cursor position if the new position has no item
-    pop bc
-    jr .keypressLoop
-
 .navigate
-    ld a, b
+    ld a, b ; a = new cursor position
 
     and a
     jr z, .shiftBufferDown
 
-    cp 4
+    cp INVENTORY_BUFFER_SIZE - 1
     jr z, .shiftBufferUp
 
-    ; update cursor if it is not at the top
-    pop hl
+    ; update cursor if it moved
+    call SaveCursorPosition
     jr .cursorLoop
 
 .shiftBufferDown
     call ShiftInventoryBufferDown
-    jr .finishedUpdatingBuffer
+    jr .textLoop
 
 .shiftBufferUp
     call ShiftInventoryBufferUp
-
-.finishedUpdatingBuffer
-    pop bc
     jr .textLoop
 
-ChangeInventoryPocket:
-    push af
-    call SaveCurrentPocketItemIndex
-    pop af
-    add c
-    cp -1
-    jr nz, .notNegative
-    ld a, 3
-    jr .saveCurrentPocket
-.notNegative
-    cp 4
-    jr nz, .saveCurrentPocket
-    xor a
-.saveCurrentPocket
-    ld c, a
-    ld a, [wInventoryProperties]
-    and ~MASK_ACTIVE_POCKET
-    add c
-    ld [wInventoryProperties], a
-    ret
+; To load the gfx and draw the static portions of the Inventory screen
+InitializeInventoryScreen:
+    ld de, InventoryTextBoxBorderGFX
+    ld hl, vChars2 + (TILE_TEXTBOX_BORDER_START * BYTES_PER_TILE)
+    lb bc, BANK(InventoryTextBoxBorderGFX), (InventoryTextBoxBorderGFXEnd-InventoryTextBoxBorderGFX) / BYTES_PER_TILE
+    call CopyVideoData
 
-ShiftInventoryBufferDown:
-    ld hl, wItemsVisibleInInventory + 4
-    ld de, wItemsVisibleInInventory + 3
-    ld b, 4
+    ld de, InventoryScreenGFX
+    ld hl, vChars0 + TILE_TABS_START * BYTES_PER_TILE
+    lb bc, BANK(InventoryScreenGFX), (InventoryScreenGFXEnd-InventoryScreenGFX) / BYTES_PER_TILE
+    call CopyVideoData
 
-.loop
-    ld a, [de]
-    dec de
-    ld [hld], a
+    ; Place the tab top tiles
+    coord hl, 0, 0
+    ld a, TILE_TABS_START
+    ld b, NUM_POCKETS * GFX_TAB_WIDTH
+
+.drawTabsLoop
+    ld [hli], a
+    inc a
     dec b
-    jr nz, .loop
+    jr nz, .drawTabsLoop
 
-    ; Find the first item in the list
-    ld a, [hl] ; the previous "first" item index
-    call GetPocketItemAndQuantityPointers
-    dec a
-    dec hl ; shift to previous item
-    ld c, -1
-    ld de, -1
-    ld b, 0
-    jp FindRemainingBufferItems
+   ; Place the tab bottom tiles
+   ; The Pocket GFX also includes the bottom tiles, so skip those
+    ld de, GFX_POCKETS_WIDTH
+    add hl, de
 
-ShiftInventoryBufferUp:
-    ld hl, wItemsVisibleInInventory
-    ld de, wItemsVisibleInInventory + 1 
-    ld b, 4
-
-.loop
-    ld a, [de]
-    inc de
+    ld b, SCREEN_WIDTH - GFX_POCKETS_WIDTH
+    ld a, TILE_TAB_BOTTOM_SOLID
+.drawTabsBottomBorderLoop
     ld [hli], a
     dec b
-    jr nz, .loop
+    jr nz, .drawTabsBottomBorderLoop
 
-    ; Find the last item in the list
-    ld a, [hl] ; the previous "last" item index
-    call GetPocketItemAndQuantityPointers
-    inc hl
-    inc a ; shift to next item
-    ld de, 1
-    ld b, 4
-    jp FindRemainingBufferItems
+    ; Place the Pocket GFX tiles
+    coord hl, 0, 1
+    lb bc, GFX_POCKETS_WIDTH, GFX_POCKETS_HEIGHT
+    ld de, SCREEN_WIDTH - GFX_POCKETS_WIDTH
+    xor a ; TILE_POCKETS_START = $00
 
-PocketGFXPointers:
-    dw ItemMenuBattleBagGFX
-    dw ItemMenuFieldBagGFX
-    dw ItemMenuHealthBagGFX
-    dw ItemMenuMovesBagGFX
-
-SavedPocketItemIndexPointers:
-    dw wSavedBattleItemIndex
-    dw wSavedFieldItemIndex
-    dw wSavedHealthItemIndex
-    dw wSavedMachineItemIndex
+.placePocketsGFXOuterLoop
+    push bc
     
-PocketItemQuantityPointers:
-    dw wBattleItemQuantities
-    dw wFieldItemQuantities
-    dw wHealthItemQuantities
-    dw wMachineItemQuantities
-    
-PocketItemListPointers:
-    dw BattleItems
-    dw FieldItems
-    dw HealthItems
-    dw 0
-
-PocketItemListLengths:
-    db (BattleItemsEnd - BattleItems)
-    db (FieldItemsEnd - FieldItems)
-    db (HealthItemsEnd - HealthItems)
-    db TM_50 - HM_01 + 1 ; Machine
-
-; To get the pointer (hl) from the list (hl) for pocket (c)
-GetPocketPointer:
-    push bc
-    ld b, 0
-    add hl, bc
-    add hl, bc
-    ld b, [hl]
-    inc hl
-    ld h, [hl]
-    ld l, b
-    pop bc
-    ret
-
-; To get the pointer (hl) from the index (a) from list (hl) for pocket (c)
-GetPocketIndexPointer:
-    push af
-    call GetPocketPointer
-    add l
-    ld l, a
-    jr nc, .finish
-    inc h
-.finish
-    pop af
-    ret
-
-; To get the pocket max number of items (c) and quantity (hl) pointers based on index (a) and pocket (c)
-GetPocketItemAndQuantityPointers:
-    ld hl, PocketItemQuantityPointers
-    call GetPocketIndexPointer
-    push hl
-    ld hl, PocketItemListLengths
-    ld d, 0
-    ld e, c
-    add hl, de
-    ld c, [hl] ; c = length of pocket items list
-    pop hl
-    ret
-
-; Populate the list of current items visible on the inventory
-InitializeInventoryItemsBuffer:
-    push bc
-
-    ld hl, SavedPocketItemIndexPointers
-    call GetPocketPointer
-    ld a, [hl] ; a = index to last selected item
-
-    call GetPocketItemAndQuantityPointers
-    push af
-    push hl
-    push bc
-    ld de, 1
-    call FindRemainingBufferItems
-    pop bc
-
-    call GetCurrentItemPointer
-    ld a, [hl]
-    cp -1
-    jr z, .dontDecB
-
-    ; Decrease cursor position if item is at current cursor position
+.placePocketsGFXInnerLoop
+    ld [hli], a
+    inc a
     dec b
+    jr nz, .placePocketsGFXInnerLoop
 
-.dontDecB
-    pop hl
+    pop bc
+    add hl, de
+    dec c
+    jr nz, .placePocketsGFXOuterLoop
+
+    ; Place the text box
+    coord hl, 0, 12
+    lb bc, 4, 18
+    call TextBoxBorder
+
+    ; Place the cursor 
+    ld hl, wOAMBuffer + (GFX_TAB_WIDTH*2) * OAM_BYTE_SIZE ; skip the tab tiles
+    ld a, GFX_CURSOR_SIZE ; number of tiles
+    ld b, TILE_CURSOR_START ; cursor start tile
+
+.cursorLoop
+    push af
+
+    ld [hl], 0 ; initial y position
+    inc hl
+    
+    bit 0, a ; is this a left or right tile?
+    ld a, OAM_CURSOR_X ; left tile x position
+    jr z, .placeXPosition
+    add a, PIXELS_PER_TILE ; right tile x position
+.placeXPosition
+    ld [hli], a ; x position
+
+    ld a, b
+    inc b
+    ld [hli], a ; tile id
+    
+    xor a
+    ld [hli], a ; flags
+
     pop af
     dec a
-    dec hl ; the current item was already searched, so reduce by 1
-    ld c, -1
-    ld de, -1
-    call FindRemainingBufferItems
-    pop bc
+    jr nz, .cursorLoop
+    ; fall through
+
+PlaceInventoryFilterRadioTile:
+    ld a, [wInventoryProperties]
+    bit BIT_INVENTORY_FILTER, a ; Is the Filter enabled?
+    ld a, TILE_EMPTY_RADIO
+    
+    jr z, .placeTile
+    ld a, TILE_FILLED_RADIO
+
+.placeTile
+    coord hl, 0, 11
+    ld [hli], a
+    ld de, .filterText
+    jp PlaceString
+
+.filterText:
+    db "Filter@"
+
+; To toggle the filter
+ToggleInventoryFilter:
+    ld hl, wInventoryProperties
+    bit BIT_INVENTORY_FILTER, [hl]
+    set BIT_INVENTORY_FILTER, [hl]
+    jr z, .placeTile
+    res BIT_INVENTORY_FILTER, [hl]
+.placeTile
+    call PlaceInventoryFilterRadioTile
     ret
 
-; Search for the remaining items
-; a = current index
-; hl = Quantity Position
-; de = direction
-; bc = buffer position, stop index
-FindRemainingBufferItems:
+; To update the screen based on the active pocket
+UpdateDisplayForActivePocket:
+    ; Update the active pocket's GFX
+    ld a, POCKET_ATTRIBUTE_GFX
+    call GetActivePocketAttributePointer
+    ld d, h
+    ld e, l
+    ld hl, vChars2
+    lb bc, BANK(InventoryBattlePocketGFX), GFX_POCKETS_WIDTH * GFX_POCKETS_HEIGHT
+    call CopyVideoData
+    
+    ; Update the active pocket's tab GFX
+    call GetActivePocketID
+    ld b, a
+    add a
+    add a
+    add b ; a = tab start tile location, pocket id * 5 (5 tiles per tab)
 
+    push af
+    add TILE_TABS_START
+    ld c, a ; c = tab start tile id
+    pop af
+
+    inc a ; increase the number of tiles since OAM starts 1 tile offscreen
+    add a
+    add a
+    add a
+    ld b, a ; a = tab start pixel location, tile location * 8 (8 pixels per tile)
+    
+    ld hl, wOAMBuffer
+    lb de, GFX_TAB_WIDTH, -3 ; the -3 gets added to hl at the very end
+
+.drawTabLoop
+    ; Tab top tile
+    ld a, OAM_TAB_TOP_Y
+    ld [hli], a ; y position
+    
+    ld a, b
+    ld [hli], a ; x position
+
+    ld a, c
+    ld [hli], a ; tile id
+    inc c ; next tile id
+
+    xor a
+    ld [hli], a ; flags
+
+    ; Tab bottom tile
+    ld a, OAM_TAB_BOTTOM_Y
+    ld [hli], a ; y position
+
+    ld a, b
+    inc a ; shift right 1 pixel
+    ld [hli], a ; x position
+    add PIXELS_PER_TILE - 1 ; next tile x position
+    ld b, a
+
+    ld a, TILE_TAB_BOTTOM_HIDDEN
+    ld [hli], a ; tile id 
+
+    xor a
+    ld [hli], a ; flags
+
+    dec d
+    jr nz, .drawTabLoop
+
+    ; Shift the last tab bottom tile left 2 pixels
+    add hl, de
+    dec [hl]
+    dec [hl]
+    jp GBPalNormal
+
+; Returns value (a) in inventory buffer at the current cursor position
+GetCurrentBufferValue:
+    call GetCursorPosition
+    ; fall through
+
+; Returns value (a) in inventory buffer at provided position (a)
+GetBufferValueAtPosition:
+    call GetBufferPointerAtPosition
+    ld a, [hl]
+    ret
+
+; Returns pointer (hl) to inventory buffer at the current cursor position
+GetCurrentBufferPointer:
+    call GetCursorPosition
+    ; fall through
+    
+; Returns pointer (hl) to inventory buffer at provided position (a)
+GetBufferPointerAtPosition:
+    ld hl, wInventoryBuffer
+    add l
+    ld l, a
+    ret nc
+    inc hl
+    ret
+
+; To populate the inventory item list buffer based on active pocket and cursor position
+PopulateInventoryBuffer:
+    ld a, POCKET_ATTRIBUTE_POSITION
+    call GetActivePocketAttributePointer
+    ld a, [hl] ; a = saved position
+    
+    push af
+    call GetCurrentItemQuantityPointer
+    push hl
+
+    ld a, POCKET_ATTRIBUTE_SIZE
+    call GetPointerToActivePocketAttributeData
+    ld c, [hl] ; c = stop when end of list reached
+
+    call GetCursorPosition
+    ld b, a ; b = current buffer index
+    
+    pop hl ; hl = current item quantity pointer
+    pop af ; a = start index
+    ld de, 1 ; de = search downwards
+
+    push af
+    push hl
+    push bc
+    call PopulateRemainingInventoryBufferItems
+
+    call GetCurrentBufferValue
+    cp -1
+    pop bc ; b = current buffer index
+    jr z, .isEmpty
+
+    ; If the current buffer position is not empty,
+    ; then shift the search start to the precending entry
+    dec b
+
+.isEmpty
+    pop hl
+    pop af
+    dec hl
+    dec a ; start at the preceding item (current item was already searched)
+    ld c, -1 ; c = stop when start of list reached
+    ld de, -1 ; de = search upwards
+    ; fall through
+
+    jp PopulateRemainingInventoryBufferItems
+
+; Search for the remaining items
+; a = item start index
+; hl = quantity pointer
+; de = direction
+; bc = buffer start position, item stop index
+PopulateRemainingInventoryBufferItems:
 .loop
     push af
     cp c
-    jr z, .endOfList ; if the current index == last index, then fill out remainder with $FF
+    jr z, .endOfList ; if the current index == stop index, then fill out remainder with $FF
 
     ld a, [hl]
     and a
     jr z, .moveToNextItem ; if the quantity is 0, move to the next item
 
+    ; TODO - check the filter
     pop af
     push af
     push hl
@@ -364,455 +605,110 @@ FindRemainingBufferItems:
     ret
 
 .storeNextItem
-    call GetCurrentItemPointer
-    ld [hl], a
+    push af
+    ld a, b
+    call GetBufferPointerAtPosition
+    pop af
+    ld [hl], a ; store the index to the buffer
     ld a, b
     add e
-    ld b, a
+    ld b, a ; move to next buffer position
     cp -1
     ret z
-    cp 5
+    cp INVENTORY_BUFFER_SIZE
     ret
 
-SaveCurrentPocketItemIndex:
-    push bc
-    call GetSelectedItemIndex
-    cp -1
-    jr nz, .notFF
-    xor a ; set a to 0 instead of FF
-.notFF
-    ld hl, SavedPocketItemIndexPointers
-    call GetPocketPointer
-    ld [hl], a
-    pop bc
-    ret
-
-; Returns the current item in pointer in hl based on cursor position in b
-GetCurrentItemPointer:
-    push af
-    ld hl, wItemsVisibleInInventory
-    ld a, b
-    add l
-    ld l, a
-    jr nc, .finish
-    inc h
-
-.finish
-    pop af
-    ret
-
-; Returns the item index in a based on the cursor position in b
-GetSelectedItemIndex:
-    call GetCurrentItemPointer
-    ld a, [hl] ; a = Current selected item
-    ret
-
-UpdateDisplayForCurrentTab:
-    push bc
-
-    ; Load the GFX for this pocket
-    ld hl, PocketGFXPointers
-    call GetPocketPointer
-    ld d, h
-    ld e, l
-    ld hl, vChars2
-    lb bc, BANK(ItemMenuBattleBagGFX), BAGS_GFX_WIDTH * BAGS_GFX_HEIGHT
-    call CopyVideoData
-    
-    pop bc
-    push bc
-
-    ; Get the tile offset for this pocket's tab
-    ld a, c
-    add a
-    add a
-    add c ; a = 5 * c (5 tiles per tab)
-
-    ; Tile ID for the start of this tab
-    add TABS_START_TILE_ID
-    ld c, a
-    sub TABS_START_TILE_ID
-
-    ; Get the pixel offset for this pocket's tab
-    inc a ; increase the number of tiles since OAM starts 1 tile offscreen
-    add a
-    add a
-    add a ; a = 8 * a (8 pixels per tile)
-    
-    ld b, a ; b = OAM pixel offset
-    
-    ld hl, wOAMBuffer
-    ld a, TAB_TILE_WIDTH
-
-.updateOAMTilesLoop
-    push af
-    ; tab tile y position
-    ld [hl], $10
-    inc hl
-
-    ; tab tile x position
-    ld a, b
-    push af ; store for "border bottom" use
-    ld [hli], a
-    add 8 ; move to the next tile position
-    ld b, a
-
-    ; tab tile id
-    ld a, c
-    inc c ; move to next tile id
-    ld [hli], a
-
-    ; tab tile flags
-    xor a
-    ld [hli], a
-
-    ; "border bottom" y position
-    ld [hl], $18
-    inc hl
-
-    ; "border bottom" x position
-    pop af
-    inc a ; shift right 1 pixel
-    ld [hli], a
-
-    ; "border bottom" tile id
-    ld [hl], TAB_BOTTOM_BORDER_HIDDEN_TILE
-    inc hl
-
-    ; "border bottom" flags
-    xor a
-    ld [hli], a
-
-    pop af
-    dec a
-    jr nz, .updateOAMTilesLoop
-
-    ; Shift the last "border bottom" tile left 2 pixels
-    ld bc, -3
-    add hl, bc
-    dec [hl]
-    dec [hl]
-
-    call GBPalNormal
-    
-    ; Restore the in-menu variables
-    pop bc
-    ret
-
-UpdateInventoryCursor:
-    push bc
-    
-    call GetSelectedItemIndex
-    cp -1
-    jr nz, .notEmpty
-
-    ld bc, 0
-    jr .foundYpos
-
-.notEmpty
-    ld a, $1C ; y position for top menu item
-.yLoop
-    add $10
-    dec b
-    jr nz, .yLoop
-    
-    ld b, a ; b = top row y pos
-    add 8
-    ld c, a ; c = bottom row y pos
-
-.foundYpos
-    ld hl, wOAMBuffer + 10 * 4 ; skip the TAB tiles
-    ld de, 4 ; size of single OAM data
-    ld a, 4 ; tile size of cursor
-
-.loop
-    ld [hl], b
-    add hl, de
-    cp 3
-    jr nz, .noNewLine
-    ld b, c
-.noNewLine
-    dec a
-    jr nz, .loop
-
-    pop bc
-    ret
-
-DrawItemMenuScreen:
-    ld de, ItemMenuTextBoxBorderGFX
-    ld hl, vChars2 + $79 * BYTES_PER_TILE
-    lb bc, BANK(ItemMenuTextBoxBorderGFX), (ItemMenuTextBoxBorderGFXEnd-ItemMenuTextBoxBorderGFX) / BYTES_PER_TILE
-    call CopyVideoData
-
-    ld de, ItemMenuBattleTabGFX
-    ld hl, vChars0 + TABS_START_TILE_ID * BYTES_PER_TILE
-    lb bc, BANK(ItemMenuBattleTabGFX), (ItemMenuPointerGFXEnd-ItemMenuBattleTabGFX) / BYTES_PER_TILE
-    call CopyVideoData
-
-    ; Draw the tabs
-    coord hl, 0, 0
-    ld a, TABS_START_TILE_ID
-    ld b, SCREEN_WIDTH
-
-.drawTabsLoop
-    ld [hli], a
-    inc a
-    dec b
-    jr nz, .drawTabsLoop
-
-   ; Fill in the bottom border
-    ld b, SCREEN_WIDTH - BAGS_GFX_WIDTH
-    ld a, TAB_BOTTOM_BORDER_TILE
-    ld de, BAGS_GFX_WIDTH
-    add hl, de
-.drawTabsBottomBorderLoop
-    ld [hli], a
-    dec b
-    jr nz, .drawTabsBottomBorderLoop
-
-    coord hl, 0, 1
-    lb bc, BAGS_GFX_WIDTH, BAGS_GFX_HEIGHT
-    ld de, SCREEN_WIDTH - BAGS_GFX_WIDTH
-    xor a
-
-.drawBagsGFXOuterLoop
-    push bc
-    
-.drawBagsGFXInnerLoop
-    ld [hli], a
-    inc a
-    dec b
-    jr nz, .drawBagsGFXInnerLoop
-
-    pop bc
-    add hl, de
-    dec c
-    jr nz, .drawBagsGFXOuterLoop
-
-    ; Text box
-    coord hl, 0, 12
-    lb bc, 4, 18
-    call TextBoxBorder
-
-    ; Cursor
-    ld hl, wOAMBuffer + 10 * 4 ; skip the TAB tiles
-    ld a, 4 ; number of tiles
-    ld b, $D9 ; cursor start tile
-
-.cursorLoop
-    push af
-    ld [hl], 0 ; y position, will get updated during navigation
-    inc hl
-    bit 0, a
-    ld a, $38 ; x position for the left tile
-    jr z, .notRightTile
-    add a, 8 ; the right tile is one tile to the right
-.notRightTile
-    ld [hli], a ; x position
-    ld [hl], b ; tile id
-    inc b
-    inc hl
-    ld [hl], 0 ; flags
-    inc hl
-    pop af
-    dec a
-    jr nz, .cursorLoop
-; fall through
-PlaceFilterTile:
-    coord hl, 0, 11
-    ld a, [wInventoryProperties]
-    bit BIT_INVENTORY_FILTER, a ; Is the Filter enabled?
-    ld a, $EC ; Empty radio tile
-    jr z, .placeTile
-    inc a ; Filled radio tile
-
-.placeTile
-    ld [hli], a
-    ld de, .filterText
-    jp PlaceString
-
-.filterText:
-    db "Filter@"
-
-UpdateInventoryList:
-    push bc
-    
-    ; Erase the previous entries
-    coord hl, 8, 2
-    push hl
-    lb bc, 10, 12
-    call ClearScreenArea
-    
-    pop hl
-    pop bc
-    push bc
-    ld a, 0 ; buffer index
-
-.placeItem
-    push af
-    push hl
-    ld hl, wItemsVisibleInInventory
-    ld e, a
-    ld d, 0
-    add hl, de ; hl = inventory index
-    ld a, [hl]
-    cp -1
-    jr z, .noItem
-    push af
-    ld a, c
-    cp 3 ; Machines tab
-    ld a, [hl]
-    jr nz, .notMachines
-
-    add HM_01
-    jr .foundID
-
-.notMachines
-    ld hl, PocketItemListPointers
-    call GetPocketIndexPointer
-    ld a, [hl] ; item id
-
-.foundID
-    ld [wd11e], a
-    call GetItemName
-    pop af
-    pop hl
-    push hl
-    push bc
-    push af
-    ld de, wcd6d
-    call PlaceString
-
-    pop af
-    pop bc
-    ld hl, PocketItemQuantityPointers
-    call GetPocketIndexPointer
-    ld d, h
-    ld e, l
-    pop hl
-    push hl
-    push de
-    ld de, SCREEN_WIDTH + 1
-    add hl, de
-    ld a, "x"
-    ld [hli], a
-    lb bc, 1, 3
-    pop de
-    call PrintNumber
-
-.noItem
-    pop hl
-    ld e, SCREEN_WIDTH
-    ld d, 0
-    add hl, de
-    add hl, de ; HL = next line
-
-    pop af
-    pop bc
-    push bc
-    inc a
-    cp 5
-    jr nz, .placeItem
-
-    pop bc
-    ret
-
-; If there are more than 4 elements, then wrap around
+; If there are empty slots in the buffer, try to wrap around to the other end of the list
+; If the list is shorter than 5 items, then don't do this
 TryWrapAroundInventoryList:
-    push bc
-    ld a, [wItemsVisibleInInventory]
-    ld hl, wItemsVisibleInInventory + 4
+    ld a, [wInventoryBuffer]
+    ld hl, wInventoryBuffer + 4
     cp -1
-    ld a, [hld]
+    ld a, [hl]
     jr nz, .checkEndOfList
 
     cp -1
-    jr z, .exit ; if both sides end in -1, then exit
+    ret z ; if both sides end in -1, then exit
 
-; Find which index to start from
-    push af
-    ld b, 0
-    ld hl, wItemsVisibleInInventory + 1
-    ld de, 1
-    call .findStartBufferPosition
-    ; b = starting buffer position
-
-    xor a
-    call GetPocketItemAndQuantityPointers
-    ; c = max number of items
-    dec c
+    ; Start of the list is empty
+    push af ; store the last item in the buffer
+    ld hl, wInventoryBuffer + 1 ; start the buffer search from the 2nd position
+    ld b, 0 ; set initial buffer position to 0 (already know its empty)
+    ld de, 1 ; search upwards
+    call .findNonEmptyBufferPosition ; b = buffer position to start from
 
     push bc
-    ld b, 0
-    add hl, bc ; hl = pocket quantity pointer
+    ld a, POCKET_ATTRIBUTE_SIZE
+    call GetPointerToActivePocketAttributeData
+    ld e, [hl]
+    dec e ; e = index of last item in list
+
+    ld a, e
+    call GetItemQuantityPointer ; hl = pointer to quantity of last item in list
     pop bc
 
     pop af
-    ld e, c
-    ld c, a ; stop index = last index in buffer
-    
-    ld a, e ; start index = end of list
-    ld de, -1 ; direction = updwards
+    ld c, a ; c = stop index, the last item index stored in buffer
+    ld a, e ; a = start index, end of list
+    ld de, -1 ; search upwards
+
     push bc
-    call FindRemainingBufferItems
+    call PopulateRemainingInventoryBufferItems
     pop bc
-    ; If the list still starts with FF, then undo everything
-    ld a, [wItemsVisibleInInventory]
-    cp -1
-    jr nz, .exit
     
-    ld hl, wItemsVisibleInInventory+1
+    ; If the list still starts with FF, then undo everything
+    ld a, [wInventoryBuffer]
+    cp -1
+    ret nz
+    
+    ld hl, wInventoryBuffer+1
+    ld a, b
+    inc a ; a = number of entries to erase
     jr .reset
 
 .checkEndOfList
     cp -1
-    jr nz, .exit ; if neither side ends in -1, then exit
-
-; Search downwards
-    ld b, 4
-    ld de, -1
-    call .findStartBufferPosition
-    ; b = starting buffer position
-
-    xor a
-    call GetPocketItemAndQuantityPointers
-    ; hl = pocket quantity pointer
-
-    ld a, [wItemsVisibleInInventory]
-    ld c, a ; stop index = first index in buffer
-    xor a ; start index = start of list
-    ld de, 1 ; direction = downwards
+    ret nz ; if neither side ends in -1, then exit
+    
+    ; End of the list is empty
+    dec hl ; start the buffer search from 4th position
+    ld b, INVENTORY_BUFFER_SIZE - 1 ; set initial buffer position to 4 (already know its empty)
+    ld de, -1 ; search downwards
+    call .findNonEmptyBufferPosition ; b = buffer position to start from
+    
     push bc
-    call FindRemainingBufferItems
+    xor a
+    call GetItemQuantityPointer ; hl = pointer to quantity of first item in list
+    pop bc
+    
+    ld a, [wInventoryBuffer]
+    ld c, a ; c = stop index = first index in buffer
+    xor a ; a = start index, start of list
+    ld de, 1 ; search downwards
+    push bc
+    call PopulateRemainingInventoryBufferItems
     pop bc
 
     ;If the list still ends with FF, then undo everything
-    ld a, [wItemsVisibleInInventory + 4]
+    ld a, [wInventoryBuffer + 4]
     cp -1
-    jr nz, .exit
+    ret nz
     
-    ld hl, wItemsVisibleInInventory
+    ld hl, wInventoryBuffer
     ld c, b
     ld b, 0
     add hl, bc ; hl = starting position
-    ld a, 4
-    sub c
-    ld b, a
+    ld a, INVENTORY_BUFFER_SIZE
+    sub c ; a = number of entries to erase
 
 .reset
-    ld a, b
-    and a
-    jr z, .exit
+    dec a
+    ret z
     ld [hl], -1
     inc hl
-    dec b
     jr .reset
-
-.exit
-    pop bc
-    ret
     
-.findStartBufferPosition
+.findNonEmptyBufferPosition
     ld a, [hl]
     cp -1
     ret nz
@@ -820,18 +716,182 @@ TryWrapAroundInventoryList:
     ld a, b
     add e
     ld b, a
-    jr .findStartBufferPosition
+    jr .findNonEmptyBufferPosition
 
-ToggleInventoryFilter:
-    push bc
-    call SaveCurrentPocketItemIndex
-    ld hl, wInventoryProperties
-    bit BIT_INVENTORY_FILTER, [hl]
-    set BIT_INVENTORY_FILTER, [hl]
-    jr z, .drawTile
-    res BIT_INVENTORY_FILTER, [hl]
-.drawTile
-    call PlaceFilterTile
-    pop bc
+; To print the inventory list on the screen
+DisplayInventoryList:
+
+    ; Disable screen updates
+	xor a
+	ld [H_AUTOBGTRANSFERENABLED], a
+
+    ; Erase the previous entries
+    coord hl, 8, 2
+    push hl
+    lb bc, 10, 12
+    call ClearScreenArea
+    
+    pop hl
+    xor a ; first buffer position
+
+.placeItem
+    push af
+    push hl
+    call GetBufferValueAtPosition
+    cp -1
+    jr z, .noItem
+    
+    push af
+    call GetActivePocketID
+    cp 3 ; Moves tab
+    ld a, [hl]
+    jr nz, .notMoves
+
+    add HM_01
+    jr .foundID
+
+.notMoves
+    call GetItemIDAtPosition
+
+.foundID
+    ld [wd11e], a
+    call GetItemName
+    
+    pop af
+    pop hl
+    push hl
+    push af
+    ld de, wcd6d
+    call PlaceString
+
+    pop af
+    call GetItemQuantityPointer
+    ld d, h
+    ld e, l
+    pop hl
+
+    push hl
+    push de
+
+    ld de, SCREEN_WIDTH + 1
+    add hl, de
+    ld a, "x"
+    ld [hli], a
+    lb bc, LEFT_ALIGN + 1, 3
+    pop de
+    call PrintNumber
+
+.noItem
+    pop hl
+    lb de, 0, SCREEN_WIDTH*2
+    add hl, de ; skip 2 lines
+
+    pop af
+    inc a
+    cp INVENTORY_BUFFER_SIZE
+    jr nz, .placeItem
+
+    ; Enable screen updates
+	ld a, 1
+	ld [H_AUTOBGTRANSFERENABLED], a
     ret
 
+; To draw the cursor on screen at the current position
+DrawInventoryCursor:    
+    call GetCurrentBufferValue
+    cp -1
+    jr nz, .notEmpty
+
+    ld bc, 0
+    jr .foundYpos
+
+.notEmpty
+    call GetCursorPosition
+    swap a ; shorthand for: a * 2 * PIXELS_PER_TILE 
+    add OAM_CURSOR_Y_START ; y position for top menu item
+
+    ld b, a ; b = top row y pos
+    add PIXELS_PER_TILE
+    ld c, a ; c = bottom row y pos
+
+.foundYpos
+    ld hl, wOAMBuffer + (GFX_TAB_WIDTH*2) * OAM_BYTE_SIZE ; skip the TAB tiles
+    ld de, OAM_BYTE_SIZE ; size of single OAM data
+    ld a, GFX_CURSOR_SIZE ; tile size of cursor
+
+.loop
+    ld [hl], b
+    add hl, de
+    cp 3
+    jr nz, .noNewLine
+    ld b, c ; shift to the bottom row after 2 tiles
+
+.noNewLine
+    dec a
+    jr nz, .loop
+    ret
+
+; Saves the current item index to the active pocket's "SavedIndex" RAM location
+SaveActivePocketPosition:
+    call GetCurrentBufferValue
+    cp -1
+    jr nz, .notFF
+    xor a ; set a to 0 instead of FF
+.notFF
+    push af
+    ld a, POCKET_ATTRIBUTE_POSITION
+    call GetActivePocketAttributePointer
+    pop af
+    ld [hl], a
+    ret
+
+; To shift the inventory buffer up 1 slot and replace the last position
+ShiftInventoryBufferDown:
+    ld hl, wInventoryBuffer + 4
+    ld de, wInventoryBuffer + 3
+    ld b, INVENTORY_BUFFER_SIZE - 1
+
+.loop
+    ld a, [de]
+    dec de
+    ld [hld], a
+    dec b
+    jr nz, .loop
+    
+    push af
+    call GetItemQuantityPointer ; hl = quantity pointer for first item in buffer
+    pop af
+    lb bc, 0, -1 ; b = first slot in buffer, c = stop when start of list reached
+    ld de, -1 ; search upwards
+    jp PopulateLastInventoryBufferSlot
+
+; To shift the inventory buffer down 1 slot and replace the first position
+ShiftInventoryBufferUp:
+    ld hl, wInventoryBuffer
+    ld de, wInventoryBuffer + 1 
+    ld b, INVENTORY_BUFFER_SIZE - 1
+
+.loop
+    ld a, [de]
+    inc de
+    ld [hli], a
+    dec b
+    jr nz, .loop
+
+    push af
+    call GetItemQuantityPointer ; hl = quantity pointer for last item in buffer
+    push hl
+    ld a, POCKET_ATTRIBUTE_SIZE
+    call GetPointerToActivePocketAttributeData
+    ld c, [hl] ; c = stop when end of list reached
+    pop hl
+    pop af
+    ld de, 1 ; search downwards
+    ld b, INVENTORY_BUFFER_SIZE - 1 ; place it at the last slot in the buffer
+    ;fall through
+
+; To fill the remaining item in the inventory buffer
+PopulateLastInventoryBufferSlot:
+    add hl, de
+    add e ; shift so it doesnt check the previous item
+    jp PopulateRemainingInventoryBufferItems

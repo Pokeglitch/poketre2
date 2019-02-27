@@ -2327,14 +2327,14 @@ wPokedexSeenEnd::
 wWhichItem:: ; d31d
 	ds 1
 
-wSavedBattleItemIndex:: ; d31e
+wBattlePocketPosition:: ; d31e
 	ds 1
-wBattleItemQuantities:: ; d31f
+wBattlePocketQuantities:: ; d31f
 	ds 4
 
-wSavedHealthItemIndex:: ; d323
+wHealthPocketPosition:: ; d323
 	ds 1
-wHealthItemQuantities:: ; d324
+wHealthPocketQuantities:: ; d324
 	ds 35
 
 wPlayerMoney:: ; d347
@@ -2649,20 +2649,20 @@ wGrassTile:: ; d535
 ; TODO - Remove when no longer needed
 wNumBagItems::
 
-wSavedFieldItemIndex:: ; d53a
+wFieldPocketPosition:: ; d53a
 	ds 1
-wFieldItemQuantities:: ; d53b
+wFieldPocketQuantities:: ; d53b
 	ds 32
 
-wItemsVisibleInInventory:: ; d55b
+wInventoryBuffer:: ; d55b
 	ds 5
 
 wFreeSpace:: ; d560
 	ds 8
 
-wSavedMachineItemIndex:: ; d568
+wMovesPocketPosition:: ; d568
 	ds 1
-wMachineItemQuantities:: ; d569
+wMovesPocketQuantities:: ; d569
 	ds 55
 
 wCurrentBoxNum:: ; d5a0
