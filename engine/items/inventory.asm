@@ -132,7 +132,6 @@ HealthPocketItems:
 	db PARLYZ_HEAL
 	db POTION
 	db PP_UP
-	db PP_UP_2
     db PROTEIN
 	db RARE_CANDY
 	db REVIVE
@@ -174,7 +173,6 @@ FieldPocketItems:
 	db SILPH_SCOPE
 	db SUPER_REPEL
 	db SUPER_ROD
-    db SURFBOARD
 	db THUNDER_STONE
 	db TOWN_MAP
 	db WATER_STONE

@@ -2335,7 +2335,10 @@ wBattlePocketQuantities:: ; d31f
 wHealthPocketPosition:: ; d323
 	ds 1
 wHealthPocketQuantities:: ; d324
-	ds 35
+	ds 34
+
+wFreeSpace1:: ; d346
+	ds 1
 
 wPlayerMoney:: ; d347
 	ds 3 ; BCD
@@ -2649,17 +2652,22 @@ wGrassTile:: ; d535
 ; TODO - Remove when no longer needed
 wNumBagItems::
 
-wFieldPocketPosition:: ; d53a
+wInventoryFilter:: ; d53a
 	ds 1
-wFieldPocketQuantities:: ; d53b
-	ds 32
+
+wFieldPocketPosition:: ; d53b
+	ds 1
+wFieldPocketQuantities:: ; d53c
+	ds 31
 
 wInventoryBuffer:: ; d55b
 	ds 5
 
-; First four are field, 2nd four are battle
-wSelectActions:: ; d560
-	ds 8
+wFieldQuickUse:: ; d560
+	ds 4
+
+wBattleQuickUse:: ; d564
+	ds 4
 
 wMovesPocketPosition:: ; d568
 	ds 1

@@ -2134,9 +2134,6 @@ WhiteOnBlackFontSymbolsGFXEnd:
 TitleScreenMenuLettersGFX: INCBIN "gfx/titlescreen/menu_letters.2bpp"
 TitleScreenMenuLettersGFXEnd:
 
-InventoryTextBoxBorderGFX: INCBIN "gfx/inventory/text_box_border.2bpp"
-InventoryTextBoxBorderGFXEnd:
-
 InventoryScreenGFX:
 	INCBIN "gfx/inventory/battle_tab.2bpp"
 	INCBIN "gfx/inventory/field_tab.2bpp"
@@ -2147,6 +2144,12 @@ InventoryScreenGFX:
 	INCBIN "gfx/inventory/tab_bottom_border_hidden.2bpp"
 	INCBIN "gfx/inventory/cursor.2bpp"
 InventoryScreenGFXEnd:
+
+InventoryScreen2GFX:
+	INCBIN "gfx/inventory/arrows.2bpp"
+	INCBIN "gfx/inventory/dpad.2bpp"
+	INCBIN "gfx/inventory/text_box_border.2bpp"
+InventoryScreen2GFXEnd:
 
 InventoryBattlePocketGFX: INCBIN "gfx/inventory/battle_pocket.2bpp"
 InventoryFieldPocketGFX: INCBIN "gfx/inventory/field_pocket.2bpp"

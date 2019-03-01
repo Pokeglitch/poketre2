@@ -1,27 +1,31 @@
 ; TODO
+; Make textbox 1 smaller. Move filter text down. Different border tiles?
+; TM's and HMs should use the move name, not the item name
+; Create macro for the pocket attribute table
+; - ues constants for Moves pocket
+; Add in price printing
 
-; Add in price/description/SEL + DIR
+; Make sure the new RAM bytes are saved
+; - Why doesn't the initial potion give work?
 
 ; Add in Sound effects
 ; Check "Drawing Screen.txt" to see whats next
 
-; Add in way to apply the filter
-; - each item has a flag for battle use, battle hold, field use, field hold, sellable, usable on party
-; - filter mask is input before loading the item screen
-
+; Create new tables for the item attributes (key and regular)
+; - Finish real descriptions and filter masks
+; - Make sure filter is set before loading inventory screen
 ; Remove "FilteredBag" references (will that become FreeSpace?)
 
-; Update the Item Lists to not include any unused items in the pocket item lists
-; - update ram size accordingly
-
 ; Tile Constants
-TILE_TEXTBOX_BORDER_START = $79
+TILE_ARROW_TILES_START = $74
 TILE_TABS_START = $C0
 TILE_TAB_BOTTOM_SOLID = $D4
 TILE_TAB_BOTTOM_HIDDEN = $D8
 TILE_CURSOR_START = $D9
 TILE_EMPTY_RADIO = $EC
 TILE_FILLED_RADIO = $F3
+TILE_SELECT_START = $D5
+TILE_DPAD = $78
 
 ; GFX Constants
 GFX_TAB_WIDTH = 5
@@ -34,6 +38,9 @@ OAM_CURSOR_X = $38
 OAM_CURSOR_Y_START = $1C
 OAM_TAB_TOP_Y = $10
 OAM_TAB_BOTTOM_Y = $18
+
+; Select Actions Constants
+SELECT_ACTIONS_LENGTH = 4
 
 ; Inventory Data Constants
 NUM_POCKETS = 4
@@ -50,6 +57,18 @@ MASK_CURSOR_POSITION = %00110000
 BIT_INVENTORY_FILTER = 2
 BIT_CURSOR_POSITION_LO = 4
 BIT_CURSOR_POSITION_HI = 5
+
+; Filter Masks, also double as bag type
+FLAG_FIELD_USE = %00000001
+FLAG_BATTLE_USE = %00000010
+FLAG_SELLABLE = %00000100
+FLAG_HOLDABLE = %00001000
+FLAG_APPLY_TO_PK = %00010000
+
+FILTER_START_MENU = FLAG_FIELD_USE
+FILTER_BATTLE = FLAG_BATTLE_USE
+FILTER_POKEMART = FLAG_SELLABLE
+FILTER_PARTY_MENU = FLAG_HOLDABLE | FLAG_APPLY_TO_PK
 
 ; Pocket Attributes Table
 PocketAttributesTable:
@@ -95,6 +114,15 @@ GetCurrentItemID:
 ; To get the item id for the given item index (a)
 GetItemIDAtPosition:
     push af
+    call GetActivePocketID
+    cp 3 ; is it moves?
+    jr nz, .notMoves
+
+    pop af
+    add HM_01
+    ret
+
+.notMoves
     ld a, POCKET_ATTRIBUTE_ITEMS
     call GetActivePocketAttributePointer
     pop af
@@ -182,11 +210,6 @@ GetCursorPosition:
     swap a
     ret
 
-; Sets the cursor position to 2
-InitializeCursorPosition:
-    ld a, 2
-    ;fall through
-
 ; Saves the cursor position (a) to wInventoryProperties
 SaveCursorPosition:
     ld hl, wInventoryProperties
@@ -205,11 +228,7 @@ DisplayItemMenu:
     call ClearScreen
     call InitializeInventoryScreen
 
-    ; Initialize the cursor position if it is 0
-    call GetCursorPosition
-    and a
-    call z, InitializeCursorPosition
-
+    ;TODO - should this be reset afterwards?    
     ; Configure the joypad
     ld a, 1
     ld hl, hJoy6
@@ -229,7 +248,7 @@ DisplayItemMenu:
 .cursorLoop
     call DrawInventoryCursor
     call SaveActivePocketPosition
-    ;call UpdateItemDescription
+    call UpdateItemDescription
 
 .keypressLoop
     call JoypadLowSensitivity
@@ -331,9 +350,9 @@ GetJoypadUpDownHeld:
 
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
-    ld de, InventoryTextBoxBorderGFX
-    ld hl, vChars2 + (TILE_TEXTBOX_BORDER_START * BYTES_PER_TILE)
-    lb bc, BANK(InventoryTextBoxBorderGFX), (InventoryTextBoxBorderGFXEnd-InventoryTextBoxBorderGFX) / BYTES_PER_TILE
+    ld de, InventoryScreen2GFX
+    ld hl, vChars2 + (TILE_ARROW_TILES_START * BYTES_PER_TILE)
+    lb bc, BANK(InventoryScreen2GFX), (InventoryScreen2GFXEnd-InventoryScreen2GFX) / BYTES_PER_TILE
     call CopyVideoData
 
     ld de, InventoryScreenGFX
@@ -605,7 +624,23 @@ PopulateRemainingInventoryBufferItems:
     and a
     jr z, .moveToNextItem ; if the quantity is 0, move to the next item
 
-    ; TODO - check the filter
+    ld a, [wInventoryProperties]
+    bit BIT_INVENTORY_FILTER, a
+    jr z, .noFilter
+
+    pop af
+    push af
+    push hl
+    push de
+    push bc
+    call GetItemIDAtPosition
+    call IsItemFiltered
+    pop bc
+    pop de
+    pop hl
+    jr z, .moveToNextItem ; if the item is filtered, then don't draw
+
+.noFilter
     pop af
     push af
     push hl
@@ -763,18 +798,10 @@ DisplayInventoryList:
     push hl
     call GetBufferValueAtPosition
     cp -1
-    jr z, .noItem
+    jr z, .nextItem
     
     push af
-    call GetActivePocketID
-    cp 3 ; Moves tab
     ld a, [hl]
-    jr nz, .notMoves
-
-    add HM_01
-    jr .foundID
-
-.notMoves
     call GetItemIDAtPosition
 
 .foundID
@@ -805,9 +832,55 @@ DisplayInventoryList:
     pop de
     call PrintNumber
 
-.noItem
+    ld hl, wFieldQuickUse - 1
+    ld a, [wInventoryFilter]
+    cp FILTER_START_MENU
+    jr z, .checkQuickUse
+
+    ld hl, wBattleQuickUse - 1
+    cp FILTER_BATTLE
+    jr z, .checkQuickUse
+
+    cp FILTER_POKEMART
+    jr nz, .nextItem
+
+    ; TODO - check price if pokemart menu
+    jr .nextItem
+
+.checkQuickUse
+    ; See if the item is a quick use
+    ld a, [wd11e]
+    ld d, 5
+.findInListLoop
+    inc hl
+    dec d
+    jr z, .nextItem
+
+    cp [hl]
+    jr nz, .findInListLoop
+
+    ; Draw the SEL tiles
     pop hl
-    lb de, 0, SCREEN_WIDTH*2
+    push hl
+    ld bc, SCREEN_WIDTH + 7
+    add hl, bc
+
+    ; Place the SEL tiles
+    ld a, TILE_SELECT_START
+    ld [hli], a
+    inc a
+    ld [hli], a
+    inc a
+    ld [hli], a
+
+    ; place the arrow tile
+    ld a, TILE_ARROW_TILES_START - 1
+    add d
+    ld [hl], a
+
+.nextItem
+    pop hl
+    ld de, SCREEN_WIDTH*2
     add hl, de ; skip 2 lines
 
     pop af
@@ -860,7 +933,7 @@ SaveActivePocketPosition:
     call GetCurrentBufferValue
     cp -1
     jr nz, .notFF
-    xor a ; set a to 0 instead of FF
+    xor a ; set to 0 instead of FF
 .notFF
     push af
     ld a, POCKET_ATTRIBUTE_POSITION
@@ -921,50 +994,173 @@ PopulateLastInventoryBufferSlot:
     jp PopulateRemainingInventoryBufferItems
 
 ; To assign the current item to the select button + direction
-; TODO - Initialize RAM values to FF
 AssignSelectItem:
-    ; TODO - show on screen when SEL is being held down
-    ; In textbox, say "Press <>/\ /\ to assign XXX to Quick Use"
-    ; - Different message if not opened from battle or start menu
-    ; - Different message if the item does not have a battle/field use
+    xor a ; initialize a to mean do nothing
+    push af
+    call GetCurrentBufferValue
+    cp -1
+    jr z, .keypressLoop ; dont change the text if the pocket's empty
+
+    call ClearTextBox
+
+    ; If it is not the start menu or battle menu, then display 'cant assign' text
+    ld de, .cantAssignQuickUseHereText
+    ld a, [wInventoryFilter]
+    and FILTER_START_MENU | FILTER_BATTLE
+    jr z, .placeString
+
+    ; If the item doesn't pass the filter, then it cant be assigned
+    call IsCurrentItemFiltered
+    ld de, .cantAssignQuickUseItemText
+    jr z, .placeString
+
+    ;Otherwise, can assign quick use
+    ld de, .pressDirectionText
+    pop af
+    inc a
+    push af ; set a to 1, meaning handle other keys
+
+.placeString
+    coord hl, 1, 14 
+    call PlaceString
+
 .keypressLoop
     call JoypadLowSensitivity
 
     ; Exit only when no keys are pressed
     ld a, [hJoyHeld]
     and a
-    ret z
-    ;TODO - if not from battle or start menu, or item doesnt have battle/field use, then do nothing
-    
-    ;TODO - if this item is in another slot, remove from that slot
+    jr z, .exit
 
-    ld c, 3 ; index
+    pop af
+    push af
+    and a
+    jr z, .keypressLoop  ; do nothing if a is 0
+
+    ld a, [hJoy5]
+
+    ld e, 4 ; start index
     bit BIT_D_DOWN, a
     jr nz, .foundDirection
 
-    dec c
+    dec e
     bit BIT_D_UP, a
     jr nz, .foundDirection
 
-    dec c
+    dec e
     bit BIT_D_LEFT, a
     jr nz, .foundDirection
 
-    dec c
+    dec e
     bit BIT_D_RIGHT, a
     jr z, .keypressLoop
 
 .foundDirection
-    ; TODO - add 4 if battle menu
-    ld hl, wSelectActions
-    ld b, 0
-    add hl, bc
+    ld hl, wFieldQuickUse - 1
+    ld a, [wInventoryFilter]
+    cp FILTER_BATTLE
+    jr nz, .notBattle
+    ld hl, wBattleQuickUse -1
+
+.notBattle
     push hl
-    call GetCurrentItemID
+    call GetCurrentItemID ; a = id of current item
     pop hl
+    push hl
+
+; Find the current item in the list
+    ld d, SELECT_ACTIONS_LENGTH + 1 ; since HL is 1 less than list start
+
+.findInListLoop
+    inc hl
+    dec d
+    jr z, .notInList
+
+    cp [hl]
+    jr nz, .findInListLoop
+    
+    ; If the item exists in the list, then clear that location
+    ld [hl], -1
+    ld b, a
+    ld a, SELECT_ACTIONS_LENGTH + 1
+    sub d
+    cp e
+    ld a, b
+    jr nz, .doStore ; dont store if just erased same slot
+    ld a, -1
+    
+.doStore
+    ld d, 0
+
+.notInList
+    pop hl
+    add hl, de
     ld [hl], a
     ; TODO - set the flag to signify if Key or Regular item
-    ; TODO - draw the SEL + Dir on screen for this item
-    ; TODO - if the item being erased is on screen
-    ;        then clear the SEL+DIR for that item
+
+    call DisplayInventoryList
     jr .keypressLoop
+
+.exit
+    pop af
+    jp UpdateItemDescription
+
+.pressDirectionText
+    db "Press ", TILE_DPAD, " to assign"
+    next "item for Quick Use@"
+
+.cantAssignQuickUseHereText
+    db "Can't assign Quick"
+    next "Use item here@"
+
+.cantAssignQuickUseItemText
+    db "Can't assign this"
+    next "item for Quick Use@"
+
+; To print the description for the current item
+; TODO - get from table
+UpdateItemDescription:
+
+    ; Disable screen updates
+	xor a
+	ld [H_AUTOBGTRANSFERENABLED], a
+
+    call ClearTextBox
+    call GetCurrentBufferValue
+    cp -1
+    ld de, .pocketsEmptyText
+    jr z, .placeString
+    ld de, .comingSoonText
+
+.placeString
+    coord hl, 1, 14 
+    call PlaceString
+    
+    ; Enable screen updates
+	ld a, 1
+	ld [H_AUTOBGTRANSFERENABLED], a
+
+    ret
+
+.pocketsEmptyText
+    db "There nothing in"
+    line "this pocket!@"
+
+.comingSoonText
+    db "Coming Soon...@"
+
+; To see if the current item is filtered
+; Returns zero flag if its filtered
+IsCurrentItemFiltered:
+    call GetCurrentBufferValue
+    cp -1
+    ret z
+    call GetCurrentItemID
+    ;fall through
+
+; To see if the given item (a) is filtered
+; Returns zero flag if its filtered
+IsItemFiltered:
+    ; TODO - get from table
+    bit 0, a ; fake check for testing
+    ret

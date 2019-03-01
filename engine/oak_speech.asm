@@ -39,6 +39,7 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call SetDefaultNames
 	predef InitPlayerData2
+	call InitializeRAM
 	ld a, POTION
 	ld [wcf91], a
 	ld a, 1
@@ -165,6 +166,23 @@ IntroduceRivalText:
 OakSpeechText3:
 	TX_FAR _OakSpeechText3
 	db "@"
+
+InitializeRAM:
+; Field/Battle Select Actions
+	ld a, -1
+	ld b, 8
+	ld hl, wFieldSelectActions
+
+.selectLoop
+	ld [hli], a
+	dec b
+	jr nz, .selectLoop
+
+; Inventory Cursor Position
+	ld a, $20
+	ld [wInventoryProperties], a
+
+	ret
 
 FadeInIntroPic:
 	ld hl, IntroFadePalettes

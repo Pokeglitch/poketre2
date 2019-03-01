@@ -4177,6 +4177,11 @@ AutoTextBoxDrawingCommon::
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a ; make DisplayTextID wait for button press
 	ret
 
+ClearTextBox:
+	coord hl, 1, 13
+	lb bc, 4, 18
+	jp ClearScreenArea
+
 PrintText::
 ; Print text hl at (1, 14).
 	push hl
