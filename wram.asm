@@ -396,11 +396,7 @@ wPartyAndBillsPCSavedMenuItem:: ; cc2b
 ; you return to the main Bill's PC menu.
 	ds 1
 
-wInventoryProperties:: ; cc2c
-; Bits 0-1: Active Pocket
-; Bit 2: Filter Enabled
-; Bit 3: 
-; Bits 4-5: Cursor Position
+wFreeSpace1:: ; cc2c
 	ds 1
 
 wBattleAndStartSavedMenuItem:: ; cc2d
@@ -2337,7 +2333,11 @@ wHealthPocketPosition:: ; d323
 wHealthPocketQuantities:: ; d324
 	ds 34
 
-wFreeSpace1:: ; d346
+wInventoryProperties:: ; d346
+; Bits 0-1: Active Pocket
+; Bit 2: Filter Enabled
+; Bit 3: 
+; Bits 4-5: Cursor Position
 	ds 1
 
 wPlayerMoney:: ; d347

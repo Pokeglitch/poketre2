@@ -1,20 +1,37 @@
 ; TODO
-; Make textbox 1 smaller. Move filter text down. Different border tiles?
-; TM's and HMs should use the move name, not the item name
+
+; Dont show quantity of key item
+; - add in santa's sack cheat for non-key items
+; Dont print if price is 0 (or if filter says not sellable?)
+; - Why are prices wrong when HM is the first item on the page when switching to the pocket?
+
 ; Create macro for the pocket attribute table
-; - ues constants for Moves pocket
-; Add in price printing
+; - ues constants when checking for Moves pocket
+; - Create a list of the TMs in alphabetical order for Moves pocket
 
-; Make sure the new RAM bytes are saved
-; - Why doesn't the initial potion give work?
+; Make textbox 1 smaller. Move filter text down. Different border tiles?
 
-; Add in Sound effects
-; Check "Drawing Screen.txt" to see whats next
-
-; Create new tables for the item attributes (key and regular)
+; Create macro for new table for the item attributes combined table for now
 ; - Finish real descriptions and filter masks
 ; - Make sure filter is set before loading inventory screen
-; Remove "FilteredBag" references (will that become FreeSpace?)
+
+; Add in Sound effects
+; - Start menu have sound effects?
+; - Place empty radio buttons on the options screen instead of black tile
+
+; Check "Drawing Screen.txt" to see whats next
+
+; Finish properly loading the item menu from all locations
+; Finish the Quick Use actions battle and field
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Create separate key/regular items tables
+; - Update all functions which refer to an item to specify which type
+; - Update the RAM to hav a single list of quantities in index ID order
+;    instead of being grouped by pocket
+
+; Remove "FilteredBag" references (is that location used anywhere else?)
 
 ; Tile Constants
 TILE_ARROW_TILES_START = $74
@@ -798,16 +815,24 @@ DisplayInventoryList:
     push hl
     call GetBufferValueAtPosition
     cp -1
-    jr z, .nextItem
+    jp z, .nextItem
     
     push af
     ld a, [hl]
     call GetItemIDAtPosition
-
-.foundID
     ld [wd11e], a
+    ld [wcf91], a
+
+    cp HM_01
+    jr c, .notMove
+
+    call GetMachineMoveName
+    jr .nameFound
+
+.notMove
     call GetItemName
     
+.nameFound
     pop af
     pop hl
     push hl
@@ -844,7 +869,22 @@ DisplayInventoryList:
     cp FILTER_POKEMART
     jr nz, .nextItem
 
-    ; TODO - check price if pokemart menu
+    ; TODO - check filter to see if the item is sellable
+    ld a, PRICEDITEMLISTMENU
+	ld [wListMenuID], a
+    ld de, ItemPrices
+    ld hl, wItemPrices
+    ld [hl], e
+    inc hl
+    ld [hl], d
+    call GetItemPrice
+
+    pop hl
+    push hl
+    ld bc, SCREEN_WIDTH + 4
+    add hl, bc
+    ld c, LEADING_ZEROES | MONEY_SIGN | 3
+    call PrintBCDNumber
     jr .nextItem
 
 .checkQuickUse
@@ -886,7 +926,7 @@ DisplayInventoryList:
     pop af
     inc a
     cp INVENTORY_BUFFER_SIZE
-    jr nz, .placeItem
+    jp nz, .placeItem
 
     ; Enable screen updates
 	ld a, 1

@@ -52,28 +52,31 @@ GetQuantityOfItemInBag:
 	ret
 
 ; For the item in a, returns the RAM pointer in hl
-; TODO - currently inefficient, in future will just have the group/offset mapped to the item index
-; It also doesn't consider "unused" items
+; TODO - just get from new table
 GetItemRAMPointer:
 	push bc
-	ld b, a
-	sub HM_01
+	cp HM_01
 	jr c, .notMachineItem
+	
+	sub HM_01
 	ld c, a
 	ld hl, wMovesPocketQuantities
 	jr .finish
 
 .notMachineItem
+	ld b, (BattlePocketItemsEnd - BattlePocketItems)
 	ld hl, BattlePocketItems
 	call GetItemIndexInTable
 	ld hl, wBattlePocketQuantities
 	jr nc, .finish
 	
+	ld b, (HealthPocketItemsEnd - HealthPocketItems)
 	ld hl, HealthPocketItems
 	call GetItemIndexInTable
 	ld hl, wHealthPocketQuantities
 	jr nc, .finish
 	
+	ld b, (FieldPocketItemsEnd - FieldPocketItems)
 	ld hl, FieldPocketItems
 	call GetItemIndexInTable
 	ld hl, wFieldPocketQuantities
@@ -89,11 +92,11 @@ GetItemRAMPointer:
 GetItemIndexInTable:
 	ld c, 0
 .loop
-	ld a, [hli]
-	cp b
+	cp [hl]
 	ret z
+	inc hl
 	inc c
-	cp -1
+	dec b
 	jr nz, .loop
 	scf
 	ret
@@ -177,3 +180,16 @@ FieldPocketItems:
 	db TOWN_MAP
 	db WATER_STONE
 FieldPocketItemsEnd:
+
+; To get the name of the machine with the given item id
+GetMachineMoveName:
+    sub TM_01
+    jr nc, .notHM
+    add (TM_50 - HM_01) + 1
+.notHM
+	inc a
+	ld [wd11e], a 
+	predef TMToMove ; get move ID from TM/HM ID
+	ld a, [wd11e]
+	ld [wMoveNum], a
+	jp GetMoveName

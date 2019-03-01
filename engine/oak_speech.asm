@@ -171,7 +171,7 @@ InitializeRAM:
 ; Field/Battle Select Actions
 	ld a, -1
 	ld b, 8
-	ld hl, wFieldSelectActions
+	ld hl, wFieldQuickUse
 
 .selectLoop
 	ld [hli], a
