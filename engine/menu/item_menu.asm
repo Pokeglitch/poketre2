@@ -1,10 +1,5 @@
 ; TODO
 
-; Dont show quantity of key item
-; - add in santa's sack cheat for non-key items
-; Dont print if price is 0 (or if filter says not sellable?)
-; - Why are prices wrong when HM is the first item on the page when switching to the pocket?
-
 ; Create macro for the pocket attribute table
 ; - ues constants when checking for Moves pocket
 ; - Create a list of the TMs in alphabetical order for Moves pocket
@@ -25,6 +20,7 @@
 ; Finish the Quick Use actions battle and field
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Add in santa's sack cheat for quantity on-key items
 
 ; Create separate key/regular items tables
 ; - Update all functions which refer to an item to specify which type
@@ -840,7 +836,13 @@ DisplayInventoryList:
     ld de, wcd6d
     call PlaceString
 
+    call IsKeyItem
+    ld a, [wIsKeyItem]
+    ld b, a
     pop af
+    dec b
+    jr z, .nextItem
+
     call GetItemQuantityPointer
     ld d, h
     ld e, l
@@ -869,7 +871,6 @@ DisplayInventoryList:
     cp FILTER_POKEMART
     jr nz, .nextItem
 
-    ; TODO - check filter to see if the item is sellable
     ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
     ld de, ItemPrices
@@ -879,6 +880,23 @@ DisplayInventoryList:
     ld [hl], d
     call GetItemPrice
 
+    ; TODO - Just check the filter
+    ; If the price is zero, dont print
+    ld hl, hItemPrice
+    xor a
+    cp [hl]
+    jr nz, .notZero
+    inc hl
+    cp [hl]
+    jr nz, .notZero
+    inc hl
+    cp [hl]
+    jr z, .nextItem
+
+.notZero
+    push de
+    call HalveItemPrice
+    pop de
     pop hl
     push hl
     ld bc, SCREEN_WIDTH + 4
@@ -1203,4 +1221,33 @@ IsCurrentItemFiltered:
 IsItemFiltered:
     ; TODO - get from table
     bit 0, a ; fake check for testing
+    ret
+
+; To halve the price of the item
+HalveItemPrice:
+    ld hl, hItemPrice
+    ld de, hMoney
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, [hl]
+    ld [de], a
+    
+    ; halve the price
+    xor a
+	ld [hDivideBCDDivisor], a
+	ld [hDivideBCDDivisor + 1], a
+	ld a, 2
+	ld [hDivideBCDDivisor + 2], a
+	predef DivideBCDPredef3 ; halves the price
+; store the halved price
+	ld a, [hDivideBCDQuotient]
+	ld [hItemPrice], a
+	ld a, [hDivideBCDQuotient + 1]
+	ld [hItemPrice + 1], a
+	ld a, [hDivideBCDQuotient + 2]
+	ld [hItemPrice + 2], a
     ret

@@ -1643,7 +1643,7 @@ DisplayChooseQuantityMenu::
 	xor a
 	ld [hDivideBCDDivisor], a
 	ld [hDivideBCDDivisor + 1], a
-	ld a, $02
+	ld a, 2
 	ld [hDivideBCDDivisor + 2], a
 	predef DivideBCDPredef3 ; halves the price
 ; store the halved price
