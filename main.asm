@@ -205,6 +205,7 @@ INCLUDE "engine/battle/moveEffects/haze_effect.asm"
 INCLUDE "engine/battle/get_trainer_name.asm"
 INCLUDE "engine/random.asm"
 
+INCLUDE "data/inventory/pockets.asm"
 INCLUDE "engine/menu/item_menu.asm"
 INCLUDE "engine/items/inventory.asm"
 
