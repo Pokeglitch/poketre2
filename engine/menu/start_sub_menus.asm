@@ -307,8 +307,8 @@ StartMenu_Item:
 	call PrintText
 	jr .exitMenu
 .notInCableClubRoom
-	xor a
-	ld [wPrintItemPrices], a
+	ld a, FILTER_FIELD
+	ld [wInventoryFilter], a
 	
     ;TODO - the following should already be processed by the new start menu
     xor a
@@ -316,6 +316,7 @@ StartMenu_Item:
 
 	call DisplayItemMenu
 	jr nc, .choseItem
+	
 .exitMenu
 	; TODO - this section will no longer be needed with new start menu....
 	call GBPalWhiteOut
@@ -328,13 +329,6 @@ StartMenu_Item:
 	call GBPalNormal
 	jp RedisplayStartMenu
 .choseItem
-; erase menu cursor (blank each tile in front of an item name)
-	ld a, " "
-	Coorda 5, 4
-	Coorda 5, 6
-	Coorda 5, 8
-	Coorda 5, 10
-	call PlaceUnfilledArrowMenuCursor
 	xor a
 	ld [wMenuItemToSwap], a
 	ld a, [wcf91]

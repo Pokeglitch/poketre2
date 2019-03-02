@@ -1,15 +1,7 @@
 ; TODO
 
-; Add in Sound effects
-; - Start menu have sound effects?
-; - Place empty radio buttons on the options screen instead of black tile
-
-; Check "Drawing Screen.txt" to see whats next
-
 ; Finish properly loading the item menu from all locations
 ; Finish the Quick Use actions battle and field
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Add in santa's sack cheat for quantity on-key items
 
@@ -50,12 +42,21 @@ DisplayItemMenu:
     call ClearScreen
     call InitializeInventoryScreen
 
-    ;TODO - should this be reset afterwards?    
+    ; Turn off tile animations
+    xor a
+    ld hl, hTilesetType
+    ld d, [hl]
+    ld [hl], a
+    push de
+
     ; Configure the joypad
     ld a, 1
     ld hl, hJoy6
+    ld b, [hl]
     ld [hli], a
+    ld c, [hl]
     ld [hl], a
+    push bc
 
 .tabLoop
     call UpdateDisplayForActivePocket
@@ -101,13 +102,19 @@ DisplayItemMenu:
     jr nz, .rightPressed
 
     bit BIT_B_BUTTON, a
-    jr nz, .bPressed
-
-    jr .keypressLoop
+    jr z, .keypressLoop
 
 .bPressed
+	ld a, SFX_PRESS_AB
+	call PlaySound
     scf
-    ret
+    jp RestoreSetting
+
+.aPressed
+    call GetCurrentBufferValue
+    cp -1
+    jr z, .keypressLoop
+    jp SelectItem
 
 .startPressed
     call ToggleInventoryFilter
@@ -123,9 +130,6 @@ DisplayItemMenu:
 .changePocket
     call ChangeActivePocket
     jr .tabLoop
-
-.aPressed
-    jr .keypressLoop
 
 .selectPressed
     call AssignQuickUse
@@ -161,14 +165,11 @@ DisplayItemMenu:
 
 .shiftBufferDown
     call ShiftInventoryBufferDown
-    jr .textLoop
+    jp .textLoop
 
 .shiftBufferUp
     call ShiftInventoryBufferUp
-    jr .textLoop
-
-GetJoypadUpDownHeld:
-    ret
+    jp .textLoop
 
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
@@ -293,6 +294,8 @@ PlaceInventoryFilterRadioTile:
 
 ; To toggle the filter
 ToggleInventoryFilter:
+	ld a, SFX_PRESS_AB
+	call PlaySound
     ld hl, wInventoryProperties
     bit BIT_INVENTORY_FILTER, [hl]
     set BIT_INVENTORY_FILTER, [hl]
@@ -949,6 +952,9 @@ AssignQuickUse:
     jr z, .keypressLoop
 
 .foundDirection
+	ld a, SFX_PRESS_AB
+	call PlaySound
+
     ld hl, wFieldQuickUse - 1
     ld a, [wInventoryFilter]
     cp FILTER_BATTLE
@@ -1073,4 +1079,29 @@ HalveItemPrice:
 	ld [hItemPrice + 1], a
 	ld a, [hDivideBCDQuotient + 2]
 	ld [hItemPrice + 2], a
+    ret
+
+; To select the current item
+SelectItem:
+    ld a, SFX_PRESS_AB
+	call PlaySound
+    
+    call GetCurrentItemID
+    ld [wcf91], a
+
+    xor a ; unset the carry flag
+    ;fall through
+
+; To restore the prior settings
+RestoreSetting:
+    pop bc
+    pop de
+    push af
+    ld hl, hJoy6
+    ld [hl], b
+    inc hl
+    ld [hl], c
+    ld a, d
+	ld [hTilesetType], a
+    pop af
     ret
