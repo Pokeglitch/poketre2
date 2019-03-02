@@ -206,6 +206,10 @@ INCLUDE "engine/battle/get_trainer_name.asm"
 INCLUDE "engine/random.asm"
 
 INCLUDE "data/inventory/pockets.asm"
+INCLUDE "engine/inventory/pockets.asm"
+INCLUDE "data/inventory/items.asm"
+INCLUDE "engine/inventory/items.asm"
+
 INCLUDE "engine/menu/item_menu.asm"
 INCLUDE "engine/items/inventory.asm"
 
@@ -2160,3 +2164,5 @@ InventoryBattlePocketGFX: INCBIN "gfx/inventory/battle_pocket.2bpp"
 InventoryFieldPocketGFX: INCBIN "gfx/inventory/field_pocket.2bpp"
 InventoryHealthPocketGFX: INCBIN "gfx/inventory/health_pocket.2bpp"
 InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"
+
+INCLUDE "text/item_descriptions.asm"

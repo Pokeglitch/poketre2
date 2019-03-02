@@ -222,7 +222,7 @@ Char5BText::
 Char5EText::
 	db "ROCKET@"
 Char54Text::
-	db "POKé@"
+	db "Poké@"
 Char56Text::
 	db "……@"
 Char5AText::
@@ -693,6 +693,21 @@ TextCommand17::
 	ld [H_LOADEDROMBANK], a
 	ld [MBC1RomBank], a
 	jp NextTextCommand
+
+; Places a string from given bank (b)
+PlaceFarString:
+	ld a, [H_LOADEDROMBANK]
+	push af
+	
+	ld a, b
+	ld [MBC1RomBank], a
+	ld [H_LOADEDROMBANK], a
+	call PlaceString
+	
+	pop af
+	ld [H_LOADEDROMBANK], a
+	ld [MBC1RomBank], a
+	ret
 
 TextCommandJumpTable::
 	dw TextCommand00

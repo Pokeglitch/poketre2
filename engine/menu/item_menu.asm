@@ -1,13 +1,5 @@
 ; TODO
 
-; Create macro for the pocket attribute table
-; - ues constants when checking for Moves pocket
-; - Create a list of the TMs in alphabetical order for Moves pocket
-
-; Create macro for new table for the item attributes combined table for now
-; - Finish real descriptions and filter masks
-; - Make sure filter is set before loading inventory screen
-
 ; Add in Sound effects
 ; - Start menu have sound effects?
 ; - Place empty radio buttons on the options screen instead of black tile
@@ -18,111 +10,20 @@
 ; Finish the Quick Use actions battle and field
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ; Add in santa's sack cheat for quantity on-key items
 
 ; Create separate key/regular items tables
-; - Update all functions which refer to an item to specify which type
+; - Update all functions to pull data from this table
+; -- Update all function calls to signify if key or regular item
 ; - Update the RAM to hav a single list of quantities in index ID order
 ;    instead of being grouped by pocket
 
+; Move Descriptions should show the type, power, accuracy, and PP
+
 ; Remove "FilteredBag" references (is that location used anywhere else?)
+; - Move wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
 
-; To get the pointer for the current item's quantity (hl)
-GetCurrentItemQuantityPointer:
-    ld a, POCKET_ATTRIBUTE_POSITION
-    call GetActivePocketAttributePointer
-    ld a, [hli]
-    jr GetPointerToPositionInList
-
-; To get the current item id
-GetCurrentItemID:
-    ld a, POCKET_ATTRIBUTE_POSITION
-    call GetActivePocketAttributePointer
-    ld a, [hl]
-    ;fall through
-
-; To get the item id for the given item index (a)
-GetItemIDAtPosition:
-    push af
-    ld a, POCKET_ATTRIBUTE_ITEMS
-    call GetActivePocketAttributePointer
-    pop af
-    call GetPointerToPositionInList
-    ld a, [hl]
-    ret
-
-; To get the pointer to the quantity (hl) for the given item index (a)
-GetItemQuantityPointer:
-    push af
-    ld a, POCKET_ATTRIBUTE_POSITION
-    call GetActivePocketAttributePointer
-    inc hl
-    pop af
-    ; fall through
-
-; To get the pointer (hl) to the given index (a) in the given list (hl)
-GetPointerToPositionInList:
-    add l
-    ld l, a
-    ret nc
-    inc h
-    ret
-
-; To get the pointer for the given attribute (a) for the active pocket
-GetActivePocketAttributePointer:
-    call GetPointerToActivePocketAttributeData
-    ld a, [hli]
-    ld h, [hl]
-    ld l, a
-    ret
-
-; To get the pointer to the given attribute (a) for the active pocket
-GetPointerToActivePocketAttributeData:
-    ld hl, PocketAttributesTable
-    add a
-    add l
-    ld l, a
-    jr nc, .noCarry
-    inc h
-
-.noCarry
-    call GetActivePocketID
-    lb bc, 0, POCKET_ATTRIBUTE_DATA_LENGTH
-
-.loop
-    and a
-    ret z
-    add hl, bc
-    dec a
-    jr .loop
-
-; Returns the active pocket id (a)
-GetActivePocketID:
-    ld a, [wInventoryProperties]
-    and MASK_ACTIVE_POCKET
-    ret
-    
-; Update the active pocket based on the given direction (c)
-ChangeActivePocket:
-    call GetActivePocketID
-    add c ; a = new pocket id
-    cp -1
-    jr nz, .notNegative
-    ld a, NUM_POCKETS-1
-    jr .updatePocket
-
-.notNegative
-    cp NUM_POCKETS
-    jr nz, .updatePocket
-    xor a
-    
-.updatePocket
-    ld c, a
-    ld a, [wInventoryProperties]
-    and ~MASK_ACTIVE_POCKET
-    add c
-    ld [wInventoryProperties], a
-    ret
 
 ; Returns the cursor position (a)
 GetCursorPosition:
@@ -227,7 +128,7 @@ DisplayItemMenu:
     jr .keypressLoop
 
 .selectPressed
-    call AssignSelectItem
+    call AssignQuickUse
     jr .keypressLoop
 
 .upPressed
@@ -784,7 +685,7 @@ DisplayInventoryList:
 
     ld hl, wFieldQuickUse - 1
     ld a, [wInventoryFilter]
-    cp FILTER_START_MENU
+    cp FILTER_FIELD
     jr z, .checkQuickUse
 
     ld hl, wBattleQuickUse - 1
@@ -975,7 +876,7 @@ PopulateLastInventoryBufferSlot:
     jp PopulateRemainingInventoryBufferItems
 
 ; To assign the current item to the select button + direction
-AssignSelectItem:
+AssignQuickUse:
     xor a ; initialize a to mean do nothing
     push af
     call GetCurrentBufferValue
@@ -987,11 +888,22 @@ AssignSelectItem:
     ; If it is not the start menu or battle menu, then display 'cant assign' text
     ld de, .cantAssignQuickUseHereText
     ld a, [wInventoryFilter]
-    and FILTER_START_MENU | FILTER_BATTLE
+    and FILTER_FIELD | FILTER_BATTLE
     jr z, .placeString
 
-    ; If the item doesn't pass the filter, then it cant be assigned
-    call IsCurrentItemFiltered
+    ; See if the item can be quick used
+    push af
+    call GetCurrentItemID
+    call GetItemFilter
+    ld e, a
+    pop af
+    bit BIT_FIELD_USE, a
+    ld a, FIELD_QUICK_USE
+    jr nz, .bitFound
+    ld a, BATTLE_QUICK_USE
+
+.bitFound
+    and e
     ld de, .cantAssignQuickUseItemText
     jr z, .placeString
 
@@ -1099,9 +1011,7 @@ AssignSelectItem:
     next "item for Quick Use@"
 
 ; To print the description for the current item
-; TODO - get from table
 UpdateItemDescription:
-
     ; Disable screen updates
 	xor a
 	ld [H_AUTOBGTRANSFERENABLED], a
@@ -1109,13 +1019,18 @@ UpdateItemDescription:
     call ClearTextBox
     call GetCurrentBufferValue
     cp -1
-    ld de, .pocketsEmptyText
+    ld de, PocketsEmptyText
     jr z, .placeString
-    ld de, .comingSoonText
+    
+    call GetCurrentItemID
+    call GetItemDescription
+    ld d, h
+    ld e, l
 
 .placeString
+    ld b, BANK(PocketsEmptyText)
     coord hl, 1, 14 
-    call PlaceString
+    call PlaceFarString
     
     ; Enable screen updates
 	ld a, 1
@@ -1123,27 +1038,12 @@ UpdateItemDescription:
 
     ret
 
-.pocketsEmptyText
-    db "There nothing in"
-    line "this pocket!@"
-
-.comingSoonText
-    db "Coming Soon...@"
-
-; To see if the current item is filtered
-; Returns zero flag if its filtered
-IsCurrentItemFiltered:
-    call GetCurrentBufferValue
-    cp -1
-    ret z
-    call GetCurrentItemID
-    ;fall through
-
 ; To see if the given item (a) is filtered
 ; Returns zero flag if its filtered
 IsItemFiltered:
-    ; TODO - get from table
-    bit 0, a ; fake check for testing
+    call GetItemFilter
+    ld hl, wInventoryFilter
+    and [hl]
     ret
 
 ; To halve the price of the item
