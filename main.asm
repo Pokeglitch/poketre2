@@ -2146,6 +2146,10 @@ InventoryScreenGFX:
 InventoryScreenGFXEnd:
 
 InventoryScreen2GFX:
+	INCBIN "gfx/inventory/filter_text.2bpp"
+	INCBIN "gfx/inventory/filter_off.2bpp"
+	INCBIN "gfx/inventory/filter_on.2bpp"
+	INCBIN "gfx/inventory/text_box_border_top.2bpp"
 	INCBIN "gfx/inventory/arrows.2bpp"
 	INCBIN "gfx/inventory/dpad.2bpp"
 	INCBIN "gfx/inventory/text_box_border.2bpp"

@@ -4178,8 +4178,8 @@ AutoTextBoxDrawingCommon::
 	ret
 
 ClearTextBox:
-	coord hl, 1, 13
-	lb bc, 4, 18
+	coord hl, 1, 14
+	lb bc, 3, 18
 	jp ClearScreenArea
 
 PrintText::

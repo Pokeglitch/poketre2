@@ -4,8 +4,6 @@
 ; - ues constants when checking for Moves pocket
 ; - Create a list of the TMs in alphabetical order for Moves pocket
 
-; Make textbox 1 smaller. Move filter text down. Different border tiles?
-
 ; Create macro for new table for the item attributes combined table for now
 ; - Finish real descriptions and filter masks
 ; - Make sure filter is set before loading inventory screen
@@ -30,6 +28,10 @@
 ; Remove "FilteredBag" references (is that location used anywhere else?)
 
 ; Tile Constants
+TILE_FILTER_TEXT_START = $6C
+TILE_FILTER_OFF_START = $6F
+TILE_FILTER_ON_START = $71
+TILE_TEXTBOX_BORDER_TOP = $73
 TILE_ARROW_TILES_START = $74
 TILE_TABS_START = $C0
 TILE_TAB_BOTTOM_SOLID = $D4
@@ -43,8 +45,9 @@ TILE_DPAD = $78
 ; GFX Constants
 GFX_TAB_WIDTH = 5
 GFX_POCKETS_WIDTH = 8
-GFX_POCKETS_HEIGHT = 10
+GFX_POCKETS_HEIGHT = 9
 GFX_CURSOR_SIZE = 4
+GFX_FILTER_WIDTH = 3
 
 ; OAM Constants
 OAM_CURSOR_X = $38
@@ -364,7 +367,7 @@ GetJoypadUpDownHeld:
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
     ld de, InventoryScreen2GFX
-    ld hl, vChars2 + (TILE_ARROW_TILES_START * BYTES_PER_TILE)
+    ld hl, vChars2 + (TILE_FILTER_TEXT_START * BYTES_PER_TILE)
     lb bc, BANK(InventoryScreen2GFX), (InventoryScreen2GFXEnd-InventoryScreen2GFX) / BYTES_PER_TILE
     call CopyVideoData
 
@@ -385,11 +388,7 @@ InitializeInventoryScreen:
     jr nz, .drawTabsLoop
 
    ; Place the tab bottom tiles
-   ; The Pocket GFX also includes the bottom tiles, so skip those
-    ld de, GFX_POCKETS_WIDTH
-    add hl, de
-
-    ld b, SCREEN_WIDTH - GFX_POCKETS_WIDTH
+    ld b, SCREEN_WIDTH
     ld a, TILE_TAB_BOTTOM_SOLID
 .drawTabsBottomBorderLoop
     ld [hli], a
@@ -397,7 +396,7 @@ InitializeInventoryScreen:
     jr nz, .drawTabsBottomBorderLoop
 
     ; Place the Pocket GFX tiles
-    coord hl, 0, 1
+    coord hl, 0, 2
     lb bc, GFX_POCKETS_WIDTH, GFX_POCKETS_HEIGHT
     ld de, SCREEN_WIDTH - GFX_POCKETS_WIDTH
     xor a ; TILE_POCKETS_START = $00
@@ -417,9 +416,18 @@ InitializeInventoryScreen:
     jr nz, .placePocketsGFXOuterLoop
 
     ; Place the text box
-    coord hl, 0, 12
-    lb bc, 4, 18
+    coord hl, 0, 13
+    lb bc, 3, 18
     call TextBoxBorder
+
+    coord hl, 1, 13
+    ld b, 18
+    ld a, TILE_TEXTBOX_BORDER_TOP
+
+.replaceTopBorderLoop
+    ;ld [hli], a
+    dec b
+    jr nz, .replaceTopBorderLoop
 
     ; Place the cursor 
     ld hl, wOAMBuffer + (GFX_TAB_WIDTH*2) * OAM_BYTE_SIZE ; skip the tab tiles
@@ -449,24 +457,33 @@ InitializeInventoryScreen:
     pop af
     dec a
     jr nz, .cursorLoop
-    ; fall through
+
+    coord hl, 2, 12
+    ld a, TILE_FILTER_TEXT_START
+    ld b, GFX_FILTER_WIDTH
+
+.placeFilterTopLoop
+    ld [hli], a
+    inc a
+    dec b
+    jr nz, .placeFilterTopLoop
+
+    ;fall through
 
 PlaceInventoryFilterRadioTile:
     ld a, [wInventoryProperties]
     bit BIT_INVENTORY_FILTER, a ; Is the Filter enabled?
-    ld a, TILE_EMPTY_RADIO
+    ld a, TILE_FILTER_OFF_START
     
     jr z, .placeTile
-    ld a, TILE_FILLED_RADIO
+    ld a, TILE_FILTER_ON_START
 
 .placeTile
-    coord hl, 0, 11
+    coord hl, 0, 12
     ld [hli], a
-    ld de, .filterText
-    jp PlaceString
-
-.filterText:
-    db "Filter@"
+    inc a
+    ld [hl], a
+    ret
 
 ; To toggle the filter
 ToggleInventoryFilter:
@@ -546,6 +563,7 @@ UpdateDisplayForActivePocket:
     jr nz, .drawTabLoop
 
     ; Shift the last tab bottom tile left 2 pixels
+    dec d
     add hl, de
     dec [hl]
     dec [hl]
