@@ -668,7 +668,7 @@ DisplayInventoryList:
     ld b, a
     pop af
     dec b
-    jr z, .nextItem
+    jr z, .skipQuantity
 
     call GetItemQuantityPointer
     ld d, h
@@ -686,6 +686,7 @@ DisplayInventoryList:
     pop de
     call PrintNumber
 
+.skipQuantity
     ld hl, wFieldQuickUse - 1
     ld a, [wInventoryFilter]
     cp FILTER_FIELD
