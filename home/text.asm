@@ -91,6 +91,7 @@ endc
 endm
 
 	dict $00, Char00 ; error
+	dict $01, Char01 ; TX_RAM
 	dict $4C, Char4C ; autocont
 	dict $4B, Char4B ; cont_
 	dict $51, Char51 ; para
@@ -116,6 +117,17 @@ endm
 PlaceNextChar_inc::
 	inc de
 	jp PlaceNextChar
+
+Char01::
+	inc de
+	ld a, [de]
+	inc de
+	ld b, a
+	ld a, [de]
+	push de
+	ld e, b
+	ld d, a
+	jr FinishDTE
 
 Char00::
 	ld b, h

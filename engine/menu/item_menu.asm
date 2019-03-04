@@ -1,5 +1,16 @@
 ; TODO
 
+; Fix bug where opening the start menu sometimes displays the wrong description...
+; Display "Use/Give" or "Give/Cancel" based on the item
+; - Don't permit choosing an item if it has no use in the context
+; -- Play the 'Not Allowed' sound effect
+; Get rid of the 'toss' functionality
+; Finish 'use', 'give' or 'cancel' based on option selected
+; Finish returning to the overworld after using and item
+; Finish giving an item to a pokemon or applying an item to a pokemon
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ; Finish properly loading the item menu from all locations
 ; Finish the Quick Use actions battle and field
 
@@ -35,6 +46,20 @@ SaveCursorPosition:
     swap a
     ret
 
+ReEnterItemMenu:
+    call ConfigureInventoryJoypad
+    push bc
+    jr DisplayItemMenu.descriptionLoop
+
+ConfigureInventoryJoypad:
+    ld a, 1
+    ld hl, hJoy6
+    ld b, [hl]
+    ld [hli], a
+    ld c, [hl]
+    ld [hl], a
+    ret
+
 DisplayItemMenu:
     call GBPalWhiteOutWithDelay3
     call HideSprites
@@ -42,20 +67,8 @@ DisplayItemMenu:
     call ClearScreen
     call InitializeInventoryScreen
 
-    ; Turn off tile animations
-    xor a
-    ld hl, hTilesetType
-    ld d, [hl]
-    ld [hl], a
-    push de
-
     ; Configure the joypad
-    ld a, 1
-    ld hl, hJoy6
-    ld b, [hl]
-    ld [hli], a
-    ld c, [hl]
-    ld [hl], a
+    call ConfigureInventoryJoypad
     push bc
 
 .tabLoop
@@ -71,6 +84,8 @@ DisplayItemMenu:
 .cursorLoop
     call DrawInventoryCursor
     call SaveActivePocketPosition
+
+.descriptionLoop
     call UpdateItemDescription
 
 .keypressLoop
@@ -1096,13 +1111,8 @@ SelectItem:
 ; To restore the prior settings
 RestoreSetting:
     pop bc
-    pop de
-    push af
     ld hl, hJoy6
     ld [hl], b
     inc hl
     ld [hl], c
-    ld a, d
-	ld [hTilesetType], a
-    pop af
     ret

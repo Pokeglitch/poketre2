@@ -306,6 +306,7 @@ StartMenu_Item:
 	ld hl, CannotUseItemsHereText
 	call PrintText
 	jr .exitMenu
+
 .notInCableClubRoom
 	ld a, FILTER_FIELD
 	ld [wInventoryFilter], a
@@ -314,11 +315,20 @@ StartMenu_Item:
     xor a
     ld [wUpdateSpritesEnabled], a ; Hide sprites
 
+    ; Turn off tile animations
+    ld hl, hTilesetType
+    ld a, [hl]
+    ld [hl], 0
+    push af
+
 	call DisplayItemMenu
 	jr nc, .choseItem
 	
 .exitMenu
 	; TODO - this section will no longer be needed with new start menu....
+	pop af
+	ld [hTilesetType], a
+
 	call GBPalWhiteOut
     ld a, 1
     ld [wUpdateSpritesEnabled], a ; re-enable sprites
@@ -328,40 +338,69 @@ StartMenu_Item:
 	call UpdateSprites
 	call GBPalNormal
 	jp RedisplayStartMenu
+
 .choseItem
-	xor a
-	ld [wMenuItemToSwap], a
-	ld a, [wcf91]
-	cp BICYCLE
-	jp z, .useOrTossItem
-.notBicycle1
-	ld a, USE_TOSS_MENU_TEMPLATE
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
-	ld hl, wTopMenuItemY
-	ld a, 11
-	ld [hli], a ; top menu item Y
-	ld a, 14
-	ld [hli], a ; top menu item X
-	xor a
-	ld [hli], a ; current menu item ID
-	inc hl
-	inc a ; a = 1
-	ld [hli], a ; max menu item ID
-	ld a, A_BUTTON | B_BUTTON
-	ld [hli], a ; menu watched keys
-	xor a
-	ld [hl], a ; old menu item id
-	call HandleMenuInput
-	call PlaceUnfilledArrowMenuCursor
-	bit 1, a ; was the B button pressed?
-	jr z, .useOrTossItem
-	jp ItemMenuLoop
-.useOrTossItem ; if the player made the choice to use or toss the item
 	ld a, [wcf91]
 	ld [wd11e], a
 	call GetItemName
 	call CopyStringToCF4B ; copy name to wcf4b
+
+	call ClearTextBox
+	
+	coord hl, 1, 14
+	ld de, ChoseItemText
+	call PlaceString
+
+	; TODO - Also can be 'Use/Give' and 'Give/Cancel'
+	coord hl, 1, 16
+	ld de, UseOptionText
+	call PlaceString
+
+	ld de, CancelOptionText
+	coord hl, 10, 16
+	call PlaceString
+
+	ld bc, 0 ; Initialize hl to the first option
+	coord hl, 1, 16
+	push hl
+
+.radioLoop
+	pop hl
+	ld [hl], TILE_EMPTY_RADIO
+	add hl, bc
+	ld [hl], TILE_FILLED_RADIO
+	push hl
+
+.keypressLoop
+	call JoypadLowSensitivity
+	ld a, [hJoy5]
+
+	bit BIT_A_BUTTON, a
+	jr nz, .useGiveOrCancel
+
+	bit BIT_B_BUTTON, a
+	jr nz, .returnToItemMenu
+
+	and D_LEFT | D_RIGHT
+	jr z, .keypressLoop
+
+	ld a, l
+	cp $E1 ; left option
+	ld bc, 9
+	jr z, .radioLoop
+	ld bc, -9
+	jr .radioLoop
+
+.returnToItemMenu
+	pop hl
+	call ReEnterItemMenu
+	jr nc, .choseItem
+	jr .exitMenu
+
+.useGiveOrCancel
+	; TODO - use/give/cancel depending on menu options
+	; Just check the first letter of the option in the tile map?
+	pop hl
 	ld a, [wcf91]
 	cp BICYCLE
 	jr nz, .notBicycle2
@@ -430,6 +469,20 @@ StartMenu_Item:
 	call TossItem
 .tossZeroItems
 	jp ItemMenuLoop
+
+ChoseItemText:
+	db "Chose "
+	TX_RAM wcf4b
+	db "@"
+
+UseOptionText:
+	db TILE_EMPTY_RADIO, "Use@"
+
+GiveOptionText:
+	db TILE_EMPTY_RADIO, "Give@"
+	
+CancelOptionText:
+	db TILE_EMPTY_RADIO, "Cancel@"
 
 CannotUseItemsHereText:
 	TX_FAR _CannotUseItemsHereText
