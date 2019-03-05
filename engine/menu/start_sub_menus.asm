@@ -331,29 +331,6 @@ StartMenu_Item:
 
 .choseItem
 	ld a, [wcf91]
-    call GetItemFilter
-	push af
-	; If the item gets applied to a pokemon, check party size
-	bit BIT_APPLY_TO_PK, a
-	jr nz, .checkPartyEmpty
-
-	; If the item can only be held, check party size
-	bit BIT_FIELD_USE, a
-	jr nz, .canSelectItem
-
-.checkPartyEmpty
-	ld a, [wPartyCount]
-	and a
-	jr nz, .canSelectItem
-	
-	; Can't apply or give to pokemon if party is empty
-	pop af
-	ld a, SFX_DENIED
-	call PlaySound
-	jr .returnToItemMenu2
-
-.canSelectItem
-	ld a, [wcf91]
 	ld [wd11e], a
 	call GetItemName
 	call CopyStringToCF4B ; copy name to wcf4b
@@ -364,8 +341,10 @@ StartMenu_Item:
 	ld de, ChoseItemText
 	call PlaceString
 
-	pop af
+	ld a, [wcf91]
+    call GetItemFilter
 	push af
+
 	bit BIT_FIELD_USE, a
 	coord hl, 2, 16
 	jr nz, .canUse
@@ -388,7 +367,7 @@ StartMenu_Item:
 	ld de, GiveOptionText
 	ld a, [wPartyCount]
 	and a
-	jr nz, .placeSecondOption ; not empty, can hold
+	jr nz, .placeSecondOption ; party isn't empty, so can give
 
 .placeCancel
 	ld de, CancelOptionText
@@ -416,7 +395,7 @@ StartMenu_Item:
 	jr nz, .useGiveOrCancel
 
 	bit BIT_B_BUTTON, a
-	jr nz, .returnToItemMenu
+	jr nz, .bPressed
 
 	and D_LEFT | D_RIGHT
 	jr z, .keypressLoop
@@ -428,21 +407,25 @@ StartMenu_Item:
 	ld bc, -9
 	jr .radioLoop
 
-.returnToItemMenu
+.bPressed
 	ld a, SFX_PRESS_AB
 	call PlaySound
 	pop hl
+	pop af
 
-.returnToItemMenu2
+.returnToItemMenu
 	call ReEnterItemMenu
 	jp nc, .choseItem
 	jp .exitMenu
 
 .useGiveOrCancel
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	pop hl
 	ld a, l
 	cp $E1 ; left option
 	jr nz, .secondOption
+
 	pop af
 	; See if it is Use or Give
 	bit BIT_FIELD_USE, a
@@ -455,43 +438,31 @@ StartMenu_Item:
 	bit BIT_EXIT_MENU, a ; does the item exit the menu?
 	jr nz, .useItem_closeMenu
 	
-	ld a, SFX_PRESS_AB
-	call PlaySound
 	call UseItem
-	jr .returnToItemMenu2
+	jr .returnToItemMenu
 
 .secondOption
 	pop af
 	; See if it is Give or Cancel
 	and FIELD_USE | HOLDABLE
 	xor FIELD_USE | HOLDABLE
-	jr z, .secondOptionGiveItem ; if both are set, then option 2 is give
+	jr nz, .returnToItemMenu ; if only 1 is set, then option 2 is cancel
 
-.selectedCancel
-	ld a, SFX_PRESS_AB
-	call PlaySound
-	jr .returnToItemMenu2
-
-.secondOptionGiveItem
 	ld a, [wPartyCount]
 	and a
-	jr z, .selectedCancel ; if party is empty, then the option is actually cancel
+	jr z, .returnToItemMenu ; if party is empty, then the 2nd option is cancel
 
 ; Otherwise, give the item
 .giveItem
 ;TODO
-	ld a, SFX_PRESS_AB
-	call PlaySound
-	jr .returnToItemMenu2
+	jr .returnToItemMenu
 
 .useItem_closeMenu
-	ld a, SFX_PRESS_AB
-	call PlaySound
 	call ReloadOverworldDataFromInventory
 	pop af
 	ld [hTilesetType], a
 	xor a
-	ld [wPseudoItemID], a
+	ld [wPseudoItemID], a ; TODO - is this necessary?
 	call UseItem
 	ld a, [wActionResultOrTookBattleTurn]
 	and a
@@ -499,8 +470,6 @@ StartMenu_Item:
 	jp CloseStartMenu ; Otherwise, exit the menu
 
 .useItem_partyMenu
-	ld a, SFX_PRESS_AB
-	call PlaySound
 	call UseItem
 	jp .reenter
 

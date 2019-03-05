@@ -1,20 +1,18 @@
 ; TODO
 
-; Clean up StartMenu_Item
-; - and double check/test logic with wPartyCount
-; - test using every item and make sure enter/exit works
-; -- PP Up doesnt work
-; -- Make sure quantity gets reduced
-; When checking filter, also check party size for apply/hold in start menu
+; Test using every item and make sure enter/exit works
+; - Make sure quantity gets reduced
+; -- Key items?
 
 ; Is there still the bug where opening the start menu sometimes displays the wrong description?
 
 ; Remove 'TossItem' and all calls
 ; Change the textbox size to height of 3
-
 ; Get rid of the 'Booted Up TM/HM' text
 ; - should it say 'Chose <MOVE NAME>' ?
-; Add in 'Give' item
+; is 'wPseudoItemID' necessary?
+
+; Add in 'Give' item function
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Finish properly loading the item menu from all locations
@@ -55,7 +53,7 @@ SaveCursorPosition:
 ReEnterItemMenu:
     call ConfigureInventoryJoypad
     push bc
-    jr DisplayItemMenu.descriptionLoop
+    jr DisplayItemMenu.filterLoop
 
 ConfigureInventoryJoypad:
     ld a, 1
@@ -1079,7 +1077,24 @@ UpdateItemDescription:
 IsItemFiltered:
     call GetItemFilter
     ld hl, wInventoryFilter
+    bit BIT_FIELD_USE, [hl]
+    jr nz, .isField
+
+.checkFilter
     and [hl]
+    ret
+
+; Field filtering should also hide items that get applied to a pokemon
+.isField
+    bit BIT_FIELD_USE, a
+    ret z ; if item isn't field use, then return
+
+    bit BIT_APPLY_TO_PK, a
+    jr z, .checkFilter ; if item isn't applied to party, return success
+
+    ; otherwise, check if there are pokemon in the party
+    ld a, [wPartyCount]
+    and a
     ret
 
 ; To halve the price of the item
@@ -1137,17 +1152,31 @@ CanUserSelectItem:
     call GetCurrentBufferValue
     cp -1
     ret z
-    push af
-    ld a, [wInventoryFilter]
-    cp FILTER_FIELD
-    jr z, .field
-    pop af
+    ld hl, wInventoryFilter
+    bit BIT_FIELD_USE, [hl]
+    jr nz, .field
     call GetItemIDAtPosition
     call IsItemFiltered
     ret
+
 .field
-    pop af
     call GetItemIDAtPosition
     call GetItemFilter
-    and FIELD_USE | HOLDABLE
+    bit BIT_FIELD_USE, a
+    jr z, .checkHold
+
+    ; If item have a field use, check it gets applied to a pokemon
+    bit BIT_APPLY_TO_PK, a
+    jr z, .canUse ; if it doesnt, then it can be used (and a isnt zero since BIT_FIELD_USE is set)
+    jr .checkPartyCount ; if it does, check the party count
+
+.checkHold
+    bit BIT_HOLDABLE, a
+    ret z ; return if its not holdable
+
+    ;check the party
+.checkPartyCount
+    ld a, [wPartyCount]
+.canUse
+    and a
     ret
