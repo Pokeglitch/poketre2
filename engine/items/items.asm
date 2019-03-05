@@ -2211,7 +2211,6 @@ ItemUseTMHM:
 	jp nz, ItemUseNotTime
 	ld a, [wcf91]
 	sub TM_01
-	push af
 	jr nc, .skipAdding
 	add 55 ; if item is an HM, add 55
 .skipAdding
@@ -2222,26 +2221,6 @@ ItemUseTMHM:
 	ld [wMoveNum], a
 	call GetMoveName
 	call CopyStringToCF4B ; copy name to wcf4b
-	pop af
-	ld hl, BootedUpTMText
-	jr nc, .printBootedUpMachineText
-	ld hl, BootedUpHMText
-.printBootedUpMachineText
-	call PrintText
-	ld hl, TeachMachineMoveText
-	call PrintText
-	coord hl, 14, 7
-	lb bc, 8, 15
-	ld a, TWO_OPTION_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; yes/no menu
-	ld a, [wCurrentMenuItem]
-	and a
-	jr z, .useMachine
-	ld a, 2
-	ld [wActionResultOrTookBattleTurn], a ; item not used
-	ret
-.useMachine
 	ld a, [wWhichPokemon]
 	push af
 	ld a, [wcf91]
@@ -2266,10 +2245,7 @@ ItemUseTMHM:
 ; if the player canceled teaching the move
 	pop af
 	pop af
-	call GBPalWhiteOutWithDelay3
-	call ClearSprites
-	call RunDefaultPaletteCommand
-	jp LoadScreenTilesFromBuffer1 ; restore saved screen
+	ret
 .checkIfAbleToLearnMove
 	predef CanLearnTM ; check if the pokemon can learn the move
 	push bc
@@ -2296,23 +2272,7 @@ ItemUseTMHM:
 	ld [wWhichPokemon], a
 	ld a, b
 	and a
-	ret z
-	ld a, [wcf91]
-	call IsItemHM
-	ret c
-	jp RemoveUsedItem
-
-BootedUpTMText:
-	TX_FAR _BootedUpTMText
-	db "@"
-
-BootedUpHMText:
-	TX_FAR _BootedUpHMText
-	db "@"
-
-TeachMachineMoveText:
-	TX_FAR _TeachMachineMoveText
-	db "@"
+	ret
 
 MonCannotLearnMachineMoveText:
 	TX_FAR _MonCannotLearnMachineMoveText
@@ -2587,66 +2547,6 @@ GetSelectedMoveOffset2:
 	ld b, 0
 	add hl, bc
 	ret
-
-; confirms the item toss and then tosses the item
-; INPUT:
-; [wcf91] = item ID
-; [wWhichPokemon] = index of item within inventory
-; [wItemQuantity] = quantity to toss
-; OUTPUT:
-; clears carry flag if the item is tossed, sets carry flag if not
-TossItem_:
-	ld a, [wcf91]
-	ld [wWhichItem], a
-	call IsItemHM
-	jr c, .tooImportantToToss
-	call IsKeyItem_
-	ld a, [wIsKeyItem]
-	and a
-	jr nz, .tooImportantToToss
-	ld a, [wcf91]
-	ld [wd11e], a
-	call GetItemName
-	call CopyStringToCF4B ; copy name to wcf4b
-	ld hl, IsItOKToTossItemText
-	call PrintText
-	coord hl, 14, 7
-	lb bc, 8, 15
-	ld a, TWO_OPTION_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; yes/no menu
-	ld a, [wMenuExitMethod]
-	cp CHOSE_SECOND_ITEM
-	scf
-	ret z ; return if the player chose No
-; if the player chose Yes
-	ld a, [wWhichPokemon]
-	call RemoveItemFromInventory
-	ld a, [wcf91]
-	ld [wd11e], a
-	call GetItemName
-	call CopyStringToCF4B ; copy name to wcf4b
-	ld hl, ThrewAwayItemText
-	call PrintText
-	and a
-	ret
-.tooImportantToToss
-	ld hl, TooImportantToTossText
-	call PrintText
-	scf
-	ret
-
-ThrewAwayItemText:
-	TX_FAR _ThrewAwayItemText
-	db "@"
-
-IsItOKToTossItemText:
-	TX_FAR _IsItOKToTossItemText
-	db "@"
-
-TooImportantToTossText:
-	TX_FAR _TooImportantToTossText
-	db "@"
 
 ; checks if an item is a key item
 ; INPUT:

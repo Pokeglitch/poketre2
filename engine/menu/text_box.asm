@@ -141,7 +141,7 @@ TextBoxFunctionTable:
 ; 03: column of lower right corner
 ; 04: row of lower right corner
 TextBoxCoordTable:
-	db MESSAGE_BOX,       0, 12, 19, 17
+	db MESSAGE_BOX,       0, 13, 19, 17
 	db $03,               0,  0, 19, 14
 	db $07,               0,  0, 11,  6
 	db LIST_MENU_BOX,     4,  2, 19, 12

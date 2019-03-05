@@ -2087,26 +2087,6 @@ DisableWaitingAfterTextDisplay::
 UseItem::
 	jpba UseItem_
 
-; confirms the item toss and then tosses the item
-; INPUT:
-; [wcf91] = item ID
-; [wWhichPokemon] = index of item within inventory
-; [wItemQuantity] = quantity to toss
-; OUTPUT:
-; clears carry flag if the item is tossed, sets carry flag if not
-TossItem::
-	ld a, [H_LOADEDROMBANK]
-	push af
-	ld a, BANK(TossItem_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	call TossItem_
-	pop de
-	ld a, d
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
-
 ; checks if an item is a key item
 ; INPUT:
 ; [wcf91] = item ID

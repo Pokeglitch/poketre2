@@ -332,7 +332,16 @@ StartMenu_Item:
 .choseItem
 	ld a, [wcf91]
 	ld [wd11e], a
+	cp HM_01
+	jr c, .dontGetMoveName
+
+    call GetMachineMoveName
+	jr .nameFound
+
+.dontGetMoveName
 	call GetItemName
+
+.nameFound
 	call CopyStringToCF4B ; copy name to wcf4b
 
 	call ClearTextBox
@@ -356,7 +365,14 @@ StartMenu_Item:
 	jr .placeCancel
 
 .canUse
+	ld a, [wcf91]
+	cp HM_01
 	ld de, UseOptionText
+	jr c, .notMove
+
+	ld de, TeachOptionText
+
+.notMove
 	call PlaceString
 
 	pop af
@@ -438,6 +454,15 @@ StartMenu_Item:
 	bit BIT_EXIT_MENU, a ; does the item exit the menu?
 	jr nz, .useItem_closeMenu
 	
+	; TODO - this will be unnecessary when Map is only accessible though start menu
+	ld a, [wcf91]
+	cp TOWN_MAP
+	jr nz, .notTownMap
+
+	call UseItem
+	jp .reenter
+
+.notTownMap
 	call UseItem
 	jr .returnToItemMenu
 
@@ -490,6 +515,9 @@ ChoseItemText:
 	db "Chose "
 	TX_RAM wcf4b
 	db "@"
+
+TeachOptionText:
+	db "Teach@"
 
 UseOptionText:
 	db "Use@"

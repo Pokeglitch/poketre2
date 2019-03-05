@@ -291,8 +291,8 @@ Char51:: ; para
 	Coorda 18, 16
 	call ProtectedDelay3
 	call ManualTextScroll
-	coord hl, 1, 13
-	lb bc, 4, 18
+	coord hl, 1, 14
+	lb bc, 3, 18
 	call ClearScreenArea
 	ld c, 20
 	call DelayFrames
@@ -340,9 +340,9 @@ Char4C::
 ; first time, copy the two rows of text to the "in between" rows that are usually emtpy
 ; second time, copy the bottom row of text into the top row of text
 ScrollTextUpOneLine::
-	coord hl, 0, 14 ; top row of text
-	coord de, 0, 13 ; empty line above text
-	ld b, SCREEN_WIDTH * 3
+	coord hl, 0, 15 ; top row of text
+	coord de, 0, 14 ; empty line above text
+	ld b, SCREEN_WIDTH * 2
 .copyText
 	ld a, [hli]
 	ld [de], a

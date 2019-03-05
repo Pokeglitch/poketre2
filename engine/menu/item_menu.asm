@@ -1,20 +1,5 @@
 ; TODO
 
-; Test using every item and make sure enter/exit works
-; - Make sure quantity gets reduced
-; -- Key items?
-
-; Is there still the bug where opening the start menu sometimes displays the wrong description?
-
-; Remove 'TossItem' and all calls
-; Change the textbox size to height of 3
-; Get rid of the 'Booted Up TM/HM' text
-; - should it say 'Chose <MOVE NAME>' ?
-; is 'wPseudoItemID' necessary?
-
-; Add in 'Give' item function
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ; Finish properly loading the item menu from all locations
 ; Finish the Quick Use actions battle and field
 
@@ -31,6 +16,8 @@
 ; Remove "FilteredBag" references (is that location used anywhere else?)
 ; - Move wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
 
+; Add in 'Give' item function
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Returns the cursor position (a)
 GetCursorPosition:

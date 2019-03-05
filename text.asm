@@ -2902,26 +2902,6 @@ _PPRestoredText::
 	text "PP was restored."
 	prompt
 
-_BootedUpTMText::
-	text "Booted up a TM!"
-	prompt
-
-_BootedUpHMText::
-	text "Booted up an HM!"
-	prompt
-
-_TeachMachineMoveText::
-	text "It contained"
-	line "@"
-	TX_RAM wcf4b
-	text "!"
-
-	para "Teach @"
-	TX_RAM wcf4b
-	text ""
-	line "to a #MON?"
-	done
-
 _MonCannotLearnMachineMoveText::
 	TX_RAM wcd6d
 	text " is not"
@@ -3005,25 +2985,6 @@ _GotOffBicycleText2::
 	text "the @"
 	TX_RAM wcf4b
 	text "."
-	prompt
-
-_ThrewAwayItemText::
-	text "Threw away"
-	line "@"
-	TX_RAM wcd6d
-	text "."
-	prompt
-
-_IsItOKToTossItemText::
-	text "Is it OK to toss"
-	line "@"
-	TX_RAM wcf4b
-	text "?"
-	prompt
-
-_TooImportantToTossText::
-	text "That's too impor-"
-	line "tant to toss!"
 	prompt
 
 _AlreadyKnowsText::

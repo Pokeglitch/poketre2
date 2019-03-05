@@ -1,4 +1,5 @@
 DisplayTownMap:
+	call ClearSprites
 	call LoadTownMap
 	ld hl, wUpdateSpritesEnabled
 	ld a, [hl]
@@ -332,13 +333,7 @@ ExitTownMap:
 ; clear town map graphics data and load usual graphics data
 	xor a
 	ld [wTownMapSpriteBlinkingEnabled], a
-	call GBPalWhiteOut
-	call ClearScreen
-	call ClearSprites
-	call LoadPlayerSpriteGraphics
-	call LoadFontTilePatterns
-	call UpdateSprites
-	jp RunDefaultPaletteCommand
+	ret
 
 DrawPlayerOrBirdSprite:
 ; a = map number
