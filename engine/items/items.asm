@@ -638,6 +638,15 @@ ItemUseBicycle:
 	ld a, [wIsInBattle]
 	and a
 	jp nz, ItemUseNotTime
+	
+	ld a, [wd732]
+	bit 5, a
+	jr z, .notForcedCycling
+
+	ld hl, CannotGetOffHereText
+	jp ItemUseFailed
+
+.notForcedCycling
 	ld a, [wWalkBikeSurfState]
 	ld [wWalkBikeSurfStateCopy], a
 	cp 2 ; is the player surfing?
@@ -663,6 +672,10 @@ ItemUseBicycle:
 	call PlayDefaultMusic ; play bike riding music
 .printText
 	jp PrintText
+
+CannotGetOffHereText:
+	TX_FAR _CannotGetOffHereText
+	db "@"
 
 ; used for Surf out-of-battle effect
 ItemUseSurfboard:
@@ -1245,10 +1258,7 @@ ItemUseMedicine:
 	ret nz ; if so, return
 	call GBPalWhiteOut
 	call z, RunDefaultPaletteCommand
-	ld a, [wIsInBattle]
-	and a
-	ret nz
-	jp ReloadMapData
+	ret
 .useVitamin
 	push hl
 	ld a, [hl]

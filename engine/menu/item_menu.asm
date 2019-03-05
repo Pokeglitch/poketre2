@@ -1,14 +1,20 @@
 ; TODO
 
-; Fix bug where opening the start menu sometimes displays the wrong description...
-; Display "Use/Give" or "Give/Cancel" based on the item
-; - Don't permit choosing an item if it has no use in the context
-; -- Play the 'Not Allowed' sound effect
-; Get rid of the 'toss' functionality
-; Finish 'use', 'give' or 'cancel' based on option selected
-; Finish returning to the overworld after using and item
-; Finish giving an item to a pokemon or applying an item to a pokemon
+; Clean up StartMenu_Item
+; - and double check/test logic with wPartyCount
+; - test using every item and make sure enter/exit works
+; -- PP Up doesnt work
+; -- Make sure quantity gets reduced
+; When checking filter, also check party size for apply/hold in start menu
 
+; Is there still the bug where opening the start menu sometimes displays the wrong description?
+
+; Remove 'TossItem' and all calls
+; Change the textbox size to height of 3
+
+; Get rid of the 'Booted Up TM/HM' text
+; - should it say 'Chose <MOVE NAME>' ?
+; Add in 'Give' item
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Finish properly loading the item menu from all locations
@@ -61,7 +67,8 @@ ConfigureInventoryJoypad:
     ret
 
 DisplayItemMenu:
-    call GBPalWhiteOutWithDelay3
+    ld c, 2
+    call GBFadeOutToWhiteCustomDelay
     call HideSprites
 
     call ClearScreen
@@ -70,6 +77,12 @@ DisplayItemMenu:
     ; Configure the joypad
     call ConfigureInventoryJoypad
     push bc
+
+    call UpdateDisplayForActivePocket
+
+    ld c, 2
+    call GBFadeInFromWhiteCustomDelay
+    jr .filterLoop
 
 .tabLoop
     call UpdateDisplayForActivePocket
@@ -126,10 +139,11 @@ DisplayItemMenu:
     jp RestoreSetting
 
 .aPressed
-    call GetCurrentBufferValue
-    cp -1
-    jr z, .keypressLoop
-    jp SelectItem
+    call CanUserSelectItem
+    jp nz, SelectItem
+	ld a, SFX_DENIED
+    call PlaySound
+    jr .keypressLoop
 
 .startPressed
     call ToggleInventoryFilter
@@ -391,7 +405,7 @@ UpdateDisplayForActivePocket:
     add hl, de
     dec [hl]
     dec [hl]
-    jp GBPalNormal
+    ret
 
 ; Returns value (a) in inventory buffer at the current cursor position
 GetCurrentBufferValue:
@@ -1115,4 +1129,25 @@ RestoreSetting:
     ld [hl], b
     inc hl
     ld [hl], c
+    ret
+
+; To see if the user can select the current item
+; returns zero flag if user cannot select
+CanUserSelectItem:
+    call GetCurrentBufferValue
+    cp -1
+    ret z
+    push af
+    ld a, [wInventoryFilter]
+    cp FILTER_FIELD
+    jr z, .field
+    pop af
+    call GetItemIDAtPosition
+    call IsItemFiltered
+    ret
+.field
+    pop af
+    call GetItemIDAtPosition
+    call GetItemFilter
+    and FIELD_USE | HOLDABLE
     ret

@@ -295,11 +295,8 @@ ErasePartyMenuCursors:
 	jr nz, .loop
 	ret
 
-ItemMenuLoop:
-	call LoadScreenTilesFromBuffer2DisableBGTransfer ; restore saved screen
-	call RunDefaultPaletteCommand
-
 StartMenu_Item:
+	call RunDefaultPaletteCommand
 	ld a, [wLinkState]
 	dec a ; is the player in the Colosseum or Trade Centre?
 	jr nz, .notInCableClubRoom
@@ -312,34 +309,50 @@ StartMenu_Item:
 	ld [wInventoryFilter], a
 	
     ;TODO - the following should already be processed by the new start menu
-    xor a
-    ld [wUpdateSpritesEnabled], a ; Hide sprites
-
     ; Turn off tile animations
     ld hl, hTilesetType
     ld a, [hl]
     ld [hl], 0
     push af
 
+.reenter
+	xor a
+    ld [wUpdateSpritesEnabled], a ; Hide sprites
+
 	call DisplayItemMenu
 	jr nc, .choseItem
 	
 .exitMenu
-	; TODO - this section will no longer be needed with new start menu....
+	; TODO - will need to do something different for new start menu
+	call ReloadOverworldDataFromInventory
 	pop af
 	ld [hTilesetType], a
-
-	call GBPalWhiteOut
-    ld a, 1
-    ld [wUpdateSpritesEnabled], a ; re-enable sprites
-	call ClearScreen
-	call ReloadMapData
-	call LoadTextBoxTilePatterns
-	call UpdateSprites
-	call GBPalNormal
 	jp RedisplayStartMenu
 
 .choseItem
+	ld a, [wcf91]
+    call GetItemFilter
+	push af
+	; If the item gets applied to a pokemon, check party size
+	bit BIT_APPLY_TO_PK, a
+	jr nz, .checkPartyEmpty
+
+	; If the item can only be held, check party size
+	bit BIT_FIELD_USE, a
+	jr nz, .canSelectItem
+
+.checkPartyEmpty
+	ld a, [wPartyCount]
+	and a
+	jr nz, .canSelectItem
+	
+	; Can't apply or give to pokemon if party is empty
+	pop af
+	ld a, SFX_DENIED
+	call PlaySound
+	jr .returnToItemMenu2
+
+.canSelectItem
 	ld a, [wcf91]
 	ld [wd11e], a
 	call GetItemName
@@ -351,17 +364,41 @@ StartMenu_Item:
 	ld de, ChoseItemText
 	call PlaceString
 
-	; TODO - Also can be 'Use/Give' and 'Give/Cancel'
-	coord hl, 1, 16
+	pop af
+	push af
+	bit BIT_FIELD_USE, a
+	coord hl, 2, 16
+	jr nz, .canUse
+
+	; If the item can't be used, then it be holdable
+	ld de, GiveOptionText
+	call PlaceString
+
+	jr .placeCancel
+
+.canUse
 	ld de, UseOptionText
 	call PlaceString
 
+	pop af
+	push af
+	bit BIT_HOLDABLE, a
+	jr z, .placeCancel ; not holdable, then cancel
+
+	ld de, GiveOptionText
+	ld a, [wPartyCount]
+	and a
+	jr nz, .placeSecondOption ; not empty, can hold
+
+.placeCancel
 	ld de, CancelOptionText
-	coord hl, 10, 16
+
+.placeSecondOption
+	coord hl, 11, 16
 	call PlaceString
 
-	ld bc, 0 ; Initialize hl to the first option
-	coord hl, 1, 16
+	ld bc, -9 ; Initialize to first item
+	coord hl, 10, 16
 	push hl
 
 .radioLoop
@@ -392,83 +429,93 @@ StartMenu_Item:
 	jr .radioLoop
 
 .returnToItemMenu
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	pop hl
+
+.returnToItemMenu2
 	call ReEnterItemMenu
-	jr nc, .choseItem
-	jr .exitMenu
+	jp nc, .choseItem
+	jp .exitMenu
 
 .useGiveOrCancel
-	; TODO - use/give/cancel depending on menu options
-	; Just check the first letter of the option in the tile map?
 	pop hl
-	ld a, [wcf91]
-	cp BICYCLE
-	jr nz, .notBicycle2
-	ld a, [wd732]
-	bit 5, a
-	jr z, .useItem_closeMenu
-	ld hl, CannotGetOffHereText
-	call PrintText
-	jp ItemMenuLoop
-.notBicycle2
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, .tossItem
-; use item
-	ld [wPseudoItemID], a ; a must be 0 due to above conditional jump
-	ld a, [wcf91]
-	cp HM_01
-	jr nc, .useItem_partyMenu
-	ld hl, UsableItems_CloseMenu
-	ld de, 1
-	call IsInArray
-	jr c, .useItem_closeMenu
-	ld a, [wcf91]
-	ld hl, UsableItems_PartyMenu
-	ld de, 1
-	call IsInArray
-	jr c, .useItem_partyMenu
+	ld a, l
+	cp $E1 ; left option
+	jr nz, .secondOption
+	pop af
+	; See if it is Use or Give
+	bit BIT_FIELD_USE, a
+	jr z, .giveItem
+
+	; Otherwise, use item
+	bit BIT_APPLY_TO_PK, a ; does the item show the party menu?
+	jr nz, .useItem_partyMenu
+
+	bit BIT_EXIT_MENU, a ; does the item exit the menu?
+	jr nz, .useItem_closeMenu
+	
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	call UseItem
-	jp ItemMenuLoop
+	jr .returnToItemMenu2
+
+.secondOption
+	pop af
+	; See if it is Give or Cancel
+	and FIELD_USE | HOLDABLE
+	xor FIELD_USE | HOLDABLE
+	jr z, .secondOptionGiveItem ; if both are set, then option 2 is give
+
+.selectedCancel
+	ld a, SFX_PRESS_AB
+	call PlaySound
+	jr .returnToItemMenu2
+
+.secondOptionGiveItem
+	ld a, [wPartyCount]
+	and a
+	jr z, .selectedCancel ; if party is empty, then the option is actually cancel
+
+; Otherwise, give the item
+.giveItem
+;TODO
+	ld a, SFX_PRESS_AB
+	call PlaySound
+	jr .returnToItemMenu2
+
 .useItem_closeMenu
+	ld a, SFX_PRESS_AB
+	call PlaySound
+	call ReloadOverworldDataFromInventory
+	pop af
+	ld [hTilesetType], a
 	xor a
 	ld [wPseudoItemID], a
 	call UseItem
 	ld a, [wActionResultOrTookBattleTurn]
 	and a
-	jp z, ItemMenuLoop
-	jp CloseStartMenu 
+	jp z, StartMenu_Item ; If it failed, display the item menu again
+	jp CloseStartMenu ; Otherwise, exit the menu
+
 .useItem_partyMenu
-	ld a, [wUpdateSpritesEnabled]
-	push af
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	call UseItem
-	ld a, [wActionResultOrTookBattleTurn]
-	cp $02
-	jp z, .partyMenuNotDisplayed
-	call GBPalWhiteOutWithDelay3
-	call RestoreScreenTilesAndReloadTilePatterns
-	pop af
-	ld [wUpdateSpritesEnabled], a
-	jp StartMenu_Item
-.partyMenuNotDisplayed
-	pop af
-	ld [wUpdateSpritesEnabled], a
-	jp ItemMenuLoop
-.tossItem
-	call IsKeyItem
-	ld a, [wIsKeyItem]
-	and a
-	jr nz, .skipAskingQuantity
-	ld a, [wcf91]
-	call IsItemHM
-	jr c, .skipAskingQuantity
-	call DisplayChooseQuantityMenu
-	inc a
-	jr z, .tossZeroItems
-.skipAskingQuantity
-	call TossItem
-.tossZeroItems
-	jp ItemMenuLoop
+	jp .reenter
+
+ReloadOverworldDataFromInventory:
+	ld c, 3
+	call GBFadeOutToWhiteCustomDelay
+	ld a, 1
+	ld [wUpdateSpritesEnabled], a ; re-enable sprites
+	call ClearScreen
+	call ReloadMapData
+	call LoadTextBoxTilePatterns
+	call ReloadMapSpriteTilePatterns
+	call UpdateSprites
+	ld c, 3
+	jp GBFadeInFromWhiteCustomDelay
 
 ChoseItemText:
 	db "Chose "
@@ -476,20 +523,16 @@ ChoseItemText:
 	db "@"
 
 UseOptionText:
-	db TILE_EMPTY_RADIO, "Use@"
+	db "Use@"
 
 GiveOptionText:
-	db TILE_EMPTY_RADIO, "Give@"
+	db "Give@"
 	
 CancelOptionText:
-	db TILE_EMPTY_RADIO, "Cancel@"
+	db "Cancel@"
 
 CannotUseItemsHereText:
 	TX_FAR _CannotUseItemsHereText
-	db "@"
-
-CannotGetOffHereText:
-	TX_FAR _CannotGetOffHereText
 	db "@"
 
 ; items which bring up the party menu when used
@@ -530,16 +573,6 @@ UsableItems_PartyMenu:
 	db MAX_ETHER
 	db ELIXER
 	db MAX_ELIXER
-	db $ff
-
-; items which close the item menu when used
-UsableItems_CloseMenu:
-	db ESCAPE_ROPE
-	db ITEMFINDER
-	db POKE_FLUTE
-	db OLD_ROD
-	db GOOD_ROD
-	db SUPER_ROD
 	db $ff
 
 StartMenu_TrainerInfo:

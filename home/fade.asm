@@ -19,45 +19,59 @@ LoadGBPal::
 	ret
 
 GBFadeInFromBlack::
+	ld c, 8
+
+GBFadeInFromBlackCustomDelay::
 	ld hl, FadePal1
 	ld b, 4
 	jr GBFadeIncCommon
 
 GBFadeOutToWhite::
+	ld c, 8
+
+GBFadeOutToWhiteCustomDelay::
 	ld hl, FadePal6
 	ld b, 3
 
 GBFadeIncCommon:
+	push bc
 	ld a, [hli]
 	ld [rBGP], a
 	ld a, [hli]
 	ld [rOBP0], a
 	ld a, [hli]
 	ld [rOBP1], a
-	ld c, 8
 	call DelayFrames
+	pop bc
 	dec b
 	jr nz, GBFadeIncCommon
 	ret
 
 GBFadeOutToBlack::
+	ld c, 8
+
+GBFadeOutToBlackCustomDelay::
 	ld hl, FadePal4 + 2
 	ld b, 4
 	jr GBFadeDecCommon
 
 GBFadeInFromWhite::
+	ld c, 8
+
+GBFadeInFromWhiteCustomDelay::
 	ld hl, FadePal7 + 2
 	ld b, 3
 
 GBFadeDecCommon:
+	push bc
 	ld a, [hld]
 	ld [rOBP1], a
 	ld a, [hld]
 	ld [rOBP0], a
 	ld a, [hld]
 	ld [rBGP], a
-	ld c, 8
 	call DelayFrames
+	pop bc
 	dec b
 	jr nz, GBFadeDecCommon
 	ret

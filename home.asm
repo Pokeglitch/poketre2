@@ -4464,7 +4464,6 @@ IsInRestOfArray::
 	scf
 	ret
 
-
 RestoreScreenTilesAndReloadTilePatterns::
 	call ClearSprites
 	ld a, 1
@@ -4474,7 +4473,6 @@ RestoreScreenTilesAndReloadTilePatterns::
 	call LoadTextBoxTilePatterns
 	call RunDefaultPaletteCommand
 	jr Delay3
-
 
 GBPalWhiteOutWithDelay3::
 	call GBPalWhiteOut

@@ -9,7 +9,7 @@ ItemAttributeTable:
 	item GreatBall, QUICK_BATTLE_USE | SELLABLE
 	item PokeBall, QUICK_BATTLE_USE | SELLABLE
 	item TownMap, QUICK_FIELD_USE
-	item Bicycle, QUICK_FIELD_USE
+	item Bicycle, QUICK_FIELD_USE | EXIT_MENU
 	item Surfboard, 0
 	item SafariBall, 0
 	item Pokedex, 0
@@ -32,7 +32,7 @@ ItemAttributeTable:
 	item Marshbadge, 0
 	item VolcanoBadge, 0
 	item EarthBadge, 0
-	item EscapeRope, QUICK_FIELD_USE | SELLABLE
+	item EscapeRope, QUICK_FIELD_USE | SELLABLE | EXIT_MENU
 	item Repel, QUICK_FIELD_USE | SELLABLE
 	item OldAmber, 0
 	item FireStone, STONE_USE | SELLABLE
@@ -63,10 +63,10 @@ ItemAttributeTable:
 	item MaxRepel, QUICK_FIELD_USE | SELLABLE
 	item DireHit, QUICK_BATTLE_USE | SELLABLE
 	item Coin, 0
-	item FreshWater, HEALTH_USE
-	item SodaPop, HEALTH_USE
-	item Lemonade, HEALTH_USE
-	item SSTicket, 0
+	item FreshWater, HEALTH_USE | HOLDABLE
+	item SodaPop, HEALTH_USE | HOLDABLE
+	item Lemonade, HEALTH_USE | HOLDABLE
+	item SSTicket, HOLDABLE
 	item GoldTeeth, 0
 	item XAttack, QUICK_BATTLE_USE | SELLABLE
 	item XDefend, QUICK_BATTLE_USE | SELLABLE
@@ -74,14 +74,14 @@ ItemAttributeTable:
 	item XSpecial, QUICK_BATTLE_USE | SELLABLE
 	item CoinCase, 0
 	item OaksParcel, 0
-	item ItemFinder, QUICK_FIELD_USE
+	item ItemFinder, QUICK_FIELD_USE | EXIT_MENU
 	item SilphScope, 0
-	item PokeFlute, QUICK_FIELD_USE | QUICK_BATTLE_USE
+	item PokeFlute, QUICK_FIELD_USE | QUICK_BATTLE_USE | EXIT_MENU
 	item LiftKey, 0
 	item ExpAll, 0
-	item OldRod, QUICK_FIELD_USE
-	item GoodRod, QUICK_FIELD_USE
-	item SuperRod, QUICK_FIELD_USE
+	item OldRod, QUICK_FIELD_USE | EXIT_MENU
+	item GoodRod, QUICK_FIELD_USE | EXIT_MENU
+	item SuperRod, QUICK_FIELD_USE | EXIT_MENU
 	item PPUp, QUICK_FIELD_USE
 	item Ether, QUICK_FIELD_USE | QUICK_BATTLE_USE
 	item MaxEther, QUICK_FIELD_USE | QUICK_BATTLE_USE
