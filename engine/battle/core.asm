@@ -2516,7 +2516,8 @@ RestoreBattleScreenFromInventory:
 
 	call ClearSprites
 	call LoadScreenTilesFromBuffer1
-	call Delay3
+	ld c, 12
+	call DelayFrames
 
 	ld c, 2
 	jp GBFadeInFromWhiteCustomDelay

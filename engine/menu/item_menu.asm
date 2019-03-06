@@ -1,8 +1,8 @@
 ; TODO
 
-; Finish properly loading the item menu from Battle and Pokemart
-; - what about safari?
-; remove old man battle
+; Finish using Item menu while in battle
+
+; Finish properly loading item menu from Pokemart
 
 ; Finish the Quick Use actions battle and field
 
@@ -60,7 +60,7 @@ DisplayItemMenu:
     
     ld hl, rLCDC
     set LCD_TILE_DATA_F, [hl] ; use upper sprites
-        
+
     call HideSprites
 
     call ClearScreen
@@ -194,15 +194,20 @@ DisplayItemMenu:
 
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
-    ld de, InventoryScreen2GFX
-    ld hl, vChars0 + (TILE_FILTER_TEXT_START * BYTES_PER_TILE)
-    lb bc, BANK(InventoryScreen2GFX), (InventoryScreen2GFXEnd-InventoryScreen2GFX) / BYTES_PER_TILE
-    call CopyVideoData
+    ld hl, rLCDC
+    res LCD_ENABLE_F, [hl] ; turn LCD off
 
-    ld de, InventoryScreenGFX
-    ld hl, vChars0 + TILE_TABS_START * BYTES_PER_TILE
-    lb bc, BANK(InventoryScreenGFX), (InventoryScreenGFXEnd-InventoryScreenGFX) / BYTES_PER_TILE
-    call CopyVideoData
+    ld a, BANK(InventoryScreen2GFX)
+    ld hl, InventoryScreen2GFX
+    ld bc, InventoryScreen2GFXEnd-InventoryScreen2GFX
+    ld de, vChars0 + (TILE_FILTER_TEXT_START * BYTES_PER_TILE)
+    call FarCopyData
+
+    ld a, BANK(InventoryScreenGFX)
+    ld hl, InventoryScreenGFX
+    ld bc, InventoryScreenGFXEnd-InventoryScreenGFX
+    ld de, vChars0 + (TILE_TABS_START * BYTES_PER_TILE)
+    call FarCopyData
 
     ; Place the tab top tiles
     coord hl, 0, 0
@@ -295,8 +300,10 @@ InitializeInventoryScreen:
     inc a
     dec b
     jr nz, .placeFilterTopLoop
-
-    ;fall through
+    call PlaceInventoryFilterRadioTile
+    ld hl, rLCDC
+    set LCD_ENABLE_F, [hl] ; turn LCD back on
+    ret
 
 PlaceInventoryFilterRadioTile:
     ld a, [wInventoryProperties]
