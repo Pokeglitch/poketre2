@@ -1,3 +1,10 @@
+; To get the item filter in wd11e, returns in wd11e
+GetItemFilterwD11E:
+    ld a, [wd11e]
+    call GetItemFilter
+    ld [wd11e], a
+    ret
+
 ; To get the filter (a) for the given item (a)
 GetItemFilter:
     cp HM_01

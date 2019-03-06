@@ -2280,33 +2280,60 @@ BagWasSelected:
 	ld a, FILTER_BATTLE
 	ld [wInventoryFilter], a
 	farcall DisplayItemMenu
-	jr nc, UseBagItem
+	jr nc, .useBagItem
 	
 	; go back to battle menu if an item was not selected
 	call RestoreBattleScreenFromInventory
 	jp DisplayBattleMenuAfterLoad
 
-UseBagItem:
-	; either use an item from the bag or use a safari zone item
+.useBagItem
 	ld a, [wcf91]
 	ld [wd11e], a
 	call GetItemName
 	call CopyStringToCF4B ; copy name
+	; Get the item filter in wd11e
+	farcall GetItemFilterwD11E
+	ld a, [wd11e]
+	bit BIT_APPLY_TO_PK, a
+	; Skip down if it doesn't get applied to a pokemon
+	jr z, .notPartyScreen
+
+	ld c, 2
+	call GBFadeOutToWhiteCustomDelay
+	
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; switch tiles back
+	
+	xor a
+	ld [wPseudoItemID], a
+	call UseItem
+
+	ld a, [wActionResultOrTookBattleTurn]
+	and a ; was the item used successfully?
+	jr z, BagWasSelected ; if not, go back to the bag menu
+	call RestoreBattleScreenFromInventory
+	jr UseBagItem.afterBagItemUsed
+
+.notPartyScreen
+	call RestoreBattleScreenFromInventory
+	;fall through
+
+UseBagItem:
 	xor a
 	ld [wPseudoItemID], a
 	call UseItem
 	call LoadHudTilePatterns
 	call ClearSprites
-	xor a
-	ld [wCurrentMenuItem], a
+
 	ld a, [wBattleType]
 	cp BATTLE_TYPE_SAFARI
 	jr z, .checkIfMonCaptured
 
 	ld a, [wActionResultOrTookBattleTurn]
 	and a ; was the item used successfully?
-	jp z, BagWasSelected ; if not, go back to the bag menu
+	jr z, BagWasSelected ; if not, go back to the bag menu
 
+.afterBagItemUsed
 	ld a, [wPlayerBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; is the player using a multi-turn move like wrap?
 	jr z, .checkIfMonCaptured
@@ -2324,12 +2351,8 @@ UseBagItem:
 	ld a, [wBattleType]
 	cp BATTLE_TYPE_SAFARI
 	jr z, .returnAfterUsingItem_NoCapture
-; not a safari battle
-	call LoadScreenTilesFromBuffer1
-	call DrawHUDsAndHPBars
-	call Delay3
+	
 .returnAfterUsingItem_NoCapture
-
 	call GBPalNormal
 	and a ; reset carry
 	ret
@@ -2346,6 +2369,25 @@ UseBagItem:
 ItemsCantBeUsedHereText:
 	TX_FAR _ItemsCantBeUsedHereText
 	db "@"
+
+RestoreBattleScreenFromInventory:
+	ld c, 2
+	call GBFadeOutToWhiteCustomDelay
+
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; reset sprites
+
+	call ClearSprites
+	; TODO - LoadHudTilePatterns can be removed after party menu is finished
+	; iuf party menu also uses tiles at 8000 instead of 9000
+	call LoadHudTilePatterns
+	call LoadScreenTilesFromBuffer1
+	call DrawHUDsAndHPBars
+	ld c, 12
+	call DelayFrames
+
+	ld c, 2
+	jp GBFadeInFromWhiteCustomDelay
 
 PartyMenuOrRockOrRun:
 	dec a ; was Run selected?
@@ -2506,21 +2548,6 @@ BattleMenu_RunWasSelected:
 	and a
 	ret nz ; return if the player couldn't escape
 	jp DisplayBattleMenu
-
-RestoreBattleScreenFromInventory:
-	ld c, 2
-	call GBFadeOutToWhiteCustomDelay
-
-    ld hl, rLCDC
-    res LCD_TILE_DATA_F, [hl] ; reset sprites
-
-	call ClearSprites
-	call LoadScreenTilesFromBuffer1
-	ld c, 12
-	call DelayFrames
-
-	ld c, 2
-	jp GBFadeInFromWhiteCustomDelay
 
 MoveSelectionMenu:
 	ld a, [wMoveMenuType]

@@ -1,16 +1,17 @@
 ; TODO
 
-; Finish using Item menu while in battle
-
 ; Finish properly loading item menu from Pokemart
 
 ; Finish the Quick Use actions battle and field
 
 ; Add in santa's sack cheat for quantity on-key items
 
-; Create separate key/regular items tables
+; Load all item data into the new table
+; - Give TMs their own table...keep 'KeyItems' as regular items
+; -- TMs use a bitfield instead of invidivual bytes
 ; - Update all functions to pull data from this table
-; -- Update all function calls to signify if key or regular item
+; -- Update all TM function calls to use separate function
+; -- Check everywhere HM_01 or TM_01 is used
 ; - Update the RAM to hav a single list of quantities in index ID order
 ;    instead of being grouped by pocket
 
