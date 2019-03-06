@@ -2371,6 +2371,8 @@ ItemsCantBeUsedHereText:
 	db "@"
 
 RestoreBattleScreenFromInventory:
+	ld a, [wcf91] ; save the item
+	push af
 	ld c, 2
 	call GBFadeOutToWhiteCustomDelay
 
@@ -2387,7 +2389,10 @@ RestoreBattleScreenFromInventory:
 	call DelayFrames
 
 	ld c, 2
-	jp GBFadeInFromWhiteCustomDelay
+	call GBFadeInFromWhiteCustomDelay
+	pop af
+	ld [wcf91], a ; restore the item
+	ret
 
 PartyMenuOrRockOrRun:
 	dec a ; was Run selected?
