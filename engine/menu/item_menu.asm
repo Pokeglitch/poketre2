@@ -1,6 +1,9 @@
 ; TODO
 
-; Finish properly loading the item menu from all locations
+; Finish properly loading the item menu from Battle and Pokemart
+; - what about safari?
+; remove old man battle
+
 ; Finish the Quick Use actions battle and field
 
 ; Add in santa's sack cheat for quantity on-key items
@@ -13,10 +16,10 @@
 
 ; Move Descriptions should show the type, power, accuracy, and PP
 
-; Remove "FilteredBag" references (is that location used anywhere else?)
-; - Move wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
+; Remove "FilteredBag" references (is that RAM location used anywhere else?)
+; Find a better home for wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
 
-; Add in 'Give' item function
+; Add in 'Give' item function, and way ti view inventory from party menu (for "Give" or "Use")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Returns the cursor position (a)
@@ -54,6 +57,10 @@ ConfigureInventoryJoypad:
 DisplayItemMenu:
     ld c, 2
     call GBFadeOutToWhiteCustomDelay
+    
+    ld hl, rLCDC
+    set LCD_TILE_DATA_F, [hl] ; use upper sprites
+        
     call HideSprites
 
     call ClearScreen
@@ -188,7 +195,7 @@ DisplayItemMenu:
 ; To load the gfx and draw the static portions of the Inventory screen
 InitializeInventoryScreen:
     ld de, InventoryScreen2GFX
-    ld hl, vChars2 + (TILE_FILTER_TEXT_START * BYTES_PER_TILE)
+    ld hl, vChars0 + (TILE_FILTER_TEXT_START * BYTES_PER_TILE)
     lb bc, BANK(InventoryScreen2GFX), (InventoryScreen2GFXEnd-InventoryScreen2GFX) / BYTES_PER_TILE
     call CopyVideoData
 
@@ -326,7 +333,7 @@ UpdateDisplayForActivePocket:
     call GetActivePocketAttributePointer
     ld d, h
     ld e, l
-    ld hl, vChars2
+    ld hl, vChars0
     lb bc, BANK(InventoryBattlePocketGFX), GFX_POCKETS_WIDTH * GFX_POCKETS_HEIGHT
     call CopyVideoData
     

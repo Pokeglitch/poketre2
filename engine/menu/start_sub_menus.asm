@@ -495,20 +495,29 @@ StartMenu_Item:
 	jp CloseStartMenu ; Otherwise, exit the menu
 
 .useItem_partyMenu
+	ld c, 2
+	call GBFadeOutToWhiteCustomDelay
+	
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; switch tiles back
+	
 	call UseItem
 	jp .reenter
 
 ReloadOverworldDataFromInventory:
-	ld c, 3
+	ld c, 2
 	call GBFadeOutToWhiteCustomDelay
+	
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; switch tiles back
+
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a ; re-enable sprites
 	call ClearScreen
 	call ReloadMapData
-	call LoadTextBoxTilePatterns
 	call ReloadMapSpriteTilePatterns
 	call UpdateSprites
-	ld c, 3
+	ld c, 2
 	jp GBFadeInFromWhiteCustomDelay
 
 ChoseItemText:

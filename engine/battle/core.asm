@@ -2088,6 +2088,8 @@ CenterMonName:
 
 DisplayBattleMenu:
 	call LoadScreenTilesFromBuffer1 ; restore saved screen
+
+DisplayBattleMenuAfterLoad:
 	ld a, [wBattleType]
 	and a
 	jr nz, .nonstandardbattle
@@ -2275,47 +2277,14 @@ DisplayBattleMenu:
 	jr UseBagItem
 
 BagWasSelected:
-	call LoadScreenTilesFromBuffer1
-	ld a, [wBattleType]
-	and a ; is it a normal battle?
-	jr nz, .next
-
-; normal battle
-	call DrawHUDsAndHPBars
-.next
-	ld a, [wBattleType]
-	dec a ; is it the old man tutorial?
-	jr nz, DisplayPlayerBag ; no, it is a normal battle
-	ld hl, OldManItemList
-	ld a, l
-	ld [wListPointer], a
-	ld a, h
-	ld [wListPointer + 1], a
-	jr DisplayBagMenu
-
-OldManItemList:
-	db 1 ; # items
-	db POKE_BALL, 50
-	db -1
-
-DisplayPlayerBag:
-	; get the pointer to player's bag when in a normal battle
-	ld hl, wNumBagItems
-	ld a, l
-	ld [wListPointer], a
-	ld a, h
-	ld [wListPointer + 1], a
-
-DisplayBagMenu:
-	xor a
-	ld [wPrintItemPrices], a
-	ld a, ITEMLISTMENU
-	ld [wListMenuID], a
-	call DisplayListMenuID
-	ld a, $0
-	ld [wMenuWatchMovingOutOfBounds], a
-	ld [wMenuItemToSwap], a
-	jp c, DisplayBattleMenu ; go back to battle menu if an item was not selected
+	ld a, FILTER_BATTLE
+	ld [wInventoryFilter], a
+	farcall DisplayItemMenu
+	jr nc, UseBagItem
+	
+	; go back to battle menu if an item was not selected
+	call RestoreBattleScreenFromInventory
+	jp DisplayBattleMenuAfterLoad
 
 UseBagItem:
 	; either use an item from the bag or use a safari zone item
@@ -2537,6 +2506,20 @@ BattleMenu_RunWasSelected:
 	and a
 	ret nz ; return if the player couldn't escape
 	jp DisplayBattleMenu
+
+RestoreBattleScreenFromInventory:
+	ld c, 2
+	call GBFadeOutToWhiteCustomDelay
+
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; reset sprites
+
+	call ClearSprites
+	call LoadScreenTilesFromBuffer1
+	call Delay3
+
+	ld c, 2
+	jp GBFadeInFromWhiteCustomDelay
 
 MoveSelectionMenu:
 	ld a, [wMoveMenuType]
