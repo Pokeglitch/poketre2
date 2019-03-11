@@ -2467,27 +2467,12 @@ _PokemartItemBagFullText::
 	line "any more items."
 	prompt
 
-_PokemonSellingGreetingText::
-	text "What would you"
-	line "like to sell?"
-	done
-
 _PokemartTellSellPriceText::
 	text "I can pay you"
 	line "¥@"
 	TX_BCD hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text " for that."
 	done
-
-_PokemartItemBagEmptyText::
-	text "You don't have"
-	line "anything to sell."
-	prompt
-
-_PokemartUnsellableItemText::
-	text "I can't put a"
-	line "price on that."
-	prompt
 
 _PokemartThankYouText::
 	text "Thank you!"

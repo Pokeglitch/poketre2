@@ -35,53 +35,35 @@ DisplayPokemartDialogue_:
 	jp z, .sellMenu
 	dec a ; quitting?
 	jp z, .done
+
 .sellMenu
-
-; the same variables are set again below, so this code has no effect
-	xor a
-	ld [wPrintItemPrices], a
-	ld a, INIT_BAG_ITEM_LIST
-	ld [wInitListType], a
-	callab InitList
-
-	ld a, [wNumBagItems]
-	and a
-	jp z, .bagEmpty
-	ld hl, PokemonSellingGreetingText
-	call PrintText
 	call SaveScreenTilesToBuffer1 ; save screen
+
 .sellMenuLoop
-	call LoadScreenTilesFromBuffer1 ; restore saved screen
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; draw money text box
-	ld hl, wNumBagItems
-	ld a, l
-	ld [wListPointer], a
-	ld a, h
-	ld [wListPointer + 1], a
+	ld a, FILTER_POKEMART
+	ld [wInventoryFilter], a
+	
 	xor a
-	ld [wPrintItemPrices], a
-	ld [wCurrentMenuItem], a
-	ld a, ITEMLISTMENU
-	ld [wListMenuID], a
-	call DisplayListMenuID
-	jp c, .returnToMainPokemartMenu ; if the player closed the menu
+    ld [wUpdateSpritesEnabled], a ; Disable sprite updates
+
+	farcall DisplayItemMenu
+
+.handleInventoryChosen
+	jr nc, .confirmItemSale ; if an item was selected
+
+	; Otherwise, return to the Greeting menu
+	call ReloadPokemartDataFromInventory
+	jr .loop
+
 .confirmItemSale ; if the player is trying to sell a specific item
 	ld a, [wcf91]
 	ld [wWhichItem], a
-	call IsItemHM
-	jr c, .unsellableItem
-	call IsKeyItem
-	ld a, [wIsKeyItem]
-	and a
-	jr nz, .unsellableItem
 	ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
 	ld [hHalveItemPrices], a ; halve prices when selling
 	call DisplayChooseQuantityMenu
 	inc a
-	jr z, .sellMenuLoop ; if the player closed the choose quantity menu with the B button
+	jr z, .reenterSellMenu ; if the player closed the choose quantity menu with the B button
 	ld hl, PokemartTellSellPriceText
 	lb bc, 14, 1 ; location that PrintText always prints to, this is useless
 	call PrintText
@@ -92,13 +74,11 @@ DisplayPokemartDialogue_:
 	call DisplayTextBoxID ; yes/no menu
 	ld a, [wMenuExitMethod]
 	cp CHOSE_SECOND_ITEM
-	jr z, .sellMenuLoop ; if the player chose No or pressed the B button
+	jr nz, .sellItem
 
-; The following code is supposed to check if the player chose No, but the above
-; check already catches it.
-	ld a, [wChosenMenuItem]
-	dec a
-	jr z, .sellMenuLoop
+.reenterSellMenu
+	farcall ReEnterItemMenu
+	jr .handleInventoryChosen
 
 .sellItem
 	ld a, [wBoughtOrSoldItemInMart]
@@ -106,21 +86,13 @@ DisplayPokemartDialogue_:
 	jr nz, .skipSettingFlag1
 	inc a
 	ld [wBoughtOrSoldItemInMart], a
+
 .skipSettingFlag1
 	call AddAmountSoldToMoney
 	call RemoveItemFromInventory
 	jp .sellMenuLoop
-.unsellableItem
-	ld hl, PokemartUnsellableItemText
-	call PrintText
-	jp .returnToMainPokemartMenu
-.bagEmpty
-	ld hl, PokemartItemBagEmptyText
-	call PrintText
-	call SaveScreenTilesToBuffer1
-	jp .returnToMainPokemartMenu
-.buyMenu
 
+.buyMenu
 ; the same variables are set again below, so this code has no effect
 	ld a, 1
 	ld [wPrintItemPrices], a
@@ -226,6 +198,23 @@ DisplayPokemartDialogue_:
 	ld [wListScrollOffset], a
 	ret
 
+ReloadPokemartDataFromInventory:
+	ld c, 2
+	call GBFadeOutToWhiteCustomDelay
+	
+    ld hl, rLCDC
+    res LCD_TILE_DATA_F, [hl] ; switch tiles back
+
+	ld a, 1
+	ld [wUpdateSpritesEnabled], a ; re-enable sprites
+
+	call ReloadMapSpriteTilePatterns
+	call LoadScreenTilesFromBuffer1
+	call Delay3
+	
+	ld c, 2
+	jp GBFadeInFromWhiteCustomDelay
+
 PokemartBuyingGreetingText:
 	TX_FAR _PokemartBuyingGreetingText
 	db "@"
@@ -246,20 +235,8 @@ PokemartItemBagFullText:
 	TX_FAR _PokemartItemBagFullText
 	db "@"
 
-PokemonSellingGreetingText:
-	TX_FAR _PokemonSellingGreetingText
-	db "@"
-
 PokemartTellSellPriceText:
 	TX_FAR _PokemartTellSellPriceText
-	db "@"
-
-PokemartItemBagEmptyText:
-	TX_FAR _PokemartItemBagEmptyText
-	db "@"
-
-PokemartUnsellableItemText:
-	TX_FAR _PokemartUnsellableItemText
 	db "@"
 
 PokemartThankYouText:

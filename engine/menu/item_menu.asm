@@ -1,19 +1,35 @@
 ; TODO
 
 ; Finish properly loading item menu from Pokemart
+; - Move quantity menu location
+; - Make sure price and max amount is correct
+; - - Get price from new table
+; - Make sure screen is drawn properly after item is sold
 
 ; Finish the Quick Use actions battle and field
 
 ; Add in santa's sack cheat for quantity on-key items
 
+; Rename ItemMenu, item_menu, etc to Inventory
+
+;----------------------------------------------------------
+
 ; Load all item data into the new table
+; - Keep 'price' as a single byte
+
+; - Give each item an additional byte, which is the input to their Use action
+; -- ie. balls will have catch rate, potions are HP restored
+; -- Separate value for their Hold action?
+
 ; - Give TMs their own table...keep 'KeyItems' as regular items
+; -- Store the move id here
 ; -- TMs use a bitfield instead of invidivual bytes
+
 ; - Update all functions to pull data from this table
 ; -- Update all TM function calls to use separate function
 ; -- Check everywhere HM_01 or TM_01 is used
-; - Update the RAM to hav a single list of quantities in index ID order
-;    instead of being grouped by pocket
+
+;-------------------------------------------------------------
 
 ; Move Descriptions should show the type, power, accuracy, and PP
 
