@@ -1156,9 +1156,26 @@ HoldTextDisplayOpen::
 CloseTextDisplay::
 	ld a, [wCurMap]
 	call SwitchToMapRomBank
-	ld a, $90
-	ld [hWY], a ; move the window off the screen
+
+; TODO - if start menu, scroll whole screen (and reload eveything)
+	lb bc, 5 * PIXELS_PER_TILE - 3, SCREEN_HEIGHT_PIXELS - (5 * PIXELS_PER_TILE - 4)
+
+	ld a, -4
+	ld [wcf91], a
+
+.slideOut
+	ld a, c
+	ld [hWY], a
+	push bc
+	call UpdateSprites
+	pop bc
+
+	inc c
+	dec b
+	jr nz, .slideOut
+
 	call DelayFrame
+
 	call LoadGBPal
 	xor a
 	ld [H_AUTOBGTRANSFERENABLED], a ; disable continuous WRAM to VRAM transfer each V-blank
@@ -3052,34 +3069,13 @@ DivideBytes::
 	pop hl
 	ret
 
+LoadFontTilePatterns:
+	homecall LoadFontTilePatterns_
+	ret 
 
-LoadFontTilePatterns::
-	ld a, [rLCDC]
-	bit 7, a ; is the LCD enabled?
-	jr nz, .on
-.off
-	ld hl, BlackOnWhiteFontLettersGFX
-	ld de, vChars1
-	ld bc, BlackOnWhiteFontLettersGFXEnd - BlackOnWhiteFontLettersGFX
-	ld a, BANK(BlackOnWhiteFontLettersGFX)
-	call FarCopyData
-
-	ld hl, BlackOnWhiteFontSymbolsGFX
-	ld de, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
-	ld bc, BlackOnWhiteFontSymbolsGFXEnd - BlackOnWhiteFontSymbolsGFX
-	ld a, BANK(BlackOnWhiteFontSymbolsGFX)
-	jp FarCopyData ; if LCD is off, transfer all at once
-
-.on
-	ld de, BlackOnWhiteFontLettersGFX
-	ld hl, vChars1
-	lb bc, BANK(BlackOnWhiteFontLettersGFX), (BlackOnWhiteFontLettersGFXEnd - BlackOnWhiteFontLettersGFX) / BYTES_PER_TILE
-	call CopyVideoData
-
-	ld de, BlackOnWhiteFontSymbolsGFX
-	ld hl, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
-	lb bc, BANK(BlackOnWhiteFontSymbolsGFX), (BlackOnWhiteFontSymbolsGFXEnd - BlackOnWhiteFontSymbolsGFX) / BYTES_PER_TILE
-	jp CopyVideoData ; if LCD is on, transfer during V-blank
+LoadWhiteOnBlackFontTilePatterns:
+	homecall LoadWhiteOnBlackFontTilePatterns_
+	ret 
 
 LoadTextBoxTilePatterns::
 	ld a, [rLCDC]
@@ -4163,7 +4159,7 @@ ClearTextBox:
 	jp ClearScreenArea
 
 PrintText::
-; Print text hl at (1, 14).
+; Print text hl at (1, 1).
 	push hl
 	ld a, MESSAGE_BOX
 	ld [wTextBoxID], a
@@ -4172,9 +4168,8 @@ PrintText::
 	call Delay3
 	pop hl
 PrintText_NoCreatingTextBox::
-	coord bc, 1, 14
+	coord bc, 1, 1
 	jp TextCommandProcessor
-
 
 PrintNumber::
 ; Print the c-digit, b-byte value at de.

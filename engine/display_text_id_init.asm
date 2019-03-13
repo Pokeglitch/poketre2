@@ -8,27 +8,15 @@ DisplayTextIDInit:
 	ld a, [hSpriteIndexOrTextID] ; text ID (or sprite ID)
 	and a
 	jr nz, .notStartMenu
-; if text ID is 0 (i.e. the start menu)
-; Note that the start menu text border is also drawn in the function directly
-; below this, so this seems unnecessary.
-	CheckEvent EVENT_GOT_POKEDEX
-; start menu with pokedex
-	coord hl, 10, 0
-	ld b, $0e
-	ld c, $08
-	jr nz, .drawTextBoxBorder
-; start menu without pokedex
-	coord hl, 10, 0
-	ld b, $0c
-	ld c, $08
-	jr .drawTextBoxBorder
-; if text ID is not 0 (i.e. not the start menu) then do a standard dialogue text box
+
+; TODO - slide in all the way for start menu
+
 .notStartMenu
-	coord hl, 0, 12
-	ld b, $04
-	ld c, $12
-.drawTextBoxBorder
-	call TextBoxBorder
+	coord hl, 0, 0
+	ld b, 3
+	ld c, 18
+;	call TextBoxBorder
+
 .skipDrawingTextBoxBorder
 	ld hl, wFontLoaded
 	set 0, [hl]
@@ -68,11 +56,29 @@ DisplayTextIDInit:
 	add hl, de
 	dec c
 	jr nz, .spriteStandStillLoop
-	ld b, $9c ; window background address
-	call CopyScreenTileBufferToVRAM ; transfer background in WRAM to VRAM
-	xor a
-	ld [hWY], a ; put the window on the screen
-	call LoadFontTilePatterns
+
+	coord hl, 0, 0
+	lb bc, 5, SCREEN_WIDTH
+	call ClearScreenArea
+	
 	ld a, $01
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
+	
+	call LoadWhiteOnBlackFontTilePatterns
+
+	lb bc, 5 * PIXELS_PER_TILE - 3, SCREEN_HEIGHT_PIXELS
+
+	ld a, -16
+	ld [wcf91], a
+
+.slideIn
+	ld a, c
+	ld [hWY], a
+	push bc
+	call UpdateSprites
+	pop bc
+	dec c
+	dec b
+	jr nz, .slideIn
+
 	ret

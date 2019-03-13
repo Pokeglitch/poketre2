@@ -76,7 +76,7 @@ Char4ETest::
 	cp $4F ; line
 	jr nz, .next3
 	pop hl
-	coord hl, 1, 16
+	coord hl, 1, 3
 	push hl
 	jp PlaceNextChar_inc
 
@@ -270,12 +270,12 @@ Char58:: ; prompt
 	cp LINK_STATE_BATTLING
 	jp z, .ok
 	ld a, "▼"
-	Coorda 18, 16
+	Coorda 18, 3
 .ok
 	call ProtectedDelay3
 	call ManualTextScroll
 	ld a, " "
-	Coorda 18, 16
+	Coorda 18, 3
 Char57:: ; done
 	pop hl
 	ld de, Char58Text
@@ -288,22 +288,22 @@ Char58Text::
 Char51:: ; para
 	push de
 	ld a, "▼"
-	Coorda 18, 16
+	Coorda 18, 3
 	call ProtectedDelay3
 	call ManualTextScroll
-	coord hl, 1, 14
+	coord hl, 1, 1
 	lb bc, 3, 18
 	call ClearScreenArea
 	ld c, 20
 	call DelayFrames
 	pop de
-	coord hl, 1, 14
+	coord hl, 1, 1
 	jp PlaceNextChar_inc
 
 Char49::
 	push de
 	ld a, "▼"
-	Coorda 18, 16
+	Coorda 18, 3
 	call ProtectedDelay3
 	call ManualTextScroll
 	coord hl, 1, 10
@@ -319,19 +319,19 @@ Char49::
 
 Char4B::
 	ld a, "▼"
-	Coorda 18, 16
+	Coorda 18, 3
 	call ProtectedDelay3
 	push de
 	call ManualTextScroll
 	pop de
 	ld a, " "
-	Coorda 18, 16
+	Coorda 18, 3
 	;fall through
 Char4C::
 	push de
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
-	coord hl, 1, 16
+	coord hl, 1, 3
 	pop de
 	jp PlaceNextChar_inc
 
@@ -340,8 +340,8 @@ Char4C::
 ; first time, copy the two rows of text to the "in between" rows that are usually emtpy
 ; second time, copy the bottom row of text into the top row of text
 ScrollTextUpOneLine::
-	coord hl, 0, 15 ; top row of text
-	coord de, 0, 14 ; empty line above text
+	coord hl, 0, 2 ; top row of text
+	coord de, 0, 1 ; empty line above text
 	ld b, SCREEN_WIDTH * 2
 .copyText
 	ld a, [hli]
@@ -349,7 +349,7 @@ ScrollTextUpOneLine::
 	inc de
 	dec b
 	jr nz, .copyText
-	coord hl, 1, 16
+	coord hl, 1, 3
 	ld a, " "
 	ld b, SCREEN_WIDTH - 2
 .clearText
@@ -504,7 +504,7 @@ TextCommand03::
 ; (no arguments)
 TextCommand05::
 	pop hl
-	coord bc, 1, 16 ; address of second line of dialogue text box
+	coord bc, 1, 3 ; address of second line of dialogue text box
 	jp NextTextCommand
 
 ; blink arrow and wait for A or B to be pressed
@@ -515,12 +515,12 @@ TextCommand06::
 	cp LINK_STATE_BATTLING
 	jp z, TextCommand0D
 	ld a, "▼"
-	Coorda 18, 16 ; place down arrow in lower right corner of dialogue text box
+	Coorda 18, 3 ; place down arrow in lower right corner of dialogue text box
 	push bc
 	call ManualTextScroll ; blink arrow and wait for A or B to be pressed
 	pop bc
 	ld a, " "
-	Coorda 18, 16 ; overwrite down arrow with blank space
+	Coorda 18, 3 ; overwrite down arrow with blank space
 	pop hl
 	jp NextTextCommand
 
@@ -529,11 +529,11 @@ TextCommand06::
 ; (no arguments)
 TextCommand07::
 	ld a, " "
-	Coorda 18, 16 ; place blank space in lower right corner of dialogue text box
+	Coorda 18, 3 ; place blank space in lower right corner of dialogue text box
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
 	pop hl
-	coord bc, 1, 16 ; address of second line of dialogue text box
+	coord bc, 1, 3 ; address of second line of dialogue text box
 	jp NextTextCommand
 
 ; execute asm inline

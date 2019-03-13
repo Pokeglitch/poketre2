@@ -91,21 +91,12 @@ MainMenu:
 	ld c, 5
 	call DelayFrames
 	
-	ld hl, vChars1
-	ld de, WhiteOnBlackFontLettersGFX
-	lb bc, BANK(WhiteOnBlackFontLettersGFX), (WhiteOnBlackFontLettersGFXEnd - WhiteOnBlackFontLettersGFX) / BYTES_PER_TILE
-	call CopyVideoData
-	
 	ld hl, vChars0 + TITLE_SCREEN_MENU_LETTERS_TILE_START * BYTES_PER_TILE
 	ld de, TitleScreenMenuLettersGFX
 	lb bc, BANK(TitleScreenMenuLettersGFX), (TitleScreenMenuLettersGFXEnd - TitleScreenMenuLettersGFX) / BYTES_PER_TILE
 	call CopyVideoData
 	
-	ld hl, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
-	ld de, WhiteOnBlackFontSymbolsGFX
-	lb bc, BANK(WhiteOnBlackFontSymbolsGFX), (WhiteOnBlackFontSymbolsGFXEnd - WhiteOnBlackFontSymbolsGFX) / BYTES_PER_TILE
-	call CopyVideoData
-	
+	call LoadWhiteOnBlackFontTilePatterns
 	call InitMainMenuOAM
 	
 	; enable OAM

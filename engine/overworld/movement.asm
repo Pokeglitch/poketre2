@@ -505,24 +505,21 @@ CheckSpriteAvailability:
 	cp b
 	jr c, .spriteInvisible  ; right of screen region
 .skipXVisibilityTest
-; make the sprite invisible if a text box is in front of it
-; $5F is the maximum number for map tiles
-	call GetTileSpriteStandsOn
-	ld d, $60
-	ld a, [hli]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=$60 (bottom left tile)
-	ld a, [hld]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=$60 (bottom right tile)
-	ld bc, -20
-	add hl, bc              ; go back one row of tiles
-	ld a, [hli]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=$60 (top left tile)
-	ld a, [hl]
-	cp d
-	jr c, .spriteVisible    ; standing on tile with ID >=$60 (top right tile)
+	; Check window location for textbox purpose
+	ld h, wSpriteStateData1 / $100
+	ld a, [H_CURRENTSPRITEOFFSET]
+	add $4
+	ld l, a
+	ld a, [hWY]
+	cp SCREEN_HEIGHT_PIXELS
+	jr nc, .spriteVisible ; if Window Y is offscreen, skip down
+	push hl
+	ld hl, wcf91
+	add [hl] ; there is a delay, so adjust the threshold based on direction of sliding action
+	pop hl
+	cp [hl]
+	jr nc, .spriteVisible ;if the window is at the sprite location, then hide
+
 .spriteInvisible
 	ld h, wSpriteStateData1 / $100
 	ld a, [H_CURRENTSPRITEOFFSET]
@@ -531,6 +528,7 @@ CheckSpriteAvailability:
 	ld [hl], $ff       ; c1x2
 	scf
 	jr .done
+
 .spriteVisible
 	ld c, a
 	ld a, [wWalkCounter]

@@ -1,3 +1,16 @@
+; TODO - 
+; Fix all textbox scenarios (mart, etc)
+; In home/text.asm, double check / test all commands
+; - Guy next to Pewter mart doesnt clear textbox properly
+; -- also why does his sprite flash / disappear during his script?
+; - Char49 is Pokedex?
+; For start menu, slide all the way (CloseTextDisplay, DisplayTextIDInit)
+; - make these dynamic for all size windows, so it can be used for Route names too
+; Just restore from buffer instead of redrawing entirely?
+; In DisplayTextBoxID_, what "TextboxBorder" should be removed?
+; Is wcf91 acceptable to use for the sprite offset value? probably not...
+;--------------------------------
+
 ; function to draw various text boxes
 DisplayTextBoxID_:
 	ld a, [wTextBoxID]
@@ -28,13 +41,13 @@ DisplayTextBoxID_:
 .coordTableMatch
 	call GetTextBoxIDCoords
 	call GetAddressOfScreenCoords
-	call TextBoxBorder
+;	call TextBoxBorder
 	ret
 .textAndCoordTableMatch
 	call GetTextBoxIDCoords
 	push hl
 	call GetAddressOfScreenCoords
-	call TextBoxBorder
+;	call TextBoxBorder
 	pop hl
 	call GetTextBoxIDText
 	ld a, [wd730]
@@ -141,7 +154,7 @@ TextBoxFunctionTable:
 ; 03: column of lower right corner
 ; 04: row of lower right corner
 TextBoxCoordTable:
-	db MESSAGE_BOX,       0, 13, 19, 17
+	db MESSAGE_BOX,       0,  0, 19, 4
 	db $03,               0,  0, 19, 14
 	db $07,               0,  0, 11,  6
 	db LIST_MENU_BOX,     4,  2, 19, 12

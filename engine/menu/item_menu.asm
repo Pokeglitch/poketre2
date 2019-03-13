@@ -5,6 +5,10 @@
 ; - Make sure price and max amount is correct
 ; - - Get price from new table
 ; - Make sure screen is drawn properly after item is sold
+; Show players current quantity for each item when Buying
+; Need new sell screen to show description and quantity player already has
+; -- should it use the same inventory screen?
+; -- Filter can hide ones player cant afford or already maxed out
 
 ; Finish the Quick Use actions battle and field
 

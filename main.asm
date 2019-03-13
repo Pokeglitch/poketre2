@@ -162,6 +162,7 @@ BlackOnWhiteFontLettersGFX:		INCBIN "gfx/black_on_white_font_letters.2bpp"
 BlackOnWhiteFontLettersGFXEnd:
 BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/black_on_white_font_symbols.2bpp"
 BlackOnWhiteFontSymbolsGFXEnd:
+WhiteTileGFX: INCBIN "gfx/white_tile.2bpp"
 
 ABTiles:                        INCBIN "gfx/AB.2bpp"
 HpBarAndStatusGraphics:         INCBIN "gfx/hp_bar_and_status.2bpp"
@@ -1929,6 +1930,7 @@ INCLUDE "engine/mon_party_sprites.asm"
 INCLUDE "engine/in_game_trades.asm"
 INCLUDE "engine/palettes.asm"
 INCLUDE "engine/save.asm"
+INCLUDE "engine/font_tiles.asm"
 
 
 SECTION "bank1D",ROMX,BANK[$1D]
@@ -2135,6 +2137,8 @@ WhiteOnBlackFontLettersGFXEnd:
 
 WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/white_on_black_font_symbols.2bpp"
 WhiteOnBlackFontSymbolsGFXEnd:
+
+BlackTileGFX: INCBIN "gfx/black_tile.2bpp"
 
 TitleScreenMenuLettersGFX: INCBIN "gfx/titlescreen/menu_letters.2bpp"
 TitleScreenMenuLettersGFXEnd:
