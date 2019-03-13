@@ -1,23 +1,128 @@
-;TODO - Use this for main manu
-LoadWhiteOnBlackFontTilePatterns_::
-	ld a, [rLCDC]
-	bit 7, a ; is the LCD enabled?
+TextBoxBorder_::
+; Draw a c×b text box at hl.
+	; top row
+	push hl
+	ld a, "┌"
+	ld [hli], a
+	inc a ; ─
+	call NPlaceChar
+	inc a ; ┐
+	ld [hl], a
+	pop hl
 
+	ld de, SCREEN_WIDTH
+	add hl, de
+
+	; middle rows
+.next
+	push hl
+	ld a, "│"
+	ld [hli], a
+	ld a, " "
+	call NPlaceChar
+	ld [hl], "│"
+	pop hl
+
+	ld de, SCREEN_WIDTH
+	add hl, de
+	dec b
+	jr nz, .next
+
+	; bottom row
+	ld a, "└"
+	ld [hli], a
+	ld a, "─"
+	call NPlaceChar
+	ld [hl], "┘"
+	ret
+
+; TODO - constants
+NewTextBoxBorder_:
+; Draw a c×b text box at hl.
+	; top row
+	push hl
+	ld a, $77
+	ld [hli], a
+	inc a
+	call NPlaceChar
+	inc a
+	ld [hl], a
+	pop hl
+
+	ld de, SCREEN_WIDTH
+	add hl, de
+
+	; middle rows
+.next
+	push hl
+	ld a, $7A
+	ld [hli], a
+	ld a, " "
+	call NPlaceChar
+	ld [hl], $7B
+	pop hl
+
+	ld de, SCREEN_WIDTH
+	add hl, de
+	dec b
+	jr nz, .next
+
+	; bottom row
+	ld a, $7C
+	ld [hli], a
+	inc a
+	call NPlaceChar
+    inc a
+	ld [hl], a
+	ret
+
+; Scroll the textbox
+ScrollTextbox::
+    ld hl, wTextboxScrollDelta
+    ld a, [hWY]
+    add [hl]
+    ld [hWY], a
+    dec hl
+    dec [hl]
+    ret
+
+LoadFontTilePatterns_::
+	ld hl, BlackOnWhiteFontLettersGFX
+	ld de, BlackOnWhiteFontSymbolsGFX
+    ld bc, WhiteTileGFX
+	ld a, BANK(BlackOnWhiteFontLettersGFX)
+	jr LoadFontTilePatternsCommon
+    
+LoadWhiteOnBlackFontTilePatterns_::
 	ld hl, WhiteOnBlackFontLettersGFX
 	ld de, WhiteOnBlackFontSymbolsGFX
     ld bc, BlackTileGFX
 	ld a, BANK(WhiteOnBlackFontLettersGFX)
-	jr z, LoadFontTilePatternsLCDOff
-	jr LoadFontTliePatternsLCDOn
+	jr LoadFontTilePatternsCommon
 
-LoadFontTilePatternsLCDOff:
+
+LoadBlackOnLightFontTilePatterns_::
+	ld hl, BlackOnLightFontLettersGFX
+	ld de, BlackOnLightFontSymbolsGFX
+    ld bc, LightTextboxBorderGFX
+	ld a, BANK(BlackOnLightFontLettersGFX)
+    ; fall through
+
+LoadFontTilePatternsCommon:
+    push af
+	ld a, [rLCDC]
+	bit 7, a ; is the LCD enabled?
+    jr nz, .lcdOn
+
+    pop af
 	push de
     push hl
 	push af
     ld h, b
     ld l, c
-    ld de, vChars2 + $7F0
-    ld bc, BYTES_PER_TILE
+    ld de, vChars2 + $770
+    ; TODO - use white on black for consistency
+    ld bc, LightTextboxBorderGFXEnd - LightTextboxBorderGFX
     call FarCopyData
 
     pop af
@@ -33,26 +138,17 @@ LoadFontTilePatternsLCDOff:
 	ld bc, WhiteOnBlackFontSymbolsGFXEnd - WhiteOnBlackFontSymbolsGFX
 	jp FarCopyData
 
-LoadFontTilePatterns_::
-	ld a, [rLCDC]
-	bit 7, a ; is the LCD enabled?
 
-	ld hl, BlackOnWhiteFontLettersGFX
-	ld de, BlackOnWhiteFontSymbolsGFX
-    ld bc, WhiteTileGFX
-	ld a, BANK(BlackOnWhiteFontLettersGFX)
-	jr z, LoadFontTilePatternsLCDOff
-
-; fall through
-LoadFontTliePatternsLCDOn:
+.lcdOn
+    pop af
 	push de
     push hl
 	push af
     ld d, b
     ld e, c
     ld b, a
-    ld hl, vChars2 + $7F0
-    ld c, 1
+    ld hl, vChars2 + $770
+    ld c, (LightTextboxBorderGFXEnd - LightTextboxBorderGFX) / BYTES_PER_TILE
     call CopyVideoData
 	
     pop bc

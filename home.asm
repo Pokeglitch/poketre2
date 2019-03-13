@@ -1157,23 +1157,24 @@ CloseTextDisplay::
 	ld a, [wCurMap]
 	call SwitchToMapRomBank
 
-; TODO - if start menu, scroll whole screen (and reload eveything)
-	lb bc, 5 * PIXELS_PER_TILE - 3, SCREEN_HEIGHT_PIXELS - (5 * PIXELS_PER_TILE - 4)
+	ld hl, wTextboxScrollCyclesRemaining
+	; TODO - this depends on the type of box (sign, text, start menu (?) )
+	ld [hl], 5 * PIXELS_PER_TILE - 4
+	inc hl
+	ld a, 1
+	ld [hld], a
 
-	ld a, -4
-	ld [wcf91], a
-
-.slideOut
-	ld a, c
-	ld [hWY], a
-	push bc
+.scrollOut
+	ld a, [hl]
+	and a
+	jr z, .doneScrolling
+	push hl
+	farcall ScrollTextbox
 	call UpdateSprites
-	pop bc
+	pop hl
+	jr .scrollOut
 
-	inc c
-	dec b
-	jr nz, .slideOut
-
+.doneScrolling
 	call DelayFrame
 
 	call LoadGBPal
@@ -3075,6 +3076,10 @@ LoadFontTilePatterns:
 
 LoadWhiteOnBlackFontTilePatterns:
 	homecall LoadWhiteOnBlackFontTilePatterns_
+	ret 
+
+LoadBlackOnLightFontTilePatterns:
+	homecall LoadBlackOnLightFontTilePatterns_
 	ret 
 
 LoadTextBoxTilePatterns::

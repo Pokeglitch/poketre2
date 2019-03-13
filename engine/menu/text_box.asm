@@ -1,14 +1,38 @@
-; TODO - 
+; TODO -
+
+; Try different adjustment factors for scrolling downwards (8 instead of 4?)
+
+; LoadFontTilePatterns need an input to decide if loading the border is needed
+; - if a is 0, or if a is 1 (check before backing up current bank)
+; - Dont load the border for Start Menu, etc
+; - only draw the border for certain types, like Sign Posts
+; -- In DisplayTextBoxID_, see which commented "TextboxBorder" should remain
+; - sign posts can have different heights?
+
+; Why does Link Center lady disappear when talking to phone guy in Pewter PokeCenter?
+
+; Different size and style for different text box types (signs, etc)
+; - also different scroll cycle counts
+; - When scrolling out, determine the cycle count and delta based on window position
+
+; Put all font in same bank, reference same tile type for consistency when calculating size
+
+; Draw the first "set" of printing before scrolling?
+
 ; Fix all textbox scenarios (mart, etc)
 ; In home/text.asm, double check / test all commands
 ; - Guy next to Pewter mart doesnt clear textbox properly
 ; -- also why does his sprite flash / disappear during his script?
 ; - Char49 is Pokedex?
-; For start menu, slide all the way (CloseTextDisplay, DisplayTextIDInit)
-; - make these dynamic for all size windows, so it can be used for Route names too
+
+; Add route names pop to ensure it still works when user can move around
+
 ; Just restore from buffer instead of redrawing entirely?
-; In DisplayTextBoxID_, what "TextboxBorder" should be removed?
-; Is wcf91 acceptable to use for the sprite offset value? probably not...
+
+; Ensure all font types have the radius circle fill color in same positions
+; -- also the solid colors, can remove "PkMn" tiles...
+
+; Move wTextboxScrollCyclesRemaining to a new location
 ;--------------------------------
 
 ; function to draw various text boxes

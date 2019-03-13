@@ -3254,6 +3254,12 @@ wPermanentDataEnd::
 
 wPermanentDataChecksum::
 
+wTextboxScrollCyclesRemaining::
+	ds 1
+
+wTextboxScrollDelta::
+	ds 1
+
 SECTION "Stack", WRAM0[$df00]
 	ds $ff
 wStack:: ; dfff

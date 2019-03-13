@@ -6,9 +6,11 @@
 ; - - Get price from new table
 ; - Make sure screen is drawn properly after item is sold
 ; Show players current quantity for each item when Buying
+
 ; Need new sell screen to show description and quantity player already has
-; -- should it use the same inventory screen?
-; -- Filter can hide ones player cant afford or already maxed out
+; - should show if holdable item or not as well
+
+; Description should be clear if an item is holdable or not (or place a tile)
 
 ; Finish the Quick Use actions battle and field
 
@@ -17,6 +19,9 @@
 ; Rename ItemMenu, item_menu, etc to Inventory
 
 ;----------------------------------------------------------
+
+; More efficient if the quantities are stored in index order
+; - rather than grouped by pocket?
 
 ; Load all item data into the new table
 ; - Keep 'price' as a single byte

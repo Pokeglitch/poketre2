@@ -2170,3 +2170,13 @@ InventoryHealthPocketGFX: INCBIN "gfx/inventory/health_pocket.2bpp"
 InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"
 
 INCLUDE "text/item_descriptions.asm"
+
+SECTION "TextGFX", ROMX, BANK[$3E]
+BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
+BlackOnLightFontLettersGFXEnd:
+
+BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
+BlackOnLightFontSymbolsGFXEnd:
+
+LightTextboxBorderGFX: INCBIN "gfx/text/light_border.2bpp"
+LightTextboxBorderGFXEnd:

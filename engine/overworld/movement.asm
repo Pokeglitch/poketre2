@@ -513,10 +513,26 @@ CheckSpriteAvailability:
 	ld a, [hWY]
 	cp SCREEN_HEIGHT_PIXELS
 	jr nc, .spriteVisible ; if Window Y is offscreen, skip down
-	push hl
-	ld hl, wcf91
-	add [hl] ; there is a delay, so adjust the threshold based on direction of sliding action
-	pop hl
+	push af
+	ld a, [wTextboxScrollCyclesRemaining]
+	and a
+	jr z, .notMoving ; if the textbox is not scrolling, then drop down
+	ld a, [wTextboxScrollDelta]
+	bit 7, a ; direction
+	jr z, .textboxSidingDownwards
+
+	; not sliding downwards
+.notMoving
+	pop af
+	sub 16 ; the OAM starts 1 tile offscreen, so adjust
+	jr .compareToWindowPosition
+
+; If sliding downwards, dont adjust as much so the sprites reappear faster
+.textboxSidingDownwards
+	pop af
+	sub 4
+
+.compareToWindowPosition
 	cp [hl]
 	jr nc, .spriteVisible ;if the window is at the sprite location, then hide
 

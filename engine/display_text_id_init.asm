@@ -61,24 +61,31 @@ DisplayTextIDInit:
 	lb bc, 5, SCREEN_WIDTH
 	call ClearScreenArea
 	
+	coord hl, 0, 0
+	lb bc, 3, SCREEN_WIDTH-2
+	call NewTextBoxBorder
+
 	ld a, $01
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
 	
-	call LoadWhiteOnBlackFontTilePatterns
+	call LoadBlackOnLightFontTilePatterns
 
-	lb bc, 5 * PIXELS_PER_TILE - 3, SCREEN_HEIGHT_PIXELS
-
-	ld a, -16
-	ld [wcf91], a
-
-.slideIn
-	ld a, c
+	; Initialize textbox position
+	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a
-	push bc
-	call UpdateSprites
-	pop bc
-	dec c
-	dec b
-	jr nz, .slideIn
 
-	ret
+	ld hl, wTextboxScrollCyclesRemaining
+	ld [hl], 5 * PIXELS_PER_TILE - 4
+	inc hl
+	ld a, -1
+	ld [hld], a
+
+.scrollIn
+	ld a, [hl]
+	and a
+	ret z ; return if done
+	push hl
+	farcall ScrollTextbox
+	call UpdateSprites
+	pop hl
+	jr .scrollIn
