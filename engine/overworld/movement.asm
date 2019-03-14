@@ -530,7 +530,7 @@ CheckSpriteAvailability:
 ; If sliding downwards, dont adjust as much so the sprites reappear faster
 .textboxSidingDownwards
 	pop af
-	sub 4
+	sub 6
 
 .compareToWindowPosition
 	cp [hl]

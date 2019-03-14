@@ -318,7 +318,6 @@ StartMenu_Item:
 .reenter
 	xor a
     ld [wUpdateSpritesEnabled], a ; Disable sprite updates
-
 	call DisplayItemMenu
 	jr nc, .choseItem
 	

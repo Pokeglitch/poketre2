@@ -95,7 +95,8 @@ MainMenu:
 	ld de, TitleScreenMenuLettersGFX
 	lb bc, BANK(TitleScreenMenuLettersGFX), (TitleScreenMenuLettersGFXEnd - TitleScreenMenuLettersGFX) / BYTES_PER_TILE
 	call CopyVideoData
-	
+
+	xor a ; dont load border
 	call LoadWhiteOnBlackFontTilePatterns
 	call InitMainMenuOAM
 	

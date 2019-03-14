@@ -157,13 +157,6 @@ LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
 
 
 SECTION "Graphics", ROMX, BANK[GFX]
-
-BlackOnWhiteFontLettersGFX:		INCBIN "gfx/black_on_white_font_letters.2bpp"
-BlackOnWhiteFontLettersGFXEnd:
-BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/black_on_white_font_symbols.2bpp"
-BlackOnWhiteFontSymbolsGFXEnd:
-WhiteTileGFX: INCBIN "gfx/white_tile.2bpp"
-
 ABTiles:                        INCBIN "gfx/AB.2bpp"
 HpBarAndStatusGraphics:         INCBIN "gfx/hp_bar_and_status.2bpp"
 HpBarAndStatusGraphicsEnd:
@@ -2132,14 +2125,6 @@ TitleScreenTextBoxTopGFXEnd:
 TitleScreenTextBoxBottomGFX: INCBIN "gfx/titlescreen/text_box_bottom.2bpp"
 TitleScreenTextBoxBottomGFXEnd:
 
-WhiteOnBlackFontLettersGFX: INCBIN "gfx/white_on_black_font_letters.2bpp"
-WhiteOnBlackFontLettersGFXEnd:
-
-WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/white_on_black_font_symbols.2bpp"
-WhiteOnBlackFontSymbolsGFXEnd:
-
-BlackTileGFX: INCBIN "gfx/black_tile.2bpp"
-
 TitleScreenMenuLettersGFX: INCBIN "gfx/titlescreen/menu_letters.2bpp"
 TitleScreenMenuLettersGFXEnd:
 
@@ -2172,11 +2157,21 @@ InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"
 INCLUDE "text/item_descriptions.asm"
 
 SECTION "TextGFX", ROMX, BANK[$3E]
+WhiteOnBlackFontLettersGFX: INCBIN "gfx/white_on_black_font_letters.2bpp"
+WhiteOnBlackFontLettersGFXEnd:
+WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/white_on_black_font_symbols.2bpp"
+WhiteOnBlackFontSymbolsGFXEnd:
+BlackTileGFX: INCBIN "gfx/black_tile.2bpp"
+
+BlackOnWhiteFontLettersGFX:		INCBIN "gfx/black_on_white_font_letters.2bpp"
+BlackOnWhiteFontLettersGFXEnd:
+BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/black_on_white_font_symbols.2bpp"
+BlackOnWhiteFontSymbolsGFXEnd:
+WhiteTileGFX: INCBIN "gfx/white_tile.2bpp"
+
 BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
 BlackOnLightFontLettersGFXEnd:
-
 BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
 BlackOnLightFontSymbolsGFXEnd:
-
 LightTextboxBorderGFX: INCBIN "gfx/text/light_border.2bpp"
 LightTextboxBorderGFXEnd:

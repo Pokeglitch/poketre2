@@ -41,6 +41,7 @@
 ;-------------------------------------------------------------
 
 ; Move Descriptions should show the type, power, accuracy, and PP
+; or at least pull the Move description info from the Moves attribute table
 
 ; Remove "FilteredBag" references (is that RAM location used anywhere else?)
 ; Find a better home for wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
@@ -88,8 +89,11 @@ DisplayItemMenu:
     set LCD_TILE_DATA_F, [hl] ; use upper sprites
 
     call HideSprites
-
     call ClearScreen
+
+    xor a
+    ld [hWY], a ;place window at top of screen
+
     call InitializeInventoryScreen
 
     ; Configure the joypad
@@ -223,6 +227,9 @@ InitializeInventoryScreen:
     ld hl, rLCDC
     res LCD_ENABLE_F, [hl] ; turn LCD off
 
+    xor a ; dont load border tiles
+    call LoadFontTilePatterns
+
     ld a, BANK(InventoryScreen2GFX)
     ld hl, InventoryScreen2GFX
     ld bc, InventoryScreen2GFXEnd-InventoryScreen2GFX
@@ -278,15 +285,6 @@ InitializeInventoryScreen:
     coord hl, 0, 13
     lb bc, 3, 18
     call TextBoxBorder
-
-    coord hl, 1, 13
-    ld b, 18
-    ld a, TILE_TEXTBOX_BORDER_TOP
-
-.replaceTopBorderLoop
-    ;ld [hli], a
-    dec b
-    jr nz, .replaceTopBorderLoop
 
     ; Place the cursor 
     ld hl, wOAMBuffer + (GFX_TAB_WIDTH*2) * OAM_BYTE_SIZE ; skip the tab tiles

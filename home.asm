@@ -3071,16 +3071,39 @@ DivideBytes::
 	ret
 
 LoadFontTilePatterns:
-	homecall LoadFontTilePatterns_
-	ret 
+	and a
+	ld a, [H_LOADEDROMBANK]
+	push af
+	ld a, BANK(LoadFontTilePatterns_)
+	call SetNewBank
+	call LoadFontTilePatterns_
+	jr HomeBankswitchReturn
 
 LoadWhiteOnBlackFontTilePatterns:
-	homecall LoadWhiteOnBlackFontTilePatterns_
-	ret 
+	and a
+	ld a, [H_LOADEDROMBANK]
+	push af
+	ld a, BANK(LoadWhiteOnBlackFontTilePatterns_)
+	call SetNewBank
+	call LoadWhiteOnBlackFontTilePatterns_
+	jr HomeBankswitchReturn
 
 LoadBlackOnLightFontTilePatterns:
-	homecall LoadBlackOnLightFontTilePatterns_
-	ret 
+	and a
+	ld a, [H_LOADEDROMBANK]
+	push af
+	ld a, BANK(LoadBlackOnLightFontTilePatterns_)
+	call SetNewBank
+	call LoadBlackOnLightFontTilePatterns_
+	;fall through
+
+HomeBankswitchReturn:
+	pop af
+SetNewBank:
+	ld [H_LOADEDROMBANK], a
+	ld [MBC1RomBank], a
+	ret
+
 
 LoadTextBoxTilePatterns::
 	ld a, [rLCDC]
