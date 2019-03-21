@@ -9,14 +9,22 @@
 ; -- inventory screen border tiles dont need to contain the 7f tile
 ; -- see where MainMenu loads the black 7f tile too..
 
-; When scrolling out, determine the cycle count and delta based on window position
-; - required to fix start menu exiting...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Bugs:
 ; Fix all textbox scenarios (mart, etc)
 ; - Use light gray with border for non-communication messages
 ; - i.e. Sign Posts, maybe Casino, Vending machine, etc
+
 ; - In DisplayTextBoxID_, see which commented "TextboxBorder" should remain
+
+; - Allow the textbox height to be an input (i.e. 3/4 line messages...)
+; -- dont do 4 line messages when talking to an NPC from above, it will hide them
+; --- so save only for non-communication messages
+
+; Check all locations where wAutoTextBoxDrawingControl toggled
+; - textbox drawing was removed from DisplayTextIDInit, see if that will be a problem...
+
+; - StartMenu should use an entire different function altogether, not DisplayTextIDInit
+; -- why are sprites not hidden??
 
 ; Why does Link Center lady disappear when talking to phone guy in Pewter PokeCenter?
 
@@ -33,7 +41,8 @@
 
 ; Just restore from buffer instead of redrawing entirely?
 
-; Move wTextboxScrollCyclesRemaining to a final location
+; Move wTextboxScrollCyclesRemaining and wTextboxScrollDelta to a better location
+; doesn't need to be saved...
 ; (do this by freeing up the PC box bytes)
 ;--------------------------------
 

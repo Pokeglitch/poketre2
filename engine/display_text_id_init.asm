@@ -2,22 +2,7 @@
 DisplayTextIDInit:
 	xor a
 	ld [wListMenuID], a
-	ld a, [wAutoTextBoxDrawingControl]
-	bit 0, a
-	jr nz, .skipDrawingTextBoxBorder
-	ld a, [hSpriteIndexOrTextID] ; text ID (or sprite ID)
-	and a
-	jr nz, .notStartMenu
-
-; TODO - slide in all the way for start menu
-
-.notStartMenu
-	coord hl, 0, 0
-	ld b, 3
-	ld c, 18
-;	call TextBoxBorder
-
-.skipDrawingTextBoxBorder
+	
 	ld hl, wFontLoaded
 	set 0, [hl]
 	ld hl, wFlags_0xcd60
@@ -73,11 +58,23 @@ DisplayTextIDInit:
 	; Initialize textbox position
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a
-
 	ld hl, wTextboxScrollCyclesRemaining
+
+	ld a, [hSpriteIndexOrTextID] ; text ID (or sprite ID)
+	and a
+	jr nz, .notStartMenu
+
+	ld [hl], SCREEN_HEIGHT_PIXELS/4
+	inc hl
+	ld a, -4
+	jr .storeDelta
+
+.notStartMenu
 	ld [hl], 5 * PIXELS_PER_TILE - 4
 	inc hl
 	ld a, -1
+
+.storeDelta
 	ld [hld], a
 
 .scrollIn
