@@ -242,6 +242,7 @@ charmap "?", $E6
 charmap "!", $E7
 charmap ".", $E8
 
+charmap "`", $EB
 charmap "▷", $EC
 charmap "▶", $ED
 charmap "▲", $ED

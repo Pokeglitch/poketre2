@@ -86,16 +86,16 @@ ScrollTextbox::
     dec [hl]
     ret
 
-LoadFontTilePatterns_::
+LoadBlackOnWhiteFontTilePatterns_::
 	ld hl, BlackOnWhiteFontLettersGFX
 	ld de, BlackOnWhiteFontSymbolsGFX
-    ld bc, WhiteTileGFX
+    ld bc, WhiteTextboxBorderGFX
 	jr LoadFontTilePatternsCommon
     
 LoadWhiteOnBlackFontTilePatterns_::
 	ld hl, WhiteOnBlackFontLettersGFX
 	ld de, WhiteOnBlackFontSymbolsGFX
-    ld bc, BlackTileGFX
+    ld bc, BlackTextboxBorderGFX
 	jr LoadFontTilePatternsCommon
 
 
@@ -113,19 +113,21 @@ LoadFontTilePatternsCommon:
 
     pop af
 	push de
-    jr z, .dontLoadBorder ; skip loading border if not requested
-
     push hl
     ld h, b
     ld l, c
     ld de, vChars2 + $770
-    ; TODO - use white on black for consistency
-    ld bc, LightTextboxBorderGFXEnd - LightTextboxBorderGFX
+    ld bc, BlackTextboxBorderGFXEnd - BlackTextboxBorderGFX
     ld a, BANK(WhiteOnBlackFontLettersGFX)
+	jr nz, .loadFullBorder
+
+	;only load the space tile
+	ld de, vChars2 + $7F0
+    ld bc, $10
+
+.loadFullBorder
     call FarCopyData
     pop hl
-    
-.dontLoadBorder
 	ld de, vChars1
 	ld bc, WhiteOnBlackFontLettersGFXEnd - WhiteOnBlackFontLettersGFX
 	ld a, BANK(WhiteOnBlackFontLettersGFX)
@@ -142,20 +144,25 @@ LoadFontTilePatternsCommon:
     pop af
 	push de
     push hl
-    jr z, .dontLoadBorder2
     ld d, b
     ld e, c
     ld hl, vChars2 + $770
-    lb bc, BANK(WhiteOnBlackFontLettersGFX), (LightTextboxBorderGFXEnd - LightTextboxBorderGFX) / BYTES_PER_TILE
-    call CopyVideoData
-	
-.dontLoadBorder2
+    lb bc, BANK(WhiteOnBlackFontLettersGFX), (BlackTextboxBorderGFXEnd - BlackTextboxBorderGFX) / BYTES_PER_TILE
+    jr nz, .loadFullBorder2
+
+	;only load space
+	ld hl, vChars2 + $7F0
+	ld c, 1
+
+.loadFullBorder2
+	call CopyVideoData
+
     pop de
 	ld hl, vChars1
-	lb bc, BANK(WhiteOnBlackFontLettersGFX), (BlackOnWhiteFontLettersGFXEnd - BlackOnWhiteFontLettersGFX) / BYTES_PER_TILE
+	lb bc, BANK(WhiteOnBlackFontLettersGFX), (WhiteOnBlackFontLettersGFXEnd - WhiteOnBlackFontLettersGFX) / BYTES_PER_TILE
 	call CopyVideoData
 
 	pop de
 	ld hl, vChars0 + FONT_SYMBOLS_TILE_START * BYTES_PER_TILE
-	lb bc, BANK(WhiteOnBlackFontLettersGFX), (BlackOnWhiteFontSymbolsGFXEnd - BlackOnWhiteFontSymbolsGFX) / BYTES_PER_TILE
+	lb bc, BANK(WhiteOnBlackFontLettersGFX), (WhiteOnBlackFontSymbolsGFXEnd - WhiteOnBlackFontSymbolsGFX) / BYTES_PER_TILE
 	jp CopyVideoData ; if LCD is on, transfer during V-blank

@@ -483,26 +483,26 @@ IntroMeowthAnimation7:
 	db ANIMATION_END
 
 FightIntroEkans:
-	INCBIN "gfx/intro_ekans_1.2bpp"
+	INCBIN "gfx/intro/ekans_1.2bpp"
 FightIntroEkans2:
-	INCBIN "gfx/intro_ekans_2.2bpp"
+	INCBIN "gfx/intro/ekans_2.2bpp"
 FightIntroEkans3:
-	INCBIN "gfx/intro_ekans_3.2bpp"
+	INCBIN "gfx/intro/ekans_3.2bpp"
 FightIntroEkansEnd:
 
 FightIntroMeowth:
-	INCBIN "gfx/intro_meowth_1.2bpp"
+	INCBIN "gfx/intro/meowth_1.2bpp"
 FightIntroMeowth2:
-	INCBIN "gfx/intro_meowth_2.2bpp"
+	INCBIN "gfx/intro/meowth_2.2bpp"
 FightIntroMeowth3:
-	INCBIN "gfx/intro_meowth_3.2bpp"
+	INCBIN "gfx/intro/meowth_3.2bpp"
 FightIntroMeowthEnd:
 
 VersionGFX:
-	INCBIN "gfx/version.2bpp"
+	INCBIN "gfx/intro/version.2bpp"
 VersionGFXEnd:
 
 CreatedByGFX:
-	INCBIN "gfx/created_by.2bpp"
-	INCBIN "gfx/url.2bpp"
+	INCBIN "gfx/intro/created_by.2bpp"
+	INCBIN "gfx/intro/url.2bpp"
 CreatedByGFXEnd:

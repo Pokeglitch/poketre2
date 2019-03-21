@@ -1,15 +1,5 @@
 ; TODO -
 
-; Ensure all font types have the radius circle fill color in same positions
-; -- also the solid colors, can remove "PkMn" tiles...
-
-; Design border tiles for WhiteOnBlack, BlackOnWhite
-; - use WhiteOnBlackBorderGFXEND - xxx to determine size (for consistency)
-; - if a = 0 then only load the space tile...
-; -- inventory screen border tiles dont need to contain the 7f tile
-; -- see where MainMenu loads the black 7f tile too..
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Fix all textbox scenarios (mart, etc)
 ; - Use light gray with border for non-communication messages
 ; - i.e. Sign Posts, maybe Casino, Vending machine, etc

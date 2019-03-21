@@ -2,7 +2,7 @@
 DisplayTextIDInit:
 	xor a
 	ld [wListMenuID], a
-	
+
 	ld hl, wFontLoaded
 	set 0, [hl]
 	ld hl, wFlags_0xcd60
@@ -53,7 +53,9 @@ DisplayTextIDInit:
 	ld a, $01
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
 	
-	call LoadBlackOnLightFontTilePatterns
+	;call LoadBlackOnLightFontTilePatterns
+	call LoadWhiteOnBlackFontTilePatterns
+	;call LoadBlackOnWhiteFontTilePatterns
 
 	; Initialize textbox position
 	ld a, SCREEN_HEIGHT_PIXELS

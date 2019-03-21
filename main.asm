@@ -2157,21 +2157,17 @@ InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"
 INCLUDE "text/item_descriptions.asm"
 
 SECTION "TextGFX", ROMX, BANK[$3E]
-WhiteOnBlackFontLettersGFX: INCBIN "gfx/white_on_black_font_letters.2bpp"
+WhiteOnBlackFontLettersGFX: INCBIN "gfx/text/white_on_black_font_letters.2bpp"
 WhiteOnBlackFontLettersGFXEnd:
-WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/white_on_black_font_symbols.2bpp"
+WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/text/white_on_black_font_symbols.2bpp"
 WhiteOnBlackFontSymbolsGFXEnd:
-BlackTileGFX: INCBIN "gfx/black_tile.2bpp"
+BlackTextboxBorderGFX: INCBIN "gfx/text/black_border.2bpp"
+BlackTextboxBorderGFXEnd:
 
-BlackOnWhiteFontLettersGFX:		INCBIN "gfx/black_on_white_font_letters.2bpp"
-BlackOnWhiteFontLettersGFXEnd:
-BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/black_on_white_font_symbols.2bpp"
-BlackOnWhiteFontSymbolsGFXEnd:
-WhiteTileGFX: INCBIN "gfx/white_tile.2bpp"
+BlackOnWhiteFontLettersGFX:		INCBIN "gfx/text/black_on_white_font_letters.2bpp"
+BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/text/black_on_white_font_symbols.2bpp"
+WhiteTextboxBorderGFX: INCBIN "gfx/text/white_border.2bpp"
 
 BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
-BlackOnLightFontLettersGFXEnd:
 BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
-BlackOnLightFontSymbolsGFXEnd:
 LightTextboxBorderGFX: INCBIN "gfx/text/light_border.2bpp"
-LightTextboxBorderGFXEnd:

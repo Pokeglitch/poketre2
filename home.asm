@@ -3088,13 +3088,14 @@ DivideBytes::
 	pop hl
 	ret
 
+LoadBlackOnWhiteFontTilePatterns:
 LoadFontTilePatterns:
 	and a
 	ld a, [H_LOADEDROMBANK]
 	push af
-	ld a, BANK(LoadFontTilePatterns_)
+	ld a, BANK(LoadBlackOnWhiteFontTilePatterns_)
 	call SetNewBank
-	call LoadFontTilePatterns_
+	call LoadBlackOnWhiteFontTilePatterns_
 	jr HomeBankswitchReturn
 
 LoadWhiteOnBlackFontTilePatterns:

@@ -17,7 +17,7 @@
 ; Add in santa's sack cheat for quantity on-key items
 
 ; Rename ItemMenu, item_menu, etc to Inventory
-
+; - move this file into the inventory folder
 ;----------------------------------------------------------
 
 ; More efficient if the quantities are stored in index order
