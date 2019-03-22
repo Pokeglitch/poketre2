@@ -3260,6 +3260,9 @@ wTextboxScrollCyclesRemaining::
 wTextboxScrollDelta::
 	ds 1
 
+wTextboxSettings::
+	ds 1
+
 SECTION "Stack", WRAM0[$df00]
 	ds $ff
 wStack:: ; dfff

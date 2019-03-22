@@ -1,14 +1,24 @@
 ; TODO -
 
-; Fix all textbox scenarios (mart, etc)
-; - Use light gray with border for non-communication messages
-; - i.e. Sign Posts, maybe Casino, Vending machine, etc
+; Handle no scrolling until after text printed:
+; - at start of displaying text, disable letter print delay
+; - in text command processor, check the hWY position for all necessary commands
+; -- para, scroll, etc
+; -- if it is offscreen, then scroll in and re-enable letter print delay
+
+; Update text command processor to handle dynamic textbox sizing
+; - para, scroll, etc
+
+; DisplayTextID:
+; - make room in home bank....
+; - Uncomment "INCLUDE "engine/menu/start_menu.asm"
+
+; Add White on Dark font tiles
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Then, handle DisplayTextBoxID...
 
 ; - In DisplayTextBoxID_, see which commented "TextboxBorder" should remain
-
-; - Allow the textbox height to be an input (i.e. 3/4 line messages...)
-; -- dont do 4 line messages when talking to an NPC from above, it will hide them
-; --- so save only for non-communication messages
 
 ; Check all locations where wAutoTextBoxDrawingControl toggled
 ; - textbox drawing was removed from DisplayTextIDInit, see if that will be a problem...
@@ -25,15 +35,16 @@
 ; - Char49 is Pokedex?
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
-; Draw the first "set" of printing before scrolling?
 
 ; Add route names pop to ensure it still works when user can move around
 
-; Just restore from buffer instead of redrawing entirely?
+; Just restore screen from buffer instead of redrawing entirely?
 
-; Move wTextboxScrollCyclesRemaining and wTextboxScrollDelta to a better location
-; doesn't need to be saved...
+; Move textbox ram bytes to a better location
+; doesn't need to be saved, so can by moved to junk area
 ; (do this by freeing up the PC box bytes)
+
+; Add in automatic word wrap detection
 ;--------------------------------
 
 ; function to draw various text boxes

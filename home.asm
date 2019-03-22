@@ -1104,13 +1104,41 @@ DisplayTextID::
 	pop hl
 .skipSpriteHandling
 ; look up the address of the text in the map's text entries
+	; TODO - this check  will no longer be necessary when implemented in all map
+	push af
+	ld a, [hl] ; get the first byte in the table
+	and a
+	jr nz, .standardText
+
+	pop af
+	dec a
+	ld e, a
+	sla a
+	add e
+	ld e, a ; e = a * 3
+	inc hl ; first byte is 00, so shift
+	add hl, de
+	ld a, [hli]
+	jr .textDataCommon
+
+.standardText
+	pop af
 	dec a
 	ld e, a
 	sla e
 	add hl, de
+	ld a, DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+
+.textDataCommon
+	ld [wTextboxSettings], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = address of the text
+	
+	push hl
+	farcall DrawDisplayTextIDTextbox
+	pop hl
+
 	ld a, [hl] ; a = first byte of text
 ; check first byte of text for special cases
 	cp $fe   ; Pokemart NPC
@@ -1318,7 +1346,11 @@ RepelWoreOffText::
 	TX_FAR _RepelWoreOffText
 	db "@"
 
-INCLUDE "engine/menu/start_menu.asm"
+;INCLUDE "engine/menu/start_menu.asm"
+DisplayStartMenu:
+RedisplayStartMenu:
+CloseStartMenu:
+	ret
 
 ; function to count how many bits are set in a string of bytes
 ; INPUT:

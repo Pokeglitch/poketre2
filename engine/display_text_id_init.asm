@@ -42,41 +42,86 @@ DisplayTextIDInit:
 	dec c
 	jr nz, .spriteStandStillLoop
 
-	coord hl, 0, 0
-	lb bc, 5, SCREEN_WIDTH
-	call ClearScreenArea
-	
-	coord hl, 0, 0
-	lb bc, 3, SCREEN_WIDTH-2
-	call NewTextBoxBorder
-
-	ld a, $01
+	ld a, 1
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
-	
-	;call LoadBlackOnLightFontTilePatterns
-	call LoadWhiteOnBlackFontTilePatterns
-	;call LoadBlackOnWhiteFontTilePatterns
+	ret
 
+DrawDisplayTextIDTextbox:
+	ld a, [wTextboxSettings]
+	push af
+	and FONT_COLOR_MASK
+	jr z, .blackOnWhite
+	srl a
+	srl a
+	dec a
+	jr z, .blackOnLight
+	dec a
+	jr z, .whiteOnDark
+	; otherwite, white on black
+	
+	call LoadWhiteOnBlackFontTilePatterns
+	jr .drawTextbox
+
+.blackOnWhite
+	inc a ; load the border tiles
+	call LoadBlackOnWhiteFontTilePatterns
+	jr .drawTextbox
+
+.blackOnLight
+	inc a ; load the border tiles
+	call LoadBlackOnLightFontTilePatterns
+	jr .drawTextbox
+
+.whiteOnDark
+	inc a ; load the border tiles
+	;TODO
+	;call LoadWhiteOnDarkFontTilePatterns
+
+.drawTextbox
+	pop af
+	push af
+
+	and TEXT_LINES_MASK
+	inc a
+	add a
+	
+	coord hl, 0, 0
+	; set bc to be in the middle of the clear screen input and the draw textbox input
+	ld b, a
+	ld c, SCREEN_WIDTH-1
+
+	pop af
+	push bc ; store the text lines value
+	bit BIT_DRAW_BORDER, a
+	jr z, .noBorder
+
+	dec b
+	dec c
+	call NewTextBoxBorder
+	jr .scroll
+
+.noBorder
+	inc b
+	inc c
+	call ClearScreenArea
+
+.scroll
+	pop bc
+	
 	; Initialize textbox position
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a
+
+	ld a, b
+	inc a ; true number of tiles of the textbox
+	sla a
+	sla a
+	sla a ; a * 8, 8 pixels per tile
+	sub 4 ; last 4 tiles go offscreen
+	
 	ld hl, wTextboxScrollCyclesRemaining
-
-	ld a, [hSpriteIndexOrTextID] ; text ID (or sprite ID)
-	and a
-	jr nz, .notStartMenu
-
-	ld [hl], SCREEN_HEIGHT_PIXELS/4
-	inc hl
-	ld a, -4
-	jr .storeDelta
-
-.notStartMenu
-	ld [hl], 5 * PIXELS_PER_TILE - 4
-	inc hl
+	ld [hli], a
 	ld a, -1
-
-.storeDelta
 	ld [hld], a
 
 .scrollIn
