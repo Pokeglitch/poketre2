@@ -6,9 +6,9 @@ PewterMartScript:
 
 PewterMartTextPointers:
 	db 0
-	dbw BLACK_ON_WHITE | LINES_4, PewterCashierText
-	dbw DRAW_BORDER | BLACK_ON_LIGHT | LINES_3, PewterMartText2
-	dbw WHITE_ON_BLACK | LINES_2, PewterMartText3
+	dbw BLACK_ON_WHITE | LINES_2, PewterCashierText
+	dbw DONT_REVEAL | DRAW_BORDER | BLACK_ON_LIGHT | LINES_3, PewterMartText2
+	dbw WHITE_ON_BLACK | LINES_3, PewterMartText3
 
 PewterMartText2:
 	TX_ASM

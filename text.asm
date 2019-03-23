@@ -1919,9 +1919,6 @@ _Char00Text::
 	text " ERROR."
 	done
 
-_Char55Text::
-	text $4B,"@@"
-
 INCLUDE "text/maps/digletts_cave_route_2_entrance.asm"
 INCLUDE "text/maps/viridian_forest_exit.asm"
 INCLUDE "text/maps/route_2_house.asm"

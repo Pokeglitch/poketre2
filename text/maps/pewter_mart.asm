@@ -1,17 +1,17 @@
 _PewterMartText2::
 	text "A shady, old man"
-	line "got me to buy"
-	cont "this really weird"
+	next "got me to buy"
+	next "this really weird"
 	cont "fish #MON!"
 
 	para "It's totally weak"
-	line "and it cost ¥500!"
+	next "and it cost ¥500!"
 	done
 
 _PewterMartText3::
 	text "Good things can"
-	line "happen if you"
-	cont "raise #MON"
+	next "happen if you"
+	next "raise #MON"
 	cont "diligently, even"
-	cont "the weak ones!"
+	scroll "the weak ones!"
 	done

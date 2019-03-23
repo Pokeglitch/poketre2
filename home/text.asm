@@ -29,7 +29,12 @@ PlaceNextChar::
 
 Char4ETest::
 	cp $4E ; next
-	jr nz, .char4FTest
+	jr z, .handleNext
+
+	cp $4F ; line
+	jr nz, .next3
+
+.handleNext
 	ld bc, 2 * SCREEN_WIDTH
 	ld a, [hFlags_0xFFF6]
 	bit 2, a
@@ -38,14 +43,6 @@ Char4ETest::
 .ok
 	pop hl
 	add hl, bc
-	push hl
-	jp PlaceNextChar_inc
-
-.char4FTest
-	cp $4F ; line
-	jr nz, .next3
-	pop hl
-	coord hl, 1, 3
 	push hl
 	jp PlaceNextChar_inc
 
@@ -72,7 +69,6 @@ endm
 	dict $5E, Char5E ; ROCKET
 	dict $5C, Char5C ; TM
 	dict $5D, Char5D ; TRAINER
-	dict $55, Char55 ; cont
 	dict $56, Char56 ; 6 dots
 	dict $57, Char57 ; done
 	dict $58, Char58 ; prompt
@@ -211,22 +207,25 @@ Char5AText::
 Char4AText::
 	db $E1,$E2,"@" ; PKMN
 
-Char55::
-	push de
-	ld b, h
-	ld c, l
-	ld hl, Char55Text
-	call TextCommandProcessor
-	ld h, b
-	ld l, c
-	pop de
-	inc de
-	jp PlaceNextChar
+; try to reveal the textbox
+CheckRevealTextbox::
+	ld a, [hWY]
+	cp SCREEN_HEIGHT_PIXELS
+	ret c ; return if its already revealed
 
-Char55Text::
-; equivalent to Char4B
-	TX_FAR _Char55Text
-	db "@"
+	push de
+	push hl
+	farcall RevealTextbox
+	
+	ld hl, wLetterPrintingDelayFlags
+	set 1, [hl] ; enable letter delay
+
+	ld hl, $fff4
+	res 1, [hl] ; reset the flag which disabled letter delay
+
+	pop hl
+	pop de
+	ret
 
 Char5F::
 ; ends a Pokédex entry
@@ -235,44 +234,77 @@ Char5F::
 	ret
 
 Char58:: ; prompt
+	call GetEndOfBottomRow
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jp z, .ok
-	ld a, "▼"
-	Coorda 18, 3
+	ld [hl], "▼"
 .ok
 	call ProtectedDelay3
+	call CheckRevealTextbox
 	call ManualTextScroll
-	ld a, " "
-	Coorda 18, 3
+	ld [hl], " "
+
 Char57:: ; done
 	pop hl
-	ld de, Char58Text
-	dec de
+	ld de, Char58Text-1
 	ret
 
 Char58Text::
 	db "@"
 
+GetTextboxSize:
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	add a
+	inc a ; a = size of textbox interior
+	ret
+
+GetStartOfBottomRow:
+	call GetTextboxSize
+	coord hl, 1, 0
+	jr GetLastRowCommon
+
+GetEndOfBottomRow:
+	call GetTextboxSize
+	coord hl, 18, 0
+
+GetLastRowCommon:
+	push af
+	ld de, SCREEN_WIDTH
+.loop
+	add hl, de
+	dec a
+	jr nz, .loop
+	pop af
+	ret
+
 Char51:: ; para
 	push de
-	ld a, "▼"
-	Coorda 18, 3
+	call GetEndOfBottomRow
+	push af
+	ld [hl], "▼"
 	call ProtectedDelay3
+	call CheckRevealTextbox
 	call ManualTextScroll
 	coord hl, 1, 1
-	lb bc, 3, 18
+	pop af
+	ld b, a
+	ld c, 18
 	call ClearScreenArea
 	ld c, 20
 	call DelayFrames
 	pop de
+	pop hl
 	coord hl, 1, 1
+	push hl
 	jp PlaceNextChar_inc
 
+; Pokedex Page
 Char49::
 	push de
 	ld a, "▼"
-	Coorda 18, 3
+	Coorda 18, 16
 	call ProtectedDelay3
 	call ManualTextScroll
 	coord hl, 1, 10
@@ -287,20 +319,23 @@ Char49::
 	jp PlaceNextChar_inc
 
 Char4B::
-	ld a, "▼"
-	Coorda 18, 3
-	call ProtectedDelay3
 	push de
+	call GetEndOfBottomRow
+	ld [hl], "▼"
+	push hl
+	call ProtectedDelay3
+	call CheckRevealTextbox
 	call ManualTextScroll
+	pop hl
 	pop de
-	ld a, " "
-	Coorda 18, 3
+	ld [hl], " "
 	;fall through
+
 Char4C::
 	push de
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
-	coord hl, 1, 3
+	call GetStartOfBottomRow
 	pop de
 	jp PlaceNextChar_inc
 
@@ -311,14 +346,28 @@ Char4C::
 ScrollTextUpOneLine::
 	coord hl, 0, 2 ; top row of text
 	coord de, 0, 1 ; empty line above text
-	ld b, SCREEN_WIDTH * 2
+	call GetTextboxSize
+	dec a
+	jr z, .eraseLastRow
+	ld b, a
+	xor a
+
+.sizeLoop
+	add SCREEN_WIDTH
+	dec b
+	jr nz, .sizeLoop
+
+	ld b, a
+
 .copyText
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .copyText
-	coord hl, 1, 3
+
+.eraseLastRow
+	call GetStartOfBottomRow
 	ld a, " "
 	ld b, SCREEN_WIDTH - 2
 .clearText
@@ -353,11 +402,13 @@ TextCommandProcessor::
 	ld [wTextDest], a
 	ld a, b
 	ld [wTextDest + 1], a
+	push bc
 
 NextTextCommand::
 	ld a, [hli]
 	cp "@" ; terminator
 	jr nz, .doTextCommand
+	pop bc
 	pop af
 	ld [wLetterPrintingDelayFlags], a
 	ret
@@ -473,7 +524,20 @@ TextCommand03::
 ; (no arguments)
 TextCommand05::
 	pop hl
-	coord bc, 1, 3 ; address of second line of dialogue text box
+	pop bc
+	push hl
+	
+	ld hl, 2 * SCREEN_WIDTH
+	ld a, [hFlags_0xFFF6]
+	bit 2, a
+	jr z, .ok
+	ld bc, SCREEN_WIDTH
+.ok
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	push bc
 	jp NextTextCommand
 
 ; blink arrow and wait for A or B to be pressed
@@ -483,13 +547,12 @@ TextCommand06::
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jp z, TextCommand0D
-	ld a, "▼"
-	Coorda 18, 3 ; place down arrow in lower right corner of dialogue text box
+	call GetEndOfBottomRow
+	ld [hl], "▼" ; place down arrow in lower right corner of dialogue text box
 	push bc
 	call ManualTextScroll ; blink arrow and wait for A or B to be pressed
 	pop bc
-	ld a, " "
-	Coorda 18, 3 ; overwrite down arrow with blank space
+	ld [hl], " "
 	pop hl
 	jp NextTextCommand
 
@@ -497,12 +560,18 @@ TextCommand06::
 ; 07
 ; (no arguments)
 TextCommand07::
-	ld a, " "
-	Coorda 18, 3 ; place blank space in lower right corner of dialogue text box
+	call GetEndOfBottomRow
+	ld [hl], " " ; place blank space in lower right corner of dialogue text box
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
 	pop hl
-	coord bc, 1, 3 ; address of second line of dialogue text box
+	pop bc
+	push hl
+	call GetStartOfBottomRow
+	ld b, h
+	ld c, l
+	pop hl
+	push bc
 	jp NextTextCommand
 
 ; execute asm inline

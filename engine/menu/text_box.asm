@@ -1,19 +1,23 @@
 ; TODO -
 
-; Handle no scrolling until after text printed:
-; - at start of displaying text, disable letter print delay
-; - in text command processor, check the hWY position for all necessary commands
-; -- para, scroll, etc
-; -- if it is offscreen, then scroll in and re-enable letter print delay
-
-; Update text command processor to handle dynamic textbox sizing
-; - para, scroll, etc
-
 ; DisplayTextID:
 ; - make room in home bank....
 ; - Uncomment "INCLUDE "engine/menu/start_menu.asm"
 
 ; Add White on Dark font tiles
+
+; Test all text commands
+
+; Add in auto word-wrap/scroll/para lookahead
+; - need to consider dynamic box sixing
+; - when a space is encountered
+; -- lookahead for the next space or command character
+; -- just inc hl instead of printing hl
+; - 3 ram bytes, row index, col index, and current word size
+; -- inc col and word size when char is written
+; --- reset word side when 7f
+; -- set row/reset col on para and next
+; -- reset row on scroll
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Then, handle DisplayTextBoxID...
@@ -44,7 +48,6 @@
 ; doesn't need to be saved, so can by moved to junk area
 ; (do this by freeing up the PC box bytes)
 
-; Add in automatic word wrap detection
 ;--------------------------------
 
 ; function to draw various text boxes

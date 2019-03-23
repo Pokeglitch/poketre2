@@ -91,6 +91,7 @@ DrawDisplayTextIDTextbox:
 	ld c, SCREEN_WIDTH-1
 
 	pop af
+	push af
 	push bc ; store the text lines value
 	bit BIT_DRAW_BORDER, a
 	jr z, .noBorder
@@ -107,7 +108,15 @@ DrawDisplayTextIDTextbox:
 
 .scroll
 	pop bc
+	pop af
+	bit BIT_DONT_REVEAL, a
+	jr z, ScrollTextboxCommon
+
+	ld hl, $fff4
+	set 1, [hl]
+	ret
 	
+ScrollTextboxCommon:
 	; Initialize textbox position
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a
@@ -133,3 +142,11 @@ DrawDisplayTextIDTextbox:
 	call UpdateSprites
 	pop hl
 	jr .scrollIn
+
+RevealTextbox:
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	add a ;double
+	add 2 ; additional tiles
+	ld b, a
+	jr ScrollTextboxCommon
