@@ -110,11 +110,8 @@ DrawDisplayTextIDTextbox:
 	pop bc
 	pop af
 	bit BIT_DONT_REVEAL, a
-	jr z, ScrollTextboxCommon
-
-	ld hl, $fff4
-	set 1, [hl]
-	ret
+	ret nz
+	; fall through
 	
 ScrollTextboxCommon:
 	; Initialize textbox position

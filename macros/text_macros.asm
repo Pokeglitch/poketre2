@@ -1,6 +1,7 @@
 
 ; text macros
 text   EQUS "db $00," ; Start writing text.
+textbox EQUS "db $18," ; Define the textbox before writing the text
 cont   EQUS "db $4b," ; Scroll to the next line.
 scroll EQUS "db $4c," ; Scroll without user interaction
 next   EQUS "db $4e," ; Move a line down.

@@ -5,12 +5,12 @@ PewterMartScript:
 	ret
 
 PewterMartTextPointers:
-	db 0
-	dbw BLACK_ON_WHITE | LINES_2, PewterCashierText
-	dbw DONT_REVEAL | DRAW_BORDER | BLACK_ON_LIGHT | LINES_3, PewterMartText2
-	dbw WHITE_ON_BLACK | LINES_3, PewterMartText3
+	dw PewterCashierText
+	dw PewterMartText2
+	dw PewterMartText3
 
 PewterMartText2:
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_3
 	TX_ASM
 	ld hl, .Text
 	call PrintText
@@ -20,6 +20,7 @@ PewterMartText2:
 	db "@"
 
 PewterMartText3:
+	textbox BLACK_ON_WHITE | NO_DELAY | LINES_2
 	TX_ASM
 	ld hl, .Text
 	call PrintText

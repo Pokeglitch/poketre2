@@ -971,8 +971,9 @@ PickUpItemText::
 	jp TextScriptEnd
 
 
-INCLUDE "home/pic.asm"
-
+;INCLUDE "home/pic.asm"
+UncompressSpriteData::
+	ret
 
 ResetPlayerSpriteData::
 	ld hl, wSpriteStateData1
@@ -1104,40 +1105,13 @@ DisplayTextID::
 	pop hl
 .skipSpriteHandling
 ; look up the address of the text in the map's text entries
-	; TODO - this check  will no longer be necessary when implemented in all map
-	push af
-	ld a, [hl] ; get the first byte in the table
-	and a
-	jr nz, .standardText
-
-	pop af
-	dec a
-	ld e, a
-	sla a
-	add e
-	ld e, a ; e = a * 3
-	inc hl ; first byte is 00, so shift
-	add hl, de
-	ld a, [hli]
-	jr .textDataCommon
-
-.standardText
-	pop af
 	dec a
 	ld e, a
 	sla e
 	add hl, de
-	ld a, DRAW_BORDER | BLACK_ON_WHITE | LINES_2
-
-.textDataCommon
-	ld [wTextboxSettings], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = address of the text
-	
-	push hl
-	farcall DrawDisplayTextIDTextbox
-	pop hl
 
 	ld a, [hl] ; a = first byte of text
 ; check first byte of text for special cases
@@ -1162,7 +1136,24 @@ DisplayTextID::
 	jr nz, .notSpecialCase
 	callab CableClubNPC
 	jr AfterDisplayingTextID
+
 .notSpecialCase
+	cp $18
+	jr nz, .useStandardTextboxSettings
+	inc hl
+	ld a, [hli]
+	jr .storeTextboxSettings
+
+.useStandardTextboxSettings
+	ld a, DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+
+.storeTextboxSettings
+	ld [wTextboxSettings], a
+	push hl
+	farcall DrawDisplayTextIDTextbox
+	pop hl
+
+.dontDrawStandardTextbox
 	call PrintText_NoCreatingTextBox ; display the text
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
 	and a

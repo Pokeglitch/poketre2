@@ -27,6 +27,35 @@ PlaceNextChar::
 	pop hl
 	ret
 
+; initialize the rows remaining based on the number of lines
+; the autoscroll count is initialized to zero
+ResetRowsRemaining:
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	ld [wTextboxRowParams], a
+	ret
+
+ResetColumnTilesRemaining:
+	ld a, SCREEN_WIDTH - 2
+	ld [wTextboxColsRemaining], a
+	ret
+
+MoveToNextLine:
+	call ResetColumnTilesRemaining
+
+	; decrease the number of rows remaining
+	ld a, [wTextboxRowParams]
+	dec a
+	ld [wTextboxRowParams], a
+
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	ld a, [hFlags_0xFFF6]
+	bit 2, a
+	ret nz ; return if single space
+	add hl, bc
+	ret
+
 Char4ETest::
 	cp $4E ; next
 	jr z, .handleNext
@@ -35,14 +64,8 @@ Char4ETest::
 	jr nz, .next3
 
 .handleNext
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, [hFlags_0xFFF6]
-	bit 2, a
-	jr z, .ok
-	ld bc, SCREEN_WIDTH
-.ok
 	pop hl
-	add hl, bc
+	call MoveToNextLine
 	push hl
 	jp PlaceNextChar_inc
 
@@ -59,7 +82,7 @@ endm
 	dict $00, Char00 ; error
 	dict $01, Char01 ; TX_RAM
 	dict $4C, Char4C ; autocont
-	dict $4B, Char4B ; cont_
+	dict $4B, Char4B ; cont
 	dict $51, Char51 ; para
 	dict $49, Char49 ; page
 	dict $52, Char52 ; player
@@ -77,8 +100,51 @@ endm
 	dict $59, Char59 ; TARGET
 	dict $5A, Char5A ; USER
 
+	cp " "
+	jr nz, .placeChar
+
+	inc de
+	call CheckWordWrap
+	dec de
+	jr nc, .placeSpaceChar
+
+	;handle word wrap
+	
+	; if there are rows remaining, move to the next line
+	ld a, [wTextboxRowParams]
+	and TEXTBOX_ROWS_REMAINING_MASK
+	jr nz, .rowsRemaining 
+
+	; if there is auto scroll remaining, then auto scroll
+	ld a, [wTextboxRowParams]
+	and TEXTBOX_AUTOSCROLL_REMAINING_MASK
+	jp nz, Char4C ; auto scroll
+
+	;otherwise, reset autoscroll count and prompt for a scroll
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	swap a
+	ld [wTextboxRowParams], a
+
+	jp Char4B
+
+
+.rowsRemaining
+	pop hl
+	call MoveToNextLine
+	push hl 
+	jr PlaceNextChar_inc
+
+.placeSpaceChar
+	ld a, " "
+
+.placeChar
 	ld [hli], a
+	ld a, [wTextboxColsRemaining]
+	dec a
+	ld [wTextboxColsRemaining], a
 	call PrintLetterDelay
+	
 PlaceNextChar_inc::
 	inc de
 	jp PlaceNextChar
@@ -177,10 +243,6 @@ MonsterNameCharsCommon::
 .Enemy
 	; print “Enemy ”
 	ld de, Char5AText
-	call PlaceString
-	ld h, b
-	ld l, c
-	ld de, wEnemyMonNick ; enemy active monster name
 
 FinishDTE::
 	call PlaceString
@@ -203,7 +265,9 @@ Char54Text::
 Char56Text::
 	db "……@"
 Char5AText::
-	db "Enemy @"
+	db "Enemy "
+	TX_RAM wEnemyMonNick
+	db "@"
 Char4AText::
 	db $E1,$E2,"@" ; PKMN
 
@@ -217,12 +281,14 @@ CheckRevealTextbox::
 	push hl
 	farcall RevealTextbox
 	
+	ld a, [wTextboxSettings]
+	bit BIT_NO_DELAY, a
+	jr nz, .dontEnableDelay
+
 	ld hl, wLetterPrintingDelayFlags
 	set 1, [hl] ; enable letter delay
 
-	ld hl, $fff4
-	res 1, [hl] ; reset the flag which disabled letter delay
-
+.dontEnableDelay
 	pop hl
 	pop de
 	ret
@@ -296,6 +362,8 @@ Char51:: ; para
 	call DelayFrames
 	pop de
 	pop hl
+	call ResetRowsRemaining
+	call ResetColumnTilesRemaining
 	coord hl, 1, 1
 	push hl
 	jp PlaceNextChar_inc
@@ -329,12 +397,22 @@ Char4B::
 	pop hl
 	pop de
 	ld [hl], " "
-	;fall through
+	jr ScrollCommon
 
 Char4C::
+	; decrease the auto scroll count
+	ld a, [wTextboxRowParams]
+	swap a
+	dec a
+	swap a
+	ld [wTextboxRowParams], a
+	;fall through
+
+ScrollCommon:
 	push de
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
+	call ResetColumnTilesRemaining
 	call GetStartOfBottomRow
 	pop de
 	jp PlaceNextChar_inc
@@ -391,13 +469,28 @@ ProtectedDelay3::
 	ret
 
 TextCommandProcessor::
+	; Initialize the word-wrap registers
+	call ResetRowsRemaining
+	call ResetColumnTilesRemaining
+
 	ld a, [wLetterPrintingDelayFlags]
 	push af
-	set 1, a
-	ld e, a
-	ld a, [$fff4]
-	xor e
+	
+	push hl
+	res 1, a ; disable delays
+	ld hl, wTextboxSettings
+	bit BIT_DONT_REVEAL, [hl]
+	jr nz, .dontEnableDelay
+
+	bit BIT_NO_DELAY, [hl]
+	jr nz, .dontEnableDelay
+
+	set 1, a ; enable delays
+
+.dontEnableDelay
 	ld [wLetterPrintingDelayFlags], a
+	pop hl
+
 	ld a, c
 	ld [wTextDest], a
 	ld a, b
@@ -519,7 +612,7 @@ TextCommand03::
 	ld b, a
 	jp NextTextCommand
 
-; repoint destination to second line of dialogue text box
+; repoint destination to next line of text box
 ; 05
 ; (no arguments)
 TextCommand05::
@@ -774,3 +867,152 @@ TextCommandJumpTable::
 	dw TextCommand0B
 	dw TextCommand0C
 	dw TextCommand0D
+
+; Check if the next word should be wrapped
+; no carry = print
+; carry = word wrap or scroll
+CheckWordWrap:
+	push de
+	push hl
+	push bc
+	
+	call CountNextWordLength
+	ld a, [wTextboxColsRemaining]
+	cp c
+
+	pop bc
+	pop hl
+	pop de
+	ret
+
+; Count next word length
+CountNextWordLength:
+	ld c, 1 ; c = word length, including the space
+
+.readNextCharLoop
+	; get next character
+	ld a, [de]
+	inc de
+	ld b, a ; b = next char
+
+	; see if it an end of word char
+	ld hl, EndOfWordChars
+
+.checkEndOfWordLoop
+	ld a, [hli]
+	cp b
+	ret z ; return if end of word
+	and a
+	jr nz, .checkEndOfWordLoop
+
+	; see if the character has a known length
+	ld hl, FixedLengthChars
+
+.checkFixedLengthChars
+	ld a, [hli]
+	cp b
+	jr z, .fixedLengthChar
+	inc hl
+	and a
+	jr nz, .checkFixedLengthChars
+
+	;see if the character has unknown length
+	ld hl, VariableLengthChars
+
+.checkVariableLengthChars
+	ld a, [hli]
+	cp b
+	jr z, .variableLengthChar
+	inc hl
+	inc hl
+	and a
+	jr nz, .checkVariableLengthChars
+
+	; if it not any of these, then its a normal character
+	inc c
+	jr .readNextCharLoop
+
+.fixedLengthChar
+	ld a, [hl]
+	add c
+	ld c, a
+	jr .readNextCharLoop
+
+.variableLengthChar
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	jp hl
+
+
+EndOfWordChars:
+	db " " ; space
+	db "@" ; end of text
+	db $4C ; autocont
+	db $4B ; cont
+	db $4E ; next
+	db $4F ; line
+	db $49 ; page
+	db $51 ; para
+	db $57 ; done
+	db $58 ; prompt
+	db $5F ; dex
+	db 0
+
+FixedLengthChars:
+	db $4A, 2 ; PkMn
+	db $54, 4 ; POKé
+	db $5B, 2 ; PC
+	db $5E, 6 ; ROCKET
+	db $5C, 2 ; TM
+	db $5C, 7 ; TRAINER
+	db $56, 2 ; 6 dots
+	db 0
+
+; These are all assumed to not be combined with other characters
+VariableLengthChars:
+	dbw 1, LengthRAM
+	dbw $52, LengthPlayerName
+	dbw $53, LengthRivalName
+	dbw $55, LengthFarString
+	dbw $59, LengthUser
+	dbw $5A, LengthTarget
+	db 0
+
+LengthRAM:
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	ld d, a
+	ld e, b
+	jp CountNextWordLength
+
+LengthFarString:
+	;TODO
+
+LengthPlayerName:
+	ld de, wPlayerName
+	jp CountNextWordLength
+
+LengthRivalName:
+	ld de, wRivalName
+	jp CountNextWordLength
+
+LengthUser:
+	ld a, [H_WHOSETURN]
+	xor 1
+	jr LengthBattleCommon
+
+LengthTarget:
+	ld a, [H_WHOSETURN]
+
+LengthBattleCommon:
+	and a
+	jr z, .notEnemy
+	ld c, 5 ; length of "Enemy"
+	ret
+
+.notEnemy
+	ld de, wBattleMonNick
+	jp CountNextWordLength

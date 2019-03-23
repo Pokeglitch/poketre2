@@ -2,22 +2,14 @@
 
 ; DisplayTextID:
 ; - make room in home bank....
-; - Uncomment "INCLUDE "engine/menu/start_menu.asm"
+; - Uncomment:
+; INCLUDE "engine/menu/start_menu.asm"
+; INCLUDE "home/pic.asm"
 
 ; Add White on Dark font tiles
 
 ; Test all text commands
 
-; Add in auto word-wrap/scroll/para lookahead
-; - need to consider dynamic box sixing
-; - when a space is encountered
-; -- lookahead for the next space or command character
-; -- just inc hl instead of printing hl
-; - 3 ram bytes, row index, col index, and current word size
-; -- inc col and word size when char is written
-; --- reset word side when 7f
-; -- set row/reset col on para and next
-; -- reset row on scroll
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Then, handle DisplayTextBoxID...
@@ -32,13 +24,18 @@
 
 ; Why does Link Center lady disappear when talking to phone guy in Pewter PokeCenter?
 
-; In home/text.asm, double check / test all commands
-; - is 'line' ever neceessary? only use 'next' ?
-; - Guy next to Pewter mart doesnt clear textbox properly
-; -- also why does his sprite flash / disappear during his script?
-; - Char49 is Pokedex?
+; Guy next to Pewter mart doesnt clear textbox properly
+; - also why does his sprite flash / disappear during his script?
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
+
+; Improve word wrap / Text processor:
+; - all "text commands" should be moved to PrintString commands
+; - need to handle the lookahead and column count for all (like numbers, and far strings)
+; - fix battle text to word-wrap properly
+; get rid of either line or next command
+; command to hide/reveal the textbox
+; command to change the settings (will auto hide if style is changed?)
 
 ; Add route names pop to ensure it still works when user can move around
 

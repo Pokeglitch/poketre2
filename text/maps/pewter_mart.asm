@@ -1,17 +1,8 @@
 _PewterMartText2::
-	text "A shady, old man"
-	next "got me to buy"
-	next "this really weird"
-	cont "fish #MON!"
-
-	para "It's totally weak"
-	next "and it cost ¥500!"
+	text "A shady, old man got me to buy this really weird #MON!"
+	para "It's totally weak and it cost ¥500!"
 	done
 
 _PewterMartText3::
-	text "Good things can"
-	next "happen if you"
-	next "raise #MON"
-	cont "diligently, even"
-	scroll "the weak ones!"
+	text "Good things can happen if you raise #MON diligently, even the weak ones!"
 	done

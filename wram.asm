@@ -3219,7 +3219,7 @@ wDayCareMon:: box_struct wDayCareMon ; da5f
 
 wMainDataEnd::
 
-
+UNION
 wBoxDataStart::
 
 wNumInBox::  ds 1 ; da80
@@ -3253,6 +3253,9 @@ wHighScoreName:: ds NAME_LENGTH
 wPermanentDataEnd::
 
 wPermanentDataChecksum::
+	ds 1
+
+NEXTU
 
 wTextboxScrollCyclesRemaining::
 	ds 1
@@ -3262,6 +3265,16 @@ wTextboxScrollDelta::
 
 wTextboxSettings::
 	ds 1
+
+wTextboxColsRemaining::
+	ds 1
+
+wTextboxRowParams::
+; high nybble = auto-scroll remaining
+; low nybble = rows remaining
+	ds 1
+
+ENDU
 
 SECTION "Stack", WRAM0[$df00]
 	ds $ff
