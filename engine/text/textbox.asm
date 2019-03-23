@@ -46,7 +46,7 @@ DisplayTextIDInit:
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
 	ret
 
-DrawDisplayTextIDTextbox:
+InitializeTextbox
 	ld a, [wTextboxSettings]
 	push af
 	and FONT_COLOR_MASK
@@ -56,10 +56,10 @@ DrawDisplayTextIDTextbox:
 	dec a
 	jr z, .blackOnLight
 	dec a
-	jr z, .whiteOnDark
-	; otherwite, white on black
+	jr z, .whiteOnBlack
+	; otherwite, glyphs
 	
-	call LoadWhiteOnBlackFontTilePatterns
+	call LoadGlyphFontTilePatterns
 	jr .drawTextbox
 
 .blackOnWhite
@@ -72,10 +72,9 @@ DrawDisplayTextIDTextbox:
 	call LoadBlackOnLightFontTilePatterns
 	jr .drawTextbox
 
-.whiteOnDark
+.whiteOnBlack
 	inc a ; load the border tiles
-	;TODO
-	;call LoadWhiteOnDarkFontTilePatterns
+	call LoadWhiteOnBlackFontTilePatterns
 
 .drawTextbox
 	pop af

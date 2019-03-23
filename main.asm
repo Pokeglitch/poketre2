@@ -74,7 +74,8 @@ INCLUDE "engine/overworld/pokecenter.asm"
 
 INCLUDE "engine/overworld/set_blackout_map.asm"
 
-INCLUDE "engine/display_text_id_init.asm"
+INCLUDE "engine/text/textbox.asm"
+INCLUDE "engine/text/handler.asm"
 INCLUDE "engine/menu/draw_start_menu.asm"
 
 INCLUDE "engine/overworld/cable_club_npc.asm"
@@ -2171,3 +2172,7 @@ WhiteTextboxBorderGFX: INCBIN "gfx/text/white_border.2bpp"
 BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
 BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
 LightTextboxBorderGFX: INCBIN "gfx/text/light_border.2bpp"
+
+GlyphFontLettersGFX: INCBIN "gfx/text/glyph_font_letters.2bpp"
+GlyphFontSymbolsGFX: INCBIN "gfx/text/glyph_font_symbols.2bpp"
+GlyphTextboxBorderGFX: INCBIN "gfx/text/glyph_border.2bpp"

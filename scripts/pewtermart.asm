@@ -20,7 +20,7 @@ PewterMartText2:
 	db "@"
 
 PewterMartText3:
-	textbox BLACK_ON_WHITE | NO_DELAY | LINES_2
+	textbox GLYPHS | NO_DELAY | LINES_1
 	TX_ASM
 	ld hl, .Text
 	call PrintText

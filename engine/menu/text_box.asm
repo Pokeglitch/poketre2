@@ -1,16 +1,7 @@
-; TODO -
+;TODO -
 
-; DisplayTextID:
-; - make room in home bank....
-; - Uncomment:
-; INCLUDE "engine/menu/start_menu.asm"
-; INCLUDE "home/pic.asm"
-
-; Add White on Dark font tiles
-
-; Test all text commands
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Fix item screen (add in way to disable word-wrap check...)
+; - is that the only thig that broke it? scrolling is wrong...
 
 ; Then, handle DisplayTextBoxID...
 
@@ -29,10 +20,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
 
+; Test all text commands
+
 ; Improve word wrap / Text processor:
 ; - all "text commands" should be moved to PrintString commands
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
 ; - fix battle text to word-wrap properly
+; -- Enemy <PKMN> freezes
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
 ; command to change the settings (will auto hide if style is changed?)

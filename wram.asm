@@ -3274,6 +3274,9 @@ wTextboxRowParams::
 ; low nybble = rows remaining
 	ds 1
 
+wNextChar::
+	ds 1
+
 ENDU
 
 SECTION "Stack", WRAM0[$df00]

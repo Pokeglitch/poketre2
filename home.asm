@@ -970,10 +970,7 @@ PickUpItemText::
 	predef PickUpItem
 	jp TextScriptEnd
 
-
-;INCLUDE "home/pic.asm"
-UncompressSpriteData::
-	ret
+INCLUDE "home/pic.asm"
 
 ResetPlayerSpriteData::
 	ld hl, wSpriteStateData1
@@ -1150,7 +1147,7 @@ DisplayTextID::
 .storeTextboxSettings
 	ld [wTextboxSettings], a
 	push hl
-	farcall DrawDisplayTextIDTextbox
+	farcall InitializeTextbox
 	pop hl
 
 .dontDrawStandardTextbox
@@ -1337,11 +1334,7 @@ RepelWoreOffText::
 	TX_FAR _RepelWoreOffText
 	db "@"
 
-;INCLUDE "engine/menu/start_menu.asm"
-DisplayStartMenu:
-RedisplayStartMenu:
-CloseStartMenu:
-	ret
+INCLUDE "engine/menu/start_menu.asm"
 
 ; function to count how many bits are set in a string of bytes
 ; INPUT:
@@ -3110,6 +3103,15 @@ DivideBytes::
 .done
 	pop hl
 	ret
+
+LoadGlyphFontTilePatterns:
+	and a
+	ld a, [H_LOADEDROMBANK]
+	push af
+	ld a, BANK(LoadGlyphFontTilePatterns_)
+	call SetNewBank
+	call LoadGlyphFontTilePatterns_
+	jr HomeBankswitchReturn
 
 LoadBlackOnWhiteFontTilePatterns:
 LoadFontTilePatterns:

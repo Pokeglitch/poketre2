@@ -86,6 +86,12 @@ ScrollTextbox::
     dec [hl]
     ret
 
+LoadGlyphFontTilePatterns_::
+	ld hl, GlyphFontLettersGFX
+	ld de, GlyphFontSymbolsGFX
+    ld bc, GlyphTextboxBorderGFX
+	jr LoadFontTilePatternsCommon
+
 LoadBlackOnWhiteFontTilePatterns_::
 	ld hl, BlackOnWhiteFontLettersGFX
 	ld de, BlackOnWhiteFontSymbolsGFX
