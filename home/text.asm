@@ -15,15 +15,27 @@ NPlaceChar::
 	jr nz, .loop
 	ret
 
+; Places a string from given bank (b)
+PlaceFarString:
+	ld a, [H_LOADEDROMBANK]
+	push af
+	ld a, b
+	call SetNewBank
+	call PlaceString
+	jp HomeBankswitchReturn
+
 PlaceString::
+	ld a, NO_WORD_WRAP
+	ld [wTextboxSettings], a
+
+PlaceTextboxString:
 	ld a, [H_LOADEDROMBANK]
 	push af
 	push hl
 
 PlaceNextChar::
 	ld a, [de]
-
-	cp "@"
+	cp TEXT_END
 	jr nz, .notEnd
 	ld b, h
 	ld c, l
@@ -39,8 +51,7 @@ PlaceNextChar::
 	; Otherwise, process in different bank
 	ld [wNextChar], a
 	ld a, BANK(HandleNextChar)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	jp HandleNextChar
 
 ReturnAndPlaceNextChar::
@@ -51,17 +62,10 @@ ReturnAndPlaceNextChar::
 	pop af
 	push af
 	push bc
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
+
 	inc de
 	jr PlaceNextChar
-
-ReturnFromPlaceNextChar:
-	pop hl
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
 
 RAMTextCommand::
 	inc de
@@ -72,7 +76,7 @@ RAMTextCommand::
 	push de
 	ld e, b
 	ld d, a
-	call PlaceString
+	call PlaceTextboxString
 	ld h, b
 	ld l, c
 	pop de
@@ -84,6 +88,7 @@ TextCommandProcessor::
 	call ResetRowsRemaining
 	call ResetColumnTilesRemaining
 
+TextCommandProcessor_NoReset::
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	
@@ -110,7 +115,7 @@ TextCommandProcessor::
 
 NextTextCommand::
 	ld a, [hli]
-	cp "@" ; terminator
+	cp TEXT_END ; terminator
 	jr nz, .doTextCommand
 	pop bc
 	pop af
@@ -165,7 +170,7 @@ TextCommand00::
 	ld e, l
 	ld h, b
 	ld l, c
-	call PlaceString
+	call PlaceTextboxString
 	ld h, d
 	ld l, e
 	inc hl
@@ -183,7 +188,7 @@ TextCommand01::
 	push hl
 	ld h, b
 	ld l, c
-	call PlaceString
+	call PlaceTextboxString
 	pop hl
 	jr NextTextCommand
 
@@ -436,32 +441,15 @@ TextCommand17::
 	ld a, [hli]
 	ld d, a
 	ld a, [hli]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	push hl
 	ld l, e
 	ld h, d
-	call TextCommandProcessor
+	call TextCommandProcessor_NoReset
 	pop hl
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	jp NextTextCommand
-
-; Places a string from given bank (b)
-PlaceFarString:
-	ld a, [H_LOADEDROMBANK]
-	push af
-	
-	ld a, b
-	ld [MBC1RomBank], a
-	ld [H_LOADEDROMBANK], a
-	call PlaceString
-	
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
 
 TextCommandJumpTable::
 	dw TextCommand00
@@ -489,8 +477,7 @@ CheckWordWrap:
 	push af
 	push bc
 	
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	push de
 	push hl
@@ -500,8 +487,7 @@ CheckWordWrap:
 	cp c
 
 	ld a, BANK(CheckWordWrapReturn)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	pop hl
 	pop de
@@ -544,7 +530,7 @@ CountNextWordLength:
 .checkVariableLengthChars
 	ld a, [hli]
 	cp b
-	jr z, .variableLengthChar
+	jp z, JumpToTablePointer
 	inc hl
 	inc hl
 	and a
@@ -560,16 +546,15 @@ CountNextWordLength:
 	ld c, a
 	jr .readNextCharLoop
 
-.variableLengthChar
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-	jp hl
-
+JumpToTablePointer
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    jp hl
 
 EndOfWordChars:
 	db " " ; space
-	db "@" ; end of text
+	db TEXT_END ; end of text
 	db $4C ; autocont
 	db $4B ; cont
 	db $4E ; next
@@ -639,9 +624,8 @@ LengthBattleCommon:
 	ld de, wBattleMonNick
 	jp CountNextWordLength
 
-Char58Text::
-	db "@"
-
+TextEndCharText::
+	db TEXT_END
 
 GetTextboxSize:
 	ld a, [wTextboxSettings]

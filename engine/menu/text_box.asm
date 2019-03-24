@@ -1,7 +1,8 @@
 ;TODO -
 
-; Fix item screen (add in way to disable word-wrap check...)
-; - is that the only thig that broke it? scrolling is wrong...
+; Move char length lookahead to new bank
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Then, handle DisplayTextBoxID...
 
@@ -17,6 +18,8 @@
 
 ; Guy next to Pewter mart doesnt clear textbox properly
 ; - also why does his sprite flash / disappear during his script?
+
+; See where PrintText is called from...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
 

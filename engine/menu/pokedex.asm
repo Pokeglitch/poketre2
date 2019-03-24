@@ -594,7 +594,7 @@ HeightWeightText:
 	next "WT   ???lb@"
 
 ; XXX does anything point to this?
-PokeText:
+UnusedPokeText:
 	db "#@"
 
 ; horizontal line that divides the pokedex text description from the rest of the data

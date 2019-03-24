@@ -1914,11 +1914,6 @@ _WillBeTradedText::
 	cont "be traded."
 	done
 
-_Char00Text::
-	TX_NUM hSpriteIndexOrTextID,1,2
-	text " ERROR."
-	done
-
 INCLUDE "text/maps/digletts_cave_route_2_entrance.asm"
 INCLUDE "text/maps/viridian_forest_exit.asm"
 INCLUDE "text/maps/route_2_house.asm"

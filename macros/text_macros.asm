@@ -1,18 +1,18 @@
 
 ; text macros
-text   EQUS "db $00," ; Start writing text.
-ramtext EQUS "dbw 1, "
-textbox EQUS "db $18," ; Define the textbox before writing the text
-cont   EQUS "db $4b," ; Scroll to the next line.
-scroll EQUS "db $4c," ; Scroll without user interaction
-next   EQUS "db $4e," ; Move a line down.
-line   EQUS "db $4f," ; Start writing at the bottom line.
-para   EQUS "db $51," ; Start a new paragraph.
-done   EQUS "db $57"  ; End a text box.
-prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some other event).
+text     EQUS "db TEXT_INIT," ; Start writing text.
+ramtext  EQUS "dbw RAM_TEXT, "
+textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
+cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
+autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
+next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
+line     EQUS "db NEXT_TEXT_LINE+1," ; Start writing at the bottom line.
+para     EQUS "db PARAGRAPH," ; Start a new paragraph.
+done     EQUS "db TEXT_DONE"  ; End a text box.
+prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 
-page   EQUS "db $49,"     ; Start a new Pokedex page.
-dex    EQUS "db $5f, $50" ; End a Pokedex entry.
+page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
+dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
 
 TX_RAM: MACRO
 ; prints text to screen

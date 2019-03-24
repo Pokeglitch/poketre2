@@ -15,211 +15,12 @@ MoveToNextLine:
 	add hl, bc
 	ret
 
-HandleNextChar:
-    ld a, [wNextChar]
-    cp $4E ; next
-	jr z, .handleNext
-
-	cp $4F ; line
-	jr nz, .next3
-
-.handleNext
-	pop hl
-	call MoveToNextLine
-	push hl
-	jp ReturnAndPlaceNextChar
-
-.next3 ; Check against a dictionary
-dict: macro
-if \1 == 0
-	and a
-else
-	cp \1
-endc
-	jp z, \2
-endm
-
-	dict $00, Char00 ; error
-	dict $4C, Char4C ; autocont
-	dict $4B, Char4B ; cont
-	dict $51, Char51 ; para
-	dict $49, Char49 ; page
-	dict $52, Char52 ; player
-	dict $53, Char53 ; rival
-	dict $54, Char54 ; POKé
-	dict $5B, Char5B ; PC
-	dict $5E, Char5E ; ROCKET
-	dict $5C, Char5C ; TM
-	dict $5D, Char5D ; TRAINER
-	dict $56, Char56 ; 6 dots
-	dict $57, Char57 ; done
-	dict $58, Char58 ; prompt
-	dict $4A, Char4A ; PKMN
-	dict $5F, Char5F ; dex
-	dict $59, Char59 ; TARGET
-	dict $5A, Char5A ; USER
-
-	cp " "
-	jr nz, PlaceNextCharacter
-
-	inc de
-	jp CheckWordWrap
-
-CheckWordWrapReturn:
-	dec de
-	jr nc, .placeSpaceChar
-
-	;handle word wrap
-	
-	; if there are rows remaining, move to the next line
-	ld a, [wTextboxRowParams]
-	and TEXTBOX_ROWS_REMAINING_MASK
-	jr nz, .rowsRemaining 
-
-	; if there is auto scroll remaining, then auto scroll
-	ld a, [wTextboxRowParams]
-	and TEXTBOX_AUTOSCROLL_REMAINING_MASK
-	jp nz, Char4C ; auto scroll
-
-	;otherwise, reset autoscroll count and prompt for a scroll
-	ld a, [wTextboxSettings]
-	and TEXT_LINES_MASK
-	swap a
-	ld [wTextboxRowParams], a
-
-	jp Char4B
-
-
-.rowsRemaining
-	pop hl
-	call MoveToNextLine
-	push hl 
-	jp ReturnAndPlaceNextChar
-
-.placeSpaceChar
-	ld a, " "
-
-PlaceNextCharacter:
-	ld [hli], a
-	ld a, [wTextboxColsRemaining]
-	dec a
-	ld [wTextboxColsRemaining], a
-	call PrintLetterDelay
-    jp ReturnAndPlaceNextChar
-
-Char00::
-	ld b, h
-	ld c, l
-	pop hl
-	ld de, Char00Text
-	dec de
-	ret
-
-Char00Text:: ; “%d ERROR.”
-	TX_FAR _Char00Text
-	db "@"
-
-Char52:: ; player’s name
-	push de
-	ld de, wPlayerName
-	jr FinishDTE
-
-Char53:: ; rival’s name
-	push de
-	ld de, wRivalName
-	jr FinishDTE
-
-Char5D:: ; TRAINER
-	push de
-	ld de, Char5DText
-	jr FinishDTE
-
-Char5C:: ; TM
-	push de
-	ld de, Char5CText
-	jr FinishDTE
-
-Char5B:: ; PC
-	push de
-	ld de, Char5BText
-	jr FinishDTE
-
-Char5E:: ; ROCKET
-	push de
-	ld de, Char5EText
-	jr FinishDTE
-
-Char54:: ; POKé
-	push de
-	ld de, Char54Text
-	jr FinishDTE
-
-Char56:: ; ……
-	push de
-	ld de, Char56Text
-	jr FinishDTE
-
-Char4A:: ; PKMN
-	push de
-	ld de, Char4AText
-	jr FinishDTE
-
-Char59::
-; depending on whose turn it is, print
-; enemy active monster’s name, prefixed with “Enemy ”
-; or
-; player active monster’s name
-; (like Char5A but flipped)
-	ld a, [H_WHOSETURN]
-	xor 1
-	jr MonsterNameCharsCommon
-
-Char5A::
-; depending on whose turn it is, print
-; player active monster’s name
-; or
-; enemy active monster’s name, prefixed with “Enemy ”
-	ld a, [H_WHOSETURN]
-MonsterNameCharsCommon::
-	push de
-	and a
-	jr nz, .Enemy
-	ld de, wBattleMonNick ; player active monster name
-	jr FinishDTE
-
-.Enemy
-	; print “Enemy ”
-	ld de, Char5AText
-
-FinishDTE::
-	call PlaceString
-	ld h, b
-	ld l, c
-	pop de
-	jp ReturnAndPlaceNextChar
-
-Char5CText::
-	db "TM@"
-Char5DText::
-	db "TRAINER@"
-Char5BText::
-	db "PC@"
-Char5EText::
-	db "ROCKET@"
-Char54Text::
-	db "Poké@"
-Char56Text::
-	db "……@"
-Char5AText::
-	db "Enemy "
-	TX_RAM wEnemyMonNick
-	db "@"
-Char4AText::
-	db $E1,$E2,"@" ; PKMN
-
-
-; try to reveal the textbox
+; try to reveal the textbox when a user prompt is encountered
 CheckRevealTextbox::
+    ld a, [wTextboxSettings]
+    bit BIT_DONT_REVEAL, a
+    ret z ; return if the textbox is not set to be hidden
+
 	ld a, [hWY]
 	cp SCREEN_HEIGHT_PIXELS
 	ret c ; return if its already revealed
@@ -240,74 +41,133 @@ CheckRevealTextbox::
 	pop de
 	ret
 
-Char5F::
-; ends a Pokédex entry
-	ld [hl], "."
-	jp ReturnFromPlaceNextChar
+; To handle the next character in the string
+HandleNextChar:
+    ld a, [wNextChar]
+    ld b, a
+    push hl
+    ld hl, StringCommandTable
 
-Char58:: ; prompt
-	call GetEndOfBottomRow
-	ld a, [wLinkState]
-	cp LINK_STATE_BATTLING
-	jp z, .ok
-	ld [hl], "▼"
-.ok
-	call ProtectedDelay3
-	call CheckRevealTextbox
-	call ManualTextScroll
-	ld [hl], " "
+.checkCommandTableLoop
+    ld a, [hli]
+    cp b
+    jp z, JumpToTablePointer
+    inc hl
+    inc hl
+    and a
+    jr nz, .checkCommandTableLoop
 
-Char57:: ; done
-	ld de, Char58Text-1
-	jp ReturnFromPlaceNextChar
+    ld hl, NestedStringsTable
 
-Char51:: ; para
-	push de
-	call GetEndOfBottomRow
-	push af
-	ld [hl], "▼"
-	call ProtectedDelay3
-	call CheckRevealTextbox
-	call ManualTextScroll
-	coord hl, 1, 1
-	pop af
-	ld b, a
-	ld c, 18
-	call ClearScreenArea
-	ld c, 20
-	call DelayFrames
+.checkNestedTableLoop
+    ld a, [hli]
+    cp b
+    jr z, UseNestedTextFromTable
+    inc hl
+    inc hl
+    and a
+    jr nz, .checkNestedTableLoop
+
+    pop hl
+    ld a, b
+    ; fall through
+
+    ; End of table
+PlaceNextCharacter:
+	ld [hli], a
+	ld a, [wTextboxColsRemaining]
+	dec a
+	ld [wTextboxColsRemaining], a
+	call PrintLetterDelay
+    jp ReturnAndPlaceNextChar
+
+UseNestedTextFromTable:
+    ld c, [hl]
+    inc hl
+    ld b, [hl]
+    pop hl
+    push de
+    ld d, b
+    ld e, c
+
+PlaceNestedString:
+	call PlaceTextboxString
+	ld h, b
+	ld l, c
 	pop de
+	jp ReturnAndPlaceNextChar
+
+StringCommandTable:
+    dbw " ", SpaceCommand ; space
+    dbw NEXT_TEXT_LINE, NextLineCommand ; next
+    dbw NEXT_TEXT_LINE+1, NextLineCommand ; line
+	dbw AUTO_CONTINUE_TEXT, AutoContinueTextCommand ; autocont
+	dbw CONTINUE_TEXT, ContinueTextCommand ; cont
+	dbw PARAGRAPH, ParagraphCommand ; para
+	dbw TEXT_DONE, TextDoneCommand ; done
+	dbw TEXT_PROMPT, TextPromptCommand ; prompt
+	dbw DEX_PAGE, DexPageCommand ; page
+	dbw DEX_END, DexEndCommand ; dex
+	dbw MOVE_TARGET_TEXT, MoveTargetTextCommand ; TARGET
+	dbw MOVE_USER_TEXT, MoveUserTextCommand ; USER
+    db 00
+
+NextLineCommand:
+    pop hl
 	pop hl
-	call ResetRowsRemaining
-	call ResetColumnTilesRemaining
-	coord hl, 1, 1
+	call MoveToNextLine
 	push hl
 	jp ReturnAndPlaceNextChar
 
-; Pokedex Page
-Char49::
-	push de
-	ld a, "▼"
-	Coorda 18, 16
-	call ProtectedDelay3
-	call ManualTextScroll
-	coord hl, 1, 10
-	lb bc, 7, 18
-	call ClearScreenArea
-	ld c, 20
-	call DelayFrames
-	pop de
+SpaceCommand:
+    pop hl
+	inc de
+    ld a, [wTextboxSettings]
+    bit BIT_NO_WORD_WRAP, a
+    jp z, CheckWordWrap
+	; fall through
+
+CheckWordWrapReturn:
+	dec de
+	jr c, .handleWordWrap
+
+	ld a, " "
+    jp PlaceNextCharacter
+
+.handleWordWrap
+	; if there are rows remaining, move to the next line
+	ld a, [wTextboxRowParams]
+	and TEXTBOX_ROWS_REMAINING_MASK
+	jr nz, .rowsRemaining 
+
+	; if there is auto scroll remaining, then auto scroll
+	ld a, [wTextboxRowParams]
+	and TEXTBOX_AUTOSCROLL_REMAINING_MASK
+	jp nz, AutoContinueText ; auto scroll
+
+	;otherwise, reset autoscroll count and prompt for a scroll
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	swap a
+	ld [wTextboxRowParams], a
+
+	jp ContinueText
+
+.rowsRemaining
 	pop hl
-	coord hl, 1, 11
-	push hl
+	call MoveToNextLine
+	push hl 
 	jp ReturnAndPlaceNextChar
 
-Char4B::
+ContinueTextCommand::
+    pop hl
+
+ContinueText::
 	push de
 	call GetEndOfBottomRow
 	ld [hl], "▼"
 	push hl
-	call ProtectedDelay3
+	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
 	pop hl
@@ -315,7 +175,10 @@ Char4B::
 	ld [hl], " "
 	jr ScrollCommon
 
-Char4C::
+AutoContinueTextCommand::
+    pop hl
+
+AutoContinueText::
 	; decrease the auto scroll count
 	ld a, [wTextboxRowParams]
 	swap a
@@ -332,6 +195,7 @@ ScrollCommon:
 	call GetStartOfBottomRow
 	pop de
 	jp ReturnAndPlaceNextChar
+
 
 ; move both rows of text in the normal text box up one row
 ; always called twice in a row
@@ -350,7 +214,6 @@ ScrollTextUpOneLine::
 	add SCREEN_WIDTH
 	dec b
 	jr nz, .sizeLoop
-
 	ld b, a
 
 .copyText
@@ -375,11 +238,138 @@ ScrollTextUpOneLine::
 	call DelayFrame
 	dec b
 	jr nz, .WaitFrame
-
 	ret
 
-ProtectedDelay3::
-	push bc
+ParagraphCommand:: ; para
+    pop hl
+	push de
+	call GetEndOfBottomRow
+	push af
+	ld [hl], "▼"
 	call Delay3
-	pop bc
-	ret
+	call CheckRevealTextbox
+	call ManualTextScroll
+	coord hl, 1, 1
+	pop af
+	ld b, a
+	ld c, 18
+	call ClearScreenArea
+	ld c, 20
+	call DelayFrames
+	pop de
+	pop hl
+	call ResetRowsRemaining
+	call ResetColumnTilesRemaining
+	coord hl, 1, 1
+	push hl
+	jp ReturnAndPlaceNextChar
+
+TextPromptCommand:: ; prompt
+    pop hl
+	call GetEndOfBottomRow
+	ld a, [wLinkState]
+	cp LINK_STATE_BATTLING
+	jp z, .ok
+	ld [hl], "▼"
+.ok
+	call Delay3
+	call CheckRevealTextbox
+	call ManualTextScroll
+	ld [hl], " "
+
+TextDoneCommand:: ; done
+    pop hl
+	ld de, TextEndCharText-1
+	pop hl
+	jp HomeBankswitchReturn
+
+; Pokedex Page
+DexPageCommand::
+    pop hl
+	push de
+	ld a, "▼"
+	Coorda 18, 16
+	call Delay3
+	call ManualTextScroll
+	coord hl, 1, 10
+	lb bc, 7, 18
+	call ClearScreenArea
+	ld c, 20
+	call DelayFrames
+	pop de
+	pop hl
+	coord hl, 1, 11
+	push hl
+	jp ReturnAndPlaceNextChar
+
+DexEndCommand::
+; ends a Pokédex entry
+    pop hl
+	ld [hl], "."
+	pop hl
+	jp HomeBankswitchReturn
+
+MoveTargetTextCommand::
+; depending on whose turn it is, print
+; enemy active monster’s name, prefixed with “Enemy ”
+; or
+; player active monster’s name
+	ld a, [H_WHOSETURN]
+	xor 1
+	jr MonsterNameCharsCommon
+
+MoveUserTextCommand::
+; depending on whose turn it is, print
+; player active monster’s name
+; or
+; enemy active monster’s name, prefixed with “Enemy ”
+	ld a, [H_WHOSETURN]
+MonsterNameCharsCommon::
+    pop hl
+	push de
+	ld de, wBattleMonNick ; player active monster name
+	and a
+	jr nz, .notEnemy
+
+	ld de, EnemyMonText ; enemy monster name
+
+.notEnemy
+	jp PlaceNestedString
+
+EnemyMonText::
+	db "Enemy "
+	TX_RAM wEnemyMonNick
+	db "@"
+
+NestedStringsTable:
+	dbw PLAYER_NAME_TEXT, wPlayerName ; player
+	dbw RIVAL_NAME_TEXT, wRivalName ; rival
+	dbw POKE_TEXT, PokeText ; POKé
+	dbw PC_TEXT, PCText ; PC
+	dbw ROCKET_TEXT, RocketText ; ROCKET
+	dbw TM_TEXT, TMText ; TM
+	dbw TRAINER_TEXT, TrainerText ; TRAINER
+	dbw DOTS_TEXT, DotsText ; 6 dots
+	dbw PKMN_TEXT, PKMNText ; PKMN
+    db 00
+
+PokeText::
+	db "Poké@"
+
+PCText::
+	db "PC@"
+
+RocketText::
+	db "ROCKET@"
+
+TMText::
+	db "TM@"
+
+TrainerText::
+	db "TRAINER@"
+
+DotsText::
+	db "……@"
+
+PKMNText::
+	db $E1,$E2,"@" ; PKMN
