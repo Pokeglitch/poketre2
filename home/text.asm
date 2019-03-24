@@ -553,37 +553,31 @@ JumpToTablePointer
     jp hl
 
 EndOfWordChars:
-	db " " ; space
-	db TEXT_END ; end of text
-	db $4C ; autocont
-	db $4B ; cont
-	db $4E ; next
-	db $4F ; line
-	db $49 ; page
-	db $51 ; para
-	db $57 ; done
-	db $58 ; prompt
-	db $5F ; dex
+	db " ", PARAGRAPH
+	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
+	db NEXT_TEXT_LINE, NEXT_TEXT_LINE+1
+	db TEXT_DONE, TEXT_PROMPT
+	db DEX_PAGE, DEX_END
 	db 0
 
 FixedLengthChars:
-	db $4A, 2 ; PkMn
-	db $54, 4 ; POKé
-	db $5B, 2 ; PC
-	db $5E, 6 ; ROCKET
-	db $5C, 2 ; TM
-	db $5C, 7 ; TRAINER
-	db $56, 2 ; 6 dots
+	db PKMN_TEXT, 2 ; PkMn
+	db POKE_TEXT, 4 ; POKé
+	db PC_TEXT, 2 ; PC
+	db ROCKET_TEXT, 6 ; ROCKET
+	db TM_TEXT, 2 ; TM
+	db TRAINER_TEXT, 7 ; TRAINER
+	db DOTS_TEXT, 2 ; 6 dots
 	db 0
 
 ; These are all assumed to not be combined with other characters
 VariableLengthChars:
-	dbw 1, LengthRAM
-	dbw $52, LengthPlayerName
-	dbw $53, LengthRivalName
-	dbw $55, LengthFarString
-	dbw $59, LengthUser
-	dbw $5A, LengthTarget
+	dbw RAM_TEXT, LengthRAM
+	dbw PLAYER_NAME_TEXT, LengthPlayerName
+	dbw RIVAL_NAME_TEXT, LengthRivalName
+	dbw FAR_TEXT, LengthFarString
+	dbw MOVE_USER_TEXT, LengthUser
+	dbw MOVE_TARGET_TEXT, LengthTarget
 	db 0
 
 LengthRAM:

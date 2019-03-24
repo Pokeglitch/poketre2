@@ -23,6 +23,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
 
+; The blinking down arrow should cover the border to not overlap any text characters
+
 ; Test all text commands
 
 ; Improve word wrap / Text processor:
