@@ -98,9 +98,6 @@ SpecialEffectsCont:
 
 SlidePlayerAndEnemySilhouettesOnScreen:
 	call LoadPlayerBackPic
-	ld a, MESSAGE_BOX ; the usual text box at the bottom of the screen
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	coord hl, 1, 5
 	lb bc, 3, 7
 	call ClearScreenArea

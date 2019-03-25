@@ -1,29 +1,33 @@
 ;TODO -
 
-; Move char length lookahead to new bank
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Then, handle DisplayTextBoxID...
-
-; - In DisplayTextBoxID_, see which commented "TextboxBorder" should remain
-
-; Check all locations where wAutoTextBoxDrawingControl toggled
-; - textbox drawing was removed from DisplayTextIDInit, see if that will be a problem...
-
-; - StartMenu should use an entire different function altogether, not DisplayTextIDInit
-; -- why are sprites not hidden??
+; Bug Fixes:
 
 ; Why does Link Center lady disappear when talking to phone guy in Pewter PokeCenter?
 
 ; Guy next to Pewter mart doesnt clear textbox properly
 ; - also why does his sprite flash / disappear during his script?
 
-; See where PrintText is called from...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Menu fixes:
+
+; Fix each menu in DisplayTextID
+
+; Fix each menu in DisplayTextBoxID_
+
+; Remove all locations where TextboDrawing is enabled/disabled
+; - wAutoTextBoxDrawingControl
+; This is used is the text has a script with non standard textbox
+; - or doesn't display text immediately
+; Instead, just prefix the text with a a DONT_REVEAL flag
+; -- is this all that is neccessary? test all...
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
 
 ; The blinking down arrow should cover the border to not overlap any text characters
+; - instead, load a new tile into the oam to overwrite the lower right corner border tile
+
+; Add in remaining borders
 
 ; Test all text commands
 
@@ -41,8 +45,9 @@
 ; Just restore screen from buffer instead of redrawing entirely?
 
 ; Move textbox ram bytes to a better location
-; doesn't need to be saved, so can by moved to junk area
-; (do this by freeing up the PC box bytes)
+; doesn't need to be saved, so can by moved to shared rea
+
+; Actually free up the PC box bytes
 
 ;--------------------------------
 
@@ -76,13 +81,13 @@ DisplayTextBoxID_:
 .coordTableMatch
 	call GetTextBoxIDCoords
 	call GetAddressOfScreenCoords
-;	call TextBoxBorder
+	call TextBoxBorder
 	ret
 .textAndCoordTableMatch
 	call GetTextBoxIDCoords
 	push hl
 	call GetAddressOfScreenCoords
-;	call TextBoxBorder
+	call TextBoxBorder
 	pop hl
 	call GetTextBoxIDText
 	ld a, [wd730]
@@ -189,11 +194,7 @@ TextBoxFunctionTable:
 ; 03: column of lower right corner
 ; 04: row of lower right corner
 TextBoxCoordTable:
-	db MESSAGE_BOX,       0,  0, 19, 4
-	db $03,               0,  0, 19, 14
-	db $07,               0,  0, 11,  6
 	db LIST_MENU_BOX,     4,  2, 19, 12
-	db $10,               7,  0, 19, 17
 	db MON_SPRITE_POPUP,  6,  4, 14, 13
 	db $ff ; terminator
 
@@ -208,25 +209,10 @@ TextBoxCoordTable:
 ; 08: row of beginning of text
 ; table of window positions and corresponding text [key, start column, start row, end column, end row, text pointer [2 bytes], text column, text row]
 TextBoxTextAndCoordTable:
-	db JP_MOCHIMONO_MENU_TEMPLATE
-	db 0,0,14,17   ; text box coordinates
-	dw JapaneseMochimonoText
-	db 3,0   ; text coordinates
-
 	db USE_TOSS_MENU_TEMPLATE
 	db 13,10,19,14 ; text box coordinates
 	dw UseTossText
 	db 15,11 ; text coordinates
-
-	db JP_SAVE_MESSAGE_MENU_TEMPLATE
-	db 0,0,7,5     ; text box coordinates
-	dw JapaneseSaveMessageText
-	db 2,2   ; text coordinates
-
-	db JP_SPEED_OPTIONS_MENU_TEMPLATE
-	db 0,6,5,10    ; text box coordinates
-	dw JapaneseSpeedOptionsText
-	db 2,7   ; text coordinates
 
 	db BATTLE_MENU_TEMPLATE
 	db 8,12,19,17  ; text box coordinates
@@ -253,16 +239,6 @@ TextBoxTextAndCoordTable:
 	dw MoneyText
 	db 13,0  ; text coordinates
 
-	db JP_AH_MENU_TEMPLATE
-	db 7,6,11,10   ; text box coordinates
-	dw JapaneseAhText
-	db 8,8   ; text coordinates
-
-	db JP_POKEDEX_MENU_TEMPLATE
-	db 11,8,19,17  ; text box coordinates
-	dw JapanesePokedexMenu
-	db 12,10 ; text coordinates
-
 ; note that there is no terminator
 
 BuySellQuitText:
@@ -274,23 +250,8 @@ UseTossText:
 	db   "USE"
 	next "TOSS@"
 
-JapaneseSaveMessageText:
-	db   "きろく"
-	next "メッセージ@"
-
-JapaneseSpeedOptionsText:
-	db   "はやい"
-	next "おそい@"
-
 MoneyText:
 	db "MONEY@"
-
-JapaneseMochimonoText:
-	db "もちもの@"
-
-JapaneseMainMenuText:
-	db   "つづきから"
-	next "さいしょから@"
 
 BattleMenuText:
 	db   "FIGHT ",$E1,$E2
@@ -304,15 +265,6 @@ SwitchStatsCancelText:
 	db   "SWITCH"
 	next "STATS"
 	next "CANCEL@"
-
-JapaneseAhText:
-	db "アッ!@"
-
-JapanesePokedexMenu:
-	db   "データをみる"
-	next "なきごえ"
-	next "ぶんぷをみる"
-	next "キャンセル@"
 
 DisplayMoneyBox:
 	ld hl, wd730

@@ -1151,7 +1151,7 @@ DisplayTextID::
 	pop hl
 
 .dontDrawStandardTextbox
-	call PrintText_NoCreatingTextBox ; display the text
+	call PrintText ; display the text
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
 	and a
 	jr nz, HoldTextDisplayOpen
@@ -4231,15 +4231,6 @@ ClearTextBox:
 	jp ClearScreenArea
 
 PrintText::
-; Print text hl at (1, 1).
-	push hl
-	ld a, MESSAGE_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
-	call UpdateSprites
-	call Delay3
-	pop hl
-PrintText_NoCreatingTextBox::
 	coord bc, 1, 1
 	jp TextCommandProcessor
 

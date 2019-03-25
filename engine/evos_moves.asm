@@ -145,7 +145,7 @@ Evolution_PartyMonLoop: ; loop over party mons
 	call GetName
 	push hl
 	ld hl, IntoText
-	call PrintText_NoCreatingTextBox
+	call PrintText
 	ld a, SFX_GET_ITEM_2
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
