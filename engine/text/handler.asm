@@ -164,15 +164,10 @@ ContinueTextCommand::
 
 ContinueText::
 	push de
-	call GetEndOfBottomRow
-	ld [hl], "▼"
-	push hl
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
-	pop hl
 	pop de
-	ld [hl], " "
 	jr ScrollCommon
 
 AutoContinueTextCommand::
@@ -243,14 +238,11 @@ ScrollTextUpOneLine::
 ParagraphCommand:: ; para
     pop hl
 	push de
-	call GetEndOfBottomRow
-	push af
-	ld [hl], "▼"
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
 	coord hl, 1, 1
-	pop af
+	call GetTextboxSize
 	ld b, a
 	ld c, 18
 	call ClearScreenArea
@@ -266,16 +258,9 @@ ParagraphCommand:: ; para
 
 TextPromptCommand:: ; prompt
     pop hl
-	call GetEndOfBottomRow
-	ld a, [wLinkState]
-	cp LINK_STATE_BATTLING
-	jp z, .ok
-	ld [hl], "▼"
-.ok
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
-	ld [hl], " "
 
 TextDoneCommand:: ; done
     pop hl

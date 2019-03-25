@@ -1143,7 +1143,7 @@ DisplayTextID::
 
 .useStandardTextboxSettings
 	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
-
+	
 .storeTextboxSettings
 	ld [wTextboxSettings], a
 	push hl
@@ -3485,33 +3485,63 @@ JoypadLowSensitivity::
 	ret
 
 WaitForTextScrollButtonPress::
-	ld a, [H_DOWNARROWBLINKCNT1]
-	push af
-	ld a, [H_DOWNARROWBLINKCNT2]
-	push af
-	xor a
-	ld [H_DOWNARROWBLINKCNT1], a
-	ld a, $6
-	ld [H_DOWNARROWBLINKCNT2], a
-.loop
 	push hl
+	ld hl, wd736
+	ld a, [hl]
+	push af
+	set 6, [hl] ; disable 4 reserved oam tiles from being reset
+	ld hl, $c398 ; todo - make a formula
+	ld [hl], $8c
+	inc hl
+	ld [hl], $08
+	inc hl
+	ld [hl], $ee
+	inc hl
+	ld [hl], 1 << 4
+	inc hl
+	ld [hl], $8b
+	inc hl
+	ld [hl], $a0
+	inc hl
+	ld [hl], $ee
+	inc hl
+	ld [hl], 1 << 4
+	xor a
+	push af
+.loop
 	ld a, [wTownMapSpriteBlinkingEnabled]
 	and a
 	jr z, .skipAnimation
 	call TownMapSpriteBlinkingAnimation
 .skipAnimation
-	call GetEndOfBottomRow
-	call HandleDownArrowBlinkTiming
-	pop hl
+	pop af
+	inc a
+	cp $40
+	jr nz, .dontMoveDown
+	ld hl, $c398
+	inc [hl]
+	ld hl, $c39c
+	inc [hl]
+	ld a, $a0
+	cp [hl]
+	jr nc, .dontReset
+	ld [hl], $8c
+	ld hl, $c398
+	ld [hl], $8c
+.dontReset
+	xor a
+.dontMoveDown
+	push af
 	call JoypadLowSensitivity
 	predef CableClub_Run
 	ld a, [hJoy5]
 	and A_BUTTON | B_BUTTON
 	jr z, .loop
 	pop af
-	ld [H_DOWNARROWBLINKCNT2], a
+	ld hl, wd736
 	pop af
-	ld [H_DOWNARROWBLINKCNT1], a
+	ld [wd736], a ; reset the oam tile data
+	pop hl
 	ret
 
 ; (unless in link battle) waits for A or B being pressed and outputs the scrolling sound effect

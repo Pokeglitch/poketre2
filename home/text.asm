@@ -256,12 +256,9 @@ TextCommand06::
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jp z, TextCommand0D
-	call GetEndOfBottomRow
-	ld [hl], "▼" ; place down arrow in lower right corner of dialogue text box
 	push bc
 	call ManualTextScroll ; blink arrow and wait for A or B to be pressed
 	pop bc
-	ld [hl], " "
 	pop hl
 	jp NextTextCommand
 
@@ -269,8 +266,6 @@ TextCommand06::
 ; 07
 ; (no arguments)
 TextCommand07::
-	call GetEndOfBottomRow
-	ld [hl], " " ; place blank space in lower right corner of dialogue text box
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
 	pop hl
@@ -631,13 +626,6 @@ GetTextboxSize:
 GetStartOfBottomRow:
 	call GetTextboxSize
 	coord hl, 1, 0
-	jr GetLastRowCommon
-
-GetEndOfBottomRow:
-	call GetTextboxSize
-	coord hl, 18, 0
-
-GetLastRowCommon:
 	push af
 	ld de, SCREEN_WIDTH
 .loop

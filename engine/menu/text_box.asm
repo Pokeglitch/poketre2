@@ -13,6 +13,13 @@
 ; Fix each menu in DisplayTextID
 
 ; Fix each menu in DisplayTextBoxID_
+; 2 option menu should be string command with 4 argmuents:
+; - left option string / string if selected
+; - right option string / string if selected
+; - Will draw on bottom line...will scroll if necessary
+; -- will finish with "para" call
+
+; Remove 'money box' altogether?
 
 ; Remove all locations where TextboDrawing is enabled/disabled
 ; - wAutoTextBoxDrawingControl
@@ -27,8 +34,6 @@
 ; The blinking down arrow should cover the border to not overlap any text characters
 ; - instead, load a new tile into the oam to overwrite the lower right corner border tile
 
-; Add in remaining borders
-
 ; Test all text commands
 
 ; Improve word wrap / Text processor:
@@ -40,6 +45,9 @@
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
 ; command to change the settings (will auto hide if style is changed?)
+; command for "wait for user interaction"
+; -- para/cont/prompt will just call this command
+; -- could be used before a 2 option menu, for example
 
 ; Add route names pop to ensure it still works when user can move around
 
@@ -49,6 +57,8 @@
 ; doesn't need to be saved, so can by moved to shared rea
 
 ; Actually free up the PC box bytes
+
+; When is "HandleMenuInput" called? will it be needed anymore?
 
 ;--------------------------------
 
