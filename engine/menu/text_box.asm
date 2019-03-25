@@ -32,9 +32,10 @@
 ; Test all text commands
 
 ; Improve word wrap / Text processor:
+; - Move lookahead routine out of home bank?
 ; - all "text commands" should be moved to PrintString commands
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
-; - fix battle text to word-wrap properly
+; - fix battle text to word-wrap properly (?)
 ; -- Enemy <PKMN> freezes
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
