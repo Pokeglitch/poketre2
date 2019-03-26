@@ -31,9 +31,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Improvements:
 
-; The blinking down arrow should cover the border to not overlap any text characters
-; - instead, load a new tile into the oam to overwrite the lower right corner border tile
-
 ; Test all text commands
 
 ; Improve word wrap / Text processor:

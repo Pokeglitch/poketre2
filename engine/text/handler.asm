@@ -261,9 +261,12 @@ TextPromptCommand:: ; prompt
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
+	jr TextFinishCommon
 
 TextDoneCommand:: ; done
     pop hl
+
+TextFinishCommon::
 	ld de, TextEndCharText-1
 	pop hl
 	jp HomeBankswitchReturn
