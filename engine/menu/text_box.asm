@@ -1,13 +1,5 @@
 ;TODO -
 
-; Bug Fixes:
-
-; Why does Link Center lady disappear when talking to phone guy in Pewter PokeCenter?
-
-; Guy next to Pewter mart doesnt clear textbox properly
-; - also why does his sprite flash / disappear during his script?
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Menu fixes:
 
 ; Fix each menu in DisplayTextID

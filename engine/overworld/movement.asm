@@ -509,7 +509,13 @@ CheckSpriteAvailability:
 	ld h, wSpriteStateData1 / $100
 	ld a, [H_CURRENTSPRITEOFFSET]
 	add $4
-	ld l, a
+	ld l, a ; hl = sprite x position
+	
+	; if it's actually off the top of the screen, then dont compare to window y
+	ld a, [hl]
+	add $10
+	jr c, .spriteVisible
+
 	ld a, [hWY]
 	cp SCREEN_HEIGHT_PIXELS
 	jr nc, .spriteVisible ; if Window Y is offscreen, skip down
