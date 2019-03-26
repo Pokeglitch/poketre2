@@ -482,7 +482,7 @@ CheckSpriteAvailability:
 	ld l, a
 	ld a, [hl]      ; c2x6: movement byte 1
 	cp $fe
-	jr c, .skipXVisibilityTest ; movement byte 1 < $fe (i.e. the sprite's movement is scripted)
+	jr c, .spriteVisible ; movement byte 1 < $fe (i.e. the sprite's movement is scripted)
 	ld a, [H_CURRENTSPRITEOFFSET]
 	add $4
 	ld l, a
@@ -499,48 +499,11 @@ CheckSpriteAvailability:
 	ld b, [hl]      ; c2x5: X pos (+4)
 	ld a, [wXCoord]
 	cp b
-	jr z, .skipXVisibilityTest
+	jr z, .spriteVisible
 	jr nc, .spriteInvisible ; left of screen region
 	add $9                  ; screen is 10 tiles wide
 	cp b
-	jr c, .spriteInvisible  ; right of screen region
-.skipXVisibilityTest
-	; Check window location for textbox purpose
-	ld h, wSpriteStateData1 / $100
-	ld a, [H_CURRENTSPRITEOFFSET]
-	add $4
-	ld l, a ; hl = sprite x position
-	
-	; if it's actually off the top of the screen, then dont compare to window y
-	ld a, [hl]
-	add $10
-	jr c, .spriteVisible
-
-	ld a, [hWY]
-	cp SCREEN_HEIGHT_PIXELS
-	jr nc, .spriteVisible ; if Window Y is offscreen, skip down
-	push af
-	ld a, [wTextboxScrollCyclesRemaining]
-	and a
-	jr z, .notMoving ; if the textbox is not scrolling, then drop down
-	ld a, [wTextboxScrollDelta]
-	bit 7, a ; direction
-	jr z, .textboxSidingDownwards
-
-	; not sliding downwards
-.notMoving
-	pop af
-	sub 16 ; the OAM starts 1 tile offscreen, so adjust
-	jr .compareToWindowPosition
-
-; If sliding downwards, dont adjust as much so the sprites reappear faster
-.textboxSidingDownwards
-	pop af
-	sub 6
-
-.compareToWindowPosition
-	cp [hl]
-	jr nc, .spriteVisible ;if the window is at the sprite location, then hide
+	jr nc, .spriteVisible  ; right of screen region
 
 .spriteInvisible
 	ld h, wSpriteStateData1 / $100

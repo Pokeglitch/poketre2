@@ -49,6 +49,8 @@
 
 ; When is "HandleMenuInput" called? will it be needed anymore?
 
+; Ensure C1xD and C1xE are never used anywhere else... (for hiding behind textbox)
+
 ;--------------------------------
 
 ; function to draw various text boxes

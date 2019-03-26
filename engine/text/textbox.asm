@@ -123,10 +123,11 @@ ScrollTextboxCommon:
 	sla a
 	sla a ; a * 8, 8 pixels per tile
 	sub 4 ; last 4 tiles go offscreen
+	srl a ; divide by 2
 	
 	ld hl, wTextboxScrollCyclesRemaining
 	ld [hli], a
-	ld a, -1
+	ld a, -2
 	ld [hld], a
 
 .scrollIn
@@ -135,7 +136,7 @@ ScrollTextboxCommon:
 	ret z ; return if done
 	push hl
 	farcall ScrollTextbox
-	call UpdateSprites
+	call DelayFrame
 	pop hl
 	jr .scrollIn
 

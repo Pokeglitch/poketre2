@@ -1178,22 +1178,10 @@ CloseTextDisplay::
 	sub SCREEN_HEIGHT_PIXELS
 	cpl
 	inc a ; a = offset
-	
-	ld b, 1
-	
-.loop
-	;double or quadruple speed based on location
-	cp SCREEN_HEIGHT_PIXELS/4 + 1
-	jr c, .storeScrollData
-
 	srl a ; divide by 2
-	sla b
-	jr .loop
-
-
-.storeScrollData
+	
 	ld [hli], a
-	ld [hl], b
+	ld [hl], 2
 	dec hl
 	
 .scrollOut
@@ -1202,7 +1190,7 @@ CloseTextDisplay::
 	jr z, .doneScrolling
 	push hl
 	farcall ScrollTextbox
-	call UpdateSprites
+	call DelayFrame
 	pop hl
 	jr .scrollOut
 

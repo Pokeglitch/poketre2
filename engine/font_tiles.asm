@@ -82,9 +82,86 @@ ScrollTextbox::
     ld a, [hWY]
     add [hl]
     ld [hWY], a
-    dec hl
+	dec hl
     dec [hl]
-    ret
+
+	inc hl
+
+	ld a, [wNumSprites]
+	inc a ; include player sprite
+	ld b, a
+	
+	ld a, [hWY]
+	sub 15 ; the sprite data refers to the top of the sprite
+	ld c, a
+
+	bit 7, [hl] ; is textbox moving upwards?
+	jr nz, .movingUpwards
+
+	;check each sprite
+	ld hl, $c10d
+
+.downwardsLoop
+	push hl
+	bit 7, [hl] ; was this sprite hidden by the textbox?
+	jr z, .checkNextSpriteDownwards
+
+	push hl
+	ld de, -9
+	add hl, de
+	ld a, [hl]
+	pop hl
+	cp c
+	jr nc, .checkNextSpriteDownwards
+
+	res 7, [hl]
+	inc hl
+	ld a, [hl]
+	ld [hl], 0
+	ld de, -12
+	add hl, de
+	ld [hl], a ; restore the value
+
+.checkNextSpriteDownwards
+	pop hl
+	dec b
+	ret z	; return if there are no more sprites to check
+	ld de, $10
+	add hl, de ; move to the next sprite
+	jr .downwardsLoop
+
+
+.movingUpwards
+	;check each sprite
+	ld hl, $c102
+
+.upwardsLoop
+	push hl
+	ld a, [hli]
+	cp $FF
+	jr z, .checkNextSpriteUpwards ; if the sprite is already hidden, go to the next one
+	inc hl ; hl = y position in pixels
+	ld a, [hld]
+	cp $F0
+	jr nc, .checkNextSpriteUpwards ; for sprites partially offscreen at the top
+	cp c ; compare to the window position
+	jr c, .checkNextSpriteUpwards
+	; otherwise, hide
+	dec hl
+	ld a, [hl]
+	ld [hl], $FF
+	ld de, 12
+	add hl, de
+	ld [hld], a ; save the value
+	set 7, [hl] ; set flag indicating this was hidden by the textbox
+
+.checkNextSpriteUpwards
+	pop hl
+	dec b
+	ret z	; return if there are no more sprites to check
+	ld de, $10
+	add hl, de ; move to the next sprite
+	jr .upwardsLoop
 
 LoadGlyphFontTilePatterns_::
 	ld hl, GlyphFontLettersGFX
