@@ -1360,9 +1360,6 @@ AddAmountSoldToMoney::
 	ld hl, $ffa1 ; total price of items
 	ld c, 3 ; length of money in bytes
 	predef AddBCDPredef ; add total price to money
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; redraw money text box
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
 	jp WaitForSoundToFinish

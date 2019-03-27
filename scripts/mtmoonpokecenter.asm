@@ -27,9 +27,6 @@ MagikarpSalesmanText:
 	jp c, .alreadyBoughtMagikarp
 	ld hl, .Text1
 	call PrintText
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
@@ -55,9 +52,6 @@ MagikarpSalesmanText:
 	ld de, wPlayerMoney + 2
 	ld c, $3
 	predef SubBCDPredef
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	SetEvent EVENT_BOUGHT_MAGIKARP
 	jr .done
 .choseNo

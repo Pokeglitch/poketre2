@@ -11,9 +11,6 @@ DisplayPokemartDialogue_:
 	ld [wPlayerMonNumber], a
 	inc a
 	ld [wPrintItemPrices], a
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld a, BUY_SELL_QUIT_MENU
 	ld [wTextBoxID], a
 	call DisplayTextBoxID
@@ -105,9 +102,6 @@ DisplayPokemartDialogue_:
 	call SaveScreenTilesToBuffer1
 .buyMenuLoop
 	call LoadScreenTilesFromBuffer1
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld hl, wItemList
 	ld a, l
 	ld [wListPointer], a
@@ -169,9 +163,6 @@ DisplayPokemartDialogue_:
 	jp .buyMenuLoop
 .returnToMainPokemartMenu
 	call LoadScreenTilesFromBuffer1
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld hl, PokemartAnythingElseText
 	call PrintText
 	jp .loop

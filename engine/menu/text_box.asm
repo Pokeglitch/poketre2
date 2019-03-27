@@ -1,19 +1,28 @@
 ;TODO -
 
-; Menu fixes:
+; Use fresh data location for C1xD/C1xE
+; - 16 bits for each sprite that was hidden
+; - 16 bytes for the value to restore
 
-; Fix each menu in DisplayTextID
+; Move other textbox ram and inventory ram to this location
+
+; remove serial feature, can use "wSerialEnemyMonsPatchList"
+; (after wTileMapBackup actually ends...)
+; While at it, also free up the PC bytes
+
+; Get rid of wPermanentData, only keep in sram...
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Fix each menu in DisplayTextBoxID_
+
 ; 2 option menu should be string command with 4 argmuents:
 ; - left option string / string if selected
 ; - right option string / string if selected
 ; - Will draw on bottom line...will scroll if necessary
 ; -- will finish with "para" call
 
-; Remove 'money box' altogether?
-
-; Remove all locations where TextboDrawing is enabled/disabled
+; Remove all locations where TextboxDrawing is enabled/disabled
 ; - wAutoTextBoxDrawingControl
 ; This is used is the text has a script with non standard textbox
 ; - or doesn't display text immediately
@@ -21,7 +30,8 @@
 ; -- is this all that is neccessary? test all...
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Improvements:
+
+; Fix each menu in DisplayTextID
 
 ; Test all text commands
 
@@ -30,7 +40,6 @@
 ; - all "text commands" should be moved to PrintString commands
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
 ; - fix battle text to word-wrap properly (?)
-; -- Enemy <PKMN> freezes
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
 ; command to change the settings (will auto hide if style is changed?)
@@ -42,14 +51,7 @@
 
 ; Just restore screen from buffer instead of redrawing entirely?
 
-; Move textbox ram bytes to a better location
-; doesn't need to be saved, so can by moved to shared rea
-
-; Actually free up the PC box bytes
-
 ; When is "HandleMenuInput" called? will it be needed anymore?
-
-; Ensure C1xD and C1xE are never used anywhere else... (for hiding behind textbox)
 
 ;--------------------------------
 
@@ -184,7 +186,6 @@ GetAddressOfScreenCoords:
 ; 00: text box ID
 ; 01-02: function address
 TextBoxFunctionTable:
-	dbw MONEY_BOX, DisplayMoneyBox
 	dbw BUY_SELL_QUIT_MENU, DoBuySellQuitMenu
 	dbw FIELD_MOVE_MON_MENU, DisplayFieldMoveMonMenu
 	db $ff ; terminator
@@ -211,11 +212,6 @@ TextBoxCoordTable:
 ; 08: row of beginning of text
 ; table of window positions and corresponding text [key, start column, start row, end column, end row, text pointer [2 bytes], text column, text row]
 TextBoxTextAndCoordTable:
-	db USE_TOSS_MENU_TEMPLATE
-	db 13,10,19,14 ; text box coordinates
-	dw UseTossText
-	db 15,11 ; text coordinates
-
 	db BATTLE_MENU_TEMPLATE
 	db 8,12,19,17  ; text box coordinates
 	dw BattleMenuText
@@ -236,24 +232,12 @@ TextBoxTextAndCoordTable:
 	dw BuySellQuitText
 	db 2,1   ; text coordinates
 
-	db MONEY_BOX_TEMPLATE
-	db 11,0,19,2   ; text box coordinates
-	dw MoneyText
-	db 13,0  ; text coordinates
-
 ; note that there is no terminator
 
 BuySellQuitText:
 	db   "BUY"
 	next "SELL"
 	next "QUIT@@"
-
-UseTossText:
-	db   "USE"
-	next "TOSS@"
-
-MoneyText:
-	db "MONEY@"
 
 BattleMenuText:
 	db   "FIGHT ",$E1,$E2
@@ -267,24 +251,6 @@ SwitchStatsCancelText:
 	db   "SWITCH"
 	next "STATS"
 	next "CANCEL@"
-
-DisplayMoneyBox:
-	ld hl, wd730
-	set 6, [hl]
-	ld a, MONEY_BOX_TEMPLATE
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
-	coord hl, 13, 1
-	ld b, 1
-	ld c, 6
-	call ClearScreenArea
-	coord hl, 12, 1
-	ld de, wPlayerMoney
-	ld c, $a3
-	call PrintBCDNumber
-	ld hl, wd730
-	res 6, [hl]
-	ret
 
 CurrencyString:
 	db "      ¥@"

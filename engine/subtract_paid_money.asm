@@ -10,8 +10,5 @@ SubtractAmountPaidFromMoney_:
 	ld hl, hMoney + 2 ; total price of items
 	ld c, 3 ; length of money in bytes
 	predef SubBCDPredef ; subtract total price from money
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; redraw money text box
 	and a
 	ret

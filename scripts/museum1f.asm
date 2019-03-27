@@ -67,9 +67,6 @@ Museum1FText1:
 	call PrintText
 	jp Museum1FScriptEnd
 .asm_3ded4
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	xor a
 	ld [hJoyHeld], a
 	ld hl, Museum1FText_5c21f
@@ -101,9 +98,6 @@ Museum1FText1:
 	ld de, wPlayerMoney + 2
 	ld c, $3
 	predef SubBCDPredef
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish

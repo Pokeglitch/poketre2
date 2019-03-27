@@ -61,14 +61,11 @@ NPC_MOVEMENT_RIGHT EQU $C0
 ; text box IDs
 MESSAGE_BOX                       EQU $01
 FIELD_MOVE_MON_MENU               EQU $04
-USE_TOSS_MENU_TEMPLATE            EQU $06
 BATTLE_MENU_TEMPLATE              EQU $0b
 SWITCH_STATS_CANCEL_MENU_TEMPLATE EQU $0c
 LIST_MENU_BOX                     EQU $0d
 BUY_SELL_QUIT_MENU_TEMPLATE       EQU $0e
-MONEY_BOX_TEMPLATE                EQU $0f
 MON_SPRITE_POPUP                  EQU $11
-MONEY_BOX                         EQU $13
 TWO_OPTION_MENU                   EQU $14
 BUY_SELL_QUIT_MENU                EQU $15
 SAFARI_BATTLE_MENU_TEMPLATE       EQU $1b

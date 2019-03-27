@@ -1,9 +1,6 @@
 VendingMachineMenu:
 	ld hl, VendingMachineText1
 	call PrintText
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wLastMenuItem], a
@@ -70,9 +67,6 @@ VendingMachineMenu:
 	ld de, wPlayerMoney + 2
 	ld c, $3
 	predef SubBCDPredef
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	jp DisplayTextBoxID
 .BagFull
 	ld hl, VendingMachineText6
 	jp PrintText

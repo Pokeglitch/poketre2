@@ -145,9 +145,6 @@ SafariZoneEntranceTextPointers:
 .SafariZoneEntranceText4
 	TX_FAR SafariZoneEntranceText_9e6e4
 	TX_ASM
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
@@ -175,9 +172,6 @@ SafariZoneEntranceTextPointers:
 	ld de, wPlayerMoney + 2
 	ld c, 3
 	predef SubBCDPredef
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld hl, .MakePaymentText
 	call PrintText
 	ld a, 30

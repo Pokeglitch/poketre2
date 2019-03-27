@@ -129,9 +129,6 @@ DayCareMText1:
 	jr nz, .calcPriceLoop
 	ld hl, DayCareOweMoneyText
 	call PrintText
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	call YesNoChoice
 	ld hl, DayCareAllRightThenText
 	ld a, [wCurrentMenuItem]
@@ -159,9 +156,6 @@ DayCareMText1:
 	predef SubBCDPredef
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
-	ld a, MONEY_BOX
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	ld hl, DayCareHeresYourMonText
 	call PrintText
 	ld a, DAYCARE_TO_PARTY
