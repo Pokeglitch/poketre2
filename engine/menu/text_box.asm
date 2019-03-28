@@ -1,17 +1,16 @@
 ;TODO -
 
-; Get rid of wPermanentData, only store it in the sRAM
-; Move all textbox related files to same directory
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ; Fix each menu in DisplayTextBoxID_
 
 ; 2 option menu should be string command with 4 argmuents:
 ; - left option string / string if selected
 ; - right option string / string if selected
-; - Will draw on bottom line...will scroll if necessary
 ; -- will finish with "para" call
+; - scroll window up by 1 tile and place question there
+; -- need additional bytes for sprites to refelct hiding bottom half
+; ---- also byte for hiding lower left or lower right
+; -- update the hide sprites by textbox to use the partial hiding
+; --- if the sprite is mid tile, then hide whole thing, not just bottom half
 
 ; Remove all locations where TextboxDrawing is enabled/disabled
 ; - wAutoTextBoxDrawingControl
@@ -43,6 +42,11 @@
 ; Just restore screen from buffer instead of redrawing entirely?
 
 ; When is "HandleMenuInput" called? will it be needed anymore?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Move all textbox related files to same directory
+; - make sure they all use constants where necessary
 
 ;--------------------------------
 

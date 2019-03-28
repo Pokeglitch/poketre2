@@ -21,7 +21,8 @@
 ; Add in santa's sack cheat for quantity on-key items
 
 ; Rename ItemMenu, item_menu, etc to Inventory
-; - move this file into the inventory folder
+; - move this file into the inventory folder (and other related ones)
+; - Make sure constants are used where necessary
 ;----------------------------------------------------------
 
 ; More efficient if the quantities are stored in index order
@@ -51,6 +52,7 @@
 ; Find a better home for wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
 
 ; Add in 'Give' item function, and way ti view inventory from party menu (for "Give" or "Use")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Returns the cursor position (a)
