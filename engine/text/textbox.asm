@@ -135,7 +135,7 @@ ScrollTextboxCommon:
 	and a
 	ret z ; return if done
 	push hl
-	farcall ScrollTextbox
+	farcall ScrollTextboxUp
 	call DelayFrame
 	pop hl
 	jr .scrollIn

@@ -3277,6 +3277,14 @@ wTextboxRowParams::
 wNextChar::
 	ds 1
 
+; each bit is a sprite
+wSpritesHiddenByTextbox::
+	ds 2
+
+; The original value of the sprite C1x2 before being replaced with $ff
+wSpriteImageIndexBackup::
+	ds 16
+
 ENDU
 
 SECTION "Stack", WRAM0[$df00]

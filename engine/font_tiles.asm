@@ -76,92 +76,146 @@ NewTextBoxBorder_:
 	ld [hl], a
 	ret
 
-; Scroll the textbox
-ScrollTextbox::
+ScrollTextbox:
     ld hl, wTextboxScrollDelta
     ld a, [hWY]
     add [hl]
     ld [hWY], a
 	dec hl
     dec [hl]
+	ret
 
-	inc hl
-
-	ld a, [wNumSprites]
-	inc a ; include player sprite
-	ld b, a
+ScrollTextboxDown:
+	call ScrollTextbox
 	
+	; check if sprites need to be restored
+	ld a, [hWY]
+	sub 12 ; the sprite data refers to the top of the sprite
+	ld c, a
+
+	;check each sprite
+	ld a, [wSpritesHiddenByTextbox]
+	ld b, a
+	ld a, 16
+	ld hl, PlayerYPixels
+	ld de, wSpriteImageIndexBackup
+
+.downwardsLoop
+	push hl
+	push af
+	; skip if this sprite wasn't 
+	bit 0, b
+	jr z, .checkNextSpriteDownwards
+
+	; check the y position
+	ld a, [hld]
+	cp c
+	jr nc, .checkNextSpriteDownwards
+
+	ld a, [de]
+	dec hl
+	ld [hl], a ; restore the value
+
+	; clear the ram values
+	xor a
+	ld [de], a
+	res 0, b
+
+.checkNextSpriteDownwards
+	rrc b
+	inc de
+	pop af
+	call TryStoreHiddenSpriteFlags
+	pop hl
+	dec a
+	ret z
+	swap l
+	inc hl
+	swap l
+	jr .downwardsLoop
+
+ScrollTextboxUp:
+	call ScrollTextbox
+
+	; check if sprites need to be hidden
 	ld a, [hWY]
 	sub 15 ; the sprite data refers to the top of the sprite
 	ld c, a
 
-	bit 7, [hl] ; is textbox moving upwards?
-	jr nz, .movingUpwards
-
-	;check each sprite
-	ld hl, $c10d
-
-.downwardsLoop
-	push hl
-	bit 7, [hl] ; was this sprite hidden by the textbox?
-	jr z, .checkNextSpriteDownwards
-
-	push hl
-	ld de, -9
-	add hl, de
+	; If this isnt the last iteration, then hide the sprite
+	; when its touching the top of the window
+	; if it is the last iteration, then don't do so
 	ld a, [hl]
-	pop hl
-	cp c
-	jr nc, .checkNextSpriteDownwards
+	and a
+	jr z, .dontDecC
+	dec c
 
-	res 7, [hl]
-	inc hl
-	ld a, [hl]
-	ld [hl], 0
-	ld de, -12
-	add hl, de
-	ld [hl], a ; restore the value
-
-.checkNextSpriteDownwards
-	pop hl
-	dec b
-	ret z	; return if there are no more sprites to check
-	ld de, $10
-	add hl, de ; move to the next sprite
-	jr .downwardsLoop
-
-
-.movingUpwards
-	;check each sprite
-	ld hl, $c102
+.dontDecC
+	ld a, [wSpritesHiddenByTextbox]
+	ld b, a
+	ld a, 16
+	ld hl, PlayerSpriteImageIdx
+	ld de, wSpriteImageIndexBackup
 
 .upwardsLoop
 	push hl
+	push af
 	ld a, [hli]
+
+	; skip if sprite is already hidden
 	cp $FF
-	jr z, .checkNextSpriteUpwards ; if the sprite is already hidden, go to the next one
+	jr z, .checkNextSpriteUpwards
 	inc hl ; hl = y position in pixels
 	ld a, [hld]
+	; skip if sprite is partially offscreen
 	cp $F0
-	jr nc, .checkNextSpriteUpwards ; for sprites partially offscreen at the top
+	jr nc, .checkNextSpriteUpwards
+	; skip if sprite is not below window position
 	cp c ; compare to the window position
 	jr c, .checkNextSpriteUpwards
 	; otherwise, hide
 	dec hl
 	ld a, [hl]
 	ld [hl], $FF
-	ld de, 12
-	add hl, de
-	ld [hld], a ; save the value
-	set 7, [hl] ; set flag indicating this was hidden by the textbox
+	
+	ld [de], a
+	set 0, b
 
 .checkNextSpriteUpwards
+	rrc b
+	inc de
+	pop af
+	call TryStoreHiddenSpriteFlags
 	pop hl
-	dec b
-	ret z	; return if there are no more sprites to check
-	ld de, $10
-	add hl, de ; move to the next sprite
+	dec a
+	ret z
+
+	swap l
+	inc l
+	swap l ; move to next sprite
 	jr .upwardsLoop
+
+TryStoreHiddenSpriteFlags::
+	ld hl, wSpritesHiddenByTextbox
+
+	cp 9
+	jr z, .storeByte
+
+	cp 1
+	ret nz
+
+	; store last byte
+	inc hl
+	ld [hl], b
+	ret
+
+.storeByte
+	ld [hl], b
+	push af
+	ld a, [wSpritesHiddenByTextbox+1]
+	ld b, a
+	pop af
+	ret
 
 LoadGlyphFontTilePatterns_::
 	ld hl, GlyphFontLettersGFX

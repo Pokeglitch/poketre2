@@ -5,10 +5,14 @@
 ; - Make sure price and max amount is correct
 ; - - Get price from new table
 ; - Make sure screen is drawn properly after item is sold
-; Show players current quantity for each item when Buying
+; - Show player's current money amount
 
 ; Need new sell screen to show description and quantity player already has
 ; - should show if holdable item or not as well
+; - Show players current quantity for each item when Buying
+; - Show player's current money amount
+; - mart uses 'sign' tiles, vending machine uses 'digital' tiles
+; -- Use title screen "brush" font and say "FOR SALE" for mart sign
 
 ; Description should be clear if an item is holdable or not (or place a tile)
 

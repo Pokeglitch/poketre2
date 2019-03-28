@@ -1,16 +1,7 @@
 ;TODO -
 
-; Use fresh data location for C1xD/C1xE
-; - 16 bits for each sprite that was hidden
-; - 16 bytes for the value to restore
-
-; Move other textbox ram and inventory ram to this location
-
-; remove serial feature, can use "wSerialEnemyMonsPatchList"
-; (after wTileMapBackup actually ends...)
-; While at it, also free up the PC bytes
-
-; Get rid of wPermanentData, only keep in sram...
+; Get rid of wPermanentData, only store it in the sRAM
+; Move all textbox related files to same directory
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

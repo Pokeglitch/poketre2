@@ -1189,7 +1189,7 @@ CloseTextDisplay::
 	and a
 	jr z, .doneScrolling
 	push hl
-	farcall ScrollTextbox
+	farcall ScrollTextboxDown
 	call DelayFrame
 	pop hl
 	jr .scrollOut
