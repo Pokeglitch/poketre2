@@ -1143,7 +1143,7 @@ DisplayTextID::
 
 .useStandardTextboxSettings
 	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
-	
+
 .storeTextboxSettings
 	ld [wTextboxSettings], a
 	push hl

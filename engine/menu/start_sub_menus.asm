@@ -391,41 +391,14 @@ StartMenu_Item:
 	coord hl, 11, 16
 	call PlaceString
 
-	ld bc, -9 ; Initialize to first item
-	coord hl, 10, 16
-	push hl
-
-.radioLoop
-	pop hl
-	ld [hl], TILE_EMPTY_RADIO
-	add hl, bc
-	ld [hl], TILE_FILLED_RADIO
-	push hl
-
-.keypressLoop
-	call JoypadLowSensitivity
-	ld a, [hJoy5]
-
-	bit BIT_A_BUTTON, a
+	coord de, 1, 16
+	farcall HandleTwoOptionMenuInputs_DrawInitialRadios
+	ld a, d
+	cp -1
 	jr nz, .useGiveOrCancel
 
-	bit BIT_B_BUTTON, a
-	jr nz, .bPressed
-
-	and D_LEFT | D_RIGHT
-	jr z, .keypressLoop
-
-	ld a, l
-	cp $E1 ; left option
-	ld bc, 9
-	jr z, .radioLoop
-	ld bc, -9
-	jr .radioLoop
-
-.bPressed
 	ld a, SFX_PRESS_AB
 	call PlaySound
-	pop hl
 	pop af
 
 .returnToItemMenu
@@ -436,10 +409,9 @@ StartMenu_Item:
 .useGiveOrCancel
 	ld a, SFX_PRESS_AB
 	call PlaySound
-	pop hl
-	ld a, l
-	cp $E1 ; left option
-	jr nz, .secondOption
+	ld a, d
+	dec a ; left option
+	jr z, .secondOption
 
 	pop af
 	; See if it is Use or Give

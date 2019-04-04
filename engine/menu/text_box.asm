@@ -1,16 +1,22 @@
 ;TODO -
 
-; Fix each menu in DisplayTextBoxID_
+; - Switch all text to use "two_opt" instead of YesNoChoice
 
-; 2 option menu should be string command with 4 argmuents:
-; - left option string / string if selected
-; - right option string / string if selected
-; -- will finish with "para" call
-; - scroll window up by 1 tile and place question there
-; -- need additional bytes for sprites to refelct hiding bottom half
-; ---- also byte for hiding lower left or lower right
-; -- update the hide sprites by textbox to use the partial hiding
-; --- if the sprite is mid tile, then hide whole thing, not just bottom half
+; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu
+
+; Instead of using wNextChar, just store into 'c'?
+; - should 'two_opt' be compatible with plain old strings? (not only text box?)
+; --- if so, use this for inventory menu?
+
+; - Update charmap or constants with latest tiles
+; -- use in inventory screen, main menu, etc, instead of numbers
+; -- need different 'POKe' symbol instead of #...
+
+; - RAM Text/Two Option text should be in a table, not a separate check
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Fix each menu in DisplayTextBoxID_
 
 ; Remove all locations where TextboxDrawing is enabled/disabled
 ; - wAutoTextBoxDrawingControl
@@ -19,7 +25,7 @@
 ; Instead, just prefix the text with a a DONT_REVEAL flag
 ; -- is this all that is neccessary? test all...
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Fix each menu in DisplayTextID
 

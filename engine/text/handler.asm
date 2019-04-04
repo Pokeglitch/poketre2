@@ -99,11 +99,13 @@ PlaceNestedString:
 
 StringCommandTable:
     dbw " ", SpaceCommand ; space
+    dbw TEXT_WAIT, WaitCommand ; space
     dbw NEXT_TEXT_LINE, NextLineCommand ; next
     dbw NEXT_TEXT_LINE+1, NextLineCommand ; line
 	dbw AUTO_CONTINUE_TEXT, AutoContinueTextCommand ; autocont
 	dbw CONTINUE_TEXT, ContinueTextCommand ; cont
 	dbw PARAGRAPH, ParagraphCommand ; para
+	dbw AUTO_PARAGRAPH, AutoParagraphCommand ; autopara
 	dbw TEXT_DONE, TextDoneCommand ; done
 	dbw TEXT_PROMPT, TextPromptCommand ; prompt
 	dbw DEX_PAGE, DexPageCommand ; page
@@ -235,12 +237,20 @@ ScrollTextUpOneLine::
 	jr nz, .WaitFrame
 	ret
 
+AutoParagraphCommand:: ; autopara
+    pop hl
+	push de
+	call Delay3
+	jr ParagraphCommandCommon
+
 ParagraphCommand:: ; para
     pop hl
 	push de
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
+
+ParagraphCommandCommon::
 	coord hl, 1, 1
 	call GetTextboxSize
 	ld b, a
@@ -254,6 +264,13 @@ ParagraphCommand:: ; para
 	call ResetColumnTilesRemaining
 	coord hl, 1, 1
 	push hl
+	jp ReturnAndPlaceNextChar
+
+WaitCommand:: ; wait
+	pop hl
+	push de
+	call ManualTextScroll
+	pop de
 	jp ReturnAndPlaceNextChar
 
 TextPromptCommand:: ; prompt
@@ -361,3 +378,148 @@ DotsText::
 
 PKMNText::
 	db $E1,$E2,"@" ; PKMN
+
+DrawOptionBox:
+	call GetStartOfBottomRow
+	ld de, SCREEN_WIDTH * 2 - 1
+	add hl, de
+	ld a, [wTextboxSettings]
+	bit BIT_DRAW_BORDER, a
+	jr nz, .drawBorder
+
+	;if no border, just clear screen area
+	lb bc, 2, SCREEN_WIDTH 
+	jp ClearScreenArea
+
+.drawBorder
+	ld c, SCREEN_WIDTH - 2
+	ld [hl], $7A
+	inc hl
+	ld a, " "
+	call NPlaceChar
+	ld a, $7B
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld c, SCREEN_WIDTH - 2
+	call NPlaceChar
+	inc a
+	ld [hl], a
+	ret
+
+UpdateTwoOptionRadios:
+	lb bc, "▶", "▷"
+	and a
+	jr z, .dontSwap
+	lb bc, "▷", "▶"
+.dontSwap
+	ld [hl], b
+	ld de, 9
+	add hl, de
+	ld [hl], c
+	ret
+
+HandleTwoOptionMenuInputs_DrawInitialRadios:
+	xor a
+	push de
+	push af
+	ld h, d
+	ld l, e
+	call UpdateTwoOptionRadios
+	jr HandleTwoOptionMenuInputsCommon
+
+HandleTwoOptionMenuInputs:
+	xor a
+	push de
+	push af
+	;fall through
+
+HandleTwoOptionMenuInputsCommon:
+.keypressLoop
+	call JoypadLowSensitivity
+	ld a, [hJoy5]
+
+	bit BIT_A_BUTTON, a
+	jr nz, .aPressed
+
+	bit BIT_B_BUTTON, a
+	jr nz, .bPressed
+
+	and D_LEFT | D_RIGHT
+	jr z, .keypressLoop
+	
+	pop af
+	pop hl
+	push hl
+	xor 1
+	push af
+	call UpdateTwoOptionRadios
+	jr .keypressLoop
+
+.bPressed
+	pop af
+	ld a, -1
+	jr .finish
+
+.aPressed
+	pop af
+
+.finish
+	ld d, a
+	pop af
+	ret
+
+
+; Inputs: de = address of left option
+; Outputs: d = 0 for 1st opt, 1 for 2nd opt, -1 for B
+HandleTwoOptionBox:
+	push de
+	ld h, d
+	ld l, e
+	; Initialize the radios
+	xor a
+	call UpdateTwoOptionRadios
+
+	; scroll up 2 lines
+	ld hl, wTextboxScrollCyclesRemaining
+	ld [hl], 8
+	inc hl
+	ld [hl], -2
+	dec hl
+
+.scrollUp
+	ld a, [hl]
+	and a
+	jr z, .doneScrollingUp
+	push hl
+	farcall ScrollTextboxUp
+	call DelayFrame
+	pop hl
+	jr .scrollUp
+	
+.doneScrollingUp
+	pop de
+	call HandleTwoOptionMenuInputs
+
+	push de
+	; scroll down 2 lines
+	ld hl, wTextboxScrollCyclesRemaining
+	ld [hl], 8
+	inc hl
+	ld [hl], 2
+	dec hl
+
+.scrollDown
+	ld a, [hl]
+	and a
+	jr z, .doneScrollingDown
+	push hl
+	farcall ScrollTextboxDown
+	call DelayFrame
+	pop hl
+	jr .scrollDown
+
+.doneScrollingDown
+	pop de
+	ret

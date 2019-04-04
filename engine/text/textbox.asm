@@ -46,7 +46,7 @@ DisplayTextIDInit:
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
 	ret
 
-InitializeTextbox
+InitializeTextbox:
 	ld a, [wTextboxSettings]
 	push af
 	and FONT_COLOR_MASK

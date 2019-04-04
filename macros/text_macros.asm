@@ -8,16 +8,26 @@ autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
 next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
 line     EQUS "db NEXT_TEXT_LINE+1," ; Start writing at the bottom line.
 para     EQUS "db PARAGRAPH," ; Start a new paragraph.
+autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
 done     EQUS "db TEXT_DONE"  ; End a text box.
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
+wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
 
 page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
 dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
 
+two_opt: MACRO
+	db TWO_OPTION_TEXT
+	dw \1
+	dw \2
+	dw \3
+	dw \4
+ENDM
+
 TX_RAM: MACRO
 ; prints text to screen
 ; \1: RAM address to read from
-	db $1
+	db RAM_TEXT
 	dw \1
 ENDM
 

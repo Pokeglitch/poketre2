@@ -48,6 +48,9 @@ PlaceNextChar::
 	cp RAM_TEXT
 	jp z, RAMTextCommand
 
+	cp TWO_OPTION_TEXT
+	jp z, TwoOptionTextCommand
+
 	; Otherwise, process in different bank
 	ld [wNextChar], a
 	ld a, BANK(HandleNextChar)
@@ -67,6 +70,80 @@ ReturnAndPlaceNextChar::
 	inc de
 	jr PlaceNextChar
 
+TwoOptionTextCommand::
+
+	ld a, [wLetterPrintingDelayFlags]
+	push af
+	res 1, a ; disable delays
+	ld [wLetterPrintingDelayFlags], a
+
+	; draw the bottom box
+	push hl
+	push de
+	farcall DrawOptionBox
+
+	; place the options
+	pop hl
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push hl
+	push de
+	call GetStartOfBottomRow
+	ld bc, SCREEN_WIDTH * 2 + 1
+	add hl, bc
+	pop de
+	push hl
+	call PlaceTextboxString
+	
+	pop bc
+	pop hl
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push hl
+	push bc
+	ld hl, 9
+	add hl, bc
+	call PlaceTextboxString
+
+	call Delay3
+	pop de
+	dec de
+	farcall HandleTwoOptionBox
+
+	; handle the selection
+	ld a, d
+	pop de
+	inc de
+	and a
+	jr z, .twoOptionJump
+	inc de
+	inc de
+	dec a
+	jr z, .twoOptionJump
+	
+	;otherwise, b was pressed
+	inc de
+	inc de
+	jr .finishTwoOption
+
+.twoOptionJump
+	ld h, d
+	ld l, e
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; fall through
+
+.finishTwoOption
+	pop hl
+	pop af
+	ld [wLetterPrintingDelayFlags], a
+	jp PlaceNextChar
+
 RAMTextCommand::
 	inc de
 	ld a, [de]
@@ -81,7 +158,7 @@ RAMTextCommand::
 	ld l, c
 	pop de
 	inc de
-	jr PlaceNextChar
+	jp PlaceNextChar
 
 TextCommandProcessor::
 	; Initialize the word-wrap registers
@@ -548,10 +625,11 @@ JumpToTablePointer
     jp hl
 
 EndOfWordChars:
-	db " ", PARAGRAPH
+	db " ", PARAGRAPH, AUTO_PARAGRAPH
+	db TWO_OPTION_TEXT, TEXT_WAIT
 	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
 	db NEXT_TEXT_LINE, NEXT_TEXT_LINE+1
-	db TEXT_DONE, TEXT_PROMPT
+	db TEXT_DONE, TEXT_PROMPT, TEXT_END
 	db DEX_PAGE, DEX_END
 	db 0
 
