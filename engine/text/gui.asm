@@ -76,7 +76,7 @@ NewTextBoxBorder_:
 	ld [hl], a
 	ret
 
-ScrollTextbox:
+UpdateTextboxPosition:
     ld hl, wTextboxScrollDelta
     ld a, [hWY]
     add [hl]
@@ -85,8 +85,8 @@ ScrollTextbox:
     dec [hl]
 	ret
 
-ScrollTextboxDown:
-	call ScrollTextbox
+UpdateTextboxPositionAndCheckSpritesToReveal:
+	call UpdateTextboxPosition
 	
 	; check if sprites need to be restored
 	ld a, [hWY]
@@ -134,8 +134,8 @@ ScrollTextboxDown:
 	swap l
 	jr .downwardsLoop
 
-ScrollTextboxUp:
-	call ScrollTextbox
+UpdateTextboxPositionAndCheckSpritesToHide:
+	call UpdateTextboxPosition
 
 	; check if sprites need to be hidden
 	ld a, [hWY]

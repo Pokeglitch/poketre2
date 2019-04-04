@@ -52,7 +52,7 @@ PlaceNextChar::
 	jp z, TwoOptionTextCommand
 
 	; Otherwise, process in different bank
-	ld [wNextChar], a
+	ld b, a
 	ld a, BANK(HandleNextChar)
 	call SetNewBank
 	jp HandleNextChar
@@ -71,7 +71,6 @@ ReturnAndPlaceNextChar::
 	jr PlaceNextChar
 
 TwoOptionTextCommand::
-
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	res 1, a ; disable delays
@@ -724,4 +723,66 @@ ResetRowsRemaining:
 ResetColumnTilesRemaining:
 	ld a, SCREEN_WIDTH - 2
 	ld [wTextboxColsRemaining], a
+	ret
+
+ScrollTextboxUp:
+	ld c, -1
+	call AdjustAndStoreTextboxScrollSpeed
+	
+.scrollLoop
+	farcall UpdateTextboxPositionAndCheckSpritesToHide
+	call DelayFrame
+	ld a, [wTextboxScrollCyclesRemaining]
+	and a
+	jr nz, .scrollLoop
+
+	ret
+
+ScrollTextboxDown:
+	ld c, 1
+	call AdjustAndStoreTextboxScrollSpeed
+	
+.scrollLoop
+	farcall UpdateTextboxPositionAndCheckSpritesToReveal
+	call DelayFrame
+	ld a, [wTextboxScrollCyclesRemaining]
+	and a
+	jr nz, .scrollLoop
+
+	ret
+
+; To adjust the textbox scroll speed based on the player options
+; a = total height
+; c = direction
+AdjustAndStoreTextboxScrollSpeed:
+	ld b, a ; number of frames
+	
+	; If scrolling past middle of screen, then double the speed
+	cp SCREEN_HEIGHT_PIXELS/2
+	jr c, .doneWithInitialAdjustment
+
+	srl b ; divide frames by 2
+	sla c ; double delta
+
+.doneWithInitialAdjustment
+	ld a, [wOptions]
+	and $f ; keep the frame delay
+
+	cp 5
+	jr z, .storeScrollData
+
+	srl b ; divide frames by 2
+	sla c ; double delta
+
+	cp 3
+	jr z, .storeScrollData
+
+	srl b ; divide frames by 2
+	sla c ; double delta
+	
+.storeScrollData
+	ld hl, wTextboxScrollCyclesRemaining
+	ld [hl], b
+	inc hl
+	ld [hl], c
 	ret

@@ -1173,28 +1173,11 @@ CloseTextDisplay::
 	ld a, [wCurMap]
 	call SwitchToMapRomBank
 
-	ld hl, wTextboxScrollCyclesRemaining
 	ld a, [hWY]
 	sub SCREEN_HEIGHT_PIXELS
 	cpl
 	inc a ; a = offset
-	srl a ; divide by 2
-	
-	ld [hli], a
-	ld [hl], 2
-	dec hl
-	
-.scrollOut
-	ld a, [hl]
-	and a
-	jr z, .doneScrolling
-	push hl
-	farcall ScrollTextboxDown
-	call DelayFrame
-	pop hl
-	jr .scrollOut
-
-.doneScrolling
+	call ScrollTextboxDown
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a ; just in case window hasn't fully left the screen
 	call DelayFrame

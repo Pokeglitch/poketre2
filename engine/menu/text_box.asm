@@ -1,18 +1,15 @@
 ;TODO -
 
 ; - Switch all text to use "two_opt" instead of YesNoChoice
+; -- test different font colors to verify the radios look good
 
-; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu
-
-; Instead of using wNextChar, just store into 'c'?
-; - should 'two_opt' be compatible with plain old strings? (not only text box?)
-; --- if so, use this for inventory menu?
-
-; - Update charmap or constants with latest tiles
+; - Update charmap/constants with latest tiles
 ; -- use in inventory screen, main menu, etc, instead of numbers
 ; -- need different 'POKe' symbol instead of #...
 
 ; - RAM Text/Two Option text should be in a table, not a separate check
+
+; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu?
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

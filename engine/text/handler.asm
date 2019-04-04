@@ -43,8 +43,6 @@ CheckRevealTextbox::
 
 ; To handle the next character in the string
 HandleNextChar:
-    ld a, [wNextChar]
-    ld b, a
     push hl
     ld hl, StringCommandTable
 
@@ -481,44 +479,16 @@ HandleTwoOptionBox:
 	xor a
 	call UpdateTwoOptionRadios
 
-	; scroll up 2 lines
-	ld hl, wTextboxScrollCyclesRemaining
-	ld [hl], 8
-	inc hl
-	ld [hl], -2
-	dec hl
+	ld a, 2 * PIXELS_PER_TILE
+	call ScrollTextboxUp
 
-.scrollUp
-	ld a, [hl]
-	and a
-	jr z, .doneScrollingUp
-	push hl
-	farcall ScrollTextboxUp
-	call DelayFrame
-	pop hl
-	jr .scrollUp
-	
 .doneScrollingUp
 	pop de
 	call HandleTwoOptionMenuInputs
 
 	push de
-	; scroll down 2 lines
-	ld hl, wTextboxScrollCyclesRemaining
-	ld [hl], 8
-	inc hl
-	ld [hl], 2
-	dec hl
-
-.scrollDown
-	ld a, [hl]
-	and a
-	jr z, .doneScrollingDown
-	push hl
-	farcall ScrollTextboxDown
-	call DelayFrame
-	pop hl
-	jr .scrollDown
+	ld a, 2 * PIXELS_PER_TILE
+	call ScrollTextboxDown
 
 .doneScrollingDown
 	pop de

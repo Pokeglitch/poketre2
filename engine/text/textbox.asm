@@ -123,22 +123,7 @@ ScrollTextboxCommon:
 	sla a
 	sla a ; a * 8, 8 pixels per tile
 	sub 4 ; last 4 tiles go offscreen
-	srl a ; divide by 2
-	
-	ld hl, wTextboxScrollCyclesRemaining
-	ld [hli], a
-	ld a, -2
-	ld [hld], a
-
-.scrollIn
-	ld a, [hl]
-	and a
-	ret z ; return if done
-	push hl
-	farcall ScrollTextboxUp
-	call DelayFrame
-	pop hl
-	jr .scrollIn
+	jp ScrollTextboxUp
 
 RevealTextbox:
 	ld a, [wTextboxSettings]

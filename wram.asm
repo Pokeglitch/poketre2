@@ -3274,9 +3274,6 @@ wTextboxRowParams::
 ; low nybble = rows remaining
 	ds 1
 
-wNextChar::
-	ds 1
-
 ; each bit is a sprite
 wSpritesHiddenByTextbox::
 	ds 2

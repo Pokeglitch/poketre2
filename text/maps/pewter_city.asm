@@ -114,4 +114,14 @@ _PewterCityText12::
 	text "PEWTER CITY"
 	line "A Stone Gray"
 	cont "City"
+	two_opt YesText, NoText, .finish, .finish
+
+.finish
+	autocont "Cool"
 	done
+
+YesText:
+	db "Yes@"
+
+NoText:
+	db "No@"
