@@ -5,13 +5,9 @@ FarCopyData2::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, [hROMBankTemp]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	call CopyData
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
+	jp HomeBankswitchReturn
 
 FarCopyData3::
 ; Copy bc bytes from a:de to hl.
@@ -19,8 +15,7 @@ FarCopyData3::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, [hROMBankTemp]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	push hl
 	push de
 	push de
@@ -30,10 +25,7 @@ FarCopyData3::
 	call CopyData
 	pop de
 	pop hl
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
+	jp HomeBankswitchReturn
 
 FarCopyDataDouble::
 ; Expand bc bytes of 1bpp image data
@@ -42,8 +34,7 @@ FarCopyDataDouble::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, [hROMBankTemp]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -54,10 +45,7 @@ FarCopyDataDouble::
 	ld a, c
 	or b
 	jr nz, .loop
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
+	jp HomeBankswitchReturn
 
 CopyVideoData::
 ; Wait for the next VBlank, then copy c 2bpp
@@ -73,8 +61,7 @@ CopyVideoData::
 	ld [hROMBankTemp], a
 
 	ld a, b
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	ld a, e
 	ld [H_VBCOPYSRC], a
@@ -95,8 +82,7 @@ CopyVideoData::
 	ld [H_VBCOPYSIZE], a
 	call DelayFrame
 	ld a, [hROMBankTemp]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	pop af
 	ld [H_AUTOBGTRANSFERENABLED], a
 	ret
@@ -122,8 +108,7 @@ CopyVideoDataDouble::
 	ld [hROMBankTemp], a
 
 	ld a, b
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	ld a, e
 	ld [H_VBCOPYDOUBLESRC], a
@@ -144,8 +129,7 @@ CopyVideoDataDouble::
 	ld [H_VBCOPYDOUBLESIZE], a
 	call DelayFrame
 	ld a, [hROMBankTemp]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	pop af
 	ld [H_AUTOBGTRANSFERENABLED], a
 	ret

@@ -13,24 +13,16 @@ Predef::
 
 	push af
 	ld a, BANK(GetPredefPointer)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	call GetPredefPointer
 
 	ld a, [wPredefBank]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
-	ld de, .done
+	ld de, HomeBankswitchReturn
 	push de
 	jp hl
-.done
-
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
 
 GetPredefRegisters::
 ; Restore the contents of register pairs

@@ -1,7 +1,9 @@
 
 ; text macros
 text     EQUS "db TEXT_INIT," ; Start writing text.
-ramtext  EQUS "dbw RAM_TEXT, "
+ramtext  EQUS "dbw RAM_TEXT,"
+neartext EQUS "dbw NEAR_TEXT,"
+textasm  EQUS "db TEXT_ASM"
 textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
 cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
 autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
@@ -12,9 +14,18 @@ autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
 done     EQUS "db TEXT_DONE"  ; End a text box.
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
+endtext  EQUS "db TEXT_END"
 
 page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
 dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
+
+str: MACRO
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+	db TEXT_END
+ENDM
 
 two_opt: MACRO
 	db TWO_OPTION_TEXT
@@ -22,6 +33,12 @@ two_opt: MACRO
 	dw \2
 	dw \3
 	dw \4
+ENDM
+
+fartext: MACRO
+	db FAR_TEXT
+	dw \1
+	db BANK(\1)
 ENDM
 
 TX_RAM: MACRO

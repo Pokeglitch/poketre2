@@ -1,13 +1,15 @@
 ;TODO -
 
 ; - Switch all text to use "two_opt" instead of YesNoChoice
-; -- test different font colors to verify the radios look good
+
+; Why does '_PewterCityText_193fb' work when using either 'done' or 'endtext' ??
 
 ; - Update charmap/constants with latest tiles
 ; -- use in inventory screen, main menu, etc, instead of numbers
 ; -- need different 'POKe' symbol instead of #...
+; - remove the solid color tiles and add more characters? @, %, &, * ?
 
-; - RAM Text/Two Option text should be in a table, not a separate check
+; - RAM Text/Two Option/Far Text should be in a table, not a separate check
 
 ; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu?
 
@@ -27,18 +29,16 @@
 ; Fix each menu in DisplayTextID
 
 ; Test all text commands
+; - including lookaheads
 
 ; Improve word wrap / Text processor:
-; - Move lookahead routine out of home bank?
-; - all "text commands" should be moved to PrintString commands
+; - clean up names/constants
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
 ; - fix battle text to word-wrap properly (?)
+; get 'textasm' working
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
 ; command to change the settings (will auto hide if style is changed?)
-; command for "wait for user interaction"
-; -- para/cont/prompt will just call this command
-; -- could be used before a 2 option menu, for example
 
 ; Add route names pop to ensure it still works when user can move around
 
@@ -618,7 +618,7 @@ DisplayFieldMoveMonMenu:
 	jr z, .reachedName
 .skipNameLoop ; skip past current name
 	ld a, [hli]
-	cp "@"
+	cp TEXT_END
 	jr nz, .skipNameLoop
 	jr .skipNamesLoop
 .reachedName

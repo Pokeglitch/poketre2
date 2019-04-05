@@ -28,8 +28,7 @@ VBlank::
 	call UpdateMovingBgTiles
 	call $ff80 ; hOAMDMA
 	ld a, BANK(PrepareOAMData)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	call PrepareOAMData
 
 	; VBlank-sensitive operations end.
@@ -53,8 +52,7 @@ VBlank::
 	call FadeOutAudio
 
 	ld a, [wAudioROMBank] ; music ROM bank
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	cp BANK(Audio1_UpdateMusic)
 	jr nz, .checkForAudio2
@@ -79,8 +77,7 @@ VBlank::
 	call z, ReadJoypad
 
 	ld a, [wVBlankSavedROMBank]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 
 	pop hl
 	pop de

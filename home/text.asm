@@ -1,10 +1,8 @@
 TextBoxBorder::
-	homecall TextBoxBorder_
-	ret
+	homejump TextBoxBorder_
 
 NewTextBoxBorder::
-	homecall NewTextBoxBorder_
-	ret
+	homejump NewTextBoxBorder_
 
 NPlaceChar::
 ; Place char a c times.
@@ -44,12 +42,18 @@ PlaceNextChar::
 	ret
 
 .notEnd
+	cp TEXT_INIT
+	jr z, MoveToNextChar
+
 	; Commands that have arguments needs to be processed in home bank
 	cp RAM_TEXT
 	jp z, RAMTextCommand
 
 	cp TWO_OPTION_TEXT
 	jp z, TwoOptionTextCommand
+
+	cp FAR_TEXT
+	jr z, FarTextCommand
 
 	; Otherwise, process in different bank
 	ld b, a
@@ -66,7 +70,9 @@ ReturnAndPlaceNextChar::
 	push af
 	push bc
 	call SetNewBank
+	;fall through
 
+MoveToNextChar:
 	inc de
 	jr PlaceNextChar
 
@@ -144,20 +150,47 @@ TwoOptionTextCommand::
 	jp PlaceNextChar
 
 RAMTextCommand::
-	inc de
-	ld a, [de]
-	inc de
-	ld b, a
-	ld a, [de]
+	call PrepareInlineString
 	push de
-	ld e, b
-	ld d, a
+	call PlaceInlineString
+	pop de
+	jp PlaceNextChar
+
+FarTextCommand::
+	ld a, [H_LOADEDROMBANK]
+	push af
+	call PrepareInlineString
+	ld a, [de]
+	call SetNewBank
+	inc de
+	push de
+	call PlaceInlineString
+	pop de
+	pop af
+	call SetNewBank
+	jp PlaceNextChar
+
+PrepareInlineString:
+	inc de
+	ld a, [de]
+	inc de
+	ld c, a
+	ld a, [de]
+	ld b, a
+	inc de
+	ret
+
+PlaceInlineString:
+	ld d, b
+	ld e, c
 	call PlaceTextboxString
 	ld h, b
 	ld l, c
-	pop de
-	inc de
-	jp PlaceNextChar
+	ret
+
+; TODO
+ASMTextCommand:
+	jp MoveToNextChar
 
 TextCommandProcessor::
 	; Initialize the word-wrap registers
@@ -608,7 +641,12 @@ CountNextWordLength:
 	jr nz, .checkVariableLengthChars
 
 	; if it not any of these, then its a normal character
+	; unless its TEXT_INIT, which we just ignore
+	ld a, b
+	cp TEXT_INIT
+	jr z, .dontInc
 	inc c
+.dontInc
 	jr .readNextCharLoop
 
 .fixedLengthChar
@@ -625,10 +663,11 @@ JumpToTablePointer
 
 EndOfWordChars:
 	db " ", PARAGRAPH, AUTO_PARAGRAPH
+	db TEXT_END, TEXT_ASM
 	db TWO_OPTION_TEXT, TEXT_WAIT
 	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
 	db NEXT_TEXT_LINE, NEXT_TEXT_LINE+1
-	db TEXT_DONE, TEXT_PROMPT, TEXT_END
+	db TEXT_DONE, TEXT_PROMPT
 	db DEX_PAGE, DEX_END
 	db 0
 
@@ -662,7 +701,17 @@ LengthRAM:
 	jp CountNextWordLength
 
 LengthFarString:
-	;TODO
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+	inc de
+	ld a, [de]
+	call SetNewBank
+	ld d, b
+	ld e, c
+	jp CountNextWordLength
 
 LengthPlayerName:
 	ld de, wPlayerName
@@ -691,7 +740,7 @@ LengthBattleCommon:
 	jp CountNextWordLength
 
 TextEndCharText::
-	db TEXT_END
+	endtext
 
 GetTextboxSize:
 	ld a, [wTextboxSettings]

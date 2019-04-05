@@ -194,26 +194,28 @@ PewterCityTextPointers:
 
 PewterCityText1:
 	TX_FAR _PewterCityText1
-	db "@"
+	endtext
 
 PewterCityText2:
 	TX_FAR _PewterCityText2
-	db "@"
+	endtext
+
+YesText:
+	str "Yes"
+
+NoText:
+	str "No"
 
 PewterCityText3:
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	text
+	fartext _PewterCityText_193f1
+	two_opt YesText, NoText, .yes, .no
+.no
+	autopara
+	fartext _PewterCityText_193fb
+	endtext
 	TX_ASM
-	ld hl, PewterCityText_193f1
-	call PrintText
-	call YesNoChoice
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, .asm_193c9
-	ld hl, PewterCityText_193f6
-	call PrintText
-	jr .asm_193ee
-.asm_193c9
-	ld hl, PewterCityText_193fb
-	call PrintText
 	xor a
 	ld [hJoyPressed], a
 	ld [hJoyHeld], a
@@ -227,24 +229,15 @@ PewterCityText3:
 	call GetSpritePosition2
 	ld a, $1
 	ld [wPewterCityCurScript], a
-.asm_193ee
 	jp TextScriptEnd
-
-PewterCityText_193f1:
-	TX_FAR _PewterCityText_193f1
-	db "@"
-
-PewterCityText_193f6:
-	TX_FAR _PewterCityText_193f6
-	db "@"
-
-PewterCityText_193fb:
-	TX_FAR _PewterCityText_193fb
-	db "@"
+.yes
+	autopara
+	fartext _PewterCityText_193f6
+	done
 
 PewterCityText13:
 	TX_FAR _PewterCityText13
-	db "@"
+	endtext
 
 PewterCityText4:
 	TX_ASM

@@ -106,8 +106,7 @@ OakSpeech:
 	ld a, SFX_SHRINK
 	call PlaySound
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	ld c, 4
 	call DelayFrames
 	ld de, RedSprite
@@ -134,8 +133,7 @@ OakSpeech:
 	ld [wNewSoundID], a
 	call PlaySound ; stop music
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	ld c, 20
 	call DelayFrames
 	coord hl, 6, 5

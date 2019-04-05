@@ -3,16 +3,13 @@ lb: MACRO ; r, hi, lo (bytes)
 	ld \1, (\2) << 8 + ((\3) & $ff)
 ENDM
 
-homecall: MACRO
+homejump: MACRO
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(\1)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	call \1
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	jp HomeBankswitchReturn
 ENDM
 
 farcall EQUS "callba"

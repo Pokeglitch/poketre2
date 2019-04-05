@@ -21,20 +21,13 @@ _PewterCityText2::
 	done
 
 _PewterCityText_193f1::
-	text "Did you check out"
-	line "the MUSEUM?"
-	done
+	str "Did you check out the MUSEUM?"
 
 _PewterCityText_193f6::
-	text "Weren't those"
-	line "fossils from MT."
-	cont "MOON amazing?"
-	done
+	str "Weren't those fossils from MT. MOON amazing?"
 
 _PewterCityText_193fb::
-	text "Really?"
-	line "You absolutely"
-	cont "have to go!"
+	db "Really?", nl, "You absolutely have to go!"
 	done
 
 _PewterCityText13::
@@ -114,14 +107,4 @@ _PewterCityText12::
 	text "PEWTER CITY"
 	line "A Stone Gray"
 	cont "City"
-	two_opt YesText, NoText, .finish, .finish
-
-.finish
-	autocont "Cool"
 	done
-
-YesText:
-	db "Yes@"
-
-NoText:
-	db "No@"

@@ -4,13 +4,9 @@ FarCopyData::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, [wBuffer]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	call CopyData
-	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
-	ret
+	jp HomeBankswitchReturn
 
 CopyData::
 ; Copy bc bytes from hl to de.

@@ -173,8 +173,7 @@ PlaySound::
 	ld a, [H_LOADEDROMBANK]
 	ld [hSavedROMBank], a
 	ld a, [wAudioROMBank]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	cp BANK(Audio1_PlaySound)
 	jr nz, .checkForAudio2
 
@@ -198,8 +197,7 @@ PlaySound::
 
 .next2
 	ld a, [hSavedROMBank]
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call SetNewBank
 	jr .done
 
 .fadeOut
