@@ -193,18 +193,16 @@ PewterCityTextPointers:
 	dw PewterCityText14
 
 PewterCityText1:
-	TX_FAR _PewterCityText1
-	endtext
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	text
+	fartext _PewterCityText1
+	done
 
 PewterCityText2:
-	TX_FAR _PewterCityText2
-	endtext
-
-YesText:
-	str "Yes"
-
-NoText:
-	str "No"
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	text
+	fartext _PewterCityText2
+	done
 
 PewterCityText3:
 	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
@@ -236,8 +234,10 @@ PewterCityText3:
 	done
 
 PewterCityText13:
-	TX_FAR _PewterCityText13
-	endtext
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	text
+	fartext _PewterCityText13
+	done
 
 PewterCityText4:
 	TX_ASM

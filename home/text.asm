@@ -835,3 +835,9 @@ AdjustAndStoreTextboxScrollSpeed:
 	inc hl
 	ld [hl], c
 	ret
+
+YesText:
+	str "Yes"
+
+NoText:
+	str "No"

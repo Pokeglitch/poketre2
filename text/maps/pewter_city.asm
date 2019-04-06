@@ -1,24 +1,8 @@
 _PewterCityText1::
-	text "It's rumored that"
-	line "CLEFAIRYs came"
-	cont "from the moon!"
-
-	para "They appeared "
-	line "after MOON STONE"
-	cont "fell on MT.MOON."
-	done
+	str "It's rumored that CLEFAIRYs came from the moon!", par, "They appeared after a MOON STONE fell on MT.MOON."
 
 _PewterCityText2::
-	text "There aren't many"
-	line "serious #MON"
-	cont "trainers here!"
-
-	para "They're all like"
-	line "BUG CATCHERs,"
-	cont "but PEWTER GYM's"
-	cont "BROCK is totally"
-	cont "into it!"
-	done
+	str "There aren't many serious #MON trainers here!", par, "They're all like BUG CATCHERs\, but PEWTER GYM's BROCK is totally into it!"
 
 _PewterCityText_193f1::
 	str "Did you check out the MUSEUM?"
@@ -27,16 +11,10 @@ _PewterCityText_193f6::
 	str "Weren't those fossils from MT. MOON amazing?"
 
 _PewterCityText_193fb::
-	db "Really?", nl, "You absolutely have to go!"
-	done
+	str "Really?", nl, "You absolutely have to go!"
 
 _PewterCityText13::
-	text "It's right here!"
-	line "You have to pay"
-	cont "to get in, but"
-	cont "it's worth it!"
-	cont "See you around!"
-	done
+	str "It's right here! You have to pay to get in\, but it's worth it!", nl, "See you around!"
 
 _PewterCityText_19427::
 	text "Psssst!"

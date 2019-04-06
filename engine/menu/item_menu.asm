@@ -1,5 +1,7 @@
 ; TODO
 
+; Inventory and Sell Menu need to show if the item is holdable and consumable (single use)
+
 ; Finish properly loading item menu from Pokemart
 ; - Move quantity menu location
 ; - Make sure price and max amount is correct
@@ -8,13 +10,12 @@
 ; - Show player's current money amount
 
 ; Need new sell screen to show description and quantity player already has
-; - should show if holdable item or not as well
 ; - Show players current quantity for each item when Buying
 ; - Show player's current money amount
 ; - mart uses 'sign' tiles, vending machine uses 'digital' tiles
 ; -- Use title screen "brush" font and say "FOR SALE" for mart sign
-
-; Description should be clear if an item is holdable or not (or place a tile)
+; Use BG, and scroll the entire bg while navigation
+; - description/current qty/current $ stays overlaid in the window
 
 ; Finish the Quick Use actions battle and field
 

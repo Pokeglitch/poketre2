@@ -1,14 +1,5 @@
 ;TODO -
 
-; - Switch all text to use "two_opt" instead of YesNoChoice
-
-; Why does '_PewterCityText_193fb' work when using either 'done' or 'endtext' ??
-
-; - Update charmap/constants with latest tiles
-; -- use in inventory screen, main menu, etc, instead of numbers
-; -- need different 'POKe' symbol instead of #...
-; - remove the solid color tiles and add more characters? @, %, &, * ?
-
 ; - RAM Text/Two Option/Far Text should be in a table, not a separate check
 
 ; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu?
@@ -28,17 +19,32 @@
 
 ; Fix each menu in DisplayTextID
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Update all text to only use string commands, remove text commands
+
+; Update charmap/constants with latest tiles
+; -- use in inventory screen, main menu, etc, instead of numbers
+; -- need different 'POKe' symbol instead of #...
+; - remove the solid color tiles and add more characters? @, %, &, * ?
+
 ; Test all text commands
 ; - including lookaheads
 
 ; Improve word wrap / Text processor:
+; FarTextCommand doesnt need to store current bank, since it does so at very start of place new string...
 ; - clean up names/constants
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
 ; - fix battle text to word-wrap properly (?)
-; get 'textasm' working
+; get 'textasm' working (also, far_text_asm)
+; - not inline, just have it be a pointer
 ; get rid of either line or next command
 ; command to hide/reveal the textbox
 ; command to change the settings (will auto hide if style is changed?)
+; convert all text commands to string commands
+; -- remove the need for 'text'/'TEXT_INIT' and 'done' (combine with 'textend')
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Add route names pop to ensure it still works when user can move around
 

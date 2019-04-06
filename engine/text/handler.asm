@@ -112,13 +112,6 @@ StringCommandTable:
 	dbw MOVE_USER_TEXT, MoveUserTextCommand ; USER
     db 00
 
-NextLineCommand:
-    pop hl
-	pop hl
-	call MoveToNextLine
-	push hl
-	jp ReturnAndPlaceNextChar
-
 SpaceCommand:
     pop hl
 	inc de
@@ -129,16 +122,16 @@ SpaceCommand:
 
 CheckWordWrapReturn:
 	dec de
-	jr c, .handleWordWrap
+	jr c, HandleWordWrap
 
 	ld a, " "
     jp PlaceNextCharacter
 
-.handleWordWrap
+HandleWordWrap:
 	; if there are rows remaining, move to the next line
 	ld a, [wTextboxRowParams]
 	and TEXTBOX_ROWS_REMAINING_MASK
-	jr nz, .rowsRemaining 
+	jr nz, UpdateCurrentLine
 
 	; if there is auto scroll remaining, then auto scroll
 	ld a, [wTextboxRowParams]
@@ -153,7 +146,14 @@ CheckWordWrapReturn:
 
 	jp ContinueText
 
-.rowsRemaining
+NextLineCommand:
+	pop hl
+	ld a, [wTextboxSettings]
+	bit BIT_NO_WORD_WRAP, a
+	jr z, HandleWordWrap
+	; fall through if word wrap is off
+
+UpdateCurrentLine:
 	pop hl
 	call MoveToNextLine
 	push hl 
