@@ -1,11 +1,5 @@
 ;TODO -
 
-; - RAM Text/Two Option/Far Text should be in a table, not a separate check
-
-; Play sound when button is pressed in ManualTextScroll or TwoOptionMenu?
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ; Fix each menu in DisplayTextBoxID_
 
 ; Remove all locations where TextboxDrawing is enabled/disabled
@@ -25,7 +19,7 @@
 
 ; Update charmap/constants with latest tiles
 ; -- use in inventory screen, main menu, etc, instead of numbers
-; -- need different 'POKe' symbol instead of #...
+; -- Use 'POKe' as symbol for "POKE" instead of #...
 ; - remove the solid color tiles and add more characters? @, %, &, * ?
 
 ; Test all text commands

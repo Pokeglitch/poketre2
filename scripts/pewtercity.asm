@@ -291,25 +291,37 @@ PewterCityText_1945d:
 	db "@"
 
 PewterCityText14:
-	TX_FAR _PewterCityText14
-	db "@"
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	text
+	fartext _PewterCityText14
+	done
 
 PewterCityText6:
-	TX_FAR _PewterCityText6
-	db "@"
+	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_4
+	text
+	fartext _PewterCityText6
+	done
 
 PewterCityText7:
-	TX_FAR _PewterCityText7
-	db "@"
+	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_3
+	text
+	fartext _PewterCityText7
+	done
 
 PewterCityText10:
-	TX_FAR _PewterCityText10
-	db "@"
+	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	text
+	fartext _PewterCityText10
+	done
 
 PewterCityText11:
-	TX_FAR _PewterCityText11
-	db "@"
+	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	text
+	fartext _PewterCityText11
+	done
 
 PewterCityText12:
-	TX_FAR _PewterCityText12
-	db "@"
+	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	text
+	fartext _PewterCityText12
+	done

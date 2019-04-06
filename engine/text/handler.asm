@@ -249,6 +249,9 @@ ParagraphCommand:: ; para
 	call ManualTextScroll
 
 ParagraphCommandCommon::
+	ld a, [wTextboxSettings]
+	bit BIT_NO_DELAY, a
+	jr nz, .noDelay
 	coord hl, 1, 1
 	call GetTextboxSize
 	ld b, a
@@ -263,6 +266,16 @@ ParagraphCommandCommon::
 	coord hl, 1, 1
 	push hl
 	jp ReturnAndPlaceNextChar
+
+; if no delay is on, then autoscroll instead
+.noDelay
+	; reset the autoscroll count to the full size
+	and TEXT_LINES_MASK
+	inc a
+	swap a
+	ld [wTextboxRowParams], a
+	pop de
+	jp AutoContinueText
 
 WaitCommand:: ; wait
 	pop hl
@@ -280,6 +293,8 @@ TextPromptCommand:: ; prompt
 
 TextDoneCommand:: ; done
     pop hl
+	call Delay3
+	call CheckRevealTextbox
 
 TextFinishCommon::
 	ld de, TextEndCharText-1
@@ -465,6 +480,8 @@ HandleTwoOptionMenuInputsCommon:
 
 .finish
 	ld d, a
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	pop af
 	ret
 

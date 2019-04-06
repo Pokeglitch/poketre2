@@ -1150,7 +1150,9 @@ HoldTextDisplayOpen::
 	bit 0, a ; is the A button being pressed?
 	jr nz, HoldTextDisplayOpen
 
-CloseTextDisplay::
+CloseTextDisplay::	
+	ld a, SFX_PRESS_AB
+	call PlaySound
 	ld a, [wCurMap]
 	call SwitchToMapRomBank
 

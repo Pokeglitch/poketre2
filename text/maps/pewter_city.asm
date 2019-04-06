@@ -42,47 +42,19 @@ _PewterCityText_1945d::
 	done
 
 _PewterCityText14::
-	text "If you have the"
-	line "right stuff, go"
-	cont "take on BROCK!"
-	done
+	str "If you have the right stuff\, go take on BROCK!"
 
 _PewterCityText6::
-	text "TRAINER TIPS"
-
-	para "Any #MON that"
-	line "takes part in"
-	cont "battle, however"
-	cont "short, earns EXP!"
-	done
+	str "TRAINER TIPS", par, "Any #MON that takes part in battle\, however short\, earns EXP!"
 
 _PewterCityText7::
-	text "NOTICE!"
-
-	para "Thieves have been"
-	line "stealing #MON"
-	cont "fossils at MT."
-	cont "MOON! Please call"
-	cont "PEWTER POLICE"
-	cont "with any info!"
-	done
+	str "NOTICE!", par, "Thieves have been stealing #MON fossils at MT. MOON! Please call PEWTER POLICE with any info!"
 
 _PewterCityText10::
-	text "PEWTER MUSEUM"
-	line "OF SCIENCE"
-	done
+	str "PEWTER MUSEUM OF SCIENCE"
 
 _PewterCityText11::
-	text "PEWTER CITY"
-	line "#MON GYM"
-	cont "LEADER: BROCK"
-
-	para "The Rock Solid"
-	line "#MON Trainer!"
-	done
+	str "PEWTER CITY #MON GYM", nl, "LEADER: BROCK", par, "The Rock Solid #MON Trainer!"
 
 _PewterCityText12::
-	text "PEWTER CITY"
-	line "A Stone Gray"
-	cont "City"
-	done
+	str "PEWTER CITY", nl, "A Stone Gray City"
