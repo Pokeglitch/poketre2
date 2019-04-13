@@ -24,6 +24,10 @@
 ; Rename ItemMenu, item_menu, etc to Inventory
 ; - move this file into the inventory folder (and other related ones)
 ; - Make sure constants are used where necessary
+
+; Inventory should have filter on by default
+; - or, have way to load with filter on/off
+
 ;----------------------------------------------------------
 
 ; More efficient if the quantities are stored in index order

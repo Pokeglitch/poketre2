@@ -1,21 +1,8 @@
 ;TODO -
 
-; Fix each menu in DisplayTextBoxID_
-
-; Remove all locations where TextboxDrawing is enabled/disabled
-; - wAutoTextBoxDrawingControl
-; This is used is the text has a script with non standard textbox
-; - or doesn't display text immediately
-; Instead, just prefix the text with a a DONT_REVEAL flag
-; -- is this all that is neccessary? test all...
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Fix each menu in DisplayTextID
+; Fixed remaining texts in DisplayTextID
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Update all text to only use string commands, remove text commands
 
 ; Update charmap/constants with latest tiles
 ; -- use in inventory screen, main menu, etc, instead of numbers
@@ -25,28 +12,36 @@
 ; Test all text commands
 ; - including lookaheads
 
-; Improve word wrap / Text processor:
+; textbox def should handle if the textbox has already been defined...
+
 ; FarTextCommand doesnt need to store current bank, since it does so at very start of place new string...
 ; - clean up names/constants
 ; - need to handle the lookahead and column count for all (like numbers, and far strings)
-; - fix battle text to word-wrap properly (?)
-; get 'textasm' working (also, far_text_asm)
-; - not inline, just have it be a pointer
-; get rid of either line or next command
-; command to hide/reveal the textbox
-; command to change the settings (will auto hide if style is changed?)
-; convert all text commands to string commands
-; -- remove the need for 'text'/'TEXT_INIT' and 'done' (combine with 'textend')
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Update all "hidden item" textboxes as well
 
 ; Add route names pop to ensure it still works when user can move around
+; - in UpdateSprites, will need to keep sprite invisible if it is currently hidden by textbox
 
 ; Just restore screen from buffer instead of redrawing entirely?
+; -- or use different BG map for window so this isnt necessary at all?
+; --- will be needed anyway when doing map name overlay
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; When is "HandleMenuInput" called? will it be needed anymore?
 
+; Remove all locations where TextboxDrawing is enabled/disabled
+; - wAutoTextBoxDrawingControl
+; This is used is the text has a script with non standard textbox
+; - or doesn't display text immediately
+; Instead, just prefix the text with a a DONT_REVEAL flag
+; -- is this all that is neccessary? test all...
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Fix up all 'hidden object functions' which use textbox
 
 ; Move all textbox related files to same directory
 ; - make sure they all use constants where necessary

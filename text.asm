@@ -538,15 +538,10 @@ _StrengthsAndWeaknessesText::
 	done
 
 _TimesUpText::
-	text "PA: Ding-dong!"
-
-	para "Time's up!"
-	prompt
+	str "PA: Ding-dong!", par, "Time's up!"
 
 _GameOverText::
-	text "PA: Your SAFARI"
-	line "GAME is over!"
-	done
+	str "PA: Your SAFARI GAME is over!"
 
 _CinnabarGymQuizIntroText::
 	text "#MON Quiz!"

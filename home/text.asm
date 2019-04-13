@@ -193,14 +193,21 @@ ASMTextCommand:
 	jp MoveToNextChar
 
 TextCommandProcessor::
-	; Initialize the word-wrap registers
-	call ResetRowsRemaining
-	call ResetColumnTilesRemaining
+	ld a, [hl]
+	cp TEXTBOX_DEF
+	jr z, TextCommandProcessor_NoInit
 
-TextCommandProcessor_NoReset::
+	; Don't init if the window is already on screen
+	ld a, [hWY]
+	cp SCREEN_HEIGHT_PIXELS
+	jr c, TextCommandProcessor_NoInit
+
+	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	call InitializeTextbox
+
+TextCommandProcessor_NoInit::
 	ld a, [wLetterPrintingDelayFlags]
 	push af
-	
 	push hl
 	res 1, a ; disable delays
 	ld hl, wTextboxSettings
@@ -234,6 +241,8 @@ NextTextCommand::
 	push hl
 	cp $17
 	jp z, TextCommand17
+	cp TEXTBOX_DEF
+	jp z, TextboxDefinitionCommand
 	cp $0e
 	jp nc, TextCommand0B ; if a != 0x17 and a >= 0xE, go to command 0xB
 ; if a < 0xE, use a jump table
@@ -480,6 +489,12 @@ TextCommand0B::
 	pop bc
 	jp NextTextCommand
 
+TextboxDefinitionCommand:
+	pop hl
+	ld a, [hli]
+	call InitializeTextbox
+	jp NextTextCommand
+
 ; format: text command ID, sound ID or cry ID
 TextCommandSounds::
 	db $0B, SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded
@@ -549,7 +564,7 @@ TextCommand17::
 	push hl
 	ld l, e
 	ld h, d
-	call TextCommandProcessor_NoReset
+	call TextCommandProcessor_NoInit
 	pop hl
 	pop af
 	call SetNewBank
@@ -769,10 +784,20 @@ ResetRowsRemaining:
 	ld [wTextboxRowParams], a
 	ret
 
+ResetRowsAndColumnTilesRemaining:
+	call ResetRowsRemaining
+	; fall through
+
 ResetColumnTilesRemaining:
 	ld a, SCREEN_WIDTH - 2
 	ld [wTextboxColsRemaining], a
 	ret
+
+FullyRevealWindow:
+	; initialize the window to be at the bottom of the screen
+	ld a, SCREEN_HEIGHT_PIXELS
+	ld [hWY], a
+	; fall through
 
 ScrollTextboxUp:
 	ld c, -1

@@ -93,28 +93,25 @@ SafariZoneGameOver:
 PrintSafariGameOverText:
 	xor a
 	ld [wJoyIgnore], a
-	ld hl, SafariGameOverText
-	jp PrintText
-
-SafariGameOverText:
-	TX_ASM
+	ld hl, GameOverText
 	ld a, [wNumSafariBalls]
 	and a
 	jr z, .noMoreSafariBalls
 	ld hl, TimesUpText
-	call PrintText
 .noMoreSafariBalls
-	ld hl, GameOverText
-	call PrintText
-	jp TextScriptEnd
+	jp PrintText
 
 TimesUpText:
-	TX_FAR _TimesUpText
-	db "@"
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	text
+	fartext _TimesUpText
+	done
 
 GameOverText:
-	TX_FAR _GameOverText
-	db "@"
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	text
+	fartext _GameOverText
+	done
 
 PrintCinnabarQuiz:
 	ld a, [wSpriteStateData1 + 9]

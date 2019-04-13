@@ -1,10 +1,13 @@
 DisplayStartMenu::
+	xor a
+	call LoadWhiteOnBlackFontTilePatterns
 	ld a, BANK(StartMenu_Pokedex)
 	call SetNewBank
 	ld a, [wWalkBikeSurfState] ; walking/biking/surfing
 	ld [wWalkBikeSurfStateCopy], a
 	ld a, SFX_START_MENU
 	call PlaySound
+	callab FullyRevealWindow
 
 RedisplayStartMenu::
 	callba DrawStartMenu

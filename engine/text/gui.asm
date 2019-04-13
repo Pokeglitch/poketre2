@@ -259,6 +259,8 @@ LoadFontTilePatternsCommon:
 	jr nz, .loadFullBorder
 
 	;only load the space tile
+	ld de, 8 * BYTES_PER_TILE ; skip the 8 border tiles
+	add hl, de
 	ld de, vChars2 + $7F0
     ld bc, $10
 
@@ -288,6 +290,10 @@ LoadFontTilePatternsCommon:
     jr nz, .loadFullBorder2
 
 	;only load space
+	ld hl, 8 * BYTES_PER_TILE ; skip the 8 border tiles
+	add hl, de
+	ld d, h
+	ld e, l
 	ld hl, vChars2 + $7F0
 	ld c, 1
 

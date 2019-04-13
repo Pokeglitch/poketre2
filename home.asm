@@ -1116,22 +1116,6 @@ DisplayTextID::
 	jr AfterDisplayingTextID
 
 .notSpecialCase
-	cp $18
-	jr nz, .useStandardTextboxSettings
-	inc hl
-	ld a, [hli]
-	jr .storeTextboxSettings
-
-.useStandardTextboxSettings
-	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
-
-.storeTextboxSettings
-	ld [wTextboxSettings], a
-	push hl
-	farcall InitializeTextbox
-	pop hl
-
-.dontDrawStandardTextbox
 	call PrintText ; display the text
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
 	and a
@@ -1192,6 +1176,16 @@ CloseTextDisplay::
 	pop af
 	call SetNewBank
 	jp UpdateSprites
+
+InitializeTextbox:
+	ld [wTextboxSettings], a
+	push hl
+	push bc
+	farcall InitializeTextbox_
+	call ResetRowsAndColumnTilesRemaining
+	pop bc
+	pop hl
+	ret
 
 DisplayPokemartDialogue::
 	push hl
