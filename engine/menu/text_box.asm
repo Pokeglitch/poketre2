@@ -1,6 +1,7 @@
 ;TODO -
 
 ; Fixed remaining texts in DisplayTextID
+; - Update all Yes/No Choice to use two_opt
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

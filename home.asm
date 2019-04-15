@@ -1252,6 +1252,7 @@ DisplayPokemonFaintedText::
 	jp AfterDisplayingTextID
 
 PokemonFaintedText::
+	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
 	TX_FAR _PokemonFaintedText
 	db "@"
 

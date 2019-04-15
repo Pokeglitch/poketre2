@@ -46,6 +46,18 @@ DisplayTextIDInit:
 	ld [H_AUTOBGTRANSFERENABLED], a ; enable continuous WRAM to VRAM transfer each V-blank
 	ret
 
+ResetTextbox:
+	coord hl, 1, 1
+	ld a, [wTextboxSettings]
+	and TEXT_LINES_MASK
+	add a
+	inc a ; a = number of text lines in textbox
+	ld b, a
+	ld c, SCREEN_WIDTH-2
+	call ClearScreenArea
+	call Delay3
+	jp ResetRowsAndColumnTilesRemaining
+
 InitializeTextbox_:
 	ld a, [wTextboxSettings]
 	push af

@@ -23,8 +23,14 @@ PlaceFarString:
 	jp HomeBankswitchReturn
 
 PlaceString::
+	ld a, [wTextboxSettings]
+	push af
 	ld a, NO_WORD_WRAP
 	ld [wTextboxSettings], a
+	call PlaceTextboxString
+	pop af
+	ld [wTextboxSettings], a
+	ret
 
 PlaceTextboxString:
 	ld a, [H_LOADEDROMBANK]
@@ -197,13 +203,21 @@ TextCommandProcessor::
 	cp TEXTBOX_DEF
 	jr z, TextCommandProcessor_NoInit
 
-	; Don't init if the window is already on screen
+	; Just reset if the window is already on screen
 	ld a, [hWY]
 	cp SCREEN_HEIGHT_PIXELS
-	jr c, TextCommandProcessor_NoInit
+	jr c, .resetTextbox
 
 	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
 	call InitializeTextbox
+	jr TextCommandProcessor_NoInit
+
+.resetTextbox
+	push hl
+	push bc
+	farcall ResetTextbox
+	pop bc
+	pop hl
 
 TextCommandProcessor_NoInit::
 	ld a, [wLetterPrintingDelayFlags]

@@ -2408,10 +2408,10 @@ _PokemartGreetingText::
 	done
 
 _PokemonFaintedText::
-	TX_RAM wcd6d
-	text ""
-	line "fainted!"
-	done
+	text
+	ramtext wcd6d
+	str " fainted!"
+	endtext
 
 _PlayerBlackedOutText::
 	text "<PLAYER> is out of"
