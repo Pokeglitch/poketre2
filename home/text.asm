@@ -807,10 +807,19 @@ ResetColumnTilesRemaining:
 	ld [wTextboxColsRemaining], a
 	ret
 
-FullyRevealWindow:
-	; initialize the window to be at the bottom of the screen
+InitializeWindowReveal:
+	;clear sprites hidden by window
+	xor a
+	ld hl, wSpritesHiddenByTextbox
+	ld [hli], a
+	ld [hl], a
+	; set window to bottom of screen
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a
+	ret
+
+FullyRevealWindow:
+	call InitializeWindowReveal
 	; fall through
 
 ScrollTextboxUp:
@@ -875,8 +884,23 @@ AdjustAndStoreTextboxScrollSpeed:
 	ld [hl], c
 	ret
 
+ClearTextboxAndDelay:
+	coord hl, 1, 1
+	call GetTextboxSize
+	ld b, a
+	ld c, 18
+	call ClearScreenArea
+	ld c, 20
+	jp DelayFrames
+
 YesText:
 	str "Yes"
 
 NoText:
 	str "No"
+
+HealText:
+	str "Heal"
+
+CancelText:
+	str "Cancel"

@@ -126,8 +126,7 @@ InitializeTextbox_:
 	
 ScrollTextboxCommon:
 	; Initialize textbox position
-	ld a, SCREEN_HEIGHT_PIXELS
-	ld [hWY], a
+	call InitializeWindowReveal
 
 	ld a, b
 	inc a ; true number of tiles of the textbox

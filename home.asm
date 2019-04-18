@@ -2907,6 +2907,12 @@ Bankswitch::
 	ld a, b
 	jp SetNewBank
 
+HealCancelTextboxOption:
+	farjump HealCancelTextboxOption_
+
+YesNoTextboxOption:
+	farjump YesNoTextboxOption_
+
 ; displays yes/no choice
 ; yes -> set carry
 YesNoChoice::

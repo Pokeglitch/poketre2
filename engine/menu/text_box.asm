@@ -1,35 +1,8 @@
 ;TODO -
 
-; Fixed remaining texts in DisplayTextID
-; - Update all Yes/No Choice to use two_opt
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Update charmap/constants with latest tiles
-; -- use in inventory screen, main menu, etc, instead of numbers
-; -- Use 'POKe' as symbol for "POKE" instead of #...
-; - remove the solid color tiles and add more characters? @, %, &, * ?
-
-; Test all text commands
-; - including lookaheads
-
-; textbox def should handle if the textbox has already been defined...
-
-; FarTextCommand doesnt need to store current bank, since it does so at very start of place new string...
-; - clean up names/constants
-; - need to handle the lookahead and column count for all (like numbers, and far strings)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Update all "hidden item" textboxes as well
-
-; Add route names pop to ensure it still works when user can move around
-; - in UpdateSprites, will need to keep sprite invisible if it is currently hidden by textbox
-
-; Just restore screen from buffer instead of redrawing entirely?
-; -- or use different BG map for window so this isnt necessary at all?
-; --- will be needed anyway when doing map name overlay
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Check remaining texts in DisplayTextID
+; Check all "hidden item" textboxes
+; Ensure lookahead uses all new commands
 
 ; When is "HandleMenuInput" called? will it be needed anymore?
 
@@ -42,10 +15,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Fix up all 'hidden object functions' which use textbox
+; Update charmap/constants with latest tiles
+; -- use in inventory screen, main menu, etc, instead of numbers
+; -- Use 'POKe' as symbol for "POKE" instead of #...
+; - remove the solid color tiles and add more characters? @, %, &, * ?
 
 ; Move all textbox related files to same directory
 ; - make sure they all use constants where necessary
+; Clean up constants/macros/names
 
 ;--------------------------------
 

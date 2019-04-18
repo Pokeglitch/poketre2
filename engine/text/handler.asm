@@ -252,13 +252,7 @@ ParagraphCommandCommon::
 	ld a, [wTextboxSettings]
 	bit BIT_NO_DELAY, a
 	jr nz, .noDelay
-	coord hl, 1, 1
-	call GetTextboxSize
-	ld b, a
-	ld c, 18
-	call ClearScreenArea
-	ld c, 20
-	call DelayFrames
+	call ClearTextboxAndDelay
 	pop de
 	pop hl
 	call ResetRowsRemaining
@@ -509,4 +503,59 @@ HandleTwoOptionBox:
 
 .doneScrollingDown
 	pop de
+	ret
+
+HealCancelTextboxOption_:
+	ld de, HealText
+	ld hl, CancelText
+	jr TextboxOptionCommon
+
+YesNoTextboxOption_:
+	ld de, YesText
+	ld hl, NoText
+	;fall through
+
+TextboxOptionCommon:
+	ld a, [wLetterPrintingDelayFlags]
+	push af
+	push hl
+	push de
+	res 1, a ; disable delays
+	ld [wLetterPrintingDelayFlags], a
+	call DrawOptionBox
+	;place the options
+	call GetStartOfBottomRow
+	ld bc, SCREEN_WIDTH * 2 + 1
+	add hl, bc
+	pop de
+	push hl
+	call PlaceTextboxString
+	pop hl
+	pop de
+	push hl
+	ld bc, 9
+	add hl, bc
+	call PlaceTextboxString
+	call Delay3
+	pop de
+	dec de
+	call HandleTwoOptionBox
+	pop af
+	ld [wLetterPrintingDelayFlags], a
+	ld a, d
+	and a
+	jr nz, .noSelected
+	scf
+	ld b, CHOSE_FIRST_ITEM
+	jr .storeResult
+
+.noSelected
+	ld a, 1
+	ld b, CHOSE_SECOND_ITEM
+
+.storeResult
+	ld [wCurrentMenuItem], a
+	ld [wChosenMenuItem], a
+	ld a, b
+	ld [wMenuExitMethod], a
 	ret

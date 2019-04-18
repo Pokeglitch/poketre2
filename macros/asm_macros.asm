@@ -14,6 +14,8 @@ ENDM
 
 farcall EQUS "callba"
 
+farjump EQUS "jpba"
+
 callba: MACRO
 	ld b, BANK(\1)
 	ld hl, \1

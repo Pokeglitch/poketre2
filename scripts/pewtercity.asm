@@ -243,7 +243,8 @@ PewterCityText4:
 	TX_ASM
 	ld hl, PewterCityText_19427
 	call PrintText
-	call YesNoChoice
+	call YesNoTextboxOption
+	call ClearTextboxAndDelay
 	ld a, [wCurrentMenuItem]
 	cp $0
 	jr nz, .asm_1941e
