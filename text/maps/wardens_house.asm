@@ -51,7 +51,7 @@ _HM04ExplanationText::
 	text "WARDEN: HM04"
 	line "teaches STRENGTH!"
 
-	para "It lets #MON"
+	para "It lets POKéMON"
 	line "move boulders"
 	cont "when you're out-"
 	cont "side of battle."
@@ -73,11 +73,11 @@ _HM04NoRoomText::
 	done
 
 _FuchsiaHouse2Text_75176::
-	text "#MON photos"
+	text "POKéMON photos"
 	line "and fossils."
 	done
 
 _FuchsiaHouse2Text_7517b::
-	text "Old #MON"
+	text "Old POKéMON"
 	line "merchandise."
 	done

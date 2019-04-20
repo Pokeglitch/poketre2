@@ -29,7 +29,7 @@ _DaisyUseMapText::
 	done
 
 _BluesHouseText2::
-	text "#MON are living"
+	text "POKéMON are living"
 	line "things! If they"
 	cont "get tired, give"
 	cont "them a rest!"

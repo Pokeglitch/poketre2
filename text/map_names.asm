@@ -82,11 +82,11 @@ SeaCottageName:
 SSAnneName:
 	db "S.S.ANNE@"
 PokemonLeagueName:
-	db "#MON LEAGUE@"
+	db "POKéMON LEAGUE@"
 UndergroundPathName:
 	db "UNDERGROUND PATH@"
 PokemonTowerName:
-	db "#MON TOWER@"
+	db "POKéMON TOWER@"
 SeafoamIslandsName:
 	db "SEAFOAM ISLANDS@"
 VictoryRoadName:

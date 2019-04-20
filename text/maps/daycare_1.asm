@@ -2,11 +2,11 @@ _DayCareIntroText::
 	text "I run a DAYCARE."
 	line "Would you like me"
 	cont "to raise one of"
-	cont "your #MON?"
+	cont "your POKéMON?"
 	done
 
 _DayCareWhichMonText::
-	text "Which #MON"
+	text "Which POKéMON"
 	line "should I raise?"
 	prompt
 
@@ -38,11 +38,11 @@ _DayCareMonHasGrownText::
 	prompt
 
 _DayCareOweMoneyText::
-	text "You owe me ¥@"
+	text "You owe me $@"
 	TX_BCD wDayCareTotalCost, $c2
 	db $0
 	line "for the return"
-	cont "of this #MON."
+	cont "of this POKéMON."
 	done
 
 _DayCareGotMonBackText::

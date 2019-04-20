@@ -36,7 +36,7 @@ _SSAnne10AfterBattleText2::
 
 _SSAnne10BattleText3::
 	text "Us sailors have"
-	line "#MON too!"
+	line "POKéMON too!"
 	done
 
 _SSAnne10EndBattleText3::
@@ -46,7 +46,7 @@ _SSAnne10EndBattleText3::
 
 _SSAnne10AfterBattleText3::
 	text "We caught all our"
-	line "#MON while"
+	line "POKéMON while"
 	cont "out at sea!"
 	done
 
@@ -60,7 +60,7 @@ _SSAnne10EndBattleText4::
 	prompt
 
 _SSAnne10AfterBattleText4::
-	text "Sea #MON live"
+	text "Sea POKéMON live"
 	line "in deep water."
 	cont "You'll need a ROD!"
 	done
@@ -86,7 +86,7 @@ _SSAnne10BattleText6::
 	text "Hello stranger!"
 	line "Stop and chat!"
 
-	para "All my #MON"
+	para "All my POKéMON"
 	line "are from the sea!"
 	done
 

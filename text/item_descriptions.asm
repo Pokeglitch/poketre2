@@ -3,20 +3,20 @@ PocketsEmptyText:
     next "this pocket!@"
     
 MasterBallDescription:
-    db "Catch any #mon"
+    db "Catch any POKéMON"
     next "without fail@"
 
 UltraBallDescription:
     db "Highest chance of"
-    next "catching #mon@"
+    next "catching POKéMON@"
 
 GreatBallDescription:
     db "Moderate chance of"
-    next "catching #mon@"
+    next "catching POKéMON@"
 
 PokeBallDescription:
     db "A ball thrown to"
-    next "catch wild #mon@"
+    next "catch wild POKéMON@"
 
 TownMapDescription:
     db "Display your"
@@ -32,26 +32,26 @@ ThunderStoneDescription:
 WaterStoneDescription:
 LeafStoneDescription:
     db "Help certain"
-    next "#mon evolve@"
+    next "POKéMON evolve@"
 
 AntidoteDescription:
-    db "Cure #mon who"
+    db "Cure POKéMON who"
     next "are poisoned@"
 
 BurnHealDescription:
-    db "Heal #mon who"
+    db "Heal POKéMON who"
     next "are burned@"
 
 IceHealDescription:
-    db "Thaw #mon who"
+    db "Thaw POKéMON who"
     next "are frozen@"
 
 AwakeningDescription:
-    db "Wake #mon who"
+    db "Wake POKéMON who"
     next "are sleeping@"
 
 ParlyzHealDescription:
-    db "Heal #mon who"
+    db "Heal POKéMON who"
     next "are paralyzed@"
 
 FullRestoreDescription:
@@ -60,18 +60,18 @@ FullRestoreDescription:
 
 MaxPotionDescription:
     db "Fully restore a"
-    next "#mon's HP@"
+    next "POKéMON's HP@"
 
 HyperPotionDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 200@"
 
 SuperPotionDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 50@"
 
 PotionDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 20@"
 
 EscapeRopeDescription:
@@ -79,41 +79,41 @@ EscapeRopeDescription:
     next "cave or dungeon@"
 
 RepelDescription:
-    db "Repel wild #mon"
+    db "Repel wild POKéMON"
     next "for 100 steps@"
 
 OldAmberDescription:
     db "Contains genes of"
-    next "an ancient #mon@"
+    next "an ancient POKéMON@"
 
 HPUpDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "maximum HP@"
 
 ProteinDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "attack stat@"
 
 IronDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "defense stat@"
 
 CarbosDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "speed stat@"
     
 CalciumDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "special stat@"
     
 RareCandyDescription:
-    db "Raise a #mon's"
+    db "Raise a POKéMON's"
     next "level by 1@"
     
 DomeFossilDescription:
 HelixFossilDescription:
     db "Part of an ancient"
-    next "#mon's shell@"
+    next "POKéMON's shell@"
 
 SecretKeyDescription:
     db "It appears to be"
@@ -136,7 +136,7 @@ NuggetDescription:
     next "and very expensive@"
 
 PokeDollDescription:
-    db "Distract a #mon"
+    db "Distract a POKéMON"
     next "so you can escape@"
 
 FullHealDescription:
@@ -145,22 +145,22 @@ FullHealDescription:
 
 ReviveDescription:
     db "Recover a fainted"
-    next "#mon to half HP@"
+    next "POKéMON to half HP@"
 
 MaxReviveDescription:
     db "Recover a fainted"
-    next "#mon to full HP@"
+    next "POKéMON to full HP@"
 
 GuardSpecDescription:
     db "Prevents in-battle"
     next "stat reductions@"
 
 SuperRepelDescription:
-    db "Repel wild #mon"
+    db "Repel wild POKéMON"
     next "for 200 steps@"
 
 MaxRepelDescription:
-    db "Repel wild #mon"
+    db "Repel wild POKéMON"
     next "for 250 steps@"
 
 DireHitDescription:
@@ -168,15 +168,15 @@ DireHitDescription:
     next "of a critical hit@"
 
 FreshWaterDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 50@"
 
 SodaPopDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 60@"
 
 LemonadeDescription:
-    db "Restore a #mon's"
+    db "Restore a POKéMON's"
     next "HP by 80@"
 
 SSTicketDescription:
@@ -216,12 +216,12 @@ ItemFinderDescription:
     next "hidden items@"
 
 SilphScopeDescription:
-    db "Identify #mon"
+    db "Identify POKéMON"
     next "apparitions@"
 
 PokeFluteDescription:
     db "Musical instrument"
-    next "that #mon enjoy@"
+    next "that POKéMON enjoy@"
 
 LiftKeyDescription:
     db "Access all"
@@ -229,19 +229,19 @@ LiftKeyDescription:
 
 ExpAllDescription:
     db "Distribute Exp to"
-    next "all party #mon@"
+    next "all party POKéMON@"
 
 OldRodDescription:
     db "Use to fish for"
-    next "wild #mon@"
+    next "wild POKéMON@"
 
 GoodRodDescription:
     db "A decent rod to"
-    next "fish for #mon@"
+    next "fish for POKéMON@"
 
 SuperRodDescription:
     db "The best rod to"
-    next "fish for #mon@"
+    next "fish for POKéMON@"
 
 PPUpDescription:
     db "Boost an attack's"
@@ -281,4 +281,4 @@ CoinDescription:
 
 MovesDescription:
     db "Teach this move"
-    next "to a #MON@"
+    next "to a POKéMON@"

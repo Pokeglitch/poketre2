@@ -58,5 +58,5 @@ PrintPlayTime:
 SaveScreenInfoText:
 	db   "PLAYER"
 	next "BADGES    "
-	next "#DEX    "
+	next "POKéDEX    "
 	next "TIME@"

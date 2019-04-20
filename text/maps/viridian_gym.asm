@@ -35,7 +35,7 @@ _ViridianGymText_74ad9::
 
 	para "I will dedicate my"
 	line "life to the study"
-	cont "of #MON!"
+	cont "of POKéMON!"
 
 	para "Let us meet again"
 	line "some day!"
@@ -43,19 +43,19 @@ _ViridianGymText_74ad9::
 
 _ViridianGymText12::
 	text "The EARTHBADGE"
-	line "makes #MON of"
+	line "makes POKéMON of"
 	cont "any level obey!"
 
 	para "It is evidence of"
 	line "your mastery as a"
-	cont "#MON trainer!"
+	cont "POKéMON trainer!"
 
 	para "With it, you can"
-	line "enter the #MON"
+	line "enter the POKéMON"
 	cont "LEAGUE!"
 
 	para "It is my gift for"
-	line "your #MON"
+	line "your POKéMON"
 	cont "LEAGUE challenge!"
 	done
 
@@ -67,7 +67,7 @@ _TM27ExplanationText::
 	db $0
 	para "TM27 is FISSURE!"
 	line "It will take out"
-	cont "#MON with just"
+	cont "POKéMON with just"
 	cont "one hit!"
 
 	para "I made it when I"
@@ -113,7 +113,7 @@ _ViridianGymAfterBattleText2::
 	done
 
 _ViridianGymBattleText3::
-	text "#MON and I, we"
+	text "POKéMON and I, we"
 	line "make wonderful"
 	cont "music together!"
 	done
@@ -140,7 +140,7 @@ _ViridianGymEndBattleText4::
 	prompt
 
 _ViridianGymAfterBattleText4::
-	text "If my #MON"
+	text "If my POKéMON"
 	line "were as good at"
 	cont "Karate as I..."
 	done
@@ -171,13 +171,13 @@ _ViridianGymEndBattleText6::
 	prompt
 
 _ViridianGymAfterBattleText6::
-	text "#MON LEAGUE?"
+	text "POKéMON LEAGUE?"
 	line "You? Don't get"
 	cont "cocky!"
 	done
 
 _ViridianGymBattleText7::
-	text "Your #MON will"
+	text "Your POKéMON will"
 	line "cower at the"
 	cont "crack of my whip!"
 	done
@@ -206,7 +206,7 @@ _ViridianGymEndBattleText8::
 
 _ViridianGymAfterBattleText8::
 	text "You can go onto"
-	line "#MON LEAGUE"
+	line "POKéMON LEAGUE"
 	cont "only by defeating"
 	cont "our GYM LEADER!"
 	done
@@ -226,7 +226,7 @@ _ViridianGymText_74bd4::
 	para "I heard that the"
 	line "trainers here"
 	cont "like ground-type"
-	cont "#MON!"
+	cont "POKéMON!"
 	done
 
 _ViridianGymText_74bd9::

@@ -18,12 +18,12 @@ _LavenderHouse1Text_1d8f4::
 
 	para "He looks after"
 	line "abandoned and"
-	cont "orphaned #MON!"
+	cont "orphaned POKéMON!"
 	done
 
 _LavenderHouse1Text_1d8f9::
 	text "It's so warm!"
-	line "#MON are so"
+	line "POKéMON are so"
 	cont "nice to hug!"
 	done
 
@@ -36,10 +36,10 @@ _LavenderHouse1Text4::
 _LavenderHouse1Text_1d94c::
 	text "MR.FUJI: <PLAYER>."
 
-	para "Your #DEX quest"
+	para "Your POKéDEX quest"
 	line "may fail without"
 	cont "love for your"
-	cont "#MON."
+	cont "POKéMON."
 
 	para "I think this may"
 	line "help your quest."
@@ -55,11 +55,11 @@ _FluteExplanationText::
 	db $0
 	para "Upon hearing #"
 	line "FLUTE, sleeping"
-	cont "#MON will"
+	cont "POKéMON will"
 	cont "spring awake."
 
 	para "It works on all"
-	line "sleeping #MON."
+	line "sleeping POKéMON."
 	done
 
 _FluteNoRoomText::
@@ -73,7 +73,7 @@ _MrFujiAfterFluteText::
 	done
 
 _LavenderHouse1Text6::
-	text "#MON Monthly"
+	text "POKéMON Monthly"
 	line "Grand Prize"
 	cont "Drawing!"
 

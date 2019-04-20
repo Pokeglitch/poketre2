@@ -108,11 +108,9 @@ StatusScreen:
 	coord hl, 19, 1
 	lb bc, 6, 10
 	call DrawLineBox ; Draws the box around name, HP and status
-	ld de, -6
+	ld de, -7
 	add hl, de
-	ld [hl], "⠄" ; . after No ("." is a different one)
-	dec hl
-	ld [hl], "№"
+	ld [hl], "#"
 	coord hl, 19, 9
 	lb bc, 8, 6
 	call DrawLineBox ; Draws the box around types, ID No. and OT
@@ -211,7 +209,7 @@ Type2Text:
 	db "TYPE2/", $4e
 
 IDNoText:
-	db $73, "№/", $4e
+	db $73, "#/", $4e
 
 OTText:
 	db   "OT/"

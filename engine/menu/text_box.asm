@@ -1,28 +1,12 @@
 ;TODO -
 
-; Check remaining texts in DisplayTextID
-; Check all "hidden item" textboxes
-; Ensure lookahead uses all new commands
-
-; When is "HandleMenuInput" called? will it be needed anymore?
-
-; Remove all locations where TextboxDrawing is enabled/disabled
-; - wAutoTextBoxDrawingControl
-; This is used is the text has a script with non standard textbox
-; - or doesn't display text immediately
-; Instead, just prefix the text with a a DONT_REVEAL flag
-; -- is this all that is neccessary? test all...
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; Update charmap/constants with latest tiles
-; -- use in inventory screen, main menu, etc, instead of numbers
-; -- Use 'POKe' as symbol for "POKE" instead of #...
-; - remove the solid color tiles and add more characters? @, %, &, * ?
-
 ; Move all textbox related files to same directory
-; - make sure they all use constants where necessary
-; Clean up constants/macros/names
+
+; Fix bug where the text delay of the prior 'textbox definition' is used when a textbox is displayed
+
+; "Trainer Tips" sign:
+; - first, 1 tile message saying trainer tips
+; - then, hide textbox, draw the tip, and reveal textbox
 
 ;--------------------------------
 
@@ -215,7 +199,7 @@ BattleMenuText:
 	next "ITEM  RUN@"
 
 SafariZoneBattleMenuText:
-	db   "BALL×       BAIT"
+	db   "BALLx       BAIT"
 	next "THROW ROCK  RUN@"
 
 SwitchStatsCancelText:
@@ -224,7 +208,7 @@ SwitchStatsCancelText:
 	next "CANCEL@"
 
 CurrencyString:
-	db "      ¥@"
+	db "      $@"
 
 DoBuySellQuitMenu:
 	ld a, [wd730]

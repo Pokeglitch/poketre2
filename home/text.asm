@@ -533,7 +533,7 @@ TextCommand0C::
 	ld h, b
 	ld l, c
 .loop
-	ld a, "…"
+	ld a, "."
 	ld [hli], a
 	push de
 	call Joypad
@@ -692,10 +692,10 @@ JumpToTablePointer
 
 EndOfWordChars:
 	db " ", PARAGRAPH, AUTO_PARAGRAPH
-	db TEXT_END, TEXT_ASM
+	db TEXT_END, TEXT_ASM, TEXTBOX_DEF
 	db TWO_OPTION_TEXT, TEXT_WAIT
 	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
-	db NEXT_TEXT_LINE, NEXT_TEXT_LINE+1
+	db NEXT_TEXT_LINE, NEXT_TEXT_LINE_2
 	db TEXT_DONE, TEXT_PROMPT
 	db DEX_PAGE, DEX_END
 	db 0
@@ -818,7 +818,7 @@ InitializeWindowReveal:
 	ld [hWY], a
 	ret
 
-FullyRevealWindow:
+FullyRevealWindow::
 	call InitializeWindowReveal
 	; fall through
 

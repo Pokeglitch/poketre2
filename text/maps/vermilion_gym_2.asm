@@ -7,16 +7,16 @@ _VermilionGymText_5cb72::
 
 	para "But, it's useless"
 	line "against ground-"
-	cont "type #MON!"
+	cont "type POKéMON!"
 	done
 
 _VermilionGymText_5cb77::
 	text "The THUNDERBADGE"
 	line "cranks up your"
-	cont "#MON's SPEED!"
+	cont "POKéMON's SPEED!"
 
 	para "It also lets your"
-	line "#MON FLY any"
+	line "POKéMON FLY any"
 	cont "time, kid!"
 
 	para "You're special,"
@@ -35,7 +35,7 @@ _TM24ExplanationText::
 	line "THUNDERBOLT!"
 
 	para "Teach it to an"
-	line "electric #MON!"
+	line "electric POKéMON!"
 	done
 
 _TM24NoRoomText::
@@ -122,10 +122,10 @@ _VermilionGymText_5cbf4::
 	cont "American!"
 
 	para "He's an expert on"
-	line "electric #MON!"
+	line "electric POKéMON!"
 
 	para "Birds and water"
-	line "#MON are at"
+	line "POKéMON are at"
 	cont "risk! Beware of"
 	cont "paralysis too!"
 

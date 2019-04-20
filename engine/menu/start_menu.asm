@@ -7,7 +7,7 @@ DisplayStartMenu::
 	ld [wWalkBikeSurfStateCopy], a
 	ld a, SFX_START_MENU
 	call PlaySound
-	callab FullyRevealWindow
+	farcall FullyRevealWindow
 
 RedisplayStartMenu::
 	callba DrawStartMenu

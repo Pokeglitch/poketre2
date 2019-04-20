@@ -838,7 +838,7 @@ ItemUseMedicine:
 	jp PrintText
 .emptyPartyText
 	text "You don't have"
-	line "any #MON!"
+	line "any POKéMON!"
 	prompt
 .notUsingSoftboiled
 	call DisplayPartyMenu

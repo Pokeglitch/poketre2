@@ -1,9 +1,9 @@
 _MtMoonPokecenterText1::
-	text "I've 6 # BALLs"
+	text "I've 6 POKé BALLs"
 	line "set in my belt."
 
 	para "At most, you can"
-	line "carry 6 #MON."
+	line "carry 6 POKéMON."
 	done
 
 _MtMoonPokecenterText3::
@@ -23,7 +23,7 @@ _MagikarpSalesmanText1::
 
 	para "I'll let you have"
 	line "a swell MAGIKARP"
-	cont "for just ¥500!"
+	cont "for just $500!"
 	cont "What do you say?"
 	done
 

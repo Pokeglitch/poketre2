@@ -2,7 +2,7 @@ _CeladonMansion1Text1::
 	text "MEOWTH: Meow!@@"
 
 _CeladonMansion1Text2::
-	text "My dear #MON"
+	text "My dear POKéMON"
 	line "keep me company."
 
 	para "MEOWTH even brings"

@@ -5,7 +5,7 @@ _BlaineBattleText::
 	line "am the LEADER of"
 	cont "CINNABAR GYM!"
 
-	para "My fiery #MON"
+	para "My fiery POKéMON"
 	line "will incinerate"
 	cont "all challengers!"
 
@@ -26,7 +26,7 @@ _BlaineFireBlastText::
 	cont "technique!"
 
 	para "Don't waste it on"
-	line "water #MON!"
+	line "water POKéMON!"
 	done
 
 _BlaineBadgeText::
@@ -35,7 +35,7 @@ _BlaineBadgeText::
 	para "The VOLCANOBADGE"
 	line "heightens the"
 	cont "SPECIAL abilities"
-	cont "of your #MON!"
+	cont "of your POKéMON!"
 
 	para "Here, you can"
 	line "have this too!"
@@ -53,7 +53,7 @@ _TM38ExplanationText::
 	line "FIRE BLAST!"
 
 	para "Teach it to fire-"
-	line "type #MON!"
+	line "type POKéMON!"
 
 	para "CHARMELEON or"
 	line "PONYTA would be"
@@ -67,7 +67,7 @@ _TM38NoRoomText::
 
 _CinnabarGymText_7595f::
 	text "Do you know how"
-	line "hot #MON fire"
+	line "hot POKéMON fire"
 	cont "breath can get?"
 	done
 
@@ -99,13 +99,13 @@ _CinnabarGymText_75999::
 _CinnabarGymText_7599e::
 	text "I can't help"
 	line "stealing other"
-	cont "people's #MON!"
+	cont "people's POKéMON!"
 	done
 
 _CinnabarGymText_759c9::
 	text "You can't win!"
 	line "I have studied"
-	cont "#MON totally!"
+	cont "POKéMON totally!"
 	done
 
 _CinnabarGymText_759ce::
@@ -121,7 +121,7 @@ _CinnabarGymText_759d3::
 
 _CinnabarGymText_759fe::
 	text "I just like using"
-	line "fire #MON!"
+	line "fire POKéMON!"
 	done
 
 _CinnabarGymText_75a03::
@@ -131,7 +131,7 @@ _CinnabarGymText_75a03::
 
 _CinnabarGymText_75a08::
 	text "I wish there was"
-	line "a thief #MON!"
+	line "a thief POKéMON!"
 	cont "I'd use that!"
 	done
 
@@ -148,7 +148,7 @@ _CinnabarGymText_75a3d::
 	text "BLAINE was lost"
 	line "in the mountains"
 	cont "when a fiery bird"
-	cont "#MON appeared."
+	cont "POKéMON appeared."
 
 	para "Its light enabled"
 	line "BLAINE to find"
@@ -167,7 +167,7 @@ _CinnabarGymText_75a6d::
 	prompt
 
 _CinnabarGymText_75a72::
-	text "Us fire #MON"
+	text "Us fire POKéMON"
 	line "fans like PONYTA"
 	cont "and NINETALES!"
 	done
@@ -185,7 +185,7 @@ _CinnabarGymText_75aa2::
 _CinnabarGymText_75aa7::
 	text "Water beats fire!"
 	line "But, fire melts"
-	cont "ice #MON!"
+	cont "ice POKéMON!"
 	done
 
 _CinnabarGymText_75ac2::
@@ -194,7 +194,7 @@ _CinnabarGymText_75ac2::
 
 	para "The hot-headed"
 	line "BLAINE is a fire"
-	cont "#MON pro!"
+	cont "POKéMON pro!"
 
 	para "Douse his spirits"
 	line "with water!"

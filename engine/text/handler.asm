@@ -99,7 +99,7 @@ StringCommandTable:
     dbw " ", SpaceCommand ; space
     dbw TEXT_WAIT, WaitCommand ; space
     dbw NEXT_TEXT_LINE, NextLineCommand ; next
-    dbw NEXT_TEXT_LINE+1, NextLineCommand ; line
+    dbw NEXT_TEXT_LINE_2, NextLineCommand ; line
 	dbw AUTO_CONTINUE_TEXT, AutoContinueTextCommand ; autocont
 	dbw CONTINUE_TEXT, ContinueTextCommand ; cont
 	dbw PARAGRAPH, ParagraphCommand ; para
@@ -381,7 +381,7 @@ TrainerText::
 	db "TRAINER@"
 
 DotsText::
-	db "……@"
+	db "..@"
 
 PKMNText::
 	db $E1,$E2,"@" ; PKMN

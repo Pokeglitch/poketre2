@@ -641,7 +641,7 @@ PrintBCDNumber::
 	jr z, .loop
 	bit 7, b
 	jr nz, .loop
-	ld [hl], "¥"
+	ld [hl], "$"
 	inc hl
 .loop
 	ld a, [de]
@@ -661,7 +661,7 @@ PrintBCDNumber::
 .skipRightAlignmentAdjustment
 	bit 5, b
 	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
+	ld [hl], "$"
 	inc hl
 .skipCurrencySymbol
 	ld [hl], "0"
@@ -680,7 +680,7 @@ PrintBCDDigit::
 ; if bit 7 is set, then no numbers have been printed yet
 	bit 5, b ; print the currency symbol?
 	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
+	ld [hl], "$"
 	inc hl
 	res 5, b
 .skipCurrencySymbol
@@ -1663,7 +1663,7 @@ DisplayChooseQuantityMenu::
 	ret
 
 InitialQuantityText::
-	db "×01@"
+	db "x01@"
 
 SpacesBetweenQuantityAndPriceText::
 	db "      @"
@@ -1827,7 +1827,7 @@ PrintListMenuEntries::
 	push hl
 	ld bc, SCREEN_WIDTH + 8 ; 1 row down and 8 columns right
 	add hl, bc
-	ld a, "×"
+	ld a, "x"
 	ld [hli], a
 	ld a, [wd11e]
 	push af
@@ -3195,7 +3195,7 @@ WaitForSoundToFinish::
 NamePointers::
 	dw MonsterNames
 	dw MoveNames
-	dw UnusedNames
+	dw 0 ; was UnusedNames
 	dw ItemNames
 	dw wPartyMonOT ; player's OT names list
 	dw wEnemyMonOT ; enemy's OT names list

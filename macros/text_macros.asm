@@ -8,7 +8,7 @@ textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
 cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
 autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
 next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
-line     EQUS "db NEXT_TEXT_LINE+1," ; Start writing at the bottom line.
+line     EQUS "db NEXT_TEXT_LINE_2," ; Start writing at the bottom line.
 para     EQUS "db PARAGRAPH," ; Start a new paragraph.
 autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
 done     EQUS "db TEXT_DONE"  ; End a text box.
