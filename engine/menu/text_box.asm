@@ -2,12 +2,6 @@
 
 ; Move all textbox related files to same directory
 
-; Fix bug where the text delay of the prior 'textbox definition' is used when a textbox is displayed
-
-; "Trainer Tips" sign:
-; - first, 1 tile message saying trainer tips
-; - then, hide textbox, draw the tip, and reveal textbox
-
 ;--------------------------------
 
 ; function to draw various text boxes

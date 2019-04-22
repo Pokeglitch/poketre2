@@ -199,9 +199,11 @@ ASMTextCommand:
 	jp MoveToNextChar
 
 TextCommandProcessor::
+	ld a, [wLetterPrintingDelayFlags]
+	push af
 	ld a, [hl]
 	cp TEXTBOX_DEF
-	jr z, TextCommandProcessor_NoInit
+	jr z, .handleText
 
 	; Just reset if the window is already on screen
 	ld a, [hWY]
@@ -210,7 +212,7 @@ TextCommandProcessor::
 
 	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
 	call InitializeTextbox
-	jr TextCommandProcessor_NoInit
+	jr .handleText
 
 .resetTextbox
 	push hl
@@ -219,24 +221,13 @@ TextCommandProcessor::
 	pop bc
 	pop hl
 
-TextCommandProcessor_NoInit::
-	ld a, [wLetterPrintingDelayFlags]
-	push af
-	push hl
-	res 1, a ; disable delays
-	ld hl, wTextboxSettings
-	bit BIT_DONT_REVEAL, [hl]
-	jr nz, .dontEnableDelay
-
-	bit BIT_NO_DELAY, [hl]
-	jr nz, .dontEnableDelay
-
-	set 1, a ; enable delays
-
-.dontEnableDelay
+.handleText
+	call TextCommandProcessor_NoInit
+	pop af
 	ld [wLetterPrintingDelayFlags], a
-	pop hl
+	ret
 
+TextCommandProcessor_NoInit::
 	ld a, c
 	ld [wTextDest], a
 	ld a, b
@@ -248,8 +239,6 @@ NextTextCommand::
 	cp TEXT_END ; terminator
 	jr nz, .doTextCommand
 	pop bc
-	pop af
-	ld [wLetterPrintingDelayFlags], a
 	ret
 .doTextCommand
 	push hl

@@ -61,6 +61,19 @@ ResetTextbox:
 InitializeTextbox_:
 	ld a, [wTextboxSettings]
 	push af
+
+	ld hl, wLetterPrintingDelayFlags
+	res 1, [hl] ; disable delays
+
+	bit BIT_DONT_REVEAL, a
+	jr nz, .dontEnableDelay
+
+	bit BIT_NO_DELAY, a
+	jr nz, .dontEnableDelay
+
+	set 1, [hl] ; enable delays
+
+.dontEnableDelay
 	and FONT_COLOR_MASK
 	jr z, .blackOnWhite
 	srl a
