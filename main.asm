@@ -79,7 +79,7 @@ INCLUDE "engine/menu/draw_start_menu.asm"
 
 INCLUDE "engine/overworld/cable_club_npc.asm"
 
-INCLUDE "engine/menu/text_box.asm"
+INCLUDE "engine/text/old_text_box.asm"
 
 INCLUDE "engine/battle/moveEffects/drain_hp_effect.asm"
 
@@ -203,8 +203,7 @@ INCLUDE "data/inventory/pockets.asm"
 INCLUDE "engine/inventory/pockets.asm"
 INCLUDE "data/inventory/items.asm"
 INCLUDE "engine/inventory/items.asm"
-
-INCLUDE "engine/menu/item_menu.asm"
+INCLUDE "engine/inventory/inventory.asm"
 INCLUDE "engine/items/inventory.asm"
 
 

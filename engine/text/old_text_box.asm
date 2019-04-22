@@ -1,9 +1,3 @@
-;TODO -
-
-; Move all textbox related files to same directory
-
-;--------------------------------
-
 ; function to draw various text boxes
 DisplayTextBoxID_:
 	ld a, [wTextBoxID]

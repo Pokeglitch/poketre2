@@ -1,7 +1,5 @@
 ; TODO
 
-; Inventory and Sell Menu need to show if the item is holdable and consumable (single use)
-
 ; Finish properly loading item menu from Pokemart
 ; - Move quantity menu location
 ; - Make sure price and max amount is correct
@@ -9,54 +7,7 @@
 ; - Make sure screen is drawn properly after item is sold
 ; - Show player's current money amount
 
-; Need new sell screen to show description and quantity player already has
-; - Show players current quantity for each item when Buying
-; - Show player's current money amount
-; - mart uses 'sign' tiles, vending machine uses 'digital' tiles
-; -- Use title screen "brush" font and say "FOR SALE" for mart sign
-; Use BG, and scroll the entire bg while navigation
-; - description/current qty/current $ stays overlaid in the window
-
-; Finish the Quick Use actions battle and field
-
-; Add in santa's sack cheat for quantity on-key items
-
-; Rename ItemMenu, item_menu, etc to Inventory
 ; - move this file into the inventory folder (and other related ones)
-; - Make sure constants are used where necessary
-
-; Inventory should have filter on by default
-; - or, have way to load with filter on/off
-
-;----------------------------------------------------------
-
-; More efficient if the quantities are stored in index order
-; - rather than grouped by pocket?
-
-; Load all item data into the new table
-; - Keep 'price' as a single byte
-
-; - Give each item an additional byte, which is the input to their Use action
-; -- ie. balls will have catch rate, potions are HP restored
-; -- Separate value for their Hold action?
-
-; - Give TMs their own table...keep 'KeyItems' as regular items
-; -- Store the move id here
-; -- TMs use a bitfield instead of invidivual bytes
-
-; - Update all functions to pull data from this table
-; -- Update all TM function calls to use separate function
-; -- Check everywhere HM_01 or TM_01 is used
-
-;-------------------------------------------------------------
-
-; Move Descriptions should show the type, power, accuracy, and PP
-; or at least pull the Move description info from the Moves attribute table
-
-; Remove "FilteredBag" references (is that RAM location used anywhere else?)
-; Find a better home for wInventoryBuffer and wInventoryFilter here since they dont need to be saved?
-
-; Add in 'Give' item function, and way ti view inventory from party menu (for "Give" or "Use")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
