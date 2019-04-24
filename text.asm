@@ -2405,7 +2405,58 @@ INCLUDE "text/maps/mr_psychics_house.asm"
 _PokemartGreetingText::
 	text "Hi there!"
 	next "May I help you?"
-	done
+	two_opt .buyText, .sellText, .buyMenu, .sellMenu
+	db "@"
+	TX_ASM
+	ld a, 2 ;CANCELLED_MENU
+	jr .storeExitMethod
+.buyText
+	str "Buy"
+.sellText
+	str "Sell"
+.buyMenu
+	db "@"
+	TX_ASM
+	xor a
+	jr .finishMartMenu
+.sellMenu
+	db "@"
+	TX_ASM
+	ld a, 1
+.finishMartMenu
+	ld [wChosenMenuItem], a
+	ld a, 1 ; CHOSE_MENU_ITEM
+.storeExitMethod
+	ld [wMenuExitMethod], a
+	jp TextScriptEnd ; end text
+
+_PokemartAnythingElseText::
+	text "Is there anything"
+	line "else I can do?"
+	two_opt .buyText, .sellText, .buyMenu, .sellMenu
+	db "@"
+	TX_ASM
+	ld a, 2 ;CANCELLED_MENU
+	jr .storeExitMethod
+.buyText
+	str "Buy"
+.sellText
+	str "Sell"
+.buyMenu
+	db "@"
+	TX_ASM
+	xor a
+	jr .finishMartMenu
+.sellMenu
+	db "@"
+	TX_ASM
+	ld a, 1
+.finishMartMenu
+	ld [wChosenMenuItem], a
+	ld a, 1 ; CHOSE_MENU_ITEM
+.storeExitMethod
+	ld [wMenuExitMethod], a
+	jp TextScriptEnd ; end text
 
 _PokemonFaintedText::
 	text
@@ -2463,11 +2514,6 @@ _PokemartTellSellPriceText::
 
 _PokemartThankYouText::
 	text "Thank you!"
-	done
-
-_PokemartAnythingElseText::
-	text "Is there anything"
-	line "else I can do?"
 	done
 
 _LearnedMove1Text::

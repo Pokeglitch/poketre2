@@ -1,5 +1,5 @@
 DisplayPCMainMenu::
-	farcall FullyRevealWindow
+	call FullyRevealWindow
 	xor a
 	ld [H_AUTOBGTRANSFERENABLED], a
 	call SaveScreenTilesToBuffer2

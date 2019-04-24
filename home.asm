@@ -1188,12 +1188,12 @@ InitializeTextbox:
 	ret
 
 DisplayPokemartDialogue::
+	inc hl
+	call LoadItemList
 	push hl
 	ld hl, PokemartGreetingText
 	call PrintText
 	pop hl
-	inc hl
-	call LoadItemList
 	ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
 	ld a, [H_LOADEDROMBANK]

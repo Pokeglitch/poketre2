@@ -1,39 +1,13 @@
 DisplayPokemartDialogue_:
-	ld a, [wListScrollOffset]
-	ld [wSavedListScrollOffset], a
-	call UpdateSprites
 	xor a
 	ld [wBoughtOrSoldItemInMart], a
 .loop
-	xor a
-	ld [wListScrollOffset], a
-	ld [wCurrentMenuItem], a
-	ld [wPlayerMonNumber], a
-	inc a
-	ld [wPrintItemPrices], a
-	ld a, BUY_SELL_QUIT_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
-
-; This code is useless. It copies the address of the pokemart's inventory to hl,
-; but the address is never used.
-	ld hl, wItemListPointer
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-
 	ld a, [wMenuExitMethod]
 	cp CANCELLED_MENU
 	jp z, .done
 	ld a, [wChosenMenuItem]
 	and a ; buying?
 	jp z, .buyMenu
-	dec a ; selling?
-	jp z, .sellMenu
-	dec a ; quitting?
-	jp z, .done
-
-.sellMenu
 	call SaveScreenTilesToBuffer1 ; save screen
 
 .sellMenuLoop
@@ -50,6 +24,9 @@ DisplayPokemartDialogue_:
 
 	; Otherwise, return to the Greeting menu
 	call ReloadPokemartDataFromInventory
+
+	ld hl, PokemartAnythingElseText
+	call PrintText
 	jr .loop
 
 .confirmItemSale ; if the player is trying to sell a specific item
@@ -102,6 +79,7 @@ DisplayPokemartDialogue_:
 	call SaveScreenTilesToBuffer1
 .buyMenuLoop
 	call LoadScreenTilesFromBuffer1
+	call FullyRevealWindow
 	ld hl, wItemList
 	ld a, l
 	ld [wListPointer], a
@@ -163,6 +141,9 @@ DisplayPokemartDialogue_:
 	jp .buyMenuLoop
 .returnToMainPokemartMenu
 	call LoadScreenTilesFromBuffer1
+	ld a, SCREEN_HEIGHT_PIXELS
+	ld [hWY], a ; hide the window
+	call UpdateSprites
 	ld hl, PokemartAnythingElseText
 	call PrintText
 	jp .loop
@@ -199,8 +180,13 @@ ReloadPokemartDataFromInventory:
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a ; re-enable sprites
 
+	; Move window offscreen
+	ld a, SCREEN_HEIGHT_PIXELS
+	ld [hWY], a
+
 	call ReloadMapSpriteTilePatterns
 	call LoadScreenTilesFromBuffer1
+	call UpdateSprites
 	call Delay3
 	
 	ld c, 2
