@@ -73,9 +73,6 @@ DisplayPokemartDialogue_:
 	ld a, INIT_OTHER_ITEM_LIST
 	ld [wInitListType], a
 	callab InitList
-
-	ld hl, PokemartBuyingGreetingText
-	call PrintText
 	call SaveScreenTilesToBuffer1
 .buyMenuLoop
 	call LoadScreenTilesFromBuffer1
@@ -161,8 +158,6 @@ DisplayPokemartDialogue_:
 	call PrintText
 	jr .returnToMainPokemartMenu
 .done
-	ld hl, PokemartThankYouText
-	call PrintText
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a
 	call UpdateSprites
@@ -192,10 +187,6 @@ ReloadPokemartDataFromInventory:
 	ld c, 2
 	jp GBFadeInFromWhiteCustomDelay
 
-PokemartBuyingGreetingText:
-	TX_FAR _PokemartBuyingGreetingText
-	db "@"
-
 PokemartTellBuyPriceText:
 	TX_FAR _PokemartTellBuyPriceText
 	db "@"
@@ -214,10 +205,6 @@ PokemartItemBagFullText:
 
 PokemartTellSellPriceText:
 	TX_FAR _PokemartTellSellPriceText
-	db "@"
-
-PokemartThankYouText:
-	TX_FAR _PokemartThankYouText
 	db "@"
 
 PokemartAnythingElseText:

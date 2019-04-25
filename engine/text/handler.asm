@@ -482,6 +482,7 @@ HandleTwoOptionMenuInputsCommon:
 
 ; Inputs: de = address of left option
 ; Outputs: d = 0 for 1st opt, 1 for 2nd opt, -1 for B
+; also, wCurrentMenuItem, wChosenMenuItem, and wMenuExitMethod
 HandleTwoOptionBox:
 	push de
 	ld h, d
@@ -503,6 +504,25 @@ HandleTwoOptionBox:
 
 .doneScrollingDown
 	pop de
+
+	ld b, CHOSE_MENU_ITEM
+	ld a, d
+	and a
+	jr z,  .storeResult
+	
+	; first option was not selected
+	cp 1
+	jr z, .storeResult
+	
+	; b was pressed
+	ld a, 1 ; set the chosen menu item to be the second item even if B was pressed
+	ld b, CANCELLED_MENU
+
+.storeResult
+	ld [wCurrentMenuItem], a
+	ld [wChosenMenuItem], a
+	ld a, b
+	ld [wMenuExitMethod], a
 	ret
 
 HealCancelTextboxOption_:
@@ -542,20 +562,4 @@ TextboxOptionCommon:
 	call HandleTwoOptionBox
 	pop af
 	ld [wLetterPrintingDelayFlags], a
-	ld a, d
-	and a
-	jr nz, .noSelected
-	scf
-	ld b, CHOSE_FIRST_ITEM
-	jr .storeResult
-
-.noSelected
-	ld a, 1
-	ld b, CHOSE_SECOND_ITEM
-
-.storeResult
-	ld [wCurrentMenuItem], a
-	ld [wChosenMenuItem], a
-	ld a, b
-	ld [wMenuExitMethod], a
 	ret

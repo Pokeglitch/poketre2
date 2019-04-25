@@ -59,7 +59,10 @@ PlaceNextChar::
 	jp z, TwoOptionTextCommand
 
 	cp FAR_TEXT
-	jr z, FarTextCommand
+	jp z, FarTextCommand
+
+	cp GOTO_TEXT
+	jr z, GotoTextCommand
 
 	; Otherwise, process in different bank
 	ld b, a
@@ -153,6 +156,17 @@ TwoOptionTextCommand::
 	pop hl
 	pop af
 	ld [wLetterPrintingDelayFlags], a
+	jp PlaceNextChar
+
+GotoTextCommand::
+	push hl
+	inc de
+	ld h, d
+	ld l, e
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
 	jp PlaceNextChar
 
 RAMTextCommand::

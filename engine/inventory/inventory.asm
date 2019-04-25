@@ -1,11 +1,5 @@
 ; TODO
 
-; Clean up pokemart text
-; - combine _PokemartAnythingElseText and _PokemartGreetingText
-; - Fix letter delay with _PokemartThankYouText
-; two_opt should correctly handle the 'wMenuExitMethod' value
-; -- make sure all methods that rely on it use it correctly
-
 ; Finish properly loading item menu from Pokemart
 ; - Move quantity menu location
 ; - Make sure price and max amount is correct

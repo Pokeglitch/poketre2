@@ -2405,58 +2405,26 @@ INCLUDE "text/maps/mr_psychics_house.asm"
 _PokemartGreetingText::
 	text "Hi there!"
 	next "May I help you?"
-	two_opt .buyText, .sellText, .buyMenu, .sellMenu
-	db "@"
-	TX_ASM
-	ld a, 2 ;CANCELLED_MENU
-	jr .storeExitMethod
+	; fall through
+
+PokemartBuySellMenu:
+	two_opt .buyText, .sellText, .buy, .done
+	autopara "Thank you!"
+.done
+	done
+.buy
+	autopara "Take your time."
+	done
+
 .buyText
 	str "Buy"
 .sellText
 	str "Sell"
-.buyMenu
-	db "@"
-	TX_ASM
-	xor a
-	jr .finishMartMenu
-.sellMenu
-	db "@"
-	TX_ASM
-	ld a, 1
-.finishMartMenu
-	ld [wChosenMenuItem], a
-	ld a, 1 ; CHOSE_MENU_ITEM
-.storeExitMethod
-	ld [wMenuExitMethod], a
-	jp TextScriptEnd ; end text
 
 _PokemartAnythingElseText::
 	text "Is there anything"
 	line "else I can do?"
-	two_opt .buyText, .sellText, .buyMenu, .sellMenu
-	db "@"
-	TX_ASM
-	ld a, 2 ;CANCELLED_MENU
-	jr .storeExitMethod
-.buyText
-	str "Buy"
-.sellText
-	str "Sell"
-.buyMenu
-	db "@"
-	TX_ASM
-	xor a
-	jr .finishMartMenu
-.sellMenu
-	db "@"
-	TX_ASM
-	ld a, 1
-.finishMartMenu
-	ld [wChosenMenuItem], a
-	ld a, 1 ; CHOSE_MENU_ITEM
-.storeExitMethod
-	ld [wMenuExitMethod], a
-	jp TextScriptEnd ; end text
+	gototext PokemartBuySellMenu
 
 _PokemonFaintedText::
 	text
@@ -2475,10 +2443,6 @@ _PlayerBlackedOutText::
 _RepelWoreOffText::
 	text "REPEL's effect"
 	line "wore off."
-	done
-
-_PokemartBuyingGreetingText::
-	text "Take your time."
 	done
 
 _PokemartTellBuyPriceText::
@@ -2510,10 +2474,6 @@ _PokemartTellSellPriceText::
 	line "$@"
 	TX_BCD hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text " for that."
-	done
-
-_PokemartThankYouText::
-	text "Thank you!"
 	done
 
 _LearnedMove1Text::
