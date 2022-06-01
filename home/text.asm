@@ -687,7 +687,7 @@ CountNextWordLength:
 	ld c, a
 	jr .readNextCharLoop
 
-JumpToTablePointer
+JumpToTablePointer:
     ld a, [hli]
     ld h, [hl]
     ld l, a

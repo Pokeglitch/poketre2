@@ -76,11 +76,11 @@ PlayIntroBattle:
 	ld [hSCX], a
 	ld c, 0
 	call DrawEkansTiles
-	ld a, 0
+	ld a, -8
 	ld [wBaseCoordX], a
-	ld a, 72
+	ld a, 80
 	ld [wBaseCoordY], a
-	lb bc, 7, 6
+	lb bc, 6, 7
 	call InitIntroMeowthOAM
 	lb de, 80 / 2, MOVE_MEOWTH_RIGHT
 	call IntroMoveMon
@@ -232,14 +232,14 @@ InitIntroMeowthOAM:
 	ld d, 0
 .loop
 	push bc
-	ld a, [wBaseCoordY]
+	ld a, [wBaseCoordX]
 	ld e, a
 .innerLoop
+	ld a, [wBaseCoordY]
+	ld [hli], a ; Y
 	ld a, e
 	add 8
 	ld e, a
-	ld [hli], a ; Y
-	ld a, [wBaseCoordX]
 	ld [hli], a ; X
 	ld a, d
 	ld [hli], a ; tile
@@ -248,9 +248,9 @@ InitIntroMeowthOAM:
 	inc d
 	dec c
 	jr nz, .innerLoop
-	ld a, [wBaseCoordX]
+	ld a, [wBaseCoordY]
 	add 8
-	ld [wBaseCoordX], a
+	ld [wBaseCoordY], a
 	pop bc
 	dec b
 	jr nz, .loop
