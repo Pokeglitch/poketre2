@@ -11,20 +11,12 @@ PewterMartTextPointers:
 
 PewterMartText2:
 	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_3
-	TX_ASM
-	ld hl, .Text
-	call PrintText
-	jp TextScriptEnd
-.Text
-	TX_FAR _PewterMartText2
-	db "@"
+	text
+	fartext _PewterMartText2
+	done
 
 PewterMartText3:
 	textbox GLYPHS | NO_DELAY | LINES_1
-	TX_ASM
-	ld hl, .Text
-	call PrintText
-	jp TextScriptEnd
-.Text
-	TX_FAR _PewterMartText3
-	db "@"
+	text
+	fartext _PewterMartText3
+	done
