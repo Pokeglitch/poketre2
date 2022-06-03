@@ -243,11 +243,7 @@ DisplayChooseQuantityMenu::
 	call GetItemName
 
 	coord hl, 1, 14
-	ld de, SellString
-	call PlaceString
-	
-	coord hl, 6, 14
-	ld de, QuantityMenuItemNameString
+	ld de, QuantityMenuSellItemString
 	call PlaceString
 	
 	ld a, TILE_UP_DOWN
@@ -404,9 +400,9 @@ DisplayChooseQuantityMenu::
 
 SellString:
 	str "Sell"
-	done
 
-QuantityMenuItemNameString:
+QuantityMenuSellItemString:
+	db "Sell "
 	ramtext wcd6d
 	str ":"
 	done
