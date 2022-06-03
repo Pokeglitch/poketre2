@@ -228,9 +228,9 @@ DisplayChooseQuantityMenu::
 	ld de, QuantityMenuSellItemString
 	call PlaceString
 
-	xor a
-	ld [wItemQuantity], a ; initialize current quantity to 0
-	jp .incrementQuantity
+	ld a, 1
+	ld [wItemQuantity], a ; initialize current quantity to 1
+	jp .handleNewQuantity
 
 .waitForKeyPressLoop
 	call JoypadLowSensitivity
@@ -262,6 +262,8 @@ DisplayChooseQuantityMenu::
 
 	ld a, [wMaxItemQuantity]
 	sub b
+	jr z, .waitForKeyPressLoop ;do nothing if at max already
+
 	cp 10
 	; if the difference to max is less than 10, set it to the max
 	jr c, .setToMax
@@ -286,6 +288,10 @@ DisplayChooseQuantityMenu::
 	ld a, [hl]
 	cp b
 	jr nz, .handleNewQuantity
+
+	cp 1
+	jr z, .waitForKeyPressLoop ; do nothing if max is 1
+
 ; wrap to 1 if the player goes above the max quantity
 	ld a, 1
 	ld [hl], a
@@ -293,6 +299,9 @@ DisplayChooseQuantityMenu::
 
 .decrementQuantityBy10
 	ld a, [wItemQuantity]
+	cp 1
+	jr z, .waitForKeyPressLoop ; do nothing if at 1 already
+
 	cp 11
 	; if the quatity is <= 10, set it to 1
 	jr c, .setToOne
@@ -311,6 +320,10 @@ DisplayChooseQuantityMenu::
 ; wrap to the max quantity if the player goes below 1
 	ld a, [wMaxItemQuantity]
 	ld [hl], a
+	
+	cp 1
+	jr z, .waitForKeyPressLoop ; do nothing if max is 1
+
 .handleNewQuantity
 	; print price
 	ld c, $03
@@ -348,7 +361,7 @@ DisplayChooseQuantityMenu::
 	ld a, [hDivideBCDQuotient + 2]
 	ld [hMoney + 2], a
 .skipHalvingPrice
-	
+
 	coord hl, 3, 16
 	lb bc, 1, 14
 	call ClearScreenArea
