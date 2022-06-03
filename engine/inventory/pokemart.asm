@@ -52,26 +52,8 @@ DisplayPokemartDialogue_:
 	call ClearTextBox
 
 	coord hl, 1, 14
-	ld a, "x"
-	ld [hli], a
-
-	ld de, wItemQuantity ; current quantity
-	lb bc, LEFT_ALIGN | 1, 3 ; 1 byte, 3 digits
-	call PrintNumber
-
-	inc hl
-	ld de, QuantityMenuForString
+	ld de, QuantityMenuConfirmString
 	call PlaceString
-
-	ld de, 4
-	add hl, de
-
-	ld de, hMoney ; total price
-	ld c, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
-	call PrintBCDNumber
-
-	ld a, "?"
-	ld [hl], a
 	
 	coord hl, 2, 16
 	ld de, SellString
@@ -245,10 +227,6 @@ DisplayChooseQuantityMenu::
 	coord hl, 1, 14
 	ld de, QuantityMenuSellItemString
 	call PlaceString
-	
-	ld a, TILE_UP_DOWN
-	coord hl, 1, 16
-	ld [hl], a
 
 	xor a
 	ld [wItemQuantity], a ; initialize current quantity to 0
@@ -334,19 +312,6 @@ DisplayChooseQuantityMenu::
 	ld a, [wMaxItemQuantity]
 	ld [hl], a
 .handleNewQuantity
-	coord hl, 3, 16
-	lb bc, 1, 14
-	call ClearScreenArea
-
-	coord hl, 3, 16
-	ld de, wItemQuantity ; current quantity
-	lb bc, 1, 3 ; 1 byte, 3 digits
-	call PrintNumber
-
-	coord hl, 7, 16
-	ld de, QuantityMenuForString
-	call PlaceString
-
 	; print price
 	ld c, $03
 	ld a, [wItemQuantity]
@@ -383,10 +348,15 @@ DisplayChooseQuantityMenu::
 	ld a, [hDivideBCDQuotient + 2]
 	ld [hMoney + 2], a
 .skipHalvingPrice
-	ld de, hMoney ; total price
-	ld c, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
-	coord hl, 11, 16
-	call PrintBCDNumber
+	
+	coord hl, 3, 16
+	lb bc, 1, 14
+	call ClearScreenArea
+
+	coord hl, 3, 16
+	ld de, QuantityMenuSelectionString
+	call PlaceString
+
 	jp .waitForKeyPressLoop
 .buttonAPressed ; the player chose to make the transaction
 	xor a
@@ -404,9 +374,20 @@ SellString:
 QuantityMenuSellItemString:
 	db "Sell "
 	ramtext wcd6d
-	str ":"
+	db ":"
+	next TILE_UP_DOWN
 	done
 
-QuantityMenuForString:
-	str "for"
+QuantityMenuSelectionString:
+	numtext wItemQuantity, (3 << 3) | 1 ; 1 byte, 3 digits
+	db " for "
+	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	done
+
+QuantityMenuConfirmString:
+	db "x"
+	numtext wItemQuantity, LEFT_ALIGN | (3 << 3) | 1 ; 1 byte, 3 digits
+	db " for "
+	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	db "?"
 	done

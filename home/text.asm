@@ -62,6 +62,12 @@ PlaceNextChar::
 	; Commands that have arguments needs to be processed in home bank
 	cp RAM_TEXT
 	jp z, RAMTextCommand
+	
+	cp NUM_TEXT
+	jp z, PrintNumberCommand
+	
+	cp BCD_TEXT
+	jp z, PrintBCDNumberCommand
 
 	cp TWO_OPTION_TEXT
 	jp z, TwoOptionTextCommand
@@ -70,13 +76,54 @@ PlaceNextChar::
 	jp z, FarTextCommand
 
 	cp GOTO_TEXT
-	jr z, GotoTextCommand
+	jp z, GotoTextCommand
 
 	; Otherwise, process in different bank
 	ld b, a
 	ld a, BANK(HandleNextChar)
 	call SetNewBank
 	jp HandleNextChar
+
+; TODO - include in word wrap lookahead
+PrintNumberCommand:
+	call PrepareInlineString
+	push de
+
+	ld a, [de]
+	ld d, b
+	ld e, c ; de = pointer to number
+
+	ld c, a
+	and %11000111 ; num bytes & flags
+	ld b, a
+
+	ld a, c
+	and %00111000 ; num digits
+	rrca
+	rrca 
+	rrca
+	ld c, a
+	call PrintNumber
+
+	pop de
+	inc de
+	jp PlaceNextChar
+
+; TODO - include in word wrap lookahead
+PrintBCDNumberCommand:
+	call PrepareInlineString
+	
+	ld a, [de]
+	inc de
+	push de
+
+	ld d, b
+	ld e, c
+	ld c, a
+	call PrintBCDNumber
+
+	pop de
+	jp PlaceNextChar
 
 ReturnAndPlaceNextChar::
 	; restore the string bank
@@ -201,8 +248,8 @@ FarTextCommand::
 PrepareInlineString:
 	inc de
 	ld a, [de]
-	inc de
 	ld c, a
+	inc de
 	ld a, [de]
 	ld b, a
 	inc de

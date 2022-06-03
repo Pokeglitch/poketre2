@@ -1,3 +1,6 @@
+; TODO
+; Add in repeat, skip macros 
+
 
 ; text macros
 text     EQUS "db TEXT_INIT," ; Start writing text.
@@ -25,6 +28,18 @@ str: MACRO
 	SHIFT
 	ENDR
 	db TEXT_END
+ENDM
+
+numtext: MACRO
+	db NUM_TEXT
+	dw \1
+	db \2
+ENDM
+
+bcdtext: MACRO
+	db BCD_TEXT
+	dw \1
+	db \2
 ENDM
 
 two_opt: MACRO
