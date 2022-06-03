@@ -1,6 +1,4 @@
 DisplayPokemartDialogue_:
-	xor a
-	ld [wBoughtOrSoldItemInMart], a
 .loop
 	ld a, [wMenuExitMethod]
 	cp CANCELLED_MENU
@@ -10,7 +8,6 @@ DisplayPokemartDialogue_:
 	jp z, .buyMenu
 	call SaveScreenTilesToBuffer1 ; save screen
 
-.sellMenuLoop
 	ld a, FILTER_POKEMART
 	ld [wInventoryFilter], a
 	
@@ -51,33 +48,57 @@ DisplayPokemartDialogue_:
 	call DisplayChooseQuantityMenu
 	inc a
 	jr z, .reenterSellMenu ; if the player closed the choose quantity menu with the B button
-	ld hl, PokemartTellSellPriceText
-	lb bc, 14, 1 ; location that PrintText always prints to, this is useless
-	call PrintText
-	coord hl, 14, 7
-	lb bc, 8, 15
-	ld a, TWO_OPTION_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID ; yes/no menu
-	ld a, [wMenuExitMethod]
-	cp CHOSE_SECOND_ITEM
-	jr nz, .sellItem
+	
+	call ClearTextBox
 
-.reenterSellMenu
-	call ReEnterItemMenu
-	jr .handleInventoryChosen
+	coord hl, 1, 14
+	ld a, "x"
+	ld [hli], a
 
-.sellItem
-	ld a, [wBoughtOrSoldItemInMart]
+	ld de, wItemQuantity ; current quantity
+	lb bc, LEFT_ALIGN | 1, 3 ; 1 byte, 3 digits
+	call PrintNumber
+
+	inc hl
+	ld de, QuantityMenuForString
+	call PlaceString
+
+	ld de, 4
+	add hl, de
+
+	ld de, hMoney ; total price
+	ld c, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	call PrintBCDNumber
+
+	ld a, "?"
+	ld [hl], a
+	
+	coord hl, 2, 16
+	ld de, SellString
+	call PlaceString
+	
+	coord hl, 11, 16
+	ld de, CancelText
+	call PlaceString
+
+	coord de, 1, 16
+	farcall HandleTwoOptionMenuInputs_DrawInitialRadios
+	ld a, d
+
+	push af
+	ld a, SFX_PRESS_AB
+	call PlaySound
+	pop af
+
 	and a
-	jr nz, .skipSettingFlag1
-	inc a
-	ld [wBoughtOrSoldItemInMart], a
+	jr nz, .reenterSellMenu
 
-.skipSettingFlag1
 	call AddAmountSoldToMoney
 	call RemoveItemFromInventory
-	jp .sellMenuLoop
+
+.reenterSellMenu	
+	call ReEnterItemMenu
+	jp .handleInventoryChosen
 
 .buyMenu
 ; the same variables are set again below, so this code has no effect
@@ -137,12 +158,6 @@ DisplayPokemartDialogue_:
 	call AddItemToInventory
 	jr nc, .bagFull
 	call SubtractAmountPaidFromMoney
-	ld a, [wBoughtOrSoldItemInMart]
-	and a
-	jr nz, .skipSettingFlag2
-	ld a, 1
-	ld [wBoughtOrSoldItemInMart], a
-.skipSettingFlag2
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
@@ -216,10 +231,6 @@ PokemartItemBagFullText:
 	TX_FAR _PokemartItemBagFullText
 	db "@"
 
-PokemartTellSellPriceText:
-	TX_FAR _PokemartTellSellPriceText
-	db "@"
-
 PokemartAnythingElseText:
 	TX_FAR _PokemartAnythingElseText
 	db "@"
@@ -232,7 +243,7 @@ DisplayChooseQuantityMenu::
 	call GetItemName
 
 	coord hl, 1, 14
-	ld de, QuantityMenuSellString
+	ld de, SellString
 	call PlaceString
 	
 	coord hl, 6, 14
@@ -391,8 +402,7 @@ DisplayChooseQuantityMenu::
 	ld a, $ff
 	ret
 
-
-QuantityMenuSellString:
+SellString:
 	str "Sell"
 	done
 

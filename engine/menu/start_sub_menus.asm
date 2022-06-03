@@ -357,7 +357,7 @@ StartMenu_Item:
 	coord hl, 2, 16
 	jr nz, .canUse
 
-	; If the item can't be used, then it be holdable
+	; If the item can't be used, then it is holdable
 	ld de, GiveOptionText
 	call PlaceString
 

@@ -1338,10 +1338,7 @@ wBankswitchHomeTemp:: ; cf09
 ; used as a temp storage value for the bank to switch to
 	ds 1
 
-wBoughtOrSoldItemInMart:: ; cf0a
-; 0 = nothing bought or sold in pokemart
-; 1 = bought or sold something in pokemart
-; this value is not used for anything
+wUnusedCF0A:: ; cf0a
 	ds 1
 
 wBattleResult:: ; cf0b

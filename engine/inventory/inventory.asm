@@ -1,10 +1,5 @@
 ; TODO
-
-; Finish properly loading item menu from Pokemart
-; - Move quantity menu location
-; - Make sure price and max amount is correct
-; - - Get price from new table
-; - Make sure screen is drawn properly after item is sold
+; - Get price from new item table
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

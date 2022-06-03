@@ -2469,13 +2469,6 @@ _PokemartItemBagFullText::
 	line "any more items."
 	prompt
 
-_PokemartTellSellPriceText::
-	text "I can pay you"
-	line "$@"
-	TX_BCD hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
-	text " for that."
-	done
-
 _LearnedMove1Text::
 	TX_RAM wLearnMoveMonName
 	text " learned"
