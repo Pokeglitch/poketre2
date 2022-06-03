@@ -279,7 +279,7 @@ TextCommandProcessor::
 	jr nz, .notFullscreen
 	
 	; initialize settings
-	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	ld a, NO_WORD_WRAP | BLACK_ON_WHITE | LINES_2
 	ld [wTextboxSettings], a
 	jr .resetTextbox
 
@@ -288,7 +288,7 @@ TextCommandProcessor::
 	cp SCREEN_HEIGHT_PIXELS
 	jr c, .resetTextbox
 
-	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	ld a, NO_WORD_WRAP | BLACK_ON_WHITE | LINES_2
 	call InitializeTextbox
 	jr .handleText
 

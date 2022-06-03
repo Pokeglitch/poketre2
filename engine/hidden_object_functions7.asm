@@ -102,13 +102,13 @@ PrintSafariGameOverText:
 	jp PrintText
 
 TimesUpText:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	textbox BLACK_ON_WHITE | LINES_2
 	text
 	fartext _TimesUpText
 	done
 
 GameOverText:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	textbox BLACK_ON_WHITE | LINES_2
 	text
 	fartext _GameOverText
 	done

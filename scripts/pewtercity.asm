@@ -193,19 +193,19 @@ PewterCityTextPointers:
 	dw PewterCityText14
 
 PewterCityText1:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	textbox BLACK_ON_WHITE | LINES_3
 	text
 	fartext _PewterCityText1
 	done
 
 PewterCityText2:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	textbox BLACK_ON_WHITE | LINES_3
 	text
 	fartext _PewterCityText2
 	done
 
 PewterCityText3:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	textbox BLACK_ON_WHITE | LINES_2
 	text
 	fartext _PewterCityText_193f1
 	two_opt YesText, NoText, .yes, .no
@@ -234,7 +234,7 @@ PewterCityText3:
 	done
 
 PewterCityText13:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	textbox BLACK_ON_WHITE | LINES_2
 	text
 	fartext _PewterCityText13
 	done
@@ -292,37 +292,37 @@ PewterCityText_1945d:
 	db "@"
 
 PewterCityText14:
-	textbox DRAW_BORDER | BLACK_ON_WHITE | LINES_3
+	textbox BLACK_ON_WHITE | LINES_3
 	text
 	fartext _PewterCityText14
 	done
 
 PewterCityText6:
-	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_4
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_4
 	text
 	fartext _PewterCityText6
 	done
 
 PewterCityText7:
-	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_3
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_3
 	text
 	fartext _PewterCityText7
 	done
 
 PewterCityText10:
-	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
 	text
 	fartext _PewterCityText10
 	done
 
 PewterCityText11:
-	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
 	text
 	fartext _PewterCityText11
 	done
 
 PewterCityText12:
-	textbox DRAW_BORDER | DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
+	textbox DONT_REVEAL | NO_DELAY | BLACK_ON_LIGHT | LINES_2
 	text
 	fartext _PewterCityText12
 	done

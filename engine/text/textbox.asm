@@ -108,17 +108,24 @@ InitializeTextbox_:
 	and TEXT_LINES_MASK
 	inc a
 	add a
+	ld b, a
 	
 	coord hl, 0, 0
+	ld a, [hWY]
+	and a
+	jr nz, .notFullscreen
+	
+	coord hl, 0, 13
+
+.notFullscreen
 	; set bc to be in the middle of the clear screen input and the draw textbox input
-	ld b, a
 	ld c, SCREEN_WIDTH-1
 
 	pop af
 	push af
 	push bc ; store the text lines value
-	bit BIT_DRAW_BORDER, a
-	jr z, .noBorder
+	bit BIT_NO_BORDER, a
+	jr nz, .noBorder
 
 	dec b
 	dec c

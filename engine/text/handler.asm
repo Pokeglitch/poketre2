@@ -400,8 +400,8 @@ DrawOptionBox:
 	ld de, SCREEN_WIDTH * 2 - 1
 	add hl, de
 	ld a, [wTextboxSettings]
-	bit BIT_DRAW_BORDER, a
-	jr nz, .drawBorder
+	bit BIT_NO_BORDER, a
+	jr z, .drawBorder
 
 	;if no border, just clear screen area
 	lb bc, 2, SCREEN_WIDTH 
