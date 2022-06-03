@@ -17,7 +17,7 @@ DisplayPokemartDialogue_:
 	xor a
     ld [wUpdateSpritesEnabled], a ; Disable sprite updates
 
-	farcall DisplayItemMenu
+	call DisplayItemMenu
 
 .handleInventoryChosen
 	jr nc, .confirmItemSale ; if an item was selected
@@ -32,8 +32,21 @@ DisplayPokemartDialogue_:
 .confirmItemSale ; if the player is trying to sell a specific item
 	ld a, [wcf91]
 	ld [wWhichItem], a
+	
+	call GetCurrentItemQuantityPointer
+	ld a, [hl]
+	ld [wMaxItemQuantity], a
+
 	ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
+	
+    ld de, ItemPrices
+    ld hl, wItemPrices
+    ld [hl], e
+    inc hl
+    ld [hl], d
+    call GetItemPrice
+
 	ld [hHalveItemPrices], a ; halve prices when selling
 	call DisplayChooseQuantityMenu
 	inc a
@@ -51,7 +64,7 @@ DisplayPokemartDialogue_:
 	jr nz, .sellItem
 
 .reenterSellMenu
-	farcall ReEnterItemMenu
+	call ReEnterItemMenu
 	jr .handleInventoryChosen
 
 .sellItem
@@ -210,3 +223,184 @@ PokemartTellSellPriceText:
 PokemartAnythingElseText:
 	TX_FAR _PokemartAnythingElseText
 	db "@"
+
+DisplayChooseQuantityMenu::
+	call ClearTextBox
+
+	ld a, [wcf91]
+	ld [wd11e], a
+	call GetItemName
+
+	coord hl, 1, 14
+	ld de, QuantityMenuSellString
+	call PlaceString
+	
+	coord hl, 6, 14
+	ld de, QuantityMenuItemNameString
+	call PlaceString
+	
+	ld a, TILE_UP_DOWN
+	coord hl, 1, 16
+	ld [hl], a
+
+	xor a
+	ld [wItemQuantity], a ; initialize current quantity to 0
+	jp .incrementQuantity
+
+.waitForKeyPressLoop
+	call JoypadLowSensitivity
+
+	ld a, [hJoyPressed] ; newly pressed buttons
+	bit BIT_A_BUTTON, a ; was the A button pressed?
+	jp nz, .buttonAPressed
+
+	bit BIT_B_BUTTON, a ; was the B button pressed?
+	jp nz, .buttonBPressed
+	
+	bit BIT_D_RIGHT, a ; was Right pressed?
+	jr nz, .incrementQuantityBy10
+
+	bit BIT_D_LEFT, a ; was Left pressed?
+	jr nz, .decrementQuantityBy10
+
+	bit BIT_D_UP, a ; was Up pressed?
+	jr nz, .incrementQuantity
+
+	bit BIT_D_DOWN, a ; was Down pressed?
+	jr nz, .decrementQuantity
+
+	jr .waitForKeyPressLoop
+
+.incrementQuantityBy10
+	ld a, [wItemQuantity]
+	ld b, a
+
+	ld a, [wMaxItemQuantity]
+	sub b
+	cp 10
+	; if the difference to max is less than 10, set it to the max
+	jr c, .setToMax
+
+	ld a, b
+	add a, 10
+	jr .storeNewQuantity
+
+.setToMax
+	ld a, [wMaxItemQuantity]
+
+.storeNewQuantity
+	ld [wItemQuantity], a
+	jr .handleNewQuantity
+
+.incrementQuantity
+	ld a, [wMaxItemQuantity]
+	inc a
+	ld b, a
+	ld hl, wItemQuantity ; current quantity
+	inc [hl]
+	ld a, [hl]
+	cp b
+	jr nz, .handleNewQuantity
+; wrap to 1 if the player goes above the max quantity
+	ld a, 1
+	ld [hl], a
+	jr .handleNewQuantity
+
+.decrementQuantityBy10
+	ld a, [wItemQuantity]
+	cp 11
+	; if the quatity is <= 10, set it to 1
+	jr c, .setToOne
+
+	sub a, 10
+	jr .storeNewQuantity
+
+.setToOne
+	ld a, 1
+	jr .storeNewQuantity
+
+.decrementQuantity
+	ld hl, wItemQuantity ; current quantity
+	dec [hl]
+	jr nz, .handleNewQuantity
+; wrap to the max quantity if the player goes below 1
+	ld a, [wMaxItemQuantity]
+	ld [hl], a
+.handleNewQuantity
+	coord hl, 3, 16
+	lb bc, 1, 14
+	call ClearScreenArea
+
+	coord hl, 3, 16
+	ld de, wItemQuantity ; current quantity
+	lb bc, 1, 3 ; 1 byte, 3 digits
+	call PrintNumber
+
+	coord hl, 7, 16
+	ld de, QuantityMenuForString
+	call PlaceString
+
+	; print price
+	ld c, $03
+	ld a, [wItemQuantity]
+	ld b, a
+	ld hl, hMoney ; total price
+	
+	; initialize total price to 0
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+.addLoop ; loop to multiply the individual price by the quantity to get the total price
+	ld de, hMoney + 2
+	ld hl, hItemPrice + 2
+	push bc
+	predef AddBCDPredef ; add the individual price to the current sum
+	pop bc
+	dec b
+	jr nz, .addLoop
+	ld a, [hHalveItemPrices]
+	and a ; should the price be halved (for selling items)?
+	jr z, .skipHalvingPrice
+	xor a
+	ld [hDivideBCDDivisor], a
+	ld [hDivideBCDDivisor + 1], a
+	ld a, 2
+	ld [hDivideBCDDivisor + 2], a
+	predef DivideBCDPredef3 ; halves the price
+; store the halved price
+	ld a, [hDivideBCDQuotient]
+	ld [hMoney], a
+	ld a, [hDivideBCDQuotient + 1]
+	ld [hMoney + 1], a
+	ld a, [hDivideBCDQuotient + 2]
+	ld [hMoney + 2], a
+.skipHalvingPrice
+	ld de, hMoney ; total price
+	ld c, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	coord hl, 11, 16
+	call PrintBCDNumber
+	jp .waitForKeyPressLoop
+.buttonAPressed ; the player chose to make the transaction
+	xor a
+	ld [wMenuItemToSwap], a ; 0 means no item is currently being swapped
+	ret
+.buttonBPressed ; the player chose to cancel the transaction
+	xor a
+	ld [wMenuItemToSwap], a ; 0 means no item is currently being swapped
+	ld a, $ff
+	ret
+
+
+QuantityMenuSellString:
+	str "Sell"
+	done
+
+QuantityMenuItemNameString:
+	ramtext wcd6d
+	str ":"
+	done
+
+QuantityMenuForString:
+	str "for"
+	done

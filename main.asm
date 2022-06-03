@@ -65,8 +65,6 @@ INCLUDE "engine/subtract_paid_money.asm"
 
 INCLUDE "engine/menu/swap_items.asm"
 
-INCLUDE "engine/overworld/pokemart.asm"
-
 INCLUDE "engine/learn_move.asm"
 
 INCLUDE "engine/overworld/pokecenter.asm"
@@ -205,6 +203,7 @@ INCLUDE "data/inventory/items.asm"
 INCLUDE "engine/inventory/items.asm"
 INCLUDE "engine/inventory/inventory.asm"
 INCLUDE "engine/items/inventory.asm"
+INCLUDE "engine/inventory/pokemart.asm"
 
 
 SECTION "NPC Sprites 2", ROMX, BANK[NPC_SPRITES_2]
@@ -2136,6 +2135,7 @@ InventoryScreenGFX:
 	INCBIN "gfx/inventory/select.2bpp"
 	INCBIN "gfx/inventory/tab_bottom_border_hidden.2bpp"
 	INCBIN "gfx/inventory/cursor.2bpp"
+	INCBIN "gfx/inventory/up_down.2bpp"
 InventoryScreenGFXEnd:
 
 InventoryScreen2GFX:

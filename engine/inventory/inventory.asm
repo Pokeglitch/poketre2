@@ -710,6 +710,11 @@ DisplayInventoryList:
     cp FILTER_POKEMART
     jr nz, .nextItem
 
+    ; If the item isn't sellable, then don't print the price
+    call GetCurrentItemID
+    call IsItemFiltered
+    jr z, .nextItem
+
     ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
     ld de, ItemPrices
@@ -718,21 +723,6 @@ DisplayInventoryList:
     inc hl
     ld [hl], d
     call GetItemPrice
-
-    ; TODO - Just check the filter
-    ; If the price is zero, dont print
-    ld hl, hItemPrice
-    xor a
-    cp [hl]
-    jr nz, .notZero
-    inc hl
-    cp [hl]
-    jr nz, .notZero
-    inc hl
-    cp [hl]
-    jr z, .nextItem
-
-.notZero
     push de
     call HalveItemPrice
     pop de
@@ -748,6 +738,7 @@ DisplayInventoryList:
     ; See if the item is a quick use
     ld a, [wd11e]
     ld d, 5
+
 .findInListLoop
     inc hl
     dec d
@@ -1047,7 +1038,7 @@ UpdateItemDescription:
 
 .placeString
     ld b, BANK(PocketsEmptyText)
-    coord hl, 1, 14 
+    coord hl, 1, 14
     call PlaceFarString
     
     ; Enable screen updates
