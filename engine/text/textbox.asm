@@ -47,7 +47,7 @@ DisplayTextIDInit:
 	ret
 
 ResetTextbox:
-	coord hl, 1, 1
+	call GetTextBoxStartCoordsHL
 	ld a, [wTextboxSettings]
 	and TEXT_LINES_MASK
 	add a

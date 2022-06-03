@@ -1440,9 +1440,9 @@ _GrewLevelText::
 	text "!@@"
 
 _WildMonAppearedText::
-	text "Wild @"
+	text "Wild "
 	TX_RAM wEnemyMonNick
-	text ""
+	;text ""
 	line "appeared!"
 	prompt
 

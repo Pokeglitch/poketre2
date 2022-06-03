@@ -1,4 +1,4 @@
-; To most the printing to the next line
+; To move the printing to the next line
 MoveToNextLine:
 	call ResetColumnTilesRemaining
 
@@ -197,11 +197,20 @@ ScrollCommon:
 ; first time, copy the two rows of text to the "in between" rows that are usually emtpy
 ; second time, copy the bottom row of text into the top row of text
 ScrollTextUpOneLine::
+	coord hl, 0, 15 ; top row of text
+	coord de, 0, 14 ; empty line above text
+	ld a, [hWY]
+	and a
+	jr z, .continue ; if window is fullscreen, continue
+
 	coord hl, 0, 2 ; top row of text
 	coord de, 0, 1 ; empty line above text
+
+.continue
 	call GetTextboxSize
 	dec a
 	jr z, .eraseLastRow
+
 	ld b, a
 	xor a
 
@@ -257,7 +266,7 @@ ParagraphCommandCommon::
 	pop hl
 	call ResetRowsRemaining
 	call ResetColumnTilesRemaining
-	coord hl, 1, 1
+	call GetTextBoxStartCoordsHL
 	push hl
 	jp ReturnAndPlaceNextChar
 

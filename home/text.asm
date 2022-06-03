@@ -1,3 +1,11 @@
+; TODO:
+;
+; - Each text command (when using a move in battle, so with ASM or FAR)
+;     will reset the text position to the start of the textbox.
+;     This shouldn't happen, it should continue where it left off
+;     Resolve by converting those texts to use my new inline-string processor?
+
+
 TextBoxBorder::
 	homejump TextBoxBorder_
 
@@ -219,8 +227,17 @@ TextCommandProcessor::
 	cp TEXTBOX_DEF
 	jr z, .handleText
 
-	; Just reset if the window is already on screen
 	ld a, [hWY]
+	and a
+	jr nz, .notFullscreen
+	
+	; initialize settings
+	ld a, NO_WORD_WRAP | DRAW_BORDER | BLACK_ON_WHITE | LINES_2
+	ld [wTextboxSettings], a
+	jr .resetTextbox
+
+.notFullscreen
+	; Just reset if the window is already on screen
 	cp SCREEN_HEIGHT_PIXELS
 	jr c, .resetTextbox
 
@@ -782,8 +799,13 @@ GetTextboxSize:
 	ret
 
 GetStartOfBottomRow:
-	call GetTextboxSize
+	coord hl, 1, 13
+	ld a, [hWY]
+	and a
+	jr z, .continue
 	coord hl, 1, 0
+.continue
+	call GetTextboxSize
 	push af
 	ld de, SCREEN_WIDTH
 .loop
@@ -888,7 +910,7 @@ AdjustAndStoreTextboxScrollSpeed:
 	ret
 
 ClearTextboxAndDelay:
-	coord hl, 1, 1
+	call GetTextBoxStartCoordsHL
 	call GetTextboxSize
 	ld b, a
 	ld c, 18

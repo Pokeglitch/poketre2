@@ -4028,13 +4028,31 @@ AutoTextBoxDrawingCommon::
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a ; make DisplayTextID wait for button press
 	ret
 
+GetTextBoxStartCoordsHL:
+	; If the window is at the top of the screen, then print the text at the bottom
+	coord hl, 1, 14
+	ld a, [hWY]
+	and a
+	ret z
+	coord hl, 1, 1
+	ret
+
+GetTextBoxStartCoordsBC:
+	; If the window is at the top of the screen, then print the text at the bottom
+	coord bc, 1, 14
+	ld a, [hWY]
+	and a
+	ret z
+	coord bc, 1, 1
+	ret
+
 ClearTextBox:
 	coord hl, 1, 14
 	lb bc, 3, 18
 	jp ClearScreenArea
 
 PrintText::
-	coord bc, 1, 1
+	call GetTextBoxStartCoordsBC
 	jp TextCommandProcessor
 
 PrintNumber::
