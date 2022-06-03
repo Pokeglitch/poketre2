@@ -350,11 +350,11 @@ MonsterNameCharsCommon::
 	push de
 	ld de, wBattleMonNick ; player active monster name
 	and a
-	jr nz, .notEnemy
+	jr z, .playerTurn
 
 	ld de, EnemyMonText ; enemy monster name
 
-.notEnemy
+.playerTurn
 	jp PlaceNestedString
 
 EnemyMonText::
