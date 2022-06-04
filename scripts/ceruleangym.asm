@@ -147,9 +147,10 @@ CeruleanGymText5:
 	db "@"
 
 CeruleanGymText6:
-	TX_FAR _ReceivedTM11Text
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _ReceivedTM11Text
+	sfxtext SFX_GET_ITEM_1
+	done
 
 CeruleanGymText7:
 	TX_FAR _CeruleanGymText_5c7d3

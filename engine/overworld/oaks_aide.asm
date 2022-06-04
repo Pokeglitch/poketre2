@@ -62,9 +62,10 @@ OaksAideHereYouGoText:
 	db "@"
 
 OaksAideGotItemText:
-	TX_FAR _OaksAideGotItemText
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _OaksAideGotItemText
+	sfxtext SFX_GET_ITEM_1
+	done
 
 OaksAideNoRoomText:
 	TX_FAR _OaksAideNoRoomText

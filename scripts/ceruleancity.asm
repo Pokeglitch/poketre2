@@ -319,11 +319,12 @@ CeruleanCityText_196d9:
 	db "@"
 
 ReceivedTM28Text:
-	TX_FAR _ReceivedTM28Text
-	TX_SFX_ITEM_1
-	TX_FAR _ReceivedTM28Text2
+	text ""
+	fartext _ReceivedTM28Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _ReceivedTM28Text2
 	TX_WAIT
-	db "@"
+	done
 
 TM28NoRoomText:
 	TX_FAR _TM28NoRoomText

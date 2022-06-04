@@ -15,19 +15,21 @@ _CeladonMartRoofText_484f3::
 
 _CeladonMartRoofText_484f9::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _CeladonMartRoofText_484fe::
-	db $0
-	para "@"
-	TX_RAM wcf4b
+	db TEXT_INIT
+	para ""
+	ramtext wcf4b
 	text " contains"
 	line "ICE BEAM!"
 
 	para "It can freeze the"
-	line "target sometimes!@@"
+	line "target sometimes!"
+	done
 
 _CeladonMartRoofText_48504::
 	text "Yay!"
@@ -41,19 +43,21 @@ _CeladonMartRoofText_48504::
 
 _CeladonMartRoofText_4850a::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _CeladonMartRoofText_4850f::
-	db $0
-	para "@"
-	TX_RAM wcf4b
+	db TEXT_INIT
+	para ""
+	ramtext wcf4b
 	text " contains"
 	line "ROCK SLIDE!"
 
 	para "It can spook the"
-	line "target sometimes!@@"
+	line "target sometimes!"
+	done
 
 _CeladonMartRoofText_48515::
 	text "Yay!"
@@ -67,12 +71,14 @@ _CeladonMartRoofText_48515::
 
 _ReceivedTM49Text::
 	text "<PLAYER> received"
-	line "TM49!@@"
+	line "TM49!"
+	done
 
 _CeladonMartRoofText_48520::
-	db $0
+	db TEXT_INIT
 	para "TM49 contains"
-	line "TRI ATTACK!@@"
+	line "TRI ATTACK!"
+	done
 
 _CeladonMartRoofText_48526::
 	text "You don't have"

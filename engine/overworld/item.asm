@@ -45,9 +45,10 @@ PickUpItem:
 	ret
 
 FoundItemText:
-	TX_FAR _FoundItemText
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _FoundItemText
+	sfxtext SFX_GET_ITEM_1
+	done
 
 NoMoreRoomForItemText:
 	TX_FAR _NoMoreRoomForItemText

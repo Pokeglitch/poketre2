@@ -147,10 +147,11 @@ PewterGymText4:
 	db "@"
 
 PewterGymText5:
-	TX_FAR _ReceivedTM34Text
-	TX_SFX_ITEM_1
-	TX_FAR _TM34ExplanationText
-	db "@"
+	text ""
+	fartext _ReceivedTM34Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _TM34ExplanationText
+	done
 
 PewterGymText6:
 	TX_FAR _TM34NoRoomText

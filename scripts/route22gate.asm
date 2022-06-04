@@ -88,6 +88,7 @@ Route22GateText_1e715:
 	db "@"
 
 Route22GateText_1e71a:
-	TX_FAR _Route22GateText_1e71a
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _Route22GateText_1e71a
+	sfxtext SFX_GET_ITEM_1
+	done

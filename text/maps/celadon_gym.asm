@@ -63,12 +63,13 @@ _CeladonGymText9::
 
 _ReceivedTM21Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM21ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM21 contains"
 	line "MEGA DRAIN."
 

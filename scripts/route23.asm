@@ -226,10 +226,11 @@ VictoryRoadGuardText1:
 	jp TextScriptEnd
 
 VictoryRoadGuardText2:
-	TX_FAR _VictoryRoadGuardText2
-	TX_SFX_ITEM_1
-	TX_FAR _VictoryRoadGuardText_513a3
-	db "@"
+	text ""
+	fartext _VictoryRoadGuardText2
+	sfxtext SFX_GET_ITEM_1
+	fartext _VictoryRoadGuardText_513a3
+	done
 
 Route23Text8:
 	TX_FAR _Route23Text8

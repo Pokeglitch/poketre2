@@ -18,9 +18,10 @@ _FuchsiaHouse3Text_561c2::
 	line "fish, young one!"
 
 	para "<PLAYER> received"
-	line "a @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "a "
+	ramtext wcf4b
+	text "!"
+	done
 
 _FuchsiaHouse3Text_56212::
 	text "Oh... That's so"

@@ -44,12 +44,13 @@ _BlaineBadgeText::
 
 _ReceivedTM38Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM38ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM38 contains"
 	line "FIRE BLAST!"
 

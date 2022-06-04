@@ -320,12 +320,14 @@ ViridianGymText12:
 	db "@"
 
 ViridianGymText13:
-	TX_FAR _ReceivedTM27Text
-	TX_SFX_ITEM_1
+	text ""
+	fartext _ReceivedTM27Text
+	sfxtext SFX_GET_ITEM_1
 
 TM27ExplanationText:
-	TX_FAR _TM27ExplanationText
-	db "@"
+	text ""
+	fartext _TM27ExplanationText
+	done
 
 ViridianGymText14:
 	TX_FAR _TM27NoRoomText

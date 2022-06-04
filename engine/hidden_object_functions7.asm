@@ -232,9 +232,11 @@ CinnabarGymQuiz_1ea92:
 	ret
 
 CinnabarGymQuizCorrectText:
-	TX_SFX_ITEM_1
-	TX_FAR _CinnabarGymQuizCorrectText
+	text ""
+	sfxtext SFX_GET_ITEM_1
+	fartext _CinnabarGymQuizCorrectText
 	TX_BLINK
+	endtext
 	TX_ASM
 
 	ld a, [$ffe0]

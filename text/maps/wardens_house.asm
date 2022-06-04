@@ -20,10 +20,11 @@ _WardenGibberishText3::
 _WardenTeethText1::
 	text "<PLAYER> gave the"
 	line "GOLD TEETH to the"
-	cont "WARDEN!@@"
+	cont "WARDEN!"
+	done
 
 _WardenTeethText2::
-	db $0
+	db TEXT_INIT
 	para "The WARDEN popped"
 	line "in his teeth!"
 	prompt
@@ -43,9 +44,10 @@ _WardenThankYouText::
 
 _ReceivedHM04Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _HM04ExplanationText::
 	text "WARDEN: HM04"

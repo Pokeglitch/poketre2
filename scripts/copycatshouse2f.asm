@@ -52,12 +52,15 @@ TM31PreReceiveText:
 	db "@"
 
 ReceivedTM31Text:
-	TX_FAR _ReceivedTM31Text
-	TX_SFX_ITEM_1
+	text ""
+	fartext _ReceivedTM31Text
+	sfxtext SFX_GET_ITEM_1
+
 TM31ExplanationText1:
-	TX_FAR _TM31ExplanationText1
+	text ""
+	fartext _TM31ExplanationText1
 	TX_WAIT
-	db "@"
+	done
 
 TM31ExplanationText2:
 	TX_FAR _TM31ExplanationText2

@@ -69,9 +69,10 @@ SetPokedexOwnedFlag:
 	jp PrintText
 
 GotMonText:
-	TX_FAR _GotMonText
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _GotMonText
+	sfxtext SFX_GET_ITEM_1
+	done
 
 SetToBoxText:
 	TX_FAR _SetToBoxText

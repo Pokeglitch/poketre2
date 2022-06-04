@@ -39,10 +39,11 @@ Route12HouseText_564c0:
 	db "@"
 
 Route12HouseText_564c5:
-	TX_FAR _Route12HouseText_564c5
-	TX_SFX_ITEM_1
-	TX_FAR _Route12HouseText_564ca
-	db "@"
+	text ""
+	fartext _Route12HouseText_564c5
+	sfxtext SFX_GET_ITEM_1
+	fartext _Route12HouseText_564ca
+	done
 
 Route12HouseText_564cf:
 	TX_FAR _Route12HouseText_564cf

@@ -21,10 +21,11 @@ SafariZoneEntranceText_9e747::
 	cont "here."
 
 	para "<PLAYER> received"
-	line "30 SAFARI BALLs!@@"
+	line "30 SAFARI BALLs!"
+	done
 
 _SafariZoneEntranceText_75360::
-	db $0
+	db TEXT_INIT
 	para "We'll call you on"
 	line "the PA when you"
 	cont "run out of time"

@@ -72,10 +72,11 @@ SilphCoMapList:
 	db $FF
 
 CardKeySuccessText:
-	TX_FAR _CardKeySuccessText1
-	TX_SFX_ITEM_1
-	TX_FAR _CardKeySuccessText2
-	db "@"
+	text ""
+	fartext _CardKeySuccessText1
+	sfxtext SFX_GET_ITEM_1
+	fartext _CardKeySuccessText2
+	done
 
 CardKeyFailText:
 	TX_FAR _CardKeyFailText

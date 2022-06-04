@@ -17,12 +17,13 @@ _VermilionHouse2Text_560b6::
 	line "fish, young one!"
 
 	para "<PLAYER> received"
-	line "an @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "an "
+	ramtext wcf4b
+	text "!"
+	done
 
 _VermilionHouse2Text_560bb::
-	db $0
+	db TEXT_INIT
 	para "Fishing is a way"
 	line "of life!"
 

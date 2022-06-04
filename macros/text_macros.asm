@@ -86,7 +86,6 @@ TX_BCD: MACRO
 	db \2
 ENDM
 
-TX_BLINK   EQUS "db $06"
 TX_ASM     EQUS "db $08"
 
 TX_NUM: MACRO
@@ -99,8 +98,8 @@ TX_NUM: MACRO
 	db \2 << 4 | \3
 ENDM
 
+TX_BLINK   EQUS "db $06"
 TX_DELAY              EQUS "db $0a"
-TX_SFX_ITEM_1         EQUS "db $0b"
 TX_WAIT               EQUS "db $0d"
 
 TX_FAR: MACRO

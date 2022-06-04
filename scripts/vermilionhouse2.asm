@@ -39,10 +39,11 @@ VermilionHouse2Text_560b1:
 	db "@"
 
 VermilionHouse2Text_560b6:
-	TX_FAR _VermilionHouse2Text_560b6
-	TX_SFX_ITEM_1
-	TX_FAR _VermilionHouse2Text_560bb
-	db "@"
+	text ""
+	fartext _VermilionHouse2Text_560b6
+	sfxtext SFX_GET_ITEM_1
+	fartext _VermilionHouse2Text_560bb
+	done
 
 VermilionHouse2Text_560c0:
 	TX_FAR _VermilionHouse2Text_560c0

@@ -16,9 +16,10 @@ _SecretHouseText_4a350::
 
 _ReceivedHM03Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _HM03ExplanationText::
 	text "HM03 is SURF!"

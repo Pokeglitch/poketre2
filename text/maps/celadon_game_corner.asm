@@ -65,7 +65,8 @@ _CeladonGameCornerText_48d9c::
 
 _Received10CoinsText::
 	text "<PLAYER> received"
-	line "10 coins!@@"
+	line "10 coins!"
+	done
 
 _CeladonGameCornerText_48da7::
 	text "You don't need my"
@@ -122,7 +123,8 @@ _CeladonGameCornerText_48e26::
 
 _Received20CoinsText::
 	text "<PLAYER> received"
-	line "20 coins!@@"
+	line "20 coins!"
+	done
 
 _CeladonGameCornerText_48e31::
 	text "You have lots of"
@@ -144,7 +146,8 @@ _CeladonGameCornerText_48e88::
 
 _CeladonGameCornerText_48e8d::
 	text "<PLAYER> received"
-	line "20 coins!@@"
+	line "20 coins!"
+	done
 
 _CeladonGameCornerText_48e93::
 	text "You've got your"

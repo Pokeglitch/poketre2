@@ -11,9 +11,10 @@ _SilphCo2Text_59ded::
 
 _ReceivedTM36Text::
 	text "<PLAYER> got"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM36ExplanationText::
 	text "TM36 is"

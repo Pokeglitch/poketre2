@@ -28,17 +28,19 @@ _TM31PreReceiveText::
 
 _ReceivedTM31Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM31ExplanationText1::
-	db $0
+	db TEXT_INIT
 	para "TM31 contains my"
 	line "favorite, MIMIC!"
 
 	para "Use it on a good"
-	line "POKéMON!@@"
+	line "POKéMON!"
+	done
 
 _TM31ExplanationText2::
 	text "<PLAYER>: Hi!"

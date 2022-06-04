@@ -22,7 +22,8 @@ INCLUDE "hram.asm"
 SECTION "Text 1", ROMX, BANK[TEXT_1]
 
 _CardKeySuccessText1::
-	text "Bingo!@@"
+	text "Bingo!"
+	done
 
 _CardKeySuccessText2::
 	text ""
@@ -80,9 +81,10 @@ _PokeCenterSignText::
 
 _FoundItemText::
 	text "<PLAYER> found"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _NoMoreRoomForItemText::
 	text "No more room for"
@@ -154,9 +156,10 @@ _OaksAideHereYouGoText::
 
 _OaksAideGotItemText::
 	text "<PLAYER> got the"
-	line "@"
-	TX_RAM wOaksAideRewardItemName
-	text "!@@"
+	line ""
+	ramtext wOaksAideRewardItemName
+	text "!"
+	done
 
 _OaksAideNoRoomText::
 	text "Oh! I see you"
@@ -601,7 +604,8 @@ _CinnabarGymQuizCorrectText::
 	text "You're absolutely"
 	line "correct!"
 
-	para "Go on through!@@"
+	para "Go on through!"
+	done
 
 _CinnabarGymQuizIncorrectText::
 	text "Sorry! Bad call!"
@@ -1605,11 +1609,13 @@ _ReviveText::
 	done
 
 _RareCandyText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " grew"
-	line "to level @"
-	TX_NUM wCurEnemyLVL, 1, 3
-	text "!@@"
+	line "to level "
+	numtext wCurEnemyLVL, (3 << 3) | 1 ; 1 byte, 3 digits
+	text "!"
+	done
 
 _TurnedOnPC1Text::
 	text "<PLAYER> turned on"
@@ -2445,11 +2451,13 @@ _PokemartItemBagFullText::
 	prompt
 
 _LearnedMove1Text::
-	TX_RAM wLearnMoveMonName
+	text ""
+	ramtext wLearnMoveMonName
 	text " learned"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _WhichMoveToForgetText::
 	text "Which move should"
@@ -2657,9 +2665,10 @@ _CannotGetOffHereText::
 
 _GotMonText::
 	text "<PLAYER> got"
-	line "@"
-	TX_RAM wcd6d
-	text "!@@"
+	line ""
+	ramtext wcd6d
+	text "!"
+	done
 
 _SetToBoxText::
 	text "There's no more"

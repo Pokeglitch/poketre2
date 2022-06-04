@@ -70,12 +70,14 @@ _CeruleanCityText_196d9::
 
 _ReceivedTM28Text::
 	text "<PLAYER> recovered"
-	line "TM28!@@"
+	line "TM28!"
+	done
 
 _ReceivedTM28Text2::
-	db $0
+	db TEXT_INIT
 	para "I better get"
-	line "moving! Bye!@@"
+	line "moving! Bye!"
+	done
 
 _TM28NoRoomText::
 	text "Make room for"

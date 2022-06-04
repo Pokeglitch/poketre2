@@ -46,9 +46,10 @@ TM18PreReceiveText:
 	db "@"
 
 ReceivedTM18Text:
-	TX_FAR _ReceivedTM18Text
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _ReceivedTM18Text
+	sfxtext SFX_GET_ITEM_1
+	done
 
 TM18ExplanationText:
 	TX_FAR _TM18ExplanationText

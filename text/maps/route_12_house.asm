@@ -17,12 +17,13 @@ _Route12HouseText_564c5::
 	line "fish, young one!"
 
 	para "<PLAYER> received"
-	line "a @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "a "
+	ramtext wcf4b
+	text "!"
+	done
 
 _Route12HouseText_564ca::
-	db $0
+	db TEXT_INIT
 	para "Fishing is a way"
 	line "of life!"
 

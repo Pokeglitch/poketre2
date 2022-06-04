@@ -68,21 +68,24 @@ WardenGibberishText3:
 	db "@"
 
 WardenTeethText1:
-	TX_FAR _WardenTeethText1
-	TX_SFX_ITEM_1
+	text ""
+	fartext _WardenTeethText1
+	sfxtext SFX_GET_ITEM_1
 
 WardenTeethText2:
-	TX_FAR _WardenTeethText2
-	db "@"
+	text ""
+	fartext _WardenTeethText2
+	done
 
 WardenThankYouText:
 	TX_FAR _WardenThankYouText
 	db "@"
 
 ReceivedHM04Text:
-	TX_FAR _ReceivedHM04Text
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _ReceivedHM04Text
+	sfxtext SFX_GET_ITEM_1
+	done
 
 HM04ExplanationText:
 	TX_FAR _HM04ExplanationText

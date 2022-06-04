@@ -202,10 +202,11 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .MakePaymentText
-	TX_FAR SafariZoneEntranceText_9e747
-	TX_SFX_ITEM_1
-	TX_FAR _SafariZoneEntranceText_75360
-	db "@"
+	text ""
+	fartext SafariZoneEntranceText_9e747
+	sfxtext SFX_GET_ITEM_1
+	fartext _SafariZoneEntranceText_75360
+	done
 
 .PleaseComeAgainText
 	TX_FAR _SafariZoneEntranceText_75365

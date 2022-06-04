@@ -1,19 +1,21 @@
 _Route24Text_51510::
 	text "Congratulations!"
 	line "You beat our 5"
-	cont "contest trainers!@@"
+	cont "contest trainers!"
+	done
 
 _Route24Text_51515::
-	db $0
+	db TEXT_INIT
 	para "You just earned a"
 	line "fabulous prize!"
 	prompt
 
 _Route24Text_5151a::
 	text "<PLAYER> received"
-	line "a @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "a "
+	ramtext wcf4b
+	text "!"
+	done
 
 _Route24Text_51521::
 	text "You don't have"

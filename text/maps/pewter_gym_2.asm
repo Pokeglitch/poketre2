@@ -19,10 +19,11 @@ _TM34PreReceiveText::
 
 _ReceivedTM34Text::
 	text "<PLAYER> received"
-	line "TM34!@@"
+	line "TM34!"
+	done
 
 _TM34ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "A TM contains a"
 	line "technique that"
 	cont "can be taught to"

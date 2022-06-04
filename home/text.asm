@@ -357,9 +357,6 @@ NextTextCommand::
 	jp z, TextCommand17
 	cp TEXTBOX_DEF
 	jp z, TextboxDefinitionCommand
-	cp $0E
-	jp nc, TextCommand0B ; if a != 0x17 and a >= 0xE, go to command 0xB
-; if a < 0xE, use a jump table
 	ld hl, TextCommandJumpTable
 	push bc
 	add a
@@ -527,40 +524,11 @@ TextCommand0A::
 	pop hl
 	jp NextTextCommand
 
-; plays sounds
-; this actually handles various command ID's, not just 0B
-; (no arguments)
-TextCommand0B::
-	pop hl
-	push bc
-	dec hl
-	ld a, [hli]
-	ld b, a ; b = command number that got us here
-	push hl
-	ld hl, TextCommandSounds
-.loop
-	ld a, [hli]
-	cp b
-	jr z, .matchFound
-	inc hl
-	jr .loop
-.matchFound
-	ld a, [hl]
-	call PlaySound
-	call WaitForSoundToFinish
-	pop hl
-	pop bc
-	jp NextTextCommand
-
 TextboxDefinitionCommand:
 	pop hl
 	ld a, [hli]
 	call InitializeTextbox
 	jp NextTextCommand
-
-; format: text command ID, sound ID or cry ID
-TextCommandSounds::
-	db $0B, SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded
 
 ; wait for A or B to be pressed
 ; 0D
@@ -601,14 +569,14 @@ TextCommandJumpTable::
 	dw TextCommand02
 	dw TextCommand03
 	dw TextCommand04
-	dw $0000 ; TODO - delete (not used)
+	dw $0000
 	dw TextCommand06
-	dw $0000 ; TODO - delete (not used)
+	dw $0000
 	dw TextCommand08
 	dw TextCommand09
 	dw TextCommand0A
-	dw TextCommand0B
-	dw $0000 ; TODO - delete (not used)
+	dw $0000
+	dw $0000
 	dw TextCommand0D
 
 ; Check if the next word should be wrapped

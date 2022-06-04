@@ -17,17 +17,18 @@ _VictoryRoadGuardText1::
 _VictoryRoadGuardText2::
 	text "You can pass here"
 	line "only if you have"
-	cont "the @"
-	TX_RAM wcd6d
+	cont "the "
+	ramtext wcd6d
 	text "!"
 
 	para "Oh! That is the"
-	line "@"
-	TX_RAM wcd6d
-	text "!@@"
+	line ""
+	ramtext wcd6d
+	text "!"
+	done
 
 _VictoryRoadGuardText_513a3::
-	db $0
+	db TEXT_INIT
 	para "OK then! Please,"
 	line "go right ahead!"
 	done

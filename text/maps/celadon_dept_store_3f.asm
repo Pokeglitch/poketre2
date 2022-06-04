@@ -9,9 +9,10 @@ _TM18PreReceiveText::
 
 _ReceivedTM18Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM18ExplanationText::
 	text "TM18 is COUNTER!"

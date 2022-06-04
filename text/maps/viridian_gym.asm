@@ -62,10 +62,11 @@ _ViridianGymText12::
 
 _ReceivedTM27Text::
 	text "<PLAYER> received"
-	line "TM27!@@"
+	line "TM27!"
+	done
 
 _TM27ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM27 is FISSURE!"
 	line "It will take out"
 	cont "POKéMON with just"

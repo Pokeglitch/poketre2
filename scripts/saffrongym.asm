@@ -202,10 +202,11 @@ SaffronGymText10:
 	db "@"
 
 SaffronGymText11:
-	TX_FAR ReceivedTM46Text
-	TX_SFX_ITEM_1
-	TX_FAR _TM46ExplanationText
-	db "@"
+	text ""
+	fartext ReceivedTM46Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _TM46ExplanationText
+	done
 
 SaffronGymText12:
 	TX_FAR _TM46NoRoomText

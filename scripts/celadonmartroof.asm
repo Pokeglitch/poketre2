@@ -143,11 +143,12 @@ CeladonMartRoofText_484f3:
 	db "@"
 
 CeladonMartRoofText_484f9:
-	TX_FAR _CeladonMartRoofText_484f9
-	TX_SFX_ITEM_1
-	TX_FAR _CeladonMartRoofText_484fe
+	text ""
+	fartext _CeladonMartRoofText_484f9
+	sfxtext SFX_GET_ITEM_1
+	fartext _CeladonMartRoofText_484fe
 	TX_WAIT
-	db "@"
+	done
 
 CeladonMartRoofText_48504:
 	TX_FAR _CeladonMartRoofText_48504
@@ -155,11 +156,12 @@ CeladonMartRoofText_48504:
 	db "@"
 
 CeladonMartRoofText_4850a:
-	TX_FAR _CeladonMartRoofText_4850a
-	TX_SFX_ITEM_1
-	TX_FAR _CeladonMartRoofText_4850f
+	text ""
+	fartext _CeladonMartRoofText_4850a
+	sfxtext SFX_GET_ITEM_1
+	fartext _CeladonMartRoofText_4850f
 	TX_WAIT
-	db "@"
+	done
 
 CeladonMartRoofText_48515:
 	TX_FAR _CeladonMartRoofText_48515
@@ -167,11 +169,12 @@ CeladonMartRoofText_48515:
 	db "@"
 
 ReceivedTM49Text:
-	TX_FAR _ReceivedTM49Text
-	TX_SFX_ITEM_1
-	TX_FAR _CeladonMartRoofText_48520
+	text ""
+	fartext _ReceivedTM49Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _CeladonMartRoofText_48520
 	TX_WAIT
-	db "@"
+	done
 
 CeladonMartRoofText_48526:
 	TX_FAR _CeladonMartRoofText_48526

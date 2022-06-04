@@ -183,16 +183,18 @@ Route24Text1:
 	jp TextScriptEnd
 
 Route24Text_51510:
-	TX_FAR _Route24Text_51510
-	TX_SFX_ITEM_1
-	TX_FAR _Route24Text_51515
-	db "@"
+	text ""
+	fartext _Route24Text_51510
+	sfxtext SFX_GET_ITEM_1
+	fartext _Route24Text_51515
+	done
 
 Route24Text_5151a:
-	TX_FAR _Route24Text_5151a
-	TX_SFX_ITEM_1
+	text ""
+	fartext _Route24Text_5151a
+	sfxtext SFX_GET_ITEM_1
 	TX_BLINK
-	db "@"
+	done
 
 Route24Text_51521:
 	TX_FAR _Route24Text_51521

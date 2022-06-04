@@ -199,10 +199,11 @@ CeladonGymText9:
 	db "@"
 
 TM21Text:
-	TX_FAR _ReceivedTM21Text
-	TX_SFX_ITEM_1
-	TX_FAR _TM21ExplanationText
-	db "@"
+	text ""
+	fartext _ReceivedTM21Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _TM21ExplanationText
+	done
 
 TM21NoRoomText:
 	TX_FAR _TM21NoRoomText

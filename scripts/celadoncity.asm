@@ -68,9 +68,10 @@ TM41PreText:
 	db "@"
 
 ReceivedTM41Text:
-	TX_FAR _ReceivedTM41Text
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _ReceivedTM41Text
+	sfxtext SFX_GET_ITEM_1
+	done
 
 TM41ExplanationText:
 	TX_FAR _TM41ExplanationText

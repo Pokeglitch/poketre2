@@ -57,10 +57,11 @@ _SaffronGymText_5d173::
 
 ReceivedTM46Text::
 	text "<PLAYER> received"
-	line "TM46!@@"
+	line "TM46!"
+	done
 
 _TM46ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM46 is PSYWAVE!"
 	line "It uses powerful"
 	cont "psychic waves to"

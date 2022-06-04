@@ -247,10 +247,11 @@ BlaineBadgeText:
 	db "@"
 
 ReceivedTM38Text:
-	TX_FAR _ReceivedTM38Text
-	TX_SFX_ITEM_1
-	TX_FAR _TM38ExplanationText
-	db "@"
+	text ""
+	fartext _ReceivedTM38Text
+	sfxtext SFX_GET_ITEM_1
+	fartext _TM38ExplanationText
+	done
 
 TM38NoRoomText:
 	TX_FAR _TM38NoRoomText

@@ -47,7 +47,8 @@ _CeruleanGymText_5c7c8::
 
 _ReceivedTM11Text::
 	text "<PLAYER> received"
-	line "TM11!@@"
+	line "TM11!"
+	done
 
 _CeruleanGymText_5c7d3::
 	text "You better make"

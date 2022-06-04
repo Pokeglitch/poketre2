@@ -208,9 +208,10 @@ Museum1FText_5c28e:
 	db "@"
 
 ReceivedOldAmberText:
-	TX_FAR _ReceivedOldAmberText
-	TX_SFX_ITEM_1
-	db "@"
+	text ""
+	fartext _ReceivedOldAmberText
+	sfxtext SFX_GET_ITEM_1
+	done
 
 Museum1FText_5c299:
 	TX_FAR _Museum1FText_5c299
