@@ -61,9 +61,6 @@ PlaceNextChar::
 	ret
 
 .notEnd
-	cp TEXT_INIT
-	jp z, MoveToNextChar ; TODO - delete this when the TextProcessor is removed
-
 	; Commands that have arguments needs to be processed in home bank
 	; TODO - Make this into a table
 	cp RAM_TEXT
@@ -450,13 +447,8 @@ CountNextWordLength:
 	jr nz, .checkVariableLengthChars
 
 	; if it not any of these, then its a normal character
-	; unless its TEXT_INIT, which we just ignore
-	; TODO - this is incorrect with the newly added commands...recheck
 	ld a, b
-	cp TEXT_INIT
-	jr z, .dontInc
 	inc c
-.dontInc
 	jr .readNextCharLoop
 
 .fixedLengthChar

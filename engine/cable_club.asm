@@ -881,7 +881,8 @@ TradeCompleted:
 
 TradeCanceled:
 	db   "Too bad! The trade"
-	next "was canceled!@"
+	next "was canceled!"
+	done
 
 TradeCenterPointerTable:
 	dw TradeCenter_SelectMon

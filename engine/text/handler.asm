@@ -301,8 +301,7 @@ TextDoneCommand:: ; done
 	call CheckRevealTextbox
 
 TextFinishCommon::
-	ld de, TextEndCharText-1
-	pop hl
+	pop bc
 	jp HomeBankswitchReturn
 
 ; Pokedex Page

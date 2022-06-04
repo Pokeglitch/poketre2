@@ -3,7 +3,7 @@
 
 
 ; text macros
-text     EQUS "db TEXT_INIT," ; Start writing text.
+text     EQUS "db " ; Start writing text.
 ramtext  EQUS "dbw RAM_TEXT,"
 neartext EQUS "dbw NEAR_TEXT,"
 
