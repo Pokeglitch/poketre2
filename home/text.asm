@@ -4,7 +4,12 @@
 ;     will reset the text position to the start of the textbox.
 ;     This shouldn't happen, it should continue where it left off
 ;     Resolve by converting those texts to use my new inline-string processor?
-
+;
+; FIX:
+; - The Pokemon Caught and New Pokedex Data SFX doesnt get played
+;   because the SFX_PRESS_AB from the text box "continue" is still active
+;
+; Down arrow motion freezes when sound is playing
 
 TextBoxBorder::
 	homejump TextBoxBorder_
@@ -95,12 +100,8 @@ SoundFXCommand:
 	inc de
 	ld a, [de]
 	inc de
-	push de
-	push hl
 	call PlaySound
 	call WaitForSoundToFinish
-	pop hl
-	pop de
 	jp PlaceNextChar
 
 CryTextCommand:
@@ -560,11 +561,7 @@ TextboxDefinitionCommand:
 ; format: text command ID, sound ID or cry ID
 TextCommandSounds::
 	db $0B, SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded
-	db $12, SFX_CAUGHT_MON
-	db $0F, SFX_GET_ITEM_1 ; unused?
-	db $10, SFX_GET_ITEM_2
 	db $11, SFX_GET_KEY_ITEM
-	db $13, SFX_DEX_PAGE_ADDED
 
 ; wait for A or B to be pressed
 ; 0D

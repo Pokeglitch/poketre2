@@ -2724,10 +2724,11 @@ _ItemUseBallText04::
 
 _ItemUseBallText05::
 	text "All right!"
-	line "@"
-	TX_RAM wEnemyMonNick
-	text " was"
-	cont "caught!@@"
+	line ""
+	ramtext wEnemyMonNick
+	db " was"
+	cont "caught!"
+	done
 
 _ItemUseBallText07::
 	TX_RAM wBoxMonNicks
@@ -2746,9 +2747,10 @@ _ItemUseBallText08::
 _ItemUseBallText06::
 	text "New POKéDEX data"
 	line "will be added for"
-	cont "@"
-	TX_RAM wEnemyMonNick
-	text "!@@"
+	cont ""
+	ramtext wEnemyMonNick
+	db "!"
+	done
 
 _SurfingGotOnText::
 	text "<PLAYER> got on"

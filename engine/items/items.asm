@@ -604,13 +604,17 @@ ItemUseBallText04:
 ;"Shoot! It was so close too!"
 	TX_FAR _ItemUseBallText04
 	db "@"
+
 ItemUseBallText05:
 ;"All right! {MonName} was caught!"
 ;play sound
-	TX_FAR _ItemUseBallText05
-	TX_SFX_CAUGHT_MON
+	text ""
+	fartext _ItemUseBallText05
+	sfxtext SFX_CAUGHT_MON
+	db "@"
 	TX_BLINK
 	db "@"
+
 ItemUseBallText07:
 ;"X was transferred to Bill's PC"
 	TX_FAR _ItemUseBallText07
@@ -623,8 +627,10 @@ ItemUseBallText08:
 ItemUseBallText06:
 ;"New DEX data will be added..."
 ;play sound
-	TX_FAR _ItemUseBallText06
-	TX_SFX_DEX_PAGE_ADDED
+	text ""
+	fartext _ItemUseBallText06
+	sfxtext SFX_DEX_PAGE_ADDED
+	db "@"
 	TX_BLINK
 	db "@"
 
