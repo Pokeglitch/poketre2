@@ -102,10 +102,11 @@ CryTextCommand:
 ; TODO - include in word wrap lookahead
 PrintNumberCommand:
 	call PrepareInlineString
+	ld a, [de]
+
 	inc de
 	push de
 
-	ld a, [de]
 	ld d, b
 	ld e, c ; de = pointer to number
 
