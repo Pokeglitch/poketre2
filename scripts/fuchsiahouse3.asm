@@ -5,7 +5,6 @@ FuchsiaHouse3TextPointers:
 	dw FuchsiaHouse3Text1
 
 FuchsiaHouse3Text1:
-	text ""
 	asmtext
 	ld a, [wd728]
 	bit 4, a
@@ -45,27 +44,22 @@ FuchsiaHouse3Text1:
 	jp TextScriptEnd
 
 FuchsiaHouse3Text_561bd:
-	text ""
 	fartext _FuchsiaHouse3Text_561bd
 	done
 
 FuchsiaHouse3Text_561c2:
-	text ""
 	fartext _FuchsiaHouse3Text_561c2
 	sfxtext SFX_GET_ITEM_1
 	done
 
 FuchsiaHouse3Text_56212:
-	text ""
 	fartext _FuchsiaHouse3Text_56212
 	done
 
 FuchsiaHouse3Text_56217:
-	text ""
 	fartext _FuchsiaHouse3Text_56217
 	done
 
 FuchsiaHouse3Text_5621c:
-	text ""
 	fartext _FuchsiaHouse3Text_5621c
 	done

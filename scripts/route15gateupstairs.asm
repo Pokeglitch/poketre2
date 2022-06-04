@@ -6,7 +6,6 @@ Route15GateUpstairsTextPointers:
 	dw Route15GateUpstairsText2
 
 Route15GateUpstairsText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_EXP_ALL
 	jr nz, .asm_49683
@@ -32,17 +31,14 @@ Route15GateUpstairsText1:
 	jp TextScriptEnd
 
 Route15GateUpstairsText_4968c:
-	text ""
 	fartext _Route15GateUpstairsText_4968c
 	done
 
 Route15GateUpstairsText2:
-	text ""
 	asmtext
 	ld hl, Route15GateUpstairsText_49698
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route15GateUpstairsText_49698:
-	text ""
 	fartext _Route15GateUpstairsText_49698
 	done

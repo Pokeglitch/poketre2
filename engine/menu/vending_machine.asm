@@ -75,7 +75,6 @@ VendingMachineMenu:
 	jp PrintText
 
 VendingMachineText1:
-	text ""
 	fartext _VendingMachineText1
 	done
 
@@ -92,22 +91,18 @@ DrinkPriceText:
 	next "@"
 
 VendingMachineText4:
-	text ""
 	fartext _VendingMachineText4
 	done
 
 VendingMachineText5:
-	text ""
 	fartext _VendingMachineText5
 	done
 
 VendingMachineText6:
-	text ""
 	fartext _VendingMachineText6
 	done
 
 VendingMachineText7:
-	text ""
 	fartext _VendingMachineText7
 	done
 

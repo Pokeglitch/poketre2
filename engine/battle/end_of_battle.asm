@@ -84,6 +84,5 @@ DrawText:
 	str "  DRAW"
 
 PickUpPayDayMoneyText:
-	text ""
 	fartext _PickUpPayDayMoneyText
 	done

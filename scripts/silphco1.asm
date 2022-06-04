@@ -12,6 +12,5 @@ SilphCo1TextPointers:
 	dw SilphCo1Text1
 
 SilphCo1Text1:
-	text ""
 	fartext _SilphCo1Text1
 	done

@@ -132,12 +132,10 @@ CeladonGameCornerTextPointers:
 	dw CeladonGameCornerText13
 
 CeladonGameCornerText1:
-	text ""
 	fartext _CeladonGameCornerText1
 	done
 
 CeladonGameCornerText2:
-	text ""
 	asmtext
 	call CeladonGameCornerScript_48f1e
 	ld hl, CeladonGameCornerText_48d22
@@ -195,47 +193,38 @@ CeladonGameCornerText2:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48d22:
-	text ""
 	fartext _CeladonGameCornerText_48d22
 	done
 
 CeladonGameCornerText_48d27:
-	text ""
 	fartext _CeladonGameCornerText_48d27
 	done
 
 CeladonGameCornerText_48d2c:
-	text ""
 	fartext _CeladonGameCornerText_48d2c
 	done
 
 CeladonGameCornerText_48d31:
-	text ""
 	fartext _CeladonGameCornerText_48d31
 	done
 
 CeladonGameCornerText_48d36:
-	text ""
 	fartext _CeladonGameCornerText_48d36
 	done
 
 CeladonGameCornerText_48d3b:
-	text ""
 	fartext _CeladonGameCornerText_48d3b
 	done
 
 CeladonGameCornerText3:
-	text ""
 	fartext _CeladonGameCornerText3
 	done
 
 CeladonGameCornerText4:
-	text ""
 	fartext _CeladonGameCornerText4
 	done
 
 CeladonGameCornerText5:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_10_COINS
 	jr nz, .asm_48d89
@@ -273,33 +262,27 @@ CeladonGameCornerText5:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48d9c:
-	text ""
 	fartext _CeladonGameCornerText_48d9c
 	done
 
 Received10CoinsText:
-	text ""
 	fartext _Received10CoinsText
 	sfxtext SFX_GET_ITEM_1
 	done
 
 CeladonGameCornerText_48da7:
-	text ""
 	fartext _CeladonGameCornerText_48da7
 	done
 
 CeladonGameCornerText_48dac:
-	text ""
 	fartext _CeladonGameCornerText_48dac
 	done
 
 CeladonGameCornerText6:
-	text ""
 	fartext _CeladonGameCornerText6
 	done
 
 CeladonGameCornerText7:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_ERIKA
 	ld hl, CeladonGameCornerText_48dca
@@ -310,22 +293,18 @@ CeladonGameCornerText7:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48dca:
-	text ""
 	fartext _CeladonGameCornerText_48dca
 	done
 
 CeladonGameCornerText_48dcf:
-	text ""
 	fartext _CeladonGameCornerText_48dcf
 	done
 
 CeladonGameCornerText8:
-	text ""
 	fartext _CeladonGameCornerText8
 	done
 
 CeladonGameCornerText9:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_20_COINS_2
 	jr nz, .asm_48e13
@@ -361,28 +340,23 @@ CeladonGameCornerText9:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48e26:
-	text ""
 	fartext _CeladonGameCornerText_48e26
 	done
 
 Received20CoinsText:
-	text ""
 	fartext _Received20CoinsText
 	sfxtext SFX_GET_ITEM_1
 	done
 
 CeladonGameCornerText_48e31:
-	text ""
 	fartext _CeladonGameCornerText_48e31
 	done
 
 CeladonGameCornerText_48e36:
-	text ""
 	fartext _CeladonGameCornerText_48e36
 	done
 
 CeladonGameCornerText10:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_20_COINS
 	jr nz, .asm_48e75
@@ -418,28 +392,23 @@ CeladonGameCornerText10:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48e88:
-	text ""
 	fartext _CeladonGameCornerText_48e88
 	done
 
 CeladonGameCornerText_48e8d:
-	text ""
 	fartext _CeladonGameCornerText_48e8d
 	sfxtext SFX_GET_ITEM_1
 	done
 
 CeladonGameCornerText_48e93:
-	text ""
 	fartext _CeladonGameCornerText_48e93
 	done
 
 CeladonGameCornerText_48e98:
-	text ""
 	fartext _CeladonGameCornerText_48e98
 	done
 
 CeladonGameCornerText11:
-	text ""
 	asmtext
 	ld hl, CeladonGameCornerText_48ece
 	call PrintText
@@ -462,22 +431,18 @@ CeladonGameCornerText11:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48ece:
-	text ""
 	fartext _CeladonGameCornerText_48ece
 	done
 
 CeladonGameCornerText_48ed3:
-	text ""
 	fartext _CeladonGameCornerText_48ed3
 	done
 
 CeladonGameCornerText13:
-	text ""
 	fartext _CeladonGameCornerText_48ed8
 	done
 
 CeladonGameCornerText12:
-	text ""
 	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -495,7 +460,6 @@ CeladonGameCornerText12:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48f09:
-	text ""
 	fartext _CeladonGameCornerText_48f09
 	asmtext
 	ld a, SFX_SWITCH
@@ -504,7 +468,6 @@ CeladonGameCornerText_48f09:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48f19:
-	text ""
 	fartext _CeladonGameCornerText_48f19
 	done
 

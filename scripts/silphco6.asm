@@ -91,7 +91,6 @@ SilphCo6Script_1a22f:
 	jp PrintText
 
 SilphCo6Text1:
-	text ""
 	asmtext
 	ld hl, SilphCo6Text_1a24a
 	ld de, SilphCo6Text_1a24f
@@ -99,17 +98,14 @@ SilphCo6Text1:
 	jp TextScriptEnd
 
 SilphCo6Text_1a24a:
-	text ""
 	fartext _SilphCo6Text_1a24a
 	done
 
 SilphCo6Text_1a24f:
-	text ""
 	fartext _SilphCo6Text_1a24f
 	done
 
 SilphCo6Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo6Text_1a261
 	ld de, SilphCo6Text_1a266
@@ -117,17 +113,14 @@ SilphCo6Text2:
 	jp TextScriptEnd
 
 SilphCo6Text_1a261:
-	text ""
 	fartext _SilphCo6Text_1a261
 	done
 
 SilphCo6Text_1a266:
-	text ""
 	fartext _SilphCo6Text_1a266
 	done
 
 SilphCo6Text3:
-	text ""
 	asmtext
 	ld hl, SilphCo6Text_1a278
 	ld de, SilphCo6Text_1a27d
@@ -135,17 +128,14 @@ SilphCo6Text3:
 	jp TextScriptEnd
 
 SilphCo6Text_1a278:
-	text ""
 	fartext _SilphCo6Text_1a278
 	done
 
 SilphCo6Text_1a27d:
-	text ""
 	fartext _SilphCo6Text_1a27d
 	done
 
 SilphCo6Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo6Text_1a28f
 	ld de, SilphCo6Text_1a294
@@ -153,17 +143,14 @@ SilphCo6Text4:
 	jp TextScriptEnd
 
 SilphCo6Text_1a28f:
-	text ""
 	fartext _SilphCo6Text_1a28f
 	done
 
 SilphCo6Text_1a294:
-	text ""
 	fartext _SilphCo6Text_1a294
 	done
 
 SilphCo6Text5:
-	text ""
 	asmtext
 	ld hl, SilphCo6Text_1a2a6
 	ld de, SilphCo6Text_1a2ab
@@ -171,77 +158,63 @@ SilphCo6Text5:
 	jp TextScriptEnd
 
 SilphCo6Text_1a2a6:
-	text ""
 	fartext _SilphCo6Text_1a2a6
 	done
 
 SilphCo6Text_1a2ab:
-	text ""
 	fartext _SilphCo6Text_1a2ab
 	done
 
 SilphCo6Text6:
-	text ""
 	asmtext
 	ld hl, SilphCo6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo6BattleText2:
-	text ""
 	fartext _SilphCo6BattleText2
 	done
 
 SilphCo6EndBattleText2:
-	text ""
 	fartext _SilphCo6EndBattleText2
 	done
 
 SilphCo6AfterBattleText2:
-	text ""
 	fartext _SilphCo6AfterBattleText2
 	done
 
 SilphCo6Text7:
-	text ""
 	asmtext
 	ld hl, SilphCo6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo6BattleText3:
-	text ""
 	fartext _SilphCo6BattleText3
 	done
 
 SilphCo6EndBattleText3:
-	text ""
 	fartext _SilphCo6EndBattleText3
 	done
 
 SilphCo6AfterBattleText3:
-	text ""
 	fartext _SilphCo6AfterBattleText3
 	done
 
 SilphCo6Text8:
-	text ""
 	asmtext
 	ld hl, SilphCo6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo6BattleText4:
-	text ""
 	fartext _SilphCo6BattleText4
 	done
 
 SilphCo6EndBattleText4:
-	text ""
 	fartext _SilphCo6EndBattleText4
 	done
 
 SilphCo6AfterBattleText4:
-	text ""
 	fartext _SilphCo6AfterBattleText4
 	done

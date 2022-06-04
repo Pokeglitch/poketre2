@@ -23,7 +23,6 @@ _Route12HouseText_564c5::
 	done
 
 _Route12HouseText_564ca::
-	text ""
 	para "Fishing is a way"
 	line "of life!"
 

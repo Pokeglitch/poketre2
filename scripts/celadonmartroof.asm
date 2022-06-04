@@ -134,18 +134,15 @@ RemoveItemByIDBank12:
 	jpba RemoveItemByID
 
 CeladonMartRoofText_484ee:
-	text ""
 	fartext _CeladonMartRoofText_484ee
 	done
 
 CeladonMartRoofText_484f3:
-	text ""
 	fartext _CeladonMartRoofText_484f3
 	wait
 	done
 
 CeladonMartRoofText_484f9:
-	text ""
 	fartext _CeladonMartRoofText_484f9
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_484fe
@@ -153,13 +150,11 @@ CeladonMartRoofText_484f9:
 	done
 
 CeladonMartRoofText_48504:
-	text ""
 	fartext _CeladonMartRoofText_48504
 	wait
 	done
 
 CeladonMartRoofText_4850a:
-	text ""
 	fartext _CeladonMartRoofText_4850a
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_4850f
@@ -167,13 +162,11 @@ CeladonMartRoofText_4850a:
 	done
 
 CeladonMartRoofText_48515:
-	text ""
 	fartext _CeladonMartRoofText_48515
 	wait
 	done
 
 ReceivedTM49Text:
-	text ""
 	fartext _ReceivedTM49Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_48520
@@ -181,13 +174,11 @@ ReceivedTM49Text:
 	done
 
 CeladonMartRoofText_48526:
-	text ""
 	fartext _CeladonMartRoofText_48526
 	wait
 	done
 
 CeladonMartRoofText_4852c:
-	text ""
 	fartext _CeladonMartRoofText_4852c
 	wait
 	done
@@ -223,12 +214,10 @@ CeladonMartRoofTextPointers:
 	dw CeladonMartRoofText6
 
 CeladonMartRoofText1:
-	text ""
 	fartext _CeladonMartRoofText1
 	done
 
 CeladonMartRoofText2:
-	text ""
 	asmtext
 	call CeladonMartRoofScript_GetDrinksInBag
 	ld a, [wFilteredBagItemsCount]
@@ -251,12 +240,10 @@ CeladonMartRoofText2:
 	jp TextScriptEnd
 
 CeladonMartRoofText3:
-	text ""
 	fartext _CeladonMartRoofText_48598
 	done
 
 CeladonMartRoofText4:
-	text ""
 	fartext _CeladonMartRoofText4
 	done
 
@@ -264,6 +251,5 @@ CeladonMartRoofText5:
 	TX_VENDING_MACHINE
 
 CeladonMartRoofText6:
-	text ""
 	fartext _CeladonMartRoofText6
 	done

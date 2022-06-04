@@ -123,251 +123,205 @@ Route17TrainerHeader9:
 	db $ff
 
 Route17Text1:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText1:
-	text ""
 	fartext _Route17BattleText1
 	done
 
 Route17EndBattleText1:
-	text ""
 	fartext _Route17EndBattleText1
 	done
 
 Route17AfterBattleText1:
-	text ""
 	fartext _Route17AfterBattleText1
 	done
 
 Route17Text2:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText2:
-	text ""
 	fartext _Route17BattleText2
 	done
 
 Route17EndBattleText2:
-	text ""
 	fartext _Route17EndBattleText2
 	done
 
 Route17AfterBattleText2:
-	text ""
 	fartext _Route17AfterBattleText2
 	done
 
 Route17Text3:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText3:
-	text ""
 	fartext _Route17BattleText3
 	done
 
 Route17EndBattleText3:
-	text ""
 	fartext _Route17EndBattleText3
 	done
 
 Route17AfterBattleText3:
-	text ""
 	fartext _Route17AfterBattleText3
 	done
 
 Route17Text4:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText4:
-	text ""
 	fartext _Route17BattleText4
 	done
 
 Route17EndBattleText4:
-	text ""
 	fartext _Route17EndBattleText4
 	done
 
 Route17AfterBattleText4:
-	text ""
 	fartext _Route17AfterBattleText4
 	done
 
 Route17Text5:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText5:
-	text ""
 	fartext _Route17BattleText5
 	done
 
 Route17EndBattleText5:
-	text ""
 	fartext _Route17EndBattleText5
 	done
 
 Route17AfterBattleText5:
-	text ""
 	fartext _Route17AfterBattleText5
 	done
 
 Route17Text6:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText6:
-	text ""
 	fartext _Route17BattleText6
 	done
 
 Route17EndBattleText6:
-	text ""
 	fartext _Route17EndBattleText6
 	done
 
 Route17AfterBattleText6:
-	text ""
 	fartext _Route17AfterBattleText6
 	done
 
 Route17Text7:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText7:
-	text ""
 	fartext _Route17BattleText7
 	done
 
 Route17EndBattleText7:
-	text ""
 	fartext _Route17EndBattleText7
 	done
 
 Route17AfterBattleText7:
-	text ""
 	fartext _Route17AfterBattleText7
 	done
 
 Route17Text8:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText8:
-	text ""
 	fartext _Route17BattleText8
 	done
 
 Route17EndBattleText8:
-	text ""
 	fartext _Route17EndBattleText8
 	done
 
 Route17AfterBattleText8:
-	text ""
 	fartext _Route17AfterBattleText8
 	done
 
 Route17Text9:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText9:
-	text ""
 	fartext _Route17BattleText9
 	done
 
 Route17EndBattleText9:
-	text ""
 	fartext _Route17EndBattleText9
 	done
 
 Route17AfterBattleText9:
-	text ""
 	fartext _Route17AfterBattleText9
 	done
 
 Route17Text10:
-	text ""
 	asmtext
 	ld hl, Route17TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route17BattleText10:
-	text ""
 	fartext _Route17BattleText10
 	done
 
 Route17EndBattleText10:
-	text ""
 	fartext _Route17EndBattleText10
 	done
 
 Route17AfterBattleText10:
-	text ""
 	fartext _Route17AfterBattleText10
 	done
 
 Route17Text11:
-	text ""
 	fartext _Route17Text11
 	done
 
 Route17Text12:
-	text ""
 	fartext _Route17Text12
 	done
 
 Route17Text13:
-	text ""
 	fartext _Route17Text13
 	done
 
 Route17Text14:
-	text ""
 	fartext _Route17Text14
 	done
 
 Route17Text15:
-	text ""
 	fartext _Route17Text15
 	done
 
 Route17Text16:
-	text ""
 	fartext _Route17Text16
 	done

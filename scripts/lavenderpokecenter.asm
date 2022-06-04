@@ -15,11 +15,9 @@ LavenderHealNurseText:
 	TX_POKECENTER_NURSE
 
 LavenderPokecenterText2:
-	text ""
 	fartext _LavenderPokecenterText2
 	done
 
 LavenderPokecenterText3:
-	text ""
 	fartext _LavenderPokecenterText3
 	done

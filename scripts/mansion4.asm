@@ -90,50 +90,41 @@ Mansion4TrainerHeader1:
 	db $ff
 
 Mansion4Text1:
-	text ""
 	asmtext
 	ld hl, Mansion4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Mansion4Text2:
-	text ""
 	asmtext
 	ld hl, Mansion4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Mansion4BattleText1:
-	text ""
 	fartext _Mansion4BattleText1
 	done
 
 Mansion4EndBattleText1:
-	text ""
 	fartext _Mansion4EndBattleText1
 	done
 
 Mansion4AfterBattleText1:
-	text ""
 	fartext _Mansion4AfterBattleText1
 	done
 
 Mansion4BattleText2:
-	text ""
 	fartext _Mansion4BattleText2
 	done
 
 Mansion4EndBattleText2:
-	text ""
 	fartext _Mansion4EndBattleText2
 	done
 
 Mansion4AfterBattleText2:
-	text ""
 	fartext _Mansion4AfterBattleText2
 	done
 
 Mansion4Text7:
-	text ""
 	fartext _Mansion4Text7
 	done

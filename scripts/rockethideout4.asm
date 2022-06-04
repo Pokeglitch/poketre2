@@ -114,7 +114,6 @@ RocketHideout4TrainerHeader2:
 	db $ff
 
 RocketHideout4Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
 	jp nz, .asm_545571
@@ -143,83 +142,68 @@ RocketHideout4Text1:
 	jp TextScriptEnd
 
 RocketHideout4Text_4557a:
-	text ""
 	fartext _RocketHideout4Text_4557a
 	done
 
 RocketHideout4Text_4557f:
-	text ""
 	fartext _RocketHideout4Text_4557f
 	done
 
 RocketHideout4Text10:
-	text ""
 	fartext _RocketHideout4Text_45584
 	done
 
 RocketHideout4Text2:
-	text ""
 	asmtext
 	ld hl, RocketHideout4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout4BattleText2:
-	text ""
 	fartext _RocketHideout4BattleText2
 	done
 
 RocketHideout4EndBattleText2:
-	text ""
 	fartext _RocketHideout4EndBattleText2
 	done
 
 RocketHideout4AfterBattleText2:
-	text ""
 	fartext _RocketHide4AfterBattleText2
 	done
 
 RocketHideout4Text3:
-	text ""
 	asmtext
 	ld hl, RocketHideout4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout4BattleText3:
-	text ""
 	fartext _RocketHideout4BattleText3
 	done
 
 RocketHideout4EndBattleText3:
-	text ""
 	fartext _RocketHideout4EndBattleText3
 	done
 
 RocketHideout4AfterBattleText3:
-	text ""
 	fartext _RocketHide4AfterBattleText3
 	done
 
 RocketHideout4Text4:
-	text ""
 	asmtext
 	ld hl, RocketHideout4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout4BattleText4:
-	text ""
 	fartext _RocketHideout4BattleText4
 	done
 
 RocketHideout4EndBattleText4:
-	text ""
 	fartext _RocketHideout4EndBattleText4
 	done
 
 RocketHideout4AfterBattleText4:
-	text ""
 	asmtext
 	ld hl, RocketHideout4Text_455ec
 	call PrintText
@@ -232,6 +216,5 @@ RocketHideout4AfterBattleText4:
 	jp TextScriptEnd
 
 RocketHideout4Text_455ec:
-	text ""
 	fartext _RocketHideout4Text_455ec
 	done

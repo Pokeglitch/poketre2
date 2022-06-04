@@ -116,6 +116,5 @@ HallOfFameNoText:
 	str "HALL OF FAME No   "
 
 AccessedHoFPCText:
-	text ""
 	fartext _AccessedHoFPCText
 	done

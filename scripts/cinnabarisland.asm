@@ -61,31 +61,25 @@ CinnabarIslandTextPointers:
 	dw CinnabarIslandText8
 
 CinnabarIslandText8:
-	text ""
 	fartext _CinnabarIslandText8
 	done
 
 CinnabarIslandText1:
-	text ""
 	fartext _CinnabarIslandText1
 	done
 
 CinnabarIslandText2:
-	text ""
 	fartext _CinnabarIslandText2
 	done
 
 CinnabarIslandText3:
-	text ""
 	fartext _CinnabarIslandText3
 	done
 
 CinnabarIslandText6:
-	text ""
 	fartext _CinnabarIslandText6
 	done
 
 CinnabarIslandText7:
-	text ""
 	fartext _CinnabarIslandText7
 	done

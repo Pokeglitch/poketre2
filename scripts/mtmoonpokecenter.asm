@@ -14,17 +14,14 @@ MtMoonHealNurseText:
 	db $ff
 
 MtMoonPokecenterText2:
-	text ""
 	fartext _MtMoonPokecenterText1
 	done
 
 MtMoonPokecenterText3:
-	text ""
 	fartext _MtMoonPokecenterText3
 	done
 
 MagikarpSalesmanText:
-	text ""
 	asmtext
 	CheckEvent EVENT_BOUGHT_MAGIKARP, 1
 	jp c, .alreadyBoughtMagikarp
@@ -68,27 +65,22 @@ MagikarpSalesmanText:
 	jp TextScriptEnd
 
 .Text1
-	text ""
 	fartext _MagikarpSalesmanText1
 	done
 
 .RefuseText
-	text ""
 	fartext _MagikarpSalesmanNoText
 	done
 
 .NoMoneyText
-	text ""
 	fartext _MagikarpSalesmanNoMoneyText
 	done
 
 .Text2
-	text ""
 	fartext _MagikarpSalesmanText2
 	done
 
 MtMoonPokecenterText5:
-	text ""
 	fartext _MtMoonPokecenterText5
 	done
 

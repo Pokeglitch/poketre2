@@ -78,133 +78,109 @@ Route6TrainerHeader5:
 	db $ff
 
 Route6Text1:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText1:
-	text ""
 	fartext _Route6BattleText1
 	done
 
 Route6EndBattleText1:
-	text ""
 	fartext _Route6EndBattleText1
 	done
 
 Route6AfterBattleText1:
-	text ""
 	fartext _Route6AfterBattleText1
 	done
 
 Route6Text2:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText2:
-	text ""
 	fartext _Route6BattleText2
 	done
 
 Route6EndBattleText2:
-	text ""
 	fartext _Route6EndBattleText2
 	done
 
 Route6Text3:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText3:
-	text ""
 	fartext _Route6BattleText3
 	done
 
 Route6EndBattleText3:
-	text ""
 	fartext _Route6EndBattleText3
 	done
 
 Route6AfterBattleText3:
-	text ""
 	fartext _Route6AfterBattleText3
 	done
 
 Route6Text4:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText4:
-	text ""
 	fartext _Route6BattleText4
 	done
 
 Route6EndBattleText4:
-	text ""
 	fartext _Route6EndBattleText4
 	done
 
 Route6AfterBattleText4:
-	text ""
 	fartext _Route6AfterBattleText4
 	done
 
 Route6Text5:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText5:
-	text ""
 	fartext _Route6BattleText5
 	done
 
 Route6EndBattleText5:
-	text ""
 	fartext _Route6EndBattleText5
 	done
 
 Route6AfterBattleText5:
-	text ""
 	fartext _Route6AfterBattleText5
 	done
 
 Route6Text6:
-	text ""
 	asmtext
 	ld hl, Route6TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route6BattleText6:
-	text ""
 	fartext _Route6BattleText6
 	done
 
 Route6EndBattleText6:
-	text ""
 	fartext _Route6EndBattleText6
 	done
 
 Route6AfterBattleText6:
-	text ""
 	fartext _Route6AfterBattleText6
 	done
 
 Route6Text7:
-	text ""
 	fartext _Route6Text7
 	done

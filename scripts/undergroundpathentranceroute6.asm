@@ -7,6 +7,5 @@ UndergroundPathEntranceRoute6TextPointers:
 	dw UndergroundPathEntranceRoute6Text1
 
 UndergroundPathEntranceRoute6Text1:
-	text ""
 	fartext _UndergrdTunnelEntRoute6Text1
 	done

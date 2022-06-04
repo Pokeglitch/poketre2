@@ -11,7 +11,6 @@ CopycatsHouse2FTextPointers:
 	dw CopycatsHouse2FText7
 
 CopycatsHouse2FText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM31
 	jr nz, .asm_7ccf3
@@ -45,56 +44,46 @@ CopycatsHouse2FText1:
 	jp TextScriptEnd
 
 CopycatsHouse2FText_5ccd4:
-	text ""
 	fartext _CopycatsHouse2FText_5ccd4
 	done
 
 TM31PreReceiveText:
-	text ""
 	fartext _TM31PreReceiveText
 	done
 
 ReceivedTM31Text:
-	text ""
 	fartext _ReceivedTM31Text
 	sfxtext SFX_GET_ITEM_1
 
 TM31ExplanationText1:
-	text ""
 	fartext _TM31ExplanationText1
 	wait
 	done
 
 TM31ExplanationText2:
-	text ""
 	fartext _TM31ExplanationText2
 	done
 
 TM31NoRoomText:
-	text ""
 	fartext _TM31NoRoomText
 	wait
 	done
 
 CopycatsHouse2FText2:
-	text ""
 	fartext _CopycatsHouse2FText2
 	done
 
 CopycatsHouse2FText5:
 CopycatsHouse2FText4:
 CopycatsHouse2FText3:
-	text ""
 	fartext _CopycatsHouse2FText3
 	done
 
 CopycatsHouse2FText6:
-	text ""
 	fartext _CopycatsHouse2FText6
 	done
 
 CopycatsHouse2FText7:
-	text ""
 	asmtext
 	ld a, [wSpriteStateData1 + 9]
 	cp SPRITE_FACING_UP
@@ -106,11 +95,9 @@ CopycatsHouse2FText7:
 	jp TextScriptEnd
 
 CopycatsHouse2FText_5cd17:
-	text ""
 	fartext _CopycatsHouse2FText_5cd17
 	done
 
 CopycatsHouse2FText_5cd1c:
-	text ""
 	fartext _CopycatsHouse2FText_5cd1c
 	done

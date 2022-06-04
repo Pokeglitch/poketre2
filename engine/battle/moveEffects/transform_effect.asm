@@ -144,6 +144,5 @@ TransformEffect_:
 	jp BankswitchEtoF
 
 TransformedText:
-	text ""
 	fartext _TransformedText
 	done

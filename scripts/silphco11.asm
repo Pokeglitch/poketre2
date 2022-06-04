@@ -301,7 +301,6 @@ SilphCo11TrainerHeader1:
 	db $ff
 
 SilphCo11Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_MASTER_BALL
 	jp nz, .asm_62308
@@ -325,92 +324,75 @@ SilphCo11Text1:
 	jp TextScriptEnd
 
 SilphCoPresidentText:
-	text ""
 	fartext _SilphCoPresidentText
 	done
 
 ReceivedSilphCoMasterBallText:
-	text ""
 	fartext _ReceivedSilphCoMasterBallText
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 SilphCo10Text_6231c:
-	text ""
 	fartext _SilphCo10Text_6231c
 	done
 
 SilphCoMasterBallNoRoomText:
-	text ""
 	fartext _SilphCoMasterBallNoRoomText
 	done
 
 SilphCo11Text2:
-	text ""
 	fartext _SilphCo11Text2
 	done
 
 SilphCo11Text3:
-	text ""
 	fartext _SilphCo11Text3
 	done
 
 SilphCo10Text_62330:
-	text ""
 	fartext _SilphCo10Text_62330
 	done
 
 SilphCo11Text6:
-	text ""
 	fartext _SilphCo10Text_62335
 	done
 
 SilphCo11Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo11TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo11BattleText1:
-	text ""
 	fartext _SilphCo11BattleText1
 	done
 
 SilphCo11EndBattleText1:
-	text ""
 	fartext _SilphCo11EndBattleText1
 	done
 
 SilphCo11AfterBattleText1:
-	text ""
 	fartext _SilphCo11AfterBattleText1
 	done
 
 SilphCo11Text5:
-	text ""
 	asmtext
 	ld hl, SilphCo11TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo11BattleText2:
-	text ""
 	fartext _SilphCo11BattleText2
 	done
 
 SilphCo11EndBattleText2:
-	text ""
 	fartext _SilphCo11EndBattleText2
 	done
 
 SilphCo11AfterBattleText2:
-	text ""
 	fartext _SilphCo11AfterBattleText2
 	done
 
 SilphCo10Text_6236c:
-	text ""
 	asmtext
 	ld hl, SilphCo10Text_6237b
 	call PrintText
@@ -419,6 +401,5 @@ SilphCo10Text_6236c:
 	jp TextScriptEnd
 
 SilphCo10Text_6237b:
-	text ""
 	fartext _SilphCo10Text_6237b
 	done

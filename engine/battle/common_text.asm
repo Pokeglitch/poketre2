@@ -71,32 +71,26 @@ PrintBeginningBattleText:
 	ret
 
 WildMonAppearedText:
-	text ""
 	fartext _WildMonAppearedText
 	done
 
 HookedMonAttackedText:
-	text ""
 	fartext _HookedMonAttackedText
 	done
 
 EnemyAppearedText:
-	text ""
 	fartext _EnemyAppearedText
 	done
 
 TrainerWantsToFightText:
-	text ""
 	fartext _TrainerWantsToFightText
 	done
 
 UnveiledGhostText:
-	text ""
 	fartext _UnveiledGhostText
 	done
 
 GhostCantBeIDdText:
-	text ""
 	fartext _GhostCantBeIDdText
 	done
 
@@ -144,25 +138,21 @@ PrintSendOutMonMessage:
 	jp PrintText
 
 GoText:
-	text ""
 	fartext _GoText
 	asmtext
 	jr PrintPlayerMon1Text
 
 DoItText:
-	text ""
 	fartext _DoItText
 	asmtext
 	jr PrintPlayerMon1Text
 
 GetmText:
-	text ""
 	fartext _GetmText
 	asmtext
 	jr PrintPlayerMon1Text
 
 EnemysWeakText:
-	text ""
 	fartext _EnemysWeakText
 	asmtext
 
@@ -171,7 +161,6 @@ PrintPlayerMon1Text:
 	ret
 
 PlayerMon1Text:
-	text ""
 	fartext _PlayerMon1Text
 	done
 
@@ -180,7 +169,6 @@ RetreatMon:
 	jp PrintText
 
 PlayerMon2Text:
-	text ""
 	fartext _PlayerMon2Text
 	asmtext
 	push de
@@ -232,19 +220,16 @@ PlayerMon2Text:
 	ret
 
 EnoughText:
-	text ""
 	fartext _EnoughText
 	asmtext
 	jr PrintComeBackText
 
 OKExclamationText:
-	text ""
 	fartext _OKExclamationText
 	asmtext
 	jr PrintComeBackText
 
 GoodText:
-	text ""
 	fartext _GoodText
 	asmtext
 	jr PrintComeBackText
@@ -254,6 +239,5 @@ PrintComeBackText:
 	ret
 
 ComeBackText:
-	text ""
 	fartext _ComeBackText
 	done

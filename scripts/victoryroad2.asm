@@ -140,49 +140,42 @@ MoltresTrainerHeader:
 	db $ff
 
 VictoryRoad2Text1:
-	text ""
 	asmtext
 	ld hl, VictoryRoad2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text2:
-	text ""
 	asmtext
 	ld hl, VictoryRoad2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text3:
-	text ""
 	asmtext
 	ld hl, VictoryRoad2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text4:
-	text ""
 	asmtext
 	ld hl, VictoryRoad2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text5:
-	text ""
 	asmtext
 	ld hl, VictoryRoad2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MoltresText:
-	text ""
 	asmtext
 	ld hl, MoltresTrainerHeader
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MoltresBattleText:
-	text ""
 	fartext _MoltresBattleText
 	asmtext
 	ld a, MOLTRES
@@ -191,76 +184,61 @@ MoltresBattleText:
 	jp TextScriptEnd
 
 VictoryRoad2BattleText1:
-	text ""
 	fartext _VictoryRoad2BattleText1
 	done
 
 VictoryRoad2EndBattleText1:
-	text ""
 	fartext _VictoryRoad2EndBattleText1
 	done
 
 VictoryRoad2AfterBattleText1:
-	text ""
 	fartext _VictoryRoad2AfterBattleText1
 	done
 
 VictoryRoad2BattleText2:
-	text ""
 	fartext _VictoryRoad2BattleText2
 	done
 
 VictoryRoad2EndBattleText2:
-	text ""
 	fartext _VictoryRoad2EndBattleText2
 	done
 
 VictoryRoad2AfterBattleText2:
-	text ""
 	fartext _VictoryRoad2AfterBattleText2
 	done
 
 VictoryRoad2BattleText3:
-	text ""
 	fartext _VictoryRoad2BattleText3
 	done
 
 VictoryRoad2EndBattleText3:
-	text ""
 	fartext _VictoryRoad2EndBattleText3
 	done
 
 VictoryRoad2AfterBattleText3:
-	text ""
 	fartext _VictoryRoad2AfterBattleText3
 	done
 
 VictoryRoad2BattleText4:
-	text ""
 	fartext _VictoryRoad2BattleText4
 	done
 
 VictoryRoad2EndBattleText4:
-	text ""
 	fartext _VictoryRoad2EndBattleText4
 	done
 
 VictoryRoad2AfterBattleText4:
-	text ""
 	fartext _VictoryRoad2AfterBattleText4
 	done
 
 VictoryRoad2BattleText5:
-	text ""
 	fartext _VictoryRoad2BattleText5
 	done
 
 VictoryRoad2EndBattleText5:
-	text ""
 	fartext _VictoryRoad2EndBattleText5
 	done
 
 VictoryRoad2AfterBattleText5:
-	text ""
 	fartext _VictoryRoad2AfterBattleText5
 	done

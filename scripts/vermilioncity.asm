@@ -129,12 +129,10 @@ VermilionCityTextPointers:
 	dw VermilionCityText13
 
 VermilionCityText1:
-	text ""
 	fartext _VermilionCityText1
 	done
 
 VermilionCityText2:
-	text ""
 	asmtext
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .asm_1989e
@@ -148,17 +146,14 @@ VermilionCityText2:
 	jp TextScriptEnd
 
 VermilionCityText_198a7:
-	text ""
 	fartext _VermilionCityText_198a7
 	done
 
 VermilionCityText_198ac:
-	text ""
 	fartext _VermilionCityText_198ac
 	done
 
 VermilionCityText3:
-	text ""
 	asmtext
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .asm_198f6
@@ -201,37 +196,30 @@ VermilionCityCoords1:
 	db $ff
 
 SSAnneWelcomeText4:
-	text ""
 	fartext _SSAnneWelcomeText4
 	done
 
 SSAnneWelcomeText9:
-	text ""
 	fartext _SSAnneWelcomeText9
 	done
 
 SSAnneFlashedTicketText:
-	text ""
 	fartext _SSAnneFlashedTicketText
 	done
 
 SSAnneNoTicketText:
-	text ""
 	fartext _SSAnneNoTicketText
 	done
 
 SSAnneNotHereText:
-	text ""
 	fartext _SSAnneNotHereText
 	done
 
 VermilionCityText4:
-	text ""
 	fartext _VermilionCityText4
 	done
 
 VermilionCityText5:
-	text ""
 	fartext _VermilionCityText5
 	asmtext
 	ld a, MACHOP
@@ -241,36 +229,29 @@ VermilionCityText5:
 	ret
 
 VermilionCityText14:
-	text ""
 	fartext _VermilionCityText14
 	done
 
 VermilionCityText6:
-	text ""
 	fartext _VermilionCityText6
 	done
 
 VermilionCityText7:
-	text ""
 	fartext _VermilionCityText7
 	done
 
 VermilionCityText8:
-	text ""
 	fartext _VermilionCityText8
 	done
 
 VermilionCityText11:
-	text ""
 	fartext _VermilionCityText11
 	done
 
 VermilionCityText12:
-	text ""
 	fartext _VermilionCityText12
 	done
 
 VermilionCityText13:
-	text ""
 	fartext _VermilionCityText13
 	done

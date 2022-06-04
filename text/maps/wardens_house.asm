@@ -24,7 +24,6 @@ _WardenTeethText1::
 	done
 
 _WardenTeethText2::
-	text ""
 	para "The WARDEN popped"
 	line "in his teeth!"
 	prompt

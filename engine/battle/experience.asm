@@ -340,7 +340,6 @@ BoostExp:
 	ret
 
 GainedText:
-	text ""
 	fartext _GainedText
 	asmtext
 	ld a, [wBoostExpByExpAll]
@@ -355,23 +354,19 @@ GainedText:
 	ret
 
 WithExpAllText:
-	text ""
 	fartext _WithExpAllText
 	asmtext
 	ld hl, ExpPointsText
 	ret
 
 BoostedText:
-	text ""
 	fartext _BoostedText
 
 ExpPointsText:
-	text ""
 	fartext _ExpPointsText
 	done
 
 GrewLevelText:
-	text ""
 	fartext _GrewLevelText
 	sfxtext SFX_LEVEL_UP
 	done

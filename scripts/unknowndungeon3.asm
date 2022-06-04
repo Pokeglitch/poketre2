@@ -29,14 +29,12 @@ MewtwoTrainerHeader:
 	db $ff
 
 MewtwoText:
-	text ""
 	asmtext
 	ld hl, MewtwoTrainerHeader
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MewtwoBattleText:
-	text ""
 	fartext _MewtwoBattleText
 	asmtext
 	ld a, MEWTWO

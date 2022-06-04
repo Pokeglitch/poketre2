@@ -68,21 +68,18 @@ SilphCo10TrainerHeader1:
 	db $ff
 
 SilphCo10Text1:
-	text ""
 	asmtext
 	ld hl, SilphCo10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo10Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo10Text3:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	ld hl, SilphCo10Text_5a1d8
@@ -93,41 +90,33 @@ SilphCo10Text3:
 	jp TextScriptEnd
 
 SilphCo10Text_5a1d3:
-	text ""
 	fartext _SilphCo10Text_5a1d3
 	done
 
 SilphCo10Text_5a1d8:
-	text ""
 	fartext _SilphCo10Text_5a1d8
 	done
 
 SilphCo10BattleText1:
-	text ""
 	fartext _SilphCo10BattleText1
 	done
 
 SilphCo10EndBattleText1:
-	text ""
 	fartext _SilphCo10EndBattleText1
 	done
 
 SilphCo10AfterBattleText1:
-	text ""
 	fartext _SilphCo10AfterBattleText1
 	done
 
 SilphCo10BattleText2:
-	text ""
 	fartext _SilphCo10BattleText2
 	done
 
 SilphCo10EndBattleText2:
-	text ""
 	fartext _SilphCo10EndBattleText2
 	done
 
 SilphCo10AfterBattleText2:
-	text ""
 	fartext _SilphCo10AfterBattleText2
 	done

@@ -122,7 +122,6 @@ SilphCo5TrainerHeader3:
 	db $ff
 
 SilphCo5Text1:
-	text ""
 	asmtext
 	ld hl, SilphCo5Text_1a010
 	ld de, SilphCo5Text_1a015
@@ -130,114 +129,93 @@ SilphCo5Text1:
 	jp TextScriptEnd
 
 SilphCo5Text_1a010:
-	text ""
 	fartext _SilphCo5Text_1a010
 	done
 
 SilphCo5Text_1a015:
-	text ""
 	fartext _SilphCo5Text_1a015
 	done
 
 SilphCo5Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo5TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo5BattleText2:
-	text ""
 	fartext _SilphCo5BattleText2
 	done
 
 SilphCo5EndBattleText2:
-	text ""
 	fartext _SilphCo5EndBattleText2
 	done
 
 SilphCo5AfterBattleText2:
-	text ""
 	fartext _SilphCo5AfterBattleText2
 	done
 
 SilphCo5Text3:
-	text ""
 	asmtext
 	ld hl, SilphCo5TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo5BattleText3:
-	text ""
 	fartext _SilphCo5BattleText3
 	done
 
 SilphCo5EndBattleText3:
-	text ""
 	fartext _SilphCo5EndBattleText3
 	done
 
 SilphCo5AfterBattleText3:
-	text ""
 	fartext _SilphCo5AfterBattleText3
 	done
 
 SilphCo5Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo5TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo5BattleText4:
-	text ""
 	fartext _SilphCo5BattleText4
 	done
 
 SilphCo5EndBattleText4:
-	text ""
 	fartext _SilphCo5EndBattleText4
 	done
 
 SilphCo5AfterBattleText4:
-	text ""
 	fartext _SilphCo5AfterBattleText4
 	done
 
 SilphCo5Text5:
-	text ""
 	asmtext
 	ld hl, SilphCo5TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo5BattleText5:
-	text ""
 	fartext _SilphCo5BattleText5
 	done
 
 SilphCo5EndBattleText5:
-	text ""
 	fartext _SilphCo5EndBattleText5
 	done
 
 SilphCo5AfterBattleText5:
-	text ""
 	fartext _SilphCo5AfterBattleText5
 	done
 
 SilphCo5Text9:
-	text ""
 	fartext _SilphCo5Text9
 	done
 
 SilphCo5Text10:
-	text ""
 	fartext _SilphCo5Text10
 	done
 
 SilphCo5Text11:
-	text ""
 	fartext _SilphCo5Text11
 	done

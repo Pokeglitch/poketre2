@@ -92,7 +92,6 @@ Route16GateTextPointers:
 	dw Route16GateText3
 
 Route16GateText1:
-	text ""
 	asmtext
 	call Route16GateScript_49755
 	jr z, .asm_0bdf3
@@ -106,21 +105,17 @@ Route16GateText1:
 	jp TextScriptEnd
 
 Route16GateText_49777:
-	text ""
 	fartext _Route16GateText_49777
 	done
 
 Route16GateText_4977c:
-	text ""
 	fartext _Route16GateText_4977c
 	done
 
 Route16GateText3:
-	text ""
 	fartext _Route16GateText_49781
 	done
 
 Route16GateText2:
-	text ""
 	fartext _Route16GateText2
 	done

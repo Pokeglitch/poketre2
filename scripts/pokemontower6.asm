@@ -133,28 +133,24 @@ PokemonTower6TrainerHeader2:
 	db $ff
 
 PokemonTower6Text1:
-	text ""
 	asmtext
 	ld hl, PokemonTower6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text2:
-	text ""
 	asmtext
 	ld hl, PokemonTower6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text3:
-	text ""
 	asmtext
 	ld hl, PokemonTower6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text7:
-	text ""
 	asmtext
 	ld hl, PokemonTower2Text_60c1f
 	call PrintText
@@ -168,61 +164,49 @@ PokemonTower6Text7:
 	jp TextScriptEnd
 
 PokemonTower2Text_60c1f:
-	text ""
 	fartext _PokemonTower2Text_60c1f
 	done
 
 PokemonTower2Text_60c24:
-	text ""
 	fartext _PokemonTower2Text_60c24
 	done
 
 PokemonTower6BattleText1:
-	text ""
 	fartext _PokemonTower6BattleText1
 	done
 
 PokemonTower6EndBattleText1:
-	text ""
 	fartext _PokemonTower6EndBattleText1
 	done
 
 PokemonTower6AfterBattleText1:
-	text ""
 	fartext _PokemonTower6AfterBattleText1
 	done
 
 PokemonTower6BattleText2:
-	text ""
 	fartext _PokemonTower6BattleText2
 	done
 
 PokemonTower6EndBattleText2:
-	text ""
 	fartext _PokemonTower6EndBattleText2
 	done
 
 PokemonTower6AfterBattleText2:
-	text ""
 	fartext _PokemonTower6AfterBattleText2
 	done
 
 PokemonTower6BattleText3:
-	text ""
 	fartext _PokemonTower6BattleText3
 	done
 
 PokemonTower6EndBattleText3:
-	text ""
 	fartext _PokemonTower6EndBattleText3
 	done
 
 PokemonTower6AfterBattleText3:
-	text ""
 	fartext _PokemonTower6AfterBattleText3
 	done
 
 PokemonTower6Text6:
-	text ""
 	fartext _PokemonTower6Text6
 	done

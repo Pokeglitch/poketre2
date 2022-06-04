@@ -15,7 +15,6 @@ SSAnne7TextPointers:
 	dw SSAnne7Text3
 
 SSAnne7Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_HM01
 	jr nz, .asm_797c4
@@ -43,7 +42,6 @@ SSAnne7Text1:
 	jp TextScriptEnd
 
 SSAnne7RubText:
-	text ""
 	fartext _SSAnne7RubText
 	asmtext
 	ld a, [wAudioROMBank]
@@ -70,32 +68,26 @@ SSAnne7RubText:
 	jp TextScriptEnd
 
 ReceivingHM01Text:
-	text ""
 	fartext _ReceivingHM01Text
 	done
 
 ReceivedHM01Text:
-	text ""
 	fartext _ReceivedHM01Text
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 SSAnne7Text_61932:
-	text ""
 	fartext _SSAnne7Text_61932
 	done
 
 HM01NoRoomText:
-	text ""
 	fartext _HM01NoRoomText
 	done
 
 SSAnne7Text2:
-	text ""
 	fartext _SSAnne7Text2
 	done
 
 SSAnne7Text3:
-	text ""
 	fartext _SSAnne7Text3
 	done

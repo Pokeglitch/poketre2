@@ -234,28 +234,24 @@ PokemonTower7TrainerHeader2:
 	db $ff
 
 PokemonTower7Text1:
-	text ""
 	asmtext
 	ld hl, PokemonTower7TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7Text2:
-	text ""
 	asmtext
 	ld hl, PokemonTower7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7Text3:
-	text ""
 	asmtext
 	ld hl, PokemonTower7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7FujiText:
-	text ""
 	asmtext
 	ld hl, TowerRescueFujiText
 	call PrintText
@@ -276,51 +272,41 @@ PokemonTower7FujiText:
 	jp TextScriptEnd
 
 TowerRescueFujiText:
-	text ""
 	fartext _TowerRescueFujiText
 	done
 
 PokemonTower7BattleText1:
-	text ""
 	fartext _PokemonTower7BattleText1
 	done
 
 PokemonTower7EndBattleText1:
-	text ""
 	fartext _PokemonTower7EndBattleText1
 	done
 
 PokemonTower7AfterBattleText1:
-	text ""
 	fartext _PokemonTower7AfterBattleText1
 	done
 
 PokemonTower7BattleText2:
-	text ""
 	fartext _PokemonTower7BattleText2
 	done
 
 PokemonTower7EndBattleText2:
-	text ""
 	fartext _PokemonTower7EndBattleText2
 	done
 
 PokemonTower7AfterBattleText2:
-	text ""
 	fartext _PokemonTower7AfterBattleText2
 	done
 
 PokemonTower7BattleText3:
-	text ""
 	fartext _PokemonTower7BattleText3
 	done
 
 PokemonTower7EndBattleText3:
-	text ""
 	fartext _PokemonTower7EndBattleText3
 	done
 
 PokemonTower7AfterBattleText3:
-	text ""
 	fartext _PokemonTower7AfterBattleText3
 	done

@@ -22,7 +22,6 @@ UsedCut:
 	jp PrintText
 
 .NothingToCutText
-	text ""
 	fartext _NothingToCutText
 	done
 
@@ -69,7 +68,6 @@ UsedCut:
 	jp RedrawMapView
 
 UsedCutText:
-	text ""
 	fartext _UsedCutText
 	done
 

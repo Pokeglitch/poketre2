@@ -149,27 +149,22 @@ OakSpeech:
 	jp ClearScreen
 
 OakSpeechText1:
-	text ""
 	fartext _OakSpeechText1
 	done
 
 OakSpeechText2:
-	text ""
 	fartext _OakSpeechText2A
 	crytext NIDORINA
 	fartext _OakSpeechText2B
 	done
 
 IntroducePlayerText:
-	text ""
 	fartext _IntroducePlayerText
 	done
 IntroduceRivalText:
-	text ""
 	fartext _IntroduceRivalText
 	done
 OakSpeechText3:
-	text ""
 	fartext _OakSpeechText3
 	done
 

@@ -142,7 +142,6 @@ Route24TrainerHeader5:
 	db $ff
 
 Route24Text1:
-	text ""
 	asmtext
 	ResetEvent EVENT_NUGGET_REWARD_AVAILABLE
 	CheckEvent EVENT_GOT_NUGGET
@@ -184,167 +183,137 @@ Route24Text1:
 	jp TextScriptEnd
 
 Route24Text_51510:
-	text ""
 	fartext _Route24Text_51510
 	sfxtext SFX_GET_ITEM_1
 	fartext _Route24Text_51515
 	done
 
 Route24Text_5151a:
-	text ""
 	fartext _Route24Text_5151a
 	sfxtext SFX_GET_ITEM_1
 	wait
 	done
 
 Route24Text_51521:
-	text ""
 	fartext _Route24Text_51521
 	done
 
 Route24Text_51526:
-	text ""
 	fartext _Route24Text_51526
 	done
 
 Route24Text_5152b:
-	text ""
 	fartext _Route24Text_5152b
 	done
 
 Route24Text_51530:
-	text ""
 	fartext _Route24Text_51530
 	done
 
 Route24Text2:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text3:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text4:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text5:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text6:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text7:
-	text ""
 	asmtext
 	ld hl, Route24TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24BattleText1:
-	text ""
 	fartext _Route24BattleText1
 	done
 
 Route24EndBattleText1:
-	text ""
 	fartext _Route24EndBattleText1
 	done
 
 Route24AfterBattleText1:
-	text ""
 	fartext _Route24AfterBattleText1
 	done
 
 Route24BattleText2:
-	text ""
 	fartext _Route24BattleText2
 	done
 
 Route24EndBattleText2:
-	text ""
 	fartext _Route24EndBattleText2
 	done
 
 Route24AfterBattleText2:
-	text ""
 	fartext _Route24AfterBattleText2
 	done
 
 Route24BattleText3:
-	text ""
 	fartext _Route24BattleText3
 	done
 
 Route24EndBattleText3:
-	text ""
 	fartext _Route24EndBattleText3
 	done
 
 Route24AfterBattleText3:
-	text ""
 	fartext _Route24AfterBattleText3
 	done
 
 Route24BattleText4:
-	text ""
 	fartext _Route24BattleText4
 	done
 
 Route24EndBattleText4:
-	text ""
 	fartext _Route24EndBattleText4
 	done
 
 Route24AfterBattleText4:
-	text ""
 	fartext _Route24AfterBattleText4
 	done
 
 Route24BattleText5:
-	text ""
 	fartext _Route24BattleText5
 	done
 
 Route24EndBattleText5:
-	text ""
 	fartext _Route24EndBattleText5
 	done
 
 Route24AfterBattleText5:
-	text ""
 	fartext _Route24AfterBattleText5
 	done
 
 Route24BattleText6:
-	text ""
 	fartext _Route24BattleText6
 	done
 
 Route24EndBattleText6:
-	text ""
 	fartext _Route24EndBattleText6
 	done
 
 Route24AfterBattleText6:
-	text ""
 	fartext _Route24AfterBattleText6
 	done

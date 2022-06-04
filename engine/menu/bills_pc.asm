@@ -445,62 +445,50 @@ StatsCancelPCText:
 	next "CANCEL@"
 
 SwitchOnText:
-	text ""
 	fartext _SwitchOnText
 	done
 
 WhatText:
-	text ""
 	fartext _WhatText
 	done
 
 DepositWhichMonText:
-	text ""
 	fartext _DepositWhichMonText
 	done
 
 MonWasStoredText:
-	text ""
 	fartext _MonWasStoredText
 	done
 
 CantDepositLastMonText:
-	text ""
 	fartext _CantDepositLastMonText
 	done
 
 BoxFullText:
-	text ""
 	fartext _BoxFullText
 	done
 
 MonIsTakenOutText:
-	text ""
 	fartext _MonIsTakenOutText
 	done
 
 NoMonText:
-	text ""
 	fartext _NoMonText
 	done
 
 CantTakeMonText:
-	text ""
 	fartext _CantTakeMonText
 	done
 
 ReleaseWhichMonText:
-	text ""
 	fartext _ReleaseWhichMonText
 	done
 
 OnceReleasedText:
-	text ""
 	fartext _OnceReleasedText
 	done
 
 MonWasReleasedText:
-	text ""
 	fartext _MonWasReleasedText
 	done
 
@@ -539,7 +527,6 @@ CableClubRightGameboy::
 	tx_pre_jump JustAMomentText
 
 JustAMomentText::
-	text ""
 	fartext _JustAMomentText
 	done
 

@@ -40,12 +40,10 @@ GymStatues:
 	db $ff
 
 GymStatueText1:
-	text ""
 	fartext _GymStatueText1
 	done
 
 GymStatueText2:
-	text ""
 	fartext _GymStatueText2
 	done
 
@@ -101,72 +99,58 @@ BenchGuyTextPointers:
 	db $FF
 
 ViridianCityPokecenterBenchGuyText:
-	text ""
 	fartext _ViridianCityPokecenterGuyText
 	done
 
 PewterCityPokecenterBenchGuyText:
-	text ""
 	fartext _PewterCityPokecenterGuyText
 	done
 
 CeruleanCityPokecenterBenchGuyText:
-	text ""
 	fartext _CeruleanPokecenterGuyText
 	done
 
 LavenderCityPokecenterBenchGuyText:
-	text ""
 	fartext _LavenderPokecenterGuyText
 	done
 
 MtMoonPokecenterBenchGuyText:
-	text ""
 	fartext _MtMoonPokecenterBenchGuyText
 	done
 
 RockTunnelPokecenterBenchGuyText:
-	text ""
 	fartext _RockTunnelPokecenterGuyText
 	done
 
 UnusedBenchGuyText1:
-	text ""
 	fartext _UnusedBenchGuyText1
 	done
 
 UnusedBenchGuyText2:
-	text ""
 	fartext _UnusedBenchGuyText2
 	done
 
 UnusedBenchGuyText3:
-	text ""
 	fartext _UnusedBenchGuyText3
 	done
 
 VermilionCityPokecenterBenchGuyText:
-	text ""
 	fartext _VermilionPokecenterGuyText
 	done
 
 CeladonCityPokecenterBenchGuyText:
-	text ""
 	fartext _CeladonCityPokecenterGuyText
 	done
 
 FuchsiaCityPokecenterBenchGuyText:
-	text ""
 	fartext _FuchsiaCityPokecenterGuyText
 	done
 
 CinnabarIslandPokecenterBenchGuyText:
-	text ""
 	fartext _CinnabarPokecenterGuyText
 	done
 
 SaffronCityPokecenterBenchGuyText:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	ld hl, SaffronCityPokecenterBenchGuyText2
@@ -177,17 +161,14 @@ SaffronCityPokecenterBenchGuyText:
 	jp TextScriptEnd
 
 SaffronCityPokecenterBenchGuyText1:
-	text ""
 	fartext _SaffronCityPokecenterGuyText1
 	done
 
 SaffronCityPokecenterBenchGuyText2:
-	text ""
 	fartext _SaffronCityPokecenterGuyText2
 	done
 
 CeladonCityHotelText:
-	text ""
 	fartext _CeladonCityHotelText
 	done
 
@@ -201,7 +182,6 @@ PrintBookcaseText:
 	tx_pre_jump BookcaseText
 
 BookcaseText:
-	text ""
 	fartext _BookcaseText
 	done
 

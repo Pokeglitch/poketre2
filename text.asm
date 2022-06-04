@@ -26,7 +26,6 @@ _CardKeySuccessText1::
 	done
 
 _CardKeySuccessText2::
-	text ""
 	line "The CARD KEY"
 	cont "opened the door!"
 	done
@@ -37,7 +36,6 @@ _CardKeyFailText::
 	done
 
 _TrainerNameText::
-	text ""
 	ramtext wcd6d
 	text ": "
 	done
@@ -100,7 +98,6 @@ _OaksAideHiText::
 
 	para "If you caught "
 	numtext hOaksAideRequirement, 3, 1
-	text ""
 	line "kinds of POKéMON,"
 	cont "I'm supposed to"
 	cont "give you an"
@@ -121,7 +118,6 @@ _OaksAideUhOhText::
 	line "Uh-oh! You have"
 	cont "caught only "
 	numtext hOaksAideNumMonsOwned, 3, 1
-	text ""
 	cont "kinds of POKéMON!"
 
 	para "You need "
@@ -138,7 +134,6 @@ _OaksAideComeBackText::
 
 	para "When you get "
 	numtext hOaksAideRequirement, 3, 1
-	text ""
 	line "kinds, come back"
 	cont "for "
 	ramtext wOaksAideRewardItemName
@@ -235,7 +230,6 @@ INCLUDE "text/maps/rock_tunnel_b2f_2.asm"
 INCLUDE "text/maps/seafoam_islands_b4f.asm"
 
 _AIBattleWithdrawText::
-	text ""
 	ramtext wTrainerName
 	text " with-"
 	line "drew "
@@ -244,19 +238,15 @@ _AIBattleWithdrawText::
 	prompt
 
 _AIBattleUseItemText::
-	text ""
 	ramtext wTrainerName
-	text ""
 	line "used "
 	ramtext wcd6d
-	text ""
 	cont "on "
 	ramtext wEnemyMonNick
 	text "!"
 	prompt
 
 _TradeWentToText::
-	text ""
 	ramtext wcf4b
 	text " went"
 	line "to "
@@ -272,7 +262,6 @@ _TradeForText::
 	done
 
 _TradeSendsText::
-	text ""
 	ramtext wGrassRate
 	text " sends"
 	line ""
@@ -281,14 +270,12 @@ _TradeSendsText::
 	done
 
 _TradeWavesFarewellText::
-	text ""
 	ramtext wGrassRate
 	text " waves"
 	line "farewell as"
 	done
 
 _TradeTransferredText::
-	text ""
 	ramtext wcd6d
 	text " is"
 	line "transferred."
@@ -302,12 +289,10 @@ _TradeTakeCareText::
 	done
 
 _TradeWillTradeText::
-	text ""
 	ramtext wGrassRate
 	text " will"
 	line "trade "
 	ramtext wcd6d
-	text ""
 	done
 
 _TradeforText::
@@ -364,7 +349,6 @@ _YeahText::
 _DexSeenOwnedText::
 	text "POKéDEX   Seen:"
 	numtext wDexRatingNumMonsSeen, 3, 1
-	text ""
 	line "         Owned:"
 	numtext wDexRatingNumMonsOwned, 3, 1
 	db "@"
@@ -374,26 +358,20 @@ _DexRatingText::
 	done
 
 _GymStatueText1::
-	text ""
 	ramtext wGymCityName
-	text ""
 	line "POKéMON GYM"
 	cont "LEADER: "
 	ramtext wGymLeaderName
-	text ""
 
 	para "WINNING TRAINERS:"
 	line "<RIVAL>"
 	done
 
 _GymStatueText2::
-	text ""
 	ramtext wGymCityName
-	text ""
 	line "POKéMON GYM"
 	cont "LEADER: "
 	ramtext wGymLeaderName
-	text ""
 
 	para "WINNING TRAINERS:"
 	line "<RIVAL>"
@@ -1009,7 +987,6 @@ _FoundHiddenCoinsText::
 	done
 
 _DroppedHiddenCoinsText::
-	text ""
 	para "Oops! Dropped"
 	line "some coins!"
 	done
@@ -1064,14 +1041,12 @@ _OutOfSafariBallsText::
 _WildRanText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	text ""
 	line "ran!"
 	prompt
 
 _EnemyRanText::
 	text "Enemy "
 	ramtext wEnemyMonNick
-	text ""
 	line "ran!"
 	prompt
 
@@ -1093,14 +1068,12 @@ _HurtByLeechSeedText::
 _EnemyMonFaintedText::
 	text "Enemy "
 	ramtext wEnemyMonNick
-	text ""
 	line "fainted!"
 	prompt
 
 _MoneyForWinningText::
 	text "<PLAYER> got $"
 	bcdtext wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
-	text ""
 	line "for winning!"
 	prompt
 
@@ -1112,9 +1085,7 @@ _TrainerDefeatedText::
 	prompt
 
 _PlayerMonFaintedText::
-	text ""
 	ramtext wBattleMonNick
-	text ""
 	line "fainted!"
 	prompt
 
@@ -1143,7 +1114,6 @@ _LinkBattleLostText::
 	prompt
 
 _TrainerAboutToUseText::
-	text ""
 	ramtext wTrainerName
 	text " is"
 	line "about to use"
@@ -1156,7 +1126,6 @@ _TrainerAboutToUseText::
 	done
 
 _TrainerSentOutText::
-	text ""
 	ramtext wTrainerName
 	text " sent"
 	line "out "
@@ -1189,7 +1158,6 @@ _ItemsCantBeUsedHereText::
 	prompt
 
 _AlreadyOutText::
-	text ""
 	ramtext wBattleMonNick
 	text " is"
 	line "already out!"
@@ -1206,7 +1174,6 @@ _MoveDisabledText::
 	prompt
 
 _NoMovesLeftText::
-	text ""
 	ramtext wBattleMonNick
 	text " has no"
 	line "moves left!"
@@ -1220,7 +1187,6 @@ _MultiHitText::
 	prompt
 
 _ScaredText::
-	text ""
 	ramtext wBattleMonNick
 	text " is too"
 	line "scared to move!"
@@ -1319,7 +1285,6 @@ _MonName1Text::
 	done
 
 _UsedText::
-	text ""
 	line "used "
 	done
 
@@ -1329,7 +1294,6 @@ _InsteadText::
 	done
 
 _CF4BText::
-	text ""
 	ramtext wcf4b
 	text "!"
 	done
@@ -1364,37 +1328,31 @@ _OHKOText::
 	prompt
 
 _LoafingAroundText::
-	text ""
 	ramtext wBattleMonNick
 	text " is"
 	line "loafing around."
 	prompt
 
 _BeganToNapText::
-	text ""
 	ramtext wBattleMonNick
 	text " began"
 	line "to nap!"
 	prompt
 
 _WontObeyText::
-	text ""
 	ramtext wBattleMonNick
 	text " won't"
 	line "obey!"
 	prompt
 
 _TurnedAwayText::
-	text ""
 	ramtext wBattleMonNick
 	text " turned"
 	line "away!"
 	prompt
 
 _IgnoredOrdersText::
-	text ""
 	ramtext wBattleMonNick
-	text ""
 	line "ignored orders!"
 	prompt
 
@@ -1426,7 +1384,6 @@ _HitXTimesText::
 	prompt
 
 _GainedText::
-	text ""
 	ramtext wcd6d
 	text " gained"
 	line ""
@@ -1443,13 +1400,11 @@ _BoostedText::
 	done
 
 _ExpPointsText::
-	text ""
 	numtext wExpAmountGained, 4, 2
 	text " EXP. Points!"
 	prompt
 
 _GrewLevelText::
-	text ""
 	ramtext wcd6d
 	text " grew"
 	line "to level "
@@ -1467,19 +1422,15 @@ _HookedMonAttackedText::
 	text "The hooked"
 	line ""
 	ramtext wEnemyMonNick
-	text ""
 	cont "attacked!"
 	prompt
 
 _EnemyAppearedText::
-	text ""
 	ramtext wEnemyMonNick
-	text ""
 	line "appeared!"
 	prompt
 
 _TrainerWantsToFightText::
-	text ""
 	ramtext wTrainerName
 	text " wants"
 	line "to fight!"
@@ -1514,13 +1465,11 @@ _EnemysWeakText::
 	done
 
 _PlayerMon1Text::
-	text ""
 	ramtext wBattleMonNick
 	text "!"
 	done
 
 _PlayerMon2Text::
-	text ""
 	ramtext wBattleMonNick
 	text " "
 	done
@@ -1538,7 +1487,6 @@ _GoodText::
 	done
 
 _ComeBackText::
-	text ""
 	line "Come back!"
 	done
 
@@ -1555,14 +1503,12 @@ _NotVeryEffectiveText::
 _SafariZoneEatingText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	text ""
 	line "is eating!"
 	prompt
 
 _SafariZoneAngryText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	text ""
 	line "is angry!"
 	prompt
 
@@ -1609,65 +1555,53 @@ _PartyMenuSwapMonText::
 	done
 
 _PotionText::
-	text ""
 	ramtext wcd6d
-	text ""
 	line "recovered by "
 	numtext wHPBarHPDifference, 3, 2
 	text "!"
 	done
 
 _AntidoteText::
-	text ""
 	ramtext wcd6d
 	text " was"
 	line "cured of poison!"
 	done
 
 _ParlyzHealText::
-	text ""
 	ramtext wcd6d
 	text "'s"
 	line "rid of paralysis!"
 	done
 
 _BurnHealText::
-	text ""
 	ramtext wcd6d
 	text "'s"
 	line "burn was healed!"
 	done
 
 _IceHealText::
-	text ""
 	ramtext wcd6d
 	text " was"
 	line "defrosted!"
 	done
 
 _AwakeningText::
-	text ""
 	ramtext wcd6d
-	text ""
 	line "woke up!"
 	done
 
 _FullHealText::
-	text ""
 	ramtext wcd6d
 	text "'s"
 	line "health returned!"
 	done
 
 _ReviveText::
-	text ""
 	ramtext wcd6d
-	text ""
 	line "is revitalized!"
 	done
 
 _RareCandyText::
-	text ""
 	ramtext wcd6d
 	text " grew"
 	line "to level "
@@ -1716,7 +1650,6 @@ _DepositHowManyText::
 	done
 
 _ItemWasStoredText::
-	text ""
 	ramtext wcd6d
 	text " was"
 	line "stored via PC."
@@ -1789,7 +1722,6 @@ _DepositWhichMonText::
 	done
 
 _MonWasStoredText::
-	text ""
 	ramtext wcf4b
 	text " was"
 	line "stored in Box "
@@ -1808,7 +1740,6 @@ _BoxFullText::
 	prompt
 
 _MonIsTakenOutText::
-	text ""
 	ramtext wcf4b
 	text " is"
 	line "taken out."
@@ -1844,14 +1775,12 @@ _OnceReleasedText::
 	done
 
 _MonWasReleasedText::
-	text ""
 	ramtext wcf4b
 	text " was"
 	line "released outside."
 	cont "Bye @"
 
 _CF4BExclamationText::
-	text ""
 	ramtext wcf4b
 	text "!"
 	prompt
@@ -1951,7 +1880,6 @@ _HisNameIsText::
 	prompt
 
 _WillBeTradedText::
-	text ""
 	ramtext wNameOfPlayerMonToBeTraded
 	text " and"
 	line ""
@@ -2062,13 +1990,11 @@ _ChooseABoxText::
 	done
 
 _EvolvedText::
-	text ""
 	ramtext wcf4b
 	text " evolved"
 	done
 
 _IntoText::
-	text ""
 	line "into "
 	ramtext wcd6d
 	text "!"
@@ -2077,14 +2003,12 @@ _IntoText::
 _StoppedEvolvingText::
 	text "Huh? "
 	ramtext wcf4b
-	text ""
 	line "stopped evolving!"
 	prompt
 
 _IsEvolvingText::
 	text "What? "
 	ramtext wcf4b
-	text ""
 	line "is evolving!"
 	done
 
@@ -2127,11 +2051,9 @@ _MonsStatsRoseText::
 	text "<USER>'s"
 	line ""
 	ramtext wcf4b
-	text ""
 	done
 
 _GreatlyRoseText::
-	text ""
 	autocont "greatly"
 	done
 
@@ -2143,11 +2065,9 @@ _MonsStatsFellText::
 	text "<TARGET>'s"
 	line ""
 	ramtext wcf4b
-	text ""
 	done
 
 _GreatlyFellText::
-	text ""
 	autocont "greatly"
 	done
 
@@ -2175,32 +2095,26 @@ _ChargeMoveEffectText::
 	done
 
 _MadeWhirlwindText::
-	text ""
 	line "made a whirlwind!"
 	prompt
 
 _TookInSunlightText::
-	text ""
 	line "took in sunlight!"
 	prompt
 
 _LoweredItsHeadText::
-	text ""
 	line "lowered its head!"
 	prompt
 
 _SkyAttackGlowingText::
-	text ""
 	line "is glowing!"
 	prompt
 
 _FlewUpHighText::
-	text ""
 	line "flew up high!"
 	prompt
 
 _DugAHoleText::
-	text ""
 	line "dug a hole!"
 	prompt
 
@@ -2530,7 +2444,6 @@ _PokemartItemBagFullText::
 	prompt
 
 _LearnedMove1Text::
-	text ""
 	ramtext wLearnMoveMonName
 	text " learned"
 	line ""
@@ -2551,9 +2464,7 @@ _AbandonLearningText::
 	done
 
 _DidNotLearnText::
-	text ""
 	ramtext wLearnMoveMonName
-	text ""
 	line "did not learn"
 	cont ""
 	ramtext wcf4b
@@ -2561,7 +2472,6 @@ _DidNotLearnText::
 	prompt
 
 _TryingToLearnText::
-	text ""
 	ramtext wLearnMoveMonName
 	text " is"
 	line "trying to learn"
@@ -2571,7 +2481,6 @@ _TryingToLearnText::
 
 	para "But, "
 	ramtext wLearnMoveMonName
-	text ""
 	line "can't learn more"
 	cont "than 4 moves!"
 
@@ -2591,7 +2500,6 @@ _PoofText::
 	done
 
 _ForgotAndText::
-	text ""
 	para ""
 	ramtext wLearnMoveMonName
 	text " forgot"
@@ -2685,14 +2593,12 @@ _CableClubNPCMakingPreparationsText::
 	done
 
 _UsedStrengthText::
-	text ""
 	ramtext wcd6d
 	text " used"
 	line "STRENGTH."
 	done
 
 _CanMoveBouldersText::
-	text ""
 	ramtext wcd6d
 	text " can"
 	line "move boulders."
@@ -2719,14 +2625,12 @@ _WarpToLastPokemonCenterText::
 	done
 
 _CannotUseTeleportNowText::
-	text ""
 	ramtext wcd6d
 	text " can't"
 	line "use TELEPORT now."
 	prompt
 
 _CannotFlyHereText::
-	text ""
 	ramtext wcd6d
 	text " can't"
 	line "FLY here."
@@ -2831,7 +2735,6 @@ _ItemUseBallText05::
 	done
 
 _ItemUseBallText07::
-	text ""
 	ramtext wBoxMonNicks
 	text " was"
 	line "transferred to"
@@ -2839,7 +2742,6 @@ _ItemUseBallText07::
 	prompt
 
 _ItemUseBallText08::
-	text ""
 	ramtext wBoxMonNicks
 	text " was"
 	line "transferred to"
@@ -2867,7 +2769,6 @@ _SurfingNoPlaceToGetOffText::
 	prompt
 
 _VitaminStatRoseText::
-	text ""
 	ramtext wcd6d
 	text "'s"
 	line ""
@@ -2937,14 +2838,12 @@ _RestorePPWhichTechniqueText::
 	done
 
 _PPMaxedOutText::
-	text ""
 	ramtext wcf4b
 	text "'s PP"
 	line "is maxed out."
 	prompt
 
 _PPIncreasedText::
-	text ""
 	ramtext wcf4b
 	text "'s PP"
 	line "increased."
@@ -2955,7 +2854,6 @@ _PPRestoredText::
 	prompt
 
 _MonCannotLearnMachineMoveText::
-	text ""
 	ramtext wcd6d
 	text " is not"
 	line "compatible with"
@@ -3038,7 +2936,6 @@ _GotOffBicycleText1::
 	prompt
 
 _AlreadyKnowsText::
-	text ""
 	ramtext wcd6d
 	text " knows"
 	line ""
@@ -3105,7 +3002,6 @@ _WannaTrade2Text::
 
 	para "your "
 	ramtext wInGameTradeGiveMonName
-	text ""
 	line "for "
 	ramtext wInGameTradeReceiveMonName
 	text "?"
@@ -3187,7 +3083,6 @@ _NothingToCutText::
 	prompt
 
 _UsedCutText::
-	text ""
 	ramtext wcd6d
 	text " hacked"
 	line "away with CUT!"

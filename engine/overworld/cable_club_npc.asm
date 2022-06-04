@@ -110,38 +110,31 @@ CableClubNPC:
 	jpab LinkMenu
 
 CableClubNPCAreaReservedFor2FriendsLinkedByCableText:
-	text ""
 	fartext _CableClubNPCAreaReservedFor2FriendsLinkedByCableText
 	done
 
 CableClubNPCWelcomeText:
-	text ""
 	fartext _CableClubNPCWelcomeText
 	done
 
 CableClubNPCPleaseApplyHereHaveToSaveText:
-	text ""
 	fartext _CableClubNPCPleaseApplyHereHaveToSaveText
 	done
 
 CableClubNPCPleaseWaitText:
-	text ""
 	fartext _CableClubNPCPleaseWaitText
 	delaytext
 	done
 
 CableClubNPCLinkClosedBecauseOfInactivityText:
-	text ""
 	fartext _CableClubNPCLinkClosedBecauseOfInactivityText
 	done
 
 CableClubNPCPleaseComeAgainText:
-	text ""
 	fartext _CableClubNPCPleaseComeAgainText
 	done
 
 CableClubNPCMakingPreparationsText:
-	text ""
 	fartext _CableClubNPCMakingPreparationsText
 	done
 

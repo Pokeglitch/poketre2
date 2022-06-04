@@ -184,34 +184,28 @@ TryingToLearn:
 	ret
 
 LearnedMove1Text:
-	text ""
 	fartext _LearnedMove1Text
 	sfxtext SFX_GET_ITEM_1 ; plays SFX_GET_ITEM_1 in the party menu (rare candy) and plays SFX_LEVEL_UP in battle
 	wait
 	done
 
 WhichMoveToForgetText:
-	text ""
 	fartext _WhichMoveToForgetText
 	done
 
 AbandonLearningText:
-	text ""
 	fartext _AbandonLearningText
 	done
 
 DidNotLearnText:
-	text ""
 	fartext _DidNotLearnText
 	done
 
 TryingToLearnText:
-	text ""
 	fartext _TryingToLearnText
 	done
 
 OneTwoAndText:
-	text ""
 	fartext _OneTwoAndText
 	delaytext
 	asmtext
@@ -221,16 +215,13 @@ OneTwoAndText:
 	ret
 
 PoofText:
-	text ""
 	fartext _PoofText
 	delaytext
 
 ForgotAndText:
-	text ""
 	fartext _ForgotAndText
 	done
 
 HMCantDeleteText:
-	text ""
 	fartext _HMCantDeleteText
 	done

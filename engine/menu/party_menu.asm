@@ -254,72 +254,58 @@ PartyMenuMessagePointers:
 	dw PartyMenuItemUseText
 
 PartyMenuNormalText:
-	text ""
 	fartext _PartyMenuNormalText
 	done
 
 PartyMenuItemUseText:
-	text ""
 	fartext _PartyMenuItemUseText
 	done
 
 PartyMenuBattleText:
-	text ""
 	fartext _PartyMenuBattleText
 	done
 
 PartyMenuUseTMText:
-	text ""
 	fartext _PartyMenuUseTMText
 	done
 
 PartyMenuSwapMonText:
-	text ""
 	fartext _PartyMenuSwapMonText
 	done
 
 PotionText:
-	text ""
 	fartext _PotionText
 	done
 
 AntidoteText:
-	text ""
 	fartext _AntidoteText
 	done
 
 ParlyzHealText:
-	text ""
 	fartext _ParlyzHealText
 	done
 
 BurnHealText:
-	text ""
 	fartext _BurnHealText
 	done
 
 IceHealText:
-	text ""
 	fartext _IceHealText
 	done
 
 AwakeningText:
-	text ""
 	fartext _AwakeningText
 	done
 
 FullHealText:
-	text ""
 	fartext _FullHealText
 	done
 
 ReviveText:
-	text ""
 	fartext _ReviveText
 	done
 
 RareCandyText:
-	text ""
 	fartext _RareCandyText
 	sfxtext SFX_GET_ITEM_1 ; probably supposed to play SFX_LEVEL_UP but the wrong music bank is loaded
 	wait

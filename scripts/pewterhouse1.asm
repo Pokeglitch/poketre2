@@ -7,7 +7,6 @@ PewterHouse1TextPointers:
 	dw PewterHouse1Text3
 
 PewterHouse1Text1:
-	text ""
 	fartext _PewterHouse1Text1
 	asmtext
 	ld a, NIDORAN_M
@@ -16,11 +15,9 @@ PewterHouse1Text1:
 	jp TextScriptEnd
 
 PewterHouse1Text2:
-	text ""
 	fartext _PewterHouse1Text2
 	done
 
 PewterHouse1Text3:
-	text ""
 	fartext _PewterHouse1Text3
 	done

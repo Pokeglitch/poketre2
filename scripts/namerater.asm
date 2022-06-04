@@ -41,7 +41,6 @@ NameRaterTextPointers:
 	dw NameRaterText1
 
 NameRaterText1:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer2
 	ld hl, NameRaterText_1dab3
@@ -80,36 +79,29 @@ NameRaterText1:
 	jr .asm_1daa8
 
 NameRaterText_1dab3:
-	text ""
 	fartext _NameRaterText_1dab3
 	done
 
 NameRaterText_1dab8:
-	text ""
 	fartext _NameRaterText_1dab8
 	done
 
 NameRaterText_1dabd:
-	text ""
 	fartext _NameRaterText_1dabd
 	done
 
 NameRaterText_1dac2:
-	text ""
 	fartext _NameRaterText_1dac2
 	done
 
 NameRaterText_1dac7:
-	text ""
 	fartext _NameRaterText_1dac7
 	done
 
 NameRaterText_1dacc:
-	text ""
 	fartext _NameRaterText_1dacc
 	done
 
 NameRaterText_1dad1:
-	text ""
 	fartext _NameRaterText_1dad1
 	done

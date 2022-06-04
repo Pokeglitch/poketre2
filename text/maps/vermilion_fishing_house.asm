@@ -23,7 +23,6 @@ _VermilionHouse2Text_560b6::
 	done
 
 _VermilionHouse2Text_560bb::
-	text ""
 	para "Fishing is a way"
 	line "of life!"
 

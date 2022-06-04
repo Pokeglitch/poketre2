@@ -50,67 +50,55 @@ PokemonTower4TrainerHeader2:
 	db $ff
 
 PokemonTower4Text1:
-	text ""
 	asmtext
 	ld hl, PokemonTower4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower4Text2:
-	text ""
 	asmtext
 	ld hl, PokemonTower4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower4Text3:
-	text ""
 	asmtext
 	ld hl, PokemonTower4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower4BattleText1:
-	text ""
 	fartext _PokemonTower4BattleText1
 	done
 
 PokemonTower4EndBattleText1:
-	text ""
 	fartext _PokemonTower4EndBattleText1
 	done
 
 PokemonTower4AfterBattleText1:
-	text ""
 	fartext _PokemonTower4AfterBattleText1
 	done
 
 PokemonTower4BattleText2:
-	text ""
 	fartext _PokemonTower4BattleText2
 	done
 
 PokemonTower4EndBattleText2:
-	text ""
 	fartext _PokemonTower4EndBattleText2
 	done
 
 PokemonTower4AfterBattleText2:
-	text ""
 	fartext _PokemonTower4AfterBattleText2
 	done
 
 PokemonTower4BattleText3:
-	text ""
 	fartext _PokemonTower4BattleText3
 	done
 
 PokemonTower4EndBattleText3:
-	text ""
 	fartext _PokemonTower4EndBattleText3
 	done
 
 PokemonTower4AfterBattleText3:
-	text ""
 	fartext _PokemonTower4AfterBattleText3
 	done

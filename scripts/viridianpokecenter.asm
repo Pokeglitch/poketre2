@@ -12,12 +12,10 @@ ViridianHealNurseText:
 	TX_POKECENTER_NURSE
 
 ViridianPokeCenterText2:
-	text ""
 	fartext _ViridianPokeCenterText2
 	done
 
 ViridianPokeCenterText3:
-	text ""
 	fartext _ViridianPokeCenterText3
 	done
 

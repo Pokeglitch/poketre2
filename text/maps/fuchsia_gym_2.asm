@@ -32,7 +32,6 @@ _ReceivedTM06Text::
 	done
 
 _TM06ExplanationText::
-	text ""
 	para "TM06 contains"
 	line "TOXIC!"
 

@@ -47,7 +47,6 @@ FossilsList:
 	db $00
 
 Lab4Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GAVE_FOSSIL_TO_LAB
 	jr nz, .asm_75d96
@@ -84,27 +83,22 @@ Lab4Text1:
 	jr .asm_75d93
 
 Lab4Text_75dc6:
-	text ""
 	fartext _Lab4Text_75dc6
 	done
 
 Lab4Text_75dcb:
-	text ""
 	fartext _Lab4Text_75dcb
 	done
 
 Lab4Text_75dd0:
-	text ""
 	fartext _Lab4Text_75dd0
 	done
 
 Lab4Text_75dd5:
-	text ""
 	fartext _Lab4Text_75dd5
 	done
 
 Lab4Text2:
-	text ""
 	asmtext
 	ld a, $3
 	ld [wWhichTrade], a

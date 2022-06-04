@@ -31,7 +31,6 @@ _ReceivedTM24Text::
 	done
 
 _TM24ExplanationText::
-	text ""
 	para "TM24 contains"
 	line "THUNDERBOLT!"
 

@@ -930,32 +930,26 @@ TextScriptEnd::
 	ret
 
 ExclamationText::
-	text ""
 	fartext _ExclamationText
 	done
 
 GroundRoseText::
-	text ""
 	fartext _GroundRoseText
 	done
 
 BoulderText::
-	text ""
 	fartext _BoulderText
 	done
 
 MartSignText::
-	text ""
 	fartext _MartSignText
 	done
 
 PokeCenterSignText::
-	text ""
 	fartext _PokeCenterSignText
 	done
 
 PickUpItemText::
-	text ""
 	asmtext
 	predef PickUpItem
 	jp TextScriptEnd
@@ -1215,7 +1209,6 @@ DisplayPokemartDialogue::
 	jp AfterDisplayingTextID
 
 PokemartGreetingText::
-	text ""
 	fartext _PokemartGreetingText
 	done
 
@@ -1263,7 +1256,6 @@ DisplayPokemonFaintedText::
 
 PokemonFaintedText::
 	textbox BLACK_ON_WHITE | LINES_2
-	text ""
 	fartext _PokemonFaintedText
 	done
 
@@ -1276,7 +1268,6 @@ DisplayPlayerBlackedOutText::
 	jp HoldTextDisplayOpen
 
 PlayerBlackedOutText::
-	text ""
 	fartext _PlayerBlackedOutText
 	done
 
@@ -1286,7 +1277,6 @@ DisplayRepelWoreOffText::
 	jp AfterDisplayingTextID
 
 RepelWoreOffText::
-	text ""
 	fartext _RepelWoreOffText
 	done
 
@@ -2406,7 +2396,6 @@ GetSavedEndBattleTextPointer::
 	ret
 
 TrainerEndBattleText::
-	text ""
 	fartext _TrainerNameText
 	asmtext
 	call GetSavedEndBattleTextPointer

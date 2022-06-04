@@ -101,7 +101,6 @@ _OaksLabDeliverParcelText1::
 	done
 
 _OaksLabDeliverParcelText2::
-	text ""
 	para "Ah! This is the"
 	line "custom POKé BALL"
 	cont "I ordered!"
@@ -130,7 +129,6 @@ _OaksLabGivePokeballsText1::
 	done
 
 _OaksLabGivePokeballsText2::
-	text ""
 	para "When a wild"
 	line "POKéMON appears,"
 	cont "it's fair game."

@@ -10,27 +10,22 @@ CeladonDinerTextPointers:
 	dw CeladonDinerText5
 
 CeladonDinerText1:
-	text ""
 	fartext _CeladonDinerText1
 	done
 
 CeladonDinerText2:
-	text ""
 	fartext _CeladonDinerText2
 	done
 
 CeladonDinerText3:
-	text ""
 	fartext _CeladonDinerText3
 	done
 
 CeladonDinerText4:
-	text ""
 	fartext _CeladonDinerText4
 	done
 
 CeladonDinerText5:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_COIN_CASE
 	jr nz, .asm_eb14d
@@ -54,22 +49,18 @@ CeladonDinerText5:
 	jp TextScriptEnd
 
 CeladonDinerText_491a7:
-	text ""
 	fartext _CeladonDinerText_491a7
 	done
 
 ReceivedCoinCaseText:
-	text ""
 	fartext _ReceivedCoinCaseText
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 CoinCaseNoRoomText:
-	text ""
 	fartext _CoinCaseNoRoomText
 	done
 
 CeladonDinerText_491b7:
-	text ""
 	fartext _CeladonDinerText_491b7
 	done

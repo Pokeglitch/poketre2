@@ -137,204 +137,167 @@ Route25TrainerHeader8:
 	db $ff
 
 Route25Text1:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text2:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text3:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text4:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text5:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text6:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text7:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text8:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25Text9:
-	text ""
 	asmtext
 	ld hl, Route25TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route25BattleText1:
-	text ""
 	fartext _Route25BattleText1
 	done
 
 Route25EndBattleText1:
-	text ""
 	fartext _Route25EndBattleText1
 	done
 
 Route25AfterBattleText1:
-	text ""
 	fartext _Route25AfterBattleText1
 	done
 
 Route25BattleText2:
-	text ""
 	fartext _Route25BattleText2
 	done
 
 Route25EndBattleText2:
-	text ""
 	fartext _Route25EndBattleText2
 	done
 
 Route25AfterBattleText2:
-	text ""
 	fartext _Route25AfterBattleText2
 	done
 
 Route25BattleText3:
-	text ""
 	fartext _Route25BattleText3
 	done
 
 Route25EndBattleText3:
-	text ""
 	fartext _Route25EndBattleText3
 	done
 
 Route25AfterBattleText3:
-	text ""
 	fartext _Route25AfterBattleText3
 	done
 
 Route25BattleText4:
-	text ""
 	fartext _Route25BattleText4
 	done
 
 Route25EndBattleText4:
-	text ""
 	fartext _Route25EndBattleText4
 	done
 
 Route25AfterBattleText4:
-	text ""
 	fartext _Route25AfterBattleText4
 	done
 
 Route25BattleText5:
-	text ""
 	fartext _Route25BattleText5
 	done
 
 Route25EndBattleText5:
-	text ""
 	fartext _Route25EndBattleText5
 	done
 
 Route25AfterBattleText5:
-	text ""
 	fartext _Route25AfterBattleText5
 	done
 
 Route25BattleText6:
-	text ""
 	fartext _Route25BattleText6
 	done
 
 Route25EndBattleText6:
-	text ""
 	fartext _Route25EndBattleText6
 	done
 
 Route25AfterBattleText6:
-	text ""
 	fartext _Route25AfterBattleText6
 	done
 
 Route25BattleText7:
-	text ""
 	fartext _Route25BattleText7
 	done
 
 Route25EndBattleText7:
-	text ""
 	fartext _Route25EndBattleText7
 	done
 
 Route25AfterBattleText7:
-	text ""
 	fartext _Route25AfterBattleText7
 	done
 
 Route25BattleText8:
-	text ""
 	fartext _Route25BattleText8
 	done
 
 Route25EndBattleText8:
-	text ""
 	fartext _Route25EndBattleText8
 	done
 
 Route25AfterBattleText8:
-	text ""
 	fartext _Route25AfterBattleText8
 	done
 
 Route25BattleText9:
-	text ""
 	fartext _Route25BattleText9
 	done
 
 Route25EndBattleText9:
-	text ""
 	fartext _Route25EndBattleText9
 	done
 
 Route25AfterBattleText9:
-	text ""
 	fartext _Route25AfterBattleText9
 	done
 
 Route25Text11:
-	text ""
 	fartext _Route25Text11
 	done

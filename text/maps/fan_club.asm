@@ -90,7 +90,6 @@ ReceivedBikeVoucherText::
 	done
 
 ExplainBikeVoucherText::
-	text ""
 	para "Exchange that for"
 	line "a BICYCLE!"
 

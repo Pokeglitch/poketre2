@@ -50,7 +50,6 @@ AskName:
 	jp CopyData
 
 DoYouWantToNicknameText:
-	text ""
 	fartext _DoYouWantToNicknameText
 	done
 

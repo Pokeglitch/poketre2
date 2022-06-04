@@ -6,7 +6,6 @@ RedsHouse1FTextPointers:
 	dw RedsHouse1FText2
 
 RedsHouse1FText1: ; Mom
-	text ""
 	asmtext
 	ld a, [wd72e]
 	bit 3, a
@@ -20,7 +19,6 @@ RedsHouse1FText1: ; Mom
 	jp TextScriptEnd
 
 MomWakeUpText:
-	text ""
 	fartext _MomWakeUpText
 	done
 
@@ -45,16 +43,13 @@ MomHealPokemon:
 	jp PrintText
 
 MomHealText1:
-	text ""
 	fartext _MomHealText1
 	done
 MomHealText2:
-	text ""
 	fartext _MomHealText2
 	done
 
 RedsHouse1FText2: ; TV
-	text ""
 	asmtext
 	ld a, [wSpriteStateData1 + 9]
 	cp SPRITE_FACING_UP
@@ -66,11 +61,9 @@ RedsHouse1FText2: ; TV
 	jp TextScriptEnd
 
 StandByMeText:
-	text ""
 	fartext _StandByMeText
 	done
 
 TVWrongSideText:
-	text ""
 	fartext _TVWrongSideText
 	done

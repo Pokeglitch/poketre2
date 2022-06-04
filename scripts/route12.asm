@@ -142,180 +142,147 @@ Route12TrainerHeader6:
 	db $ff
 
 Route12Text1:
-	text ""
 	fartext _Route12Text1
 	done
 
 Route12Text13:
-	text ""
 	fartext _Route12Text13
 	done
 
 Route12Text14:
-	text ""
 	fartext _Route12Text14
 	done
 
 Route12Text2:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText1:
-	text ""
 	fartext _Route12BattleText1
 	done
 
 Route12EndBattleText1:
-	text ""
 	fartext _Route12EndBattleText1
 	done
 
 Route12AfterBattleText1:
-	text ""
 	fartext _Route12AfterBattleText1
 	done
 
 Route12Text3:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText2:
-	text ""
 	fartext _Route12BattleText2
 	done
 
 Route12EndBattleText2:
-	text ""
 	fartext _Route12EndBattleText2
 	done
 
 Route12AfterBattleText2:
-	text ""
 	fartext _Route12AfterBattleText2
 	done
 
 Route12Text4:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText3:
-	text ""
 	fartext _Route12BattleText3
 	done
 
 Route12EndBattleText3:
-	text ""
 	fartext _Route12EndBattleText3
 	done
 
 Route12AfterBattleText3:
-	text ""
 	fartext _Route12AfterBattleText3
 	done
 
 Route12Text5:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText4:
-	text ""
 	fartext _Route12BattleText4
 	done
 
 Route12EndBattleText4:
-	text ""
 	fartext _Route12EndBattleText4
 	done
 
 Route12AfterBattleText4:
-	text ""
 	fartext _Route12AfterBattleText4
 	done
 
 Route12Text6:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText5:
-	text ""
 	fartext _Route12BattleText5
 	done
 
 Route12EndBattleText5:
-	text ""
 	fartext _Route12EndBattleText5
 	done
 
 Route12AfterBattleText5:
-	text ""
 	fartext _Route12AfterBattleText5
 	done
 
 Route12Text7:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText6:
-	text ""
 	fartext _Route12BattleText6
 	done
 
 Route12EndBattleText6:
-	text ""
 	fartext _Route12EndBattleText6
 	done
 
 Route12AfterBattleText6:
-	text ""
 	fartext _Route12AfterBattleText6
 	done
 
 Route12Text8:
-	text ""
 	asmtext
 	ld hl, Route12TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route12BattleText7:
-	text ""
 	fartext _Route12BattleText7
 	done
 
 Route12EndBattleText7:
-	text ""
 	fartext _Route12EndBattleText7
 	done
 
 Route12AfterBattleText7:
-	text ""
 	fartext _Route12AfterBattleText7
 	done
 
 Route12Text11:
-	text ""
 	fartext _Route12Text11
 	done
 
 Route12Text12:
-	text ""
 	fartext _Route12Text12
 	done

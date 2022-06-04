@@ -108,16 +108,13 @@ HealEffect_:
 	jp BankswitchEtoF
 
 StartedSleepingEffect:
-	text ""
 	fartext _StartedSleepingEffect
 	done
 
 FellAsleepBecameHealthyText:
-	text ""
 	fartext _FellAsleepBecameHealthyText
 	done
 
 RegainedHealthText:
-	text ""
 	fartext _RegainedHealthText
 	done

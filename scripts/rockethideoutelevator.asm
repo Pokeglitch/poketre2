@@ -65,7 +65,6 @@ RocketHideoutElevatorTextPointers:
 	dw RocketHideoutElevatorText1
 
 RocketHideoutElevatorText1:
-	text ""
 	asmtext
 	ld b, LIFT_KEY
 	call IsItemInBag
@@ -81,7 +80,6 @@ RocketHideoutElevatorText1:
 	jp TextScriptEnd
 
 RocketHideoutElevatorText_4578b:
-	text ""
 	fartext _RocketElevatorText_4578b
 	wait
 	done

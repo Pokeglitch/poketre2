@@ -6,7 +6,6 @@ Route16HouseTextPointers:
 	dw Route16HouseText2
 
 Route16HouseText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_HM02
 	ld hl, HM02ExplanationText
@@ -26,28 +25,23 @@ Route16HouseText1:
 	jp TextScriptEnd
 
 Route16HouseText3:
-	text ""
 	fartext _Route16HouseText3
 	done
 
 ReceivedHM02Text:
-	text ""
 	fartext _ReceivedHM02Text
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 HM02ExplanationText:
-	text ""
 	fartext _HM02ExplanationText
 	done
 
 HM02NoRoomText:
-	text ""
 	fartext _HM02NoRoomText
 	done
 
 Route16HouseText2:
-	text ""
 	asmtext
 	ld hl, Route16HouseText_1e652
 	call PrintText
@@ -57,6 +51,5 @@ Route16HouseText2:
 	jp TextScriptEnd
 
 Route16HouseText_1e652:
-	text ""
 	fartext _Route16HouseText_1e652
 	done

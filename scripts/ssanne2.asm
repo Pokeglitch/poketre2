@@ -184,12 +184,10 @@ SSAnne2TextPointers:
 	dw SSAnne2Text3
 
 SSAnne2Text1:
-	text ""
 	fartext _SSAnne2Text1
 	done
 
 SSAnne2Text2:
-	text ""
 	asmtext
 	ld hl, SSAnneRivalBeforeBattleText
 	call PrintText
@@ -202,21 +200,17 @@ SSAnne2Text2:
 	jp TextScriptEnd
 
 SSAnneRivalBeforeBattleText:
-	text ""
 	fartext _SSAnneRivalBeforeBattleText
 	done
 
 SSAnneRivalDefeatedText:
-	text ""
 	fartext _SSAnneRivalDefeatedText
 	done
 
 SSAnneRivalWonText:
-	text ""
 	fartext _SSAnneRivalWonText
 	done
 
 SSAnne2Text3:
-	text ""
 	fartext _SSAnneRivalCaptainText
 	done

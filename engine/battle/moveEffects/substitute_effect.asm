@@ -65,16 +65,13 @@ SubstituteEffect_:
 	jp PrintText
 
 SubstituteText:
-	text ""
 	fartext _SubstituteText
 	done
 
 HasSubstituteText:
-	text ""
 	fartext _HasSubstituteText
 	done
 
 TooWeakSubstituteText:
-	text ""
 	fartext _TooWeakSubstituteText
 	done

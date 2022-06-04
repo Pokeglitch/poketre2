@@ -131,158 +131,129 @@ Route16TrainerHeader5:
 	db $ff
 
 Route16Text1:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText1:
-	text ""
 	fartext _Route16BattleText1
 	done
 
 Route16EndBattleText1:
-	text ""
 	fartext _Route16EndBattleText1
 	done
 
 Route16AfterBattleText1:
-	text ""
 	fartext _Route16AfterBattleText1
 	done
 
 Route16Text2:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText2:
-	text ""
 	fartext _Route16BattleText2
 	done
 
 Route16EndBattleText2:
-	text ""
 	fartext _Route16EndBattleText2
 	done
 
 Route16AfterBattleText2:
-	text ""
 	fartext _Route16AfterBattleText2
 	done
 
 Route16Text3:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText3:
-	text ""
 	fartext _Route16BattleText3
 	done
 
 Route16EndBattleText3:
-	text ""
 	fartext _Route16EndBattleText3
 	done
 
 Route16AfterBattleText3:
-	text ""
 	fartext _Route16AfterBattleText3
 	done
 
 Route16Text4:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText4:
-	text ""
 	fartext _Route16BattleText4
 	done
 
 Route16EndBattleText4:
-	text ""
 	fartext _Route16EndBattleText4
 	done
 
 Route16AfterBattleText4:
-	text ""
 	fartext _Route16AfterBattleText4
 	done
 
 Route16Text5:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText5:
-	text ""
 	fartext _Route16BattleText5
 	done
 
 Route16EndBattleText5:
-	text ""
 	fartext _Route16EndBattleText5
 	done
 
 Route16AfterBattleText5:
-	text ""
 	fartext _Route16AfterBattleText5
 	done
 
 Route16Text6:
-	text ""
 	asmtext
 	ld hl, Route16TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route16BattleText6:
-	text ""
 	fartext _Route16BattleText6
 	done
 
 Route16EndBattleText6:
-	text ""
 	fartext _Route16EndBattleText6
 	done
 
 Route16AfterBattleText6:
-	text ""
 	fartext _Route16AfterBattleText6
 	done
 
 Route16Text7:
-	text ""
 	fartext _Route16Text7
 	done
 
 Route16Text10:
-	text ""
 	fartext _Route16Text10
 	done
 
 Route16Text11:
-	text ""
 	fartext _Route16Text11
 	done
 
 Route16Text8:
-	text ""
 	fartext _Route16Text8
 	done
 
 Route16Text9:
-	text ""
 	fartext _Route16Text9
 	done

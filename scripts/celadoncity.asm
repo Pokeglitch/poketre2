@@ -25,27 +25,22 @@ CeladonCityTextPointers:
 	dw CeladonCityText18
 
 CeladonCityText1:
-	text ""
 	fartext _CeladonCityText1
 	done
 
 CeladonCityText2:
-	text ""
 	fartext _CeladonCityText2
 	done
 
 CeladonCityText3:
-	text ""
 	fartext _CeladonCityText3
 	done
 
 CeladonCityText4:
-	text ""
 	fartext _CeladonCityText4
 	done
 
 CeladonCityText5:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM41
 	jr nz, .asm_7053f
@@ -69,33 +64,27 @@ CeladonCityText5:
 	jp TextScriptEnd
 
 TM41PreText:
-	text ""
 	fartext _TM41PreText
 	done
 
 ReceivedTM41Text:
-	text ""
 	fartext _ReceivedTM41Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM41ExplanationText:
-	text ""
 	fartext _TM41ExplanationText
 	done
 
 TM41NoRoomText:
-	text ""
 	fartext _TM41NoRoomText
 	done
 
 CeladonCityText6:
-	text ""
 	fartext _CeladonCityText6
 	done
 
 CeladonCityText7:
-	text ""
 	fartext _CeladonCityText7
 	asmtext
 	ld a, POLIWRATH
@@ -103,51 +92,41 @@ CeladonCityText7:
 	jp TextScriptEnd
 
 CeladonCityText8:
-	text ""
 	fartext _CeladonCityText8
 	done
 
 CeladonCityText9:
-	text ""
 	fartext _CeladonCityText9
 	done
 
 CeladonCityText10:
-	text ""
 	fartext _CeladonCityText10
 	done
 
 CeladonCityText11:
-	text ""
 	fartext _CeladonCityText11
 	done
 
 CeladonCityText13:
-	text ""
 	fartext _CeladonCityText13
 	done
 
 CeladonCityText14:
-	text ""
 	fartext _CeladonCityText14
 	done
 
 CeladonCityText15:
-	text ""
 	fartext _CeladonCityText15
 	done
 
 CeladonCityText16:
-	text ""
 	fartext _CeladonCityText16
 	done
 
 CeladonCityText17:
-	text ""
 	fartext _CeladonCityText17
 	done
 
 CeladonCityText18:
-	text ""
 	fartext _CeladonCityText18
 	done

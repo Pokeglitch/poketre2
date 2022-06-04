@@ -586,34 +586,28 @@ ItemUseBall:
 ItemUseBallText00:
 ;"It dodged the thrown ball!"
 ;"This pokemon can't be caught"
-	text ""
 	fartext _ItemUseBallText00
 	done
 ItemUseBallText01:
 ;"You missed the pokemon!"
-	text ""
 	fartext _ItemUseBallText01
 	done
 ItemUseBallText02:
 ;"Darn! The pokemon broke free!"
-	text ""
 	fartext _ItemUseBallText02
 	done
 ItemUseBallText03:
 ;"Aww! It appeared to be caught!"
-	text ""
 	fartext _ItemUseBallText03
 	done
 ItemUseBallText04:
 ;"Shoot! It was so close too!"
-	text ""
 	fartext _ItemUseBallText04
 	done
 
 ItemUseBallText05:
 ;"All right! {MonName} was caught!"
 ;play sound
-	text ""
 	fartext _ItemUseBallText05
 	sfxtext SFX_CAUGHT_MON
 	wait
@@ -621,20 +615,17 @@ ItemUseBallText05:
 
 ItemUseBallText07:
 ;"X was transferred to Bill's PC"
-	text ""
 	fartext _ItemUseBallText07
 	done
 
 ItemUseBallText08:
 ;"X was transferred to someone's PC"
-	text ""
 	fartext _ItemUseBallText08
 	done
 
 ItemUseBallText06:
 ;"New DEX data will be added..."
 ;play sound
-	text ""
 	fartext _ItemUseBallText06
 	sfxtext SFX_DEX_PAGE_ADDED
 	wait
@@ -686,7 +677,6 @@ ItemUseBicycle:
 	jp PrintText
 
 CannotGetOffHereText:
-	text ""
 	fartext _CannotGetOffHereText
 	done
 
@@ -771,12 +761,10 @@ ItemUseSurfboard:
 	ret
 
 SurfingGotOnText:
-	text ""
 	fartext _SurfingGotOnText
 	done
 
 SurfingNoPlaceToGetOffText:
-	text ""
 	fartext _SurfingNoPlaceToGetOffText
 	done
 
@@ -1441,12 +1429,10 @@ ItemUseMedicine:
 	jp RemoveUsedItem
 
 VitaminStatRoseText:
-	text ""
 	fartext _VitaminStatRoseText
 	done
 
 VitaminNoEffectText:
-	text ""
 	fartext _VitaminNoEffectText
 	done
 
@@ -1505,12 +1491,10 @@ BaitRockCommon:
 	jp DelayFrames
 
 ThrewBaitText:
-	text ""
 	fartext _ThrewBaitText
 	done
 
 ThrewRockText:
-	text ""
 	fartext _ThrewRockText
 	done
 
@@ -1857,17 +1841,14 @@ Route16SnorlaxFluteCoords:
 	db $ff ; terminator
 
 PlayedFluteNoEffectText:
-	text ""
 	fartext _PlayedFluteNoEffectText
 	done
 
 FluteWokeUpText:
-	text ""
 	fartext _FluteWokeUpText
 	done
 
 PlayedFluteHadEffectText:
-	text ""
 	fartext _PlayedFluteHadEffectText
 	wait
 	asmtext
@@ -1896,7 +1877,6 @@ ItemUseCoinCase:
 	jp PrintText
 
 CoinCaseNumCoinsText:
-	text ""
 	fartext _CoinCaseNumCoinsText
 	done
 
@@ -2016,12 +1996,10 @@ ItemUseItemfinder:
 	jp PrintText
 
 ItemfinderFoundItemText:
-	text ""
 	fartext _ItemfinderFoundItemText
 	done
 
 ItemfinderFoundNothingText:
-	text ""
 	fartext _ItemfinderFoundNothingText
 	done
 
@@ -2207,27 +2185,22 @@ ItemUsePPRestore:
 	ret
 
 RaisePPWhichTechniqueText:
-	text ""
 	fartext _RaisePPWhichTechniqueText
 	done
 
 RestorePPWhichTechniqueText:
-	text ""
 	fartext _RestorePPWhichTechniqueText
 	done
 
 PPMaxedOutText:
-	text ""
 	fartext _PPMaxedOutText
 	done
 
 PPIncreasedText:
-	text ""
 	fartext _PPIncreasedText
 	done
 
 PPRestoredText:
-	text ""
 	fartext _PPRestoredText
 	done
 
@@ -2305,7 +2278,6 @@ ItemUseTMHM:
 	ret
 
 MonCannotLearnMachineMoveText:
-	text ""
 	fartext _MonCannotLearnMachineMoveText
 	done
 
@@ -2363,57 +2335,46 @@ ItemUseFailed:
 	jp PrintText
 
 ItemUseNotTimeText:
-	text ""
 	fartext _ItemUseNotTimeText
 	done
 
 ItemUseNotYoursToUseText:
-	text ""
 	fartext _ItemUseNotYoursToUseText
 	done
 
 ItemUseNoEffectText:
-	text ""
 	fartext _ItemUseNoEffectText
 	done
 
 ThrowBallAtTrainerMonText1:
-	text ""
 	fartext _ThrowBallAtTrainerMonText1
 	done
 
 ThrowBallAtTrainerMonText2:
-	text ""
 	fartext _ThrowBallAtTrainerMonText2
 	done
 
 NoCyclingAllowedHereText:
-	text ""
 	fartext _NoCyclingAllowedHereText
 	done
 
 NoSurfingHereText:
-	text ""
 	fartext _NoSurfingHereText
 	done
 
 BoxFullCannotThrowBallText:
-	text ""
 	fartext _BoxFullCannotThrowBallText
 	done
 
 ItemUseText00:
-	text ""
 	fartext _ItemUseText001
 	done
 
 GotOnBicycleText:
-	text ""
 	fartext _GotOnBicycleText1
 	done
 
 GotOffBicycleText:
-	text ""
 	fartext _GotOffBicycleText1
 	done
 

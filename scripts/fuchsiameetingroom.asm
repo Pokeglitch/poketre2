@@ -8,16 +8,13 @@ FuchsiaMeetingRoomTextPointers:
 	dw FuchsiaMeetingRoomText3
 
 FuchsiaMeetingRoomText1:
-	text ""
 	fartext _FuchsiaMeetingRoomText1
 	done
 
 FuchsiaMeetingRoomText2:
-	text ""
 	fartext _FuchsiaMeetingRoomText2
 	done
 
 FuchsiaMeetingRoomText3:
-	text ""
 	fartext _FuchsiaMeetingRoomText3
 	done

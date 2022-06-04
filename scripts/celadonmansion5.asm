@@ -6,12 +6,10 @@ CeladonMansion5TextPointers:
 	dw CeladonMansion5Text2
 
 CeladonMansion5Text1:
-	text ""
 	fartext _CeladonMansion5Text1
 	done
 
 CeladonMansion5Text2:
-	text ""
 	asmtext
 	lb bc, EEVEE, 25
 	call GivePokemon

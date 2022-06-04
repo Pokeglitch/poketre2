@@ -158,7 +158,6 @@ PalletTownTextPointers:
 	dw PalletTownText7
 
 PalletTownText1:
-	text ""
 	asmtext
 	ld a, [wcf0d]
 	and a
@@ -174,7 +173,6 @@ PalletTownText1:
 	jp TextScriptEnd
 
 OakAppearsText:
-	text ""
 	fartext _OakAppearsText
 	asmtext
 	ld c, 10
@@ -188,36 +186,29 @@ OakAppearsText:
 	jp TextScriptEnd
 
 OakWalksUpText:
-	text ""
 	fartext _OakWalksUpText
 	done
 
 PalletTownText2: ; girl
-	text ""
 	fartext _PalletTownText2
 	done
 
 PalletTownText3: ; fat man
-	text ""
 	fartext _PalletTownText3
 	done
 
 PalletTownText4: ; sign by lab
-	text ""
 	fartext _PalletTownText4
 	done
 
 PalletTownText5: ; sign by fence
-	text ""
 	fartext _PalletTownText5
 	done
 
 PalletTownText6: ; sign by Red’s house
-	text ""
 	fartext _PalletTownText6
 	done
 
 PalletTownText7: ; sign by Blue’s house
-	text ""
 	fartext _PalletTownText7
 	done

@@ -55,7 +55,6 @@ _ReceivedFluteText::
 	done
 
 _FluteExplanationText::
-	text ""
 	para "Upon hearing #"
 	line "FLUTE, sleeping"
 	cont "POKéMON will"

@@ -9,7 +9,6 @@ FuchsiaHouse2TextPointers:
 	dw FuchsiaHouse2Text5
 
 FuchsiaHouse2Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_HM04
 	jr nz, .subtract
@@ -57,54 +56,44 @@ FuchsiaHouse2Text1:
 	jp TextScriptEnd
 
 WardenGibberishText1:
-	text ""
 	fartext _WardenGibberishText1
 	done
 
 WardenGibberishText2:
-	text ""
 	fartext _WardenGibberishText2
 	done
 
 WardenGibberishText3:
-	text ""
 	fartext _WardenGibberishText3
 	done
 
 WardenTeethText1:
-	text ""
 	fartext _WardenTeethText1
 	sfxtext SFX_GET_ITEM_1
 
 WardenTeethText2:
-	text ""
 	fartext _WardenTeethText2
 	done
 
 WardenThankYouText:
-	text ""
 	fartext _WardenThankYouText
 	done
 
 ReceivedHM04Text:
-	text ""
 	fartext _ReceivedHM04Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 HM04ExplanationText:
-	text ""
 	fartext _HM04ExplanationText
 	done
 
 HM04NoRoomText:
-	text ""
 	fartext _HM04NoRoomText
 	done
 
 FuchsiaHouse2Text5:
 FuchsiaHouse2Text4:
-	text ""
 	asmtext
 	ld a, [H_SPRITEINDEX]
 	cp $4
@@ -116,11 +105,9 @@ FuchsiaHouse2Text4:
 	jp TextScriptEnd
 
 FuchsiaHouse2Text_75176:
-	text ""
 	fartext _FuchsiaHouse2Text_75176
 	done
 
 FuchsiaHouse2Text_7517b:
-	text ""
 	fartext _FuchsiaHouse2Text_7517b
 	done

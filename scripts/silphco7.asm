@@ -319,7 +319,6 @@ SilphCo7TrainerHeader3:
 
 SilphCo7Text1:
 ; lapras guy
-	text ""
 	asmtext
 	ld a, [wd72e]
 	bit 0, a ; got lapras?
@@ -351,27 +350,22 @@ SilphCo7Text1:
 	jp TextScriptEnd
 
 .MeetLaprasGuyText
-	text ""
 	fartext _MeetLaprasGuyText
 	done
 
 .HeresYourLaprasText
-	text ""
 	fartext _HeresYourLaprasText
 	done
 
 .LaprasGuyText
-	text ""
 	fartext _LaprasGuyText
 	done
 
 .LaprasGuySavedText
-	text ""
 	fartext _LaprasGuySavedText
 	done
 
 SilphCo7Text2:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
@@ -385,17 +379,14 @@ SilphCo7Text2:
 	jp TextScriptEnd
 
 .rockettext
-	text ""
 	fartext _SilphCo7Text_51e00
 	done
 
 .savedtext
-	text ""
 	fartext _CanceledMasterBallText
 	done
 
 SilphCo7Text3:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
@@ -409,17 +400,14 @@ SilphCo7Text3:
 	jp TextScriptEnd
 
 .rockettext
-	text ""
 	fartext _SilphCo7Text_51e23
 	done
 
 .savedtext
-	text ""
 	fartext _SilphCo7Text_51e28
 	done
 
 SilphCo7Text4:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
@@ -433,131 +421,107 @@ SilphCo7Text4:
 	jp TextScriptEnd
 
 .rockettext
-	text ""
 	fartext _SilphCo7Text_51e46
 	done
 
 .savedtext
-	text ""
 	fartext _SilphCo7Text_51e4b
 	done
 
 SilphCo7Text5:
-	text ""
 	asmtext
 	ld hl, SilphCo7TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo7BattleText1:
-	text ""
 	fartext _SilphCo7BattleText1
 	done
 
 SilphCo7EndBattleText1:
-	text ""
 	fartext _SilphCo7EndBattleText1
 	done
 
 SilphCo7AfterBattleText1:
-	text ""
 	fartext _SilphCo7AfterBattleText1
 	done
 
 SilphCo7Text6:
-	text ""
 	asmtext
 	ld hl, SilphCo7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo7BattleText2:
-	text ""
 	fartext _SilphCo7BattleText2
 	done
 
 SilphCo7EndBattleText2:
-	text ""
 	fartext _SilphCo7EndBattleText2
 	done
 
 SilphCo7AfterBattleText2:
-	text ""
 	fartext _SilphCo7AfterBattleText2
 	done
 
 SilphCo7Text7:
-	text ""
 	asmtext
 	ld hl, SilphCo7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo7BattleText3:
-	text ""
 	fartext _SilphCo7BattleText3
 	done
 
 SilphCo7EndBattleText3:
-	text ""
 	fartext _SilphCo7EndBattleText3
 	done
 
 SilphCo7AfterBattleText3:
-	text ""
 	fartext _SilphCo7AfterBattleText3
 	done
 
 SilphCo7Text8:
-	text ""
 	asmtext
 	ld hl, SilphCo7TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo7BattleText4:
-	text ""
 	fartext _SilphCo7BattleText4
 	done
 
 SilphCo7EndBattleText4:
-	text ""
 	fartext _SilphCo7EndBattleText4
 	done
 
 SilphCo7AfterBattleText4:
-	text ""
 	fartext _SilphCo7AfterBattleText4
 	done
 
 SilphCo7Text9:
-	text ""
 	asmtext
 	ld hl, SilphCo7Text_51ebe
 	call PrintText
 	jp TextScriptEnd
 
 SilphCo7Text_51ebe:
-	text ""
 	fartext _SilphCo7Text_51ebe
 	done
 
 SilphCo7Text13:
-	text ""
 	fartext _SilphCo7Text_51ec3
 	done
 
 SilphCo7Text14:
-	text ""
 	fartext _SilphCo7Text_51ec8
 	done
 
 SilphCo7Text_51ecd:
-	text ""
 	fartext _SilphCo7Text_51ecd
 	done
 
 SilphCo7Text15:
-	text ""
 	fartext _SilphCo7Text_51ed2
 	done

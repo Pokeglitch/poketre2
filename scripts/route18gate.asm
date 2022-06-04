@@ -87,7 +87,6 @@ Route18GateTextPointers:
 	dw Route18GateText2
 
 Route18GateText1:
-	text ""
 	asmtext
 	call Route16GateScript_49755
 	jr z, .asm_3c84d
@@ -101,16 +100,13 @@ Route18GateText1:
 	jp TextScriptEnd
 
 Route18GateText_49928:
-	text ""
 	fartext _Route18GateText_49928
 	done
 
 Route18GateText_4992d:
-	text ""
 	fartext _Route18GateText_4992d
 	done
 
 Route18GateText2:
-	text ""
 	fartext _Route18GateText_49932
 	done

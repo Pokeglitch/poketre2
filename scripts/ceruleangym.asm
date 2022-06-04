@@ -100,7 +100,6 @@ CeruleanGymTrainerHeader1:
 	db $ff
 
 CeruleanGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_MISTY
 	jr z, .asm_5c78d
@@ -136,84 +135,69 @@ CeruleanGymText1:
 	jp TextScriptEnd
 
 CeruleanGymText_5c7be:
-	text ""
 	fartext _CeruleanGymText_5c7be
 	done
 
 CeruleanGymText_5c7c3:
-	text ""
 	fartext _CeruleanGymText_5c7c3
 	done
 
 CeruleanGymText5:
-	text ""
 	fartext _CeruleanGymText_5c7c8
 	done
 
 CeruleanGymText6:
-	text ""
 	fartext _ReceivedTM11Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 CeruleanGymText7:
-	text ""
 	fartext _CeruleanGymText_5c7d3
 	done
 
 CeruleanGymText_5c7d8:
-	text ""
 	fartext _CeruleanGymText_5c7d8
 	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
 	wait
 	done
 
 CeruleanGymText2:
-	text ""
 	asmtext
 	ld hl, CeruleanGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeruleanGymBattleText1:
-	text ""
 	fartext _CeruleanGymBattleText1
 	done
 
 CeruleanGymEndBattleText1:
-	text ""
 	fartext _CeruleanGymEndBattleText1
 	done
 
 CeruleanGymAfterBattleText1:
-	text ""
 	fartext _CeruleanGymAfterBattleText1
 	done
 
 CeruleanGymText3:
-	text ""
 	asmtext
 	ld hl, CeruleanGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeruleanGymBattleText2:
-	text ""
 	fartext _CeruleanGymBattleText2
 	done
 
 CeruleanGymEndBattleText2:
-	text ""
 	fartext _CeruleanGymEndBattleText2
 	done
 
 CeruleanGymAfterBattleText2:
-	text ""
 	fartext _CeruleanGymAfterBattleText2
 	done
 
 CeruleanGymText4:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_MISTY
 	jr nz, .asm_5c821
@@ -227,11 +211,9 @@ CeruleanGymText4:
 	jp TextScriptEnd
 
 CeruleanGymText_5c82a:
-	text ""
 	fartext _CeruleanGymText_5c82a
 	done
 
 CeruleanGymText_5c82f:
-	text ""
 	fartext _CeruleanGymText_5c82f
 	done

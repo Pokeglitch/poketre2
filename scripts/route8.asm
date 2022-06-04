@@ -108,204 +108,167 @@ Route8TrainerHeader8:
 	db $ff
 
 Route8Text1:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText1:
-	text ""
 	fartext _Route8BattleText1
 	done
 
 Route8EndBattleText1:
-	text ""
 	fartext _Route8EndBattleText1
 	done
 
 Route8AfterBattleText1:
-	text ""
 	fartext _Route8AfterBattleText1
 	done
 
 Route8Text2:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText2:
-	text ""
 	fartext _Route8BattleText2
 	done
 
 Route8EndBattleText2:
-	text ""
 	fartext _Route8EndBattleText2
 	done
 
 Route8AfterBattleText2:
-	text ""
 	fartext _Route8AfterBattleText2
 	done
 
 Route8Text3:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText3:
-	text ""
 	fartext _Route8BattleText3
 	done
 
 Route8EndBattleText3:
-	text ""
 	fartext _Route8EndBattleText3
 	done
 
 Route8AfterBattleText3:
-	text ""
 	fartext _Route8AfterBattleText3
 	done
 
 Route8Text4:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText4:
-	text ""
 	fartext _Route8BattleText4
 	done
 
 Route8EndBattleText4:
-	text ""
 	fartext _Route8EndBattleText4
 	done
 
 Route8AfterBattleText4:
-	text ""
 	fartext _Route8AfterBattleText4
 	done
 
 Route8Text5:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText5:
-	text ""
 	fartext _Route8BattleText5
 	done
 
 Route8EndBattleText5:
-	text ""
 	fartext _Route8EndBattleText5
 	done
 
 Route8AfterBattleText5:
-	text ""
 	fartext _Route8AfterBattleText5
 	done
 
 Route8Text6:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText6:
-	text ""
 	fartext _Route8BattleText6
 	done
 
 Route8EndBattleText6:
-	text ""
 	fartext _Route8EndBattleText6
 	done
 
 Route8AfterBattleText6:
-	text ""
 	fartext _Route8AfterBattleText6
 	done
 
 Route8Text7:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText7:
-	text ""
 	fartext _Route8BattleText7
 	done
 
 Route8EndBattleText7:
-	text ""
 	fartext _Route8EndBattleText7
 	done
 
 Route8AfterBattleText7:
-	text ""
 	fartext _Route8AfterBattleText7
 	done
 
 Route8Text8:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText8:
-	text ""
 	fartext _Route8BattleText8
 	done
 
 Route8EndBattleText8:
-	text ""
 	fartext _Route8EndBattleText8
 	done
 
 Route8AfterBattleText8:
-	text ""
 	fartext _Route8AfterBattleText8
 	done
 
 Route8Text9:
-	text ""
 	asmtext
 	ld hl, Route8TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route8BattleText9:
-	text ""
 	fartext _Route8BattleText9
 	done
 
 Route8EndBattleText9:
-	text ""
 	fartext _Route8EndBattleText9
 	done
 
 Route8AfterBattleText9:
-	text ""
 	fartext _Route8AfterBattleText9
 	done
 
 Route8Text10:
-	text ""
 	fartext _Route8Text10
 	done

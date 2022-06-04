@@ -14,7 +14,6 @@ _NameRaterText_1dab8::
 	prompt
 
 _NameRaterText_1dabd::
-	text ""
 	ramtext wcd6d
 	text ", is it?"
 	line "That is a decent"
@@ -49,7 +48,6 @@ _NameRaterText_1dacc::
 	done
 
 _NameRaterText_1dad1::
-	text ""
 	ramtext wcd6d
 	text ", is it?"
 	line "That is a truly"

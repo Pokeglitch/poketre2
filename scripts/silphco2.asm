@@ -137,7 +137,6 @@ SilphCo2TrainerHeader3:
 	db $ff
 
 SilphCo2Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM36
 	jr nz, .asm_59de4
@@ -157,110 +156,90 @@ SilphCo2Text1:
 	jp TextScriptEnd
 
 SilphCo2Text_59ded:
-	text ""
 	fartext _SilphCo2Text_59ded
 	done
 
 ReceivedTM36Text:
-	text ""
 	fartext _ReceivedTM36Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM36ExplanationText:
-	text ""
 	fartext _TM36ExplanationText
 	done
 
 TM36NoRoomText:
-	text ""
 	fartext _TM36NoRoomText
 	done
 
 SilphCo2Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text3:
-	text ""
 	asmtext
 	ld hl, SilphCo2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text5:
-	text ""
 	asmtext
 	ld hl, SilphCo2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2BattleText1:
-	text ""
 	fartext _SilphCo2BattleText1
 	done
 
 SilphCo2EndBattleText1:
-	text ""
 	fartext _SilphCo2EndBattleText1
 	done
 
 SilphCo2AfterBattleText1:
-	text ""
 	fartext _SilphCo2AfterBattleText1
 	done
 
 SilphCo2BattleText2:
-	text ""
 	fartext _SilphCo2BattleText2
 	done
 
 SilphCo2EndBattleText2:
-	text ""
 	fartext _SilphCo2EndBattleText2
 	done
 
 SilphCo2AfterBattleText2:
-	text ""
 	fartext _SilphCo2AfterBattleText2
 	done
 
 SilphCo2BattleText3:
-	text ""
 	fartext _SilphCo2BattleText3
 	done
 
 SilphCo2EndBattleText3:
-	text ""
 	fartext _SilphCo2EndBattleText3
 	done
 
 SilphCo2AfterBattleText3:
-	text ""
 	fartext _SilphCo2AfterBattleText3
 	done
 
 SilphCo2BattleText4:
-	text ""
 	fartext _SilphCo2BattleText4
 	done
 
 SilphCo2EndBattleText4:
-	text ""
 	fartext _SilphCo2EndBattleText4
 	done
 
 SilphCo2AfterBattleText4:
-	text ""
 	fartext _SilphCo2AfterBattleText4
 	done

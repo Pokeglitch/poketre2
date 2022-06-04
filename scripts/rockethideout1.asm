@@ -92,42 +92,36 @@ RocketHideout1TrainerHeader4:
 	db $ff
 
 RocketHideout1Text1:
-	text ""
 	asmtext
 	ld hl, RocketHideout1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text2:
-	text ""
 	asmtext
 	ld hl, RocketHideout1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text3:
-	text ""
 	asmtext
 	ld hl, RocketHideout1TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text4:
-	text ""
 	asmtext
 	ld hl, RocketHideout1TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text5:
-	text ""
 	asmtext
 	ld hl, RocketHideout1TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1EndBattleText6:
-	text ""
 	fartext _RocketHideout1EndBattleText6
 	asmtext
 	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_4
@@ -135,76 +129,61 @@ RocketHideout1EndBattleText6:
 	ret
 
 RocketHideout1Text_44c9f:
-	text ""
 	wait
 	done
 
 RocketHideout1BattleText2:
-	text ""
 	fartext _RocketHideout1BattleText2
 	done
 
 RocketHideout1EndBattleText2:
-	text ""
 	fartext _RocketHideout1EndBattleText2
 	done
 
 RocketHideout1AfterBattleTxt2:
-	text ""
 	fartext _RocketHideout1AfterBattleTxt2
 	done
 
 RocketHideout1BattleText3:
-	text ""
 	fartext _RocketHideout1BattleText3
 	done
 
 RocketHideout1EndBattleText3:
-	text ""
 	fartext _RocketHideout1EndBattleText3
 	done
 
 RocketHideout1AfterBattleTxt3:
-	text ""
 	fartext _RocketHideout1AfterBattleTxt3
 	done
 
 RocketHideout1BattleText4:
-	text ""
 	fartext _RocketHideout1BattleText4
 	done
 
 RocketHideout1EndBattleText4:
-	text ""
 	fartext _RocketHideout1EndBattleText4
 	done
 
 RocketHideout1AfterBattleTxt4:
-	text ""
 	fartext _RocketHideout1AfterBattleTxt4
 	done
 
 RocketHideout1BattleText5:
-	text ""
 	fartext _RocketHideout1BattleText5
 	done
 
 RocketHideout1EndBattleText5:
-	text ""
 	fartext _RocketHideout1EndBattleText5
 	done
 
 RocketHideout1AfterBattleTxt5:
-	text ""
 	fartext _RocketHideout1AfterBattleTxt5
 	done
 
 RocketHideout1BattleText6:
-	text ""
 	fartext _RocketHideout1BattleText6
 	done
 
 RocketHideout1AfterBattleTxt6:
-	text ""
 	fartext _RocketHideout1AfterBattleTxt6
 	done

@@ -12,12 +12,10 @@ SaffronHealNurseText:
 	TX_POKECENTER_NURSE
 
 SaffronPokecenterText2:
-	text ""
 	fartext _SaffronPokecenterText2
 	done
 
 SaffronPokecenterText3:
-	text ""
 	fartext _SaffronPokecenterText3
 	done
 

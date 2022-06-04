@@ -21,7 +21,6 @@ CeladonMart3TextPointers:
 	dw CeladonMart3Text17
 
 CeladonMart3Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM18
 	jr nz, .asm_a5463
@@ -43,43 +42,35 @@ CeladonMart3Text1:
 	jp TextScriptEnd
 
 TM18PreReceiveText:
-	text ""
 	fartext _TM18PreReceiveText
 	done
 
 ReceivedTM18Text:
-	text ""
 	fartext _ReceivedTM18Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM18ExplanationText:
-	text ""
 	fartext _TM18ExplanationText
 	done
 
 TM18NoRoomText:
-	text ""
 	fartext _TM18NoRoomText
 	done
 
 CeladonMart3Text2:
-	text ""
 	fartext _CeladonMart3Text2
 	done
 
 CeladonMart3Text3:
-	text ""
 	fartext _CeladonMart3Text3
 	done
 
 CeladonMart3Text4:
-	text ""
 	fartext _CeladonMart3Text4
 	done
 
 CeladonMart3Text5:
-	text ""
 	fartext _CeladonMart3Text5
 	done
 
@@ -87,38 +78,31 @@ CeladonMart3Text12:
 CeladonMart3Text10:
 CeladonMart3Text8:
 CeladonMart3Text6:
-	text ""
 	fartext _CeladonMart3Text6
 	done
 
 CeladonMart3Text7:
-	text ""
 	fartext _CeladonMart3Text7
 	done
 
 CeladonMart3Text9:
-	text ""
 	fartext _CeladonMart3Text9
 	done
 
 CeladonMart3Text11:
-	text ""
 	fartext _CeladonMart3Text11
 	done
 
 CeladonMart3Text13:
-	text ""
 	fartext _CeladonMart3Text13
 	done
 
 CeladonMart3Text14:
-	text ""
 	fartext _CeladonMart3Text14
 	done
 
 CeladonMart3Text17:
 CeladonMart3Text16:
 CeladonMart3Text15:
-	text ""
 	fartext _CeladonMart3Text15
 	done

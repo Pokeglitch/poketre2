@@ -118,226 +118,185 @@ Route19TrainerHeader9:
 	db $ff
 
 Route19Text1:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text2:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text3:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text4:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text5:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text6:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text7:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text8:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text9:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19Text10:
-	text ""
 	asmtext
 	ld hl, Route19TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route19BattleText1:
-	text ""
 	fartext _Route19BattleText1
 	done
 
 Route19EndBattleText1:
-	text ""
 	fartext _Route19EndBattleText1
 	done
 
 Route19AfterBattleText1:
-	text ""
 	fartext _Route19AfterBattleText1
 	done
 
 Route19BattleText2:
-	text ""
 	fartext _Route19BattleText2
 	done
 
 Route19EndBattleText2:
-	text ""
 	fartext _Route19EndBattleText2
 	done
 
 Route19AfterBattleText2:
-	text ""
 	fartext _Route19AfterBattleText2
 	done
 
 Route19BattleText3:
-	text ""
 	fartext _Route19BattleText3
 	done
 
 Route19EndBattleText3:
-	text ""
 	fartext _Route19EndBattleText3
 	done
 
 Route19AfterBattleText3:
-	text ""
 	fartext _Route19AfterBattleText3
 	done
 
 Route19BattleText4:
-	text ""
 	fartext _Route19BattleText4
 	done
 
 Route19EndBattleText4:
-	text ""
 	fartext _Route19EndBattleText4
 	done
 
 Route19AfterBattleText4:
-	text ""
 	fartext _Route19AfterBattleText4
 	done
 
 Route19BattleText5:
-	text ""
 	fartext _Route19BattleText5
 	done
 
 Route19EndBattleText5:
-	text ""
 	fartext _Route19EndBattleText5
 	done
 
 Route19AfterBattleText5:
-	text ""
 	fartext _Route19AfterBattleText5
 	done
 
 Route19BattleText6:
-	text ""
 	fartext _Route19BattleText6
 	done
 
 Route19EndBattleText6:
-	text ""
 	fartext _Route19EndBattleText6
 	done
 
 Route19AfterBattleText6:
-	text ""
 	fartext _Route19AfterBattleText6
 	done
 
 Route19BattleText7:
-	text ""
 	fartext _Route19BattleText7
 	done
 
 Route19EndBattleText7:
-	text ""
 	fartext _Route19EndBattleText7
 	done
 
 Route19AfterBattleText7:
-	text ""
 	fartext _Route19AfterBattleText7
 	done
 
 Route19BattleText8:
-	text ""
 	fartext _Route19BattleText8
 	done
 
 Route19EndBattleText8:
-	text ""
 	fartext _Route19EndBattleText8
 	done
 
 Route19AfterBattleText8:
-	text ""
 	fartext _Route19AfterBattleText8
 	done
 
 Route19BattleText9:
-	text ""
 	fartext _Route19BattleText9
 	done
 
 Route19EndBattleText9:
-	text ""
 	fartext _Route19EndBattleText9
 	done
 
 Route19AfterBattleText9:
-	text ""
 	fartext _Route19AfterBattleText9
 	done
 
 Route19BattleText10:
-	text ""
 	fartext _Route19BattleText10
 	done
 
 Route19EndBattleText10:
-	text ""
 	fartext _Route19EndBattleText10
 	done
 
 Route19AfterBattleText10:
-	text ""
 	fartext _Route19AfterBattleText10
 	done
 
 Route19Text11:
-	text ""
 	fartext _Route19Text11
 	done

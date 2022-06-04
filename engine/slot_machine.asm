@@ -53,7 +53,6 @@ PromptUserToPlaySlots:
 	jp CloseTextDisplay
 
 PlaySlotMachineText:
-	text ""
 	fartext _PlaySlotMachineText
 	done
 
@@ -153,27 +152,22 @@ CoinMultiplierSlotMachineText:
 	next "x1@"
 
 OutOfCoinsSlotMachineText:
-	text ""
 	fartext _OutOfCoinsSlotMachineText
 	done
 
 BetHowManySlotMachineText:
-	text ""
 	fartext _BetHowManySlotMachineText
 	done
 
 StartSlotMachineText:
-	text ""
 	fartext _StartSlotMachineText
 	done
 
 NotEnoughCoinsSlotMachineText:
-	text ""
 	fartext _NotEnoughCoinsSlotMachineText
 	done
 
 OneMoreGoSlotMachineText:
-	text ""
 	fartext _OneMoreGoSlotMachineText
 	done
 
@@ -482,7 +476,6 @@ SlotMachine_CheckForMatches:
 	jp .done
 
 SymbolLinedUpSlotMachineText:
-	text ""
 	asmtext
 	push bc
 	call SlotMachine_PrintWinningSymbol
@@ -495,7 +488,6 @@ SymbolLinedUpSlotMachineText:
 	ret
 
 LinedUpText:
-	text ""
 	fartext _LinedUpText
 	done
 
@@ -526,7 +518,6 @@ SlotReward15Text:
 	str "15"
 
 NotThisTimeText:
-	text ""
 	fartext _NotThisTimeText
 	done
 
@@ -618,7 +609,6 @@ SlotReward300Func:
 	ret
 
 YeahText:
-	text ""
 	fartext _YeahText
 	delaytext
 	done

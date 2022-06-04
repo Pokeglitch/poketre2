@@ -149,7 +149,6 @@ CeladonGymTrainerHeader6:
 	db $ff
 
 CeladonGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_ERIKA
 	jr z, .asm_48a2d
@@ -184,187 +183,153 @@ CeladonGymText1:
 	jp TextScriptEnd
 
 CeladonGymText_48a5e:
-	text ""
 	fartext _CeladonGymText_48a5e
 	done
 
 CeladonGymText_48a63:
-	text ""
 	fartext _CeladonGymText_48a63
 	done
 
 CeladonGymText_48a68:
-	text ""
 	fartext _CeladonGymText_48a68
 	done
 
 CeladonGymText9:
-	text ""
 	fartext _CeladonGymText9
 	done
 
 TM21Text:
-	text ""
 	fartext _ReceivedTM21Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _TM21ExplanationText
 	done
 
 TM21NoRoomText:
-	text ""
 	fartext _TM21NoRoomText
 	done
 
 CeladonGymText2:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText2:
-	text ""
 	fartext _CeladonGymBattleText2
 	done
 
 CeladonGymEndBattleText2:
-	text ""
 	fartext _CeladonGymEndBattleText2
 	done
 
 CeladonGymAfterBattleText2:
-	text ""
 	fartext _CeladonGymAfterBattleText2
 	done
 
 CeladonGymText3:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText3:
-	text ""
 	fartext _CeladonGymBattleText3
 	done
 
 CeladonGymEndBattleText3:
-	text ""
 	fartext _CeladonGymEndBattleText3
 	done
 
 CeladonGymAfterBattleText3:
-	text ""
 	fartext _CeladonGymAfterBattleText3
 	done
 
 CeladonGymText4:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText4:
-	text ""
 	fartext _CeladonGymBattleText4
 	done
 
 CeladonGymEndBattleText4:
-	text ""
 	fartext _CeladonGymEndBattleText4
 	done
 
 CeladonGymAfterBattleText4:
-	text ""
 	fartext _CeladonGymAfterBattleText4
 	done
 
 CeladonGymText5:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText5:
-	text ""
 	fartext _CeladonGymBattleText5
 	done
 
 CeladonGymEndBattleText5:
-	text ""
 	fartext _CeladonGymEndBattleText5
 	done
 
 CeladonGymAfterBattleText5:
-	text ""
 	fartext _CeladonGymAfterBattleText5
 	done
 
 CeladonGymText6:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText6:
-	text ""
 	fartext _CeladonGymBattleText6
 	done
 
 CeladonGymEndBattleText6:
-	text ""
 	fartext _CeladonGymEndBattleText6
 	done
 
 CeladonGymAfterBattleText6:
-	text ""
 	fartext _CeladonGymAfterBattleText6
 	done
 
 CeladonGymText7:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText7:
-	text ""
 	fartext _CeladonGymBattleText7
 	done
 
 CeladonGymEndBattleText7:
-	text ""
 	fartext _CeladonGymEndBattleText7
 	done
 
 CeladonGymAfterBattleText7:
-	text ""
 	fartext _CeladonGymAfterBattleText7
 	done
 
 CeladonGymText8:
-	text ""
 	asmtext
 	ld hl, CeladonGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 CeladonGymBattleText8:
-	text ""
 	fartext _CeladonGymBattleText8
 	done
 
 CeladonGymEndBattleText8:
-	text ""
 	fartext _CeladonGymEndBattleText8
 	done
 
 CeladonGymAfterBattleText8:
-	text ""
 	fartext _CeladonGymAfterBattleText8
 	done

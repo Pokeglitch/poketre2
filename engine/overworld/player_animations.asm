@@ -463,17 +463,14 @@ FishingAnim:
 	ret
 
 NoNibbleText:
-	text ""
 	fartext _NoNibbleText
 	done
 
 NothingHereText:
-	text ""
 	fartext _NothingHereText
 	done
 
 ItsABiteText:
-	text ""
 	fartext _ItsABiteText
 	done
 

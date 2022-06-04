@@ -142,12 +142,10 @@ ViridianCityTextPointers:
 	dw ViridianCityText15
 
 ViridianCityText1:
-	text ""
 	fartext _ViridianCityText1
 	done
 
 ViridianCityText2:
-	text ""
 	asmtext
 	ld a, [wObtainedBadges]
 	cp %01111111
@@ -161,17 +159,14 @@ ViridianCityText2:
 	jp TextScriptEnd
 
 ViridianCityText_19122:
-	text ""
 	fartext _ViridianCityText_19122
 	done
 
 ViridianCityText_19127:
-	text ""
 	fartext _ViridianCityText_19127
 	done
 
 ViridianCityText3:
-	text ""
 	asmtext
 	ld hl, ViridianCityText_1914d
 	call PrintText
@@ -189,22 +184,18 @@ ViridianCityText3:
 	jp TextScriptEnd
 
 ViridianCityText_1914d:
-	text ""
 	fartext _ViridianCityText_1914d
 	done
 
 ViridianCityText_19152:
-	text ""
 	fartext _ViridianCityText_19152
 	done
 
 ViridianCityText_19157:
-	text ""
 	fartext _ViridianCityText_19157
 	done
 
 ViridianCityText4:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_POKEDEX
 	jr nz, .asm_83894
@@ -218,17 +209,14 @@ ViridianCityText4:
 	jp TextScriptEnd
 
 ViridianCityText_19175:
-	text ""
 	fartext _ViridianCityText_19175
 	done
 
 ViridianCityText_1917a:
-	text ""
 	fartext _ViridianCityText_1917a
 	done
 
 ViridianCityText5:
-	text ""
 	asmtext
 	ld hl, ViridianCityText_19191
 	call PrintText
@@ -238,12 +226,10 @@ ViridianCityText5:
 	jp TextScriptEnd
 
 ViridianCityText_19191:
-	text ""
 	fartext _ViridianCityText_19191
 	done
 
 ViridianCityText6:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM42
 	jr nz, .asm_4e5a0
@@ -267,28 +253,23 @@ ViridianCityText6:
 	jp TextScriptEnd
 
 ViridianCityText_191ca:
-	text ""
 	fartext _ViridianCityText_191ca
 	done
 
 ReceivedTM42Text:
-	text ""
 	fartext _ReceivedTM42Text
 	sfxtext SFX_GET_ITEM_2
 	done
 
 TM42Explanation:
-	text ""
 	fartext _TM42Explanation
 	done
 
 TM42NoRoomText:
-	text ""
 	fartext _TM42NoRoomText
 	done
 
 ViridianCityText7:
-	text ""
 	asmtext
 	ld hl, ViridianCityText_1920a
 	call PrintText
@@ -310,46 +291,37 @@ ViridianCityText7:
 	jp TextScriptEnd
 
 ViridianCityText_1920a:
-	text ""
 	fartext _ViridianCityText_1920a
 	done
 
 ViridianCityText_1920f:
-	text ""
 	fartext _ViridianCityText_1920f
 	done
 
 ViridianCityText_19214:
-	text ""
 	fartext _ViridianCityText_19214
 	done
 
 ViridianCityText15:
-	text ""
 	fartext _ViridianCityText_19219
 	done
 
 ViridianCityText8:
-	text ""
 	fartext _ViridianCityText8
 	done
 
 ViridianCityText9:
-	text ""
 	fartext _ViridianCityText9
 	done
 
 ViridianCityText10:
-	text ""
 	fartext _ViridianCityText10
 	done
 
 ViridianCityText13:
-	text ""
 	fartext _ViridianCityText13
 	done
 
 ViridianCityText14:
-	text ""
 	fartext _ViridianCityText14
 	done

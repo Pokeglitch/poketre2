@@ -130,7 +130,6 @@ SilphCo4TrainerHeader2:
 	db $ff
 
 SilphCo4Text1:
-	text ""
 	asmtext
 	ld hl, SilphCo4Text_19de0
 	ld de, SilphCo4Text_19de5
@@ -138,77 +137,63 @@ SilphCo4Text1:
 	jp TextScriptEnd
 
 SilphCo4Text_19de0:
-	text ""
 	fartext _SilphCo4Text_19de0
 	done
 
 SilphCo4Text_19de5:
-	text ""
 	fartext _SilphCo4Text_19de5
 	done
 
 SilphCo4Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo4BattleText2:
-	text ""
 	fartext _SilphCo4BattleText2
 	done
 
 SilphCo4EndBattleText2:
-	text ""
 	fartext _SilphCo4EndBattleText2
 	done
 
 SilphCo4AfterBattleText2:
-	text ""
 	fartext _SilphCo4AfterBattleText2
 	done
 
 SilphCo4Text3:
-	text ""
 	asmtext
 	ld hl, SilphCo4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo4BattleText3:
-	text ""
 	fartext _SilphCo4BattleText3
 	done
 
 SilphCo4EndBattleText3:
-	text ""
 	fartext _SilphCo4EndBattleText3
 	done
 
 SilphCo4AfterBattleText3:
-	text ""
 	fartext _SilphCo4AfterBattleText3
 	done
 
 SilphCo4Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo4BattleText4:
-	text ""
 	fartext _SilphCo4BattleText4
 	done
 
 SilphCo4EndBattleText4:
-	text ""
 	fartext _SilphCo4EndBattleText4
 	done
 
 SilphCo4AfterBattleText4:
-	text ""
 	fartext _SilphCo4AfterBattleText4
 	done

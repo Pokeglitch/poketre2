@@ -10,11 +10,9 @@ DisplayEffectiveness:
 	jp PrintText
 
 SuperEffectiveText:
-	text ""
 	fartext _SuperEffectiveText
 	done
 
 NotVeryEffectiveText:
-	text ""
 	fartext _NotVeryEffectiveText
 	done

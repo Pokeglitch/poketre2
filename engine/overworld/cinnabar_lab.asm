@@ -73,22 +73,18 @@ GiveFossilToCinnabarLab:
 	ret
 
 LabFossil_610ae:
-	text ""
 	fartext _Lab4Text_610ae
 	done
 
 LabFossil_610b3:
-	text ""
 	fartext _Lab4Text_610b3
 	done
 
 LabFossil_610b8:
-	text ""
 	fartext _Lab4Text_610b8
 	done
 
 LabFossil_610bd:
-	text ""
 	fartext _Lab4Text_610bd
 	done
 

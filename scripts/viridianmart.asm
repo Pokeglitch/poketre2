@@ -72,27 +72,22 @@ ViridianMartTextPointers:
 	dw ViridianMartText3
 
 ViridianMartText1:
-	text ""
 	fartext _ViridianMartText1
 	done
 
 ViridianMartText4:
-	text ""
 	fartext _ViridianMartText4
 	done
 
 ViridianMartText5:
-	text ""
 	fartext ViridianMartParcelQuestText
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 ViridianMartText2:
-	text ""
 	fartext _ViridianMartText2
 	done
 
 ViridianMartText3:
-	text ""
 	fartext _ViridianMartText3
 	done

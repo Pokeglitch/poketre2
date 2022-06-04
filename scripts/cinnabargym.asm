@@ -205,7 +205,6 @@ CinnabarGymScript_758b7:
 	jp TextScriptEnd
 
 CinnabarGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_BLAINE
 	jr z, .asm_d9332
@@ -229,41 +228,34 @@ CinnabarGymText1:
 	jp CinnabarGymScript_758b7
 
 BlaineBattleText:
-	text ""
 	fartext _BlaineBattleText
 	done
 
 BlaineEndBattleText:
-	text ""
 	fartext _BlaineEndBattleText
 	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
 	wait
 	done
 
 BlaineFireBlastText:
-	text ""
 	fartext _BlaineFireBlastText
 	done
 
 BlaineBadgeText:
-	text ""
 	fartext _BlaineBadgeText
 	done
 
 ReceivedTM38Text:
-	text ""
 	fartext _ReceivedTM38Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _TM38ExplanationText
 	done
 
 TM38NoRoomText:
-	text ""
 	fartext _TM38NoRoomText
 	done
 
 CinnabarGymText2:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_0
@@ -280,22 +272,18 @@ CinnabarGymText2:
 	jp TextScriptEnd
 
 CinnabarGymText_7595f:
-	text ""
 	fartext _CinnabarGymText_7595f
 	done
 
 CinnabarGymText_75964:
-	text ""
 	fartext _CinnabarGymText_75964
 	done
 
 CinnabarGymText_75969:
-	text ""
 	fartext _CinnabarGymText_75969
 	done
 
 CinnabarGymText3:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_1
@@ -312,22 +300,18 @@ CinnabarGymText3:
 	jp TextScriptEnd
 
 CinnabarGymText_75994:
-	text ""
 	fartext _CinnabarGymText_75994
 	done
 
 CinnabarGymText_75999:
-	text ""
 	fartext _CinnabarGymText_75999
 	done
 
 CinnabarGymText_7599e:
-	text ""
 	fartext _CinnabarGymText_7599e
 	done
 
 CinnabarGymText4:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_2
@@ -344,22 +328,18 @@ CinnabarGymText4:
 	jp TextScriptEnd
 
 CinnabarGymText_759c9:
-	text ""
 	fartext _CinnabarGymText_759c9
 	done
 
 CinnabarGymText_759ce:
-	text ""
 	fartext _CinnabarGymText_759ce
 	done
 
 CinnabarGymText_759d3:
-	text ""
 	fartext _CinnabarGymText_759d3
 	done
 
 CinnabarGymText5:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_3
@@ -376,22 +356,18 @@ CinnabarGymText5:
 	jp TextScriptEnd
 
 CinnabarGymText_759fe:
-	text ""
 	fartext _CinnabarGymText_759fe
 	done
 
 CinnabarGymText_75a03:
-	text ""
 	fartext _CinnabarGymText_75a03
 	done
 
 CinnabarGymText_75a08:
-	text ""
 	fartext _CinnabarGymText_75a08
 	done
 
 CinnabarGymText6:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_4
@@ -408,22 +384,18 @@ CinnabarGymText6:
 	jp TextScriptEnd
 
 CinnabarGymText_75a33:
-	text ""
 	fartext _CinnabarGymText_75a33
 	done
 
 CinnabarGymText_75a38:
-	text ""
 	fartext _CinnabarGymText_75a38
 	done
 
 CinnabarGymText_75a3d:
-	text ""
 	fartext _CinnabarGymText_75a3d
 	done
 
 CinnabarGymText7:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_5
@@ -440,22 +412,18 @@ CinnabarGymText7:
 	jp TextScriptEnd
 
 CinnabarGymText_75a68:
-	text ""
 	fartext _CinnabarGymText_75a68
 	done
 
 CinnabarGymText_75a6d:
-	text ""
 	fartext _CinnabarGymText_75a6d
 	done
 
 CinnabarGymText_75a72:
-	text ""
 	fartext _CinnabarGymText_75a72
 	done
 
 CinnabarGymText8:
-	text ""
 	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_6
@@ -472,22 +440,18 @@ CinnabarGymText8:
 	jp TextScriptEnd
 
 CinnabarGymText_75a9d:
-	text ""
 	fartext _CinnabarGymText_75a9d
 	done
 
 CinnabarGymText_75aa2:
-	text ""
 	fartext _CinnabarGymText_75aa2
 	done
 
 CinnabarGymText_75aa7:
-	text ""
 	fartext _CinnabarGymText_75aa7
 	done
 
 CinnabarGymText9:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_BLAINE
 	jr nz, .asm_627d9
@@ -500,11 +464,9 @@ CinnabarGymText9:
 	jp TextScriptEnd
 
 CinnabarGymText_75ac2:
-	text ""
 	fartext _CinnabarGymText_75ac2
 	done
 
 CinnabarGymText_75ac7:
-	text ""
 	fartext _CinnabarGymText_75ac7
 	done

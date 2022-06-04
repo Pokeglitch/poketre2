@@ -67,7 +67,6 @@ _ReceivedTM27Text::
 	done
 
 _TM27ExplanationText::
-	text ""
 	para "TM27 is FISSURE!"
 	line "It will take out"
 	cont "POKéMON with just"

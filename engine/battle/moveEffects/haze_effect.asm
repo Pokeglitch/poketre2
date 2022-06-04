@@ -77,6 +77,5 @@ ResetStats:
 	ret
 
 StatusChangesEliminatedText:
-	text ""
 	fartext _StatusChangesEliminatedText
 	done

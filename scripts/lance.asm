@@ -142,24 +142,20 @@ LanceTrainerHeader0:
 	db $ff
 
 LanceText1:
-	text ""
 	asmtext
 	ld hl, LanceTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 LanceBeforeBattleText:
-	text ""
 	fartext _LanceBeforeBattleText
 	done
 
 LanceEndBattleText:
-	text ""
 	fartext _LanceEndBattleText
 	done
 
 LanceAfterBattleText:
-	text ""
 	fartext _LanceAfterBattleText
 	asmtext
 	SetEvent EVENT_BEAT_LANCE

@@ -66,6 +66,5 @@ RecoilEffect_:
 	ld hl, HitWithRecoilText
 	jp PrintText
 HitWithRecoilText:
-	text ""
 	fartext _HitWithRecoilText
 	done

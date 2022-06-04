@@ -97,177 +97,145 @@ RockTunnel2TrainerHeader7:
 	db $ff
 
 RockTunnel2Text1:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text2:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text3:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text4:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text5:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text6:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text7:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text8:
-	text ""
 	asmtext
 	ld hl, RockTunnel2TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2BattleText2:
-	text ""
 	fartext _RockTunnel2BattleText2
 	done
 
 RockTunnel2EndBattleText2:
-	text ""
 	fartext _RockTunnel2EndBattleText2
 	done
 
 RockTunnel2AfterBattleText2:
-	text ""
 	fartext _RockTunnel2AfterBattleText2
 	done
 
 RockTunnel2BattleText3:
-	text ""
 	fartext _RockTunnel2BattleText3
 	done
 
 RockTunnel2EndBattleText3:
-	text ""
 	fartext _RockTunnel2EndBattleText3
 	done
 
 RockTunnel2AfterBattleText3:
-	text ""
 	fartext _RockTunnel2AfterBattleText3
 	done
 
 RockTunnel2BattleText4:
-	text ""
 	fartext _RockTunnel2BattleText4
 	done
 
 RockTunnel2EndBattleText4:
-	text ""
 	fartext _RockTunnel2EndBattleText4
 	done
 
 RockTunnel2AfterBattleText4:
-	text ""
 	fartext _RockTunnel2AfterBattleText4
 	done
 
 RockTunnel2BattleText5:
-	text ""
 	fartext _RockTunnel2BattleText5
 	done
 
 RockTunnel2EndBattleText5:
-	text ""
 	fartext _RockTunnel2EndBattleText5
 	done
 
 RockTunnel2AfterBattleText5:
-	text ""
 	fartext _RockTunnel2AfterBattleText5
 	done
 
 RockTunnel2BattleText6:
-	text ""
 	fartext _RockTunnel2BattleText6
 	done
 
 RockTunnel2EndBattleText6:
-	text ""
 	fartext _RockTunnel2EndBattleText6
 	done
 
 RockTunnel2AfterBattleText6:
-	text ""
 	fartext _RockTunnel2AfterBattleText6
 	done
 
 RockTunnel2BattleText7:
-	text ""
 	fartext _RockTunnel2BattleText7
 	done
 
 RockTunnel2EndBattleText7:
-	text ""
 	fartext _RockTunnel2EndBattleText7
 	done
 
 RockTunnel2AfterBattleText7:
-	text ""
 	fartext _RockTunnel2AfterBattleText7
 	done
 
 RockTunnel2BattleText8:
-	text ""
 	fartext _RockTunnel2BattleText8
 	done
 
 RockTunnel2EndBattleText8:
-	text ""
 	fartext _RockTunnel2EndBattleText8
 	done
 
 RockTunnel2AfterBattleText8:
-	text ""
 	fartext _RockTunnel2AfterBattleText8
 	done
 
 RockTunnel2BattleText9:
-	text ""
 	fartext _RockTunnel2BattleText9
 	done
 
 RockTunnel2EndBattleText9:
-	text ""
 	fartext _RockTunnel2EndBattleText9
 	done
 
 RockTunnel2AfterBattleText9:
-	text ""
 	fartext _RockTunnel2AfterBattleText9
 	done

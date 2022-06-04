@@ -52,7 +52,6 @@ DisplayDexRating:
 	ret
 
 PokedexRatingText_441cc:
-	text ""
 	fartext _OaksLabText_441cc
 	done
 
@@ -91,81 +90,65 @@ DexRatingsTable:
 	dw PokedexRatingText_4424c
 
 PokedexRatingText_44201:
-	text ""
 	fartext _OaksLabText_44201
 	done
 
 PokedexRatingText_44206:
-	text ""
 	fartext _OaksLabText_44206
 	done
 
 PokedexRatingText_4420b:
-	text ""
 	fartext _OaksLabText_4420b
 	done
 
 PokedexRatingText_44210:
-	text ""
 	fartext _OaksLabText_44210
 	done
 
 PokedexRatingText_44215:
-	text ""
 	fartext _OaksLabText_44215
 	done
 
 PokedexRatingText_4421a:
-	text ""
 	fartext _OaksLabText_4421a
 	done
 
 PokedexRatingText_4421f:
-	text ""
 	fartext _OaksLabText_4421f
 	done
 
 PokedexRatingText_44224:
-	text ""
 	fartext _OaksLabText_44224
 	done
 
 PokedexRatingText_44229:
-	text ""
 	fartext _OaksLabText_44229
 	done
 
 PokedexRatingText_4422e:
-	text ""
 	fartext _OaksLabText_4422e
 	done
 
 PokedexRatingText_44233:
-	text ""
 	fartext _OaksLabText_44233
 	done
 
 PokedexRatingText_44238:
-	text ""
 	fartext _OaksLabText_44238
 	done
 
 PokedexRatingText_4423d:
-	text ""
 	fartext _OaksLabText_4423d
 	done
 
 PokedexRatingText_44242:
-	text ""
 	fartext _OaksLabText_44242
 	done
 
 PokedexRatingText_44247:
-	text ""
 	fartext _OaksLabText_44247
 	done
 
 PokedexRatingText_4424c:
-	text ""
 	fartext _OaksLabText_4424c
 	done

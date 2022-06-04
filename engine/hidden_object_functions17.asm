@@ -3,7 +3,6 @@ PrintRedSNESText:
 	tx_pre_jump RedBedroomSNESText
 
 RedBedroomSNESText:
-	text ""
 	fartext _RedBedroomSNESText
 	done
 
@@ -26,7 +25,6 @@ Route15GateLeftBinoculars:
 	jp DisplayMonFrontSpriteInBox
 
 Route15UpstairsBinocularsText:
-	text ""
 	fartext _Route15UpstairsBinocularsText
 	done
 
@@ -39,7 +37,6 @@ AerodactylFossil:
 	ret
 
 AerodactylFossilText:
-	text ""
 	fartext _AerodactylFossilText
 	done
 
@@ -52,7 +49,6 @@ KabutopsFossil:
 	ret
 
 KabutopsFossilText:
-	text ""
 	fartext _KabutopsFossilText
 	done
 
@@ -94,7 +90,6 @@ PrintBlackboardLinkCableText:
 	ret
 
 LinkCableHelp:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, LinkCableHelpText1
@@ -148,12 +143,10 @@ LinkCableHelp:
 	jp TextScriptEnd
 
 LinkCableHelpText1:
-	text ""
 	fartext _LinkCableHelpText1
 	done
 
 LinkCableHelpText2:
-	text ""
 	fartext _LinkCableHelpText2
 	done
 
@@ -169,22 +162,18 @@ LinkCableInfoTexts:
 	dw LinkCableInfoText3
 
 LinkCableInfoText1:
-	text ""
 	fartext _LinkCableInfoText1
 	done
 
 LinkCableInfoText2:
-	text ""
 	fartext _LinkCableInfoText2
 	done
 
 LinkCableInfoText3:
-	text ""
 	fartext _LinkCableInfoText3
 	done
 
 ViridianSchoolBlackboard:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, ViridianSchoolBlackboardText1
@@ -271,12 +260,10 @@ ViridianSchoolBlackboard:
 	jp TextScriptEnd
 
 ViridianSchoolBlackboardText1:
-	text ""
 	fartext _ViridianSchoolBlackboardText1
 	done
 
 ViridianSchoolBlackboardText2:
-	text ""
 	fartext _ViridianSchoolBlackboardText2
 	done
 
@@ -299,27 +286,22 @@ ViridianBlackboardStatusPointers:
 	dw ViridianBlackboardFrozenText
 
 ViridianBlackboardSleepText:
-	text ""
 	fartext _ViridianBlackboardSleepText
 	done
 
 ViridianBlackboardPoisonText:
-	text ""
 	fartext _ViridianBlackboardPoisonText
 	done
 
 ViridianBlackboardPrlzText:
-	text ""
 	fartext _ViridianBlackboardPrlzText
 	done
 
 ViridianBlackboardBurnText:
-	text ""
 	fartext _ViridianBlackboardBurnText
 	done
 
 ViridianBlackboardFrozenText:
-	text ""
 	fartext _ViridianBlackboardFrozenText
 	done
 
@@ -328,7 +310,6 @@ PrintTrashText:
 	tx_pre_jump VermilionGymTrashText
 
 VermilionGymTrashText:
-	text ""
 	fartext _VermilionGymTrashText
 	done
 
@@ -454,7 +435,6 @@ GymTrashCans:
 	db 2, 11, 13,  0,  0 ; 14
 
 VermilionGymTrashSuccessText1:
-	text ""
 	fartext _VermilionGymTrashSuccessText1
 	asmtext
 	call WaitForSoundToFinish
@@ -465,13 +445,11 @@ VermilionGymTrashSuccessText1:
 
 ; unused
 VermilionGymTrashSuccessText2:
-	text ""
 	fartext _VermilionGymTrashSuccessText2
 	done
 
 ; unused
 VermilionGymTrashSuccesPlaySfx:
-	text ""
 	asmtext
 	call WaitForSoundToFinish
 	ld a, SFX_SWITCH
@@ -480,7 +458,6 @@ VermilionGymTrashSuccesPlaySfx:
 	jp TextScriptEnd
 
 VermilionGymTrashSuccessText3:
-	text ""
 	fartext _VermilionGymTrashSuccessText3
 	asmtext
 	call WaitForSoundToFinish
@@ -490,7 +467,6 @@ VermilionGymTrashSuccessText3:
 	jp TextScriptEnd
 
 VermilionGymTrashFailText:
-	text ""
 	fartext _VermilionGymTrashFailText
 	asmtext
 	call WaitForSoundToFinish

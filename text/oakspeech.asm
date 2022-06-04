@@ -16,7 +16,6 @@ _OakSpeechText2A::
 	done
 
 _OakSpeechText2B::
-	text ""
 	para "For some people,"
 	line "POKéMON are"
 	cont "pets. Others use"

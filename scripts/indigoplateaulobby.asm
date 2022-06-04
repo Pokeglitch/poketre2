@@ -25,12 +25,10 @@ IndigoHealNurseText:
 	TX_POKECENTER_NURSE
 
 IndigoPlateauLobbyText2:
-	text ""
 	fartext _IndigoPlateauLobbyText2
 	done
 
 IndigoPlateauLobbyText3:
-	text ""
 	fartext _IndigoPlateauLobbyText3
 	done
 

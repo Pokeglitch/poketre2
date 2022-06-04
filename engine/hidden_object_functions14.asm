@@ -6,13 +6,11 @@ PrintNotebookText:
 	jp PrintPredefTextID
 
 TMNotebook:
-	text ""
 	fartext TMNotebookText
 	wait
 	done
 
 ViridianSchoolNotebook:
-	text ""
 	asmtext
 	ld hl, ViridianSchoolNotebookText1
 	call PrintText
@@ -42,33 +40,27 @@ TurnPageSchoolNotebook:
 	ret
 
 TurnPageText:
-	text ""
 	fartext _TurnPageText
 	done
 
 ViridianSchoolNotebookText5:
-	text ""
 	fartext _ViridianSchoolNotebookText5
 	wait
 	done
 
 ViridianSchoolNotebookText1:
-	text ""
 	fartext _ViridianSchoolNotebookText1
 	done
 
 ViridianSchoolNotebookText2:
-	text ""
 	fartext _ViridianSchoolNotebookText2
 	done
 
 ViridianSchoolNotebookText3:
-	text ""
 	fartext _ViridianSchoolNotebookText3
 	done
 
 ViridianSchoolNotebookText4:
-	text ""
 	fartext _ViridianSchoolNotebookText4
 	done
 
@@ -77,7 +69,6 @@ PrintFightingDojoText2:
 	tx_pre_jump EnemiesOnEverySideText
 
 EnemiesOnEverySideText:
-	text ""
 	fartext _EnemiesOnEverySideText
 	done
 
@@ -86,7 +77,6 @@ PrintFightingDojoText3:
 	tx_pre_jump WhatGoesAroundComesAroundText
 
 WhatGoesAroundComesAroundText:
-	text ""
 	fartext _WhatGoesAroundComesAroundText
 	done
 
@@ -95,7 +85,6 @@ PrintFightingDojoText:
 	tx_pre_jump FightingDojoText
 
 FightingDojoText:
-	text ""
 	fartext _FightingDojoText
 	done
 
@@ -107,6 +96,5 @@ PrintIndigoPlateauHQText:
 	tx_pre_jump IndigoPlateauHQText
 
 IndigoPlateauHQText:
-	text ""
 	fartext _IndigoPlateauHQText
 	done

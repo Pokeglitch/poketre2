@@ -9,12 +9,10 @@ CeladonPrizeRoomTextPointers:
 	dw CeladonPrizeRoomText3
 
 CeladonPrizeRoomText1:
-	text ""
 	fartext _CeladonPrizeRoomText1
 	done
 
 CeladonPrizeRoomText2:
-	text ""
 	fartext _CeladonPrizeRoomText2
 	done
 

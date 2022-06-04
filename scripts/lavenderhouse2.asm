@@ -7,7 +7,6 @@ LavenderHouse2TextPointers:
 	dw LavenderHouse2Text2
 
 LavenderHouse2Text1:
-	text ""
 	fartext _LavenderHouse2Text1
 	asmtext
 	ld a, CUBONE
@@ -15,7 +14,6 @@ LavenderHouse2Text1:
 	jp TextScriptEnd
 
 LavenderHouse2Text2:
-	text ""
 	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_65711
@@ -29,11 +27,9 @@ LavenderHouse2Text2:
 	jp TextScriptEnd
 
 LavenderHouse2Text_1d9dc:
-	text ""
 	fartext _LavenderHouse2Text_1d9dc
 	done
 
 LavenderHouse2Text_1d9e1:
-	text ""
 	fartext _LavenderHouse2Text_1d9e1
 	done

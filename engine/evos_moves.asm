@@ -296,22 +296,18 @@ CancelledEvolution:
 	jp Evolution_PartyMonLoop
 
 EvolvedText:
-	text ""
 	fartext _EvolvedText
 	done
 
 IntoText:
-	text ""
 	fartext _IntoText
 	done
 
 StoppedEvolvingText:
-	text ""
 	fartext _StoppedEvolvingText
 	done
 
 IsEvolvingText:
-	text ""
 	fartext _IsEvolvingText
 	done
 

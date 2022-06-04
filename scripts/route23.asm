@@ -142,49 +142,42 @@ Route23TextPointers:
 	dw Route23Text8
 
 Route23Text1:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_EARTHBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text2:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_VOLCANOBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text3:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_MARSHBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text4:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_SOULBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text5:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_RAINBOWBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text6:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_THUNDERBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text7:
-	text ""
 	asmtext
 	EventFlagBit a, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
@@ -225,7 +218,6 @@ Route23Script_51388:
 	jp PrintText
 
 VictoryRoadGuardText1:
-	text ""
 	fartext _VictoryRoadGuardText1
 	asmtext
 	ld a, SFX_DENIED
@@ -234,13 +226,11 @@ VictoryRoadGuardText1:
 	jp TextScriptEnd
 
 VictoryRoadGuardText2:
-	text ""
 	fartext _VictoryRoadGuardText2
 	sfxtext SFX_GET_ITEM_1
 	fartext _VictoryRoadGuardText_513a3
 	done
 
 Route23Text8:
-	text ""
 	fartext _Route23Text8
 	done

@@ -9,7 +9,6 @@ CeruleanHouse2TextPointers:
 	dw CeruleanHouse2Text1
 
 CeruleanHouse2Text1:
-	text ""
 	asmtext
 	ld hl, CeruleanHouse2Text_74e77
 	call PrintText
@@ -56,17 +55,14 @@ BadgeItemList:
 	db $8,BOULDERBADGE,CASCADEBADGE,THUNDERBADGE,RAINBOWBADGE,SOULBADGE,MARSHBADGE,VOLCANOBADGE,EARTHBADGE,$FF
 
 CeruleanHouse2Text_74e77:
-	text ""
 	fartext _CeruleanHouse2Text_74e77
 	done
 
 CeruleanHouse2Text_74e7c:
-	text ""
 	fartext _CeruleanHouse2Text_74e7c
 	done
 
 CeruleanHouse2Text_74e81:
-	text ""
 	fartext _CeruleanHouse2Text_74e81
 	done
 
@@ -81,41 +77,33 @@ TextPointers_74e86:
 	dw CeruleanHouse2Text_74eb9
 
 CeruleanHouse2Text_74e96:
-	text ""
 	fartext _CeruleanHouse2Text_74e96
 	done
 
 CeruleanHouse2Text_74e9b:
-	text ""
 	fartext _CeruleanHouse2Text_74e9b
 	done
 
 CeruleanHouse2Text_74ea0:
-	text ""
 	fartext _CeruleanHouse2Text_74ea0
 	done
 
 CeruleanHouse2Text_74ea5:
-	text ""
 	fartext _CeruleanHouse2Text_74ea5
 	done
 
 CeruleanHouse2Text_74eaa:
-	text ""
 	fartext _CeruleanHouse2Text_74eaa
 	done
 
 CeruleanHouse2Text_74eaf:
-	text ""
 	fartext _CeruleanHouse2Text_74eaf
 	done
 
 CeruleanHouse2Text_74eb4:
-	text ""
 	fartext _CeruleanHouse2Text_74eb4
 	done
 
 CeruleanHouse2Text_74eb9:
-	text ""
 	fartext _CeruleanHouse2Text_74eb9
 	done

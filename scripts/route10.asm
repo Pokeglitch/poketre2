@@ -81,144 +81,118 @@ Route10TrainerHeader5:
 	db $ff
 
 Route10Text1:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText1:
-	text ""
 	fartext _Route10BattleText1
 	done
 
 Route10EndBattleText1:
-	text ""
 	fartext _Route10EndBattleText1
 	done
 
 Route10AfterBattleText1:
-	text ""
 	fartext _Route10AfterBattleText1
 	done
 
 Route10Text2:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText2:
-	text ""
 	fartext _Route10BattleText2
 	done
 
 Route10EndBattleText2:
-	text ""
 	fartext _Route10EndBattleText2
 	done
 
 Route10AfterBattleText2:
-	text ""
 	fartext _Route10AfterBattleText2
 	done
 
 Route10Text3:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText3:
-	text ""
 	fartext _Route10BattleText3
 	done
 
 Route10EndBattleText3:
-	text ""
 	fartext _Route10EndBattleText3
 	done
 
 Route10AfterBattleText3:
-	text ""
 	fartext _Route10AfterBattleText3
 	done
 
 Route10Text4:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText4:
-	text ""
 	fartext _Route10BattleText4
 	done
 
 Route10EndBattleText4:
-	text ""
 	fartext _Route10EndBattleText4
 	done
 
 Route10AfterBattleText4:
-	text ""
 	fartext _Route10AfterBattleText4
 	done
 
 Route10Text5:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText5:
-	text ""
 	fartext _Route10BattleText5
 	done
 
 Route10EndBattleText5:
-	text ""
 	fartext _Route10EndBattleText5
 	done
 
 Route10AfterBattleText5:
-	text ""
 	fartext _Route10AfterBattleText5
 	done
 
 Route10Text6:
-	text ""
 	asmtext
 	ld hl, Route10TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route10BattleText6:
-	text ""
 	fartext _Route10BattleText6
 	done
 
 Route10EndBattleText6:
-	text ""
 	fartext _Route10EndBattleText6
 	done
 
 Route10AfterBattleText6:
-	text ""
 	fartext _Route10AfterBattleText6
 	done
 
 Route10Text9:
 Route10Text7:
-	text ""
 	fartext _Route10Text7 ; _Route10Text9
 	done
 
 Route10Text10:
-	text ""
 	fartext _Route10Text10
 	done

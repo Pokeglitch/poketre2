@@ -25,7 +25,6 @@ ConversionEffect_:
 	jp PrintText
 
 ConvertedTypeText:
-	text ""
 	fartext _ConvertedTypeText
 	done
 

@@ -247,7 +247,6 @@ GaryTextPointers:
 	dw GaryText5
 
 GaryText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
 	ld hl, GaryChampionIntroText
@@ -258,32 +257,26 @@ GaryText1:
 	jp TextScriptEnd
 
 GaryChampionIntroText:
-	text ""
 	fartext _GaryChampionIntroText
 	done
 
 GaryDefeatedText:
-	text ""
 	fartext _GaryDefeatedText
 	done
 
 GaryVictoryText:
-	text ""
 	fartext _GaryVictoryText
 	done
 
 GaryText_76103:
-	text ""
 	fartext _GaryText_76103
 	done
 
 GaryText2:
-	text ""
 	fartext _GaryText2
 	done
 
 GaryText3:
-	text ""
 	asmtext
 	ld a, [wPlayerStarter]
 	ld [wd11e], a
@@ -293,16 +286,13 @@ GaryText3:
 	jp TextScriptEnd
 
 GaryText_76120:
-	text ""
 	fartext _GaryText_76120
 	done
 
 GaryText4:
-	text ""
 	fartext _GaryText_76125
 	done
 
 GaryText5:
-	text ""
 	fartext _GaryText_7612a
 	done

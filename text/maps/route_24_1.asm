@@ -5,7 +5,6 @@ _Route24Text_51510::
 	done
 
 _Route24Text_51515::
-	text ""
 	para "You just earned a"
 	line "fabulous prize!"
 	prompt

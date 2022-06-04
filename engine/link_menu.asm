@@ -161,17 +161,14 @@ LinkMenu:
 	ret
 
 WhereWouldYouLikeText:
-	text ""
 	fartext _WhereWouldYouLikeText
 	done
 
 PleaseWaitText:
-	text ""
 	fartext _PleaseWaitText
 	done
 
 LinkCanceledText:
-	text ""
 	fartext _LinkCanceledText
 	done
 

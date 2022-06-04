@@ -78,29 +78,24 @@ Mansion1TrainerHeader0:
 	db $ff
 
 Mansion1Text1:
-	text ""
 	asmtext
 	ld hl, Mansion1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Mansion1BattleText2:
-	text ""
 	fartext _Mansion1BattleText2
 	done
 
 Mansion1EndBattleText2:
-	text ""
 	fartext _Mansion1EndBattleText2
 	done
 
 Mansion1AfterBattleText2:
-	text ""
 	fartext _Mansion1AfterBattleText2
 	done
 
 Mansion1Text4:
-	text ""
 	asmtext
 	ld hl, MansionSwitchText
 	call PrintText
@@ -127,16 +122,13 @@ Mansion1Text4:
 	jp TextScriptEnd
 
 MansionSwitchText:
-	text ""
 	fartext _MansionSwitchText
 	done
 
 MansionSwitchPressedText:
-	text ""
 	fartext _MansionSwitchPressedText
 	done
 
 MansionSwitchNotPressedText:
-	text ""
 	fartext _MansionSwitchNotPressedText
 	done

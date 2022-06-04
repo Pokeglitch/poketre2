@@ -7,7 +7,6 @@ Route1TextPointers:
 	dw Route1Text3
 
 Route1Text1:
-	text ""
 	asmtext
 	CheckAndSetEvent EVENT_GOT_POTION_SAMPLE
 	jr nz, .asm_1cada
@@ -28,32 +27,26 @@ Route1Text1:
 	jp TextScriptEnd
 
 Route1ViridianMartSampleText:
-	text ""
 	fartext _Route1ViridianMartSampleText
 	done
 
 Route1Text_1cae8:
-	text ""
 	fartext _Route1Text_1cae8
 	sfxtext SFX_GET_ITEM_1
 	done
 
 Route1Text_1caee:
-	text ""
 	fartext _Route1Text_1caee
 	done
 
 Route1Text_1caf3:
-	text ""
 	fartext _Route1Text_1caf3
 	done
 
 Route1Text2:
-	text ""
 	fartext _Route1Text2
 	done
 
 Route1Text3:
-	text ""
 	fartext _Route1Text3
 	done

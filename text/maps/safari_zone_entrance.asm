@@ -26,7 +26,6 @@ SafariZoneEntranceText_9e747::
 	done
 
 _SafariZoneEntranceText_75360::
-	text ""
 	para "We'll call you on"
 	line "the PA when you"
 	cont "run out of time"

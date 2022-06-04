@@ -5,7 +5,6 @@ DayCareMTextPointers:
 	dw DayCareMText1
 
 DayCareMText1:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer2
 	ld a, [wDayCareInUse]
@@ -206,74 +205,59 @@ DayCareMText1:
 	jp TextScriptEnd
 
 DayCareIntroText:
-	text ""
 	fartext _DayCareIntroText
 	done
 
 DayCareWhichMonText:
-	text ""
 	fartext _DayCareWhichMonText
 	done
 
 DayCareWillLookAfterMonText:
-	text ""
 	fartext _DayCareWillLookAfterMonText
 	done
 
 DayCareComeSeeMeInAWhileText:
-	text ""
 	fartext _DayCareComeSeeMeInAWhileText
 	done
 
 DayCareMonHasGrownText:
-	text ""
 	fartext _DayCareMonHasGrownText
 	done
 
 DayCareOweMoneyText:
-	text ""
 	fartext _DayCareOweMoneyText
 	done
 
 DayCareGotMonBackText:
-	text ""
 	fartext _DayCareGotMonBackText
 	done
 
 DayCareMonNeedsMoreTimeText:
-	text ""
 	fartext _DayCareMonNeedsMoreTimeText
 	done
 
 DayCareAllRightThenText:
-	text ""
 	fartext _DayCareAllRightThenText
 DayCareComeAgainText:
-	text ""
 	fartext _DayCareComeAgainText
 	done
 
 DayCareNoRoomForMonText:
-	text ""
 	fartext _DayCareNoRoomForMonText
 	done
 
 DayCareOnlyHaveOneMonText:
-	text ""
 	fartext _DayCareOnlyHaveOneMonText
 	done
 
 DayCareCantAcceptMonWithHMText:
-	text ""
 	fartext _DayCareCantAcceptMonWithHMText
 	done
 
 DayCareHeresYourMonText:
-	text ""
 	fartext _DayCareHeresYourMonText
 	done
 
 DayCareNotEnoughMoneyText:
-	text ""
 	fartext _DayCareNotEnoughMoneyText
 	done

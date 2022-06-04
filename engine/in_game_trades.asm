@@ -260,88 +260,71 @@ TradeTextPointers3:
 	dw AfterTrade3Text
 
 ConnectCableText:
-	text ""
 	fartext _ConnectCableText
 	done
 
 TradedForText:
-	text ""
 	fartext _TradedForText
 	sfxtext SFX_GET_KEY_ITEM
 	delaytext
 	done
 
 WannaTrade1Text:
-	text ""
 	fartext _WannaTrade1Text
 	done
 
 NoTrade1Text:
-	text ""
 	fartext _NoTrade1Text
 	done
 
 WrongMon1Text:
-	text ""
 	fartext _WrongMon1Text
 	done
 
 Thanks1Text:
-	text ""
 	fartext _Thanks1Text
 	done
 
 AfterTrade1Text:
-	text ""
 	fartext _AfterTrade1Text
 	done
 
 WannaTrade2Text:
-	text ""
 	fartext _WannaTrade2Text
 	done
 
 NoTrade2Text:
-	text ""
 	fartext _NoTrade2Text
 	done
 
 WrongMon2Text:
-	text ""
 	fartext _WrongMon2Text
 	done
 
 Thanks2Text:
-	text ""
 	fartext _Thanks2Text
 	done
 
 AfterTrade2Text:
-	text ""
 	fartext _AfterTrade2Text
 	done
 
 WannaTrade3Text:
-	text ""
 	fartext _WannaTrade3Text
 	done
 
 NoTrade3Text:
-	text ""
 	fartext _NoTrade3Text
 	done
 
 WrongMon3Text:
-	text ""
 	fartext _WrongMon3Text
 	done
 
 Thanks3Text:
-	text ""
 	fartext _Thanks3Text
 	done
 
 AfterTrade3Text:
-	text ""
 	fartext _AfterTrade3Text
 	done

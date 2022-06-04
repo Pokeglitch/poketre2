@@ -75,7 +75,6 @@ BookshelfTileIDs:
 	db $FF
 
 IndigoPlateauStatues:
-	text ""
 	asmtext
 	ld hl, IndigoPlateauStatuesText1
 	call PrintText
@@ -89,22 +88,18 @@ IndigoPlateauStatues:
 	jp TextScriptEnd
 
 IndigoPlateauStatuesText1:
-	text ""
 	fartext _IndigoPlateauStatuesText1
 	done
 
 IndigoPlateauStatuesText2:
-	text ""
 	fartext _IndigoPlateauStatuesText2
 	done
 
 IndigoPlateauStatuesText3:
-	text ""
 	fartext _IndigoPlateauStatuesText3
 	done
 
 BookOrSculptureText:
-	text ""
 	asmtext
 	ld hl, PokemonBooksText
 	ld a, [wCurMapTileset]
@@ -119,22 +114,18 @@ BookOrSculptureText:
 	jp TextScriptEnd
 
 PokemonBooksText:
-	text ""
 	fartext _PokemonBooksText
 	done
 
 DiglettSculptureText:
-	text ""
 	fartext _DiglettSculptureText
 	done
 
 ElevatorText:
-	text ""
 	fartext _ElevatorText
 	done
 
 TownMapText:
-	text ""
 	fartext _TownMapText
 	wait
 	asmtext
@@ -158,6 +149,5 @@ TownMapText:
 	jp CloseTextDisplay
 
 PokemonStuffText:
-	text ""
 	fartext _PokemonStuffText
 	done

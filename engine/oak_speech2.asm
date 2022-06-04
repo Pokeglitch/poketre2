@@ -28,7 +28,6 @@ ChoosePlayerName:
 	jp PrintText
 
 YourNameIsText:
-	text ""
 	fartext _YourNameIsText
 	done
 
@@ -62,7 +61,6 @@ ChooseRivalName:
 	jp PrintText
 
 HisNameIsText:
-	text ""
 	fartext _HisNameIsText
 	done
 

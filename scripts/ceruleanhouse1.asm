@@ -6,12 +6,10 @@ CeruleanHouse1TextPointers:
 	dw CeruleanHouse1Text2
 
 CeruleanHouse1Text1:
-	text ""
 	fartext _CeruleanHouse1Text1
 	done
 
 CeruleanHouse1Text2:
-	text ""
 	asmtext
 	ld a, $6
 	ld [wWhichTrade], a

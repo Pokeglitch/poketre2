@@ -12,12 +12,10 @@ FuchsiaHealNurseText:
 	TX_POKECENTER_NURSE
 
 FuchsiaPokecenterText2:
-	text ""
 	fartext _FuchsiaPokecenterText1
 	done
 
 FuchsiaPokecenterText3:
-	text ""
 	fartext _FuchsiaPokecenterText3
 	done
 

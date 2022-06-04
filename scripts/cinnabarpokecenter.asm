@@ -12,12 +12,10 @@ CinnabarHealNurseText:
 	TX_POKECENTER_NURSE
 
 CinnabarPokecenterText2:
-	text ""
 	fartext _CinnabarPokecenterText2
 	done
 
 CinnabarPokecenterText3:
-	text ""
 	fartext _CinnabarPokecenterText3
 	done
 

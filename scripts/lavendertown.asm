@@ -13,7 +13,6 @@ LavenderTownTextPointers:
 	dw LavenderTownText9
 
 LavenderTownText1:
-	text ""
 	asmtext
 	ld hl, LavenderTownText_4413c
 	call PrintText
@@ -28,46 +27,37 @@ LavenderTownText1:
 	jp TextScriptEnd
 
 LavenderTownText_4413c:
-	text ""
 	fartext _LavenderTownText_4413c
 	done
 
 LavenderTownText_44141:
-	text ""
 	fartext _LavenderTownText_44141
 	done
 
 LavenderTownText_44146:
-	text ""
 	fartext _LavenderTownText_44146
 	done
 
 LavenderTownText2:
-	text ""
 	fartext _LavenderTownText2
 	done
 
 LavenderTownText3:
-	text ""
 	fartext _LavenderTownText3
 	done
 
 LavenderTownText4:
-	text ""
 	fartext _LavenderTownText4
 	done
 
 LavenderTownText5:
-	text ""
 	fartext _LavenderTownText5
 	done
 
 LavenderTownText8:
-	text ""
 	fartext _LavenderTownText8
 	done
 
 LavenderTownText9:
-	text ""
 	fartext _LavenderTownText9
 	done

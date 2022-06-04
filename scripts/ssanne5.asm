@@ -40,60 +40,49 @@ SSAnne5TrainerHeader1:
 	db $ff
 
 SSAnne5Text1:
-	text ""
 	fartext _SSAnne5Text1
 	done
 
 SSAnne5Text2:
-	text ""
 	fartext _SSAnne5Text2
 	done
 
 SSAnne5Text3:
-	text ""
 	fartext _SSAnne5Text3
 	done
 
 SSAnne5Text4:
-	text ""
 	asmtext
 	ld hl, SSAnne5TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne5BattleText1:
-	text ""
 	fartext _SSAnne5BattleText1
 	done
 
 SSAnne5EndBattleText1:
-	text ""
 	fartext _SSAnne5EndBattleText1
 	done
 
 SSAnne5AfterBattleText1:
-	text ""
 	fartext _SSAnne5AfterBattleText1
 	done
 
 SSAnne5Text5:
-	text ""
 	asmtext
 	ld hl, SSAnne5TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne5BattleText2:
-	text ""
 	fartext _SSAnne5BattleText2
 	done
 
 SSAnne5EndBattleText2:
-	text ""
 	fartext _SSAnne5EndBattleText2
 	done
 
 SSAnne5AfterBattleText2:
-	text ""
 	fartext _SSAnne5AfterBattleText2
 	done

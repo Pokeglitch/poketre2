@@ -57,7 +57,6 @@ Route22GateTextPointers:
 	dw Route22GateText1
 
 Route22GateText1:
-	text ""
 	asmtext
 	ld a, [wObtainedBadges]
 	bit 0, a
@@ -76,7 +75,6 @@ Route22GateText1:
 	jp TextScriptEnd
 
 Route22GateText_1e704:
-	text ""
 	fartext _Route22GateText_1e704
 	asmtext
 	ld a, SFX_DENIED
@@ -86,12 +84,10 @@ Route22GateText_1e704:
 	ret
 
 Route22GateText_1e715:
-	text ""
 	fartext _Route22GateText_1e715
 	done
 
 Route22GateText_1e71a:
-	text ""
 	fartext _Route22GateText_1e71a
 	sfxtext SFX_GET_ITEM_1
 	done

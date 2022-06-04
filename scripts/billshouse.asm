@@ -125,7 +125,6 @@ BillsHouseText4:
 	TX_BILLS_PC
 
 BillsHouseText1:
-	text ""
 	asmtext
 	ld hl, BillsHouseText_1e865
 	call PrintText
@@ -147,22 +146,18 @@ BillsHouseText1:
 	jp TextScriptEnd
 
 BillsHouseText_1e865:
-	text ""
 	fartext _BillsHouseText_1e865
 	done
 
 BillsHouseText_1e86a:
-	text ""
 	fartext _BillsHouseText_1e86a
 	done
 
 BillsHouseText_1e86f:
-	text ""
 	fartext _BillsHouseText_1e86f
 	done
 
 BillsHouseText2:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_SS_TICKET
 	jr nz, .asm_1e8a9
@@ -191,35 +186,29 @@ BillsHouseText2:
 	jp TextScriptEnd
 
 BillThankYouText:
-	text ""
 	fartext _BillThankYouText
 	done
 
 SSTicketReceivedText:
-	text ""
 	fartext _SSTicketReceivedText
 	sfxtext SFX_GET_KEY_ITEM
 	wait
 	done
 
 SSTicketNoRoomText:
-	text ""
 	fartext _SSTicketNoRoomText
 	done
 
 BillsHouseText_1e8cb:
-	text ""
 	fartext _BillsHouseText_1e8cb
 	done
 
 BillsHouseText3:
-	text ""
 	asmtext
 	ld hl, BillsHouseText_1e8da
 	call PrintText
 	jp TextScriptEnd
 
 BillsHouseText_1e8da:
-	text ""
 	fartext _BillsHouseText_1e8da
 	done

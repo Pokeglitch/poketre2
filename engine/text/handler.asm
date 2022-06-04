@@ -157,7 +157,7 @@ NextLineCommand:
 UpdateCurrentLine:
 	pop hl
 	call MoveToNextLine
-	push hl 
+	push hl
 	jp ReturnAndPlaceNextChar
 
 ContinueTextCommand::
@@ -301,7 +301,9 @@ TextDoneCommand:: ; done
 	call CheckRevealTextbox
 
 TextFinishCommon::
-	pop bc
+	ld b, h
+	ld c, l
+	pop hl
 	jp HomeBankswitchReturn
 
 ; Pokedex Page

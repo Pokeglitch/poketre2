@@ -74,7 +74,6 @@ _ReceivedTM28Text::
 	done
 
 _ReceivedTM28Text2::
-	text ""
 	para "I better get"
 	line "moving! Bye!"
 	done

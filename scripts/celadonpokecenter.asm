@@ -15,11 +15,9 @@ CeladonHealNurseText:
 	TX_POKECENTER_NURSE
 
 CeladonPokecenterText2:
-	text ""
 	fartext _CeladonPokecenterText2
 	done
 
 CeladonPokecenterText3:
-	text ""
 	fartext _CeladonPokecenterText3
 	done

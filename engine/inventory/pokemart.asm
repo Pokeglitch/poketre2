@@ -198,27 +198,22 @@ ReloadPokemartDataFromInventory:
 	jp GBFadeInFromWhiteCustomDelay
 
 PokemartTellBuyPriceText:
-	text ""
 	fartext _PokemartTellBuyPriceText
 	done
 
 PokemartBoughtItemText:
-	text ""
 	fartext _PokemartBoughtItemText
 	done
 
 PokemartNotEnoughMoneyText:
-	text ""
 	fartext _PokemartNotEnoughMoneyText
 	done
 
 PokemartItemBagFullText:
-	text ""
 	fartext _PokemartItemBagFullText
 	done
 
 PokemartAnythingElseText:
-	text ""
 	fartext _PokemartAnythingElseText
 	done
 

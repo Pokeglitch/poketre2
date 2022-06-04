@@ -12,12 +12,10 @@ VermilionHealNurseText:
 	TX_POKECENTER_NURSE
 
 VermilionPokecenterText2:
-	text ""
 	fartext _VermilionPokecenterText2
 	done
 
 VermilionPokecenterText3:
-	text ""
 	fartext _VermilionPokecenterText3
 	done
 

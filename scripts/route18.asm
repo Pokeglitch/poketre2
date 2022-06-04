@@ -49,77 +49,63 @@ Route18TrainerHeader2:
 	db $ff
 
 Route18Text1:
-	text ""
 	asmtext
 	ld hl, Route18TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route18BattleText1:
-	text ""
 	fartext _Route18BattleText1
 	done
 
 Route18EndBattleText1:
-	text ""
 	fartext _Route18EndBattleText1
 	done
 
 Route18AfterBattleText1:
-	text ""
 	fartext _Route18AfterBattleText1
 	done
 
 Route18Text2:
-	text ""
 	asmtext
 	ld hl, Route18TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route18BattleText2:
-	text ""
 	fartext _Route18BattleText2
 	done
 
 Route18EndBattleText2:
-	text ""
 	fartext _Route18EndBattleText2
 	done
 
 Route18AfterBattleText2:
-	text ""
 	fartext _Route18AfterBattleText2
 	done
 
 Route18Text3:
-	text ""
 	asmtext
 	ld hl, Route18TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route18BattleText3:
-	text ""
 	fartext _Route18BattleText3
 	done
 
 Route18EndBattleText3:
-	text ""
 	fartext _Route18EndBattleText3
 	done
 
 Route18AfterBattleText3:
-	text ""
 	fartext _Route18AfterBattleText3
 	done
 
 Route18Text4:
-	text ""
 	fartext _Route18Text4
 	done
 
 Route18Text5:
-	text ""
 	fartext _Route18Text5
 	done

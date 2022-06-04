@@ -129,7 +129,6 @@ FightingDojoTrainerHeader3:
 	db $ff
 
 FightingDojoText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_DEFEATED_FIGHTING_DOJO
 	jp nz, .continue1
@@ -162,116 +161,95 @@ FightingDojoText1:
 	jp TextScriptEnd
 
 FightingDojoText_5ce8e:
-	text ""
 	fartext _FightingDojoText_5ce8e
 	done
 
 FightingDojoText_5ce93:
-	text ""
 	fartext _FightingDojoText_5ce93
 	done
 
 FightingDojoText8:
-	text ""
 	fartext _FightingDojoText_5ce98
 	done
 
 FightingDojoText_5ce9d:
-	text ""
 	fartext _FightingDojoText_5ce9d
 	done
 
 FightingDojoText2:
-	text ""
 	asmtext
 	ld hl, FightingDojoTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FightingDojoBattleText1:
-	text ""
 	fartext _FightingDojoBattleText1
 	done
 
 FightingDojoEndBattleText1:
-	text ""
 	fartext _FightingDojoEndBattleText1
 	done
 
 FightingDojoAfterBattleText1:
-	text ""
 	fartext _FightingDojoAfterBattleText1
 	done
 
 FightingDojoText3:
-	text ""
 	asmtext
 	ld hl, FightingDojoTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FightingDojoBattleText2:
-	text ""
 	fartext _FightingDojoBattleText2
 	done
 
 FightingDojoEndBattleText2:
-	text ""
 	fartext _FightingDojoEndBattleText2
 	done
 
 FightingDojoAfterBattleText2:
-	text ""
 	fartext _FightingDojoAfterBattleText2
 	done
 
 FightingDojoText4:
-	text ""
 	asmtext
 	ld hl, FightingDojoTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FightingDojoBattleText3:
-	text ""
 	fartext _FightingDojoBattleText3
 	done
 
 FightingDojoEndBattleText3:
-	text ""
 	fartext _FightingDojoEndBattleText3
 	done
 
 FightingDojoAfterBattleText3:
-	text ""
 	fartext _FightingDojoAfterBattleText3
 	done
 
 FightingDojoText5:
-	text ""
 	asmtext
 	ld hl, FightingDojoTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FightingDojoBattleText4:
-	text ""
 	fartext _FightingDojoBattleText4
 	done
 
 FightingDojoEndBattleText4:
-	text ""
 	fartext _FightingDojoEndBattleText4
 	done
 
 FightingDojoAfterBattleText4:
-	text ""
 	fartext _FightingDojoAfterBattleText4
 	done
 
 FightingDojoText6:
 ; Hitmonlee Poké Ball
-	text ""
 	asmtext
 	CheckEitherEventSet EVENT_GOT_HITMONLEE, EVENT_GOT_HITMONCHAN
 	jr z, .GetMon
@@ -302,13 +280,11 @@ FightingDojoText6:
 	jp TextScriptEnd
 
 WantHitmonleeText:
-	text ""
 	fartext _WantHitmonleeText
 	done
 
 FightingDojoText7:
 ; Hitmonchan Poké Ball
-	text ""
 	asmtext
 	CheckEitherEventSet EVENT_GOT_HITMONLEE, EVENT_GOT_HITMONCHAN
 	jr z, .GetMon
@@ -339,11 +315,9 @@ FightingDojoText7:
 	jp TextScriptEnd
 
 WantHitmonchanText:
-	text ""
 	fartext _WantHitmonchanText
 	done
 
 OtherHitmonText:
-	text ""
 	fartext _OtherHitmonText
 	done

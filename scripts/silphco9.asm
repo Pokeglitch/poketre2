@@ -159,7 +159,6 @@ SilphCo9TrainerHeader2:
 	db $ff
 
 SilphCo9Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .asm_5d8dc
@@ -179,82 +178,67 @@ SilphCo9Text1:
 	jp TextScriptEnd
 
 SilphCo9Text_5d8e5:
-	text ""
 	fartext _SilphCo9Text_5d8e5
 	done
 
 SilphCo9Text_5d8ea:
-	text ""
 	fartext _SilphCo9Text_5d8ea
 	done
 
 SilphCo9Text_5d8ef:
-	text ""
 	fartext _SilphCo9Text_5d8ef
 	done
 
 SilphCo9Text2:
-	text ""
 	asmtext
 	ld hl, SilphCo9TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo9Text3:
-	text ""
 	asmtext
 	ld hl, SilphCo9TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo9Text4:
-	text ""
 	asmtext
 	ld hl, SilphCo9TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo9BattleText1:
-	text ""
 	fartext _SilphCo9BattleText1
 	done
 
 SilphCo9EndBattleText1:
-	text ""
 	fartext _SilphCo9EndBattleText1
 	done
 
 SilphCo9AfterBattleText1:
-	text ""
 	fartext _SilphCo9AfterBattleText1
 	done
 
 SilphCo9BattleText2:
-	text ""
 	fartext _SilphCo9BattleText2
 	done
 
 SilphCo9EndBattleText2:
-	text ""
 	fartext _SilphCo9EndBattleText2
 	done
 
 SilphCo9AfterBattleText2:
-	text ""
 	fartext _SilphCo9AfterBattleText2
 	done
 
 SilphCo9BattleText3:
-	text ""
 	fartext _SilphCo9BattleText3
 	done
 
 SilphCo9EndBattleText3:
-	text ""
 	fartext _SilphCo9EndBattleText3
 	done
 
 SilphCo9AfterBattleText3:
-	text ""
 	fartext _SilphCo9AfterBattleText3
 	done

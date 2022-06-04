@@ -45,12 +45,10 @@ PickUpItem:
 	ret
 
 FoundItemText:
-	text ""
 	fartext _FoundItemText
 	sfxtext SFX_GET_ITEM_1
 	done
 
 NoMoreRoomForItemText:
-	text ""
 	fartext _NoMoreRoomForItemText
 	done

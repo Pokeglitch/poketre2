@@ -709,7 +709,6 @@ SwitchEnemyMon:
 	ret
 
 AIBattleWithdrawText:
-	text ""
 	fartext _AIBattleWithdrawText
 	done
 
@@ -835,6 +834,5 @@ AIPrintItemUse_:
 	jp PrintText
 
 AIBattleUseItemText:
-	text ""
 	fartext _AIBattleUseItemText
 	done

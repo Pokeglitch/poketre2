@@ -239,7 +239,6 @@ PewterCityText13:
 	done
 
 PewterCityText4:
-	text ""
 	asmtext
 	ld hl, PewterCityText_19427
 	call PrintText
@@ -258,22 +257,18 @@ PewterCityText4:
 	jp TextScriptEnd
 
 PewterCityText_19427:
-	text ""
 	fartext _PewterCityText_19427
 	done
 
 PewterCityText_1942c:
-	text ""
 	fartext _PewterCityText_1942c
 	done
 
 PewterCityText_19431:
-	text ""
 	fartext _PewterCityText_19431
 	done
 
 PewterCityText5:
-	text ""
 	asmtext
 	ld hl, PewterCityText_1945d
 	call PrintText
@@ -292,7 +287,6 @@ PewterCityText5:
 	jp TextScriptEnd
 
 PewterCityText_1945d:
-	text ""
 	fartext _PewterCityText_1945d
 	done
 

@@ -43,18 +43,15 @@ CeladonPrizeMenu:
 	ret
 
 RequireCoinCaseTextPtr:
-	text ""
 	fartext _RequireCoinCaseText
 	wait
 	done
 
 ExchangeCoinsForPrizesTextPtr:
-	text ""
 	fartext _ExchangeCoinsForPrizesText
 	done
 
 WhichPrizeTextPtr:
-	text ""
 	fartext _WhichPrizeText
 	done
 
@@ -268,30 +265,25 @@ UnknownPrizeData:
 	db $00,$01,$00,$01,$00,$01,$00,$00,$01
 
 HereYouGoTextPtr:
-	text ""
 	fartext _HereYouGoText
 	wait
 	done
 
 SoYouWantPrizeTextPtr:
-	text ""
 	fartext _SoYouWantPrizeText
 	done
 
 SorryNeedMoreCoinsText:
-	text ""
 	fartext _SorryNeedMoreCoinsText
 	wait
 	done
 
 PrizeRoomBagIsFullTextPtr:
-	text ""
 	fartext _OopsYouDontHaveEnoughRoomText
 	wait
 	done
 
 OhFineThenTextPtr:
-	text ""
 	fartext _OhFineThenText
 	wait
 	done

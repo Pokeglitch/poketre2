@@ -205,7 +205,6 @@ MtMoon3TrainerHeader3:
 	db $ff
 
 MtMoon3Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_MT_MOON_EXIT_SUPER_NERD
 	jr z, .asm_49e8d
@@ -238,35 +237,30 @@ MtMoon3Text1:
 	jp TextScriptEnd
 
 MtMoon3Text2:
-	text ""
 	asmtext
 	ld hl, MtMoon3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text3:
-	text ""
 	asmtext
 	ld hl, MtMoon3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text4:
-	text ""
 	asmtext
 	ld hl, MtMoon3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text5:
-	text ""
 	asmtext
 	ld hl, MtMoon3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text6:
-	text ""
 	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -291,12 +285,10 @@ MtMoon3Text6:
 	jp TextScriptEnd
 
 MtMoon3Text_49f24:
-	text ""
 	fartext _MtMoon3Text_49f24
 	done
 
 MtMoon3Text7:
-	text ""
 	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -321,7 +313,6 @@ MtMoon3Text7:
 	jp TextScriptEnd
 
 MtMoon3Text_49f64:
-	text ""
 	fartext _MtMoon3Text_49f64
 	done
 
@@ -330,7 +321,6 @@ MtMoon3Script_49f69:
 	jp PrintText
 
 MtMoon3Text_49f6f:
-	text ""
 	fartext _MtMoon3Text_49f6f
 	sfxtext SFX_GET_KEY_ITEM
 	wait
@@ -342,93 +332,75 @@ MtMoon3Script_49f76:
 	jp TextScriptEnd
 
 MtMoon3Text_49f7f:
-	text ""
 	fartext _MtMoon3Text_49f7f
 	wait
 	done
 
 MtMoon3Text_49f85:
-	text ""
 	fartext _MtMoon3Text_49f85
 	done
 
 MtMoon3Text_49f8a:
-	text ""
 	fartext _MtMoon3Text_49f8a
 	done
 
 MtMoon3Text_49f8f:
-	text ""
 	fartext _MtMoon3Text_49f8f
 	done
 
 MtMoon3Text_49f94:
-	text ""
 	fartext _MtMoon3Text_49f94
 	done
 
 MtMoon3Text_49f99:
-	text ""
 	fartext _MtMoon3Text_49f99
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 MtMoon3BattleText2:
-	text ""
 	fartext _MtMoon3BattleText2
 	done
 
 MtMoon3EndBattleText2:
-	text ""
 	fartext _MtMoon3EndBattleText2
 	done
 
 MtMoon3AfterBattleText2:
-	text ""
 	fartext _MtMoon3AfterBattleText2
 	done
 
 MtMoon3BattleText3:
-	text ""
 	fartext _MtMoon3BattleText3
 	done
 
 MtMoon3EndBattleText3:
-	text ""
 	fartext _MtMoon3EndBattleText3
 	done
 
 MtMoon3AfterBattleText3:
-	text ""
 	fartext _MtMoon3AfterBattleText3
 	done
 
 MtMoon3BattleText4:
-	text ""
 	fartext _MtMoon3BattleText4
 	done
 
 MtMoon3EndBattleText4:
-	text ""
 	fartext _MtMoon3EndBattleText4
 	done
 
 MtMoon3AfterBattleText4:
-	text ""
 	fartext _MtMoon3AfterBattleText4
 	done
 
 MtMoon3BattleText5:
-	text ""
 	fartext _MtMoon3BattleText5
 	done
 
 MtMoon3EndBattleText5:
-	text ""
 	fartext _MtMoon3EndBattleText5
 	done
 
 MtMoon3AfterBattleText5:
-	text ""
 	fartext _MtMoon3AfterBattleText5
 	done

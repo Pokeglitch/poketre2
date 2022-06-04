@@ -99,187 +99,153 @@ Route3TrainerHeader7:
 	db $ff
 
 Route3Text1:
-	text ""
 	fartext _Route3Text1
 	done
 
 Route3Text2:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText1:
-	text ""
 	fartext _Route3BattleText1
 	done
 
 Route3EndBattleText1:
-	text ""
 	fartext _Route3EndBattleText1
 	done
 
 Route3AfterBattleText1:
-	text ""
 	fartext _Route3AfterBattleText1
 	done
 
 Route3Text3:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText2:
-	text ""
 	fartext _Route3BattleText2
 	done
 
 Route3EndBattleText2:
-	text ""
 	fartext _Route3EndBattleText2
 	done
 
 Route3AfterBattleText2:
-	text ""
 	fartext _Route3AfterBattleText2
 	done
 
 Route3Text4:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText3:
-	text ""
 	fartext _Route3BattleText3
 	done
 
 Route3EndBattleText3:
-	text ""
 	fartext _Route3EndBattleText3
 	done
 
 Route3AfterBattleText3:
-	text ""
 	fartext _Route3AfterBattleText3
 	done
 
 Route3Text5:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText4:
-	text ""
 	fartext _Route3BattleText4
 	done
 
 Route3EndBattleText4:
-	text ""
 	fartext _Route3EndBattleText4
 	done
 
 Route3AfterBattleText4:
-	text ""
 	fartext _Route3AfterBattleText4
 	done
 
 Route3Text6:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText5:
-	text ""
 	fartext _Route3BattleText5
 	done
 
 Route3EndBattleText5:
-	text ""
 	fartext _Route3EndBattleText5
 	done
 
 Route3AfterBattleText5:
-	text ""
 	fartext _Route3AfterBattleText5
 	done
 
 Route3Text7:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText6:
-	text ""
 	fartext _Route3BattleText6
 	done
 
 Route3EndBattleText6:
-	text ""
 	fartext _Route3EndBattleText6
 	done
 
 Route3AfterBattleText6:
-	text ""
 	fartext _Route3AfterBattleText6
 	done
 
 Route3Text8:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText7:
-	text ""
 	fartext _Route3BattleText7
 	done
 
 Route3EndBattleText7:
-	text ""
 	fartext _Route3EndBattleText7
 	done
 
 Route3AfterBattleText7:
-	text ""
 	fartext _Route3AfterBattleText7
 	done
 
 Route3Text9:
-	text ""
 	asmtext
 	ld hl, Route3TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route3BattleText8:
-	text ""
 	fartext _Route3BattleText8
 	done
 
 Route3EndBattleText8:
-	text ""
 	fartext _Route3EndBattleText8
 	done
 
 Route3AfterBattleText8:
-	text ""
 	fartext _Route3AfterBattleText8
 	done
 
 Route3Text10:
-	text ""
 	fartext _Route3Text10
 	done

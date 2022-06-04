@@ -88,43 +88,36 @@ RockTunnel1TrainerHeader6:
 	db $ff
 
 RockTunnel1Text1:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader0
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text2:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader1
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text3:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader2
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text4:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader3
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text5:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader4
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text6:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader5
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text7:
-	text ""
 	asmtext
 	ld hl, RockTunnel1TrainerHeader6
 RockTunnel1TalkToTrainer:
@@ -132,111 +125,89 @@ RockTunnel1TalkToTrainer:
 	jp TextScriptEnd
 
 RockTunnel1BattleText1:
-	text ""
 	fartext _RockTunnel1BattleText1
 	done
 
 RockTunnel1EndBattleText1:
-	text ""
 	fartext _RockTunnel1EndBattleText1
 	done
 
 RockTunnel1AfterBattleText1:
-	text ""
 	fartext _RockTunnel1AfterBattleText1
 	done
 
 RockTunnel1BattleText2:
-	text ""
 	fartext _RockTunnel1BattleText2
 	done
 
 RockTunnel1EndBattleText2:
-	text ""
 	fartext _RockTunnel1EndBattleText2
 	done
 
 RockTunnel1AfterBattleText2:
-	text ""
 	fartext _RockTunnel1AfterBattleText2
 	done
 
 RockTunnel1BattleText3:
-	text ""
 	fartext _RockTunnel1BattleText3
 	done
 
 RockTunnel1EndBattleText3:
-	text ""
 	fartext _RockTunnel1EndBattleText3
 	done
 
 RockTunnel1AfterBattleText3:
-	text ""
 	fartext _RockTunnel1AfterBattleText3
 	done
 
 RockTunnel1BattleText4:
-	text ""
 	fartext _RockTunnel1BattleText4
 	done
 
 RockTunnel1EndBattleText4:
-	text ""
 	fartext _RockTunnel1EndBattleText4
 	done
 
 RockTunnel1AfterBattleText4:
-	text ""
 	fartext _RockTunnel1AfterBattleText4
 	done
 
 RockTunnel1BattleText5:
-	text ""
 	fartext _RockTunnel1BattleText5
 	done
 
 RockTunnel1EndBattleText5:
-	text ""
 	fartext _RockTunnel1EndBattleText5
 	done
 
 RockTunnel1AfterBattleText5:
-	text ""
 	fartext _RockTunnel1AfterBattleText5
 	done
 
 RockTunnel1BattleText6:
-	text ""
 	fartext _RockTunnel1BattleText6
 	done
 
 RockTunnel1EndBattleText6:
-	text ""
 	fartext _RockTunnel1EndBattleText6
 	done
 
 RockTunnel1AfterBattleText6:
-	text ""
 	fartext _RockTunnel1AfterBattleText6
 	done
 
 RockTunnel1BattleText7:
-	text ""
 	fartext _RockTunnel1BattleText7
 	done
 
 RockTunnel1EndBattleText7:
-	text ""
 	fartext _RockTunnel1EndBattleText7
 	done
 
 RockTunnel1AfterBattleText7:
-	text ""
 	fartext _RockTunnel1AfterBattleText7
 	done
 
 RockTunnel1Text8:
-	text ""
 	fartext _RockTunnel1Text8
 	done

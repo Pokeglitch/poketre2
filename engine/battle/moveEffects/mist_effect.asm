@@ -15,6 +15,5 @@ MistEffect_:
 	jpab PrintButItFailedText_
 
 ShroudedInMistText:
-	text ""
 	fartext _ShroudedInMistText
 	done

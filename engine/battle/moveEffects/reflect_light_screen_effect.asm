@@ -33,12 +33,10 @@ ReflectLightScreenEffect_:
 	jp BankswitchEtoF
 
 LightScreenProtectedText:
-	text ""
 	fartext _LightScreenProtectedText
 	done
 
 ReflectGainedArmorText:
-	text ""
 	fartext _ReflectGainedArmorText
 	done
 

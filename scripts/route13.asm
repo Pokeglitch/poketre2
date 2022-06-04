@@ -120,236 +120,193 @@ Route13TrainerHeader9:
 	db $ff
 
 Route13Text1:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText2:
-	text ""
 	fartext _Route13BattleText2
 	done
 
 Route13EndBattleText2:
-	text ""
 	fartext _Route13EndBattleText2
 	done
 
 Route13AfterBattleText2:
-	text ""
 	fartext _Route13AfterBattleText2
 	done
 
 Route13Text2:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText3:
-	text ""
 	fartext _Route13BattleText3
 	done
 
 Route13EndBattleText3:
-	text ""
 	fartext _Route13EndBattleText3
 	done
 
 Route13AfterBattleText3:
-	text ""
 	fartext _Route13AfterBattleText3
 	done
 
 Route13Text3:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText4:
-	text ""
 	fartext _Route13BattleText4
 	done
 
 Route13EndBattleText4:
-	text ""
 	fartext _Route13EndBattleText4
 	done
 
 Route13AfterBattleText4:
-	text ""
 	fartext _Route13AfterBattleText4
 	done
 
 Route13Text4:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText5:
-	text ""
 	fartext _Route13BattleText5
 	done
 
 Route13EndBattleText5:
-	text ""
 	fartext _Route13EndBattleText5
 	done
 
 Route13AfterBattleText5:
-	text ""
 	fartext _Route13AfterBattleText5
 	done
 
 Route13Text5:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText6:
-	text ""
 	fartext _Route13BattleText6
 	done
 
 Route13EndBattleText6:
-	text ""
 	fartext _Route13EndBattleText6
 	done
 
 Route13AfterBattleText6:
-	text ""
 	fartext _Route13AfterBattleText6
 	done
 
 Route13Text6:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText7:
-	text ""
 	fartext _Route13BattleText7
 	done
 
 Route13EndBattleText7:
-	text ""
 	fartext _Route13EndBattleText7
 	done
 
 Route13AfterBattleText7:
-	text ""
 	fartext _Route13AfterBattleText7
 	done
 
 Route13Text7:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText8:
-	text ""
 	fartext _Route13BattleText8
 	done
 
 Route13EndBattleText8:
-	text ""
 	fartext _Route13EndBattleText8
 	done
 
 Route13AfterBattleText8:
-	text ""
 	fartext _Route13AfterBattleText8
 	done
 
 Route13Text8:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText9:
-	text ""
 	fartext _Route13BattleText9
 	done
 
 Route13EndBattleText9:
-	text ""
 	fartext _Route13EndBattleText9
 	done
 
 Route13AfterBattleText9:
-	text ""
 	fartext _Route13AfterBattleText9
 	done
 
 Route13Text9:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText10:
-	text ""
 	fartext _Route13BattleText10
 	done
 
 Route13EndBattleText10:
-	text ""
 	fartext _Route13EndBattleText10
 	done
 
 Route13AfterBattleText10:
-	text ""
 	fartext _Route13AfterBattleText10
 	done
 
 Route13Text10:
-	text ""
 	asmtext
 	ld hl, Route13TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route13BattleText11:
-	text ""
 	fartext _Route13BattleText11
 	done
 
 Route13EndBattleText11:
-	text ""
 	fartext _Route13EndBattleText11
 	done
 
 Route13AfterBattleText11:
-	text ""
 	fartext _Route13AfterBattleText11
 	done
 
 Route13Text11:
-	text ""
 	fartext _Route13Text11
 	done
 
 Route13Text12:
-	text ""
 	fartext _Route13Text12
 	done
 
 Route13Text13:
-	text ""
 	fartext _Route13Text13
 	done

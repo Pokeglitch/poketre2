@@ -872,7 +872,6 @@ TradeCenter_Trade:
 	jp CallCurrentTradeCenterFunction
 
 WillBeTradedText:
-	text ""
 	fartext _WillBeTradedText
 	done
 

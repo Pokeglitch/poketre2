@@ -149,7 +149,6 @@ ArticunoTrainerHeader:
 	db $ff
 
 ArticunoText:
-	text ""
 	asmtext
 	ld hl, ArticunoTrainerHeader
 	call TalkToTrainer
@@ -158,7 +157,6 @@ ArticunoText:
 	jp TextScriptEnd
 
 ArticunoBattleText:
-	text ""
 	fartext _ArticunoBattleText
 	asmtext
 	ld a, ARTICUNO
@@ -167,11 +165,9 @@ ArticunoBattleText:
 	jp TextScriptEnd
 
 SeafoamIslands5Text4:
-	text ""
 	fartext _SeafoamIslands5Text4
 	done
 
 SeafoamIslands5Text5:
-	text ""
 	fartext _SeafoamIslands5Text5
 	done

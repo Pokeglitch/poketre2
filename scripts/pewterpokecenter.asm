@@ -12,12 +12,10 @@ PewterHealNurseText:
 	TX_POKECENTER_NURSE
 
 PewterPokecenterText2:
-	text ""
 	fartext _PewterPokecenterText2
 	done
 
 PewterJigglypuffText:
-	text ""
 	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -72,7 +70,6 @@ PewterJigglypuffText:
 	jp TextScriptEnd
 
 .Text
-	text ""
 	fartext _PewterJigglypuffText
 	done
 

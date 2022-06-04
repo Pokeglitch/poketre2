@@ -69,7 +69,6 @@ _ReceivedTM21Text::
 	done
 
 _TM21ExplanationText::
-	text ""
 	para "TM21 contains"
 	line "MEGA DRAIN."
 

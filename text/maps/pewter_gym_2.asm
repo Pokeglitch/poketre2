@@ -23,7 +23,6 @@ _ReceivedTM34Text::
 	done
 
 _TM34ExplanationText::
-	text ""
 	para "A TM contains a"
 	line "technique that"
 	cont "can be taught to"
@@ -63,7 +62,6 @@ _PewterGymText_5c4bc::
 	done
 
 _PewterGymText_5c4c1::
-	text ""
 	para "That's an official"
 	line "POKéMON LEAGUE"
 	cont "BADGE!"

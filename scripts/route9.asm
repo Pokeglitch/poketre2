@@ -109,55 +109,46 @@ Route9TrainerHeader8:
 	db $ff
 
 Route9Text1:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader0
 	jr Route9TalkToTrainer
 
 Route9Text2:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader1
 	jr Route9TalkToTrainer
 
 Route9Text3:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader2
 	jr Route9TalkToTrainer
 
 Route9Text4:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader3
 	jr Route9TalkToTrainer
 
 Route9Text5:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader4
 	jr Route9TalkToTrainer
 
 Route9Text6:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader5
 	jr Route9TalkToTrainer
 
 Route9Text7:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader6
 	jr Route9TalkToTrainer
 
 Route9Text8:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader7
 	jr Route9TalkToTrainer
 
 Route9Text9:
-	text ""
 	asmtext
 	ld hl, Route9TrainerHeader8
 Route9TalkToTrainer:
@@ -165,141 +156,113 @@ Route9TalkToTrainer:
 	jp TextScriptEnd
 
 Route9BattleText1:
-	text ""
 	fartext _Route9BattleText1
 	done
 
 Route9EndBattleText1:
-	text ""
 	fartext _Route9EndBattleText1
 	done
 
 Route9AfterBattleText1:
-	text ""
 	fartext _Route9AfterBattleText1
 	done
 
 Route9BattleText2:
-	text ""
 	fartext _Route9BattleText2
 	done
 
 Route9EndBattleText2:
-	text ""
 	fartext _Route9EndBattleText2
 	done
 
 Route9AfterBattleText2:
-	text ""
 	fartext _Route9AfterBattleText2
 	done
 
 Route9BattleText3:
-	text ""
 	fartext _Route9BattleText3
 	done
 
 Route9EndBattleText3:
-	text ""
 	fartext _Route9EndBattleText3
 	done
 
 Route9AfterBattleText3:
-	text ""
 	fartext _Route9AfterBattleText3
 	done
 
 Route9BattleText4:
-	text ""
 	fartext _Route9BattleText4
 	done
 
 Route9EndBattleText4:
-	text ""
 	fartext _Route9EndBattleText4
 	done
 
 Route9AfterBattleText4:
-	text ""
 	fartext _Route9AfterBattleText4
 	done
 
 Route9BattleText5:
-	text ""
 	fartext _Route9BattleText5
 	done
 
 Route9EndBattleText5:
-	text ""
 	fartext _Route9EndBattleText5
 	done
 
 Route9AfterBattleText5:
-	text ""
 	fartext _Route9AfterBattleText5
 	done
 
 Route9BattleText6:
-	text ""
 	fartext _Route9BattleText6
 	done
 
 Route9EndBattleText6:
-	text ""
 	fartext _Route9EndBattleText6
 	done
 
 Route9AfterBattleText6:
-	text ""
 	fartext _Route9AfterBattleText6
 	done
 
 Route9BattleText7:
-	text ""
 	fartext _Route9BattleText7
 	done
 
 Route9EndBattleText7:
-	text ""
 	fartext _Route9EndBattleText7
 	done
 
 Route9AfterBattleText7:
-	text ""
 	fartext _Route9AfterBattleText7
 	done
 
 Route9BattleText8:
-	text ""
 	fartext _Route9BattleText8
 	done
 
 Route9EndBattleText8:
-	text ""
 	fartext _Route9EndBattleText8
 	done
 
 Route9AfterBattleText8:
-	text ""
 	fartext _Route9AfterBattleText8
 	done
 
 Route9BattleText9:
-	text ""
 	fartext _Route9BattleText9
 	done
 
 Route9EndBattleText9:
-	text ""
 	fartext _Route9EndBattleText9
 	done
 
 Route9AfterBattleText9:
-	text ""
 	fartext _Route9AfterBattleText9
 	done
 
 Route9Text11:
-	text ""
 	fartext _Route9Text11
 	done

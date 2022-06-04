@@ -12,22 +12,18 @@ CeladonMansion3TextPointers:
 	dw GameFreakSignText
 
 ProgrammerText:
-	text ""
 	fartext _ProgrammerText
 	done
 
 GraphicArtistText:
-	text ""
 	fartext _GraphicArtistText
 	done
 
 WriterText:
-	text ""
 	fartext _WriterText
 	done
 
 DirectorText:
-	text ""
 	asmtext
 
 	; check pokédex
@@ -46,12 +42,10 @@ DirectorText:
 	jp TextScriptEnd
 
 .GameDesigner
-	text ""
 	fartext _GameDesignerText
 	done
 
 .CompletedDexText
-	text ""
 	fartext _CompletedDexText
 	wait
 	asmtext
@@ -61,21 +55,17 @@ DirectorText:
 	jp TextScriptEnd
 
 GameFreakPCText1:
-	text ""
 	fartext _CeladonMansion3Text5
 	done
 
 GameFreakPCText2:
-	text ""
 	fartext _CeladonMansion3Text6
 	done
 
 GameFreakPCText3:
-	text ""
 	fartext _CeladonMansion3Text7
 	done
 
 GameFreakSignText:
-	text ""
 	fartext _CeladonMansion3Text8
 	done

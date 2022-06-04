@@ -42,28 +42,23 @@ DisplayPokemonCenterDialogue_:
 	jp UpdateSprites
 
 PokemonCenterWelcomeText:
-	text ""
 	fartext _PokemonCenterWelcomeText
 	done
 
 ShallWeHealYourPokemonText:
-	text ""
 	delaytext
 	fartext _ShallWeHealYourPokemonText
 	done
 
 NeedYourPokemonText:
-	text ""
 	fartext _NeedYourPokemonText
 	done
 
 PokemonFightingFitText:
-	text ""
 	fartext _PokemonFightingFitText
 	done
 
 PokemonCenterFarewellText:
-	text ""
 	delaytext
 	fartext _PokemonCenterFarewellText
 	done

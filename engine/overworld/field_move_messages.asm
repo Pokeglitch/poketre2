@@ -7,7 +7,6 @@ PrintStrengthTxt:
 	jp PrintText
 
 UsedStrengthText:
-	text ""
 	fartext _UsedStrengthText
 	asmtext
 	ld a, [wcf91]
@@ -16,7 +15,6 @@ UsedStrengthText:
 	jp TextScriptEnd
 
 CanMoveBouldersText:
-	text ""
 	fartext _CanMoveBouldersText
 	done
 
@@ -51,11 +49,9 @@ CoordsData_cdf7:
 	db $0B,$07,$FF
 
 CurrentTooFastText:
-	text ""
 	fartext _CurrentTooFastText
 	done
 
 CyclingIsFunText:
-	text ""
 	fartext _CyclingIsFunText
 	done

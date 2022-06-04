@@ -32,38 +32,31 @@ Route4TrainerHeader0:
 	db $ff
 
 Route4Text1:
-	text ""
 	fartext _Route4Text1
 	done
 
 Route4Text2:
-	text ""
 	asmtext
 	ld hl, Route4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route4BattleText1:
-	text ""
 	fartext _Route4BattleText1
 	done
 
 Route4EndBattleText1:
-	text ""
 	fartext _Route4EndBattleText1
 	done
 
 Route4AfterBattleText1:
-	text ""
 	fartext _Route4AfterBattleText1
 	done
 
 Route4Text5:
-	text ""
 	fartext _Route4Text5
 	done
 
 Route4Text6:
-	text ""
 	fartext _Route4Text6
 	done

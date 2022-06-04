@@ -39,7 +39,6 @@ Museum1FTextPointers:
 	dw Museum1FText5
 
 Museum1FText1:
-	text ""
 	asmtext
 	ld a, [wYCoord]
 	cp $4
@@ -135,64 +134,52 @@ Museum1FScriptEnd:
 	jp TextScriptEnd
 
 Museum1FText_5c21a:
-	text ""
 	fartext _Museum1FText_5c21a
 	done
 
 Museum1FText_5c21f:
-	text ""
 	fartext _Museum1FText_5c21f
 	done
 
 Museum1FText_5c224:
-	text ""
 	fartext _Museum1FText_5c224
 	done
 
 Museum1FText_5c229:
-	text ""
 	fartext _Museum1FText_5c229
 	done
 
 Museum1FText_5c22e:
-	text ""
 	fartext _Museum1FText_5c22e
 	done
 
 Museum1FText_5c233:
-	text ""
 	fartext _Museum1FText_5c233
 	done
 
 Museum1FText_5c238:
-	text ""
 	fartext _Museum1FText_5c238
 	done
 
 Museum1FText_5c23d:
-	text ""
 	fartext _Museum1FText_5c23d
 	done
 
 Museum1FText_5c242:
-	text ""
 	fartext _Museum1FText_5c242
 	done
 
 Museum1FText2:
-	text ""
 	asmtext
 	ld hl, Museum1FText_5c251
 	call PrintText
 	jp TextScriptEnd
 
 Museum1FText_5c251:
-	text ""
 	fartext _Museum1FText_5c251
 	done
 
 Museum1FText3:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_OLD_AMBER
 	jr nz, .asm_5c285
@@ -217,46 +204,38 @@ Museum1FText3:
 	jp TextScriptEnd
 
 Museum1FText_5c28e:
-	text ""
 	fartext _Museum1FText_5c28e
 	done
 
 ReceivedOldAmberText:
-	text ""
 	fartext _ReceivedOldAmberText
 	sfxtext SFX_GET_ITEM_1
 	done
 
 Museum1FText_5c299:
-	text ""
 	fartext _Museum1FText_5c299
 	done
 
 Museum1FText_5c29e:
-	text ""
 	fartext _Museum1FText_5c29e
 	done
 
 Museum1FText4:
-	text ""
 	asmtext
 	ld hl, Museum1FText_5c2ad
 	call PrintText
 	jp TextScriptEnd
 
 Museum1FText_5c2ad:
-	text ""
 	fartext _Museum1FText_5c2ad
 	done
 
 Museum1FText5:
-	text ""
 	asmtext
 	ld hl, Museum1FText_5c2bc
 	call PrintText
 	jp TextScriptEnd
 
 Museum1FText_5c2bc:
-	text ""
 	fartext _Museum1FText_5c2bc
 	done

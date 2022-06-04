@@ -3,7 +3,6 @@ PrintNewBikeText:
 	tx_pre_jump NewBicycleText
 
 NewBicycleText:
-	text ""
 	fartext _NewBicycleText
 	done
 
@@ -12,7 +11,6 @@ DisplayOakLabLeftPoster:
 	tx_pre_jump PushStartText
 
 PushStartText:
-	text ""
 	fartext _PushStartText
 	done
 
@@ -31,12 +29,10 @@ DisplayOakLabRightPoster:
 	jp PrintPredefTextID
 
 SaveOptionText:
-	text ""
 	fartext _SaveOptionText
 	done
 
 StrengthsAndWeaknessesText:
-	text ""
 	fartext _StrengthsAndWeaknessesText
 	done
 
@@ -125,7 +121,6 @@ PrintCinnabarQuiz:
 	tx_pre_jump CinnabarGymQuiz
 
 CinnabarGymQuiz:
-	text ""
 	asmtext
 	xor a
 	ld [wOpponentAfterWrongAnswer], a
@@ -156,7 +151,6 @@ CinnabarGymQuiz:
 	jp TextScriptEnd
 
 CinnabarGymQuizIntroText:
-	text ""
 	fartext _CinnabarGymQuizIntroText
 	done
 
@@ -169,32 +163,26 @@ CinnabarQuizQuestions:
 	dw CinnabarQuizQuestionsText6
 
 CinnabarQuizQuestionsText1:
-	text ""
 	fartext _CinnabarQuizQuestionsText1
 	done
 
 CinnabarQuizQuestionsText2:
-	text ""
 	fartext _CinnabarQuizQuestionsText2
 	done
 
 CinnabarQuizQuestionsText3:
-	text ""
 	fartext _CinnabarQuizQuestionsText3
 	done
 
 CinnabarQuizQuestionsText4:
-	text ""
 	fartext _CinnabarQuizQuestionsText4
 	done
 
 CinnabarQuizQuestionsText5:
-	text ""
 	fartext _CinnabarQuizQuestionsText5
 	done
 
 CinnabarQuizQuestionsText6:
-	text ""
 	fartext _CinnabarQuizQuestionsText6
 	done
 
@@ -244,7 +232,6 @@ CinnabarGymQuiz_1ea92:
 	ret
 
 CinnabarGymQuizCorrectText:
-	text ""
 	sfxtext SFX_GET_ITEM_1
 	fartext _CinnabarGymQuizCorrectText
 	wait
@@ -264,7 +251,6 @@ CinnabarGymQuizCorrectText:
 	jp TextScriptEnd
 
 CinnabarGymQuizIncorrectText:
-	text ""
 	fartext _CinnabarGymQuizIncorrectText
 	done
 
@@ -327,7 +313,6 @@ PrintMagazinesText:
 	ret
 
 MagazinesText:
-	text ""
 	fartext _MagazinesText
 	done
 
@@ -378,12 +363,10 @@ BillsHousePC:
 	ret
 
 BillsHouseMonitorText:
-	text ""
 	fartext _BillsHouseMonitorText
 	done
 
 BillsHouseInitiatedText:
-	text ""
 	fartext _BillsHouseInitiatedText
 	wait
 	asmtext
@@ -400,7 +383,6 @@ BillsHouseInitiatedText:
 	jp TextScriptEnd
 
 BillsHousePokemonList:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, BillsHousePokemonListText1
@@ -455,7 +437,6 @@ BillsHousePokemonList:
 	jp TextScriptEnd
 
 BillsHousePokemonListText1:
-	text ""
 	fartext _BillsHousePokemonListText1
 	done
 
@@ -467,7 +448,6 @@ BillsMonListText:
 	next "CANCEL@"
 
 BillsHousePokemonListText2:
-	text ""
 	fartext _BillsHousePokemonListText2
 	done
 
@@ -479,6 +459,5 @@ DisplayOakLabEmailText:
 	tx_pre_jump OakLabEmailText
 
 OakLabEmailText:
-	text ""
 	fartext _OakLabEmailText
 	done

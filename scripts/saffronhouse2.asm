@@ -5,7 +5,6 @@ SaffronHouse2TextPointers:
 	dw SaffronHouse2Text1
 
 SaffronHouse2Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM29
 	jr nz, .asm_9e72b
@@ -29,22 +28,18 @@ SaffronHouse2Text1:
 	jp TextScriptEnd
 
 TM29PreReceiveText:
-	text ""
 	fartext _TM29PreReceiveText
 	done
 
 ReceivedTM29Text:
-	text ""
 	fartext _ReceivedTM29Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM29ExplanationText:
-	text ""
 	fartext _TM29ExplanationText
 	done
 
 TM29NoRoomText:
-	text ""
 	fartext _TM29NoRoomText
 	done

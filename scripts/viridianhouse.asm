@@ -8,17 +8,14 @@ ViridianHouseTextPointers:
 	dw ViridianHouseText4
 
 ViridianHouseText1:
-	text ""
 	fartext _ViridianHouseText1
 	done
 
 ViridianHouseText2:
-	text ""
 	fartext _ViridianHouseText2
 	done
 
 ViridianHouseText3:
-	text ""
 	asmtext
 	ld hl, ViridianHouseText_1d5b1
 	call PrintText
@@ -28,11 +25,9 @@ ViridianHouseText3:
 	jp TextScriptEnd
 
 ViridianHouseText_1d5b1:
-	text ""
 	fartext _ViridianHouseText_1d5b1
 	done
 
 ViridianHouseText4:
-	text ""
 	fartext _ViridianHouseText4
 	done

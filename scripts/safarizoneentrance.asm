@@ -139,12 +139,10 @@ SafariZoneEntranceTextPointers:
 	dw .SafariZoneEntranceText6
 
 .SafariZoneEntranceText1
-	text ""
 	fartext _SafariZoneEntranceText1
 	done
 
 .SafariZoneEntranceText4
-	text ""
 	fartext SafariZoneEntranceText_9e6e4
 	asmtext
 	call YesNoChoice
@@ -204,24 +202,20 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .MakePaymentText
-	text ""
 	fartext SafariZoneEntranceText_9e747
 	sfxtext SFX_GET_ITEM_1
 	fartext _SafariZoneEntranceText_75360
 	done
 
 .PleaseComeAgainText
-	text ""
 	fartext _SafariZoneEntranceText_75365
 	done
 
 .NotEnoughMoneyText
-	text ""
 	fartext _SafariZoneEntranceText_7536a
 	done
 
 .SafariZoneEntranceText5
-	text ""
 	fartext SafariZoneEntranceText_9e814
 	asmtext
 	call YesNoChoice
@@ -255,22 +249,18 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .SafariZoneEntranceText_753bb
-	text ""
 	fartext _SafariZoneEntranceText_753bb
 	done
 
 .SafariZoneEntranceText_753c0
-	text ""
 	fartext _SafariZoneEntranceText_753c0
 	done
 
 .SafariZoneEntranceText6
-	text ""
 	fartext _SafariZoneEntranceText_753c5
 	done
 
 .SafariZoneEntranceText2
-	text ""
 	asmtext
 	ld hl, .FirstTimeQuestionText
 	call PrintText
@@ -285,16 +275,13 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .FirstTimeQuestionText
-	text ""
 	fartext _SafariZoneEntranceText_753e6
 	done
 
 .ExplanationText
-	text ""
 	fartext _SafariZoneEntranceText_753eb
 	done
 
 .RegularText
-	text ""
 	fartext _SafariZoneEntranceText_753f0
 	done

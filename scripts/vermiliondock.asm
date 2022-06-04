@@ -211,6 +211,5 @@ VermilionDockTextPointers:
 	dw VermilionDockText1
 
 VermilionDockText1:
-	text ""
 	fartext _VermilionDockText1
 	done

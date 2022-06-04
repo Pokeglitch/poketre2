@@ -82,49 +82,42 @@ SSAnne10TrainerHeader5:
 	db $ff
 
 SSAnne10Text1:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text2:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text3:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text4:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text5:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text6:
-	text ""
 	asmtext
 	ld hl, SSAnne10TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text8:
-	text ""
 	fartext _SSAnne10Text8
 	asmtext
 	ld a, MACHOKE
@@ -132,96 +125,77 @@ SSAnne10Text8:
 	jp TextScriptEnd
 
 SSAnne10BattleText1:
-	text ""
 	fartext _SSAnne10BattleText1
 	done
 
 SSAnne10EndBattleText1:
-	text ""
 	fartext _SSAnne10EndBattleText1
 	done
 
 SSAnne10AfterBattleText1:
-	text ""
 	fartext _SSAnne10AfterBattleText1
 	done
 
 SSAnne10BattleText2:
-	text ""
 	fartext _SSAnne10BattleText2
 	done
 
 SSAnne10EndBattleText2:
-	text ""
 	fartext _SSAnne10EndBattleText2
 	done
 
 SSAnne10AfterBattleText2:
-	text ""
 	fartext _SSAnne10AfterBattleText2
 	done
 
 SSAnne10BattleText3:
-	text ""
 	fartext _SSAnne10BattleText3
 	done
 
 SSAnne10EndBattleText3:
-	text ""
 	fartext _SSAnne10EndBattleText3
 	done
 
 SSAnne10AfterBattleText3:
-	text ""
 	fartext _SSAnne10AfterBattleText3
 	done
 
 SSAnne10BattleText4:
-	text ""
 	fartext _SSAnne10BattleText4
 	done
 
 SSAnne10EndBattleText4:
-	text ""
 	fartext _SSAnne10EndBattleText4
 	done
 
 SSAnne10AfterBattleText4:
-	text ""
 	fartext _SSAnne10AfterBattleText4
 	done
 
 SSAnne10BattleText5:
-	text ""
 	fartext _SSAnne10BattleText5
 	done
 
 SSAnne10EndBattleText5:
-	text ""
 	fartext _SSAnne10EndBattleText5
 	done
 
 SSAnne10AfterBattleText5:
-	text ""
 	fartext _SSAnne10AfterBattleText5
 	done
 
 SSAnne10BattleText6:
-	text ""
 	fartext _SSAnne10BattleText6
 	done
 
 SSAnne10EndBattleText6:
-	text ""
 	fartext _SSAnne10EndBattleText6
 	done
 
 SSAnne10AfterBattleText6:
-	text ""
 	fartext _SSAnne10AfterBattleText6
 	done
 
 SSAnne10Text7:
-	text ""
 	fartext _SSAnne10Text7
 	done

@@ -259,7 +259,6 @@ ViridianGymTrainerHeader7:
 	db $ff
 
 ViridianGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	jr z, .asm_6de66
@@ -302,220 +301,180 @@ ViridianGymText1:
 	jp TextScriptEnd
 
 ViridianGymText_74ace:
-	text ""
 	fartext _ViridianGymText_74ace
 	done
 
 ViridianGymText_74ad3:
-	text ""
 	fartext _ViridianGymText_74ad3
 	sfxtext SFX_GET_ITEM_1 ; plays SFX_LEVEL_UP instead since the wrong music bank is loaded
 	done
 
 ViridianGymText_74ad9:
-	text ""
 	fartext _ViridianGymText_74ad9
 	wait
 	done
 
 ViridianGymText12:
-	text ""
 	fartext _ViridianGymText12
 	done
 
 ViridianGymText13:
-	text ""
 	fartext _ReceivedTM27Text
 	sfxtext SFX_GET_ITEM_1
 
 TM27ExplanationText:
-	text ""
 	fartext _TM27ExplanationText
 	done
 
 ViridianGymText14:
-	text ""
 	fartext _TM27NoRoomText
 	done
 
 ViridianGymText2:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText1:
-	text ""
 	fartext _ViridianGymBattleText1
 	done
 
 ViridianGymEndBattleText1:
-	text ""
 	fartext _ViridianGymEndBattleText1
 	done
 
 ViridianGymAfterBattleText1:
-	text ""
 	fartext _ViridianGymAfterBattleText1
 	done
 
 ViridianGymText3:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText2:
-	text ""
 	fartext _ViridianGymBattleText2
 	done
 
 ViridianGymEndBattleText2:
-	text ""
 	fartext _ViridianGymEndBattleText2
 	done
 
 ViridianGymAfterBattleText2:
-	text ""
 	fartext _ViridianGymAfterBattleText2
 	done
 
 ViridianGymText4:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText3:
-	text ""
 	fartext _ViridianGymBattleText3
 	done
 
 ViridianGymEndBattleText3:
-	text ""
 	fartext _ViridianGymEndBattleText3
 	done
 
 ViridianGymAfterBattleText3:
-	text ""
 	fartext _ViridianGymAfterBattleText3
 	done
 
 ViridianGymText5:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText4:
-	text ""
 	fartext _ViridianGymBattleText4
 	done
 
 ViridianGymEndBattleText4:
-	text ""
 	fartext _ViridianGymEndBattleText4
 	done
 
 ViridianGymAfterBattleText4:
-	text ""
 	fartext _ViridianGymAfterBattleText4
 	done
 
 ViridianGymText6:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText5:
-	text ""
 	fartext _ViridianGymBattleText5
 	done
 
 ViridianGymEndBattleText5:
-	text ""
 	fartext _ViridianGymEndBattleText5
 	done
 
 ViridianGymAfterBattleText5:
-	text ""
 	fartext _ViridianGymAfterBattleText5
 	done
 
 ViridianGymText7:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText6:
-	text ""
 	fartext _ViridianGymBattleText6
 	done
 
 ViridianGymEndBattleText6:
-	text ""
 	fartext _ViridianGymEndBattleText6
 	done
 
 ViridianGymAfterBattleText6:
-	text ""
 	fartext _ViridianGymAfterBattleText6
 	done
 
 ViridianGymText8:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText7:
-	text ""
 	fartext _ViridianGymBattleText7
 	done
 
 ViridianGymEndBattleText7:
-	text ""
 	fartext _ViridianGymEndBattleText7
 	done
 
 ViridianGymAfterBattleText7:
-	text ""
 	fartext _ViridianGymAfterBattleText7
 	done
 
 ViridianGymText9:
-	text ""
 	asmtext
 	ld hl, ViridianGymTrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianGymBattleText8:
-	text ""
 	fartext _ViridianGymBattleText8
 	done
 
 ViridianGymEndBattleText8:
-	text ""
 	fartext _ViridianGymEndBattleText8
 	done
 
 ViridianGymAfterBattleText8:
-	text ""
 	fartext _ViridianGymAfterBattleText8
 	done
 
 ViridianGymText10:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	jr nz, .asm_1abd1
@@ -529,11 +488,9 @@ ViridianGymText10:
 	jp TextScriptEnd
 
 ViridianGymText_74bd4:
-	text ""
 	fartext _ViridianGymText_74bd4
 	done
 
 ViridianGymText_74bd9:
-	text ""
 	fartext _ViridianGymText_74bd9
 	done

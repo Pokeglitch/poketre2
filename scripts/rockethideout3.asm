@@ -170,45 +170,37 @@ RocketHideout3TrainerHeader1:
 	db $ff
 
 RocketHideout3Text1:
-	text ""
 	asmtext
 	ld hl, RocketHideout3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout3BattleText2:
-	text ""
 	fartext _RocketHideout3BattleText2
 	done
 
 RocketHideout3EndBattleText2:
-	text ""
 	fartext _RocketHideout3EndBattleText2
 	done
 
 RocketHideout3AfterBattleTxt2:
-	text ""
 	fartext _RocketHideout3AfterBattleTxt2
 	done
 
 RocketHideout3Text2:
-	text ""
 	asmtext
 	ld hl, RocketHideout3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout3BattleTxt:
-	text ""
 	fartext _RocketHideout3BattleTxt
 	done
 
 RocketHideout3EndBattleText3:
-	text ""
 	fartext _RocketHideout3EndBattleText3
 	done
 
 RocketHideout3AfterBattleText3:
-	text ""
 	fartext _RocketHide3AfterBattleText3
 	done

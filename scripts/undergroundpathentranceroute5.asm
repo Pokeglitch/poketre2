@@ -10,7 +10,6 @@ UndergroundPathEntranceRoute5TextPointers:
 	dw UndergroundPathEntranceRoute5Text1
 
 UndergroundPathEntranceRoute5Text1:
-	text ""
 	asmtext
 	ld a, $9
 	ld [wWhichTrade], a

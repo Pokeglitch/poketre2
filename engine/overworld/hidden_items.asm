@@ -21,7 +21,6 @@ HiddenItems:
 INCLUDE "data/hidden_item_coords.asm"
 
 FoundHiddenItemText:
-	text ""
 	fartext _FoundHiddenItemText
 	asmtext
 	ld a, [wHiddenObjectFunctionArgument] ; item ID
@@ -47,7 +46,6 @@ FoundHiddenItemText:
 	jp TextScriptEnd
 
 HiddenItemBagFullText:
-	text ""
 	fartext _HiddenItemBagFullText
 	done
 
@@ -123,13 +121,11 @@ HiddenCoins:
 INCLUDE "data/hidden_coins.asm"
 
 FoundHiddenCoinsText:
-	text ""
 	fartext _FoundHiddenCoinsText
 	sfxtext SFX_GET_ITEM_2
 	done
 
 DroppedHiddenCoinsText:
-	text ""
 	fartext _FoundHiddenCoinsText
 	sfxtext SFX_GET_ITEM_2
 	fartext _DroppedHiddenCoinsText

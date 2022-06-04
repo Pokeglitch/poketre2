@@ -125,89 +125,73 @@ VictoryRoad3TrainerHeader3:
 	db $ff
 
 VictoryRoad3Text1:
-	text ""
 	asmtext
 	ld hl, VictoryRoad3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text2:
-	text ""
 	asmtext
 	ld hl, VictoryRoad3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text3:
-	text ""
 	asmtext
 	ld hl, VictoryRoad3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text4:
-	text ""
 	asmtext
 	ld hl, VictoryRoad3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3BattleText2:
-	text ""
 	fartext _VictoryRoad3BattleText2
 	done
 
 VictoryRoad3EndBattleText2:
-	text ""
 	fartext _VictoryRoad3EndBattleText2
 	done
 
 VictoryRoad3AfterBattleText2:
-	text ""
 	fartext _VictoryRoad3AfterBattleText2
 	done
 
 VictoryRoad3BattleText3:
-	text ""
 	fartext _VictoryRoad3BattleText3
 	done
 
 VictoryRoad3EndBattleText3:
-	text ""
 	fartext _VictoryRoad3EndBattleText3
 	done
 
 VictoryRoad3AfterBattleText3:
-	text ""
 	fartext _VictoryRoad3AfterBattleText3
 	done
 
 VictoryRoad3BattleText4:
-	text ""
 	fartext _VictoryRoad3BattleText4
 	done
 
 VictoryRoad3EndBattleText4:
-	text ""
 	fartext _VictoryRoad3EndBattleText4
 	done
 
 VictoryRoad3AfterBattleText4:
-	text ""
 	fartext _VictoryRoad3AfterBattleText4
 	done
 
 VictoryRoad3BattleText5:
-	text ""
 	fartext _VictoryRoad3BattleText5
 	done
 
 VictoryRoad3EndBattleText5:
-	text ""
 	fartext _VictoryRoad3EndBattleText5
 	done
 
 VictoryRoad3AfterBattleText5:
-	text ""
 	fartext _VictoryRoad3AfterBattleText5
 	done

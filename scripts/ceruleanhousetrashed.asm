@@ -8,7 +8,6 @@ CeruleanHouseTrashedTextPointers:
 	dw CeruleanHouseTrashedText3
 
 CeruleanHouseTrashedText1:
-	text ""
 	asmtext
 	ld b, $e4
 	predef GetQuantityOfItemInBag
@@ -24,21 +23,17 @@ CeruleanHouseTrashedText1:
 	jp TextScriptEnd
 
 CeruleanHouseTrashedText_1d6ab:
-	text ""
 	fartext _CeruleanTrashedText_1d6ab
 	done
 
 CeruleanHouseTrashedText_1d6b0:
-	text ""
 	fartext _CeruleanTrashedText_1d6b0
 	done
 
 CeruleanHouseTrashedText2:
-	text ""
 	fartext _CeruleanHouseTrashedText2
 	done
 
 CeruleanHouseTrashedText3:
-	text ""
 	fartext _CeruleanHouseTrashedText3
 	done

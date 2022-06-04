@@ -119,61 +119,51 @@ Route15TrainerHeader9:
 	db $ff
 
 Route15Text1:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader0
 	jr Route15TalkToTrainer
 
 Route15Text2:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader1
 	jr Route15TalkToTrainer
 
 Route15Text3:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader2
 	jr Route15TalkToTrainer
 
 Route15Text4:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader3
 	jr Route15TalkToTrainer
 
 Route15Text5:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader4
 	jr Route15TalkToTrainer
 
 Route15Text6:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader5
 	jr Route15TalkToTrainer
 
 Route15Text7:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader6
 	jr Route15TalkToTrainer
 
 Route15Text8:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader7
 	jr Route15TalkToTrainer
 
 Route15Text9:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader8
 	jr Route15TalkToTrainer
 
 Route15Text10:
-	text ""
 	asmtext
 	ld hl, Route15TrainerHeader9
 Route15TalkToTrainer:
@@ -181,156 +171,125 @@ Route15TalkToTrainer:
 	jp TextScriptEnd
 
 Route15BattleText1:
-	text ""
 	fartext _Route15BattleText1
 	done
 
 Route15EndBattleText1:
-	text ""
 	fartext _Route15EndBattleText1
 	done
 
 Route15AfterBattleText1:
-	text ""
 	fartext _Route15AfterBattleText1
 	done
 
 Route15BattleText2:
-	text ""
 	fartext _Route15BattleText2
 	done
 
 Route15EndBattleText2:
-	text ""
 	fartext _Route15EndBattleText2
 	done
 
 Route15AfterBattleText2:
-	text ""
 	fartext _Route15AfterBattleText2
 	done
 
 Route15BattleText3:
-	text ""
 	fartext _Route15BattleText3
 	done
 
 Route15EndBattleText3:
-	text ""
 	fartext _Route15EndBattleText3
 	done
 
 Route15AfterBattleText3:
-	text ""
 	fartext _Route15AfterBattleText3
 	done
 
 Route15BattleText4:
-	text ""
 	fartext _Route15BattleText4
 	done
 
 Route15EndBattleText4:
-	text ""
 	fartext _Route15EndBattleText4
 	done
 
 Route15AfterBattleText4:
-	text ""
 	fartext _Route15AfterBattleText4
 	done
 
 Route15BattleText5:
-	text ""
 	fartext _Route15BattleText5
 	done
 
 Route15EndBattleText5:
-	text ""
 	fartext _Route15EndBattleText5
 	done
 
 Route15AfterBattleText5:
-	text ""
 	fartext _Route15AfterBattleText5
 	done
 
 Route15BattleText6:
-	text ""
 	fartext _Route15BattleText6
 	done
 
 Route15EndBattleText6:
-	text ""
 	fartext _Route15EndBattleText6
 	done
 
 Route15AfterBattleText6:
-	text ""
 	fartext _Route15AfterBattleText6
 	done
 
 Route15BattleText7:
-	text ""
 	fartext _Route15BattleText7
 	done
 
 Route15EndBattleText7:
-	text ""
 	fartext _Route15EndBattleText7
 	done
 
 Route15AfterBattleText7:
-	text ""
 	fartext _Route15AfterBattleText7
 	done
 
 Route15BattleText8:
-	text ""
 	fartext _Route15BattleText8
 	done
 
 Route15EndBattleText8:
-	text ""
 	fartext _Route15EndBattleText8
 	done
 
 Route15AfterBattleText8:
-	text ""
 	fartext _Route15AfterBattleText8
 	done
 
 Route15BattleText9:
-	text ""
 	fartext _Route15BattleText9
 	done
 
 Route15EndBattleText9:
-	text ""
 	fartext _Route15EndBattleText9
 	done
 
 Route15AfterBattleText9:
-	text ""
 	fartext _Route15AfterBattleText9
 	done
 
 Route15BattleText10:
-	text ""
 	fartext _Route15BattleText10
 	done
 
 Route15EndBattleText10:
-	text ""
 	fartext _Route15EndBattleText10
 	done
 
 Route15AfterBattleText10:
-	text ""
 	fartext _Route15AfterBattleText10
 	done
 
 Route15Text12:
-	text ""
 	fartext _Route15Text12
 	done

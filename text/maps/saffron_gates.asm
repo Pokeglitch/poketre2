@@ -17,7 +17,6 @@ _SaffronGateText_8aaa9::
 	done
 
 _SaffronGateText_1dff1::
-	text ""
 	para "..."
 	line "Glug glug..."
 	cont "..."

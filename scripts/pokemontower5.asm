@@ -96,99 +96,81 @@ PokemonTower5TrainerHeader3:
 	db $ff
 
 PokemonTower5Text1:
-	text ""
 	fartext _PokemonTower5Text1
 	done
 
 PokemonTower5Text2:
-	text ""
 	asmtext
 	ld hl, PokemonTower5TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower5BattleText1:
-	text ""
 	fartext _PokemonTower5BattleText1
 	done
 
 PokemonTower5EndBattleText1:
-	text ""
 	fartext _PokemonTower5EndBattleText1
 	done
 
 PokemonTower5AfterBattleText1:
-	text ""
 	fartext _PokemonTower5AfterBattleText1
 	done
 
 PokemonTower5Text3:
-	text ""
 	asmtext
 	ld hl, PokemonTower5TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower5BattleText2:
-	text ""
 	fartext _PokemonTower5BattleText2
 	done
 
 PokemonTower5EndBattleText2:
-	text ""
 	fartext _PokemonTower5EndBattleText2
 	done
 
 PokemonTower5AfterBattleText2:
-	text ""
 	fartext _PokemonTower5AfterBattleText2
 	done
 
 PokemonTower5Text4:
-	text ""
 	asmtext
 	ld hl, PokemonTower5TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower5BattleText3:
-	text ""
 	fartext _PokemonTower5BattleText3
 	done
 
 PokemonTower5EndBattleText3:
-	text ""
 	fartext _PokemonTower5EndBattleText3
 	done
 
 PokemonTower5AfterBattleText3:
-	text ""
 	fartext _PokemonTower5AfterBattleText3
 	done
 
 PokemonTower5Text5:
-	text ""
 	asmtext
 	ld hl, PokemonTower5TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower5BattleText4:
-	text ""
 	fartext _PokemonTower5BattleText4
 	done
 
 PokemonTower5EndBattleText4:
-	text ""
 	fartext _PokemonTower5EndBattleText4
 	done
 
 PokemonTower5AfterBattleText4:
-	text ""
 	fartext _PokemonTower5AfterBattleText4
 	done
 
 PokemonTower5Text7:
-	text ""
 	fartext _PokemonTower5Text7
 	done

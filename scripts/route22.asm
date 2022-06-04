@@ -383,7 +383,6 @@ Route22TextPointers:
 	dw Route22FrontGateText
 
 Route22Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
 	jr z, .asm_5118b
@@ -397,7 +396,6 @@ Route22Text1:
 	jp TextScriptEnd
 
 Route22Text2:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_ROUTE22_RIVAL_2ND_BATTLE
 	jr z, .asm_511a4
@@ -411,46 +409,37 @@ Route22Text2:
 	jp TextScriptEnd
 
 Route22RivalBeforeBattleText1:
-	text ""
 	fartext _Route22RivalBeforeBattleText1
 	done
 
 Route22RivalAfterBattleText1:
-	text ""
 	fartext _Route22RivalAfterBattleText1
 	done
 
 Route22RivalDefeatedText1:
-	text ""
 	fartext _Route22RivalDefeatedText1
 	done
 
 Route22Text_511bc:
-	text ""
 	fartext _Route22Text_511bc
 	done
 
 Route22RivalBeforeBattleText2:
-	text ""
 	fartext _Route22RivalBeforeBattleText2
 	done
 
 Route22RivalAfterBattleText2:
-	text ""
 	fartext _Route22RivalAfterBattleText2
 	done
 
 Route22RivalDefeatedText2:
-	text ""
 	fartext _Route22RivalDefeatedText2
 	done
 
 Route22Text_511d0:
-	text ""
 	fartext _Route22Text_511d0
 	done
 
 Route22FrontGateText:
-	text ""
 	fartext _Route22FrontGateText
 	done

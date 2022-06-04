@@ -432,23 +432,19 @@ RocketHideout2TrainerHeader0:
 	db $ff
 
 RocketHideout2Text1:
-	text ""
 	asmtext
 	ld hl, RocketHideout2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout2BattleText2:
-	text ""
 	fartext _RocketHideout2BattleText2
 	done
 
 RocketHideout2EndBattleText2:
-	text ""
 	fartext _RocketHideout2EndBattleText2
 	done
 
 RocketHideout2AfterBattleTxt2:
-	text ""
 	fartext _RocketHideout2AfterBattleTxt2
 	done

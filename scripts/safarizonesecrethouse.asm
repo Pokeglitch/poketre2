@@ -5,7 +5,6 @@ SafariZoneSecretHouseTextPointers:
 	dw SafariZoneSecretHouseText1
 
 SafariZoneSecretHouseText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_HM03
 	jr nz, .asm_20a9b
@@ -29,22 +28,18 @@ SafariZoneSecretHouseText1:
 	jp TextScriptEnd
 
 SafariZoneSecretHouseText_4a350:
-	text ""
 	fartext _SecretHouseText_4a350
 	done
 
 ReceivedHM03Text:
-	text ""
 	fartext _ReceivedHM03Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 HM03ExplanationText:
-	text ""
 	fartext _HM03ExplanationText
 	done
 
 HM03NoRoomText:
-	text ""
 	fartext _HM03NoRoomText
 	done

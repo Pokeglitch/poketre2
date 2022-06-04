@@ -131,28 +131,23 @@ LoreleiTrainerHeader0:
 	db $ff
 
 LoreleiText1:
-	text ""
 	asmtext
 	ld hl, LoreleiTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 LoreleiBeforeBattleText:
-	text ""
 	fartext _LoreleiBeforeBattleText
 	done
 
 LoreleiEndBattleText:
-	text ""
 	fartext _LoreleiEndBattleText
 	done
 
 LoreleiAfterBattleText:
-	text ""
 	fartext _LoreleiAfterBattleText
 	done
 
 LoreleiDontRunAwayText:
-	text ""
 	fartext _LoreleiDontRunAwayText
 	done

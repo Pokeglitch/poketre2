@@ -67,45 +67,37 @@ VictoryRoad1TrainerHeader1:
 	db $ff
 
 VictoryRoad1Text1:
-	text ""
 	asmtext
 	ld hl, VictoryRoad1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad1Text2:
-	text ""
 	asmtext
 	ld hl, VictoryRoad1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad1BattleText1:
-	text ""
 	fartext _VictoryRoad1BattleText1
 	done
 
 VictoryRoad1EndBattleText1:
-	text ""
 	fartext _VictoryRoad1EndBattleText1
 	done
 
 VictoryRoad1AfterBattleText1:
-	text ""
 	fartext _VictoryRoad1AfterBattleText1
 	done
 
 VictoryRoad1BattleText2:
-	text ""
 	fartext _VictoryRoad1BattleText2
 	done
 
 VictoryRoad1EndBattleText2:
-	text ""
 	fartext _VictoryRoad1EndBattleText2
 	done
 
 VictoryRoad1AfterBattleText2:
-	text ""
 	fartext _VictoryRoad1AfterBattleText2
 	done

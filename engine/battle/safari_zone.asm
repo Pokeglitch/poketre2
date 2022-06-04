@@ -28,11 +28,9 @@ PrintSafariZoneBattleText:
 	jp PrintText
 
 SafariZoneEatingText:
-	text ""
 	fartext _SafariZoneEatingText
 	done
 
 SafariZoneAngryText:
-	text ""
 	fartext _SafariZoneAngryText
 	done

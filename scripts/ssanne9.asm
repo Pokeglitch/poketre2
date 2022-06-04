@@ -69,35 +69,30 @@ SSAnne9TrainerHeader3:
 	db $ff
 
 SSAnne9Text1:
-	text ""
 	asmtext
 	ld hl, SSAnne9TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text2:
-	text ""
 	asmtext
 	ld hl, SSAnne9TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text3:
-	text ""
 	asmtext
 	ld hl, SSAnne9TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text4:
-	text ""
 	asmtext
 	ld hl, SSAnne9TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text5:
-	text ""
 	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, SSAnne9Text_61bf2
@@ -108,138 +103,113 @@ SSAnne9Text5:
 	jp TextScriptEnd
 
 SSAnne9Text_61bf2:
-	text ""
 	fartext _SSAnne9Text_61bf2
 	done
 
 SSAnne9Text7:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c01
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c01:
-	text ""
 	fartext _SSAnne9Text_61c01
 	done
 
 SSAnne9Text8:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c10
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c10:
-	text ""
 	fartext _SSAnne9Text_61c10
 	done
 
 SSAnne9Text10:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c1f
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c1f:
-	text ""
 	fartext _SSAnne9Text_61c1f
 	done
 
 SSAnne9Text11:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c2e
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c2e:
-	text ""
 	fartext _SSAnne9Text_61c2e
 	done
 
 SSAnne9Text12:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c3d
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c3d:
-	text ""
 	fartext _SSAnne9Text_61c3d
 	done
 
 SSAnne9Text13:
-	text ""
 	asmtext
 	ld hl, SSAnne9Text_61c4c
 	call PrintText
 	jp TextScriptEnd
 
 SSAnne9Text_61c4c:
-	text ""
 	fartext _SSAnne9Text_61c4c
 	done
 
 SSAnne9BattleText1:
-	text ""
 	fartext _SSAnne9BattleText1
 	done
 
 SSAnne9EndBattleText1:
-	text ""
 	fartext _SSAnne9EndBattleText1
 	done
 
 SSAnne9AfterBattleText1:
-	text ""
 	fartext _SSAnne9AfterBattleText1
 	done
 
 SSAnne9BattleText2:
-	text ""
 	fartext _SSAnne9BattleText2
 	done
 
 SSAnne9EndBattleText2:
-	text ""
 	fartext _SSAnne9EndBattleText2
 	done
 
 SSAnne9AfterBattleText2:
-	text ""
 	fartext _SSAnne9AfterBattleText2
 	done
 
 SSAnne9BattleText3:
-	text ""
 	fartext _SSAnne9BattleText3
 	done
 
 SSAnne9EndBattleText3:
-	text ""
 	fartext _SSAnne9EndBattleText3
 	done
 
 SSAnne9AfterBattleText3:
-	text ""
 	fartext _SSAnne9AfterBattleText3
 	done
 
 SSAnne9BattleText4:
-	text ""
 	fartext _SSAnne9BattleText4
 	done
 
 SSAnne9EndBattleText4:
-	text ""
 	fartext _SSAnne9EndBattleText4
 	done
 
 SSAnne9AfterBattleText4:
-	text ""
 	fartext _SSAnne9AfterBattleText4
 	done

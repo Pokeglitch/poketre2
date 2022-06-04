@@ -34,6 +34,5 @@ TradeCenterTextPointers:
 	dw TradeCenterText1
 
 TradeCenterText1:
-	text ""
 	fartext _TradeCenterText1
 	done

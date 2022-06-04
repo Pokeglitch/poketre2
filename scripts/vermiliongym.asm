@@ -129,7 +129,6 @@ VermilionGymTrainerHeader2:
 	db $ff
 
 VermilionGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_LT_SURGE
 	jr z, .asm_5cb39
@@ -166,105 +165,86 @@ VermilionGymText1:
 	jp TextScriptEnd
 
 VermilionGymText_5cb6d:
-	text ""
 	fartext _VermilionGymText_5cb6d
 	done
 
 VermilionGymText_5cb72:
-	text ""
 	fartext _VermilionGymText_5cb72
 	done
 
 VermilionGymText6:
-	text ""
 	fartext _VermilionGymText_5cb77
 	done
 
 VermilionGymText7:
-	text ""
 	fartext _ReceivedTM24Text
 	sfxtext SFX_GET_KEY_ITEM
 	fartext _TM24ExplanationText
 	done
 
 VermilionGymText8:
-	text ""
 	fartext _TM24NoRoomText
 	done
 
 ReceivedThunderbadgeText:
-	text ""
 	fartext _ReceivedThunderbadgeText
 	done
 
 VermilionGymText2:
-	text ""
 	asmtext
 	ld hl, VermilionGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VermilionGymBattleText1:
-	text ""
 	fartext _VermilionGymBattleText1
 	done
 
 VermilionGymEndBattleText1:
-	text ""
 	fartext _VermilionGymEndBattleText1
 	done
 
 VermilionGymAfterBattleText1:
-	text ""
 	fartext _VermilionGymAfterBattleText1
 	done
 
 VermilionGymText3:
-	text ""
 	asmtext
 	ld hl, VermilionGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VermilionGymBattleText2:
-	text ""
 	fartext _VermilionGymBattleText2
 	done
 
 VermilionGymEndBattleText2:
-	text ""
 	fartext _VermilionGymEndBattleText2
 	done
 
 VermilionGymAfterBattleText2:
-	text ""
 	fartext _VermilionGymAfterBattleText2
 	done
 
 VermilionGymText4:
-	text ""
 	asmtext
 	ld hl, VermilionGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VermilionGymBattleText3:
-	text ""
 	fartext _VermilionGymBattleText3
 	done
 
 VermilionGymEndBattleText3:
-	text ""
 	fartext _VermilionGymEndBattleText3
 	done
 
 VermilionGymAfterBattleText3:
-	text ""
 	fartext _VermilionGymAfterBattleText3
 	done
 
 VermilionGymText5:
-	text ""
 	asmtext
 	ld a, [wBeatGymFlags]
 	bit 2, a
@@ -279,11 +259,9 @@ VermilionGymText5:
 	jp TextScriptEnd
 
 VermilionGymText_5cbf4:
-	text ""
 	fartext _VermilionGymText_5cbf4
 	done
 
 VermilionGymText_5cbf9:
-	text ""
 	fartext _VermilionGymText_5cbf9
 	done

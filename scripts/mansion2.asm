@@ -75,40 +75,33 @@ Mansion2TrainerHeader0:
 	db $ff
 
 Mansion2Text1:
-	text ""
 	asmtext
 	ld hl, Mansion2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Mansion2BattleText1:
-	text ""
 	fartext _Mansion2BattleText1
 	done
 
 Mansion2EndBattleText1:
-	text ""
 	fartext _Mansion2EndBattleText1
 	done
 
 Mansion2AfterBattleText1:
-	text ""
 	fartext _Mansion2AfterBattleText1
 	done
 
 Mansion2Text3:
-	text ""
 	fartext _Mansion2Text3
 	done
 
 Mansion2Text4:
-	text ""
 	fartext _Mansion2Text4
 	done
 
 Mansion3Text6:
 Mansion2Text5:
-	text ""
 	asmtext
 	ld hl, Mansion2Text_520c2
 	call PrintText
@@ -135,16 +128,13 @@ Mansion2Text5:
 	jp TextScriptEnd
 
 Mansion2Text_520c2:
-	text ""
 	fartext _Mansion2Text_520c2
 	done
 
 Mansion2Text_520c7:
-	text ""
 	fartext _Mansion2Text_520c7
 	done
 
 Mansion2Text_520cc:
-	text ""
 	fartext _Mansion2Text_520cc
 	done

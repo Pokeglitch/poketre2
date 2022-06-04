@@ -8,12 +8,10 @@ VermilionHouse1TextPointers:
 	dw VermilionHouse1Text3
 
 VermilionHouse1Text1:
-	text ""
 	fartext _VermilionHouse1Text1
 	done
 
 VermilionHouse1Text2:
-	text ""
 	fartext _VermilionHouse1Text2
 	asmtext
 	ld a, PIDGEY
@@ -22,6 +20,5 @@ VermilionHouse1Text2:
 	jp TextScriptEnd
 
 VermilionHouse1Text3:
-	text ""
 	fartext _VermilionHouse1Text3
 	done

@@ -247,7 +247,6 @@ CeruleanCityTextPointers:
 	dw CeruleanCityText17
 
 CeruleanCityText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_CERULEAN_RIVAL
 	; do pre-battle text
@@ -263,27 +262,22 @@ CeruleanCityText1:
 	jp TextScriptEnd
 
 CeruleanCityText_19668:
-	text ""
 	fartext _CeruleanCityText_19668
 	done
 
 CeruleanCityText_1966d:
-	text ""
 	fartext _CeruleanCityText_1966d
 	done
 
 CeruleanCityText_19672:
-	text ""
 	fartext _CeruleanCityText_19672
 	done
 
 CeruleanCityText_19677:
-	text ""
 	fartext _CeruleanCityText_19677
 	done
 
 CeruleanCityText2:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_CERULEAN_ROCKET_THIEF
 	jr nz, .asm_4ca20
@@ -321,12 +315,10 @@ CeruleanCityText2:
 	jp TextScriptEnd
 
 CeruleanCityText_196d9:
-	text ""
 	fartext _CeruleanCityText_196d9
 	done
 
 ReceivedTM28Text:
-	text ""
 	fartext _ReceivedTM28Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _ReceivedTM28Text2
@@ -334,43 +326,35 @@ ReceivedTM28Text:
 	done
 
 TM28NoRoomText:
-	text ""
 	fartext _TM28NoRoomText
 	done
 
 CeruleanCityText_196ee:
-	text ""
 	fartext _CeruleanCityText_196ee
 	done
 
 CeruleanCityText_196f3:
-	text ""
 	fartext _CeruleanCityText_196f3
 	done
 
 CeruleanCityText3:
-	text ""
 	fartext _CeruleanCityText3
 	done
 
 CeruleanCityText4:
-	text ""
 	fartext _CeruleanCityText4
 	done
 
 CeruleanCityText5:
-	text ""
 	fartext _CeruleanCityText5
 	done
 
 CeruleanCityText11:
 CeruleanCityText6:
-	text ""
 	fartext _CeruleanCityText6
 	done
 
 CeruleanCityText7:
-	text ""
 	asmtext
 	ld a, [hRandomAdd]
 	cp 180
@@ -391,22 +375,18 @@ CeruleanCityText7:
 	jp TextScriptEnd
 
 CeruleanCityText_19730:
-	text ""
 	fartext _CeruleanCityText_19730
 	done
 
 CeruleanCityText_19735:
-	text ""
 	fartext _CeruleanCityText_19735
 	done
 
 CeruleanCityText_1973a:
-	text ""
 	fartext _CeruleanCityText_1973a
 	done
 
 CeruleanCityText8:
-	text ""
 	asmtext
 	ld a, [hRandomAdd]
 	cp 180
@@ -433,51 +413,41 @@ CeruleanCityText8:
 	jp TextScriptEnd
 
 CeruleanCityText_1976f:
-	text ""
 	fartext _CeruleanCityText_1976f
 	done
 
 CeruleanCityText_19774:
-	text ""
 	fartext _CeruleanCityText_19774
 	done
 
 CeruleanCityText_19779:
-	text ""
 	fartext _CeruleanCityText_19779
 	done
 
 CeruleanCityText_1977e:
-	text ""
 	fartext _CeruleanCityText_1977e
 	done
 
 CeruleanCityText9:
-	text ""
 	fartext _CeruleanCityText9
 	done
 
 CeruleanCityText10:
-	text ""
 	fartext _CeruleanCityText10
 	done
 
 CeruleanCityText12:
-	text ""
 	fartext _CeruleanCityText12
 	done
 
 CeruleanCityText13:
-	text ""
 	fartext _CeruleanCityText13
 	done
 
 CeruleanCityText16:
-	text ""
 	fartext _CeruleanCityText16
 	done
 
 CeruleanCityText17:
-	text ""
 	fartext _CeruleanCityText17
 	done

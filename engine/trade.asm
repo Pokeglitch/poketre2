@@ -785,7 +785,6 @@ PrintTradeWentToText:
 	jp Trade_SlideTextBoxOffScreen
 
 TradeWentToText:
-	text ""
 	fartext _TradeWentToText
 	done
 
@@ -798,12 +797,10 @@ PrintTradeForSendsText:
 	jp Trade_Delay80
 
 TradeForText:
-	text ""
 	fartext _TradeForText
 	done
 
 TradeSendsText:
-	text ""
 	fartext _TradeSendsText
 	done
 
@@ -817,12 +814,10 @@ PrintTradeFarewellText:
 	jp Trade_SlideTextBoxOffScreen
 
 TradeWavesFarewellText:
-	text ""
 	fartext _TradeWavesFarewellText
 	done
 
 TradeTransferredText:
-	text ""
 	fartext _TradeTransferredText
 	done
 
@@ -832,7 +827,6 @@ PrintTradeTakeCareText:
 	jp Trade_Delay80
 
 TradeTakeCareText:
-	text ""
 	fartext _TradeTakeCareText
 	done
 
@@ -845,12 +839,10 @@ PrintTradeWillTradeText:
 	jp Trade_Delay80
 
 TradeWillTradeText:
-	text ""
 	fartext _TradeWillTradeText
 	done
 
 TradeforText:
-	text ""
 	fartext _TradeforText
 	done
 

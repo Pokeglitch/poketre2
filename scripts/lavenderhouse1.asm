@@ -11,7 +11,6 @@ LavenderHouse1TextPointers:
 	dw LavenderHouse1Text6
 
 LavenderHouse1Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_72e5d
@@ -25,17 +24,14 @@ LavenderHouse1Text1:
 	jp TextScriptEnd
 
 LavenderHouse1Text_1d8d1:
-	text ""
 	fartext _LavenderHouse1Text_1d8d1
 	done
 
 LavenderHouse1Text_1d8d6:
-	text ""
 	fartext _LavenderHouse1Text_1d8d6
 	done
 
 LavenderHouse1Text2:
-	text ""
 	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_06470
@@ -49,17 +45,14 @@ LavenderHouse1Text2:
 	jp TextScriptEnd
 
 LavenderHouse1Text_1d8f4:
-	text ""
 	fartext _LavenderHouse1Text_1d8f4
 	done
 
 LavenderHouse1Text_1d8f9:
-	text ""
 	fartext _LavenderHouse1Text_1d8f9
 	done
 
 LavenderHouse1Text3:
-	text ""
 	fartext _LavenderHouse1Text3
 	asmtext
 	ld a, PSYDUCK
@@ -67,7 +60,6 @@ LavenderHouse1Text3:
 	jp TextScriptEnd
 
 LavenderHouse1Text4:
-	text ""
 	fartext _LavenderHouse1Text4
 	asmtext
 	ld a, NIDORINO
@@ -75,7 +67,6 @@ LavenderHouse1Text4:
 	jp TextScriptEnd
 
 LavenderHouse1Text5:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_POKE_FLUTE
 	jr nz, .asm_15ac2
@@ -99,28 +90,23 @@ LavenderHouse1Text5:
 	jp TextScriptEnd
 
 LavenderHouse1Text_1d94c:
-	text ""
 	fartext _LavenderHouse1Text_1d94c
 	done
 
 ReceivedFluteText:
-	text ""
 	fartext _ReceivedFluteText
 	sfxtext SFX_GET_KEY_ITEM
 	fartext _FluteExplanationText
 	done
 
 FluteNoRoomText:
-	text ""
 	fartext _FluteNoRoomText
 	done
 
 MrFujiAfterFluteText:
-	text ""
 	fartext _MrFujiAfterFluteText
 	done
 
 LavenderHouse1Text6:
-	text ""
 	fartext _LavenderHouse1Text6
 	done

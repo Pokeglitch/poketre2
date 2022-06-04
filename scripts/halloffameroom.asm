@@ -105,6 +105,5 @@ HallofFameRoomTextPointers:
 	dw HallofFameRoomText1
 
 HallofFameRoomText1:
-	text ""
 	fartext _HallofFameRoomText1
 	done

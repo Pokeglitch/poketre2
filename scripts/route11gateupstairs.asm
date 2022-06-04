@@ -8,7 +8,6 @@ Route11GateUpstairsTextPointers:
 	dw Route11GateUpstairsText4
 
 Route11GateUpstairsText1:
-	text ""
 	asmtext
 	xor a
 	ld [wWhichTrade], a
@@ -17,7 +16,6 @@ Route11GateUpstairsScriptEnd:
 	jp TextScriptEnd
 
 Route11GateUpstairsText2:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_ITEMFINDER, 1
 	jr c, .asm_4949b
@@ -44,12 +42,10 @@ Route11GateUpstairsText2:
 	jr Route11GateUpstairsScriptEnd
 
 Route11GateUpstairsText_494a3:
-	text ""
 	fartext _Route11GateUpstairsText_494a3
 	done
 
 Route11GateUpstairsText3:
-	text ""
 	asmtext
 	ld a, [wSpriteStateData1 + 9]
 	cp SPRITE_FACING_UP
@@ -63,22 +59,18 @@ Route11GateUpstairsText3:
 	jp TextScriptEnd
 
 BinocularsSnorlaxText:
-	text ""
 	fartext _BinocularsSnorlaxText
 	done
 
 BinocularsNoSnorlaxText:
-	text ""
 	fartext _BinocularsNoSnorlaxText
 	done
 
 Route11GateUpstairsText4:
-	text ""
 	asmtext
 	ld hl, Route11GateUpstairsText_494d5
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route11GateUpstairsText_494d5:
-	text ""
 	fartext _Route11GateUpstairsText_494d5
 	done

@@ -28,22 +28,18 @@ FuchsiaCityTextPointers:
 	dw FuchsiaCityText24
 
 FuchsiaCityText1:
-	text ""
 	fartext _FuchsiaCityText1
 	done
 
 FuchsiaCityText2:
-	text ""
 	fartext _FuchsiaCityText2
 	done
 
 FuchsiaCityText3:
-	text ""
 	fartext _FuchsiaCityText3
 	done
 
 FuchsiaCityText4:
-	text ""
 	fartext _FuchsiaCityText4
 	done
 
@@ -53,38 +49,31 @@ FuchsiaCityText7:
 FuchsiaCityText8:
 FuchsiaCityText9:
 FuchsiaCityText10:
-	text ""
 	fartext _FuchsiaCityText5
 	done
 
 FuchsiaCityText12:
 FuchsiaCityText11:
-	text ""
 	fartext _FuchsiaCityText11
 	done
 
 FuchsiaCityText13:
-	text ""
 	fartext _FuchsiaCityText13
 	done
 
 FuchsiaCityText16:
-	text ""
 	fartext _FuchsiaCityText16
 	done
 
 FuchsiaCityText17:
-	text ""
 	fartext _FuchsiaCityText17
 	done
 
 FuchsiaCityText18:
-	text ""
 	fartext _FuchsiaCityText18
 	done
 
 FuchsiaCityText19:
-	text ""
 	asmtext
 	ld hl, FuchsiaCityChanseyText
 	call PrintText
@@ -93,12 +82,10 @@ FuchsiaCityText19:
 	jp TextScriptEnd
 
 FuchsiaCityChanseyText:
-	text ""
 	fartext _FuchsiaCityChanseyText
 	done
 
 FuchsiaCityText20:
-	text ""
 	asmtext
 	ld hl, FuchsiaCityVoltorbText
 	call PrintText
@@ -107,12 +94,10 @@ FuchsiaCityText20:
 	jp TextScriptEnd
 
 FuchsiaCityVoltorbText:
-	text ""
 	fartext _FuchsiaCityVoltorbText
 	done
 
 FuchsiaCityText21:
-	text ""
 	asmtext
 	ld hl, FuchsiaCityKangaskhanText
 	call PrintText
@@ -121,12 +106,10 @@ FuchsiaCityText21:
 	jp TextScriptEnd
 
 FuchsiaCityKangaskhanText:
-	text ""
 	fartext _FuchsiaCityKangaskhanText
 	done
 
 FuchsiaCityText22:
-	text ""
 	asmtext
 	ld hl, FuchsiaCitySlowpokeText
 	call PrintText
@@ -135,12 +118,10 @@ FuchsiaCityText22:
 	jp TextScriptEnd
 
 FuchsiaCitySlowpokeText:
-	text ""
 	fartext _FuchsiaCitySlowpokeText
 	done
 
 FuchsiaCityText23:
-	text ""
 	asmtext
 	ld hl, FuchsiaCityLaprasText
 	call PrintText
@@ -149,12 +130,10 @@ FuchsiaCityText23:
 	jp TextScriptEnd
 
 FuchsiaCityLaprasText:
-	text ""
 	fartext _FuchsiaCityLaprasText
 	done
 
 FuchsiaCityText24:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_DOME_FOSSIL
 	jr nz, .asm_3b4e8
@@ -178,16 +157,13 @@ FuchsiaCityText24:
 	jp TextScriptEnd
 
 FuchsiaCityOmanyteText:
-	text ""
 	fartext _FuchsiaCityOmanyteText
 	done
 
 FuchsiaCityKabutoText:
-	text ""
 	fartext _FuchsiaCityKabutoText
 	done
 
 FuchsiaCityText_19b2a:
-	text ""
 	fartext _FuchsiaCityText_19b2a
 	done

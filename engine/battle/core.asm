@@ -294,7 +294,6 @@ StartBattle:
 	jr EnemyRan ; if b was greater than the random value, the enemy runs
 
 .outOfSafariBallsText
-	text ""
 	fartext _OutOfSafariBallsText
 	done
 
@@ -358,12 +357,10 @@ EnemyRan:
 	jpab AnimationSlideEnemyMonOff
 
 WildRanText:
-	text ""
 	fartext _WildRanText
 	done
 
 EnemyRanText:
-	text ""
 	fartext _EnemyRanText
 	done
 
@@ -622,17 +619,14 @@ HandlePoisonBurnLeechSeed:
 	ret
 
 HurtByPoisonText:
-	text ""
 	fartext _HurtByPoisonText
 	done
 
 HurtByBurnText:
-	text ""
 	fartext _HurtByBurnText
 	done
 
 HurtByLeechSeedText:
-	text ""
 	fartext _HurtByLeechSeedText
 	done
 
@@ -951,7 +945,6 @@ FaintEnemyPokemon:
 	jpab GainExperience
 
 EnemyMonFaintedText:
-	text ""
 	fartext _EnemyMonFaintedText
 	done
 
@@ -1043,12 +1036,10 @@ TrainerBattleVictory:
 	predef_jump AddBCDPredef
 
 MoneyForWinningText:
-	text ""
 	fartext _MoneyForWinningText
 	done
 
 TrainerDefeatedText:
-	text ""
 	fartext _TrainerDefeatedText
 	done
 
@@ -1140,7 +1131,6 @@ RemoveFaintedPlayerMon:
 	jp PrintText
 
 PlayerMonFaintedText:
-	text ""
 	fartext _PlayerMonFaintedText
 	done
 
@@ -1175,7 +1165,6 @@ DoUseNextMonDialogue:
 	jp TryRunningFromBattle
 
 UseNextMonText:
-	text ""
 	fartext _UseNextMonText
 	done
 
@@ -1263,17 +1252,14 @@ HandlePlayerBlackOut:
 	ret
 
 Sony1WinText:
-	text ""
 	fartext _Sony1WinText
 	done
 
 PlayerBlackedOutText2:
-	text ""
 	fartext _PlayerBlackedOutText2
 	done
 
 LinkBattleLostText:
-	text ""
 	fartext _LinkBattleLostText
 	done
 
@@ -1543,12 +1529,10 @@ EnemySendOutFirstMon:
 	jp SwitchPlayerMon
 
 TrainerAboutToUseText:
-	text ""
 	fartext _TrainerAboutToUseText
 	done
 
 TrainerSentOutText:
-	text ""
 	fartext _TrainerSentOutText
 	done
 
@@ -1590,7 +1574,6 @@ HasMonFainted:
 	ret
 
 NoWillText:
-	text ""
 	fartext _NoWillText
 	done
 
@@ -1714,17 +1697,14 @@ TryRunningFromBattle:
 	ret
 
 CantEscapeText:
-	text ""
 	fartext _CantEscapeText
 	done
 
 NoRunningText:
-	text ""
 	fartext _NoRunningText
 	done
 
 GotAwayText:
-	text ""
 	fartext _GotAwayText
 	done
 
@@ -2384,7 +2364,6 @@ UseBagItem:
 	ret
 
 ItemsCantBeUsedHereText:
-	text ""
 	fartext _ItemsCantBeUsedHereText
 	done
 
@@ -2554,7 +2533,6 @@ SwitchPlayerMon:
 	ret
 
 AlreadyOutText:
-	text ""
 	fartext _AlreadyOutText
 	done
 
@@ -2788,12 +2766,10 @@ SelectMenuItem:
 	jp MoveSelectionMenu
 
 MoveNoPPText:
-	text ""
 	fartext _MoveNoPPText
 	done
 
 MoveDisabledText:
-	text ""
 	fartext _MoveDisabledText
 	done
 
@@ -2867,7 +2843,6 @@ AnyMoveToSelect:
 	ret
 
 NoMovesLeftText:
-	text ""
 	fartext _NoMovesLeftText
 	done
 
@@ -3363,7 +3338,6 @@ MirrorMoveCheck:
 	jp ExecutePlayerMoveDone
 
 MultiHitText:
-	text ""
 	fartext _MultiHitText
 	done
 
@@ -3394,12 +3368,10 @@ PrintGhostText:
 	ret
 
 ScaredText:
-	text ""
 	fartext _ScaredText
 	done
 
 GetOutText:
-	text ""
 	fartext _GetOutText
 	done
 
@@ -3684,77 +3656,62 @@ CheckPlayerStatusConditions:
 	ret
 
 FastAsleepText:
-	text ""
 	fartext _FastAsleepText
 	done
 
 WokeUpText:
-	text ""
 	fartext _WokeUpText
 	done
 
 IsFrozenText:
-	text ""
 	fartext _IsFrozenText
 	done
 
 FullyParalyzedText:
-	text ""
 	fartext _FullyParalyzedText
 	done
 
 FlinchedText:
-	text ""
 	fartext _FlinchedText
 	done
 
 MustRechargeText:
-	text ""
 	fartext _MustRechargeText
 	done
 
 DisabledNoMoreText:
-	text ""
 	fartext _DisabledNoMoreText
 	done
 
 IsConfusedText:
-	text ""
 	fartext _IsConfusedText
 	done
 
 HurtItselfText:
-	text ""
 	fartext _HurtItselfText
 	done
 
 ConfusedNoMoreText:
-	text ""
 	fartext _ConfusedNoMoreText
 	done
 
 SavingEnergyText:
-	text ""
 	fartext _SavingEnergyText
 	done
 
 UnleashedEnergyText:
-	text ""
 	fartext _UnleashedEnergyText
 	done
 
 ThrashingAboutText:
-	text ""
 	fartext _ThrashingAboutText
 	done
 
 AttackContinuesText:
-	text ""
 	fartext _AttackContinuesText
 	done
 
 CantMoveText:
-	text ""
 	fartext _CantMoveText
 	done
 
@@ -3777,7 +3734,6 @@ PrintMoveIsDisabledText:
 	jp PrintText
 
 MoveIsDisabledText:
-	text ""
 	fartext _MoveIsDisabledText
 	done
 
@@ -3830,7 +3786,6 @@ PrintMonName1Text:
 	jp PrintText
 
 MonName1Text:
-	text ""
 	fartext _MonName1Text
 	asmtext
 	ld a, [H_WHOSETURN]
@@ -3846,7 +3801,6 @@ MonName1Text:
 	ret
 
 UsedText:
-	text ""
 	fartext _UsedText
 	asmtext
 	ld a, [wMonIsDisobedient]
@@ -3856,7 +3810,6 @@ UsedText:
 	ret
 
 InsteadText:
-	text ""
 	fartext _InsteadText
 	asmtext
 	; fall through
@@ -3866,7 +3819,6 @@ PrintMoveName:
 	ret
 
 _PrintMoveName:
-	text ""
 	fartext _CF4BText
 	done
 
@@ -3928,17 +3880,14 @@ PrintMoveFailureText:
 	jp ApplyDamageToEnemyPokemon
 
 AttackMissedText:
-	text ""
 	fartext _AttackMissedText
 	done
 
 KeptGoingAndCrashedText:
-	text ""
 	fartext _KeptGoingAndCrashedText
 	done
 
 UnaffectedText:
-	text ""
 	fartext _UnaffectedText
 	done
 
@@ -3947,7 +3896,6 @@ PrintDoesntAffectText:
 	jp PrintText
 
 DoesntAffectMonText:
-	text ""
 	fartext _DoesntAffectMonText
 	done
 
@@ -3977,12 +3925,10 @@ CriticalOHKOTextPointers:
 	dw OHKOText
 
 CriticalHitText:
-	text ""
 	fartext _CriticalHitText
 	done
 
 OHKOText:
-	text ""
 	fartext _OHKOText
 	done
 
@@ -4168,27 +4114,22 @@ CheckForDisobedience:
 	ret
 
 LoafingAroundText:
-	text ""
 	fartext _LoafingAroundText
 	done
 
 BeganToNapText:
-	text ""
 	fartext _BeganToNapText
 	done
 
 WontObeyText:
-	text ""
 	fartext _WontObeyText
 	done
 
 TurnedAwayText:
-	text ""
 	fartext _TurnedAwayText
 	done
 
 IgnoredOrdersText:
-	text ""
 	fartext _IgnoredOrdersText
 	done
 
@@ -5075,12 +5016,10 @@ AttackSubstitute:
 	jp DrawHUDsAndHPBars
 
 SubstituteTookDamageText:
-	text ""
 	fartext _SubstituteTookDamageText
 	done
 
 SubstituteBrokeText:
-	text ""
 	fartext _SubstituteBrokeText
 	done
 
@@ -5128,7 +5067,6 @@ HandleBuildingRage:
 	ret
 
 BuildingRageText:
-	text ""
 	fartext _BuildingRageText
 	done
 
@@ -5165,7 +5103,6 @@ MirrorMoveCopyMove:
 	ret
 
 MirrorMoveFailedText:
-	text ""
 	fartext _MirrorMoveFailedText
 	done
 
@@ -5841,7 +5778,6 @@ EnemyCheckIfMirrorMoveEffect:
 	jr ExecuteEnemyMoveDone
 
 HitXTimesText:
-	text ""
 	fartext _HitXTimesText
 	done
 
@@ -7241,12 +7177,10 @@ SleepEffect:
 	jp PrintDidntAffectText
 
 FellAsleepText:
-	text ""
 	fartext _FellAsleepText
 	done
 
 AlreadyAsleepText:
-	text ""
 	fartext _AlreadyAsleepText
 	done
 
@@ -7337,12 +7271,10 @@ PoisonEffect:
 	jp PrintDidntAffectText
 
 PoisonedText:
-	text ""
 	fartext _PoisonedText
 	done
 
 BadlyPoisonedText:
-	text ""
 	fartext _BadlyPoisonedText
 	done
 
@@ -7474,12 +7406,10 @@ opponentAttacker:
 	jp PrintText
 
 BurnedText:
-	text ""
 	fartext _BurnedText
 	done
 
 FrozenText:
-	text ""
 	fartext _FrozenText
 	done
 
@@ -7519,7 +7449,6 @@ CheckDefrost:
 	jp PrintText
 
 FireDefrostedText:
-	text ""
 	fartext _FireDefrostedText
 	done
 
@@ -7688,7 +7617,6 @@ PrintNothingHappenedText:
 	jp PrintText
 
 MonsStatsRoseText:
-	text ""
 	fartext _MonsStatsRoseText
 	asmtext
 	ld hl, GreatlyRoseText
@@ -7704,12 +7632,10 @@ MonsStatsRoseText:
 	ret
 
 GreatlyRoseText:
-	text ""
 	delaytext
 	fartext _GreatlyRoseText
 ; fallthrough
 RoseText:
-	text ""
 	fartext _RoseText
 	done
 
@@ -7893,7 +7819,6 @@ MoveMissed:
 	jp ConditionalPrintButItFailed
 
 MonsStatsFellText:
-	text ""
 	fartext _MonsStatsFellText
 	asmtext
 	ld hl, FellText
@@ -7912,12 +7837,10 @@ MonsStatsFellText:
 	ret
 
 GreatlyFellText:
-	text ""
 	delaytext
 	fartext _GreatlyFellText
 ; fallthrough
 FellText:
-	text ""
 	fartext _FellText
 	done
 
@@ -8111,17 +8034,14 @@ SwitchAndTeleportEffect:
 	jp PrintText
 
 RanFromBattleText:
-	text ""
 	fartext _RanFromBattleText
 	done
 
 RanAwayScaredText:
-	text ""
 	fartext _RanAwayScaredText
 	done
 
 WasBlownAwayText:
-	text ""
 	fartext _WasBlownAwayText
 	done
 
@@ -8233,7 +8153,6 @@ ChargeEffect:
 	jp PrintText
 
 ChargeMoveEffectText:
-	text ""
 	fartext _ChargeMoveEffectText
 	asmtext
 	ld a, [wChargeMoveNum]
@@ -8258,32 +8177,26 @@ ChargeMoveEffectText:
 	ret
 
 MadeWhirlwindText:
-	text ""
 	fartext _MadeWhirlwindText
 	done
 
 TookInSunlightText:
-	text ""
 	fartext _TookInSunlightText
 	done
 
 LoweredItsHeadText:
-	text ""
 	fartext _LoweredItsHeadText
 	done
 
 SkyAttackGlowingText:
-	text ""
 	fartext _SkyAttackGlowingText
 	done
 
 FlewUpHighText:
-	text ""
 	fartext _FlewUpHighText
 	done
 
 DugAHoleText:
-	text ""
 	fartext _DugAHoleText
 	done
 
@@ -8362,7 +8275,6 @@ ConfusionSideEffectSuccess:
 	jp PrintText
 
 BecameConfusedText:
-	text ""
 	fartext _BecameConfusedText
 	done
 
@@ -8484,7 +8396,6 @@ MimicEffect:
 	jp PrintButItFailedText_
 
 MimicLearnedMoveText:
-	text ""
 	fartext _MimicLearnedMoveText
 	done
 
@@ -8579,7 +8490,6 @@ DisableEffect:
 	jp PrintButItFailedText_
 
 MoveWasDisabledText:
-	text ""
 	fartext _MoveWasDisabledText
 	done
 
@@ -8602,7 +8512,6 @@ ReflectLightScreenEffect:
 	jpab ReflectLightScreenEffect_
 
 NothingHappenedText:
-	text ""
 	fartext _NothingHappenedText
 	done
 
@@ -8611,7 +8520,6 @@ PrintNoEffectText:
 	jp PrintText
 
 NoEffectText:
-	text ""
 	fartext _NoEffectText
 	done
 
@@ -8625,7 +8533,6 @@ PrintButItFailedText_:
 	jp PrintText
 
 ButItFailedText:
-	text ""
 	fartext _ButItFailedText
 	done
 
@@ -8634,12 +8541,10 @@ PrintDidntAffectText:
 	jp PrintText
 
 DidntAffectText:
-	text ""
 	fartext _DidntAffectText
 	done
 
 IsUnaffectedText:
-	text ""
 	fartext _IsUnaffectedText
 	done
 
@@ -8648,7 +8553,6 @@ PrintMayNotAttackText:
 	jp PrintText
 
 ParalyzedMayNotAttackText:
-	text ""
 	fartext _ParalyzedMayNotAttackText
 	done
 

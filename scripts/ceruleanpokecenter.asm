@@ -15,11 +15,9 @@ CeruleanHealNurseText:
 	TX_POKECENTER_NURSE
 
 CeruleanPokecenterText2:
-	text ""
 	fartext _CeruleanPokecenterText2
 	done
 
 CeruleanPokecenterText3:
-	text ""
 	fartext _CeruleanPokecenterText3
 	done

@@ -15,17 +15,14 @@ OpenOaksPC:
 	jp LoadScreenTilesFromBuffer2
 
 GetDexRatedText:
-	text ""
 	fartext _GetDexRatedText
 	done
 
 ClosedOaksPCText:
-	text ""
 	fartext _ClosedOaksPCText
 	wait
 	done
 
 AccessedOaksPCText:
-	text ""
 	fartext _AccessedOaksPCText
 	done

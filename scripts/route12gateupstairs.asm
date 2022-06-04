@@ -7,7 +7,6 @@ Route12GateUpstairsTextPointers:
 	dw Route12GateUpstairsText3
 
 Route12GateUpstairsText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM39, 1
 	jr c, .asm_0ad3c
@@ -31,45 +30,37 @@ Route12GateUpstairsText1:
 	jp TextScriptEnd
 
 TM39PreReceiveText:
-	text ""
 	fartext _TM39PreReceiveText
 	done
 
 ReceivedTM39Text:
-	text ""
 	fartext _ReceivedTM39Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM39ExplanationText:
-	text ""
 	fartext _TM39ExplanationText
 	done
 
 TM39NoRoomText:
-	text ""
 	fartext _TM39NoRoomText
 	done
 
 Route12GateUpstairsText2:
-	text ""
 	asmtext
 	ld hl, Route12GateUpstairsText_495b8
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route12GateUpstairsText_495b8:
-	text ""
 	fartext _Route12GateUpstairsText_495b8
 	done
 
 Route12GateUpstairsText3:
-	text ""
 	asmtext
 	ld hl, Route12GateUpstairsText_495c4
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route12GateUpstairsText_495c4:
-	text ""
 	fartext _Route12GateUpstairsText_495c4
 	done
 

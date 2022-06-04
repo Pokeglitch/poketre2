@@ -118,226 +118,185 @@ Route11TrainerHeader9:
 	db $ff
 
 Route11Text1:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText1:
-	text ""
 	fartext _Route11BattleText1
 	done
 
 Route11EndBattleText1:
-	text ""
 	fartext _Route11EndBattleText1
 	done
 
 Route11AfterBattleText1:
-	text ""
 	fartext _Route11AfterBattleText1
 	done
 
 Route11Text2:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText2:
-	text ""
 	fartext _Route11BattleText2
 	done
 
 Route11EndBattleText2:
-	text ""
 	fartext _Route11EndBattleText2
 	done
 
 Route11AfterBattleText2:
-	text ""
 	fartext _Route11AfterBattleText2
 	done
 
 Route11Text3:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText3:
-	text ""
 	fartext _Route11BattleText3
 	done
 
 Route11EndBattleText3:
-	text ""
 	fartext _Route11EndBattleText3
 	done
 
 Route11AfterBattleText3:
-	text ""
 	fartext _Route11AfterBattleText3
 	done
 
 Route11Text4:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText4:
-	text ""
 	fartext _Route11BattleText4
 	done
 
 Route11EndBattleText4:
-	text ""
 	fartext _Route11EndBattleText4
 	done
 
 Route11AfterBattleText4:
-	text ""
 	fartext _Route11AfterBattleText4
 	done
 
 Route11Text5:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText5:
-	text ""
 	fartext _Route11BattleText5
 	done
 
 Route11EndBattleText5:
-	text ""
 	fartext _Route11EndBattleText5
 	done
 
 Route11AfterBattleText5:
-	text ""
 	fartext _Route11AfterBattleText5
 	done
 
 Route11Text6:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText6:
-	text ""
 	fartext _Route11BattleText6
 	done
 
 Route11EndBattleText6:
-	text ""
 	fartext _Route11EndBattleText6
 	done
 
 Route11AfterBattleText6:
-	text ""
 	fartext _Route11AfterBattleText6
 	done
 
 Route11Text7:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText7:
-	text ""
 	fartext _Route11BattleText7
 	done
 
 Route11EndBattleText7:
-	text ""
 	fartext _Route11EndBattleText7
 	done
 
 Route11AfterBattleText7:
-	text ""
 	fartext _Route11AfterBattleText7
 	done
 
 Route11Text8:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText8:
-	text ""
 	fartext _Route11BattleText8
 	done
 
 Route11EndBattleText8:
-	text ""
 	fartext _Route11EndBattleText8
 	done
 
 Route11AfterBattleText8:
-	text ""
 	fartext _Route11AfterBattleText8
 	done
 
 Route11Text9:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText9:
-	text ""
 	fartext _Route11BattleText9
 	done
 
 Route11EndBattleText9:
-	text ""
 	fartext _Route11EndBattleText9
 	done
 
 Route11AfterBattleText9:
-	text ""
 	fartext _Route11AfterBattleText9
 	done
 
 Route11Text10:
-	text ""
 	asmtext
 	ld hl, Route11TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route11BattleText10:
-	text ""
 	fartext _Route11BattleText10
 	done
 
 Route11EndBattleText10:
-	text ""
 	fartext _Route11EndBattleText10
 	done
 
 Route11AfterBattleText10:
-	text ""
 	fartext _Route11AfterBattleText10
 	done
 
 Route11Text11:
-	text ""
 	fartext _Route11Text11
 	done

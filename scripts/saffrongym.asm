@@ -150,7 +150,6 @@ SaffronGymTrainerHeader6:
 	db $ff
 
 SaffronGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SABRINA
 	jr z, .asm_5d134
@@ -184,90 +183,76 @@ SaffronGymText1:
 	jp TextScriptEnd
 
 SaffronGymText_5d162:
-	text ""
 	fartext _SaffronGymText_5d162
 	done
 
 SaffronGymText_5d167:
-	text ""
 	fartext _SaffronGymText_5d167
 	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
 	wait
 	done
 
 SaffronGymText_5d16e:
-	text ""
 	fartext _SaffronGymText_5d16e
 	done
 
 SaffronGymText10:
-	text ""
 	fartext _SaffronGymText_5d173
 	done
 
 SaffronGymText11:
-	text ""
 	fartext ReceivedTM46Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _TM46ExplanationText
 	done
 
 SaffronGymText12:
-	text ""
 	fartext _TM46NoRoomText
 	done
 
 SaffronGymText2:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText3:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText4:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText5:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText6:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText7:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText8:
-	text ""
 	asmtext
 	ld hl, SaffronGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText9:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_SABRINA
 	jr nz, .asm_5d1dd
@@ -281,116 +266,93 @@ SaffronGymText9:
 	jp TextScriptEnd
 
 SaffronGymText_5d1e6:
-	text ""
 	fartext _SaffronGymText_5d1e6
 	done
 
 SaffronGymText_5d1eb:
-	text ""
 	fartext _SaffronGymText_5d1eb
 	done
 
 SaffronGymBattleText1:
-	text ""
 	fartext _SaffronGymBattleText1
 	done
 
 SaffronGymEndBattleText1:
-	text ""
 	fartext _SaffronGymEndBattleText1
 	done
 
 SaffronGymAfterBattleText1:
-	text ""
 	fartext _SaffronGymAfterBattleText1
 	done
 
 SaffronGymBattleText2:
-	text ""
 	fartext _SaffronGymBattleText2
 	done
 
 SaffronGymEndBattleText2:
-	text ""
 	fartext _SaffronGymEndBattleText2
 	done
 
 SaffronGymAfterBattleText2:
-	text ""
 	fartext _SaffronGymAfterBattleText2
 	done
 
 SaffronGymBattleText3:
-	text ""
 	fartext _SaffronGymBattleText3
 	done
 
 SaffronGymEndBattleText3:
-	text ""
 	fartext _SaffronGymEndBattleText3
 	done
 
 SaffronGymAfterBattleText3:
-	text ""
 	fartext _SaffronGymAfterBattleText3
 	done
 
 SaffronGymBattleText4:
-	text ""
 	fartext _SaffronGymBattleText4
 	done
 
 SaffronGymEndBattleText4:
-	text ""
 	fartext _SaffronGymEndBattleText4
 	done
 
 SaffronGymAfterBattleText4:
-	text ""
 	fartext _SaffronGymAfterBattleText4
 	done
 
 SaffronGymBattleText5:
-	text ""
 	fartext _SaffronGymBattleText5
 	done
 
 SaffronGymEndBattleText5:
-	text ""
 	fartext _SaffronGymEndBattleText5
 	done
 
 SaffronGymAfterBattleText5:
-	text ""
 	fartext _SaffronGymAfterBattleText5
 	done
 
 SaffronGymBattleText6:
-	text ""
 	fartext _SaffronGymBattleText6
 	done
 
 SaffronGymEndBattleText6:
-	text ""
 	fartext _SaffronGymEndBattleText6
 	done
 
 SaffronGymAfterBattleText6:
-	text ""
 	fartext _SaffronGymAfterBattleText6
 	done
 
 SaffronGymBattleText7:
-	text ""
 	fartext _SaffronGymBattleText7
 	done
 
 SaffronGymEndBattleText7:
-	text ""
 	fartext _SaffronGymEndBattleText7
 	done
 
 SaffronGymAfterBattleText7:
-	text ""
 	fartext _SaffronGymAfterBattleText7
 	done

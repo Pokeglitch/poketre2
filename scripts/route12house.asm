@@ -5,7 +5,6 @@ Route12HouseTextPointers:
 	dw Route12HouseText1
 
 Route12HouseText1:
-	text ""
 	asmtext
 	ld a, [wd728]
 	bit 5, a
@@ -36,28 +35,23 @@ Route12HouseText1:
 	jp TextScriptEnd
 
 Route12HouseText_564c0:
-	text ""
 	fartext _Route12HouseText_564c0
 	done
 
 Route12HouseText_564c5:
-	text ""
 	fartext _Route12HouseText_564c5
 	sfxtext SFX_GET_ITEM_1
 	fartext _Route12HouseText_564ca
 	done
 
 Route12HouseText_564cf:
-	text ""
 	fartext _Route12HouseText_564cf
 	done
 
 Route12HouseText_564d4:
-	text ""
 	fartext _Route12HouseText_564d4
 	done
 
 Route12HouseText_564d9:
-	text ""
 	fartext _Route12HouseText_564d9
 	done

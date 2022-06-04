@@ -9,26 +9,21 @@ PokemonTower1TextPointers:
 	dw PokemonTower1Text5
 
 PokemonTower1Text1:
-	text ""
 	fartext _PokemonTower1Text1
 	done
 
 PokemonTower1Text2:
-	text ""
 	fartext _PokemonTower1Text2
 	done
 
 PokemonTower1Text3:
-	text ""
 	fartext _PokemonTower1Text3
 	done
 
 PokemonTower1Text4:
-	text ""
 	fartext _PokemonTower1Text4
 	done
 
 PokemonTower1Text5:
-	text ""
 	fartext _PokemonTower1Text5
 	done

@@ -83,17 +83,14 @@ LogOff:
 	ret
 
 TurnedOnPC1Text:
-	text ""
 	fartext _TurnedOnPC1Text
 	done
 
 AccessedBillsPCText:
-	text ""
 	fartext _AccessedBillsPCText
 	done
 
 AccessedSomeonesPCText:
-	text ""
 	fartext _AccessedSomeonesPCText
 	done
 

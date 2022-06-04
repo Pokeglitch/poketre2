@@ -140,7 +140,6 @@ FuchsiaGymTrainerHeader5:
 	db $ff
 
 FuchsiaGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_KOGA
 	jr z, .asm_181b6
@@ -176,174 +175,142 @@ FuchsiaGymText1:
 	jp TextScriptEnd
 
 KogaBeforeBattleText:
-	text ""
 	fartext _KogaBeforeBattleText
 	done
 
 KogaAfterBattleText:
-	text ""
 	fartext _KogaAfterBattleText
 	done
 
 KogaExplainToxicText:
-	text ""
 	fartext _KogaExplainToxicText
 	done
 
 FuchsiaGymText9:
-	text ""
 	fartext _FuchsiaGymText9
 	done
 
 FuchsiaGymText10:
-	text ""
 	fartext _ReceivedTM06Text
 	sfxtext SFX_GET_KEY_ITEM
 
 TM06ExplanationText:
-	text ""
 	fartext _TM06ExplanationText
 	done
 
 FuchsiaGymText11:
-	text ""
 	fartext _TM06NoRoomText
 	done
 
 FuchsiaGymText2:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText1:
-	text ""
 	fartext _FuchsiaGymBattleText1
 	done
 
 FuchsiaGymEndBattleText1:
-	text ""
 	fartext _FuchsiaGymEndBattleText1
 	done
 
 FuchsiaGymAfterBattleText1:
-	text ""
 	fartext _FuchsiaGymAfterBattleText1
 	done
 
 FuchsiaGymText3:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText2:
-	text ""
 	fartext _FuchsiaGymBattleText2
 	done
 
 FuchsiaGymEndBattleText2:
-	text ""
 	fartext _FuchsiaGymEndBattleText2
 	done
 
 FuchsiaGymAfterBattleText2:
-	text ""
 	fartext _FuchsiaGymAfterBattleText2
 	done
 
 FuchsiaGymText4:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText3:
-	text ""
 	fartext _FuchsiaGymBattleText3
 	done
 
 FuchsiaGymEndBattleText3:
-	text ""
 	fartext _FuchsiaGymEndBattleText3
 	done
 
 FuchsiaGymAfterBattleText3:
-	text ""
 	fartext _FuchsiaGymAfterBattleText3
 	done
 
 FuchsiaGymText5:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText4:
-	text ""
 	fartext _FuchsiaGymBattleText4
 	done
 
 FuchsiaGymEndBattleText4:
-	text ""
 	fartext _FuchsiaGymEndBattleText4
 	done
 
 FuchsiaGymAfterBattleText4:
-	text ""
 	fartext _FuchsiaGymAfterBattleText4
 	done
 
 FuchsiaGymText6:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText5:
-	text ""
 	fartext _FuchsiaGymBattleText5
 	done
 
 FuchsiaGymEndBattleText5:
-	text ""
 	fartext _FuchsiaGymEndBattleText5
 	done
 
 FuchsiaGymAfterBattleText5:
-	text ""
 	fartext _FuchsiaGymAfterBattleText5
 	done
 
 FuchsiaGymText7:
-	text ""
 	asmtext
 	ld hl, FuchsiaGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 FuchsiaGymBattleText6:
-	text ""
 	fartext _FuchsiaGymBattleText6
 	done
 
 FuchsiaGymEndBattleText6:
-	text ""
 	fartext _FuchsiaGymEndBattleText6
 	done
 
 FuchsiaGymAfterBattleText6:
-	text ""
 	fartext _FuchsiaGymAfterBattleText6
 	done
 
 FuchsiaGymText8:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_KOGA
 	ld hl, FuchsiaGymText_75653
@@ -354,11 +321,9 @@ FuchsiaGymText8:
 	jp TextScriptEnd
 
 FuchsiaGymText_7564e:
-	text ""
 	fartext _FuchsiaGymText_7564e
 	done
 
 FuchsiaGymText_75653:
-	text ""
 	fartext _FuchsiaGymText_75653
 	done

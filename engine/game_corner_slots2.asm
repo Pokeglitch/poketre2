@@ -23,11 +23,9 @@ AbleToPlaySlotsCheck:
 	ret
 
 GameCornerCoinCaseText:
-	text ""
 	fartext _GameCornerCoinCaseText
 	done
 
 GameCornerNoCoinsText:
-	text ""
 	fartext _GameCornerNoCoinsText
 	done

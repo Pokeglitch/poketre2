@@ -22,6 +22,5 @@ CheckIfMoveIsKnown:
 	ret
 
 AlreadyKnowsText:
-	text ""
 	fartext _AlreadyKnowsText
 	done

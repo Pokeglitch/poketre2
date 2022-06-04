@@ -50,7 +50,6 @@ _ReceivedTM38Text::
 	done
 
 _TM38ExplanationText::
-	text ""
 	para "TM38 contains"
 	line "FIRE BLAST!"
 

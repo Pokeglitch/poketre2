@@ -257,12 +257,10 @@ HoFMoneyText:
 	str "MONEY"
 
 DexSeenOwnedText:
-	text ""
 	fartext _DexSeenOwnedText
 	done
 
 DexRatingText:
-	text ""
 	fartext _DexRatingText
 	done
 

@@ -23,7 +23,6 @@ FanClubTextPointers:
 
 FanClubText1:
 ; pikachu fan
-	text ""
 	asmtext
 	CheckEvent EVENT_PIKACHU_FAN_BOAST
 	jr nz, .mineisbetter
@@ -39,18 +38,15 @@ FanClubText1:
 	jp TextScriptEnd
 
 .normaltext
-	text ""
 	fartext PikachuFanText
 	done
 
 .bettertext
-	text ""
 	fartext PikachuFanBetterText
 	done
 
 FanClubText2:
 ; seel fan
-	text ""
 	asmtext
 	CheckEvent EVENT_SEEL_FAN_BOAST
 	jr nz, .mineisbetter
@@ -66,18 +62,15 @@ FanClubText2:
 	jp TextScriptEnd
 
 .normaltext
-	text ""
 	fartext SeelFanText
 	done
 
 .bettertext
-	text ""
 	fartext SeelFanBetterText
 	done
 
 FanClubText3:
 ; pikachu
-	text ""
 	asmtext
 	ld hl, .text
 	call PrintText
@@ -87,13 +80,11 @@ FanClubText3:
 	jp TextScriptEnd
 
 .text
-	text ""
 	fartext FanClubPikachuText
 	done
 
 FanClubText4:
 ; seel
-	text ""
 	asmtext
 	ld hl, .text
 	call PrintText
@@ -103,13 +94,11 @@ FanClubText4:
 	jp TextScriptEnd
 
 .text
-	text ""
 	fartext FanClubSeelText
 	done
 
 FanClubText5:
 ; chair
-	text ""
 	asmtext
 	call FanClubBikeInBag
 	jr nz, .nothingleft
@@ -146,48 +135,39 @@ FanClubText5:
 	jp TextScriptEnd
 
 .meetchairtext
-	text ""
 	fartext FanClubMeetChairText
 	done
 
 .storytext
-	text ""
 	fartext FanClubChairStoryText
 	done
 
 .receivedvouchertext
-	text ""
 	fartext ReceivedBikeVoucherText
 	sfxtext SFX_GET_KEY_ITEM
 	fartext ExplainBikeVoucherText
 	done
 
 .nostorytext
-	text ""
 	fartext FanClubNoStoryText
 	done
 
 .finaltext
-	text ""
 	fartext FanClubChairFinalText
 	done
 
 .bagfulltext
-	text ""
 	fartext FanClubBagFullText
 	done
 
 FanClubText6:
-	text ""
 	fartext _FanClubText6
 	done
 
 FanClubText7:
-	text ""
 	fartext _FanClubText7
 	done
 
 FanClubText8:
-	text ""
 	fartext _FanClubText8
 	done

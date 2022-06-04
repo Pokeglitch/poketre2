@@ -46,32 +46,26 @@ OaksAideScript:
 	ret
 
 OaksAideHiText:
-	text ""
 	fartext _OaksAideHiText
 	done
 
 OaksAideUhOhText:
-	text ""
 	fartext _OaksAideUhOhText
 	done
 
 OaksAideComeBackText:
-	text ""
 	fartext _OaksAideComeBackText
 	done
 
 OaksAideHereYouGoText:
-	text ""
 	fartext _OaksAideHereYouGoText
 	done
 
 OaksAideGotItemText:
-	text ""
 	fartext _OaksAideGotItemText
 	sfxtext SFX_GET_ITEM_1
 	done
 
 OaksAideNoRoomText:
-	text ""
 	fartext _OaksAideNoRoomText
 	done

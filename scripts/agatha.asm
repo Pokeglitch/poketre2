@@ -132,28 +132,23 @@ AgathaTrainerHeader0:
 	db $ff
 
 AgathaText1:
-	text ""
 	asmtext
 	ld hl, AgathaTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 AgathaBeforeBattleText:
-	text ""
 	fartext _AgathaBeforeBattleText
 	done
 
 AgathaEndBattleText:
-	text ""
 	fartext _AgathaEndBattleText
 	done
 
 AgathaAfterBattleText:
-	text ""
 	fartext _AgathaAfterBattleText
 	done
 
 AgathaDontRunAwayText:
-	text ""
 	fartext _AgathaDontRunAwayText
 	done

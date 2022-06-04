@@ -44,6 +44,5 @@ DisplayElevatorFloorMenu:
 	ret
 
 WhichFloorText:
-	text ""
 	fartext _WhichFloorText
 	done

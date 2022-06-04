@@ -99,7 +99,6 @@ PewterGymTrainerHeader0:
 	db $ff
 
 PewterGymText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_BEAT_BROCK
 	jr z, .asm_5c46a
@@ -136,63 +135,52 @@ PewterGymText1:
 	jp TextScriptEnd
 
 PewterGymText_5c49e:
-	text ""
 	fartext _PewterGymText_5c49e
 	done
 
 PewterGymText_5c4a3:
-	text ""
 	fartext _PewterGymText_5c4a3
 	done
 
 PewterGymText4:
-	text ""
 	fartext _TM34PreReceiveText
 	done
 
 PewterGymText5:
-	text ""
 	fartext _ReceivedTM34Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _TM34ExplanationText
 	done
 
 PewterGymText6:
-	text ""
 	fartext _TM34NoRoomText
 	done
 
 PewterGymText_5c4bc:
-	text ""
 	fartext _PewterGymText_5c4bc
 	sfxtext SFX_GET_ITEM_1 ; plays SFX_LEVEL_UP instead since the wrong music bank is loaded
 	fartext _PewterGymText_5c4c1
 	done
 
 PewterGymText2:
-	text ""
 	asmtext
 	ld hl, PewterGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PewterGymBattleText1:
-	text ""
 	fartext _PewterGymBattleText1
 	done
 
 PewterGymEndBattleText1:
-	text ""
 	fartext _PewterGymEndBattleText1
 	done
 
 PewterGymAfterBattleText1:
-	text ""
 	fartext _PewterGymAfterBattleText1
 	done
 
 PewterGymText3:
-	text ""
 	asmtext
 	ld a, [wBeatGymFlags]
 	bit 0, a
@@ -220,26 +208,21 @@ PewterGymText3:
 	jp TextScriptEnd
 
 PewterGymText_5c515:
-	text ""
 	fartext _PewterGymText_5c515
 	done
 
 PewterGymText_5c51a:
-	text ""
 	fartext _PewterGymText_5c51a
 	done
 
 PewterGymText_5c51f:
-	text ""
 	fartext _PewterGymText_5c51f
 	done
 
 PewterGymText_5c524:
-	text ""
 	fartext _PewterGymText_5c524
 	done
 
 PewterGymText_5c529:
-	text ""
 	fartext _PewterGymText_5c529
 	done

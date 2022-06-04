@@ -8,12 +8,10 @@ SaffronHouse1TextPointers:
 	dw SaffronHouse1Text4
 
 SaffronHouse1Text1:
-	text ""
 	fartext _SaffronHouse1Text1
 	done
 
 SaffronHouse1Text2:
-	text ""
 	fartext _SaffronHouse1Text2
 	asmtext
 	ld a, PIDGEY
@@ -21,11 +19,9 @@ SaffronHouse1Text2:
 	jp TextScriptEnd
 
 SaffronHouse1Text3:
-	text ""
 	fartext _SaffronHouse1Text3
 	done
 
 SaffronHouse1Text4:
-	text ""
 	fartext _SaffronHouse1Text4
 	done

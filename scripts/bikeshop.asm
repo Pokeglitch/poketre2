@@ -7,7 +7,6 @@ BikeShopTextPointers:
 	dw BikeShopText3
 
 BikeShopText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_BICYCLE
 	jr z, .asm_260d4
@@ -87,60 +86,49 @@ BikeShopMenuPrice:
 	str "$1000000"
 
 BikeShopText_1d810:
-	text ""
 	fartext _BikeShopText_1d810
 	done
 
 BikeShopText_1d815:
-	text ""
 	fartext _BikeShopText_1d815
 	done
 
 BikeShopCantAffordText:
-	text ""
 	fartext _BikeShopCantAffordText
 	done
 
 BikeShopText_1d81f:
-	text ""
 	fartext _BikeShopText_1d81f
 	done
 
 BikeShopText_1d824:
-	text ""
 	fartext _BikeShopText_1d824
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 BikeShopComeAgainText:
-	text ""
 	fartext _BikeShopComeAgainText
 	done
 
 BikeShopText_1d82f:
-	text ""
 	fartext _BikeShopText_1d82f
 	done
 
 BikeShopText_1d834:
-	text ""
 	fartext _BikeShopText_1d834
 	done
 
 BikeShopText2:
-	text ""
 	asmtext
 	ld hl, BikeShopText_1d843
 	call PrintText
 	jp TextScriptEnd
 
 BikeShopText_1d843:
-	text ""
 	fartext _BikeShopText_1d843
 	done
 
 BikeShopText3:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_BICYCLE
 	ld hl, BikeShopText_1d861
@@ -151,11 +139,9 @@ BikeShopText3:
 	jp TextScriptEnd
 
 BikeShopText_1d85c:
-	text ""
 	fartext _BikeShopText_1d85c
 	done
 
 BikeShopText_1d861:
-	text ""
 	fartext _BikeShopText_1d861
 	done

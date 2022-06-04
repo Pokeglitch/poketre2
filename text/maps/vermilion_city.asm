@@ -72,7 +72,6 @@ _VermilionCityText5::
 	done
 
 _VermilionCityText14::
-	text ""
 	para "A MACHOP is"
 	line "stomping the land"
 	cont "flat."

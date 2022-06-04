@@ -94,160 +94,131 @@ MtMoon1TrainerHeader6:
 	db $ff
 
 MtMoon1Text1:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text2:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text3:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text4:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text5:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text6:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text7:
-	text ""
 	asmtext
 	ld hl, MtMoon1TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1BattleText2:
-	text ""
 	fartext _MtMoon1BattleText2
 	done
 
 MtMoon1EndBattleText2:
-	text ""
 	fartext _MtMoon1EndBattleText2
 	done
 
 MtMoon1AfterBattleText2:
-	text ""
 	fartext _MtMoon1AfterBattleText2
 	done
 
 MtMoon1BattleText3:
-	text ""
 	fartext _MtMoon1BattleText3
 	done
 
 MtMoon1EndBattleText3:
-	text ""
 	fartext _MtMoon1EndBattleText3
 	done
 
 MtMoon1AfterBattleText3:
-	text ""
 	fartext _MtMoon1AfterBattleText3
 	done
 
 MtMoon1BattleText4:
-	text ""
 	fartext _MtMoon1BattleText4
 	done
 
 MtMoon1EndBattleText4:
-	text ""
 	fartext _MtMoon1EndBattleText4
 	done
 
 MtMoon1AfterBattleText4:
-	text ""
 	fartext _MtMoon1AfterBattleText4
 	done
 
 MtMoon1BattleText5:
-	text ""
 	fartext _MtMoon1BattleText5
 	done
 
 MtMoon1EndBattleText5:
-	text ""
 	fartext _MtMoon1EndBattleText5
 	done
 
 MtMoon1AfterBattleText5:
-	text ""
 	fartext _MtMoon1AfterBattleText5
 	done
 
 MtMoon1BattleText6:
-	text ""
 	fartext _MtMoon1BattleText6
 	done
 
 MtMoon1EndBattleText6:
-	text ""
 	fartext _MtMoon1EndBattleText6
 	done
 
 MtMoon1AfterBattleText6:
-	text ""
 	fartext _MtMoon1AfterBattleText6
 	done
 
 MtMoon1BattleText7:
-	text ""
 	fartext _MtMoon1BattleText7
 	done
 
 MtMoon1EndBattleText7:
-	text ""
 	fartext _MtMoon1EndBattleText7
 	done
 
 MtMoon1AfterBattleText7:
-	text ""
 	fartext _MtMoon1AfterBattleText7
 	done
 
 MtMoon1BattleText8:
-	text ""
 	fartext _MtMoon1BattleText8
 	done
 
 MtMoon1EndBattleText8:
-	text ""
 	fartext _MtMoon1EndBattleText8
 	done
 
 MtMoon1AfterBattleText8:
-	text ""
 	fartext _MtMoon1AfterBattleText8
 	done
 
 MtMoon1Text14:
-	text ""
 	fartext _MtMoon1Text14
 	done

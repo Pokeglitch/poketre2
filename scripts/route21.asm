@@ -107,199 +107,163 @@ Route21TrainerHeader8:
 	db $ff
 
 Route21Text1:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text2:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text3:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text4:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text5:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text6:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text7:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text8:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text9:
-	text ""
 	asmtext
 	ld hl, Route21TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21BattleText1:
-	text ""
 	fartext _Route21BattleText1
 	done
 
 Route21EndBattleText1:
-	text ""
 	fartext _Route21EndBattleText1
 	done
 
 Route21AfterBattleText1:
-	text ""
 	fartext _Route21AfterBattleText1
 	done
 
 Route21BattleText2:
-	text ""
 	fartext _Route21BattleText2
 	done
 
 Route21EndBattleText2:
-	text ""
 	fartext _Route21EndBattleText2
 	done
 
 Route21AfterBattleText2:
-	text ""
 	fartext _Route21AfterBattleText2
 	done
 
 Route21BattleText3:
-	text ""
 	fartext _Route21BattleText3
 	done
 
 Route21EndBattleText3:
-	text ""
 	fartext _Route21EndBattleText3
 	done
 
 Route21AfterBattleText3:
-	text ""
 	fartext _Route21AfterBattleText3
 	done
 
 Route21BattleText4:
-	text ""
 	fartext _Route21BattleText4
 	done
 
 Route21EndBattleText4:
-	text ""
 	fartext _Route21EndBattleText4
 	done
 
 Route21AfterBattleText4:
-	text ""
 	fartext _Route21AfterBattleText4
 	done
 
 Route21BattleText5:
-	text ""
 	fartext _Route21BattleText5
 	done
 
 Route21EndBattleText5:
-	text ""
 	fartext _Route21EndBattleText5
 	done
 
 Route21AfterBattleText5:
-	text ""
 	fartext _Route21AfterBattleText5
 	done
 
 Route21BattleText6:
-	text ""
 	fartext _Route21BattleText6
 	done
 
 Route21EndBattleText6:
-	text ""
 	fartext _Route21EndBattleText6
 	done
 
 Route21AfterBattleText6:
-	text ""
 	fartext _Route21AfterBattleText6
 	done
 
 Route21BattleText7:
-	text ""
 	fartext _Route21BattleText7
 	done
 
 Route21EndBattleText7:
-	text ""
 	fartext _Route21EndBattleText7
 	done
 
 Route21AfterBattleText7:
-	text ""
 	fartext _Route21AfterBattleText7
 	done
 
 Route21BattleText8:
-	text ""
 	fartext _Route21BattleText8
 	done
 
 Route21EndBattleText8:
-	text ""
 	fartext _Route21EndBattleText8
 	done
 
 Route21AfterBattleText8:
-	text ""
 	fartext _Route21AfterBattleText8
 	done
 
 Route21BattleText9:
-	text ""
 	fartext _Route21BattleText9
 	done
 
 Route21EndBattleText9:
-	text ""
 	fartext _Route21EndBattleText9
 	done
 
 Route21AfterBattleText9:
-	text ""
 	fartext _Route21AfterBattleText9
 	done

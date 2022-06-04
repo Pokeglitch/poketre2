@@ -29,7 +29,6 @@ _VictoryRoadGuardText2::
 	done
 
 _VictoryRoadGuardText_513a3::
-	text ""
 	para "OK then! Please,"
 	line "go right ahead!"
 	done

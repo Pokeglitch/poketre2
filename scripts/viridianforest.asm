@@ -58,107 +58,87 @@ ViridianForestTrainerHeader2:
 	db $ff
 
 ViridianForestText1:
-	text ""
 	fartext _ViridianForestText1
 	done
 
 ViridianForestText2:
-	text ""
 	asmtext
 	ld hl, ViridianForestTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianForestText3:
-	text ""
 	asmtext
 	ld hl, ViridianForestTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianForestText4:
-	text ""
 	asmtext
 	ld hl, ViridianForestTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianForestBattleText1:
-	text ""
 	fartext _ViridianForestBattleText1
 	done
 
 ViridianForestEndBattleText1:
-	text ""
 	fartext _ViridianForestEndBattleText1
 	done
 
 ViridianForestAfterBattleText1:
-	text ""
 	fartext _ViridianFrstAfterBattleText1
 	done
 
 ViridianForestBattleText2:
-	text ""
 	fartext _ViridianForestBattleText2
 	done
 
 ViridianForestEndBattleText2:
-	text ""
 	fartext _ViridianForestEndBattleText2
 	done
 
 ViridianForestAfterBattleText2:
-	text ""
 	fartext _ViridianFrstAfterBattleText2
 	done
 
 ViridianForestBattleText3:
-	text ""
 	fartext _ViridianForestBattleText3
 	done
 
 ViridianForestEndBattleText3:
-	text ""
 	fartext _ViridianForestEndBattleText3
 	done
 
 ViridianForestAfterBattleText3:
-	text ""
 	fartext _ViridianFrstAfterBattleText3
 	done
 
 ViridianForestText8:
-	text ""
 	fartext _ViridianForestText8
 	done
 
 ViridianForestText9:
-	text ""
 	fartext _ViridianForestText9
 	done
 
 ViridianForestText10:
-	text ""
 	fartext _ViridianForestText10
 	done
 
 ViridianForestText11:
-	text ""
 	fartext _ViridianForestText11
 	done
 
 ViridianForestText12:
-	text ""
 	fartext _ViridianForestText12
 	done
 
 ViridianForestText13:
-	text ""
 	fartext _ViridianForestText13
 	done
 
 ViridianForestText14:
-	text ""
 	fartext _ViridianForestText14
 	done

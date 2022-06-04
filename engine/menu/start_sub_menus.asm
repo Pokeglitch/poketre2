@@ -190,7 +190,6 @@ StartMenu_Pokemon:
 	call GBPalWhiteOutWithDelay3
 	jp .goBackToMap
 .flashLightsAreaText
-	text ""
 	fartext _FlashLightsAreaText
 	done
 .dig
@@ -226,15 +225,12 @@ StartMenu_Pokemon:
 	call GBPalWhiteOutWithDelay3
 	jp .goBackToMap
 .warpToLastPokemonCenterText
-	text ""
 	fartext _WarpToLastPokemonCenterText
 	done
 .cannotUseTeleportNowText
-	text ""
 	fartext _CannotUseTeleportNowText
 	done
 .cannotFlyHereText
-	text ""
 	fartext _CannotFlyHereText
 	done
 .softboiled
@@ -274,7 +270,6 @@ StartMenu_Pokemon:
 	call PrintText
 	jp .loop
 .notHealthyEnoughText
-	text ""
 	fartext _NotHealthyEnoughText
 	done
 .goBackToMap
@@ -285,7 +280,6 @@ StartMenu_Pokemon:
 	call PrintText
 	jp .loop
 .newBadgeRequiredText
-	text ""
 	fartext _NewBadgeRequiredText
 	done
 
@@ -515,7 +509,6 @@ CancelOptionText:
 	str "Cancel"
 
 CannotUseItemsHereText:
-	text ""
 	fartext _CannotUseItemsHereText
 	done
 

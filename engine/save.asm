@@ -168,17 +168,14 @@ SaveSAVConfirm:
 	ret
 
 WouldYouLikeToSaveText:
-	text ""
 	fartext _WouldYouLikeToSaveText
 	done
 
 GameSavedText:
-	text ""
 	fartext _GameSavedText
 	done
 
 OlderFileWillBeErasedText:
-	text ""
 	fartext _OlderFileWillBeErasedText
 	done
 
@@ -373,7 +370,6 @@ ChangeBox::
 	ret
 
 WhenYouChangeBoxText:
-	text ""
 	fartext _WhenYouChangeBoxText
 	done
 
@@ -478,7 +474,6 @@ DisplayChangeBoxMenu:
 	ret
 
 ChooseABoxText:
-	text ""
 	fartext _ChooseABoxText
 	done
 

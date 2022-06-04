@@ -749,7 +749,6 @@ OaksLabTextPointers2:
 	dw OaksLabText11
 
 OaksLabText1:
-	text ""
 	asmtext
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB_2
 	jr nz, .asm_1d0de
@@ -769,22 +768,18 @@ OaksLabText1:
 	jp TextScriptEnd
 
 OaksLabGaryText1:
-	text ""
 	fartext _OaksLabGaryText1
 	done
 
 OaksLabText40:
-	text ""
 	fartext _OaksLabText40
 	done
 
 OaksLabText41:
-	text ""
 	fartext _OaksLabText41
 	done
 
 OaksLabText2:
-	text ""
 	asmtext
 	ld a, STARTER2
 	ld [wRivalStarterTemp], a
@@ -795,7 +790,6 @@ OaksLabText2:
 	jr OaksLabScript_1d133
 
 OaksLabText3:
-	text ""
 	asmtext
 	ld a, STARTER3
 	ld [wRivalStarterTemp], a
@@ -806,7 +800,6 @@ OaksLabText3:
 	jr OaksLabScript_1d133
 
 OaksLabText4:
-	text ""
 	asmtext
 	ld a, STARTER1
 	ld [wRivalStarterTemp], a
@@ -829,7 +822,6 @@ OaksLabScript_1d133:
 	jp TextScriptEnd
 
 OaksLabText39:
-	text ""
 	fartext _OaksLabText39
 	done
 
@@ -865,7 +857,6 @@ OaksLabLookAtCharmander:
 	ld hl, OaksLabCharmanderText
 	jr OaksLabMonChoiceMenu
 OaksLabCharmanderText:
-	text ""
 	fartext _OaksLabCharmanderText
 	done
 
@@ -873,7 +864,6 @@ OaksLabLookAtSquirtle:
 	ld hl, OaksLabSquirtleText
 	jr OaksLabMonChoiceMenu
 OaksLabSquirtleText:
-	text ""
 	fartext _OaksLabSquirtleText
 	done
 
@@ -881,7 +871,6 @@ OaksLabLookAtBulbasaur:
 	ld hl, OaksLabBulbasaurText
 	jr OaksLabMonChoiceMenu
 OaksLabBulbasaurText:
-	text ""
 	fartext _OaksLabBulbasaurText
 	done
 
@@ -935,12 +924,10 @@ OaksLabMonChoiceEnd:
 	jp TextScriptEnd
 
 OaksLabMonEnergeticText:
-	text ""
 	fartext _OaksLabMonEnergeticText
 	done
 
 OaksLabReceivedMonText:
-	text ""
 	fartext _OaksLabReceivedMonText
 	sfxtext SFX_GET_KEY_ITEM
 	done
@@ -957,13 +944,11 @@ OaksLabScript_1d22d:
 	jp TextScriptEnd
 
 OaksLabLastMonText:
-	text ""
 	fartext _OaksLabLastMonText
 	done
 
 OaksLabText32:
 OaksLabText5:
-	text ""
 	asmtext
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	jr nz, .asm_1d266
@@ -1035,243 +1020,201 @@ OaksLabText5:
 	jp TextScriptEnd
 
 OaksLabText_1d2f0:
-	text ""
 	fartext _OaksLabText_1d2f0
 	done
 
 OaksLabText_1d2f5:
-	text ""
 	fartext _OaksLabText_1d2f5
 	done
 
 OaksLabText_1d2fa:
-	text ""
 	fartext _OaksLabText_1d2fa
 	done
 
 OaksLabDeliverParcelText:
-	text ""
 	fartext _OaksLabDeliverParcelText1
 	sfxtext SFX_GET_KEY_ITEM
 	fartext _OaksLabDeliverParcelText2
 	done
 
 OaksLabAroundWorldText:
-	text ""
 	fartext _OaksLabAroundWorldText
 	done
 
 OaksLabGivePokeballsText:
-	text ""
 	fartext _OaksLabGivePokeballsText1
 	sfxtext SFX_GET_KEY_ITEM
 	fartext _OaksLabGivePokeballsText2
 	done
 
 OaksLabPleaseVisitText:
-	text ""
 	fartext _OaksLabPleaseVisitText
 	done
 
 OaksLabText_1d31d:
-	text ""
 	fartext _OaksLabText_1d31d
 	done
 
 OaksLabText7:
 OaksLabText6:
-	text ""
 	asmtext
 	ld hl, OaksLabText_1d32c
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabText_1d32c:
-	text ""
 	fartext _OaksLabText_1d32c
 	done
 
 OaksLabText8:
-	text ""
 	fartext _OaksLabText8
 	done
 
 OaksLabText9:
-	text ""
 	asmtext
 	ld hl, OaksLabText_1d340
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabText_1d340:
-	text ""
 	fartext _OaksLabText_1d340
 	done
 
 OaksLabText17:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalWaitingText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalWaitingText:
-	text ""
 	fartext _OaksLabRivalWaitingText
 	done
 
 OaksLabText18:
-	text ""
 	asmtext
 	ld hl, OaksLabChooseMonText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabChooseMonText:
-	text ""
 	fartext _OaksLabChooseMonText
 	done
 
 OaksLabText19:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalInterjectionText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalInterjectionText:
-	text ""
 	fartext _OaksLabRivalInterjectionText
 	done
 
 OaksLabText20:
-	text ""
 	asmtext
 	ld hl, OaksLabBePatientText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabBePatientText:
-	text ""
 	fartext _OaksLabBePatientText
 	done
 
 OaksLabText12:
-	text ""
 	asmtext
 	ld hl, OaksLabLeavingText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabLeavingText:
-	text ""
 	fartext _OaksLabLeavingText
 	done
 
 OaksLabText13:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalPickingMonText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalPickingMonText:
-	text ""
 	fartext _OaksLabRivalPickingMonText
 	done
 
 OaksLabText14:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalReceivedMonText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalReceivedMonText:
-	text ""
 	fartext _OaksLabRivalReceivedMonText
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 OaksLabText15:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalChallengeText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalChallengeText:
-	text ""
 	fartext _OaksLabRivalChallengeText
 	done
 
 OaksLabText_1d3be:
-	text ""
 	fartext _OaksLabText_1d3be
 	done
 
 OaksLabText_1d3c3:
-	text ""
 	fartext _OaksLabText_1d3c3
 	done
 
 OaksLabText16:
-	text ""
 	asmtext
 	ld hl, OaksLabRivalToughenUpText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabRivalToughenUpText:
-	text ""
 	fartext _OaksLabRivalToughenUpText
 	done
 
 OaksLabText21:
-	text ""
 	fartext _OaksLabText21
 	done
 
 OaksLabText22:
-	text ""
 	fartext _OaksLabText22
 	done
 
 OaksLabText23:
-	text ""
 	fartext _OaksLabText23
 	done
 
 OaksLabText24:
-	text ""
 	fartext _OaksLabText24
 	done
 
 OaksLabText25:
-	text ""
 	fartext _OaksLabText25
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
 OaksLabText26:
-	text ""
 	fartext _OaksLabText26
 	done
 
 OaksLabText27:
-	text ""
 	fartext _OaksLabText27
 	done
 
 OaksLabText11:
 OaksLabText10:
-	text ""
 	asmtext
 	ld hl, OaksLabText_1d405
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabText_1d405:
-	text ""
 	fartext _OaksLabText_1d405
 	done

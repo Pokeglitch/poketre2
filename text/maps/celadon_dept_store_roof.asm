@@ -22,7 +22,6 @@ _CeladonMartRoofText_484f9::
 	done
 
 _CeladonMartRoofText_484fe::
-	text ""
 	para ""
 	ramtext wcf4b
 	text " contains"
@@ -51,7 +50,6 @@ _CeladonMartRoofText_4850a::
 	done
 
 _CeladonMartRoofText_4850f::
-	text ""
 	para ""
 	ramtext wcf4b
 	text " contains"
@@ -78,7 +76,6 @@ _ReceivedTM49Text::
 	done
 
 _CeladonMartRoofText_48520::
-	text ""
 	para "TM49 contains"
 	line "TRI ATTACK!"
 	done
@@ -134,9 +131,7 @@ _VendingMachineText4::
 	done
 
 _VendingMachineText5::
-	text ""
 	ramtext wcf4b
-	text ""
 	line "popped out!"
 	done
 

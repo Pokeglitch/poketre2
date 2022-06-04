@@ -9,7 +9,6 @@ Lab3TextPointers:
 	dw Lab3Text5
 
 Lab3Text1:
-	text ""
 	asmtext
 	CheckEvent EVENT_GOT_TM35
 	jr nz, .asm_e551a
@@ -33,38 +32,31 @@ Lab3Text1:
 	jp TextScriptEnd
 
 TM35PreReceiveText:
-	text ""
 	fartext _TM35PreReceiveText
 	done
 
 ReceivedTM35Text:
-	text ""
 	fartext _ReceivedTM35Text
 	sfxtext SFX_GET_ITEM_1
 	done
 
 TM35ExplanationText:
-	text ""
 	fartext _TM35ExplanationText
 	done
 
 TM35NoRoomText:
-	text ""
 	fartext _TM35NoRoomText
 	done
 
 Lab3Text2:
-	text ""
 	fartext _Lab3Text2
 	done
 
 Lab3Text4:
 Lab3Text3:
-	text ""
 	fartext _Lab3Text3
 	done
 
 Lab3Text5:
-	text ""
 	fartext _Lab3Text5
 	done
