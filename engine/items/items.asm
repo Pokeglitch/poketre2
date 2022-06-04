@@ -1851,8 +1851,10 @@ FluteWokeUpText:
 	db "@"
 
 PlayedFluteHadEffectText:
-	TX_FAR _PlayedFluteHadEffectText
-	TX_BLINK
+	text ""
+	fartext _PlayedFluteHadEffectText
+	wait
+	endtext
 	TX_ASM
 	ld a, [wIsInBattle]
 	and a

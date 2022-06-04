@@ -193,7 +193,7 @@ Route24Text_5151a:
 	text ""
 	fartext _Route24Text_5151a
 	sfxtext SFX_GET_ITEM_1
-	TX_BLINK
+	wait
 	done
 
 Route24Text_51521:

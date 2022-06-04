@@ -628,7 +628,8 @@ _BillsHouseMonitorText::
 _BillsHouseInitiatedText::
 	text "<PLAYER> initiated"
 	line "TELEPORTER's Cell"
-	cont "Separator!@@"
+	cont "Separator!"
+	done
 
 _BillsHousePokemonListText1::
 	text "BILL's favorite"
@@ -1027,7 +1028,8 @@ _ElevatorText::
 	done
 
 _TownMapText::
-	text "A TOWN MAP.@@"
+	text "A TOWN MAP."
+	done
 
 _PokemonStuffText::
 	text "Wow! Tons of"
@@ -2813,7 +2815,8 @@ _FluteWokeUpText::
 
 _PlayedFluteHadEffectText::
 	text "<PLAYER> played the"
-	line "# FLUTE.@@"
+	line "# FLUTE."
+	done
 
 _CoinCaseNumCoinsText::
 	text "Coins"

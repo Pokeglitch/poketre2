@@ -309,7 +309,7 @@ RareCandyText:
 	text ""
 	fartext _RareCandyText
 	sfxtext SFX_GET_ITEM_1 ; probably supposed to play SFX_LEVEL_UP but the wrong music bank is loaded
-	TX_BLINK
+	wait
 	done
 
 SetPartyMenuHPBarColor:

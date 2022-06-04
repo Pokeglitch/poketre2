@@ -457,19 +457,6 @@ TextCommand03::
 	ld b, a
 	jp NextTextCommand
 
-; blink arrow and wait for A or B to be pressed
-; 06
-; (no arguments)
-TextCommand06::
-	ld a, [wLinkState]
-	cp LINK_STATE_BATTLING
-	jp z, TextCommand0D
-	push bc
-	call ManualTextScroll ; blink arrow and wait for A or B to be pressed
-	pop bc
-	pop hl
-	jp NextTextCommand
-
 ; execute asm inline
 ; 08{code}
 TextCommand08::
@@ -570,7 +557,7 @@ TextCommandJumpTable::
 	dw TextCommand03
 	dw TextCommand04
 	dw $0000
-	dw TextCommand06
+	dw $0000
 	dw $0000
 	dw TextCommand08
 	dw TextCommand09

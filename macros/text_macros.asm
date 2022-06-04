@@ -98,7 +98,6 @@ TX_NUM: MACRO
 	db \2 << 4 | \3
 ENDM
 
-TX_BLINK   EQUS "db $06"
 TX_DELAY              EQUS "db $0a"
 TX_WAIT               EQUS "db $0d"
 

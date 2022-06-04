@@ -190,7 +190,7 @@ SaffronGymText_5d167:
 	text ""
 	fartext _SaffronGymText_5d167
 	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
-	TX_BLINK
+	wait
 	done
 
 SaffronGymText_5d16e:

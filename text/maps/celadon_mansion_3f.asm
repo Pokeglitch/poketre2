@@ -39,7 +39,8 @@ _CompletedDexText::
 	line "You completed"
 	cont "your POKéDEX!"
 	cont "Congratulations!"
-	cont "...@@"
+	cont "..."
+	done
 
 _CeladonMansion3Text5::
 	text "It's the game"

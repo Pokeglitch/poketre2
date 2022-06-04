@@ -193,7 +193,7 @@ SSTicketReceivedText:
 	text ""
 	fartext _SSTicketReceivedText
 	sfxtext SFX_GET_KEY_ITEM
-	TX_BLINK
+	wait
 	done
 
 SSTicketNoRoomText:

@@ -187,7 +187,7 @@ LearnedMove1Text:
 	text ""
 	fartext _LearnedMove1Text
 	sfxtext SFX_GET_ITEM_1 ; plays SFX_GET_ITEM_1 in the party menu (rare candy) and plays SFX_LEVEL_UP in battle
-	TX_BLINK
+	wait
 	done
 
 WhichMoveToForgetText:

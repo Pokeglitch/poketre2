@@ -235,7 +235,7 @@ CinnabarGymQuizCorrectText:
 	text ""
 	sfxtext SFX_GET_ITEM_1
 	fartext _CinnabarGymQuizCorrectText
-	TX_BLINK
+	wait
 	endtext
 	TX_ASM
 
@@ -370,8 +370,10 @@ BillsHouseMonitorText:
 	db "@"
 
 BillsHouseInitiatedText:
-	TX_FAR _BillsHouseInitiatedText
-	TX_BLINK
+	text ""
+	fartext _BillsHouseInitiatedText
+	wait
+	endtext
 	TX_ASM
 	ld a, $ff
 	ld [wNewSoundID], a
