@@ -27,7 +27,8 @@ _SaffronGymText_5d167::
 	cont "to win!"
 
 	para "You earned the"
-	line "MARSHBADGE!@@"
+	line "MARSHBADGE!"
+	done
 
 _SaffronGymText_5d16e::
 	text "Everyone has"

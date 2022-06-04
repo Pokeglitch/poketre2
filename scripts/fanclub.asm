@@ -143,10 +143,11 @@ FanClubText5:
 	db "@"
 
 .receivedvouchertext
-	TX_FAR ReceivedBikeVoucherText
-	TX_SFX_KEY_ITEM
-	TX_FAR ExplainBikeVoucherText
-	db "@"
+	text ""
+	fartext ReceivedBikeVoucherText
+	sfxtext SFX_GET_KEY_ITEM
+	fartext ExplainBikeVoucherText
+	done
 
 .nostorytext
 	TX_FAR FanClubNoStoryText

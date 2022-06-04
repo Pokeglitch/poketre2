@@ -321,10 +321,11 @@ MtMoon3Script_49f69:
 	jp PrintText
 
 MtMoon3Text_49f6f:
-	TX_FAR _MtMoon3Text_49f6f
-	TX_SFX_KEY_ITEM
+	text ""
+	fartext _MtMoon3Text_49f6f
+	sfxtext SFX_GET_KEY_ITEM
 	TX_WAIT
-	db "@"
+	done
 
 MtMoon3Script_49f76:
 	ld hl, MtMoon3Text_49f7f
@@ -353,9 +354,10 @@ MtMoon3Text_49f94:
 	db "@"
 
 MtMoon3Text_49f99:
-	TX_FAR _MtMoon3Text_49f99
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _MtMoon3Text_49f99
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 MtMoon3BattleText2:
 	TX_FAR _MtMoon3BattleText2

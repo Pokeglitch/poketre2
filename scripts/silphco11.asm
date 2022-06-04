@@ -328,9 +328,10 @@ SilphCoPresidentText:
 	db "@"
 
 ReceivedSilphCoMasterBallText:
-	TX_FAR _ReceivedSilphCoMasterBallText
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _ReceivedSilphCoMasterBallText
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 SilphCo10Text_6231c:
 	TX_FAR _SilphCo10Text_6231c

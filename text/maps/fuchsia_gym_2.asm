@@ -26,12 +26,13 @@ _FuchsiaGymText9::
 
 _ReceivedTM06Text::
 	text "<PLAYER> received"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM06ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM06 contains"
 	line "TOXIC!"
 

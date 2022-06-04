@@ -928,9 +928,10 @@ OaksLabMonEnergeticText:
 	db "@"
 
 OaksLabReceivedMonText:
-	TX_FAR _OaksLabReceivedMonText
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _OaksLabReceivedMonText
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 OaksLabScript_1d22d:
 	ld a, $5
@@ -1032,20 +1033,22 @@ OaksLabText_1d2fa:
 	db "@"
 
 OaksLabDeliverParcelText:
-	TX_FAR _OaksLabDeliverParcelText1
-	TX_SFX_KEY_ITEM
-	TX_FAR _OaksLabDeliverParcelText2
-	db "@"
+	text ""
+	fartext _OaksLabDeliverParcelText1
+	sfxtext SFX_GET_KEY_ITEM
+	fartext _OaksLabDeliverParcelText2
+	done
 
 OaksLabAroundWorldText:
 	TX_FAR _OaksLabAroundWorldText
 	db "@"
 
 OaksLabGivePokeballsText:
-	TX_FAR _OaksLabGivePokeballsText1
-	TX_SFX_KEY_ITEM
-	TX_FAR _OaksLabGivePokeballsText2
-	db "@"
+	text ""
+	fartext _OaksLabGivePokeballsText1
+	sfxtext SFX_GET_KEY_ITEM
+	fartext _OaksLabGivePokeballsText2
+	done
 
 OaksLabPleaseVisitText:
 	TX_FAR _OaksLabPleaseVisitText
@@ -1147,9 +1150,10 @@ OaksLabText14:
 	jp TextScriptEnd
 
 OaksLabRivalReceivedMonText:
-	TX_FAR _OaksLabRivalReceivedMonText
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _OaksLabRivalReceivedMonText
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 OaksLabText15:
 	TX_ASM
@@ -1196,9 +1200,10 @@ OaksLabText24:
 	db "@"
 
 OaksLabText25:
-	TX_FAR _OaksLabText25
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _OaksLabText25
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 OaksLabText26:
 	TX_FAR _OaksLabText26

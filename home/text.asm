@@ -561,7 +561,6 @@ TextboxDefinitionCommand:
 ; format: text command ID, sound ID or cry ID
 TextCommandSounds::
 	db $0B, SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded
-	db $11, SFX_GET_KEY_ITEM
 
 ; wait for A or B to be pressed
 ; 0D

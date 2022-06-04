@@ -80,9 +80,10 @@ ViridianMartText4:
 	db "@"
 
 ViridianMartText5:
-	TX_FAR ViridianMartParcelQuestText
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext ViridianMartParcelQuestText
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 ViridianMartText2:
 	TX_FAR _ViridianMartText2

@@ -102,9 +102,10 @@ BikeShopText_1d81f:
 	db "@"
 
 BikeShopText_1d824:
-	TX_FAR _BikeShopText_1d824
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _BikeShopText_1d824
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 BikeShopComeAgainText:
 	TX_FAR _BikeShopComeAgainText

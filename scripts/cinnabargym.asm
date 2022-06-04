@@ -232,10 +232,11 @@ BlaineBattleText:
 	db "@"
 
 BlaineEndBattleText:
-	TX_FAR _BlaineEndBattleText
-	TX_SFX_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
+	text ""
+	fartext _BlaineEndBattleText
+	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
 	TX_WAIT
-	db "@"
+	done
 
 BlaineFireBlastText:
 	TX_FAR _BlaineFireBlastText

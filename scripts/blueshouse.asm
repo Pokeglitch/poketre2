@@ -68,9 +68,10 @@ DaisyOfferMapText:
 	db "@"
 
 GotMapText:
-	TX_FAR _GotMapText
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _GotMapText
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 DaisyBagFullText:
 	TX_FAR _DaisyBagFullText

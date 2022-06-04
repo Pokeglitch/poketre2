@@ -177,10 +177,11 @@ VermilionGymText6:
 	db "@"
 
 VermilionGymText7:
-	TX_FAR _ReceivedTM24Text
-	TX_SFX_KEY_ITEM
-	TX_FAR _TM24ExplanationText
-	db "@"
+	text ""
+	fartext _ReceivedTM24Text
+	sfxtext SFX_GET_KEY_ITEM
+	fartext _TM24ExplanationText
+	done
 
 VermilionGymText8:
 	TX_FAR _TM24NoRoomText

@@ -287,6 +287,8 @@ WaitCommand:: ; wait
 	pop de
 	jp ReturnAndPlaceNextChar
 
+; TODO - when does this get used to 'reveal' the textbox?
+; can it be combined with wait?
 TextPromptCommand:: ; prompt
     pop hl
 	call Delay3

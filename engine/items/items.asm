@@ -611,14 +611,14 @@ ItemUseBallText05:
 	text ""
 	fartext _ItemUseBallText05
 	sfxtext SFX_CAUGHT_MON
-	db "@"
-	TX_BLINK
-	db "@"
+	wait
+	done
 
 ItemUseBallText07:
 ;"X was transferred to Bill's PC"
 	TX_FAR _ItemUseBallText07
 	db "@"
+
 ItemUseBallText08:
 ;"X was transferred to someone's PC"
 	TX_FAR _ItemUseBallText08
@@ -630,9 +630,8 @@ ItemUseBallText06:
 	text ""
 	fartext _ItemUseBallText06
 	sfxtext SFX_DEX_PAGE_ADDED
-	db "@"
-	TX_BLINK
-	db "@"
+	wait
+	done
 
 ItemUseTownMap:
 	ld a, [wIsInBattle]

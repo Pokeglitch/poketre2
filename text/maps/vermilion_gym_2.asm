@@ -25,12 +25,13 @@ _VermilionGymText_5cb77::
 
 _ReceivedTM24Text::
 	text "<PLAYER> received "
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _TM24ExplanationText::
-	db $0
+	db TEXT_INIT
 	para "TM24 contains"
 	line "THUNDERBOLT!"
 

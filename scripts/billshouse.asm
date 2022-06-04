@@ -190,10 +190,11 @@ BillThankYouText:
 	db "@"
 
 SSTicketReceivedText:
-	TX_FAR _SSTicketReceivedText
-	TX_SFX_KEY_ITEM
+	text ""
+	fartext _SSTicketReceivedText
+	sfxtext SFX_GET_KEY_ITEM
 	TX_BLINK
-	db "@"
+	done
 
 SSTicketNoRoomText:
 	TX_FAR _SSTicketNoRoomText

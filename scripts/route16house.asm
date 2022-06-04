@@ -29,9 +29,10 @@ Route16HouseText3:
 	db "@"
 
 ReceivedHM02Text:
-	TX_FAR _ReceivedHM02Text
-	TX_SFX_KEY_ITEM
-	db "@"
+	text ""
+	fartext _ReceivedHM02Text
+	sfxtext SFX_GET_KEY_ITEM
+	done
 
 HM02ExplanationText:
 	TX_FAR _HM02ExplanationText

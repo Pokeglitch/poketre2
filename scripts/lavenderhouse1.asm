@@ -94,10 +94,11 @@ LavenderHouse1Text_1d94c:
 	db "@"
 
 ReceivedFluteText:
-	TX_FAR _ReceivedFluteText
-	TX_SFX_KEY_ITEM
-	TX_FAR _FluteExplanationText
-	db "@"
+	text ""
+	fartext _ReceivedFluteText
+	sfxtext SFX_GET_KEY_ITEM
+	fartext _FluteExplanationText
+	done
 
 FluteNoRoomText:
 	TX_FAR _FluteNoRoomText

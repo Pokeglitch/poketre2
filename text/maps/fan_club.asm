@@ -84,9 +84,10 @@ FanClubChairStoryText::
 
 ReceivedBikeVoucherText::
 	text "<PLAYER> received"
-	line "a @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "a "
+	ramtext wcf4b
+	text "!"
+	done
 
 ExplainBikeVoucherText::
 	text ""

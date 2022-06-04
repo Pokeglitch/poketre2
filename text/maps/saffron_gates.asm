@@ -13,10 +13,11 @@ _SaffronGateText_8aaa9::
 	cont "..."
 	cont "Huh? I can have"
 	cont "this drink?"
-	cont "Gee, thanks!@@"
+	cont "Gee, thanks!"
+	done
 
 _SaffronGateText_1dff1::
-	db $0
+	db TEXT_INIT
 	para "..."
 	line "Glug glug..."
 	cont "..."

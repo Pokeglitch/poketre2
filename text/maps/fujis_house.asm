@@ -47,12 +47,13 @@ _LavenderHouse1Text_1d94c::
 
 _ReceivedFluteText::
 	text "<PLAYER> received"
-	line "a @"
-	TX_RAM wcf4b
-	text "!@@"
+	line "a "
+	ramtext wcf4b
+	text "!"
+	done
 
 _FluteExplanationText::
-	db $0
+	db TEXT_INIT
 	para "Upon hearing #"
 	line "FLUTE, sleeping"
 	cont "POKéMON will"

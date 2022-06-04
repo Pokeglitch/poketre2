@@ -264,10 +264,11 @@ ConnectCableText:
 	db "@"
 
 TradedForText:
-	TX_FAR _TradedForText
-	TX_SFX_KEY_ITEM
+	text ""
+	fartext _TradedForText
+	sfxtext SFX_GET_KEY_ITEM
 	TX_DELAY
-	db "@"
+	done
 
 WannaTrade1Text:
 	TX_FAR _WannaTrade1Text

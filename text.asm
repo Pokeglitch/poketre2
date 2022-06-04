@@ -2945,12 +2945,13 @@ _ConnectCableText::
 
 _TradedForText::
 	text "<PLAYER> traded"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text " for"
-	cont "@"
-	TX_RAM wInGameTradeReceiveMonName
-	text "!@@"
+	cont ""
+	ramtext wInGameTradeReceiveMonName
+	text "!"
+	done
 
 _WannaTrade1Text::
 	text "I'm looking for"

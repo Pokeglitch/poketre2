@@ -156,10 +156,11 @@ CeruleanGymText7:
 	db "@"
 
 CeruleanGymText_5c7d8:
-	TX_FAR _CeruleanGymText_5c7d8
-	TX_SFX_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
+	text ""
+	fartext _CeruleanGymText_5c7d8
+	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
 	TX_BLINK
-	db "@"
+	done
 
 CeruleanGymText2:
 	TX_ASM

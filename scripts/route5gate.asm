@@ -105,10 +105,11 @@ Route8GateText3:
 Route7GateText3:
 Route6GateText3:
 Route5GateText3:
-	TX_FAR _SaffronGateText_8aaa9
-	TX_SFX_KEY_ITEM
-	TX_FAR _SaffronGateText_1dff1
-	db "@"
+	text ""
+	fartext _SaffronGateText_8aaa9
+	sfxtext SFX_GET_KEY_ITEM
+	fartext _SaffronGateText_1dff1
+	done
 
 SaffronGateText_1dff6:
 	TX_FAR _SaffronGateText_1dff6

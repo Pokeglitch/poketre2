@@ -18,7 +18,8 @@ _BlaineEndBattleText::
 	line "burnt out!"
 
 	para "You have earned"
-	line "the VOLCANOBADGE!@@"
+	line "the VOLCANOBADGE!"
+	done
 
 _BlaineFireBlastText::
 	text "FIRE BLAST is the"

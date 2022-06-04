@@ -62,7 +62,8 @@ _CeruleanGymText_5c7d8::
 
 	para "You can have the"
 	line "CASCADEBADGE to"
-	cont "show you beat me!@@"
+	cont "show you beat me!"
+	done
 
 _CeruleanGymBattleText1::
 	text "I'm more than good"

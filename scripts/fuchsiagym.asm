@@ -191,12 +191,14 @@ FuchsiaGymText9:
 	db "@"
 
 FuchsiaGymText10:
-	TX_FAR _ReceivedTM06Text
-	TX_SFX_KEY_ITEM
+	text ""
+	fartext _ReceivedTM06Text
+	sfxtext SFX_GET_KEY_ITEM
 
 TM06ExplanationText:
-	TX_FAR _TM06ExplanationText
-	db "@"
+	text ""
+	fartext _TM06ExplanationText
+	done
 
 FuchsiaGymText11:
 	TX_FAR _TM06NoRoomText

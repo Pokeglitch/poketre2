@@ -10,9 +10,10 @@ _MtMoon3Text_49f64::
 
 _MtMoon3Text_49f6f::
 	text "<PLAYER> got the"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _MtMoon3Text_49f7f::
 	text "Look, you've got"
@@ -50,7 +51,8 @@ _MtMoon3Text_49f94::
 
 _MtMoon3Text_49f99::
 	text "All right. Then"
-	line "this is mine!@@"
+	line "this is mine!"
+	done
 
 _MtMoon3BattleText2::
 	text "TEAM ROCKET will"

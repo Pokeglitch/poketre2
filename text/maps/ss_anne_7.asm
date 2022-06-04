@@ -32,9 +32,10 @@ _ReceivingHM01Text::
 
 _ReceivedHM01Text::
 	text "<PLAYER> got"
-	line "@"
-	TX_RAM wcf4b
-	text "!@@"
+	line ""
+	ramtext wcf4b
+	text "!"
+	done
 
 _SSAnne7Text_61932::
 	text "CAPTAIN: Whew!"

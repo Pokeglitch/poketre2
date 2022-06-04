@@ -50,9 +50,10 @@ _OaksLabMonEnergeticText::
 
 _OaksLabReceivedMonText::
 	text "<PLAYER> received"
-	line "a @"
-	TX_RAM wcd6d
-	text "!@@"
+	line "a "
+	ramtext wcd6d
+	text "!"
+	done
 
 _OaksLabLastMonText::
 	text "That's PROF.OAK's"
@@ -96,7 +97,8 @@ _OaksLabDeliverParcelText1::
 	line "something for me?"
 
 	para "<PLAYER> delivered"
-	line "OAK's PARCEL.@@"
+	line "OAK's PARCEL."
+	done
 
 _OaksLabDeliverParcelText2::
 	text ""
@@ -124,7 +126,8 @@ _OaksLabGivePokeballsText1::
 	cont "POKéMON."
 
 	para "<PLAYER> got 5"
-	line "POKé BALLs!@@"
+	line "POKé BALLs!"
+	done
 
 _OaksLabGivePokeballsText2::
 	text ""
@@ -239,9 +242,10 @@ _OaksLabRivalPickingMonText::
 
 _OaksLabRivalReceivedMonText::
 	text "<RIVAL> received"
-	line "a @"
-	TX_RAM wcd6d
-	text "!@@"
+	line "a "
+	ramtext wcd6d
+	text "!"
+	done
 
 _OaksLabRivalChallengeText::
 	text "<RIVAL>: Wait"
@@ -310,7 +314,8 @@ _OaksLabText25::
 	cont "these with you!"
 
 	para "<PLAYER> got"
-	line "POKéDEX from OAK!@@"
+	line "POKéDEX from OAK!"
+	done
 
 _OaksLabText26::
 	text "To make a complete"

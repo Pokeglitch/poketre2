@@ -129,8 +129,9 @@ RocketHideout1EndBattleText6:
 	ret
 
 RocketHideout1Text_44c9f:
-	TX_BLINK
-	db "@"
+	text ""
+	wait
+	done
 
 RocketHideout1BattleText2:
 	TX_FAR _RocketHideout1BattleText2
