@@ -1,13 +1,13 @@
 _VictoryRoadGuardText1::
 	text "You can pass here"
 	line "only if you have"
-	cont "the @"
-	TX_RAM wcd6d
+	cont "the "
+	ramtext wcd6d
 	text "!"
 
 	para "You don't have the"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text " yet!"
 
 	para "You have to have"

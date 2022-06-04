@@ -75,13 +75,6 @@ gototext: MACRO
 	dw \1
 ENDM
 
-TX_RAM: MACRO
-; prints text to screen
-; \1: RAM address to read from
-	db RAM_TEXT
-	dw \1
-ENDM
-
 TX_ASM     EQUS "db $08"
 
 TX_FAR: MACRO

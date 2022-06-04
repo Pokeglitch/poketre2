@@ -408,22 +408,6 @@ TextCommand00::
 	inc hl
 	jr NextTextCommand
 
-; place string from RAM
-; 01AAAA
-; AAAA = address of string
-TextCommand01::
-	pop hl
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	push hl
-	ld h, b
-	ld l, c
-	call PlaceTextboxString
-	pop hl
-	jr NextTextCommand
-
 ; repoint destination address
 ; 03AAAA
 ; AAAA = new destination address
@@ -476,7 +460,7 @@ TextCommand17::
 
 TextCommandJumpTable::
 	dw TextCommand00
-	dw TextCommand01
+	dw $0000
 	dw $0000
 	dw TextCommand03
 	dw TextCommand04

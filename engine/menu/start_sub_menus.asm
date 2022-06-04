@@ -493,7 +493,7 @@ ReloadOverworldDataFromInventory:
 
 ChoseItemText:
 	db "Chose "
-	TX_RAM wcf4b
+	ramtext wcf4b
 	db "@"
 
 TeachOptionText:

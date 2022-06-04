@@ -360,7 +360,7 @@ MonsterNameCharsCommon::
 
 EnemyMonText::
 	db "Enemy "
-	TX_RAM wEnemyMonNick
+	ramtext wEnemyMonNick
 	db "@"
 
 NestedStringsTable:

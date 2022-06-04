@@ -134,8 +134,9 @@ _VendingMachineText4::
 	done
 
 _VendingMachineText5::
-	TX_RAM wcf4b
-	db $0
+	text ""
+	ramtext wcf4b
+	db TEXT_INIT
 	line "popped out!"
 	done
 

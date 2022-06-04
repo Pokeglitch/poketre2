@@ -37,8 +37,10 @@ _CardKeyFailText::
 	done
 
 _TrainerNameText::
-	TX_RAM wcd6d
-	text ": @@"
+	text ""
+	ramtext wcd6d
+	text ": "
+	done
 
 _NoNibbleText::
 	text "Not even a nibble!"
@@ -138,8 +140,8 @@ _OaksAideComeBackText::
 	numtext hOaksAideRequirement, 3, 1
 	text ""
 	line "kinds, come back"
-	cont "for @"
-	TX_RAM wOaksAideRewardItemName
+	cont "for "
+	ramtext wOaksAideRewardItemName
 	text "."
 	done
 
@@ -165,8 +167,8 @@ _OaksAideNoRoomText::
 	text "Oh! I see you"
 	line "don't have any"
 	cont "room for the"
-	cont "@"
-	TX_RAM wOaksAideRewardItemName
+	cont ""
+	ramtext wOaksAideRewardItemName
 	text "."
 	done
 
@@ -233,78 +235,85 @@ INCLUDE "text/maps/rock_tunnel_b2f_2.asm"
 INCLUDE "text/maps/seafoam_islands_b4f.asm"
 
 _AIBattleWithdrawText::
-	TX_RAM wTrainerName
+	text ""
+	ramtext wTrainerName
 	text " with-"
-	line "drew @"
-	TX_RAM wEnemyMonNick
+	line "drew "
+	ramtext wEnemyMonNick
 	text "!"
 	prompt
 
 _AIBattleUseItemText::
-	TX_RAM wTrainerName
 	text ""
-	line "used @"
-	TX_RAM wcd6d
+	ramtext wTrainerName
 	text ""
-	cont "on @"
-	TX_RAM wEnemyMonNick
+	line "used "
+	ramtext wcd6d
+	text ""
+	cont "on "
+	ramtext wEnemyMonNick
 	text "!"
 	prompt
 
 _TradeWentToText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text " went"
-	line "to @"
-	TX_RAM wGrassRate
+	line "to "
+	ramtext wGrassRate
 	text "."
 	done
 
 _TradeForText::
 	text "For <PLAYER>'s"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text ","
 	done
 
 _TradeSendsText::
-	TX_RAM wGrassRate
+	text ""
+	ramtext wGrassRate
 	text " sends"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "."
 	done
 
 _TradeWavesFarewellText::
-	TX_RAM wGrassRate
+	text ""
+	ramtext wGrassRate
 	text " waves"
 	line "farewell as"
 	done
 
 _TradeTransferredText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " is"
 	line "transferred."
 	done
 
 _TradeTakeCareText::
 	text "Take good care of"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "."
 	done
 
 _TradeWillTradeText::
-	TX_RAM wGrassRate
+	text ""
+	ramtext wGrassRate
 	text " will"
-	line "trade @"
-	TX_RAM wcd6d
+	line "trade "
+	ramtext wcd6d
 	text ""
 	done
 
 _TradeforText::
 	text "for <PLAYER>'s"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "."
 	done
 
@@ -339,8 +348,8 @@ _OneMoreGoSlotMachineText::
 
 _LinedUpText::
 	text " lined up!"
-	line "Scored @"
-	TX_RAM wcf4b
+	line "Scored "
+	ramtext wcf4b
 	text " coins!"
 	done
 
@@ -365,11 +374,12 @@ _DexRatingText::
 	done
 
 _GymStatueText1::
-	TX_RAM wGymCityName
+	text ""
+	ramtext wGymCityName
 	text ""
 	line "POKéMON GYM"
-	cont "LEADER: @"
-	TX_RAM wGymLeaderName
+	cont "LEADER: "
+	ramtext wGymLeaderName
 	text ""
 
 	para "WINNING TRAINERS:"
@@ -377,11 +387,12 @@ _GymStatueText1::
 	done
 
 _GymStatueText2::
-	TX_RAM wGymCityName
+	text ""
+	ramtext wGymCityName
 	text ""
 	line "POKéMON GYM"
-	cont "LEADER: @"
-	TX_RAM wGymLeaderName
+	cont "LEADER: "
+	ramtext wGymLeaderName
 	text ""
 
 	para "WINNING TRAINERS:"
@@ -972,13 +983,15 @@ _VermilionGymTrashFailText::
 	text "Nope! There's"
 	line "only trash here."
 	cont "Hey! The electric"
-	cont "locks were reset!@@"
+	cont "locks were reset!"
+	done
 
 _FoundHiddenItemText::
 	text "<PLAYER> found"
-	line "@"
-	TX_RAM wcd6d
-	text "!@@"
+	line ""
+	ramtext wcd6d
+	text "!"
+	done
 
 _HiddenItemBagFullText::
 	text "But, <PLAYER> has"
@@ -1047,15 +1060,15 @@ _OutOfSafariBallsText::
 	prompt
 
 _WildRanText::
-	text "Wild @"
-	TX_RAM wEnemyMonNick
+	text "Wild "
+	ramtext wEnemyMonNick
 	text ""
 	line "ran!"
 	prompt
 
 _EnemyRanText::
-	text "Enemy @"
-	TX_RAM wEnemyMonNick
+	text "Enemy "
+	ramtext wEnemyMonNick
 	text ""
 	line "ran!"
 	prompt
@@ -1076,8 +1089,8 @@ _HurtByLeechSeedText::
 	prompt
 
 _EnemyMonFaintedText::
-	text "Enemy @"
-	TX_RAM wEnemyMonNick
+	text "Enemy "
+	ramtext wEnemyMonNick
 	text ""
 	line "fainted!"
 	prompt
@@ -1091,13 +1104,14 @@ _MoneyForWinningText::
 
 _TrainerDefeatedText::
 	text "<PLAYER> defeated"
-	line "@"
-	TX_RAM wTrainerName
+	line ""
+	ramtext wTrainerName
 	text "!"
 	prompt
 
 _PlayerMonFaintedText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text ""
 	line "fainted!"
 	prompt
@@ -1121,17 +1135,18 @@ _PlayerBlackedOutText2::
 
 _LinkBattleLostText::
 	text "<PLAYER> lost to"
-	line "@"
-	TX_RAM wTrainerName
+	line ""
+	ramtext wTrainerName
 	text "!"
 	prompt
 
 _TrainerAboutToUseText::
-	TX_RAM wTrainerName
+	text ""
+	ramtext wTrainerName
 	text " is"
 	line "about to use"
-	cont"@"
-	TX_RAM wEnemyMonNick
+	cont ""
+	ramtext wEnemyMonNick
 	text "!"
 
 	para "Will <PLAYER>"
@@ -1139,10 +1154,11 @@ _TrainerAboutToUseText::
 	done
 
 _TrainerSentOutText::
-	TX_RAM wTrainerName
+	text ""
+	ramtext wTrainerName
 	text " sent"
-	line "out @"
-	TX_RAM wEnemyMonNick
+	line "out "
+	ramtext wEnemyMonNick
 	text "!"
 	done
 
@@ -1171,7 +1187,8 @@ _ItemsCantBeUsedHereText::
 	prompt
 
 _AlreadyOutText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " is"
 	line "already out!"
 	prompt
@@ -1187,7 +1204,8 @@ _MoveDisabledText::
 	prompt
 
 _NoMovesLeftText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " has no"
 	line "moves left!"
 	done
@@ -1200,7 +1218,8 @@ _MultiHitText::
 	prompt
 
 _ScaredText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " is too"
 	line "scared to move!"
 	prompt
@@ -1287,8 +1306,8 @@ _CantMoveText::
 
 _MoveIsDisabledText::
 	text "<USER>'s"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text " is"
 	cont "disabled!"
 	prompt
@@ -1340,31 +1359,36 @@ _OHKOText::
 	prompt
 
 _LoafingAroundText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " is"
 	line "loafing around."
 	prompt
 
 _BeganToNapText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " began"
 	line "to nap!"
 	prompt
 
 _WontObeyText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " won't"
 	line "obey!"
 	prompt
 
 _TurnedAwayText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " turned"
 	line "away!"
 	prompt
 
 _IgnoredOrdersText::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text ""
 	line "ignored orders!"
 	prompt
@@ -1397,17 +1421,21 @@ _HitXTimesText::
 	prompt
 
 _GainedText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " gained"
-	line "@@"
+	line ""
+	done
 
 _WithExpAllText::
 	text "with EXP.ALL,"
-	cont "@@"
+	cont ""
+	done
 
 _BoostedText::
 	text "a boosted"
-	cont "@@"
+	cont ""
+	done
 
 _ExpPointsText::
 	text ""
@@ -1426,27 +1454,28 @@ _GrewLevelText::
 
 _WildMonAppearedText::
 	text "Wild "
-	TX_RAM wEnemyMonNick
-	;text ""
+	ramtext wEnemyMonNick
 	line "appeared!"
 	prompt
 
 _HookedMonAttackedText::
 	text "The hooked"
-	line "@"
-	TX_RAM wEnemyMonNick
+	line ""
+	ramtext wEnemyMonNick
 	text ""
 	cont "attacked!"
 	prompt
 
 _EnemyAppearedText::
-	TX_RAM wEnemyMonNick
+	text ""
+	ramtext wEnemyMonNick
 	text ""
 	line "appeared!"
 	prompt
 
 _TrainerWantsToFightText::
-	TX_RAM wTrainerName
+	text ""
+	ramtext wTrainerName
 	text " wants"
 	line "to fight!"
 	prompt
@@ -1476,12 +1505,14 @@ _EnemysWeakText::
 	line "Get'm! @@"
 
 _PlayerMon1Text::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text "!"
 	done
 
 _PlayerMon2Text::
-	TX_RAM wBattleMonNick
+	text ""
+	ramtext wBattleMonNick
 	text " @@"
 
 _EnoughText::
@@ -1509,16 +1540,16 @@ _NotVeryEffectiveText::
 	prompt
 
 _SafariZoneEatingText::
-	text "Wild @"
-	TX_RAM wEnemyMonNick
-	db $0
+	text "Wild "
+	ramtext wEnemyMonNick
+	db TEXT_INIT
 	line "is eating!"
 	prompt
 
 _SafariZoneAngryText::
-	text "Wild @"
-	TX_RAM wEnemyMonNick
-	db $0
+	text "Wild "
+	ramtext wEnemyMonNick
+	db TEXT_INIT
 	line "is angry!"
 	prompt
 
@@ -1565,7 +1596,8 @@ _PartyMenuSwapMonText::
 	done
 
 _PotionText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text ""
 	line "recovered by "
 	numtext wHPBarHPDifference, 3, 2
@@ -1573,43 +1605,50 @@ _PotionText::
 	done
 
 _AntidoteText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " was"
 	line "cured of poison!"
 	done
 
 _ParlyzHealText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text "'s"
 	line "rid of paralysis!"
 	done
 
 _BurnHealText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text "'s"
 	line "burn was healed!"
 	done
 
 _IceHealText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " was"
 	line "defrosted!"
 	done
 
 _AwakeningText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text ""
 	line "woke up!"
 	done
 
 _FullHealText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text "'s"
 	line "health returned!"
 	done
 
 _ReviveText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text ""
 	line "is revitalized!"
 	done
@@ -1664,7 +1703,8 @@ _DepositHowManyText::
 	done
 
 _ItemWasStoredText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " was"
 	line "stored via PC."
 	prompt
@@ -1690,8 +1730,8 @@ _WithdrawHowManyText::
 
 _WithdrewItemText::
 	text "Withdrew"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "."
 	prompt
 
@@ -1736,10 +1776,11 @@ _DepositWhichMonText::
 	done
 
 _MonWasStoredText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text " was"
-	line "stored in Box @"
-	TX_RAM wBoxNumString
+	line "stored in Box "
+	ramtext wBoxNumString
 	text "."
 	prompt
 
@@ -1754,11 +1795,12 @@ _BoxFullText::
 	prompt
 
 _MonIsTakenOutText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text " is"
 	line "taken out."
-	cont "Got @"
-	TX_RAM wcf4b
+	cont "Got "
+	ramtext wcf4b
 	text "."
 	prompt
 
@@ -1782,20 +1824,22 @@ _ReleaseWhichMonText::
 
 _OnceReleasedText::
 	text "Once released,"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text " is"
 	cont "gone forever. OK?"
 	done
 
 _MonWasReleasedText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text " was"
 	line "released outside."
 	cont "Bye @"
 
 _CF4BExclamationText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text "!"
 	prompt
 
@@ -1820,8 +1864,8 @@ _HereYouGoText::
 
 _SoYouWantPrizeText::
 	text "So, you want"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "?"
 	done
 
@@ -1877,8 +1921,8 @@ INCLUDE "text/oakspeech.asm"
 _DoYouWantToNicknameText::
 	text "Do you want to"
 	line "give a nickname"
-	cont "to @"
-	TX_RAM wcd6d
+	cont "to "
+	ramtext wcd6d
 	text "?"
 	done
 
@@ -1894,10 +1938,11 @@ _HisNameIsText::
 	prompt
 
 _WillBeTradedText::
-	TX_RAM wNameOfPlayerMonToBeTraded
+	text ""
+	ramtext wNameOfPlayerMonToBeTraded
 	text " and"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text " will"
 	cont "be traded."
 	done
@@ -2003,27 +2048,28 @@ _ChooseABoxText::
 	line "<pkmn> BOX.@@"
 
 _EvolvedText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text " evolved"
 	done
 
 _IntoText::
 	text ""
-	line "into @"
-	TX_RAM wcd6d
+	line "into "
+	ramtext wcd6d
 	text "!"
 	done
 
 _StoppedEvolvingText::
-	text "Huh? @"
-	TX_RAM wcf4b
+	text "Huh? "
+	ramtext wcf4b
 	text ""
 	line "stopped evolving!"
 	prompt
 
 _IsEvolvingText::
-	text "What? @"
-	TX_RAM wcf4b
+	text "What? "
+	ramtext wcf4b
 	text ""
 	line "is evolving!"
 	done
@@ -2065,8 +2111,8 @@ _FireDefrostedText::
 
 _MonsStatsRoseText::
 	text "<USER>'s"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "@@"
 
 _GreatlyRoseText::
@@ -2080,8 +2126,8 @@ _RoseText::
 
 _MonsStatsFellText::
 	text "<TARGET>'s"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "@@"
 
 _GreatlyFellText::
@@ -2149,15 +2195,15 @@ _BecameConfusedText::
 _MimicLearnedMoveText::
 	text "<USER>"
 	line "learned"
-	cont "@"
-	TX_RAM wcd6d
+	cont ""
+	ramtext wcd6d
 	text "!"
 	prompt
 
 _MoveWasDisabledText::
 	text "<TARGET>'s"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text " was"
 	cont "disabled!"
 	prompt
@@ -2259,8 +2305,8 @@ _RegainedHealthText::
 _TransformedText::
 	text "<USER>"
 	line "transformed into"
-	cont "@"
-	TX_RAM wcd6d
+	cont ""
+	ramtext wcd6d
 	text "!"
 	prompt
 
@@ -2482,38 +2528,40 @@ _WhichMoveToForgetText::
 
 _AbandonLearningText::
 	text "Abandon learning"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "?"
 	done
 
 _DidNotLearnText::
-	TX_RAM wLearnMoveMonName
+	text ""
+	ramtext wLearnMoveMonName
 	text ""
 	line "did not learn"
-	cont "@"
-	TX_RAM wcf4b
+	cont ""
+	ramtext wcf4b
 	text "!"
 	prompt
 
 _TryingToLearnText::
-	TX_RAM wLearnMoveMonName
+	text ""
+	ramtext wLearnMoveMonName
 	text " is"
 	line "trying to learn"
-	cont "@"
-	TX_RAM wcf4b
+	cont ""
+	ramtext wcf4b
 	text "!"
 
-	para "But, @"
-	TX_RAM wLearnMoveMonName
+	para "But, "
+	ramtext wLearnMoveMonName
 	text ""
 	line "can't learn more"
 	cont "than 4 moves!"
 
 	para "Delete an older"
 	line "move to make room"
-	cont "for @"
-	TX_RAM wcf4b
+	cont "for "
+	ramtext wcf4b
 	text "?"
 	done
 
@@ -2620,12 +2668,14 @@ _CableClubNPCMakingPreparationsText::
 	done
 
 _UsedStrengthText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " used"
 	line "STRENGTH.@@"
 
 _CanMoveBouldersText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " can"
 	line "move boulders."
 	prompt
@@ -2651,13 +2701,15 @@ _WarpToLastPokemonCenterText::
 	done
 
 _CannotUseTeleportNowText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " can't"
 	line "use TELEPORT now."
 	prompt
 
 _CannotFlyHereText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " can't"
 	line "FLY here."
 	prompt
@@ -2692,12 +2744,12 @@ _GotMonText::
 _SetToBoxText::
 	text "There's no more"
 	line "room for POKéMON!"
-	cont "@"
-	TX_RAM wBoxMonNicks
+	cont ""
+	ramtext wBoxMonNicks
 	text " was"
 	cont "sent to POKéMON"
-	cont "BOX @"
-	TX_RAM wcf4b
+	cont "BOX "
+	ramtext wcf4b
 	text " on PC!"
 	done
 
@@ -2761,14 +2813,16 @@ _ItemUseBallText05::
 	done
 
 _ItemUseBallText07::
-	TX_RAM wBoxMonNicks
+	text ""
+	ramtext wBoxMonNicks
 	text " was"
 	line "transferred to"
 	cont "BILL's PC!"
 	prompt
 
 _ItemUseBallText08::
-	TX_RAM wBoxMonNicks
+	text ""
+	ramtext wBoxMonNicks
 	text " was"
 	line "transferred to"
 	cont "someone's PC!"
@@ -2784,8 +2838,8 @@ _ItemUseBallText06::
 
 _SurfingGotOnText::
 	text "<PLAYER> got on"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "!"
 	prompt
 
@@ -2795,10 +2849,11 @@ _SurfingNoPlaceToGetOffText::
 	prompt
 
 _VitaminStatRoseText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text "'s"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text " rose."
 	prompt
 
@@ -2864,13 +2919,15 @@ _RestorePPWhichTechniqueText::
 	done
 
 _PPMaxedOutText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text "'s PP"
 	line "is maxed out."
 	prompt
 
 _PPIncreasedText::
-	TX_RAM wcf4b
+	text ""
+	ramtext wcf4b
 	text "'s PP"
 	line "increased."
 	prompt
@@ -2880,16 +2937,17 @@ _PPRestoredText::
 	prompt
 
 _MonCannotLearnMachineMoveText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " is not"
 	line "compatible with"
-	cont "@"
-	TX_RAM wcf4b
+	cont ""
+	ramtext wcf4b
 	text "."
 
 	para "It can't learn"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "."
 	prompt
 
@@ -2925,8 +2983,8 @@ _NoCyclingAllowedHereText::
 
 _NoSurfingHereText::
 	text "No SURFing on"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text " here!"
 	prompt
 
@@ -2962,10 +3020,11 @@ _GotOffBicycleText1::
 	prompt
 
 _AlreadyKnowsText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " knows"
-	line "@"
-	TX_RAM wcf4b
+	line ""
+	ramtext wcf4b
 	text "!"
 	prompt
 
@@ -2986,13 +3045,13 @@ _TradedForText::
 
 _WannaTrade1Text::
 	text "I'm looking for"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text "! Wanna"
 
 	para "trade one for"
-	line "@"
-	TX_RAM wInGameTradeReceiveMonName
+	line ""
+	ramtext wInGameTradeReceiveMonName
 	text "? "
 	done
 
@@ -3003,8 +3062,8 @@ _NoTrade1Text::
 
 _WrongMon1Text::
 	text "What? That's not"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text "!"
 
 	para "If you get one,"
@@ -3017,8 +3076,8 @@ _Thanks1Text::
 
 _AfterTrade1Text::
 	text "Isn't my old"
-	line "@"
-	TX_RAM wInGameTradeReceiveMonName
+	line ""
+	ramtext wInGameTradeReceiveMonName
 	text " great?"
 	done
 
@@ -3026,11 +3085,11 @@ _WannaTrade2Text::
 	text "Hello there! Do"
 	line "you want to trade"
 
-	para "your @"
-	TX_RAM wInGameTradeGiveMonName
+	para "your "
+	ramtext wInGameTradeGiveMonName
 	text ""
-	line "for @"
-	TX_RAM wInGameTradeReceiveMonName
+	line "for "
+	ramtext wInGameTradeReceiveMonName
 	text "?"
 	done
 
@@ -3041,8 +3100,8 @@ _NoTrade2Text::
 
 _WrongMon2Text::
 	text "Hmmm? This isn't"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text "."
 
 	para "Think of me when"
@@ -3054,8 +3113,8 @@ _Thanks2Text::
 	done
 
 _AfterTrade2Text::
-	text "The @"
-	TX_RAM wInGameTradeGiveMonName
+	text "The "
+	ramtext wInGameTradeGiveMonName
 	text " you"
 	line "traded to me"
 
@@ -3064,13 +3123,13 @@ _AfterTrade2Text::
 
 _WannaTrade3Text::
 	text "Hi! Do you have"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text "?"
 
 	para "Want to trade it"
-	line "for @"
-	TX_RAM wInGameTradeReceiveMonName
+	line "for "
+	ramtext wInGameTradeReceiveMonName
 	text "?"
 	done
 
@@ -3080,8 +3139,8 @@ _NoTrade3Text::
 
 _WrongMon3Text::
 	text "...This is no"
-	line "@"
-	TX_RAM wInGameTradeGiveMonName
+	line ""
+	ramtext wInGameTradeGiveMonName
 	text "."
 
 	para "If you get one,"
@@ -3094,12 +3153,12 @@ _Thanks3Text::
 
 _AfterTrade3Text::
 	text "How is my old"
-	line "@"
-	TX_RAM wInGameTradeReceiveMonName
+	line ""
+	ramtext wInGameTradeReceiveMonName
 	text "?"
 
-	para "My @"
-	TX_RAM wInGameTradeGiveMonName
+	para "My "
+	ramtext wInGameTradeGiveMonName
 	text " is"
 	line "doing great!"
 	done
@@ -3110,7 +3169,8 @@ _NothingToCutText::
 	prompt
 
 _UsedCutText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " hacked"
 	line "away with CUT!"
 	prompt
