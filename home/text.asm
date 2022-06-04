@@ -517,16 +517,6 @@ TextboxDefinitionCommand:
 	call InitializeTextbox
 	jp NextTextCommand
 
-; wait for A or B to be pressed
-; 0D
-; (no arguments)
-TextCommand0D::
-	push bc
-	call ManualTextScroll ; wait for A or B to be pressed
-	pop bc
-	pop hl
-	jp NextTextCommand
-
 ; process text commands in another ROM bank
 ; 17AAAABB
 ; AAAA = address of text commands
@@ -564,7 +554,7 @@ TextCommandJumpTable::
 	dw TextCommand0A
 	dw $0000
 	dw $0000
-	dw TextCommand0D
+	dw $0000
 
 ; Check if the next word should be wrapped
 ; no carry = print

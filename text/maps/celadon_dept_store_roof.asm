@@ -11,7 +11,8 @@ _CeladonMartRoofText_484f3::
 	para "Thank you!"
 
 	para "You can have this"
-	line "from me!@@"
+	line "from me!"
+	done
 
 _CeladonMartRoofText_484f9::
 	text "<PLAYER> received"
@@ -39,7 +40,8 @@ _CeladonMartRoofText_48504::
 	para "Thank you!"
 
 	para "You can have this"
-	line "from me!@@"
+	line "from me!"
+	done
 
 _CeladonMartRoofText_4850a::
 	text "<PLAYER> received"
@@ -67,7 +69,8 @@ _CeladonMartRoofText_48515::
 	para "Thank you!"
 
 	para "You can have this"
-	line "from me!@@"
+	line "from me!"
+	done
 
 _ReceivedTM49Text::
 	text "<PLAYER> received"
@@ -82,12 +85,14 @@ _CeladonMartRoofText_48520::
 
 _CeladonMartRoofText_48526::
 	text "You don't have"
-	line "space for this!@@"
+	line "space for this!"
+	done
 
 _CeladonMartRoofText_4852c::
 	text "No thank you!"
 	line "I'm not thirsty"
-	cont "after all!@@"
+	cont "after all!"
+	done
 
 _CeladonMartRoofText1::
 	text "My sister is a"

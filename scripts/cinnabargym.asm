@@ -235,7 +235,7 @@ BlaineEndBattleText:
 	text ""
 	fartext _BlaineEndBattleText
 	sfxtext SFX_GET_KEY_ITEM ; actually plays the second channel of SFX_BALL_POOF due to the wrong music bank being loaded
-	TX_WAIT
+	wait
 	done
 
 BlaineFireBlastText:

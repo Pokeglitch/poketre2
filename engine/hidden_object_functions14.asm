@@ -6,9 +6,10 @@ PrintNotebookText:
 	jp PrintPredefTextID
 
 TMNotebook:
-	TX_FAR TMNotebookText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext TMNotebookText
+	wait
+	done
 
 ViridianSchoolNotebook:
 	TX_ASM
@@ -44,9 +45,10 @@ TurnPageText:
 	db "@"
 
 ViridianSchoolNotebookText5:
-	TX_FAR _ViridianSchoolNotebookText5
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _ViridianSchoolNotebookText5
+	wait
+	done
 
 ViridianSchoolNotebookText1:
 	TX_FAR _ViridianSchoolNotebookText1

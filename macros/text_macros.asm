@@ -99,7 +99,6 @@ TX_NUM: MACRO
 ENDM
 
 TX_DELAY              EQUS "db $0a"
-TX_WAIT               EQUS "db $0d"
 
 TX_FAR: MACRO
 	db $17

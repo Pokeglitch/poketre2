@@ -138,53 +138,58 @@ CeladonMartRoofText_484ee:
 	db "@"
 
 CeladonMartRoofText_484f3:
-	TX_FAR _CeladonMartRoofText_484f3
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_484f3
+	wait
+	done
 
 CeladonMartRoofText_484f9:
 	text ""
 	fartext _CeladonMartRoofText_484f9
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_484fe
-	TX_WAIT
+	wait
 	done
 
 CeladonMartRoofText_48504:
-	TX_FAR _CeladonMartRoofText_48504
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_48504
+	wait
+	done
 
 CeladonMartRoofText_4850a:
 	text ""
 	fartext _CeladonMartRoofText_4850a
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_4850f
-	TX_WAIT
+	wait
 	done
 
 CeladonMartRoofText_48515:
-	TX_FAR _CeladonMartRoofText_48515
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_48515
+	wait
+	done
 
 ReceivedTM49Text:
 	text ""
 	fartext _ReceivedTM49Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _CeladonMartRoofText_48520
-	TX_WAIT
+	wait
 	done
 
 CeladonMartRoofText_48526:
-	TX_FAR _CeladonMartRoofText_48526
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_48526
+	wait
+	done
 
 CeladonMartRoofText_4852c:
-	TX_FAR _CeladonMartRoofText_4852c
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_4852c
+	wait
+	done
 
 CeladonMartRoofScript_PrintDrinksInBag:
 	ld hl, wFilteredBagItems

@@ -710,7 +710,8 @@ TMNotebookText::
 	line "HMs that can be"
 	cont "used repeatedly."
 
-	para "SILPH CO.@@"
+	para "SILPH CO."
+	done
 
 _TurnPageText::
 	text "Turn the page?"
@@ -718,7 +719,8 @@ _TurnPageText::
 
 _ViridianSchoolNotebookText5::
 	text "GIRL: Hey! Don't"
-	line "look at my notes!@@"
+	line "look at my notes!"
+	done
 
 _ViridianSchoolNotebookText1::
 	text "Looked at the"
@@ -1797,7 +1799,8 @@ _CF4BExclamationText::
 
 _RequireCoinCaseText::
 	text "A COIN CASE is"
-	line "required!@@"
+	line "required!"
+	done
 
 _ExchangeCoinsForPrizesText::
 	text "We exchange your"
@@ -1810,7 +1813,8 @@ _WhichPrizeText::
 	done
 
 _HereYouGoText::
-	text "Here you go!@@"
+	text "Here you go!"
+	done
 
 _SoYouWantPrizeText::
 	text "So, you want"
@@ -1821,14 +1825,17 @@ _SoYouWantPrizeText::
 
 _SorryNeedMoreCoinsText::
 	text "Sorry, you need"
-	line "more coins.@@"
+	line "more coins."
+	done
 
 _OopsYouDontHaveEnoughRoomText::
 	text "Oops! You don't"
-	line "have enough room.@@"
+	line "have enough room."
+	done
 
 _OhFineThenText::
-	text "Oh, fine then.@@"
+	text "Oh, fine then."
+	done
 
 _GetDexRatedText::
 	text "Want to get your"
@@ -1837,7 +1844,8 @@ _GetDexRatedText::
 
 _ClosedOaksPCText::
 	text "Closed link to"
-	line "PROF.OAK's PC.@@"
+	line "PROF.OAK's PC."
+	done
 
 _AccessedOaksPCText::
 	text "Accessed PROF."

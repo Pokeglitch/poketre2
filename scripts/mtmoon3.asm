@@ -324,7 +324,7 @@ MtMoon3Text_49f6f:
 	text ""
 	fartext _MtMoon3Text_49f6f
 	sfxtext SFX_GET_KEY_ITEM
-	TX_WAIT
+	wait
 	done
 
 MtMoon3Script_49f76:
@@ -333,9 +333,10 @@ MtMoon3Script_49f76:
 	jp TextScriptEnd
 
 MtMoon3Text_49f7f:
-	TX_FAR _MtMoon3Text_49f7f
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _MtMoon3Text_49f7f
+	wait
+	done
 
 MtMoon3Text_49f85:
 	TX_FAR _MtMoon3Text_49f85

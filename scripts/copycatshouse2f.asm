@@ -59,7 +59,7 @@ ReceivedTM31Text:
 TM31ExplanationText1:
 	text ""
 	fartext _TM31ExplanationText1
-	TX_WAIT
+	wait
 	done
 
 TM31ExplanationText2:
@@ -67,9 +67,10 @@ TM31ExplanationText2:
 	db "@"
 
 TM31NoRoomText:
-	TX_FAR _TM31NoRoomText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _TM31NoRoomText
+	wait
+	done
 
 CopycatsHouse2FText2:
 	TX_FAR _CopycatsHouse2FText2

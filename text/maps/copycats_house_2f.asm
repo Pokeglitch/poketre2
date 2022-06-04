@@ -58,7 +58,8 @@ _TM31ExplanationText2::
 
 _TM31NoRoomText::
 	text "Don't you want"
-	line "this?@@"
+	line "this?"
+	done
 
 _CopycatsHouse2FText2::
 	text "DODUO: Giiih!"

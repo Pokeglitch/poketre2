@@ -19,9 +19,10 @@ GetDexRatedText:
 	db "@"
 
 ClosedOaksPCText:
-	TX_FAR _ClosedOaksPCText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _ClosedOaksPCText
+	wait
+	done
 
 AccessedOaksPCText:
 	TX_FAR _AccessedOaksPCText

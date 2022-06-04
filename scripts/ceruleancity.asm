@@ -323,7 +323,7 @@ ReceivedTM28Text:
 	fartext _ReceivedTM28Text
 	sfxtext SFX_GET_ITEM_1
 	fartext _ReceivedTM28Text2
-	TX_WAIT
+	wait
 	done
 
 TM28NoRoomText:

@@ -311,9 +311,10 @@ ViridianGymText_74ad3:
 	done
 
 ViridianGymText_74ad9:
-	TX_FAR _ViridianGymText_74ad9
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _ViridianGymText_74ad9
+	wait
+	done
 
 ViridianGymText12:
 	TX_FAR _ViridianGymText12

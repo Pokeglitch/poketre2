@@ -80,6 +80,7 @@ RocketHideoutElevatorText1:
 	jp TextScriptEnd
 
 RocketHideoutElevatorText_4578b:
-	TX_FAR _RocketElevatorText_4578b
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _RocketElevatorText_4578b
+	wait
+	done

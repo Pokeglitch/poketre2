@@ -17,7 +17,8 @@ _MtMoon3Text_49f6f::
 
 _MtMoon3Text_49f7f::
 	text "Look, you've got"
-	line "no room for this.@@"
+	line "no room for this."
+	done
 
 _MtMoon3Text_49f85::
 	text "Hey, stop!"

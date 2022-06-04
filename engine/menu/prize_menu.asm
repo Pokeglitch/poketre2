@@ -43,9 +43,10 @@ CeladonPrizeMenu:
 	ret
 
 RequireCoinCaseTextPtr:
-	TX_FAR _RequireCoinCaseText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _RequireCoinCaseText
+	wait
+	done
 
 ExchangeCoinsForPrizesTextPtr:
 	TX_FAR _ExchangeCoinsForPrizesText
@@ -265,28 +266,32 @@ UnknownPrizeData:
 	db $00,$01,$00,$01,$00,$01,$00,$00,$01
 
 HereYouGoTextPtr:
-	TX_FAR _HereYouGoText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _HereYouGoText
+	wait
+	done
 
 SoYouWantPrizeTextPtr:
 	TX_FAR _SoYouWantPrizeText
 	db "@"
 
 SorryNeedMoreCoinsText:
-	TX_FAR _SorryNeedMoreCoinsText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _SorryNeedMoreCoinsText
+	wait
+	done
 
 PrizeRoomBagIsFullTextPtr:
-	TX_FAR _OopsYouDontHaveEnoughRoomText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _OopsYouDontHaveEnoughRoomText
+	wait
+	done
 
 OhFineThenTextPtr:
-	TX_FAR _OhFineThenText
-	TX_WAIT
-	db "@"
+	text ""
+	fartext _OhFineThenText
+	wait
+	done
 
 GetPrizeMonLevel:
 	ld a, [wcf91]

@@ -40,7 +40,8 @@ _ViridianGymText_74ad9::
 
 	para "Let us meet again"
 	line "some day!"
-	cont "Farewell!@@"
+	cont "Farewell!"
+	done
 
 _ViridianGymText12::
 	text "The EARTHBADGE"
