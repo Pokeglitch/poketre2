@@ -5,7 +5,8 @@ Route12HouseTextPointers:
 	dw Route12HouseText1
 
 Route12HouseText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd728]
 	bit 5, a
 	jr nz, .asm_b4cad

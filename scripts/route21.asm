@@ -107,55 +107,64 @@ Route21TrainerHeader8:
 	db $ff
 
 Route21Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route21Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route21TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd

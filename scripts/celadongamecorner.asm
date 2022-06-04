@@ -137,7 +137,8 @@ CeladonGameCornerText1:
 	done
 
 CeladonGameCornerText2:
-	TX_ASM
+	text ""
+	asmtext
 	call CeladonGameCornerScript_48f1e
 	ld hl, CeladonGameCornerText_48d22
 	call PrintText
@@ -234,7 +235,8 @@ CeladonGameCornerText4:
 	done
 
 CeladonGameCornerText5:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_10_COINS
 	jr nz, .asm_48d89
 	ld hl, CeladonGameCornerText_48d9c
@@ -297,7 +299,8 @@ CeladonGameCornerText6:
 	done
 
 CeladonGameCornerText7:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_ERIKA
 	ld hl, CeladonGameCornerText_48dca
 	jr z, .asm_48dc4
@@ -322,7 +325,8 @@ CeladonGameCornerText8:
 	done
 
 CeladonGameCornerText9:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_20_COINS_2
 	jr nz, .asm_48e13
 	ld hl, CeladonGameCornerText_48e26
@@ -378,7 +382,8 @@ CeladonGameCornerText_48e36:
 	done
 
 CeladonGameCornerText10:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_20_COINS
 	jr nz, .asm_48e75
 	ld hl, CeladonGameCornerText_48e88
@@ -434,7 +439,8 @@ CeladonGameCornerText_48e98:
 	done
 
 CeladonGameCornerText11:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGameCornerText_48ece
 	call PrintText
 	ld hl, wd72d
@@ -471,7 +477,8 @@ CeladonGameCornerText13:
 	done
 
 CeladonGameCornerText12:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, CeladonGameCornerText_48f09

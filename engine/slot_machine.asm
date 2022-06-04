@@ -482,7 +482,8 @@ SlotMachine_CheckForMatches:
 	jp .done
 
 SymbolLinedUpSlotMachineText:
-	TX_ASM
+	text ""
+	asmtext
 	push bc
 	call SlotMachine_PrintWinningSymbol
 	ld hl, LinedUpText

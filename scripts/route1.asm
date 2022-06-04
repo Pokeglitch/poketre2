@@ -7,7 +7,8 @@ Route1TextPointers:
 	dw Route1Text3
 
 Route1Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckAndSetEvent EVENT_GOT_POTION_SAMPLE
 	jr nz, .asm_1cada
 	ld hl, Route1ViridianMartSampleText

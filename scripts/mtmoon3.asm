@@ -205,7 +205,8 @@ MtMoon3TrainerHeader3:
 	db $ff
 
 MtMoon3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_MT_MOON_EXIT_SUPER_NERD
 	jr z, .asm_49e8d
 	and $c0
@@ -237,31 +238,36 @@ MtMoon3Text1:
 	jp TextScriptEnd
 
 MtMoon3Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon3Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, MtMoon3Text_49f24
@@ -290,7 +296,8 @@ MtMoon3Text_49f24:
 	done
 
 MtMoon3Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, MtMoon3Text_49f64

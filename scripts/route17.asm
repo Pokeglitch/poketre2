@@ -123,7 +123,8 @@ Route17TrainerHeader9:
 	db $ff
 
 Route17Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -144,7 +145,8 @@ Route17AfterBattleText1:
 	done
 
 Route17Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -165,7 +167,8 @@ Route17AfterBattleText2:
 	done
 
 Route17Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -186,7 +189,8 @@ Route17AfterBattleText3:
 	done
 
 Route17Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -207,7 +211,8 @@ Route17AfterBattleText4:
 	done
 
 Route17Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -228,7 +233,8 @@ Route17AfterBattleText5:
 	done
 
 Route17Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -249,7 +255,8 @@ Route17AfterBattleText6:
 	done
 
 Route17Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -270,7 +277,8 @@ Route17AfterBattleText7:
 	done
 
 Route17Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -291,7 +299,8 @@ Route17AfterBattleText8:
 	done
 
 Route17Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -312,7 +321,8 @@ Route17AfterBattleText9:
 	done
 
 Route17Text10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route17TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd

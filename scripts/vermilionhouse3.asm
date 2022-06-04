@@ -5,7 +5,8 @@ VermilionHouse3TextPointers:
 	dw VermilionHouse3Text1
 
 VermilionHouse3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $4
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue

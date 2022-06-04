@@ -5,7 +5,8 @@ FuchsiaHouse3TextPointers:
 	dw FuchsiaHouse3Text1
 
 FuchsiaHouse3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd728]
 	bit 4, a
 	jr nz, .after

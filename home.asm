@@ -955,7 +955,8 @@ PokeCenterSignText::
 	done
 
 PickUpItemText::
-	TX_ASM
+	text ""
+	asmtext
 	predef PickUpItem
 	jp TextScriptEnd
 

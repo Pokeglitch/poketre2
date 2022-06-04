@@ -142,7 +142,8 @@ LanceTrainerHeader0:
 	db $ff
 
 LanceText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, LanceTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

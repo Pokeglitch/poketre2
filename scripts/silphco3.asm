@@ -82,7 +82,8 @@ SilphCo3TrainerHeader1:
 	db $ff
 
 SilphCo3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	ld hl, SilphCo3Text_59ffe
 	jr nz, .asm_59fee
@@ -102,7 +103,8 @@ SilphCo3Text_59ffe:
 	done
 
 SilphCo3Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -123,7 +125,8 @@ SilphCo3AfterBattleText1:
 	done
 
 SilphCo3Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd

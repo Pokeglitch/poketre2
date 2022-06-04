@@ -5,7 +5,8 @@ DayCareMTextPointers:
 	dw DayCareMText1
 
 DayCareMText1:
-	TX_ASM
+	text ""
+	asmtext
 	call SaveScreenTilesToBuffer2
 	ld a, [wDayCareInUse]
 	and a

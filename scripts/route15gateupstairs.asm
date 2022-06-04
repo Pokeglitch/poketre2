@@ -6,7 +6,8 @@ Route15GateUpstairsTextPointers:
 	dw Route15GateUpstairsText2
 
 Route15GateUpstairsText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_EXP_ALL
 	jr nz, .asm_49683
 	ld a, 50 ; pokemon needed
@@ -36,7 +37,8 @@ Route15GateUpstairsText_4968c:
 	done
 
 Route15GateUpstairsText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15GateUpstairsText_49698
 	jp GateUpstairsScript_PrintIfFacingUp
 

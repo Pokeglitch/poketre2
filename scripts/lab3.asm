@@ -9,7 +9,8 @@ Lab3TextPointers:
 	dw Lab3Text5
 
 Lab3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM35
 	jr nz, .asm_e551a
 	ld hl, TM35PreReceiveText

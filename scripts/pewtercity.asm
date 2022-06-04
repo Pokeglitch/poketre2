@@ -239,7 +239,8 @@ PewterCityText13:
 	done
 
 PewterCityText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PewterCityText_19427
 	call PrintText
 	call YesNoTextboxOption
@@ -272,7 +273,8 @@ PewterCityText_19431:
 	done
 
 PewterCityText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PewterCityText_1945d
 	call PrintText
 	xor a

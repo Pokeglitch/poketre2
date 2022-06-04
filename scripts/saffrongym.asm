@@ -150,7 +150,8 @@ SaffronGymTrainerHeader6:
 	db $ff
 
 SaffronGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SABRINA
 	jr z, .asm_5d134
 	CheckEventReuseA EVENT_GOT_TM46
@@ -217,49 +218,57 @@ SaffronGymText12:
 	done
 
 SaffronGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SaffronGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SaffronGymText9:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SABRINA
 	jr nz, .asm_5d1dd
 	ld hl, SaffronGymText_5d1e6

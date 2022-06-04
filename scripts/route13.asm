@@ -120,7 +120,8 @@ Route13TrainerHeader9:
 	db $ff
 
 Route13Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -141,7 +142,8 @@ Route13AfterBattleText2:
 	done
 
 Route13Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -162,7 +164,8 @@ Route13AfterBattleText3:
 	done
 
 Route13Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -183,7 +186,8 @@ Route13AfterBattleText4:
 	done
 
 Route13Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -204,7 +208,8 @@ Route13AfterBattleText5:
 	done
 
 Route13Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -225,7 +230,8 @@ Route13AfterBattleText6:
 	done
 
 Route13Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -246,7 +252,8 @@ Route13AfterBattleText7:
 	done
 
 Route13Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -267,7 +274,8 @@ Route13AfterBattleText8:
 	done
 
 Route13Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -288,7 +296,8 @@ Route13AfterBattleText9:
 	done
 
 Route13Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -309,7 +318,8 @@ Route13AfterBattleText10:
 	done
 
 Route13Text10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route13TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd

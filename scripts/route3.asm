@@ -104,7 +104,8 @@ Route3Text1:
 	done
 
 Route3Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -125,7 +126,8 @@ Route3AfterBattleText1:
 	done
 
 Route3Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -146,7 +148,8 @@ Route3AfterBattleText2:
 	done
 
 Route3Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -167,7 +170,8 @@ Route3AfterBattleText3:
 	done
 
 Route3Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -188,7 +192,8 @@ Route3AfterBattleText4:
 	done
 
 Route3Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -209,7 +214,8 @@ Route3AfterBattleText5:
 	done
 
 Route3Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -230,7 +236,8 @@ Route3AfterBattleText6:
 	done
 
 Route3Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -251,7 +258,8 @@ Route3AfterBattleText7:
 	done
 
 Route3Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route3TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd

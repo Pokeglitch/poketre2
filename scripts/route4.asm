@@ -37,7 +37,8 @@ Route4Text1:
 	done
 
 Route4Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

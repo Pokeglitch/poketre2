@@ -18,7 +18,8 @@ ViridianHouseText2:
 	done
 
 ViridianHouseText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianHouseText_1d5b1
 	call PrintText
 	ld a, SPEAROW

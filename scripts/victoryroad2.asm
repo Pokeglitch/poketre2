@@ -140,37 +140,43 @@ MoltresTrainerHeader:
 	db $ff
 
 VictoryRoad2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad2Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MoltresText:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MoltresTrainerHeader
 	call TalkToTrainer
 	jp TextScriptEnd

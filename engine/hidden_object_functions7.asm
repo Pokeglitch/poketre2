@@ -125,7 +125,8 @@ PrintCinnabarQuiz:
 	tx_pre_jump CinnabarGymQuiz
 
 CinnabarGymQuiz:
-	TX_ASM
+	text ""
+	asmtext
 	xor a
 	ld [wOpponentAfterWrongAnswer], a
 	ld a, [wHiddenObjectFunctionArgument]
@@ -399,7 +400,8 @@ BillsHouseInitiatedText:
 	jp TextScriptEnd
 
 BillsHousePokemonList:
-	TX_ASM
+	text ""
+	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, BillsHousePokemonListText1
 	call PrintText

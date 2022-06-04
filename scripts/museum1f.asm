@@ -39,7 +39,8 @@ Museum1FTextPointers:
 	dw Museum1FText5
 
 Museum1FText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wYCoord]
 	cp $4
 	jr nz, .asm_8774b
@@ -179,7 +180,8 @@ Museum1FText_5c242:
 	done
 
 Museum1FText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Museum1FText_5c251
 	call PrintText
 	jp TextScriptEnd
@@ -190,7 +192,8 @@ Museum1FText_5c251:
 	done
 
 Museum1FText3:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_OLD_AMBER
 	jr nz, .asm_5c285
 	ld hl, Museum1FText_5c28e
@@ -235,7 +238,8 @@ Museum1FText_5c29e:
 	done
 
 Museum1FText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Museum1FText_5c2ad
 	call PrintText
 	jp TextScriptEnd
@@ -246,7 +250,8 @@ Museum1FText_5c2ad:
 	done
 
 Museum1FText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Museum1FText_5c2bc
 	call PrintText
 	jp TextScriptEnd

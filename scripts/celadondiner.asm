@@ -30,7 +30,8 @@ CeladonDinerText4:
 	done
 
 CeladonDinerText5:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_COIN_CASE
 	jr nz, .asm_eb14d
 	ld hl, CeladonDinerText_491a7

@@ -9,7 +9,8 @@ FuchsiaHouse2TextPointers:
 	dw FuchsiaHouse2Text5
 
 FuchsiaHouse2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_HM04
 	jr nz, .subtract
 	ld b, GOLD_TEETH
@@ -103,7 +104,8 @@ HM04NoRoomText:
 
 FuchsiaHouse2Text5:
 FuchsiaHouse2Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [H_SPRITEINDEX]
 	cp $4
 	ld hl, FuchsiaHouse2Text_7517b

@@ -92,7 +92,8 @@ Route16GateTextPointers:
 	dw Route16GateText3
 
 Route16GateText1:
-	TX_ASM
+	text ""
+	asmtext
 	call Route16GateScript_49755
 	jr z, .asm_0bdf3
 	ld hl, Route16GateText_4977c

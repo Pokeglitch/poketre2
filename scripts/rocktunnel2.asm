@@ -97,49 +97,57 @@ RockTunnel2TrainerHeader7:
 	db $ff
 
 RockTunnel2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RockTunnel2Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel2TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd

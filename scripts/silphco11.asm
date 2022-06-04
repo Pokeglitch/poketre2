@@ -301,7 +301,8 @@ SilphCo11TrainerHeader1:
 	db $ff
 
 SilphCo11Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_MASTER_BALL
 	jp nz, .asm_62308
 	ld hl, SilphCoPresidentText
@@ -365,7 +366,8 @@ SilphCo11Text6:
 	done
 
 SilphCo11Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo11TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -386,7 +388,8 @@ SilphCo11AfterBattleText1:
 	done
 
 SilphCo11Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo11TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -407,7 +410,8 @@ SilphCo11AfterBattleText2:
 	done
 
 SilphCo10Text_6236c:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo10Text_6237b
 	call PrintText
 	ld a, PORYGON

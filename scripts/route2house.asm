@@ -11,7 +11,8 @@ Route2HouseText1:
 	done
 
 Route2HouseText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $1
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue

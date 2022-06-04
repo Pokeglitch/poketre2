@@ -149,7 +149,8 @@ CeladonGymTrainerHeader6:
 	db $ff
 
 CeladonGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_ERIKA
 	jr z, .asm_48a2d
 	CheckEventReuseA EVENT_GOT_TM21
@@ -215,7 +216,8 @@ TM21NoRoomText:
 	done
 
 CeladonGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -236,7 +238,8 @@ CeladonGymAfterBattleText2:
 	done
 
 CeladonGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -257,7 +260,8 @@ CeladonGymAfterBattleText3:
 	done
 
 CeladonGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -278,7 +282,8 @@ CeladonGymAfterBattleText4:
 	done
 
 CeladonGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -299,7 +304,8 @@ CeladonGymAfterBattleText5:
 	done
 
 CeladonGymText6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -320,7 +326,8 @@ CeladonGymAfterBattleText6:
 	done
 
 CeladonGymText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -341,7 +348,8 @@ CeladonGymAfterBattleText7:
 	done
 
 CeladonGymText8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeladonGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd

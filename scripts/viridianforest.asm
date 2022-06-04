@@ -63,19 +63,22 @@ ViridianForestText1:
 	done
 
 ViridianForestText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianForestTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianForestText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianForestTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 ViridianForestText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianForestTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd

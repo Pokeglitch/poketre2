@@ -119,52 +119,62 @@ Route15TrainerHeader9:
 	db $ff
 
 Route15Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader0
 	jr Route15TalkToTrainer
 
 Route15Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader1
 	jr Route15TalkToTrainer
 
 Route15Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader2
 	jr Route15TalkToTrainer
 
 Route15Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader3
 	jr Route15TalkToTrainer
 
 Route15Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader4
 	jr Route15TalkToTrainer
 
 Route15Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader5
 	jr Route15TalkToTrainer
 
 Route15Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader6
 	jr Route15TalkToTrainer
 
 Route15Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader7
 	jr Route15TalkToTrainer
 
 Route15Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader8
 	jr Route15TalkToTrainer
 
 Route15Text10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route15TrainerHeader9
 Route15TalkToTrainer:
 	call TalkToTrainer

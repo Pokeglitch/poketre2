@@ -81,7 +81,8 @@ Route10TrainerHeader5:
 	db $ff
 
 Route10Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -102,7 +103,8 @@ Route10AfterBattleText1:
 	done
 
 Route10Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -123,7 +125,8 @@ Route10AfterBattleText2:
 	done
 
 Route10Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -144,7 +147,8 @@ Route10AfterBattleText3:
 	done
 
 Route10Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -165,7 +169,8 @@ Route10AfterBattleText4:
 	done
 
 Route10Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -186,7 +191,8 @@ Route10AfterBattleText5:
 	done
 
 Route10Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route10TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd

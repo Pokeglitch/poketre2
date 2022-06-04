@@ -24,7 +24,8 @@ MtMoonPokecenterText3:
 	done
 
 MagikarpSalesmanText:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BOUGHT_MAGIKARP, 1
 	jp c, .alreadyBoughtMagikarp
 	ld hl, .Text1

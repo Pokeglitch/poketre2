@@ -45,7 +45,8 @@ CeladonCityText4:
 	done
 
 CeladonCityText5:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM41
 	jr nz, .asm_7053f
 	ld hl, TM41PreText

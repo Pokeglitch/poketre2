@@ -27,7 +27,8 @@ WriterText:
 	done
 
 DirectorText:
-	TX_ASM
+	text ""
+	asmtext
 
 	; check pokédex
 	ld hl, wPokedexOwned

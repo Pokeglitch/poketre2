@@ -129,7 +129,8 @@ FightingDojoTrainerHeader3:
 	db $ff
 
 FightingDojoText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_DEFEATED_FIGHTING_DOJO
 	jp nz, .continue1
 	CheckEventReuseA EVENT_BEAT_KARATE_MASTER
@@ -181,7 +182,8 @@ FightingDojoText_5ce9d:
 	done
 
 FightingDojoText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FightingDojoTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -202,7 +204,8 @@ FightingDojoAfterBattleText1:
 	done
 
 FightingDojoText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FightingDojoTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -223,7 +226,8 @@ FightingDojoAfterBattleText2:
 	done
 
 FightingDojoText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FightingDojoTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -244,7 +248,8 @@ FightingDojoAfterBattleText3:
 	done
 
 FightingDojoText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FightingDojoTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -266,7 +271,8 @@ FightingDojoAfterBattleText4:
 
 FightingDojoText6:
 ; Hitmonlee Poké Ball
-	TX_ASM
+	text ""
+	asmtext
 	CheckEitherEventSet EVENT_GOT_HITMONLEE, EVENT_GOT_HITMONCHAN
 	jr z, .GetMon
 	ld hl, OtherHitmonText
@@ -302,7 +308,8 @@ WantHitmonleeText:
 
 FightingDojoText7:
 ; Hitmonchan Poké Ball
-	TX_ASM
+	text ""
+	asmtext
 	CheckEitherEventSet EVENT_GOT_HITMONLEE, EVENT_GOT_HITMONCHAN
 	jr z, .GetMon
 	ld hl, OtherHitmonText

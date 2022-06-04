@@ -189,7 +189,8 @@ SSAnne2Text1:
 	done
 
 SSAnne2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnneRivalBeforeBattleText
 	call PrintText
 	ld hl, wd72d

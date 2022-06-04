@@ -319,7 +319,8 @@ SilphCo7TrainerHeader3:
 
 SilphCo7Text1:
 ; lapras guy
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd72e]
 	bit 0, a ; got lapras?
 	jr z, .givelapras
@@ -370,7 +371,8 @@ SilphCo7Text1:
 	done
 
 SilphCo7Text2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
 	ld hl, .rockettext
@@ -393,7 +395,8 @@ SilphCo7Text2:
 	done
 
 SilphCo7Text3:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
 	ld hl, .rockettext
@@ -416,7 +419,8 @@ SilphCo7Text3:
 	done
 
 SilphCo7Text4:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .savedsilph
 	ld hl, .rockettext
@@ -439,7 +443,8 @@ SilphCo7Text4:
 	done
 
 SilphCo7Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo7TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -460,7 +465,8 @@ SilphCo7AfterBattleText1:
 	done
 
 SilphCo7Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -481,7 +487,8 @@ SilphCo7AfterBattleText2:
 	done
 
 SilphCo7Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -502,7 +509,8 @@ SilphCo7AfterBattleText3:
 	done
 
 SilphCo7Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo7TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -523,7 +531,8 @@ SilphCo7AfterBattleText4:
 	done
 
 SilphCo7Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo7Text_51ebe
 	call PrintText
 	jp TextScriptEnd

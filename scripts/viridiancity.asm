@@ -147,7 +147,8 @@ ViridianCityText1:
 	done
 
 ViridianCityText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wObtainedBadges]
 	cp %01111111
 	ld hl, ViridianCityText_19127
@@ -170,7 +171,8 @@ ViridianCityText_19127:
 	done
 
 ViridianCityText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianCityText_1914d
 	call PrintText
 	call YesNoChoice
@@ -202,7 +204,8 @@ ViridianCityText_19157:
 	done
 
 ViridianCityText4:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_POKEDEX
 	jr nz, .asm_83894
 	ld hl, ViridianCityText_19175
@@ -225,7 +228,8 @@ ViridianCityText_1917a:
 	done
 
 ViridianCityText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianCityText_19191
 	call PrintText
 	call ViridianCityScript_190cf
@@ -239,7 +243,8 @@ ViridianCityText_19191:
 	done
 
 ViridianCityText6:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM42
 	jr nz, .asm_4e5a0
 	ld hl, ViridianCityText_191ca
@@ -283,7 +288,8 @@ TM42NoRoomText:
 	done
 
 ViridianCityText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianCityText_1920a
 	call PrintText
 	ld c, 2

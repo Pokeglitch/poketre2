@@ -142,43 +142,50 @@ Route23TextPointers:
 	dw Route23Text8
 
 Route23Text1:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_EARTHBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text2:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_VOLCANOBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text3:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_MARSHBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text4:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_SOULBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text5:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_RAINBOWBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text6:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_THUNDERBADGE_CHECK, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd
 
 Route23Text7:
-	TX_ASM
+	text ""
+	asmtext
 	EventFlagBit a, EVENT_PASSED_CASCADEBADGE_CHECK
 	call Route23Script_51346
 	jp TextScriptEnd

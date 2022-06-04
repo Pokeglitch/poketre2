@@ -7,14 +7,16 @@ Route18GateUpstairsTextPointers:
 	dw Route18GateUpstairsText3
 
 Route18GateUpstairsText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $5
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue
 	jp TextScriptEnd
 
 Route18GateUpstairsText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route18GateUpstairsText_49993
 	jp GateUpstairsScript_PrintIfFacingUp
 
@@ -24,7 +26,8 @@ Route18GateUpstairsText_49993:
 	done
 
 Route18GateUpstairsText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route18GateUpstairsText_4999f
 	jp GateUpstairsScript_PrintIfFacingUp
 

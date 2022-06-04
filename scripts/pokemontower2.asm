@@ -127,7 +127,8 @@ PokemonTower2TextPointers:
 	dw PokemonTower2Text2
 
 PokemonTower2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_POKEMON_TOWER_RIVAL
 	jr z, .asm_16f24
 	ld hl, PokemonTower2Text_6063c

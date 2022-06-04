@@ -131,7 +131,8 @@ LoreleiTrainerHeader0:
 	db $ff
 
 LoreleiText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, LoreleiTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

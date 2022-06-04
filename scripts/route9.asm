@@ -109,47 +109,56 @@ Route9TrainerHeader8:
 	db $ff
 
 Route9Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader0
 	jr Route9TalkToTrainer
 
 Route9Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader1
 	jr Route9TalkToTrainer
 
 Route9Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader2
 	jr Route9TalkToTrainer
 
 Route9Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader3
 	jr Route9TalkToTrainer
 
 Route9Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader4
 	jr Route9TalkToTrainer
 
 Route9Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader5
 	jr Route9TalkToTrainer
 
 Route9Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader6
 	jr Route9TalkToTrainer
 
 Route9Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader7
 	jr Route9TalkToTrainer
 
 Route9Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route9TrainerHeader8
 Route9TalkToTrainer:
 	call TalkToTrainer

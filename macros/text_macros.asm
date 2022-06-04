@@ -8,7 +8,6 @@ ramtext  EQUS "dbw RAM_TEXT,"
 neartext EQUS "dbw NEAR_TEXT,"
 
 asmtext  EQUS "db TEXT_ASM"
-TX_ASM     EQUS "db TEXT_INIT, TEXT_ASM"
 
 delaytext EQUS "db DELAY_TEXT"
 textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text

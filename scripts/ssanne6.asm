@@ -42,7 +42,8 @@ SSAnne6Text6:
 	done
 
 SSAnne6Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne6Text_61807
 	call PrintText
 	ld a, [hRandomAdd]

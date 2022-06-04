@@ -228,7 +228,8 @@ CeladonMartRoofText1:
 	done
 
 CeladonMartRoofText2:
-	TX_ASM
+	text ""
+	asmtext
 	call CeladonMartRoofScript_GetDrinksInBag
 	ld a, [wFilteredBagItemsCount]
 	and a

@@ -158,7 +158,8 @@ PalletTownTextPointers:
 	dw PalletTownText7
 
 PalletTownText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wcf0d]
 	and a
 	jr nz, .next

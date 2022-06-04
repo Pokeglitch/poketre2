@@ -6,7 +6,8 @@ RedsHouse1FTextPointers:
 	dw RedsHouse1FText2
 
 RedsHouse1FText1: ; Mom
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd72e]
 	bit 3, a
 	jr nz, .heal ; if player has received a Pokémon from Oak, heal team
@@ -53,7 +54,8 @@ MomHealText2:
 	done
 
 RedsHouse1FText2: ; TV
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wSpriteStateData1 + 9]
 	cp SPRITE_FACING_UP
 	ld hl, TVWrongSideText

@@ -94,7 +94,8 @@ PrintBlackboardLinkCableText:
 	ret
 
 LinkCableHelp:
-	TX_ASM
+	text ""
+	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, LinkCableHelpText1
 	call PrintText
@@ -183,7 +184,8 @@ LinkCableInfoText3:
 	done
 
 ViridianSchoolBlackboard:
-	TX_ASM
+	text ""
+	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, ViridianSchoolBlackboardText1
 	call PrintText
@@ -469,7 +471,8 @@ VermilionGymTrashSuccessText2:
 
 ; unused
 VermilionGymTrashSuccesPlaySfx:
-	TX_ASM
+	text ""
+	asmtext
 	call WaitForSoundToFinish
 	ld a, SFX_SWITCH
 	call PlaySound

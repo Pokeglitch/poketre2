@@ -12,7 +12,8 @@ TMNotebook:
 	done
 
 ViridianSchoolNotebook:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianSchoolNotebookText1
 	call PrintText
 	call TurnPageSchoolNotebook

@@ -91,7 +91,8 @@ SilphCo6Script_1a22f:
 	jp PrintText
 
 SilphCo6Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6Text_1a24a
 	ld de, SilphCo6Text_1a24f
 	call SilphCo6Script_1a22f
@@ -108,7 +109,8 @@ SilphCo6Text_1a24f:
 	done
 
 SilphCo6Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6Text_1a261
 	ld de, SilphCo6Text_1a266
 	call SilphCo6Script_1a22f
@@ -125,7 +127,8 @@ SilphCo6Text_1a266:
 	done
 
 SilphCo6Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6Text_1a278
 	ld de, SilphCo6Text_1a27d
 	call SilphCo6Script_1a22f
@@ -142,7 +145,8 @@ SilphCo6Text_1a27d:
 	done
 
 SilphCo6Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6Text_1a28f
 	ld de, SilphCo6Text_1a294
 	call SilphCo6Script_1a22f
@@ -159,7 +163,8 @@ SilphCo6Text_1a294:
 	done
 
 SilphCo6Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6Text_1a2a6
 	ld de, SilphCo6Text_1a2ab
 	call SilphCo6Script_1a22f
@@ -176,7 +181,8 @@ SilphCo6Text_1a2ab:
 	done
 
 SilphCo6Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -197,7 +203,8 @@ SilphCo6AfterBattleText2:
 	done
 
 SilphCo6Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -218,7 +225,8 @@ SilphCo6AfterBattleText3:
 	done
 
 SilphCo6Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd

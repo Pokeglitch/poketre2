@@ -55,7 +55,8 @@ SSAnne5Text3:
 	done
 
 SSAnne5Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne5TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -76,7 +77,8 @@ SSAnne5AfterBattleText1:
 	done
 
 SSAnne5Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne5TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd

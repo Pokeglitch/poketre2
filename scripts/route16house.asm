@@ -6,7 +6,8 @@ Route16HouseTextPointers:
 	dw Route16HouseText2
 
 Route16HouseText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_HM02
 	ld hl, HM02ExplanationText
 	jr nz, .asm_13616
@@ -46,7 +47,8 @@ HM02NoRoomText:
 	done
 
 Route16HouseText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route16HouseText_1e652
 	call PrintText
 	ld a, FEAROW

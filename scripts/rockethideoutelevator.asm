@@ -65,7 +65,8 @@ RocketHideoutElevatorTextPointers:
 	dw RocketHideoutElevatorText1
 
 RocketHideoutElevatorText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld b, LIFT_KEY
 	call IsItemInBag
 	jr z, .asm_45782

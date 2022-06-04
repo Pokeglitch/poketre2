@@ -749,7 +749,8 @@ OaksLabTextPointers2:
 	dw OaksLabText11
 
 OaksLabText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB_2
 	jr nz, .asm_1d0de
 	ld hl, OaksLabGaryText1
@@ -783,7 +784,8 @@ OaksLabText41:
 	done
 
 OaksLabText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, STARTER2
 	ld [wRivalStarterTemp], a
 	ld a, $3
@@ -793,7 +795,8 @@ OaksLabText2:
 	jr OaksLabScript_1d133
 
 OaksLabText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, STARTER3
 	ld [wRivalStarterTemp], a
 	ld a, $4
@@ -803,7 +806,8 @@ OaksLabText3:
 	jr OaksLabScript_1d133
 
 OaksLabText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, STARTER1
 	ld [wRivalStarterTemp], a
 	ld a, $2
@@ -959,7 +963,8 @@ OaksLabLastMonText:
 
 OaksLabText32:
 OaksLabText5:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	jr nz, .asm_1d266
 	ld hl, wPokedexOwned
@@ -1075,7 +1080,8 @@ OaksLabText_1d31d:
 
 OaksLabText7:
 OaksLabText6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabText_1d32c
 	call PrintText
 	jp TextScriptEnd
@@ -1091,7 +1097,8 @@ OaksLabText8:
 	done
 
 OaksLabText9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabText_1d340
 	call PrintText
 	jp TextScriptEnd
@@ -1102,7 +1109,8 @@ OaksLabText_1d340:
 	done
 
 OaksLabText17:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalWaitingText
 	call PrintText
 	jp TextScriptEnd
@@ -1113,7 +1121,8 @@ OaksLabRivalWaitingText:
 	done
 
 OaksLabText18:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabChooseMonText
 	call PrintText
 	jp TextScriptEnd
@@ -1124,7 +1133,8 @@ OaksLabChooseMonText:
 	done
 
 OaksLabText19:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalInterjectionText
 	call PrintText
 	jp TextScriptEnd
@@ -1135,7 +1145,8 @@ OaksLabRivalInterjectionText:
 	done
 
 OaksLabText20:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabBePatientText
 	call PrintText
 	jp TextScriptEnd
@@ -1146,7 +1157,8 @@ OaksLabBePatientText:
 	done
 
 OaksLabText12:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabLeavingText
 	call PrintText
 	jp TextScriptEnd
@@ -1157,7 +1169,8 @@ OaksLabLeavingText:
 	done
 
 OaksLabText13:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalPickingMonText
 	call PrintText
 	jp TextScriptEnd
@@ -1168,7 +1181,8 @@ OaksLabRivalPickingMonText:
 	done
 
 OaksLabText14:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalReceivedMonText
 	call PrintText
 	jp TextScriptEnd
@@ -1180,7 +1194,8 @@ OaksLabRivalReceivedMonText:
 	done
 
 OaksLabText15:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalChallengeText
 	call PrintText
 	jp TextScriptEnd
@@ -1201,7 +1216,8 @@ OaksLabText_1d3c3:
 	done
 
 OaksLabText16:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabRivalToughenUpText
 	call PrintText
 	jp TextScriptEnd
@@ -1249,7 +1265,8 @@ OaksLabText27:
 
 OaksLabText11:
 OaksLabText10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, OaksLabText_1d405
 	call PrintText
 	jp TextScriptEnd

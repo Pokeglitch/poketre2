@@ -114,7 +114,8 @@ RocketHideout4TrainerHeader2:
 	db $ff
 
 RocketHideout4Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
 	jp nz, .asm_545571
 	ld hl, RocketHideout4Text_4557a
@@ -157,7 +158,8 @@ RocketHideout4Text10:
 	done
 
 RocketHideout4Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -178,7 +180,8 @@ RocketHideout4AfterBattleText2:
 	done
 
 RocketHideout4Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -199,7 +202,8 @@ RocketHideout4AfterBattleText3:
 	done
 
 RocketHideout4Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout4TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -215,7 +219,8 @@ RocketHideout4EndBattleText4:
 	done
 
 RocketHideout4AfterBattleText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout4Text_455ec
 	call PrintText
 	CheckAndSetEvent EVENT_ROCKET_DROPPED_LIFT_KEY

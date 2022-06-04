@@ -134,7 +134,8 @@ VermilionCityText1:
 	done
 
 VermilionCityText2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .asm_1989e
 	ld hl, VermilionCityText_198a7
@@ -157,7 +158,8 @@ VermilionCityText_198ac:
 	done
 
 VermilionCityText3:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .asm_198f6
 	ld a, [wSpriteStateData1 + 9]

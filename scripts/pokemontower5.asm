@@ -101,7 +101,8 @@ PokemonTower5Text1:
 	done
 
 PokemonTower5Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower5TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -122,7 +123,8 @@ PokemonTower5AfterBattleText1:
 	done
 
 PokemonTower5Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower5TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -143,7 +145,8 @@ PokemonTower5AfterBattleText2:
 	done
 
 PokemonTower5Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower5TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -164,7 +167,8 @@ PokemonTower5AfterBattleText3:
 	done
 
 PokemonTower5Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower5TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd

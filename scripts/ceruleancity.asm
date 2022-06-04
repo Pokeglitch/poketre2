@@ -247,7 +247,8 @@ CeruleanCityTextPointers:
 	dw CeruleanCityText17
 
 CeruleanCityText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_CERULEAN_RIVAL
 	; do pre-battle text
 	jr z, .PreBattleText
@@ -282,7 +283,8 @@ CeruleanCityText_19677:
 	done
 
 CeruleanCityText2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_CERULEAN_ROCKET_THIEF
 	jr nz, .asm_4ca20
 	ld hl, CeruleanCityText_196d9
@@ -368,7 +370,8 @@ CeruleanCityText6:
 	done
 
 CeruleanCityText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [hRandomAdd]
 	cp 180
 	jr c, .asm_e9fc9
@@ -403,7 +406,8 @@ CeruleanCityText_1973a:
 	done
 
 CeruleanCityText8:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [hRandomAdd]
 	cp 180
 	jr c, .asm_e28da

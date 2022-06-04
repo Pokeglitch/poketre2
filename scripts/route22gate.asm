@@ -57,7 +57,8 @@ Route22GateTextPointers:
 	dw Route22GateText1
 
 Route22GateText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wObtainedBadges]
 	bit 0, a
 	jr nz, .asm_1e6f6

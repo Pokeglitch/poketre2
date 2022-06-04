@@ -69,31 +69,36 @@ SSAnne9TrainerHeader3:
 	db $ff
 
 SSAnne9Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne9Text5:
-	TX_ASM
+	text ""
+	asmtext
 	call SaveScreenTilesToBuffer1
 	ld hl, SSAnne9Text_61bf2
 	call PrintText
@@ -108,7 +113,8 @@ SSAnne9Text_61bf2:
 	done
 
 SSAnne9Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c01
 	call PrintText
 	jp TextScriptEnd
@@ -119,7 +125,8 @@ SSAnne9Text_61c01:
 	done
 
 SSAnne9Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c10
 	call PrintText
 	jp TextScriptEnd
@@ -130,7 +137,8 @@ SSAnne9Text_61c10:
 	done
 
 SSAnne9Text10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c1f
 	call PrintText
 	jp TextScriptEnd
@@ -141,7 +149,8 @@ SSAnne9Text_61c1f:
 	done
 
 SSAnne9Text11:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c2e
 	call PrintText
 	jp TextScriptEnd
@@ -152,7 +161,8 @@ SSAnne9Text_61c2e:
 	done
 
 SSAnne9Text12:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c3d
 	call PrintText
 	jp TextScriptEnd
@@ -163,7 +173,8 @@ SSAnne9Text_61c3d:
 	done
 
 SSAnne9Text13:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne9Text_61c4c
 	call PrintText
 	jp TextScriptEnd

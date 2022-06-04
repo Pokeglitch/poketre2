@@ -140,7 +140,8 @@ FuchsiaGymTrainerHeader5:
 	db $ff
 
 FuchsiaGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_KOGA
 	jr z, .asm_181b6
 	CheckEventReuseA EVENT_GOT_TM06
@@ -210,7 +211,8 @@ FuchsiaGymText11:
 	done
 
 FuchsiaGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -231,7 +233,8 @@ FuchsiaGymAfterBattleText1:
 	done
 
 FuchsiaGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -252,7 +255,8 @@ FuchsiaGymAfterBattleText2:
 	done
 
 FuchsiaGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -273,7 +277,8 @@ FuchsiaGymAfterBattleText3:
 	done
 
 FuchsiaGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -294,7 +299,8 @@ FuchsiaGymAfterBattleText4:
 	done
 
 FuchsiaGymText6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -315,7 +321,8 @@ FuchsiaGymAfterBattleText5:
 	done
 
 FuchsiaGymText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -336,7 +343,8 @@ FuchsiaGymAfterBattleText6:
 	done
 
 FuchsiaGymText8:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_KOGA
 	ld hl, FuchsiaGymText_75653
 	jr nz, .asm_50671

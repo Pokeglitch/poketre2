@@ -247,7 +247,8 @@ GaryTextPointers:
 	dw GaryText5
 
 GaryText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
 	ld hl, GaryChampionIntroText
 	jr z, .printText
@@ -282,7 +283,8 @@ GaryText2:
 	done
 
 GaryText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wPlayerStarter]
 	ld [wd11e], a
 	call GetMonName

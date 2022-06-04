@@ -100,7 +100,8 @@ CeruleanGymTrainerHeader1:
 	db $ff
 
 CeruleanGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_MISTY
 	jr z, .asm_5c78d
 	CheckEventReuseA EVENT_GOT_TM11
@@ -168,7 +169,8 @@ CeruleanGymText_5c7d8:
 	done
 
 CeruleanGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeruleanGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -189,7 +191,8 @@ CeruleanGymAfterBattleText1:
 	done
 
 CeruleanGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeruleanGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -210,7 +213,8 @@ CeruleanGymAfterBattleText2:
 	done
 
 CeruleanGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_MISTY
 	jr nz, .asm_5c821
 	ld hl, CeruleanGymText_5c82a

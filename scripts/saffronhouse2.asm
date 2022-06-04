@@ -5,7 +5,8 @@ SaffronHouse2TextPointers:
 	dw SaffronHouse2Text1
 
 SaffronHouse2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM29
 	jr nz, .asm_9e72b
 	ld hl, TM29PreReceiveText

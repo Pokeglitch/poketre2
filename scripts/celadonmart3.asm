@@ -21,7 +21,8 @@ CeladonMart3TextPointers:
 	dw CeladonMart3Text17
 
 CeladonMart3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM18
 	jr nz, .asm_a5463
 	ld hl, TM18PreReceiveText

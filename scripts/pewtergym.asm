@@ -99,7 +99,8 @@ PewterGymTrainerHeader0:
 	db $ff
 
 PewterGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_BROCK
 	jr z, .asm_5c46a
 	CheckEventReuseA EVENT_GOT_TM34
@@ -169,7 +170,8 @@ PewterGymText_5c4bc:
 	done
 
 PewterGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PewterGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -190,7 +192,8 @@ PewterGymAfterBattleText1:
 	done
 
 PewterGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wBeatGymFlags]
 	bit 0, a
 	jr nz, .asm_5c50c

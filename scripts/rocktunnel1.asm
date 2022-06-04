@@ -88,37 +88,44 @@ RockTunnel1TrainerHeader6:
 	db $ff
 
 RockTunnel1Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader0
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader1
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader2
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader3
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader4
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader5
 	jr RockTunnel1TalkToTrainer
 
 RockTunnel1Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RockTunnel1TrainerHeader6
 RockTunnel1TalkToTrainer:
 	call TalkToTrainer

@@ -90,13 +90,15 @@ Mansion4TrainerHeader1:
 	db $ff
 
 Mansion4Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Mansion4TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Mansion4Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Mansion4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd

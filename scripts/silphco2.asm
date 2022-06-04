@@ -137,7 +137,8 @@ SilphCo2TrainerHeader3:
 	db $ff
 
 SilphCo2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM36
 	jr nz, .asm_59de4
 	ld hl, SilphCo2Text_59ded
@@ -177,25 +178,29 @@ TM36NoRoomText:
 	done
 
 SilphCo2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo2TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo2Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd

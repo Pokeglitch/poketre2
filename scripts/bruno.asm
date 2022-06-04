@@ -129,7 +129,8 @@ BrunoTrainerHeader0:
 	db $ff
 
 BrunoText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, BrunoTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

@@ -47,7 +47,8 @@ FossilsList:
 	db $00
 
 Lab4Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GAVE_FOSSIL_TO_LAB
 	jr nz, .asm_75d96
 	ld hl, Lab4Text_75dc6
@@ -103,7 +104,8 @@ Lab4Text_75dd5:
 	done
 
 Lab4Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $3
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue

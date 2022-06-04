@@ -94,43 +94,50 @@ MtMoon1TrainerHeader6:
 	db $ff
 
 MtMoon1Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 MtMoon1Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, MtMoon1TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd

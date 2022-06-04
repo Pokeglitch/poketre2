@@ -75,7 +75,8 @@ BookshelfTileIDs:
 	db $FF
 
 IndigoPlateauStatues:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, IndigoPlateauStatuesText1
 	call PrintText
 	ld a, [wXCoord]
@@ -103,7 +104,8 @@ IndigoPlateauStatuesText3:
 	done
 
 BookOrSculptureText:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonBooksText
 	ld a, [wCurMapTileset]
 	cp MANSION ; Celadon Mansion tileset

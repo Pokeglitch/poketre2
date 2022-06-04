@@ -234,25 +234,29 @@ PokemonTower7TrainerHeader2:
 	db $ff
 
 PokemonTower7Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower7TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower7FujiText:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, TowerRescueFujiText
 	call PrintText
 	SetEvent EVENT_RESCUED_MR_FUJI

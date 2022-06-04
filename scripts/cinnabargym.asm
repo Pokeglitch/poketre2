@@ -205,7 +205,8 @@ CinnabarGymScript_758b7:
 	jp TextScriptEnd
 
 CinnabarGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_BLAINE
 	jr z, .asm_d9332
 	CheckEventReuseA EVENT_GOT_TM38
@@ -262,7 +263,8 @@ TM38NoRoomText:
 	done
 
 CinnabarGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_0
 	jr nz, .asm_46bb4
@@ -293,7 +295,8 @@ CinnabarGymText_75969:
 	done
 
 CinnabarGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_1
 	jr nz, .asm_4b406
@@ -324,7 +327,8 @@ CinnabarGymText_7599e:
 	done
 
 CinnabarGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_2
 	jr nz, .asm_c0673
@@ -355,7 +359,8 @@ CinnabarGymText_759d3:
 	done
 
 CinnabarGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_3
 	jr nz, .asm_5cfd7
@@ -386,7 +391,8 @@ CinnabarGymText_75a08:
 	done
 
 CinnabarGymText6:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_4
 	jr nz, .asm_776b4
@@ -417,7 +423,8 @@ CinnabarGymText_75a3d:
 	done
 
 CinnabarGymText7:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_5
 	jr nz, .asm_2f755
@@ -448,7 +455,8 @@ CinnabarGymText_75a72:
 	done
 
 CinnabarGymText8:
-	TX_ASM
+	text ""
+	asmtext
 	call CinnabarGymScript_757a0
 	CheckEvent EVENT_BEAT_CINNABAR_GYM_TRAINER_6
 	jr nz, .asm_d87be
@@ -479,7 +487,8 @@ CinnabarGymText_75aa7:
 	done
 
 CinnabarGymText9:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_BLAINE
 	jr nz, .asm_627d9
 	ld hl, CinnabarGymText_75ac2

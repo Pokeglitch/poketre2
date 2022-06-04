@@ -17,7 +17,8 @@ PewterPokecenterText2:
 	done
 
 PewterJigglypuffText:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, .Text

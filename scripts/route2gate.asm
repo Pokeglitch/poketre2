@@ -6,7 +6,8 @@ Route2GateTextPointers:
 	dw Route2GateText2
 
 Route2GateText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_HM05
 	jr nz, .asm_5d60d
 	ld a, 10 ; pokemon needed

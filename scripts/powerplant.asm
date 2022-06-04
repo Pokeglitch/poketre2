@@ -118,47 +118,56 @@ InitVoltorbBattle:
 	jp TextScriptEnd
 
 Voltorb0Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb0TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb1Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb1TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb2Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb2TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb3Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb3TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb4Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb4TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb5Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb5TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb6Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb6TrainerHeader
 	jr InitVoltorbBattle
 
 Voltorb7Text:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Voltorb7TrainerHeader
 	jr InitVoltorbBattle
 
 ZapdosText:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ZapdosTrainerHeader
 	jr InitVoltorbBattle
 

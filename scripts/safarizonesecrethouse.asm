@@ -5,7 +5,8 @@ SafariZoneSecretHouseTextPointers:
 	dw SafariZoneSecretHouseText1
 
 SafariZoneSecretHouseText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_HM03
 	jr nz, .asm_20a9b
 	ld hl, SafariZoneSecretHouseText_4a350

@@ -8,7 +8,8 @@ CeruleanHouseTrashedTextPointers:
 	dw CeruleanHouseTrashedText3
 
 CeruleanHouseTrashedText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld b, $e4
 	predef GetQuantityOfItemInBag
 	and b

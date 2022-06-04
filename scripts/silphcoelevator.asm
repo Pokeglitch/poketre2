@@ -81,7 +81,8 @@ SilphCoElevatorTextPointers:
 	dw SilphCoElevatorText1
 
 SilphCoElevatorText1:
-	TX_ASM
+	text ""
+	asmtext
 	call SilphCoElevatorScript_457f1
 	ld hl, SilphCoElevatorWarpMaps
 	predef DisplayElevatorFloorMenu

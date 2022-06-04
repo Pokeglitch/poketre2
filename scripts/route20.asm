@@ -168,61 +168,71 @@ Route20TrainerHeader9:
 	db $ff
 
 Route20Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader8
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route20Text10:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route20TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd

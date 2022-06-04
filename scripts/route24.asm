@@ -142,7 +142,8 @@ Route24TrainerHeader5:
 	db $ff
 
 Route24Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ResetEvent EVENT_NUGGET_REWARD_AVAILABLE
 	CheckEvent EVENT_GOT_NUGGET
 	jr nz, .asm_514f9
@@ -217,37 +218,43 @@ Route24Text_51530:
 	done
 
 Route24Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 Route24Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route24TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd

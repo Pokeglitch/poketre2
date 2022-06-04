@@ -432,7 +432,8 @@ RocketHideout2TrainerHeader0:
 	db $ff
 
 RocketHideout2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout2TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

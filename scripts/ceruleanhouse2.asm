@@ -9,7 +9,8 @@ CeruleanHouse2TextPointers:
 	dw CeruleanHouse2Text1
 
 CeruleanHouse2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, CeruleanHouse2Text_74e77
 	call PrintText
 	xor a

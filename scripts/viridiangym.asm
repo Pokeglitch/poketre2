@@ -259,7 +259,8 @@ ViridianGymTrainerHeader7:
 	db $ff
 
 ViridianGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	jr z, .asm_6de66
 	CheckEventReuseA EVENT_GOT_TM27
@@ -338,7 +339,8 @@ ViridianGymText14:
 	done
 
 ViridianGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -359,7 +361,8 @@ ViridianGymAfterBattleText1:
 	done
 
 ViridianGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -380,7 +383,8 @@ ViridianGymAfterBattleText2:
 	done
 
 ViridianGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -401,7 +405,8 @@ ViridianGymAfterBattleText3:
 	done
 
 ViridianGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -422,7 +427,8 @@ ViridianGymAfterBattleText4:
 	done
 
 ViridianGymText6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -443,7 +449,8 @@ ViridianGymAfterBattleText5:
 	done
 
 ViridianGymText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -464,7 +471,8 @@ ViridianGymAfterBattleText6:
 	done
 
 ViridianGymText8:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -485,7 +493,8 @@ ViridianGymAfterBattleText7:
 	done
 
 ViridianGymText9:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ViridianGymTrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -506,7 +515,8 @@ ViridianGymAfterBattleText8:
 	done
 
 ViridianGymText10:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	jr nz, .asm_1abd1
 	ld hl, ViridianGymText_74bd4

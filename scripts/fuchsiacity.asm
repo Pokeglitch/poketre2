@@ -84,7 +84,8 @@ FuchsiaCityText18:
 	done
 
 FuchsiaCityText19:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaCityChanseyText
 	call PrintText
 	ld a, CHANSEY
@@ -97,7 +98,8 @@ FuchsiaCityChanseyText:
 	done
 
 FuchsiaCityText20:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaCityVoltorbText
 	call PrintText
 	ld a, VOLTORB
@@ -110,7 +112,8 @@ FuchsiaCityVoltorbText:
 	done
 
 FuchsiaCityText21:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaCityKangaskhanText
 	call PrintText
 	ld a, KANGASKHAN
@@ -123,7 +126,8 @@ FuchsiaCityKangaskhanText:
 	done
 
 FuchsiaCityText22:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaCitySlowpokeText
 	call PrintText
 	ld a, SLOWPOKE
@@ -136,7 +140,8 @@ FuchsiaCitySlowpokeText:
 	done
 
 FuchsiaCityText23:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, FuchsiaCityLaprasText
 	call PrintText
 	ld a, LAPRAS
@@ -149,7 +154,8 @@ FuchsiaCityLaprasText:
 	done
 
 FuchsiaCityText24:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_DOME_FOSSIL
 	jr nz, .asm_3b4e8
 	CheckEventReuseA EVENT_GOT_HELIX_FOSSIL

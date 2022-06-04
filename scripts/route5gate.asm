@@ -69,7 +69,8 @@ Route8GateText1:
 Route7GateText1:
 Route6GateText1:
 Route5GateText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd728]
 	bit 6, a
 	jr nz, .asm_88856

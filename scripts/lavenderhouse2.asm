@@ -15,7 +15,8 @@ LavenderHouse2Text1:
 	jp TextScriptEnd
 
 LavenderHouse2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_65711
 	ld hl, LavenderHouse2Text_1d9dc

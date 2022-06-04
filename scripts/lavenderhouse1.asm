@@ -11,7 +11,8 @@ LavenderHouse1TextPointers:
 	dw LavenderHouse1Text6
 
 LavenderHouse1Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_72e5d
 	ld hl, LavenderHouse1Text_1d8d1
@@ -34,7 +35,8 @@ LavenderHouse1Text_1d8d6:
 	done
 
 LavenderHouse1Text2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .asm_06470
 	ld hl, LavenderHouse1Text_1d8f4
@@ -73,7 +75,8 @@ LavenderHouse1Text4:
 	jp TextScriptEnd
 
 LavenderHouse1Text5:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_POKE_FLUTE
 	jr nz, .asm_15ac2
 	ld hl, LavenderHouse1Text_1d94c

@@ -159,7 +159,8 @@ SilphCo9TrainerHeader2:
 	db $ff
 
 SilphCo9Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr nz, .asm_5d8dc
 	ld hl, SilphCo9Text_5d8e5
@@ -193,19 +194,22 @@ SilphCo9Text_5d8ef:
 	done
 
 SilphCo9Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo9TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo9Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo9TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SilphCo9Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SilphCo9TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd

@@ -82,37 +82,43 @@ SSAnne10TrainerHeader5:
 	db $ff
 
 SSAnne10Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne10Text6:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne10TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd

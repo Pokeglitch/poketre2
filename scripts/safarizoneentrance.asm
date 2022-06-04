@@ -270,7 +270,8 @@ SafariZoneEntranceTextPointers:
 	done
 
 .SafariZoneEntranceText2
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, .FirstTimeQuestionText
 	call PrintText
 	call YesNoChoice

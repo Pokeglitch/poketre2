@@ -11,7 +11,8 @@ CopycatsHouse2FTextPointers:
 	dw CopycatsHouse2FText7
 
 CopycatsHouse2FText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TM31
 	jr nz, .asm_7ccf3
 	ld a, $1
@@ -93,7 +94,8 @@ CopycatsHouse2FText6:
 	done
 
 CopycatsHouse2FText7:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wSpriteStateData1 + 9]
 	cp SPRITE_FACING_UP
 	ld hl, CopycatsHouse2FText_5cd1c

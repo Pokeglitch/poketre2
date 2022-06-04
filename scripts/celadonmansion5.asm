@@ -11,7 +11,8 @@ CeladonMansion5Text1:
 	done
 
 CeladonMansion5Text2:
-	TX_ASM
+	text ""
+	asmtext
 	lb bc, EEVEE, 25
 	call GivePokemon
 	jr nc, .asm_24365

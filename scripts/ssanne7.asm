@@ -15,7 +15,8 @@ SSAnne7TextPointers:
 	dw SSAnne7Text3
 
 SSAnne7Text1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_HM01
 	jr nz, .asm_797c4
 	ld hl, SSAnne7RubText

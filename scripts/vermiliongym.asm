@@ -129,7 +129,8 @@ VermilionGymTrainerHeader2:
 	db $ff
 
 VermilionGymText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_BEAT_LT_SURGE
 	jr z, .asm_5cb39
 	CheckEventReuseA EVENT_GOT_TM24
@@ -197,7 +198,8 @@ ReceivedThunderbadgeText:
 	done
 
 VermilionGymText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VermilionGymTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -218,7 +220,8 @@ VermilionGymAfterBattleText1:
 	done
 
 VermilionGymText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VermilionGymTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -239,7 +242,8 @@ VermilionGymAfterBattleText2:
 	done
 
 VermilionGymText4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VermilionGymTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -260,7 +264,8 @@ VermilionGymAfterBattleText3:
 	done
 
 VermilionGymText5:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wBeatGymFlags]
 	bit 2, a
 	jr nz, .asm_5cbeb

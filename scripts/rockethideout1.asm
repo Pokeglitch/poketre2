@@ -92,31 +92,36 @@ RocketHideout1TrainerHeader4:
 	db $ff
 
 RocketHideout1Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout1TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout1TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout1TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
 RocketHideout1Text5:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, RocketHideout1TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd

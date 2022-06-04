@@ -7,7 +7,8 @@ BikeShopTextPointers:
 	dw BikeShopText3
 
 BikeShopText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_BICYCLE
 	jr z, .asm_260d4
 	ld hl, BikeShopText_1d82f
@@ -127,7 +128,8 @@ BikeShopText_1d834:
 	done
 
 BikeShopText2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, BikeShopText_1d843
 	call PrintText
 	jp TextScriptEnd
@@ -138,7 +140,8 @@ BikeShopText_1d843:
 	done
 
 BikeShopText3:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_BICYCLE
 	ld hl, BikeShopText_1d861
 	jr nz, .asm_34d2d

@@ -64,25 +64,29 @@ SSAnne8TrainerHeader3:
 	db $ff
 
 SSAnne8Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne8TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne8Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne8TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne8Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne8TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 SSAnne8Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, SSAnne8TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd

@@ -23,7 +23,8 @@ FanClubTextPointers:
 
 FanClubText1:
 ; pikachu fan
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_PIKACHU_FAN_BOAST
 	jr nz, .mineisbetter
 	ld hl, .normaltext
@@ -49,7 +50,8 @@ FanClubText1:
 
 FanClubText2:
 ; seel fan
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_SEEL_FAN_BOAST
 	jr nz, .mineisbetter
 	ld hl, .normaltext
@@ -75,7 +77,8 @@ FanClubText2:
 
 FanClubText3:
 ; pikachu
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, .text
 	call PrintText
 	ld a, PIKACHU
@@ -90,7 +93,8 @@ FanClubText3:
 
 FanClubText4:
 ; seel
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, .text
 	call PrintText
 	ld a, SEEL
@@ -105,7 +109,8 @@ FanClubText4:
 
 FanClubText5:
 ; chair
-	TX_ASM
+	text ""
+	asmtext
 	call FanClubBikeInBag
 	jr nz, .nothingleft
 

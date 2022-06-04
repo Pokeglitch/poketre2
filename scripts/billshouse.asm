@@ -125,7 +125,8 @@ BillsHouseText4:
 	TX_BILLS_PC
 
 BillsHouseText1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, BillsHouseText_1e865
 	call PrintText
 	call YesNoChoice
@@ -161,7 +162,8 @@ BillsHouseText_1e86f:
 	done
 
 BillsHouseText2:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_SS_TICKET
 	jr nz, .asm_1e8a9
 	ld hl, BillThankYouText
@@ -211,7 +213,8 @@ BillsHouseText_1e8cb:
 	done
 
 BillsHouseText3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, BillsHouseText_1e8da
 	call PrintText
 	jp TextScriptEnd

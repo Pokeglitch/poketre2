@@ -133,25 +133,29 @@ PokemonTower6TrainerHeader2:
 	db $ff
 
 PokemonTower6Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower6TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 PokemonTower6Text7:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, PokemonTower2Text_60c1f
 	call PrintText
 	ld a, MAROWAK

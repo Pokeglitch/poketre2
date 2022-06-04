@@ -149,7 +149,8 @@ ArticunoTrainerHeader:
 	db $ff
 
 ArticunoText:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, ArticunoTrainerHeader
 	call TalkToTrainer
 	ld a, $4

@@ -125,25 +125,29 @@ VictoryRoad3TrainerHeader3:
 	db $ff
 
 VictoryRoad3Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 VictoryRoad3Text4:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, VictoryRoad3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd

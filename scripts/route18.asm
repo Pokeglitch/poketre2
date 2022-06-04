@@ -49,7 +49,8 @@ Route18TrainerHeader2:
 	db $ff
 
 Route18Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route18TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -70,7 +71,8 @@ Route18AfterBattleText1:
 	done
 
 Route18Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route18TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
@@ -91,7 +93,8 @@ Route18AfterBattleText2:
 	done
 
 Route18Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld hl, Route18TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd

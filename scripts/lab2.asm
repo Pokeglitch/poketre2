@@ -12,13 +12,15 @@ Lab2Text1:
 	done
 
 Lab2Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $7
 	ld [wWhichTrade], a
 	jr Lab2DoTrade
 
 Lab2Text3:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $8
 	ld [wWhichTrade], a
 Lab2DoTrade:

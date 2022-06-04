@@ -12,7 +12,8 @@ LavenderMartText2:
 	done
 
 LavenderMartText3:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_RESCUED_MR_FUJI
 	jr nz, .Nugget
 	ld hl, .ReviveText

@@ -5,7 +5,8 @@ VermilionHouse2TextPointers:
 	dw VermilionHouse2Text1
 
 VermilionHouse2Text1:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, [wd728]
 	bit 3, a
 	jr nz, .asm_03ef5

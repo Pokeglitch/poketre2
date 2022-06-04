@@ -11,7 +11,8 @@ CeruleanHouse1Text1:
 	done
 
 CeruleanHouse1Text2:
-	TX_ASM
+	text ""
+	asmtext
 	ld a, $6
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue
