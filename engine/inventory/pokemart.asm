@@ -393,14 +393,14 @@ QuantityMenuSellItemString:
 	done
 
 QuantityMenuSelectionString:
-	numtext wItemQuantity, 3, 1 ; 3 digits, 1 byte
+	numtext wItemQuantity, 3, 1 | RIGHT_ALIGN ; 3 digits, 1 byte
 	db " for "
 	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
 	done
 
 QuantityMenuConfirmString:
 	db "x"
-	numtext wItemQuantity, 3, 1 | LEFT_ALIGN ; 3 digits, 1 byte
+	numtext wItemQuantity, 3, 1 ; 3 digits, 1 byte
 	db " for "
 	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
 	db "?"

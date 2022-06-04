@@ -130,6 +130,7 @@ PrintNumberCommand:
 
 	ld c, a
 	and %11000111 ; num bytes & flags
+	xor RIGHT_ALIGN ; toggle the alignment flag
 	ld b, a
 
 	ld a, c
