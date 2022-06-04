@@ -322,8 +322,12 @@ TextCommandProcessor::
 	push af
 	ld a, [hl]
 	cp TEXTBOX_DEF
-	jr z, .handleText
+	jr nz, .notCustomTextbox
+	inc hl
+	ld a, [hli]
+	jr .initializeTextbox
 
+.notCustomTextbox
 	ld a, [hWY]
 	and a
 	jr nz, .notFullscreen
@@ -339,6 +343,8 @@ TextCommandProcessor::
 	jr c, .resetTextbox
 
 	ld a, NO_WORD_WRAP | BLACK_ON_WHITE | LINES_2
+
+.initializeTextbox
 	call InitializeTextbox
 	jr .handleText
 
@@ -361,27 +367,7 @@ TextCommandProcessor_NoInit::
 	ld a, b
 	ld [wTextDest + 1], a
 	push bc
-	;fall through
 
-NextTextCommand::
-	ld a, [hli]
-	cp TEXT_END ; terminator
-	jr nz, .doTextCommand
-	pop bc
-	ret
-.doTextCommand
-	cp TEXTBOX_DEF
-	jp nz, .notTextboxDefinition
-	
-	ld a, [hli]
-	call InitializeTextbox
-	
-.notTextboxDefinition
-	jp TextCommand00
-
-; place string inline
-; 00{string}
-TextCommand00::
 	ld d, h
 	ld e, l
 	ld h, b
@@ -390,10 +376,9 @@ TextCommand00::
 	ld h, d
 	ld l, e
 	inc hl
-	jr NextTextCommand
-
-TextboxDefinitionCommand:
-	jp NextTextCommand
+	
+	pop bc
+	ret
 
 ; Check if the next word should be wrapped
 ; no carry = print
