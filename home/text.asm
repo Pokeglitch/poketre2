@@ -495,22 +495,6 @@ TextCommand09::
 	pop hl
 	jp NextTextCommand
 
-; wait half a second if the user doesn't hold A or B
-; 0A
-; (no arguments)
-TextCommand0A::
-	push bc
-	call Joypad
-	ld a, [hJoyHeld]
-	and A_BUTTON | B_BUTTON
-	jr nz, .skipDelay
-	ld c, 30
-	call DelayFrames
-.skipDelay
-	pop bc
-	pop hl
-	jp NextTextCommand
-
 TextboxDefinitionCommand:
 	pop hl
 	ld a, [hli]
@@ -551,7 +535,7 @@ TextCommandJumpTable::
 	dw $0000
 	dw TextCommand08
 	dw TextCommand09
-	dw TextCommand0A
+	dw $0000
 	dw $0000
 	dw $0000
 	dw $0000

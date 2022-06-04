@@ -267,7 +267,7 @@ TradedForText:
 	text ""
 	fartext _TradedForText
 	sfxtext SFX_GET_KEY_ITEM
-	TX_DELAY
+	delaytext
 	done
 
 WannaTrade1Text:

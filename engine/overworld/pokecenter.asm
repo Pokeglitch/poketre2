@@ -46,9 +46,10 @@ PokemonCenterWelcomeText:
 	db "@"
 
 ShallWeHealYourPokemonText:
-	TX_DELAY
-	TX_FAR _ShallWeHealYourPokemonText
-	db "@"
+	text ""
+	delaytext
+	fartext _ShallWeHealYourPokemonText
+	done
 
 NeedYourPokemonText:
 	TX_FAR _NeedYourPokemonText
@@ -59,6 +60,7 @@ PokemonFightingFitText:
 	db "@"
 
 PokemonCenterFarewellText:
-	TX_DELAY
-	TX_FAR _PokemonCenterFarewellText
-	db "@"
+	text ""
+	delaytext
+	fartext _PokemonCenterFarewellText
+	done

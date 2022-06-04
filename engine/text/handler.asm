@@ -97,7 +97,8 @@ PlaceNestedString:
 
 StringCommandTable:
     dbw " ", SpaceCommand ; space
-    dbw TEXT_WAIT, WaitCommand ; space
+    dbw TEXT_WAIT, WaitCommand ; wait
+	dbw DELAY_TEXT, DelayCommand ; delay
     dbw NEXT_TEXT_LINE, NextLineCommand ; next
     dbw NEXT_TEXT_LINE_2, NextLineCommand ; line
 	dbw AUTO_CONTINUE_TEXT, AutoContinueTextCommand ; autocont
@@ -394,6 +395,19 @@ DotsText::
 
 PKMNText::
 	db $E1,$E2,"@" ; PKMN
+
+DelayCommand: ; delay
+	push de
+	call Joypad
+	ld a, [hJoyHeld]
+	and A_BUTTON | B_BUTTON
+	jr nz, .skipDelay
+	ld c, 30
+	call DelayFrames
+.skipDelay
+	pop de
+	pop hl
+	jp ReturnAndPlaceNextChar
 
 DrawOptionBox:
 	call GetStartOfBottomRow

@@ -207,8 +207,10 @@ TryingToLearnText:
 	db "@"
 
 OneTwoAndText:
-	TX_FAR _OneTwoAndText
-	TX_DELAY
+	text ""
+	fartext _OneTwoAndText
+	delaytext
+	endtext
 	TX_ASM
 	ld a, SFX_SWAP
 	call PlaySoundWaitForCurrent
@@ -216,11 +218,14 @@ OneTwoAndText:
 	ret
 
 PoofText:
-	TX_FAR _PoofText
-	TX_DELAY
+	text ""
+	fartext _PoofText
+	delaytext
+
 ForgotAndText:
-	TX_FAR _ForgotAndText
-	db "@"
+	text ""
+	fartext _ForgotAndText
+	done
 
 HMCantDeleteText:
 	TX_FAR _HMCantDeleteText

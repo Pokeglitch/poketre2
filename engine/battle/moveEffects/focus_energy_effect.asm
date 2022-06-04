@@ -17,6 +17,7 @@ FocusEnergyEffect_:
 	jpab PrintButItFailedText_
 
 GettingPumpedText:
-	TX_DELAY
-	TX_FAR _GettingPumpedText
-	db "@"
+	text ""
+	delaytext
+	fartext _GettingPumpedText
+	done

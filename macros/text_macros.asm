@@ -7,6 +7,7 @@ text     EQUS "db TEXT_INIT," ; Start writing text.
 ramtext  EQUS "dbw RAM_TEXT,"
 neartext EQUS "dbw NEAR_TEXT,"
 textasm  EQUS "db TEXT_ASM"
+delaytext EQUS "db DELAY_TEXT"
 textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
 cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
 autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
@@ -97,8 +98,6 @@ TX_NUM: MACRO
 	dw \1
 	db \2 << 4 | \3
 ENDM
-
-TX_DELAY              EQUS "db $0a"
 
 TX_FAR: MACRO
 	db $17

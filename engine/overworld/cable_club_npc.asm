@@ -122,9 +122,10 @@ CableClubNPCPleaseApplyHereHaveToSaveText:
 	db "@"
 
 CableClubNPCPleaseWaitText:
-	TX_FAR _CableClubNPCPleaseWaitText
-	TX_DELAY
-	db "@"
+	text ""
+	fartext _CableClubNPCPleaseWaitText
+	delaytext
+	done
 
 CableClubNPCLinkClosedBecauseOfInactivityText:
 	TX_FAR _CableClubNPCLinkClosedBecauseOfInactivityText

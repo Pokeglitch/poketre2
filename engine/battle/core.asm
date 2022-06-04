@@ -7632,12 +7632,14 @@ MonsStatsRoseText:
 	ret
 
 GreatlyRoseText:
-	TX_DELAY
-	TX_FAR _GreatlyRoseText
+	text ""
+	delaytext
+	fartext _GreatlyRoseText
 ; fallthrough
 RoseText:
-	TX_FAR _RoseText
-	db "@"
+	text ""
+	fartext _RoseText
+	done
 
 StatModifierDownEffect:
 	ld hl, wEnemyMonStatMods
@@ -7837,12 +7839,14 @@ MonsStatsFellText:
 	ret
 
 GreatlyFellText:
-	TX_DELAY
-	TX_FAR _GreatlyFellText
+	text ""
+	delaytext
+	fartext _GreatlyFellText
 ; fallthrough
 FellText:
-	TX_FAR _FellText
-	db "@"
+	text ""
+	fartext _FellText
+	done
 
 PrintStatText:
 	ld hl, StatsTextStrings

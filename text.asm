@@ -349,7 +349,8 @@ _NotThisTimeText::
 	prompt
 
 _YeahText::
-	text "Yeah!@@"
+	text "Yeah!"
+	done
 
 _DexSeenOwnedText::
 	text "POKéDEX   Seen:@"
@@ -2068,7 +2069,9 @@ _MonsStatsRoseText::
 	text "@@"
 
 _GreatlyRoseText::
-	text $4c, "greatly@@"
+	text ""
+	autocont "greatly"
+	done
 
 _RoseText::
 	text " rose!"
@@ -2081,7 +2084,9 @@ _MonsStatsFellText::
 	text "@@"
 
 _GreatlyFellText::
-	text $4c, "greatly@@"
+	text ""
+	autocont "greatly"
+	done
 
 _FellText::
 	text " fell!"
@@ -2512,18 +2517,20 @@ _TryingToLearnText::
 	done
 
 _OneTwoAndText::
-	text "1, 2 and...@@"
+	text "1, 2 and..."
+	done
 
 _PoofText::
-	text " Poof!@@"
+	text " Poof!"
+	done
 
 _ForgotAndText::
 	text ""
-	para "@"
-	TX_RAM wLearnMoveMonName
+	para ""
+	ramtext wLearnMoveMonName
 	text " forgot"
-	line "@"
-	TX_RAM wcd6d
+	line ""
+	ramtext wcd6d
 	text "!"
 
 	para "And..."
@@ -2585,7 +2592,8 @@ _CableClubNPCPleaseApplyHereHaveToSaveText::
 	done
 
 _CableClubNPCPleaseWaitText::
-	text "Please wait.@@"
+	text "Please wait."
+	done
 
 _CableClubNPCLinkClosedBecauseOfInactivityText::
 	text "The link has been"
