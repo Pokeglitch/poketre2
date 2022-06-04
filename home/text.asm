@@ -444,27 +444,6 @@ TextCommand03::
 	ld b, a
 	jp NextTextCommand
 
-; repoint destination to next line of text box
-; 05
-; (no arguments)
-TextCommand05::
-	pop hl
-	pop bc
-	push hl
-	
-	ld hl, 2 * SCREEN_WIDTH
-	ld a, [hFlags_0xFFF6]
-	bit 2, a
-	jr z, .ok
-	ld bc, SCREEN_WIDTH
-.ok
-	add hl, bc
-	ld b, h
-	ld c, l
-	pop hl
-	push bc
-	jp NextTextCommand
-
 ; blink arrow and wait for A or B to be pressed
 ; 06
 ; (no arguments)
@@ -611,7 +590,7 @@ TextCommandJumpTable::
 	dw TextCommand02
 	dw TextCommand03
 	dw TextCommand04
-	dw TextCommand05
+	dw $0000 ; TODO - delete (not used)
 	dw TextCommand06
 	dw $0000 ; TODO - delete (not used)
 	dw TextCommand08

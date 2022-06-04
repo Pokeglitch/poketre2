@@ -2364,22 +2364,19 @@ BoxFullCannotThrowBallText:
 	db "@"
 
 ItemUseText00:
-	TX_FAR _ItemUseText001
-	TX_LINE
-	TX_FAR _ItemUseText002
-	db "@"
+	text ""
+	fartext _ItemUseText001
+	done
 
 GotOnBicycleText:
-	TX_FAR _GotOnBicycleText1
-	TX_LINE
-	TX_FAR _GotOnBicycleText2
-	db "@"
+	text ""
+	fartext _GotOnBicycleText1
+	done
 
 GotOffBicycleText:
-	TX_FAR _GotOffBicycleText1
-	TX_LINE
-	TX_FAR _GotOffBicycleText2
-	db "@"
+	text ""
+	fartext _GotOffBicycleText1
+	done
 
 ; restores bonus PP (from PP Ups) when healing at a pokemon center
 ; also, when a PP Up is used, it increases the current PP by one PP Up bonus

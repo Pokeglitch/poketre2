@@ -1,6 +1,6 @@
 ; TODO
 ; - Get price from new item table
-
+; - properly handle using field item (textbox is drawn on window...)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Returns the cursor position (a)

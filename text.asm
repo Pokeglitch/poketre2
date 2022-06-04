@@ -2912,28 +2912,25 @@ _BoxFullCannotThrowBallText::
 SECTION "Text 11", ROMX, BANK[TEXT_11]
 
 _ItemUseText001::
-	text "<PLAYER> used@@"
-
-_ItemUseText002::
-	TX_RAM wcf4b
-	text "!"
+	text "<PLAYER> used"
+	line ""
+	ramtext wcf4b
+	db "!"
 	done
 
 _GotOnBicycleText1::
-	text "<PLAYER> got on the@@"
-
-_GotOnBicycleText2::
-	TX_RAM wcf4b
-	text "!"
+	text "<PLAYER> got on the"
+	line ""
+	ramtext wcf4b
+	db "!"
 	prompt
 
 _GotOffBicycleText1::
-	text "<PLAYER> got off@@"
-
-_GotOffBicycleText2::
-	text "the @"
-	TX_RAM wcf4b
-	text "."
+	text "<PLAYER> got off"
+	line ""
+	db "the "
+	ramtext wcf4b
+	db "."
 	prompt
 
 _AlreadyKnowsText::

@@ -81,7 +81,6 @@ TX_BCD: MACRO
 	db \2
 ENDM
 
-TX_LINE    EQUS "db $05"
 TX_BLINK   EQUS "db $06"
 TX_ASM     EQUS "db $08"
 
