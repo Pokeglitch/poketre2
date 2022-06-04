@@ -709,8 +709,7 @@ TradeCenter_Trade:
 	ld [wd11e], a
 	call GetMonName
 	ld hl, WillBeTradedText
-	coord bc, 1, 14
-	call TextCommandProcessor
+	call PrintText
 	call SaveScreenTilesToBuffer1
 	coord hl, 10, 7
 	lb bc, 8, 11

@@ -47,6 +47,13 @@ DisplayTextIDInit:
 	ret
 
 ResetTextbox:
+	ld a, [wLetterPrintingDelayFlags]
+	set 1, a
+	ld b, a
+	ldh a, [hClearLetterPrintingDelayFlags]
+	xor b
+	ld [wLetterPrintingDelayFlags], a
+	
 	call GetTextBoxStartCoordsHL
 	ld a, [wTextboxSettings]
 	and TEXT_LINES_MASK
@@ -61,7 +68,7 @@ ResetTextbox:
 InitializeTextbox_:
 	ld a, [wTextboxSettings]
 	push af
-
+	
 	ld hl, wLetterPrintingDelayFlags
 	res 1, [hl] ; disable delays
 

@@ -33,8 +33,12 @@ CheckRevealTextbox::
 	bit BIT_NO_DELAY, a
 	jr nz, .dontEnableDelay
 
-	ld hl, wLetterPrintingDelayFlags
-	set 1, [hl] ; enable letter delay
+	ld a, [wLetterPrintingDelayFlags]
+	set 1, a
+	ld b, a
+	ldh a, [hClearLetterPrintingDelayFlags]
+	xor b
+	ld [wLetterPrintingDelayFlags], a
 
 .dontEnableDelay
 	pop hl
@@ -87,6 +91,9 @@ UseNestedTextFromTable:
     push de
     ld d, b
     ld e, c
+	; note, bc does not represent the start of the line here
+	; but it doesnt matter because nested strings aren't multi-line
+	; TODO - except for word wrap...
 
 PlaceNestedString:
 	call PlaceTextboxString
@@ -303,7 +310,7 @@ TextDoneCommand:: ; done
 TextFinishCommon::
 	ld b, h
 	ld c, l
-	pop hl
+	pop hl ; hl = start of line
 	jp HomeBankswitchReturn
 
 ; Pokedex Page
@@ -573,12 +580,14 @@ TextboxOptionCommon:
 	add hl, bc
 	pop de
 	push hl
+	; bc != start of line, but doesnt matter because option is single line
 	call PlaceTextboxString
 	pop hl
 	pop de
 	push hl
 	ld bc, 9
 	add hl, bc
+	; bc != start of line, but doesnt matter because option is single line
 	call PlaceTextboxString
 	call Delay3
 	pop de

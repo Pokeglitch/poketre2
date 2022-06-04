@@ -1,10 +1,5 @@
 ; TODO:
 ;
-; - Each text command (when using a move in battle, so with ASM or FAR)
-;     will reset the text position to the start of the textbox.
-;     This shouldn't happen, it should continue where it left off
-;     Resolve by converting those texts to use my new inline-string processor?
-;
 ; FIX:
 ; - The Pokemon Caught and New Pokedex Data SFX doesnt get played
 ;   because the SFX_PRESS_AB from the text box "continue" is still active
@@ -40,23 +35,26 @@ PlaceString::
 	push af
 	ld a, NO_WORD_WRAP
 	ld [wTextboxSettings], a
+	push hl
+	pop bc ; bc = hl = start of line
 	call PlaceTextboxString
 	pop af
 	ld [wTextboxSettings], a
 	ret
 
+; bc represents the start of the line
 PlaceTextboxString:
 	ld a, [H_LOADEDROMBANK]
 	push af
-	push hl
+	push bc
 
 PlaceNextChar::
 	ld a, [de]
 	cp TEXT_END
 	jr nz, .notEnd
+	pop bc ; pop the start of the line, no longer necessary
 	ld b, h
 	ld c, l
-	pop hl
 	pop af
 	ret
 
@@ -199,6 +197,7 @@ TwoOptionTextCommand::
 	add hl, bc
 	pop de
 	push hl
+	; bc != start of line, but doesnt matter because option is single line
 	call PlaceTextboxString
 	
 	pop bc
@@ -211,6 +210,7 @@ TwoOptionTextCommand::
 	push bc
 	ld hl, 9
 	add hl, bc
+	; bc != start of line, but doesnt matter because option is single line
 	call PlaceTextboxString
 
 	call Delay3
@@ -260,22 +260,49 @@ GotoTextCommand::
 	jp PlaceNextChar
 
 RAMTextCommand::
-	call PrepareInlineString
+	pop bc
+	push bc
+
 	push de
+	push bc
+	call PrepareInlineString
+
+	ld d, b
+	ld e, c
+	pop bc ; bc = start of row
 	call PlaceInlineString
+
 	pop de
+	inc de
+	inc de
+	inc de
 	jp PlaceNextChar
 
 FarTextCommand::
+	pop bc
+	push bc
+
 	ld a, [H_LOADEDROMBANK]
 	push af
+
+	push de
+	push bc
 	call PrepareInlineString
+
 	ld a, [de]
 	call SetNewBank
-	inc de
-	push de
+	
+	ld d, b
+	ld e, c
+	pop bc ; bc = start of row
 	call PlaceInlineString
+
 	pop de
+	inc de
+	inc de
+	inc de
+	inc de
+
 	pop af
 	call SetNewBank
 	jp PlaceNextChar
@@ -291,8 +318,6 @@ PrepareInlineString:
 	ret
 
 PlaceInlineString:
-	ld d, b
-	ld e, c
 	call PlaceTextboxString
 	ld h, b
 	ld l, c
@@ -368,7 +393,7 @@ TextCommandProcessor_NoInit::
 	ld d, h
 	ld e, l
 	ld h, b
-	ld l, c
+	ld l, c ; bc = start of line
 	call PlaceTextboxString
 	ld h, d
 	ld l, e

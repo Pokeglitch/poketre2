@@ -2399,8 +2399,7 @@ TrainerEndBattleText::
 	fartext _TrainerNameText
 	asmtext
 	call GetSavedEndBattleTextPointer
-	call TextCommandProcessor
-	jp TextScriptEnd
+	ret
 
 ; only engage withe trainer if the player is not already
 ; engaged with another trainer
