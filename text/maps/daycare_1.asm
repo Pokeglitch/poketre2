@@ -38,9 +38,9 @@ _DayCareMonHasGrownText::
 	prompt
 
 _DayCareOweMoneyText::
-	text "You owe me $@"
-	TX_BCD wDayCareTotalCost, $c2
-	db $0
+	text "You owe me $"
+	bcdtext wDayCareTotalCost, $c2
+	db TEXT_INIT
 	line "for the return"
 	cont "of this POKéMON."
 	done

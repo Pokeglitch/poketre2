@@ -421,29 +421,6 @@ TextCommand01::
 	pop hl
 	jr NextTextCommand
 
-; print BCD number
-; 02AAAABB
-; AAAA = address of BCD number
-; BB
-; bits 0-4 = length in bytes
-; bits 5-7 = unknown flags
-TextCommand02::
-	pop hl
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	push hl
-	ld h, b
-	ld l, c
-	ld c, a
-	call PrintBCDNumber
-	ld b, h
-	ld c, l
-	pop hl
-	jr NextTextCommand
-
 ; repoint destination address
 ; 03AAAA
 ; AAAA = new destination address
@@ -527,7 +504,7 @@ TextCommand17::
 TextCommandJumpTable::
 	dw TextCommand00
 	dw TextCommand01
-	dw TextCommand02
+	dw $0000
 	dw TextCommand03
 	dw TextCommand04
 	dw $0000

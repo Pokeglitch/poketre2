@@ -1083,8 +1083,8 @@ _EnemyMonFaintedText::
 	prompt
 
 _MoneyForWinningText::
-	text "<PLAYER> got $@"
-	TX_BCD wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
+	text "<PLAYER> got $"
+	bcdtext wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text ""
 	line "for winning!"
 	prompt
@@ -1524,8 +1524,8 @@ _SafariZoneAngryText::
 ; money related
 _PickUpPayDayMoneyText::
 	text "<PLAYER> picked up"
-	line "$@"
-	TX_BCD wTotalPayDayMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
+	line "$"
+	bcdtext wTotalPayDayMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text "!"
 	prompt
 
@@ -2836,8 +2836,8 @@ _PlayedFluteHadEffectText::
 
 _CoinCaseNumCoinsText::
 	text "Coins"
-	line "@"
-	TX_BCD wPlayerCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
+	line ""
+	bcdtext wPlayerCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
 	text " "
 	prompt
 

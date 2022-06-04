@@ -79,14 +79,6 @@ TX_RAM: MACRO
 	dw \1
 ENDM
 
-TX_BCD: MACRO
-; \1: RAM address to read from
-; \2: number of bytes + print flags
-	db $2
-	dw \1
-	db \2
-ENDM
-
 TX_ASM     EQUS "db $08"
 
 TX_NUM: MACRO
