@@ -254,56 +254,69 @@ PartyMenuMessagePointers:
 	dw PartyMenuItemUseText
 
 PartyMenuNormalText:
-	TX_FAR _PartyMenuNormalText
-	db "@"
+	text ""
+	fartext _PartyMenuNormalText
+	done
 
 PartyMenuItemUseText:
-	TX_FAR _PartyMenuItemUseText
-	db "@"
+	text ""
+	fartext _PartyMenuItemUseText
+	done
 
 PartyMenuBattleText:
-	TX_FAR _PartyMenuBattleText
-	db "@"
+	text ""
+	fartext _PartyMenuBattleText
+	done
 
 PartyMenuUseTMText:
-	TX_FAR _PartyMenuUseTMText
-	db "@"
+	text ""
+	fartext _PartyMenuUseTMText
+	done
 
 PartyMenuSwapMonText:
-	TX_FAR _PartyMenuSwapMonText
-	db "@"
+	text ""
+	fartext _PartyMenuSwapMonText
+	done
 
 PotionText:
-	TX_FAR _PotionText
-	db "@"
+	text ""
+	fartext _PotionText
+	done
 
 AntidoteText:
-	TX_FAR _AntidoteText
-	db "@"
+	text ""
+	fartext _AntidoteText
+	done
 
 ParlyzHealText:
-	TX_FAR _ParlyzHealText
-	db "@"
+	text ""
+	fartext _ParlyzHealText
+	done
 
 BurnHealText:
-	TX_FAR _BurnHealText
-	db "@"
+	text ""
+	fartext _BurnHealText
+	done
 
 IceHealText:
-	TX_FAR _IceHealText
-	db "@"
+	text ""
+	fartext _IceHealText
+	done
 
 AwakeningText:
-	TX_FAR _AwakeningText
-	db "@"
+	text ""
+	fartext _AwakeningText
+	done
 
 FullHealText:
-	TX_FAR _FullHealText
-	db "@"
+	text ""
+	fartext _FullHealText
+	done
 
 ReviveText:
-	TX_FAR _ReviveText
-	db "@"
+	text ""
+	fartext _ReviveText
+	done
 
 RareCandyText:
 	text ""

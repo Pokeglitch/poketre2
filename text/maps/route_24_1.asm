@@ -5,7 +5,7 @@ _Route24Text_51510::
 	done
 
 _Route24Text_51515::
-	db TEXT_INIT
+	text ""
 	para "You just earned a"
 	line "fabulous prize!"
 	prompt

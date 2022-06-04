@@ -28,9 +28,11 @@ PrintSafariZoneBattleText:
 	jp PrintText
 
 SafariZoneEatingText:
-	TX_FAR _SafariZoneEatingText
-	db "@"
+	text ""
+	fartext _SafariZoneEatingText
+	done
 
 SafariZoneAngryText:
-	TX_FAR _SafariZoneAngryText
-	db "@"
+	text ""
+	fartext _SafariZoneAngryText
+	done

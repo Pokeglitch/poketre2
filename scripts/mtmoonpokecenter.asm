@@ -14,12 +14,14 @@ MtMoonHealNurseText:
 	db $ff
 
 MtMoonPokecenterText2:
-	TX_FAR _MtMoonPokecenterText1
-	db "@"
+	text ""
+	fartext _MtMoonPokecenterText1
+	done
 
 MtMoonPokecenterText3:
-	TX_FAR _MtMoonPokecenterText3
-	db "@"
+	text ""
+	fartext _MtMoonPokecenterText3
+	done
 
 MagikarpSalesmanText:
 	TX_ASM
@@ -65,24 +67,29 @@ MagikarpSalesmanText:
 	jp TextScriptEnd
 
 .Text1
-	TX_FAR _MagikarpSalesmanText1
-	db "@"
+	text ""
+	fartext _MagikarpSalesmanText1
+	done
 
 .RefuseText
-	TX_FAR _MagikarpSalesmanNoText
-	db "@"
+	text ""
+	fartext _MagikarpSalesmanNoText
+	done
 
 .NoMoneyText
-	TX_FAR _MagikarpSalesmanNoMoneyText
-	db "@"
+	text ""
+	fartext _MagikarpSalesmanNoMoneyText
+	done
 
 .Text2
-	TX_FAR _MagikarpSalesmanText2
-	db "@"
+	text ""
+	fartext _MagikarpSalesmanText2
+	done
 
 MtMoonPokecenterText5:
-	TX_FAR _MtMoonPokecenterText5
-	db "@"
+	text ""
+	fartext _MtMoonPokecenterText5
+	done
 
 MtMoonTradeNurseText:
 	db $f6

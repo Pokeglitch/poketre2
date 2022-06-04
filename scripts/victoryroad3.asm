@@ -149,49 +149,61 @@ VictoryRoad3Text4:
 	jp TextScriptEnd
 
 VictoryRoad3BattleText2:
-	TX_FAR _VictoryRoad3BattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad3BattleText2
+	done
 
 VictoryRoad3EndBattleText2:
-	TX_FAR _VictoryRoad3EndBattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad3EndBattleText2
+	done
 
 VictoryRoad3AfterBattleText2:
-	TX_FAR _VictoryRoad3AfterBattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad3AfterBattleText2
+	done
 
 VictoryRoad3BattleText3:
-	TX_FAR _VictoryRoad3BattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad3BattleText3
+	done
 
 VictoryRoad3EndBattleText3:
-	TX_FAR _VictoryRoad3EndBattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad3EndBattleText3
+	done
 
 VictoryRoad3AfterBattleText3:
-	TX_FAR _VictoryRoad3AfterBattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad3AfterBattleText3
+	done
 
 VictoryRoad3BattleText4:
-	TX_FAR _VictoryRoad3BattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad3BattleText4
+	done
 
 VictoryRoad3EndBattleText4:
-	TX_FAR _VictoryRoad3EndBattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad3EndBattleText4
+	done
 
 VictoryRoad3AfterBattleText4:
-	TX_FAR _VictoryRoad3AfterBattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad3AfterBattleText4
+	done
 
 VictoryRoad3BattleText5:
-	TX_FAR _VictoryRoad3BattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad3BattleText5
+	done
 
 VictoryRoad3EndBattleText5:
-	TX_FAR _VictoryRoad3EndBattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad3EndBattleText5
+	done
 
 VictoryRoad3AfterBattleText5:
-	TX_FAR _VictoryRoad3AfterBattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad3AfterBattleText5
+	done

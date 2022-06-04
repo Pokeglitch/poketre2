@@ -260,8 +260,9 @@ TradeTextPointers3:
 	dw AfterTrade3Text
 
 ConnectCableText:
-	TX_FAR _ConnectCableText
-	db "@"
+	text ""
+	fartext _ConnectCableText
+	done
 
 TradedForText:
 	text ""
@@ -271,61 +272,76 @@ TradedForText:
 	done
 
 WannaTrade1Text:
-	TX_FAR _WannaTrade1Text
-	db "@"
+	text ""
+	fartext _WannaTrade1Text
+	done
 
 NoTrade1Text:
-	TX_FAR _NoTrade1Text
-	db "@"
+	text ""
+	fartext _NoTrade1Text
+	done
 
 WrongMon1Text:
-	TX_FAR _WrongMon1Text
-	db "@"
+	text ""
+	fartext _WrongMon1Text
+	done
 
 Thanks1Text:
-	TX_FAR _Thanks1Text
-	db "@"
+	text ""
+	fartext _Thanks1Text
+	done
 
 AfterTrade1Text:
-	TX_FAR _AfterTrade1Text
-	db "@"
+	text ""
+	fartext _AfterTrade1Text
+	done
 
 WannaTrade2Text:
-	TX_FAR _WannaTrade2Text
-	db "@"
+	text ""
+	fartext _WannaTrade2Text
+	done
 
 NoTrade2Text:
-	TX_FAR _NoTrade2Text
-	db "@"
+	text ""
+	fartext _NoTrade2Text
+	done
 
 WrongMon2Text:
-	TX_FAR _WrongMon2Text
-	db "@"
+	text ""
+	fartext _WrongMon2Text
+	done
 
 Thanks2Text:
-	TX_FAR _Thanks2Text
-	db "@"
+	text ""
+	fartext _Thanks2Text
+	done
 
 AfterTrade2Text:
-	TX_FAR _AfterTrade2Text
-	db "@"
+	text ""
+	fartext _AfterTrade2Text
+	done
 
 WannaTrade3Text:
-	TX_FAR _WannaTrade3Text
-	db "@"
+	text ""
+	fartext _WannaTrade3Text
+	done
 
 NoTrade3Text:
-	TX_FAR _NoTrade3Text
-	db "@"
+	text ""
+	fartext _NoTrade3Text
+	done
 
 WrongMon3Text:
-	TX_FAR _WrongMon3Text
-	db "@"
+	text ""
+	fartext _WrongMon3Text
+	done
 
 Thanks3Text:
-	TX_FAR _Thanks3Text
-	db "@"
+	text ""
+	fartext _Thanks3Text
+	done
 
 AfterTrade3Text:
-	TX_FAR _AfterTrade3Text
-	db "@"
+	text ""
+	fartext _AfterTrade3Text
+	done

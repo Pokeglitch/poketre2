@@ -146,16 +146,19 @@ BillsHouseText1:
 	jp TextScriptEnd
 
 BillsHouseText_1e865:
-	TX_FAR _BillsHouseText_1e865
-	db "@"
+	text ""
+	fartext _BillsHouseText_1e865
+	done
 
 BillsHouseText_1e86a:
-	TX_FAR _BillsHouseText_1e86a
-	db "@"
+	text ""
+	fartext _BillsHouseText_1e86a
+	done
 
 BillsHouseText_1e86f:
-	TX_FAR _BillsHouseText_1e86f
-	db "@"
+	text ""
+	fartext _BillsHouseText_1e86f
+	done
 
 BillsHouseText2:
 	TX_ASM
@@ -186,8 +189,9 @@ BillsHouseText2:
 	jp TextScriptEnd
 
 BillThankYouText:
-	TX_FAR _BillThankYouText
-	db "@"
+	text ""
+	fartext _BillThankYouText
+	done
 
 SSTicketReceivedText:
 	text ""
@@ -197,12 +201,14 @@ SSTicketReceivedText:
 	done
 
 SSTicketNoRoomText:
-	TX_FAR _SSTicketNoRoomText
-	db "@"
+	text ""
+	fartext _SSTicketNoRoomText
+	done
 
 BillsHouseText_1e8cb:
-	TX_FAR _BillsHouseText_1e8cb
-	db "@"
+	text ""
+	fartext _BillsHouseText_1e8cb
+	done
 
 BillsHouseText3:
 	TX_ASM
@@ -211,5 +217,6 @@ BillsHouseText3:
 	jp TextScriptEnd
 
 BillsHouseText_1e8da:
-	TX_FAR _BillsHouseText_1e8da
-	db "@"
+	text ""
+	fartext _BillsHouseText_1e8da
+	done

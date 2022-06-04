@@ -183,8 +183,9 @@ SaffronGymText1:
 	jp TextScriptEnd
 
 SaffronGymText_5d162:
-	TX_FAR _SaffronGymText_5d162
-	db "@"
+	text ""
+	fartext _SaffronGymText_5d162
+	done
 
 SaffronGymText_5d167:
 	text ""
@@ -194,12 +195,14 @@ SaffronGymText_5d167:
 	done
 
 SaffronGymText_5d16e:
-	TX_FAR _SaffronGymText_5d16e
-	db "@"
+	text ""
+	fartext _SaffronGymText_5d16e
+	done
 
 SaffronGymText10:
-	TX_FAR _SaffronGymText_5d173
-	db "@"
+	text ""
+	fartext _SaffronGymText_5d173
+	done
 
 SaffronGymText11:
 	text ""
@@ -209,8 +212,9 @@ SaffronGymText11:
 	done
 
 SaffronGymText12:
-	TX_FAR _TM46NoRoomText
-	db "@"
+	text ""
+	fartext _TM46NoRoomText
+	done
 
 SaffronGymText2:
 	TX_ASM
@@ -268,93 +272,116 @@ SaffronGymText9:
 	jp TextScriptEnd
 
 SaffronGymText_5d1e6:
-	TX_FAR _SaffronGymText_5d1e6
-	db "@"
+	text ""
+	fartext _SaffronGymText_5d1e6
+	done
 
 SaffronGymText_5d1eb:
-	TX_FAR _SaffronGymText_5d1eb
-	db "@"
+	text ""
+	fartext _SaffronGymText_5d1eb
+	done
 
 SaffronGymBattleText1:
-	TX_FAR _SaffronGymBattleText1
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText1
+	done
 
 SaffronGymEndBattleText1:
-	TX_FAR _SaffronGymEndBattleText1
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText1
+	done
 
 SaffronGymAfterBattleText1:
-	TX_FAR _SaffronGymAfterBattleText1
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText1
+	done
 
 SaffronGymBattleText2:
-	TX_FAR _SaffronGymBattleText2
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText2
+	done
 
 SaffronGymEndBattleText2:
-	TX_FAR _SaffronGymEndBattleText2
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText2
+	done
 
 SaffronGymAfterBattleText2:
-	TX_FAR _SaffronGymAfterBattleText2
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText2
+	done
 
 SaffronGymBattleText3:
-	TX_FAR _SaffronGymBattleText3
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText3
+	done
 
 SaffronGymEndBattleText3:
-	TX_FAR _SaffronGymEndBattleText3
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText3
+	done
 
 SaffronGymAfterBattleText3:
-	TX_FAR _SaffronGymAfterBattleText3
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText3
+	done
 
 SaffronGymBattleText4:
-	TX_FAR _SaffronGymBattleText4
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText4
+	done
 
 SaffronGymEndBattleText4:
-	TX_FAR _SaffronGymEndBattleText4
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText4
+	done
 
 SaffronGymAfterBattleText4:
-	TX_FAR _SaffronGymAfterBattleText4
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText4
+	done
 
 SaffronGymBattleText5:
-	TX_FAR _SaffronGymBattleText5
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText5
+	done
 
 SaffronGymEndBattleText5:
-	TX_FAR _SaffronGymEndBattleText5
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText5
+	done
 
 SaffronGymAfterBattleText5:
-	TX_FAR _SaffronGymAfterBattleText5
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText5
+	done
 
 SaffronGymBattleText6:
-	TX_FAR _SaffronGymBattleText6
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText6
+	done
 
 SaffronGymEndBattleText6:
-	TX_FAR _SaffronGymEndBattleText6
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText6
+	done
 
 SaffronGymAfterBattleText6:
-	TX_FAR _SaffronGymAfterBattleText6
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText6
+	done
 
 SaffronGymBattleText7:
-	TX_FAR _SaffronGymBattleText7
-	db "@"
+	text ""
+	fartext _SaffronGymBattleText7
+	done
 
 SaffronGymEndBattleText7:
-	TX_FAR _SaffronGymEndBattleText7
-	db "@"
+	text ""
+	fartext _SaffronGymEndBattleText7
+	done
 
 SaffronGymAfterBattleText7:
-	TX_FAR _SaffronGymAfterBattleText7
-	db "@"
+	text ""
+	fartext _SaffronGymAfterBattleText7
+	done

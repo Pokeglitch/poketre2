@@ -28,20 +28,24 @@ FuchsiaCityTextPointers:
 	dw FuchsiaCityText24
 
 FuchsiaCityText1:
-	TX_FAR _FuchsiaCityText1
-	db "@"
+	text ""
+	fartext _FuchsiaCityText1
+	done
 
 FuchsiaCityText2:
-	TX_FAR _FuchsiaCityText2
-	db "@"
+	text ""
+	fartext _FuchsiaCityText2
+	done
 
 FuchsiaCityText3:
-	TX_FAR _FuchsiaCityText3
-	db "@"
+	text ""
+	fartext _FuchsiaCityText3
+	done
 
 FuchsiaCityText4:
-	TX_FAR _FuchsiaCityText4
-	db "@"
+	text ""
+	fartext _FuchsiaCityText4
+	done
 
 FuchsiaCityText5:
 FuchsiaCityText6:
@@ -49,29 +53,35 @@ FuchsiaCityText7:
 FuchsiaCityText8:
 FuchsiaCityText9:
 FuchsiaCityText10:
-	TX_FAR _FuchsiaCityText5
-	db "@"
+	text ""
+	fartext _FuchsiaCityText5
+	done
 
 FuchsiaCityText12:
 FuchsiaCityText11:
-	TX_FAR _FuchsiaCityText11
-	db "@"
+	text ""
+	fartext _FuchsiaCityText11
+	done
 
 FuchsiaCityText13:
-	TX_FAR _FuchsiaCityText13
-	db "@"
+	text ""
+	fartext _FuchsiaCityText13
+	done
 
 FuchsiaCityText16:
-	TX_FAR _FuchsiaCityText16
-	db "@"
+	text ""
+	fartext _FuchsiaCityText16
+	done
 
 FuchsiaCityText17:
-	TX_FAR _FuchsiaCityText17
-	db "@"
+	text ""
+	fartext _FuchsiaCityText17
+	done
 
 FuchsiaCityText18:
-	TX_FAR _FuchsiaCityText18
-	db "@"
+	text ""
+	fartext _FuchsiaCityText18
+	done
 
 FuchsiaCityText19:
 	TX_ASM
@@ -82,8 +92,9 @@ FuchsiaCityText19:
 	jp TextScriptEnd
 
 FuchsiaCityChanseyText:
-	TX_FAR _FuchsiaCityChanseyText
-	db "@"
+	text ""
+	fartext _FuchsiaCityChanseyText
+	done
 
 FuchsiaCityText20:
 	TX_ASM
@@ -94,8 +105,9 @@ FuchsiaCityText20:
 	jp TextScriptEnd
 
 FuchsiaCityVoltorbText:
-	TX_FAR _FuchsiaCityVoltorbText
-	db "@"
+	text ""
+	fartext _FuchsiaCityVoltorbText
+	done
 
 FuchsiaCityText21:
 	TX_ASM
@@ -106,8 +118,9 @@ FuchsiaCityText21:
 	jp TextScriptEnd
 
 FuchsiaCityKangaskhanText:
-	TX_FAR _FuchsiaCityKangaskhanText
-	db "@"
+	text ""
+	fartext _FuchsiaCityKangaskhanText
+	done
 
 FuchsiaCityText22:
 	TX_ASM
@@ -118,8 +131,9 @@ FuchsiaCityText22:
 	jp TextScriptEnd
 
 FuchsiaCitySlowpokeText:
-	TX_FAR _FuchsiaCitySlowpokeText
-	db "@"
+	text ""
+	fartext _FuchsiaCitySlowpokeText
+	done
 
 FuchsiaCityText23:
 	TX_ASM
@@ -130,8 +144,9 @@ FuchsiaCityText23:
 	jp TextScriptEnd
 
 FuchsiaCityLaprasText:
-	TX_FAR _FuchsiaCityLaprasText
-	db "@"
+	text ""
+	fartext _FuchsiaCityLaprasText
+	done
 
 FuchsiaCityText24:
 	TX_ASM
@@ -157,13 +172,16 @@ FuchsiaCityText24:
 	jp TextScriptEnd
 
 FuchsiaCityOmanyteText:
-	TX_FAR _FuchsiaCityOmanyteText
-	db "@"
+	text ""
+	fartext _FuchsiaCityOmanyteText
+	done
 
 FuchsiaCityKabutoText:
-	TX_FAR _FuchsiaCityKabutoText
-	db "@"
+	text ""
+	fartext _FuchsiaCityKabutoText
+	done
 
 FuchsiaCityText_19b2a:
-	TX_FAR _FuchsiaCityText_19b2a
-	db "@"
+	text ""
+	fartext _FuchsiaCityText_19b2a
+	done

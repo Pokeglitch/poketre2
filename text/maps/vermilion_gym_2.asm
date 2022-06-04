@@ -31,7 +31,7 @@ _ReceivedTM24Text::
 	done
 
 _TM24ExplanationText::
-	db TEXT_INIT
+	text ""
 	para "TM24 contains"
 	line "THUNDERBOLT!"
 

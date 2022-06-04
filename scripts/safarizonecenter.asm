@@ -7,9 +7,11 @@ SafariZoneCenterTextPointers:
 	dw SafariZoneCenterText3
 
 SafariZoneCenterText2:
-	TX_FAR _SafariZoneCenterText2
-	db "@"
+	text ""
+	fartext _SafariZoneCenterText2
+	done
 
 SafariZoneCenterText3:
-	TX_FAR _SafariZoneCenterText3
-	db "@"
+	text ""
+	fartext _SafariZoneCenterText3
+	done

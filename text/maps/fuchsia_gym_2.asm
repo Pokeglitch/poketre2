@@ -32,7 +32,7 @@ _ReceivedTM06Text::
 	done
 
 _TM06ExplanationText::
-	db TEXT_INIT
+	text ""
 	para "TM06 contains"
 	line "TOXIC!"
 

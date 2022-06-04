@@ -75,9 +75,11 @@ GotMonText:
 	done
 
 SetToBoxText:
-	TX_FAR _SetToBoxText
-	db "@"
+	text ""
+	fartext _SetToBoxText
+	done
 
 BoxIsFullText:
-	TX_FAR _BoxIsFullText
-	db "@"
+	text ""
+	fartext _BoxIsFullText
+	done

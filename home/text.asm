@@ -62,7 +62,7 @@ PlaceNextChar::
 
 .notEnd
 	cp TEXT_INIT
-	jr z, MoveToNextChar
+	jp z, MoveToNextChar ; TODO - delete this when the TextProcessor is removed
 
 	; Commands that have arguments needs to be processed in home bank
 	; TODO - Make this into a table
@@ -89,6 +89,9 @@ PlaceNextChar::
 
 	cp SFX_TEXT
 	jp z, SoundFXCommand
+
+	cp TEXT_ASM
+	jp z, ASMTextCommand
 
 	; Otherwise, process in different bank
 	ld b, a
@@ -298,9 +301,21 @@ PlaceInlineString:
 	ld l, c
 	ret
 
-; TODO
 ASMTextCommand:
-	jp MoveToNextChar
+	push hl ; store the text destination
+	inc de
+	ld h, d
+	ld l, e
+	ld de, .returnFromASMText
+	push de	;return address
+	jp hl
+
+.returnFromASMText
+	; all asm text stores text address in hl
+	ld d, h
+	ld e, l
+	pop hl
+	jp PlaceNextChar
 
 TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
@@ -355,49 +370,18 @@ NextTextCommand::
 	pop bc
 	ret
 .doTextCommand
-	push hl
-	cp $17
-	jp z, TextCommand17
 	cp TEXTBOX_DEF
-	jp z, TextboxDefinitionCommand
-	ld hl, TextCommandJumpTable
-	push bc
-	add a
-	ld b, 0
-	ld c, a
-	add hl, bc
-	pop bc
+	jp nz, .notTextboxDefinition
+	
 	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
-
-; draw box
-; 04AAAABBCC
-; AAAA = address of upper left corner
-; BB = height
-; CC = width
-TextCommand04::
-	pop hl
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-	push hl
-	ld h, d
-	ld l, e
-	call TextBoxBorder
-	pop hl
-	jr NextTextCommand
+	call InitializeTextbox
+	
+.notTextboxDefinition
+	jp TextCommand00
 
 ; place string inline
 ; 00{string}
 TextCommand00::
-	pop hl
 	ld d, h
 	ld e, l
 	ld h, b
@@ -408,71 +392,8 @@ TextCommand00::
 	inc hl
 	jr NextTextCommand
 
-; repoint destination address
-; 03AAAA
-; AAAA = new destination address
-TextCommand03::
-	pop hl
-	ld a, [hli]
-	ld [wTextDest], a
-	ld c, a
-	ld a, [hli]
-	ld [wTextDest + 1], a
-	ld b, a
-	jp NextTextCommand
-
-; execute asm inline
-; 08{code}
-TextCommand08::
-	pop hl
-	ld de, NextTextCommand
-	push de ; return address
-	jp hl
-
 TextboxDefinitionCommand:
-	pop hl
-	ld a, [hli]
-	call InitializeTextbox
 	jp NextTextCommand
-
-; process text commands in another ROM bank
-; 17AAAABB
-; AAAA = address of text commands
-; BB = bank
-TextCommand17::
-	pop hl
-	ld a, [H_LOADEDROMBANK]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	call SetNewBank
-	push hl
-	ld l, e
-	ld h, d
-	call TextCommandProcessor_NoInit
-	pop hl
-	pop af
-	call SetNewBank
-	jp NextTextCommand
-
-TextCommandJumpTable::
-	dw TextCommand00
-	dw $0000
-	dw $0000
-	dw TextCommand03
-	dw TextCommand04
-	dw $0000
-	dw $0000
-	dw $0000
-	dw TextCommand08
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $0000
-	dw $0000
 
 ; Check if the next word should be wrapped
 ; no carry = print
@@ -545,6 +466,7 @@ CountNextWordLength:
 
 	; if it not any of these, then its a normal character
 	; unless its TEXT_INIT, which we just ignore
+	; TODO - this is incorrect with the newly added commands...recheck
 	ld a, b
 	cp TEXT_INIT
 	jr z, .dontInc
@@ -644,7 +566,7 @@ LengthBattleCommon:
 	jp CountNextWordLength
 
 TextEndCharText::
-	endtext
+	db "@"
 
 GetTextboxSize:
 	ld a, [wTextboxSettings]

@@ -81,24 +81,29 @@ Mansion2Text1:
 	jp TextScriptEnd
 
 Mansion2BattleText1:
-	TX_FAR _Mansion2BattleText1
-	db "@"
+	text ""
+	fartext _Mansion2BattleText1
+	done
 
 Mansion2EndBattleText1:
-	TX_FAR _Mansion2EndBattleText1
-	db "@"
+	text ""
+	fartext _Mansion2EndBattleText1
+	done
 
 Mansion2AfterBattleText1:
-	TX_FAR _Mansion2AfterBattleText1
-	db "@"
+	text ""
+	fartext _Mansion2AfterBattleText1
+	done
 
 Mansion2Text3:
-	TX_FAR _Mansion2Text3
-	db "@"
+	text ""
+	fartext _Mansion2Text3
+	done
 
 Mansion2Text4:
-	TX_FAR _Mansion2Text4
-	db "@"
+	text ""
+	fartext _Mansion2Text4
+	done
 
 Mansion3Text6:
 Mansion2Text5:
@@ -128,13 +133,16 @@ Mansion2Text5:
 	jp TextScriptEnd
 
 Mansion2Text_520c2:
-	TX_FAR _Mansion2Text_520c2
-	db "@"
+	text ""
+	fartext _Mansion2Text_520c2
+	done
 
 Mansion2Text_520c7:
-	TX_FAR _Mansion2Text_520c7
-	db "@"
+	text ""
+	fartext _Mansion2Text_520c7
+	done
 
 Mansion2Text_520cc:
-	TX_FAR _Mansion2Text_520cc
-	db "@"
+	text ""
+	fartext _Mansion2Text_520cc
+	done

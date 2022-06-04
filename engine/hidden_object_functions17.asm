@@ -3,8 +3,9 @@ PrintRedSNESText:
 	tx_pre_jump RedBedroomSNESText
 
 RedBedroomSNESText:
-	TX_FAR _RedBedroomSNESText
-	db "@"
+	text ""
+	fartext _RedBedroomSNESText
+	done
 
 OpenRedsPC:
 	call EnableAutoTextBoxDrawing
@@ -25,8 +26,9 @@ Route15GateLeftBinoculars:
 	jp DisplayMonFrontSpriteInBox
 
 Route15UpstairsBinocularsText:
-	TX_FAR _Route15UpstairsBinocularsText
-	db "@"
+	text ""
+	fartext _Route15UpstairsBinocularsText
+	done
 
 AerodactylFossil:
 	ld a, FOSSIL_AERODACTYL
@@ -37,8 +39,9 @@ AerodactylFossil:
 	ret
 
 AerodactylFossilText:
-	TX_FAR _AerodactylFossilText
-	db "@"
+	text ""
+	fartext _AerodactylFossilText
+	done
 
 KabutopsFossil:
 	ld a, FOSSIL_KABUTOPS
@@ -49,8 +52,9 @@ KabutopsFossil:
 	ret
 
 KabutopsFossilText:
-	TX_FAR _KabutopsFossilText
-	db "@"
+	text ""
+	fartext _KabutopsFossilText
+	done
 
 DisplayMonFrontSpriteInBox:
 ; Displays a pokemon's front sprite in a pop-up window.
@@ -143,12 +147,14 @@ LinkCableHelp:
 	jp TextScriptEnd
 
 LinkCableHelpText1:
-	TX_FAR _LinkCableHelpText1
-	db "@"
+	text ""
+	fartext _LinkCableHelpText1
+	done
 
 LinkCableHelpText2:
-	TX_FAR _LinkCableHelpText2
-	db "@"
+	text ""
+	fartext _LinkCableHelpText2
+	done
 
 HowToLinkText:
 	db   "HOW TO LINK"
@@ -162,16 +168,19 @@ LinkCableInfoTexts:
 	dw LinkCableInfoText3
 
 LinkCableInfoText1:
-	TX_FAR _LinkCableInfoText1
-	db "@"
+	text ""
+	fartext _LinkCableInfoText1
+	done
 
 LinkCableInfoText2:
-	TX_FAR _LinkCableInfoText2
-	db "@"
+	text ""
+	fartext _LinkCableInfoText2
+	done
 
 LinkCableInfoText3:
-	TX_FAR _LinkCableInfoText3
-	db "@"
+	text ""
+	fartext _LinkCableInfoText3
+	done
 
 ViridianSchoolBlackboard:
 	TX_ASM
@@ -260,12 +269,14 @@ ViridianSchoolBlackboard:
 	jp TextScriptEnd
 
 ViridianSchoolBlackboardText1:
-	TX_FAR _ViridianSchoolBlackboardText1
-	db "@"
+	text ""
+	fartext _ViridianSchoolBlackboardText1
+	done
 
 ViridianSchoolBlackboardText2:
-	TX_FAR _ViridianSchoolBlackboardText2
-	db "@"
+	text ""
+	fartext _ViridianSchoolBlackboardText2
+	done
 
 StatusAilmentText1:
 	db   " SLP"
@@ -275,7 +286,8 @@ StatusAilmentText1:
 StatusAilmentText2:
 	db   " BRN"
 	next " FRZ"
-	next " QUIT@@"
+	next " QUIT"
+	done
 
 ViridianBlackboardStatusPointers:
 	dw ViridianBlackboardSleepText
@@ -285,32 +297,38 @@ ViridianBlackboardStatusPointers:
 	dw ViridianBlackboardFrozenText
 
 ViridianBlackboardSleepText:
-	TX_FAR _ViridianBlackboardSleepText
-	db "@"
+	text ""
+	fartext _ViridianBlackboardSleepText
+	done
 
 ViridianBlackboardPoisonText:
-	TX_FAR _ViridianBlackboardPoisonText
-	db "@"
+	text ""
+	fartext _ViridianBlackboardPoisonText
+	done
 
 ViridianBlackboardPrlzText:
-	TX_FAR _ViridianBlackboardPrlzText
-	db "@"
+	text ""
+	fartext _ViridianBlackboardPrlzText
+	done
 
 ViridianBlackboardBurnText:
-	TX_FAR _ViridianBlackboardBurnText
-	db "@"
+	text ""
+	fartext _ViridianBlackboardBurnText
+	done
 
 ViridianBlackboardFrozenText:
-	TX_FAR _ViridianBlackboardFrozenText
-	db "@"
+	text ""
+	fartext _ViridianBlackboardFrozenText
+	done
 
 PrintTrashText:
 	call EnableAutoTextBoxDrawing
 	tx_pre_jump VermilionGymTrashText
 
 VermilionGymTrashText:
-	TX_FAR _VermilionGymTrashText
-	db "@"
+	text ""
+	fartext _VermilionGymTrashText
+	done
 
 GymTrashScript:
 	call EnableAutoTextBoxDrawing
@@ -434,8 +452,9 @@ GymTrashCans:
 	db 2, 11, 13,  0,  0 ; 14
 
 VermilionGymTrashSuccessText1:
-	TX_FAR _VermilionGymTrashSuccessText1
-	TX_ASM
+	text ""
+	fartext _VermilionGymTrashSuccessText1
+	asmtext
 	call WaitForSoundToFinish
 	ld a, SFX_SWITCH
 	call PlaySound
@@ -444,8 +463,9 @@ VermilionGymTrashSuccessText1:
 
 ; unused
 VermilionGymTrashSuccessText2:
-	TX_FAR _VermilionGymTrashSuccessText2
-	db "@"
+	text ""
+	fartext _VermilionGymTrashSuccessText2
+	done
 
 ; unused
 VermilionGymTrashSuccesPlaySfx:
@@ -457,8 +477,9 @@ VermilionGymTrashSuccesPlaySfx:
 	jp TextScriptEnd
 
 VermilionGymTrashSuccessText3:
-	TX_FAR _VermilionGymTrashSuccessText3
-	TX_ASM
+	text ""
+	fartext _VermilionGymTrashSuccessText3
+	asmtext
 	call WaitForSoundToFinish
 	ld a, SFX_GO_INSIDE
 	call PlaySound
@@ -466,8 +487,9 @@ VermilionGymTrashSuccessText3:
 	jp TextScriptEnd
 
 VermilionGymTrashFailText:
-	TX_FAR _VermilionGymTrashFailText
-	TX_ASM
+	text ""
+	fartext _VermilionGymTrashFailText
+	asmtext
 	call WaitForSoundToFinish
 	ld a, SFX_DENIED
 	call PlaySound

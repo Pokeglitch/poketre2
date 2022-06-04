@@ -1,5 +1,6 @@
 _RocketHideout1EndBattleText6::
-	text "Why...?@@"
+	text "Why...?"
+	done
 
 _RocketHideout1BattleText2::
 	text "Who are you? How"

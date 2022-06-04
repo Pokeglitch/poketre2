@@ -228,8 +228,9 @@ CinnabarGymText1:
 	jp CinnabarGymScript_758b7
 
 BlaineBattleText:
-	TX_FAR _BlaineBattleText
-	db "@"
+	text ""
+	fartext _BlaineBattleText
+	done
 
 BlaineEndBattleText:
 	text ""
@@ -239,12 +240,14 @@ BlaineEndBattleText:
 	done
 
 BlaineFireBlastText:
-	TX_FAR _BlaineFireBlastText
-	db "@"
+	text ""
+	fartext _BlaineFireBlastText
+	done
 
 BlaineBadgeText:
-	TX_FAR _BlaineBadgeText
-	db "@"
+	text ""
+	fartext _BlaineBadgeText
+	done
 
 ReceivedTM38Text:
 	text ""
@@ -254,8 +257,9 @@ ReceivedTM38Text:
 	done
 
 TM38NoRoomText:
-	TX_FAR _TM38NoRoomText
-	db "@"
+	text ""
+	fartext _TM38NoRoomText
+	done
 
 CinnabarGymText2:
 	TX_ASM
@@ -274,16 +278,19 @@ CinnabarGymText2:
 	jp TextScriptEnd
 
 CinnabarGymText_7595f:
-	TX_FAR _CinnabarGymText_7595f
-	db "@"
+	text ""
+	fartext _CinnabarGymText_7595f
+	done
 
 CinnabarGymText_75964:
-	TX_FAR _CinnabarGymText_75964
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75964
+	done
 
 CinnabarGymText_75969:
-	TX_FAR _CinnabarGymText_75969
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75969
+	done
 
 CinnabarGymText3:
 	TX_ASM
@@ -302,16 +309,19 @@ CinnabarGymText3:
 	jp TextScriptEnd
 
 CinnabarGymText_75994:
-	TX_FAR _CinnabarGymText_75994
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75994
+	done
 
 CinnabarGymText_75999:
-	TX_FAR _CinnabarGymText_75999
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75999
+	done
 
 CinnabarGymText_7599e:
-	TX_FAR _CinnabarGymText_7599e
-	db "@"
+	text ""
+	fartext _CinnabarGymText_7599e
+	done
 
 CinnabarGymText4:
 	TX_ASM
@@ -330,16 +340,19 @@ CinnabarGymText4:
 	jp TextScriptEnd
 
 CinnabarGymText_759c9:
-	TX_FAR _CinnabarGymText_759c9
-	db "@"
+	text ""
+	fartext _CinnabarGymText_759c9
+	done
 
 CinnabarGymText_759ce:
-	TX_FAR _CinnabarGymText_759ce
-	db "@"
+	text ""
+	fartext _CinnabarGymText_759ce
+	done
 
 CinnabarGymText_759d3:
-	TX_FAR _CinnabarGymText_759d3
-	db "@"
+	text ""
+	fartext _CinnabarGymText_759d3
+	done
 
 CinnabarGymText5:
 	TX_ASM
@@ -358,16 +371,19 @@ CinnabarGymText5:
 	jp TextScriptEnd
 
 CinnabarGymText_759fe:
-	TX_FAR _CinnabarGymText_759fe
-	db "@"
+	text ""
+	fartext _CinnabarGymText_759fe
+	done
 
 CinnabarGymText_75a03:
-	TX_FAR _CinnabarGymText_75a03
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a03
+	done
 
 CinnabarGymText_75a08:
-	TX_FAR _CinnabarGymText_75a08
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a08
+	done
 
 CinnabarGymText6:
 	TX_ASM
@@ -386,16 +402,19 @@ CinnabarGymText6:
 	jp TextScriptEnd
 
 CinnabarGymText_75a33:
-	TX_FAR _CinnabarGymText_75a33
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a33
+	done
 
 CinnabarGymText_75a38:
-	TX_FAR _CinnabarGymText_75a38
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a38
+	done
 
 CinnabarGymText_75a3d:
-	TX_FAR _CinnabarGymText_75a3d
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a3d
+	done
 
 CinnabarGymText7:
 	TX_ASM
@@ -414,16 +433,19 @@ CinnabarGymText7:
 	jp TextScriptEnd
 
 CinnabarGymText_75a68:
-	TX_FAR _CinnabarGymText_75a68
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a68
+	done
 
 CinnabarGymText_75a6d:
-	TX_FAR _CinnabarGymText_75a6d
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a6d
+	done
 
 CinnabarGymText_75a72:
-	TX_FAR _CinnabarGymText_75a72
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a72
+	done
 
 CinnabarGymText8:
 	TX_ASM
@@ -442,16 +464,19 @@ CinnabarGymText8:
 	jp TextScriptEnd
 
 CinnabarGymText_75a9d:
-	TX_FAR _CinnabarGymText_75a9d
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75a9d
+	done
 
 CinnabarGymText_75aa2:
-	TX_FAR _CinnabarGymText_75aa2
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75aa2
+	done
 
 CinnabarGymText_75aa7:
-	TX_FAR _CinnabarGymText_75aa7
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75aa7
+	done
 
 CinnabarGymText9:
 	TX_ASM
@@ -466,9 +491,11 @@ CinnabarGymText9:
 	jp TextScriptEnd
 
 CinnabarGymText_75ac2:
-	TX_FAR _CinnabarGymText_75ac2
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75ac2
+	done
 
 CinnabarGymText_75ac7:
-	TX_FAR _CinnabarGymText_75ac7
-	db "@"
+	text ""
+	fartext _CinnabarGymText_75ac7
+	done

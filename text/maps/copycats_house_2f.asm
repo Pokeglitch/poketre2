@@ -34,7 +34,7 @@ _ReceivedTM31Text::
 	done
 
 _TM31ExplanationText1::
-	db TEXT_INIT
+	text ""
 	para "TM31 contains my"
 	line "favorite, MIMIC!"
 

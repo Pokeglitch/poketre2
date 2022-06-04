@@ -50,7 +50,7 @@ _ReceivedTM38Text::
 	done
 
 _TM38ExplanationText::
-	db TEXT_INIT
+	text ""
 	para "TM38 contains"
 	line "FIRE BLAST!"
 

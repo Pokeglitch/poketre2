@@ -1,6 +1,7 @@
 _DayCareAllRightThenText::
 	text "All right then,"
-	line "@@"
+	line ""
+	done
 
 _DayCareComeAgainText::
 	text "come again."

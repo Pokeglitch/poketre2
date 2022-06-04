@@ -4,7 +4,8 @@ _Route22GateText_1e704::
 	cont "allowed through."
 
 	para "You don't have the"
-	line "BOULDERBADGE yet!@@"
+	line "BOULDERBADGE yet!"
+	done
 
 _Route22GateText_1e715::
 	db $0

@@ -73,20 +73,24 @@ GiveFossilToCinnabarLab:
 	ret
 
 LabFossil_610ae:
-	TX_FAR _Lab4Text_610ae
-	db "@"
+	text ""
+	fartext _Lab4Text_610ae
+	done
 
 LabFossil_610b3:
-	TX_FAR _Lab4Text_610b3
-	db "@"
+	text ""
+	fartext _Lab4Text_610b3
+	done
 
 LabFossil_610b8:
-	TX_FAR _Lab4Text_610b8
-	db "@"
+	text ""
+	fartext _Lab4Text_610b8
+	done
 
 LabFossil_610bd:
-	TX_FAR _Lab4Text_610bd
-	db "@"
+	text ""
+	fartext _Lab4Text_610bd
+	done
 
 PrintFossilsInBag:
 ; Prints each fossil in the player's bag on a separate line in the menu.

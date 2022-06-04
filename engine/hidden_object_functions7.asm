@@ -3,16 +3,18 @@ PrintNewBikeText:
 	tx_pre_jump NewBicycleText
 
 NewBicycleText:
-	TX_FAR _NewBicycleText
-	db "@"
+	text ""
+	fartext _NewBicycleText
+	done
 
 DisplayOakLabLeftPoster:
 	call EnableAutoTextBoxDrawing
 	tx_pre_jump PushStartText
 
 PushStartText:
-	TX_FAR _PushStartText
-	db "@"
+	text ""
+	fartext _PushStartText
+	done
 
 DisplayOakLabRightPoster:
 	call EnableAutoTextBoxDrawing
@@ -29,12 +31,14 @@ DisplayOakLabRightPoster:
 	jp PrintPredefTextID
 
 SaveOptionText:
-	TX_FAR _SaveOptionText
-	db "@"
+	text ""
+	fartext _SaveOptionText
+	done
 
 StrengthsAndWeaknessesText:
-	TX_FAR _StrengthsAndWeaknessesText
-	db "@"
+	text ""
+	fartext _StrengthsAndWeaknessesText
+	done
 
 SafariZoneCheck:
 	CheckEventHL EVENT_IN_SAFARI_ZONE ; if we are not in the Safari Zone,
@@ -151,8 +155,9 @@ CinnabarGymQuiz:
 	jp TextScriptEnd
 
 CinnabarGymQuizIntroText:
-	TX_FAR _CinnabarGymQuizIntroText
-	db "@"
+	text ""
+	fartext _CinnabarGymQuizIntroText
+	done
 
 CinnabarQuizQuestions:
 	dw CinnabarQuizQuestionsText1
@@ -163,28 +168,34 @@ CinnabarQuizQuestions:
 	dw CinnabarQuizQuestionsText6
 
 CinnabarQuizQuestionsText1:
-	TX_FAR _CinnabarQuizQuestionsText1
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText1
+	done
 
 CinnabarQuizQuestionsText2:
-	TX_FAR _CinnabarQuizQuestionsText2
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText2
+	done
 
 CinnabarQuizQuestionsText3:
-	TX_FAR _CinnabarQuizQuestionsText3
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText3
+	done
 
 CinnabarQuizQuestionsText4:
-	TX_FAR _CinnabarQuizQuestionsText4
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText4
+	done
 
 CinnabarQuizQuestionsText5:
-	TX_FAR _CinnabarQuizQuestionsText5
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText5
+	done
 
 CinnabarQuizQuestionsText6:
-	TX_FAR _CinnabarQuizQuestionsText6
-	db "@"
+	text ""
+	fartext _CinnabarQuizQuestionsText6
+	done
 
 CinnabarGymGateFlagAction:
 	EventFlagAddress hl, EVENT_CINNABAR_GYM_GATE0_UNLOCKED
@@ -236,9 +247,7 @@ CinnabarGymQuizCorrectText:
 	sfxtext SFX_GET_ITEM_1
 	fartext _CinnabarGymQuizCorrectText
 	wait
-	endtext
-	TX_ASM
-
+	asmtext
 	ld a, [$ffe0]
 	AdjustEventBit EVENT_CINNABAR_GYM_GATE0_UNLOCKED, 0
 	ld c, a
@@ -254,8 +263,9 @@ CinnabarGymQuizCorrectText:
 	jp TextScriptEnd
 
 CinnabarGymQuizIncorrectText:
-	TX_FAR _CinnabarGymQuizIncorrectText
-	db "@"
+	text ""
+	fartext _CinnabarGymQuizIncorrectText
+	done
 
 UpdateCinnabarGymGateTileBlocks_:
 ; Update the overworld map with open floor blocks or locked gate blocks
@@ -316,8 +326,9 @@ PrintMagazinesText:
 	ret
 
 MagazinesText:
-	TX_FAR _MagazinesText
-	db "@"
+	text ""
+	fartext _MagazinesText
+	done
 
 BillsHousePC:
 	call EnableAutoTextBoxDrawing
@@ -366,15 +377,15 @@ BillsHousePC:
 	ret
 
 BillsHouseMonitorText:
-	TX_FAR _BillsHouseMonitorText
-	db "@"
+	text ""
+	fartext _BillsHouseMonitorText
+	done
 
 BillsHouseInitiatedText:
 	text ""
 	fartext _BillsHouseInitiatedText
 	wait
-	endtext
-	TX_ASM
+	asmtext
 	ld a, $ff
 	ld [wNewSoundID], a
 	call PlaySound
@@ -442,8 +453,9 @@ BillsHousePokemonList:
 	jp TextScriptEnd
 
 BillsHousePokemonListText1:
-	TX_FAR _BillsHousePokemonListText1
-	db "@"
+	text ""
+	fartext _BillsHousePokemonListText1
+	done
 
 BillsMonListText:
 	db   "EEVEE"
@@ -453,8 +465,9 @@ BillsMonListText:
 	next "CANCEL@"
 
 BillsHousePokemonListText2:
-	TX_FAR _BillsHousePokemonListText2
-	db "@"
+	text ""
+	fartext _BillsHousePokemonListText2
+	done
 
 DisplayOakLabEmailText:
 	ld a, [wSpriteStateData1 + 9]
@@ -464,5 +477,6 @@ DisplayOakLabEmailText:
 	tx_pre_jump OakLabEmailText
 
 OakLabEmailText:
-	TX_FAR _OakLabEmailText
-	db "@"
+	text ""
+	fartext _OakLabEmailText
+	done

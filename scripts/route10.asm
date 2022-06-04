@@ -87,16 +87,19 @@ Route10Text1:
 	jp TextScriptEnd
 
 Route10BattleText1:
-	TX_FAR _Route10BattleText1
-	db "@"
+	text ""
+	fartext _Route10BattleText1
+	done
 
 Route10EndBattleText1:
-	TX_FAR _Route10EndBattleText1
-	db "@"
+	text ""
+	fartext _Route10EndBattleText1
+	done
 
 Route10AfterBattleText1:
-	TX_FAR _Route10AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText1
+	done
 
 Route10Text2:
 	TX_ASM
@@ -105,16 +108,19 @@ Route10Text2:
 	jp TextScriptEnd
 
 Route10BattleText2:
-	TX_FAR _Route10BattleText2
-	db "@"
+	text ""
+	fartext _Route10BattleText2
+	done
 
 Route10EndBattleText2:
-	TX_FAR _Route10EndBattleText2
-	db "@"
+	text ""
+	fartext _Route10EndBattleText2
+	done
 
 Route10AfterBattleText2:
-	TX_FAR _Route10AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText2
+	done
 
 Route10Text3:
 	TX_ASM
@@ -123,16 +129,19 @@ Route10Text3:
 	jp TextScriptEnd
 
 Route10BattleText3:
-	TX_FAR _Route10BattleText3
-	db "@"
+	text ""
+	fartext _Route10BattleText3
+	done
 
 Route10EndBattleText3:
-	TX_FAR _Route10EndBattleText3
-	db "@"
+	text ""
+	fartext _Route10EndBattleText3
+	done
 
 Route10AfterBattleText3:
-	TX_FAR _Route10AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText3
+	done
 
 Route10Text4:
 	TX_ASM
@@ -141,16 +150,19 @@ Route10Text4:
 	jp TextScriptEnd
 
 Route10BattleText4:
-	TX_FAR _Route10BattleText4
-	db "@"
+	text ""
+	fartext _Route10BattleText4
+	done
 
 Route10EndBattleText4:
-	TX_FAR _Route10EndBattleText4
-	db "@"
+	text ""
+	fartext _Route10EndBattleText4
+	done
 
 Route10AfterBattleText4:
-	TX_FAR _Route10AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText4
+	done
 
 Route10Text5:
 	TX_ASM
@@ -159,16 +171,19 @@ Route10Text5:
 	jp TextScriptEnd
 
 Route10BattleText5:
-	TX_FAR _Route10BattleText5
-	db "@"
+	text ""
+	fartext _Route10BattleText5
+	done
 
 Route10EndBattleText5:
-	TX_FAR _Route10EndBattleText5
-	db "@"
+	text ""
+	fartext _Route10EndBattleText5
+	done
 
 Route10AfterBattleText5:
-	TX_FAR _Route10AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText5
+	done
 
 Route10Text6:
 	TX_ASM
@@ -177,22 +192,27 @@ Route10Text6:
 	jp TextScriptEnd
 
 Route10BattleText6:
-	TX_FAR _Route10BattleText6
-	db "@"
+	text ""
+	fartext _Route10BattleText6
+	done
 
 Route10EndBattleText6:
-	TX_FAR _Route10EndBattleText6
-	db "@"
+	text ""
+	fartext _Route10EndBattleText6
+	done
 
 Route10AfterBattleText6:
-	TX_FAR _Route10AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route10AfterBattleText6
+	done
 
 Route10Text9:
 Route10Text7:
-	TX_FAR _Route10Text7 ; _Route10Text9
-	db "@"
+	text ""
+	fartext _Route10Text7 ; _Route10Text9
+	done
 
 Route10Text10:
-	TX_FAR _Route10Text10
-	db "@"
+	text ""
+	fartext _Route10Text10
+	done

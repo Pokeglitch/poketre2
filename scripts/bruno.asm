@@ -135,17 +135,21 @@ BrunoText1:
 	jp TextScriptEnd
 
 BrunoBeforeBattleText:
-	TX_FAR _BrunoBeforeBattleText
-	db "@"
+	text ""
+	fartext _BrunoBeforeBattleText
+	done
 
 BrunoEndBattleText:
-	TX_FAR _BrunoEndBattleText
-	db "@"
+	text ""
+	fartext _BrunoEndBattleText
+	done
 
 BrunoAfterBattleText:
-	TX_FAR _BrunoAfterBattleText
-	db "@"
+	text ""
+	fartext _BrunoAfterBattleText
+	done
 
 BrunoDontRunAwayText:
-	TX_FAR _BrunoDontRunAwayText
-	db "@"
+	text ""
+	fartext _BrunoDontRunAwayText
+	done

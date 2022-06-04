@@ -56,16 +56,19 @@ FuchsiaHouse2Text1:
 	jp TextScriptEnd
 
 WardenGibberishText1:
-	TX_FAR _WardenGibberishText1
-	db "@"
+	text ""
+	fartext _WardenGibberishText1
+	done
 
 WardenGibberishText2:
-	TX_FAR _WardenGibberishText2
-	db "@"
+	text ""
+	fartext _WardenGibberishText2
+	done
 
 WardenGibberishText3:
-	TX_FAR _WardenGibberishText3
-	db "@"
+	text ""
+	fartext _WardenGibberishText3
+	done
 
 WardenTeethText1:
 	text ""
@@ -78,8 +81,9 @@ WardenTeethText2:
 	done
 
 WardenThankYouText:
-	TX_FAR _WardenThankYouText
-	db "@"
+	text ""
+	fartext _WardenThankYouText
+	done
 
 ReceivedHM04Text:
 	text ""
@@ -88,12 +92,14 @@ ReceivedHM04Text:
 	done
 
 HM04ExplanationText:
-	TX_FAR _HM04ExplanationText
-	db "@"
+	text ""
+	fartext _HM04ExplanationText
+	done
 
 HM04NoRoomText:
-	TX_FAR _HM04NoRoomText
-	db "@"
+	text ""
+	fartext _HM04NoRoomText
+	done
 
 FuchsiaHouse2Text5:
 FuchsiaHouse2Text4:
@@ -108,9 +114,11 @@ FuchsiaHouse2Text4:
 	jp TextScriptEnd
 
 FuchsiaHouse2Text_75176:
-	TX_FAR _FuchsiaHouse2Text_75176
-	db "@"
+	text ""
+	fartext _FuchsiaHouse2Text_75176
+	done
 
 FuchsiaHouse2Text_7517b:
-	TX_FAR _FuchsiaHouse2Text_7517b
-	db "@"
+	text ""
+	fartext _FuchsiaHouse2Text_7517b
+	done

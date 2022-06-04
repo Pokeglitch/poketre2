@@ -83,20 +83,24 @@ Lab4Text1:
 	jr .asm_75d93
 
 Lab4Text_75dc6:
-	TX_FAR _Lab4Text_75dc6
-	db "@"
+	text ""
+	fartext _Lab4Text_75dc6
+	done
 
 Lab4Text_75dcb:
-	TX_FAR _Lab4Text_75dcb
-	db "@"
+	text ""
+	fartext _Lab4Text_75dcb
+	done
 
 Lab4Text_75dd0:
-	TX_FAR _Lab4Text_75dd0
-	db "@"
+	text ""
+	fartext _Lab4Text_75dd0
+	done
 
 Lab4Text_75dd5:
-	TX_FAR _Lab4Text_75dd5
-	db "@"
+	text ""
+	fartext _Lab4Text_75dd5
+	done
 
 Lab4Text2:
 	TX_ASM

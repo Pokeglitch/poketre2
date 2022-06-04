@@ -161,16 +161,19 @@ LinkMenu:
 	ret
 
 WhereWouldYouLikeText:
-	TX_FAR _WhereWouldYouLikeText
-	db "@"
+	text ""
+	fartext _WhereWouldYouLikeText
+	done
 
 PleaseWaitText:
-	TX_FAR _PleaseWaitText
-	db "@"
+	text ""
+	fartext _PleaseWaitText
+	done
 
 LinkCanceledText:
-	TX_FAR _LinkCanceledText
-	db "@"
+	text ""
+	fartext _LinkCanceledText
+	done
 
 CableClubOptionsText:
 	db   "TRADE CENTER"

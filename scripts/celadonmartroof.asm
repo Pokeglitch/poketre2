@@ -134,8 +134,9 @@ RemoveItemByIDBank12:
 	jpba RemoveItemByID
 
 CeladonMartRoofText_484ee:
-	TX_FAR _CeladonMartRoofText_484ee
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_484ee
+	done
 
 CeladonMartRoofText_484f3:
 	text ""
@@ -222,8 +223,9 @@ CeladonMartRoofTextPointers:
 	dw CeladonMartRoofText6
 
 CeladonMartRoofText1:
-	TX_FAR _CeladonMartRoofText1
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText1
+	done
 
 CeladonMartRoofText2:
 	TX_ASM
@@ -248,16 +250,19 @@ CeladonMartRoofText2:
 	jp TextScriptEnd
 
 CeladonMartRoofText3:
-	TX_FAR _CeladonMartRoofText_48598
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText_48598
+	done
 
 CeladonMartRoofText4:
-	TX_FAR _CeladonMartRoofText4
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText4
+	done
 
 CeladonMartRoofText5:
 	TX_VENDING_MACHINE
 
 CeladonMartRoofText6:
-	TX_FAR _CeladonMartRoofText6
-	db "@"
+	text ""
+	fartext _CeladonMartRoofText6
+	done

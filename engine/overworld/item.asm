@@ -51,5 +51,6 @@ FoundItemText:
 	done
 
 NoMoreRoomForItemText:
-	TX_FAR _NoMoreRoomForItemText
-	db "@"
+	text ""
+	fartext _NoMoreRoomForItemText
+	done

@@ -7,8 +7,9 @@ Lab2TextPointers:
 	dw Lab2Text3
 
 Lab2Text1:
-	TX_FAR _Lab2Text1
-	db "@"
+	text ""
+	fartext _Lab2Text1
+	done
 
 Lab2Text2:
 	TX_ASM

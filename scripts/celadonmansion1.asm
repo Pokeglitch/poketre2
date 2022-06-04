@@ -13,27 +13,32 @@ CeladonMansion1_486a1:
 	jp TextScriptEnd
 
 CeladonMansion1Text1:
-	TX_FAR _CeladonMansion1Text1
-	TX_ASM
+	text ""
+	fartext _CeladonMansion1Text1
+	asmtext
 	ld a, MEOWTH
 	jp CeladonMansion1_486a1
 
 CeladonMansion1Text2:
-	TX_FAR _CeladonMansion1Text2
-	db "@"
+	text ""
+	fartext _CeladonMansion1Text2
+	done
 
 CeladonMansion1Text3:
-	TX_FAR _CeladonMansion1Text3
-	TX_ASM
+	text ""
+	fartext _CeladonMansion1Text3
+	asmtext
 	ld a, CLEFAIRY
 	jp CeladonMansion1_486a1
 
 CeladonMansion1Text4:
-	TX_FAR _CeladonMansion1Text4
-	TX_ASM
+	text ""
+	fartext _CeladonMansion1Text4
+	asmtext
 	ld a, NIDORAN_F
 	jp CeladonMansion1_486a1
 
 CeladonMansion1Text5:
-	TX_FAR _CeladonMansion1Text5
-	db "@"
+	text ""
+	fartext _CeladonMansion1Text5
+	done

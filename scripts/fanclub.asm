@@ -38,12 +38,14 @@ FanClubText1:
 	jp TextScriptEnd
 
 .normaltext
-	TX_FAR PikachuFanText
-	db "@"
+	text ""
+	fartext PikachuFanText
+	done
 
 .bettertext
-	TX_FAR PikachuFanBetterText
-	db "@"
+	text ""
+	fartext PikachuFanBetterText
+	done
 
 FanClubText2:
 ; seel fan
@@ -62,12 +64,14 @@ FanClubText2:
 	jp TextScriptEnd
 
 .normaltext
-	TX_FAR SeelFanText
-	db "@"
+	text ""
+	fartext SeelFanText
+	done
 
 .bettertext
-	TX_FAR SeelFanBetterText
-	db "@"
+	text ""
+	fartext SeelFanBetterText
+	done
 
 FanClubText3:
 ; pikachu
@@ -80,8 +84,9 @@ FanClubText3:
 	jp TextScriptEnd
 
 .text
-	TX_FAR FanClubPikachuText
-	db "@"
+	text ""
+	fartext FanClubPikachuText
+	done
 
 FanClubText4:
 ; seel
@@ -94,8 +99,9 @@ FanClubText4:
 	jp TextScriptEnd
 
 .text
-	TX_FAR FanClubSeelText
-	db "@"
+	text ""
+	fartext FanClubSeelText
+	done
 
 FanClubText5:
 ; chair
@@ -135,12 +141,14 @@ FanClubText5:
 	jp TextScriptEnd
 
 .meetchairtext
-	TX_FAR FanClubMeetChairText
-	db "@"
+	text ""
+	fartext FanClubMeetChairText
+	done
 
 .storytext
-	TX_FAR FanClubChairStoryText
-	db "@"
+	text ""
+	fartext FanClubChairStoryText
+	done
 
 .receivedvouchertext
 	text ""
@@ -150,25 +158,31 @@ FanClubText5:
 	done
 
 .nostorytext
-	TX_FAR FanClubNoStoryText
-	db "@"
+	text ""
+	fartext FanClubNoStoryText
+	done
 
 .finaltext
-	TX_FAR FanClubChairFinalText
-	db "@"
+	text ""
+	fartext FanClubChairFinalText
+	done
 
 .bagfulltext
-	TX_FAR FanClubBagFullText
-	db "@"
+	text ""
+	fartext FanClubBagFullText
+	done
 
 FanClubText6:
-	TX_FAR _FanClubText6
-	db "@"
+	text ""
+	fartext _FanClubText6
+	done
 
 FanClubText7:
-	TX_FAR _FanClubText7
-	db "@"
+	text ""
+	fartext _FanClubText7
+	done
 
 FanClubText8:
-	TX_FAR _FanClubText8
-	db "@"
+	text ""
+	fartext _FanClubText8
+	done

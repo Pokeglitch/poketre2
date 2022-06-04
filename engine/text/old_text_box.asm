@@ -180,7 +180,8 @@ TextBoxTextAndCoordTable:
 BuySellQuitText:
 	db   "BUY"
 	next "SELL"
-	next "QUIT@@"
+	next "QUIT"
+	done
 
 BattleMenuText:
 	db   "FIGHT ",$E1,$E2

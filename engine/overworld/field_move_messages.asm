@@ -7,16 +7,18 @@ PrintStrengthTxt:
 	jp PrintText
 
 UsedStrengthText:
-	TX_FAR _UsedStrengthText
-	TX_ASM
+	text ""
+	fartext _UsedStrengthText
+	asmtext
 	ld a, [wcf91]
 	call PlayCry
 	call Delay3
 	jp TextScriptEnd
 
 CanMoveBouldersText:
-	TX_FAR _CanMoveBouldersText
-	db "@"
+	text ""
+	fartext _CanMoveBouldersText
+	done
 
 IsSurfingAllowed:
 ; Returns whether surfing is allowed in bit 1 of wd728.
@@ -49,9 +51,11 @@ CoordsData_cdf7:
 	db $0B,$07,$FF
 
 CurrentTooFastText:
-	TX_FAR _CurrentTooFastText
-	db "@"
+	text ""
+	fartext _CurrentTooFastText
+	done
 
 CyclingIsFunText:
-	TX_FAR _CyclingIsFunText
-	db "@"
+	text ""
+	fartext _CyclingIsFunText
+	done

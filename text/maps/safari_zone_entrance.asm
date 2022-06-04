@@ -10,7 +10,8 @@ SafariZoneEntranceText_9e6e4::
 	cont "want in the park!"
 
 	para "Would you like to"
-	line "join the hunt?@@"
+	line "join the hunt?"
+	done
 
 SafariZoneEntranceText_9e747::
 	text "That'll be $500"
@@ -25,7 +26,7 @@ SafariZoneEntranceText_9e747::
 	done
 
 _SafariZoneEntranceText_75360::
-	db TEXT_INIT
+	text ""
 	para "We'll call you on"
 	line "the PA when you"
 	cont "run out of time"
@@ -43,7 +44,8 @@ _SafariZoneEntranceText_7536a::
 	done
 
 SafariZoneEntranceText_9e814::
-	text "Leaving early?@@"
+	text "Leaving early?"
+	done
 
 _SafariZoneEntranceText_753bb::
 	text "Please return any"

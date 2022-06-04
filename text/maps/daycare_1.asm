@@ -14,7 +14,7 @@ _DayCareWillLookAfterMonText::
 	text "Fine, I'll look"
 	line "after "
 	ramtext wcd6d
-	db TEXT_INIT
+	text ""
 	cont "for a while."
 	prompt
 
@@ -26,7 +26,7 @@ _DayCareComeSeeMeInAWhileText::
 _DayCareMonHasGrownText::
 	text "Your "
 	ramtext wcd6d
-	db TEXT_INIT
+	text ""
 	line "has grown a lot!"
 
 	para "By level, it's"
@@ -40,7 +40,7 @@ _DayCareMonHasGrownText::
 _DayCareOweMoneyText::
 	text "You owe me $"
 	bcdtext wDayCareTotalCost, $c2
-	db TEXT_INIT
+	text ""
 	line "for the return"
 	cont "of this POKéMON."
 	done
@@ -56,7 +56,7 @@ _DayCareMonNeedsMoreTimeText::
 	text "Back already?"
 	line "Your "
 	ramtext wcd6d
-	db TEXT_INIT
+	text ""
 	cont "needs some more"
 	cont "time with me."
 	prompt

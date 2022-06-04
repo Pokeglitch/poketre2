@@ -8,20 +8,24 @@ SaffronHouse1TextPointers:
 	dw SaffronHouse1Text4
 
 SaffronHouse1Text1:
-	TX_FAR _SaffronHouse1Text1
-	db "@"
+	text ""
+	fartext _SaffronHouse1Text1
+	done
 
 SaffronHouse1Text2:
-	TX_FAR _SaffronHouse1Text2
-	TX_ASM
+	text ""
+	fartext _SaffronHouse1Text2
+	asmtext
 	ld a, PIDGEY
 	call PlayCry
 	jp TextScriptEnd
 
 SaffronHouse1Text3:
-	TX_FAR _SaffronHouse1Text3
-	db "@"
+	text ""
+	fartext _SaffronHouse1Text3
+	done
 
 SaffronHouse1Text4:
-	TX_FAR _SaffronHouse1Text4
-	db "@"
+	text ""
+	fartext _SaffronHouse1Text4
+	done

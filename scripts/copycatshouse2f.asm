@@ -44,12 +44,14 @@ CopycatsHouse2FText1:
 	jp TextScriptEnd
 
 CopycatsHouse2FText_5ccd4:
-	TX_FAR _CopycatsHouse2FText_5ccd4
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText_5ccd4
+	done
 
 TM31PreReceiveText:
-	TX_FAR _TM31PreReceiveText
-	db "@"
+	text ""
+	fartext _TM31PreReceiveText
+	done
 
 ReceivedTM31Text:
 	text ""
@@ -63,8 +65,9 @@ TM31ExplanationText1:
 	done
 
 TM31ExplanationText2:
-	TX_FAR _TM31ExplanationText2
-	db "@"
+	text ""
+	fartext _TM31ExplanationText2
+	done
 
 TM31NoRoomText:
 	text ""
@@ -73,18 +76,21 @@ TM31NoRoomText:
 	done
 
 CopycatsHouse2FText2:
-	TX_FAR _CopycatsHouse2FText2
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText2
+	done
 
 CopycatsHouse2FText5:
 CopycatsHouse2FText4:
 CopycatsHouse2FText3:
-	TX_FAR _CopycatsHouse2FText3
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText3
+	done
 
 CopycatsHouse2FText6:
-	TX_FAR _CopycatsHouse2FText6
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText6
+	done
 
 CopycatsHouse2FText7:
 	TX_ASM
@@ -98,9 +104,11 @@ CopycatsHouse2FText7:
 	jp TextScriptEnd
 
 CopycatsHouse2FText_5cd17:
-	TX_FAR _CopycatsHouse2FText_5cd17
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText_5cd17
+	done
 
 CopycatsHouse2FText_5cd1c:
-	TX_FAR _CopycatsHouse2FText_5cd1c
-	db "@"
+	text ""
+	fartext _CopycatsHouse2FText_5cd1c
+	done

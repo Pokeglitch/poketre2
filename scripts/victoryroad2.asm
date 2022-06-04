@@ -176,69 +176,85 @@ MoltresText:
 	jp TextScriptEnd
 
 MoltresBattleText:
-	TX_FAR _MoltresBattleText
-	TX_ASM
+	text ""
+	fartext _MoltresBattleText
+	asmtext
 	ld a, MOLTRES
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 VictoryRoad2BattleText1:
-	TX_FAR _VictoryRoad2BattleText1
-	db "@"
+	text ""
+	fartext _VictoryRoad2BattleText1
+	done
 
 VictoryRoad2EndBattleText1:
-	TX_FAR _VictoryRoad2EndBattleText1
-	db "@"
+	text ""
+	fartext _VictoryRoad2EndBattleText1
+	done
 
 VictoryRoad2AfterBattleText1:
-	TX_FAR _VictoryRoad2AfterBattleText1
-	db "@"
+	text ""
+	fartext _VictoryRoad2AfterBattleText1
+	done
 
 VictoryRoad2BattleText2:
-	TX_FAR _VictoryRoad2BattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad2BattleText2
+	done
 
 VictoryRoad2EndBattleText2:
-	TX_FAR _VictoryRoad2EndBattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad2EndBattleText2
+	done
 
 VictoryRoad2AfterBattleText2:
-	TX_FAR _VictoryRoad2AfterBattleText2
-	db "@"
+	text ""
+	fartext _VictoryRoad2AfterBattleText2
+	done
 
 VictoryRoad2BattleText3:
-	TX_FAR _VictoryRoad2BattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad2BattleText3
+	done
 
 VictoryRoad2EndBattleText3:
-	TX_FAR _VictoryRoad2EndBattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad2EndBattleText3
+	done
 
 VictoryRoad2AfterBattleText3:
-	TX_FAR _VictoryRoad2AfterBattleText3
-	db "@"
+	text ""
+	fartext _VictoryRoad2AfterBattleText3
+	done
 
 VictoryRoad2BattleText4:
-	TX_FAR _VictoryRoad2BattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad2BattleText4
+	done
 
 VictoryRoad2EndBattleText4:
-	TX_FAR _VictoryRoad2EndBattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad2EndBattleText4
+	done
 
 VictoryRoad2AfterBattleText4:
-	TX_FAR _VictoryRoad2AfterBattleText4
-	db "@"
+	text ""
+	fartext _VictoryRoad2AfterBattleText4
+	done
 
 VictoryRoad2BattleText5:
-	TX_FAR _VictoryRoad2BattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad2BattleText5
+	done
 
 VictoryRoad2EndBattleText5:
-	TX_FAR _VictoryRoad2EndBattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad2EndBattleText5
+	done
 
 VictoryRoad2AfterBattleText5:
-	TX_FAR _VictoryRoad2AfterBattleText5
-	db "@"
+	text ""
+	fartext _VictoryRoad2AfterBattleText5
+	done

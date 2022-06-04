@@ -8,13 +8,16 @@ CeladonHouseTextPointers:
 	dw CeladonHouseText3
 
 CeladonHouseText1:
-	TX_FAR _CeladonHouseText1
-	db "@"
+	text ""
+	fartext _CeladonHouseText1
+	done
 
 CeladonHouseText2:
-	TX_FAR _CeladonHouseText2
-	db "@"
+	text ""
+	fartext _CeladonHouseText2
+	done
 
 CeladonHouseText3:
-	TX_FAR _CeladonHouseText3
-	db "@"
+	text ""
+	fartext _CeladonHouseText3
+	done

@@ -586,24 +586,29 @@ ItemUseBall:
 ItemUseBallText00:
 ;"It dodged the thrown ball!"
 ;"This pokemon can't be caught"
-	TX_FAR _ItemUseBallText00
-	db "@"
+	text ""
+	fartext _ItemUseBallText00
+	done
 ItemUseBallText01:
 ;"You missed the pokemon!"
-	TX_FAR _ItemUseBallText01
-	db "@"
+	text ""
+	fartext _ItemUseBallText01
+	done
 ItemUseBallText02:
 ;"Darn! The pokemon broke free!"
-	TX_FAR _ItemUseBallText02
-	db "@"
+	text ""
+	fartext _ItemUseBallText02
+	done
 ItemUseBallText03:
 ;"Aww! It appeared to be caught!"
-	TX_FAR _ItemUseBallText03
-	db "@"
+	text ""
+	fartext _ItemUseBallText03
+	done
 ItemUseBallText04:
 ;"Shoot! It was so close too!"
-	TX_FAR _ItemUseBallText04
-	db "@"
+	text ""
+	fartext _ItemUseBallText04
+	done
 
 ItemUseBallText05:
 ;"All right! {MonName} was caught!"
@@ -616,13 +621,15 @@ ItemUseBallText05:
 
 ItemUseBallText07:
 ;"X was transferred to Bill's PC"
-	TX_FAR _ItemUseBallText07
-	db "@"
+	text ""
+	fartext _ItemUseBallText07
+	done
 
 ItemUseBallText08:
 ;"X was transferred to someone's PC"
-	TX_FAR _ItemUseBallText08
-	db "@"
+	text ""
+	fartext _ItemUseBallText08
+	done
 
 ItemUseBallText06:
 ;"New DEX data will be added..."
@@ -679,8 +686,9 @@ ItemUseBicycle:
 	jp PrintText
 
 CannotGetOffHereText:
-	TX_FAR _CannotGetOffHereText
-	db "@"
+	text ""
+	fartext _CannotGetOffHereText
+	done
 
 ; used for Surf out-of-battle effect
 ItemUseSurfboard:
@@ -763,12 +771,14 @@ ItemUseSurfboard:
 	ret
 
 SurfingGotOnText:
-	TX_FAR _SurfingGotOnText
-	db "@"
+	text ""
+	fartext _SurfingGotOnText
+	done
 
 SurfingNoPlaceToGetOffText:
-	TX_FAR _SurfingNoPlaceToGetOffText
-	db "@"
+	text ""
+	fartext _SurfingNoPlaceToGetOffText
+	done
 
 ItemUsePokedex:
 	predef_jump ShowPokedexMenu
@@ -1431,12 +1441,14 @@ ItemUseMedicine:
 	jp RemoveUsedItem
 
 VitaminStatRoseText:
-	TX_FAR _VitaminStatRoseText
-	db "@"
+	text ""
+	fartext _VitaminStatRoseText
+	done
 
 VitaminNoEffectText:
-	TX_FAR _VitaminNoEffectText
-	db "@"
+	text ""
+	fartext _VitaminNoEffectText
+	done
 
 VitaminText:
 	db "HEALTH@"
@@ -1493,12 +1505,14 @@ BaitRockCommon:
 	jp DelayFrames
 
 ThrewBaitText:
-	TX_FAR _ThrewBaitText
-	db "@"
+	text ""
+	fartext _ThrewBaitText
+	done
 
 ThrewRockText:
-	TX_FAR _ThrewRockText
-	db "@"
+	text ""
+	fartext _ThrewRockText
+	done
 
 ; also used for Dig out-of-battle effect
 ItemUseEscapeRope:
@@ -1843,19 +1857,20 @@ Route16SnorlaxFluteCoords:
 	db $ff ; terminator
 
 PlayedFluteNoEffectText:
-	TX_FAR _PlayedFluteNoEffectText
-	db "@"
+	text ""
+	fartext _PlayedFluteNoEffectText
+	done
 
 FluteWokeUpText:
-	TX_FAR _FluteWokeUpText
-	db "@"
+	text ""
+	fartext _FluteWokeUpText
+	done
 
 PlayedFluteHadEffectText:
 	text ""
 	fartext _PlayedFluteHadEffectText
 	wait
-	endtext
-	TX_ASM
+	asmtext
 	ld a, [wIsInBattle]
 	and a
 	jr nz, .done
@@ -1881,8 +1896,9 @@ ItemUseCoinCase:
 	jp PrintText
 
 CoinCaseNumCoinsText:
-	TX_FAR _CoinCaseNumCoinsText
-	db "@"
+	text ""
+	fartext _CoinCaseNumCoinsText
+	done
 
 ItemUseOldRod:
 	call FishingInit
@@ -2000,12 +2016,14 @@ ItemUseItemfinder:
 	jp PrintText
 
 ItemfinderFoundItemText:
-	TX_FAR _ItemfinderFoundItemText
-	db "@"
+	text ""
+	fartext _ItemfinderFoundItemText
+	done
 
 ItemfinderFoundNothingText:
-	TX_FAR _ItemfinderFoundNothingText
-	db "@"
+	text ""
+	fartext _ItemfinderFoundNothingText
+	done
 
 ItemUsePPUp:
 	ld a, [wIsInBattle]
@@ -2189,24 +2207,29 @@ ItemUsePPRestore:
 	ret
 
 RaisePPWhichTechniqueText:
-	TX_FAR _RaisePPWhichTechniqueText
-	db "@"
+	text ""
+	fartext _RaisePPWhichTechniqueText
+	done
 
 RestorePPWhichTechniqueText:
-	TX_FAR _RestorePPWhichTechniqueText
-	db "@"
+	text ""
+	fartext _RestorePPWhichTechniqueText
+	done
 
 PPMaxedOutText:
-	TX_FAR _PPMaxedOutText
-	db "@"
+	text ""
+	fartext _PPMaxedOutText
+	done
 
 PPIncreasedText:
-	TX_FAR _PPIncreasedText
-	db "@"
+	text ""
+	fartext _PPIncreasedText
+	done
 
 PPRestoredText:
-	TX_FAR _PPRestoredText
-	db "@"
+	text ""
+	fartext _PPRestoredText
+	done
 
 ; for items that can't be used from the Item menu
 UnusableItem:
@@ -2282,8 +2305,9 @@ ItemUseTMHM:
 	ret
 
 MonCannotLearnMachineMoveText:
-	TX_FAR _MonCannotLearnMachineMoveText
-	db "@"
+	text ""
+	fartext _MonCannotLearnMachineMoveText
+	done
 
 PrintItemUseTextAndRemoveItem:
 	ld hl, ItemUseText00
@@ -2339,36 +2363,44 @@ ItemUseFailed:
 	jp PrintText
 
 ItemUseNotTimeText:
-	TX_FAR _ItemUseNotTimeText
-	db "@"
+	text ""
+	fartext _ItemUseNotTimeText
+	done
 
 ItemUseNotYoursToUseText:
-	TX_FAR _ItemUseNotYoursToUseText
-	db "@"
+	text ""
+	fartext _ItemUseNotYoursToUseText
+	done
 
 ItemUseNoEffectText:
-	TX_FAR _ItemUseNoEffectText
-	db "@"
+	text ""
+	fartext _ItemUseNoEffectText
+	done
 
 ThrowBallAtTrainerMonText1:
-	TX_FAR _ThrowBallAtTrainerMonText1
-	db "@"
+	text ""
+	fartext _ThrowBallAtTrainerMonText1
+	done
 
 ThrowBallAtTrainerMonText2:
-	TX_FAR _ThrowBallAtTrainerMonText2
-	db "@"
+	text ""
+	fartext _ThrowBallAtTrainerMonText2
+	done
 
 NoCyclingAllowedHereText:
-	TX_FAR _NoCyclingAllowedHereText
-	db "@"
+	text ""
+	fartext _NoCyclingAllowedHereText
+	done
 
 NoSurfingHereText:
-	TX_FAR _NoSurfingHereText
-	db "@"
+	text ""
+	fartext _NoSurfingHereText
+	done
 
 BoxFullCannotThrowBallText:
-	TX_FAR _BoxFullCannotThrowBallText
-	db "@"
+	text ""
+	fartext _BoxFullCannotThrowBallText
+	done
 
 ItemUseText00:
 	text ""

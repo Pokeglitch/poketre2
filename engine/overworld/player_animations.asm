@@ -463,16 +463,19 @@ FishingAnim:
 	ret
 
 NoNibbleText:
-	TX_FAR _NoNibbleText
-	db "@"
+	text ""
+	fartext _NoNibbleText
+	done
 
 NothingHereText:
-	TX_FAR _NothingHereText
-	db "@"
+	text ""
+	fartext _NothingHereText
+	done
 
 ItsABiteText:
-	TX_FAR _ItsABiteText
-	db "@"
+	text ""
+	fartext _ItsABiteText
+	done
 
 FishingRodOAM:
 ; specifies how the fishing rod should be drawn on the screen

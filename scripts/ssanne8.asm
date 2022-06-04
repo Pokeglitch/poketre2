@@ -88,76 +88,94 @@ SSAnne8Text4:
 	jp TextScriptEnd
 
 SSAnne8Text8:
-	TX_FAR _SSAnne8Text8
-	TX_ASM
+	text ""
+	fartext _SSAnne8Text8
+	asmtext
 	ld a, WIGGLYTUFF
 	call PlayCry
 	jp TextScriptEnd
 
 SSAnne8BattleText1:
-	TX_FAR _SSAnne8BattleText1
-	db "@"
+	text ""
+	fartext _SSAnne8BattleText1
+	done
 
 SSAnne8EndBattleText1:
-	TX_FAR _SSAnne8EndBattleText1
-	db "@"
+	text ""
+	fartext _SSAnne8EndBattleText1
+	done
 
 SSAnne8AfterBattleText1:
-	TX_FAR _SSAnne8AfterBattleText1
-	db "@"
+	text ""
+	fartext _SSAnne8AfterBattleText1
+	done
 
 SSAnne8BattleText2:
-	TX_FAR _SSAnne8BattleText2
-	db "@"
+	text ""
+	fartext _SSAnne8BattleText2
+	done
 
 SSAnne8EndBattleText2:
-	TX_FAR _SSAnne8EndBattleText2
-	db "@"
+	text ""
+	fartext _SSAnne8EndBattleText2
+	done
 
 SSAnne8AfterBattleText2:
-	TX_FAR _SSAnne8AfterBattleText2
-	db "@"
+	text ""
+	fartext _SSAnne8AfterBattleText2
+	done
 
 SSAnne8BattleText3:
-	TX_FAR _SSAnne8BattleText3
-	db "@"
+	text ""
+	fartext _SSAnne8BattleText3
+	done
 
 SSAnne8EndBattleText3:
-	TX_FAR _SSAnne8EndBattleText3
-	db "@"
+	text ""
+	fartext _SSAnne8EndBattleText3
+	done
 
 SSAnne8AfterBattleText3:
-	TX_FAR _SSAnne8AfterBattleText3
-	db "@"
+	text ""
+	fartext _SSAnne8AfterBattleText3
+	done
 
 SSAnne8BattleText4:
-	TX_FAR _SSAnne8BattleText4
-	db "@"
+	text ""
+	fartext _SSAnne8BattleText4
+	done
 
 SSAnne8EndBattleText4:
-	TX_FAR _SSAnne8EndBattleText4
-	db "@"
+	text ""
+	fartext _SSAnne8EndBattleText4
+	done
 
 SSAnne8AfterBattleText4:
-	TX_FAR _SSAnne8AfterBattleText4
-	db "@"
+	text ""
+	fartext _SSAnne8AfterBattleText4
+	done
 
 SSAnne8Text5:
-	TX_FAR _SSAnne8Text5
-	db "@"
+	text ""
+	fartext _SSAnne8Text5
+	done
 
 SSAnne8Text6:
-	TX_FAR _SSAnne8Text6
-	db "@"
+	text ""
+	fartext _SSAnne8Text6
+	done
 
 SSAnne8Text7:
-	TX_FAR _SSAnne8Text7
-	db "@"
+	text ""
+	fartext _SSAnne8Text7
+	done
 
 SSAnne8Text9:
-	TX_FAR _SSAnne8Text9
-	db "@"
+	text ""
+	fartext _SSAnne8Text9
+	done
 
 SSAnne8Text11:
-	TX_FAR _SSAnne8Text11
-	db "@"
+	text ""
+	fartext _SSAnne8Text11
+	done

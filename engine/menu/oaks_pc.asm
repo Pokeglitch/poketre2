@@ -15,8 +15,9 @@ OpenOaksPC:
 	jp LoadScreenTilesFromBuffer2
 
 GetDexRatedText:
-	TX_FAR _GetDexRatedText
-	db "@"
+	text ""
+	fartext _GetDexRatedText
+	done
 
 ClosedOaksPCText:
 	text ""
@@ -25,5 +26,6 @@ ClosedOaksPCText:
 	done
 
 AccessedOaksPCText:
-	TX_FAR _AccessedOaksPCText
-	db "@"
+	text ""
+	fartext _AccessedOaksPCText
+	done

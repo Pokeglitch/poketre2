@@ -12,7 +12,8 @@ _VictoryRoadGuardText1::
 
 	para "You have to have"
 	line "it to get to"
-	cont "POKéMON LEAGUE!@@"
+	cont "POKéMON LEAGUE!"
+	done
 
 _VictoryRoadGuardText2::
 	text "You can pass here"
@@ -28,7 +29,7 @@ _VictoryRoadGuardText2::
 	done
 
 _VictoryRoadGuardText_513a3::
-	db TEXT_INIT
+	text ""
 	para "OK then! Please,"
 	line "go right ahead!"
 	done

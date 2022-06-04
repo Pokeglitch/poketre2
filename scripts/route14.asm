@@ -124,16 +124,19 @@ Route14Text1:
 	jp TextScriptEnd
 
 Route14BattleText1:
-	TX_FAR _Route14BattleText1
-	db "@"
+	text ""
+	fartext _Route14BattleText1
+	done
 
 Route14EndBattleText1:
-	TX_FAR _Route14EndBattleText1
-	db "@"
+	text ""
+	fartext _Route14EndBattleText1
+	done
 
 Route14AfterBattleText1:
-	TX_FAR _Route14AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText1
+	done
 
 Route14Text2:
 	TX_ASM
@@ -142,16 +145,19 @@ Route14Text2:
 	jp TextScriptEnd
 
 Route14BattleText2:
-	TX_FAR _Route14BattleText2
-	db "@"
+	text ""
+	fartext _Route14BattleText2
+	done
 
 Route14EndBattleText2:
-	TX_FAR _Route14EndBattleText2
-	db "@"
+	text ""
+	fartext _Route14EndBattleText2
+	done
 
 Route14AfterBattleText2:
-	TX_FAR _Route14AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText2
+	done
 
 Route14Text3:
 	TX_ASM
@@ -160,16 +166,19 @@ Route14Text3:
 	jp TextScriptEnd
 
 Route14BattleText3:
-	TX_FAR _Route14BattleText3
-	db "@"
+	text ""
+	fartext _Route14BattleText3
+	done
 
 Route14EndBattleText3:
-	TX_FAR _Route14EndBattleText3
-	db "@"
+	text ""
+	fartext _Route14EndBattleText3
+	done
 
 Route14AfterBattleText3:
-	TX_FAR _Route14AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText3
+	done
 
 Route14Text4:
 	TX_ASM
@@ -178,16 +187,19 @@ Route14Text4:
 	jp TextScriptEnd
 
 Route14BattleText4:
-	TX_FAR _Route14BattleText4
-	db "@"
+	text ""
+	fartext _Route14BattleText4
+	done
 
 Route14EndBattleText4:
-	TX_FAR _Route14EndBattleText4
-	db "@"
+	text ""
+	fartext _Route14EndBattleText4
+	done
 
 Route14AfterBattleText4:
-	TX_FAR _Route14AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText4
+	done
 
 Route14Text5:
 	TX_ASM
@@ -196,16 +208,19 @@ Route14Text5:
 	jp TextScriptEnd
 
 Route14BattleText5:
-	TX_FAR _Route14BattleText5
-	db "@"
+	text ""
+	fartext _Route14BattleText5
+	done
 
 Route14EndBattleText5:
-	TX_FAR _Route14EndBattleText5
-	db "@"
+	text ""
+	fartext _Route14EndBattleText5
+	done
 
 Route14AfterBattleText5:
-	TX_FAR _Route14AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText5
+	done
 
 Route14Text6:
 	TX_ASM
@@ -214,16 +229,19 @@ Route14Text6:
 	jp TextScriptEnd
 
 Route14BattleText6:
-	TX_FAR _Route14BattleText6
-	db "@"
+	text ""
+	fartext _Route14BattleText6
+	done
 
 Route14EndBattleText6:
-	TX_FAR _Route14EndBattleText6
-	db "@"
+	text ""
+	fartext _Route14EndBattleText6
+	done
 
 Route14AfterBattleText6:
-	TX_FAR _Route14AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText6
+	done
 
 Route14Text7:
 	TX_ASM
@@ -232,16 +250,19 @@ Route14Text7:
 	jp TextScriptEnd
 
 Route14BattleText7:
-	TX_FAR _Route14BattleText7
-	db "@"
+	text ""
+	fartext _Route14BattleText7
+	done
 
 Route14EndBattleText7:
-	TX_FAR _Route14EndBattleText7
-	db "@"
+	text ""
+	fartext _Route14EndBattleText7
+	done
 
 Route14AfterBattleText7:
-	TX_FAR _Route14AfterBattleText7
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText7
+	done
 
 Route14Text8:
 	TX_ASM
@@ -250,16 +271,19 @@ Route14Text8:
 	jp TextScriptEnd
 
 Route14BattleText8:
-	TX_FAR _Route14BattleText8
-	db "@"
+	text ""
+	fartext _Route14BattleText8
+	done
 
 Route14EndBattleText8:
-	TX_FAR _Route14EndBattleText8
-	db "@"
+	text ""
+	fartext _Route14EndBattleText8
+	done
 
 Route14AfterBattleText8:
-	TX_FAR _Route14AfterBattleText8
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText8
+	done
 
 Route14Text9:
 	TX_ASM
@@ -268,16 +292,19 @@ Route14Text9:
 	jp TextScriptEnd
 
 Route14BattleText9:
-	TX_FAR _Route14BattleText9
-	db "@"
+	text ""
+	fartext _Route14BattleText9
+	done
 
 Route14EndBattleText9:
-	TX_FAR _Route14EndBattleText9
-	db "@"
+	text ""
+	fartext _Route14EndBattleText9
+	done
 
 Route14AfterBattleText9:
-	TX_FAR _Route14AfterBattleText9
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText9
+	done
 
 Route14Text10:
 	TX_ASM
@@ -286,17 +313,21 @@ Route14Text10:
 	jp TextScriptEnd
 
 Route14BattleText10:
-	TX_FAR _Route14BattleText10
-	db "@"
+	text ""
+	fartext _Route14BattleText10
+	done
 
 Route14EndBattleText10:
-	TX_FAR _Route14EndBattleText10
-	db "@"
+	text ""
+	fartext _Route14EndBattleText10
+	done
 
 Route14AfterBattleText10:
-	TX_FAR _Route14AfterBattleText10
-	db "@"
+	text ""
+	fartext _Route14AfterBattleText10
+	done
 
 Route14Text11:
-	TX_FAR _Route14Text11
-	db "@"
+	text ""
+	fartext _Route14Text11
+	done

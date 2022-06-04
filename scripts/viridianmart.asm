@@ -72,12 +72,14 @@ ViridianMartTextPointers:
 	dw ViridianMartText3
 
 ViridianMartText1:
-	TX_FAR _ViridianMartText1
-	db "@"
+	text ""
+	fartext _ViridianMartText1
+	done
 
 ViridianMartText4:
-	TX_FAR _ViridianMartText4
-	db "@"
+	text ""
+	fartext _ViridianMartText4
+	done
 
 ViridianMartText5:
 	text ""
@@ -86,9 +88,11 @@ ViridianMartText5:
 	done
 
 ViridianMartText2:
-	TX_FAR _ViridianMartText2
-	db "@"
+	text ""
+	fartext _ViridianMartText2
+	done
 
 ViridianMartText3:
-	TX_FAR _ViridianMartText3
-	db "@"
+	text ""
+	fartext _ViridianMartText3
+	done

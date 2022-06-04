@@ -132,8 +132,9 @@ CeladonGameCornerTextPointers:
 	dw CeladonGameCornerText13
 
 CeladonGameCornerText1:
-	TX_FAR _CeladonGameCornerText1
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText1
+	done
 
 CeladonGameCornerText2:
 	TX_ASM
@@ -193,36 +194,44 @@ CeladonGameCornerText2:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48d22:
-	TX_FAR _CeladonGameCornerText_48d22
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d22
+	done
 
 CeladonGameCornerText_48d27:
-	TX_FAR _CeladonGameCornerText_48d27
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d27
+	done
 
 CeladonGameCornerText_48d2c:
-	TX_FAR _CeladonGameCornerText_48d2c
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d2c
+	done
 
 CeladonGameCornerText_48d31:
-	TX_FAR _CeladonGameCornerText_48d31
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d31
+	done
 
 CeladonGameCornerText_48d36:
-	TX_FAR _CeladonGameCornerText_48d36
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d36
+	done
 
 CeladonGameCornerText_48d3b:
-	TX_FAR _CeladonGameCornerText_48d3b
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d3b
+	done
 
 CeladonGameCornerText3:
-	TX_FAR _CeladonGameCornerText3
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText3
+	done
 
 CeladonGameCornerText4:
-	TX_FAR _CeladonGameCornerText4
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText4
+	done
 
 CeladonGameCornerText5:
 	TX_ASM
@@ -262,8 +271,9 @@ CeladonGameCornerText5:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48d9c:
-	TX_FAR _CeladonGameCornerText_48d9c
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48d9c
+	done
 
 Received10CoinsText:
 	text ""
@@ -272,16 +282,19 @@ Received10CoinsText:
 	done
 
 CeladonGameCornerText_48da7:
-	TX_FAR _CeladonGameCornerText_48da7
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48da7
+	done
 
 CeladonGameCornerText_48dac:
-	TX_FAR _CeladonGameCornerText_48dac
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48dac
+	done
 
 CeladonGameCornerText6:
-	TX_FAR _CeladonGameCornerText6
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText6
+	done
 
 CeladonGameCornerText7:
 	TX_ASM
@@ -294,16 +307,19 @@ CeladonGameCornerText7:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48dca:
-	TX_FAR _CeladonGameCornerText_48dca
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48dca
+	done
 
 CeladonGameCornerText_48dcf:
-	TX_FAR _CeladonGameCornerText_48dcf
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48dcf
+	done
 
 CeladonGameCornerText8:
-	TX_FAR _CeladonGameCornerText8
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText8
+	done
 
 CeladonGameCornerText9:
 	TX_ASM
@@ -341,8 +357,9 @@ CeladonGameCornerText9:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48e26:
-	TX_FAR _CeladonGameCornerText_48e26
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e26
+	done
 
 Received20CoinsText:
 	text ""
@@ -351,12 +368,14 @@ Received20CoinsText:
 	done
 
 CeladonGameCornerText_48e31:
-	TX_FAR _CeladonGameCornerText_48e31
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e31
+	done
 
 CeladonGameCornerText_48e36:
-	TX_FAR _CeladonGameCornerText_48e36
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e36
+	done
 
 CeladonGameCornerText10:
 	TX_ASM
@@ -394,8 +413,9 @@ CeladonGameCornerText10:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48e88:
-	TX_FAR _CeladonGameCornerText_48e88
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e88
+	done
 
 CeladonGameCornerText_48e8d:
 	text ""
@@ -404,12 +424,14 @@ CeladonGameCornerText_48e8d:
 	done
 
 CeladonGameCornerText_48e93:
-	TX_FAR _CeladonGameCornerText_48e93
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e93
+	done
 
 CeladonGameCornerText_48e98:
-	TX_FAR _CeladonGameCornerText_48e98
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48e98
+	done
 
 CeladonGameCornerText11:
 	TX_ASM
@@ -434,16 +456,19 @@ CeladonGameCornerText11:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48ece:
-	TX_FAR _CeladonGameCornerText_48ece
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48ece
+	done
 
 CeladonGameCornerText_48ed3:
-	TX_FAR _CeladonGameCornerText_48ed3
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48ed3
+	done
 
 CeladonGameCornerText13:
-	TX_FAR _CeladonGameCornerText_48ed8
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48ed8
+	done
 
 CeladonGameCornerText12:
 	TX_ASM
@@ -463,16 +488,18 @@ CeladonGameCornerText12:
 	jp TextScriptEnd
 
 CeladonGameCornerText_48f09:
-	TX_FAR _CeladonGameCornerText_48f09
-	TX_ASM
+	text ""
+	fartext _CeladonGameCornerText_48f09
+	asmtext
 	ld a, SFX_SWITCH
 	call PlaySound
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 CeladonGameCornerText_48f19:
-	TX_FAR _CeladonGameCornerText_48f19
-	db "@"
+	text ""
+	fartext _CeladonGameCornerText_48f19
+	done
 
 CeladonGameCornerScript_48f1e:
 	ld hl, wd730

@@ -6,9 +6,11 @@ ViridianForestExitTextPointers:
 	dw ViridianForestExitText2
 
 ViridianForestExitText1:
-	TX_FAR _ViridianForestExitText1
-	db "@"
+	text ""
+	fartext _ViridianForestExitText1
+	done
 
 ViridianForestExitText2:
-	TX_FAR _ViridianForestExitText2
-	db "@"
+	text ""
+	fartext _ViridianForestExitText2
+	done

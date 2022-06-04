@@ -22,5 +22,6 @@ CheckIfMoveIsKnown:
 	ret
 
 AlreadyKnowsText:
-	TX_FAR _AlreadyKnowsText
-	db "@"
+	text ""
+	fartext _AlreadyKnowsText
+	done

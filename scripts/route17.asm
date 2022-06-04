@@ -129,16 +129,19 @@ Route17Text1:
 	jp TextScriptEnd
 
 Route17BattleText1:
-	TX_FAR _Route17BattleText1
-	db "@"
+	text ""
+	fartext _Route17BattleText1
+	done
 
 Route17EndBattleText1:
-	TX_FAR _Route17EndBattleText1
-	db "@"
+	text ""
+	fartext _Route17EndBattleText1
+	done
 
 Route17AfterBattleText1:
-	TX_FAR _Route17AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText1
+	done
 
 Route17Text2:
 	TX_ASM
@@ -147,16 +150,19 @@ Route17Text2:
 	jp TextScriptEnd
 
 Route17BattleText2:
-	TX_FAR _Route17BattleText2
-	db "@"
+	text ""
+	fartext _Route17BattleText2
+	done
 
 Route17EndBattleText2:
-	TX_FAR _Route17EndBattleText2
-	db "@"
+	text ""
+	fartext _Route17EndBattleText2
+	done
 
 Route17AfterBattleText2:
-	TX_FAR _Route17AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText2
+	done
 
 Route17Text3:
 	TX_ASM
@@ -165,16 +171,19 @@ Route17Text3:
 	jp TextScriptEnd
 
 Route17BattleText3:
-	TX_FAR _Route17BattleText3
-	db "@"
+	text ""
+	fartext _Route17BattleText3
+	done
 
 Route17EndBattleText3:
-	TX_FAR _Route17EndBattleText3
-	db "@"
+	text ""
+	fartext _Route17EndBattleText3
+	done
 
 Route17AfterBattleText3:
-	TX_FAR _Route17AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText3
+	done
 
 Route17Text4:
 	TX_ASM
@@ -183,16 +192,19 @@ Route17Text4:
 	jp TextScriptEnd
 
 Route17BattleText4:
-	TX_FAR _Route17BattleText4
-	db "@"
+	text ""
+	fartext _Route17BattleText4
+	done
 
 Route17EndBattleText4:
-	TX_FAR _Route17EndBattleText4
-	db "@"
+	text ""
+	fartext _Route17EndBattleText4
+	done
 
 Route17AfterBattleText4:
-	TX_FAR _Route17AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText4
+	done
 
 Route17Text5:
 	TX_ASM
@@ -201,16 +213,19 @@ Route17Text5:
 	jp TextScriptEnd
 
 Route17BattleText5:
-	TX_FAR _Route17BattleText5
-	db "@"
+	text ""
+	fartext _Route17BattleText5
+	done
 
 Route17EndBattleText5:
-	TX_FAR _Route17EndBattleText5
-	db "@"
+	text ""
+	fartext _Route17EndBattleText5
+	done
 
 Route17AfterBattleText5:
-	TX_FAR _Route17AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText5
+	done
 
 Route17Text6:
 	TX_ASM
@@ -219,16 +234,19 @@ Route17Text6:
 	jp TextScriptEnd
 
 Route17BattleText6:
-	TX_FAR _Route17BattleText6
-	db "@"
+	text ""
+	fartext _Route17BattleText6
+	done
 
 Route17EndBattleText6:
-	TX_FAR _Route17EndBattleText6
-	db "@"
+	text ""
+	fartext _Route17EndBattleText6
+	done
 
 Route17AfterBattleText6:
-	TX_FAR _Route17AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText6
+	done
 
 Route17Text7:
 	TX_ASM
@@ -237,16 +255,19 @@ Route17Text7:
 	jp TextScriptEnd
 
 Route17BattleText7:
-	TX_FAR _Route17BattleText7
-	db "@"
+	text ""
+	fartext _Route17BattleText7
+	done
 
 Route17EndBattleText7:
-	TX_FAR _Route17EndBattleText7
-	db "@"
+	text ""
+	fartext _Route17EndBattleText7
+	done
 
 Route17AfterBattleText7:
-	TX_FAR _Route17AfterBattleText7
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText7
+	done
 
 Route17Text8:
 	TX_ASM
@@ -255,16 +276,19 @@ Route17Text8:
 	jp TextScriptEnd
 
 Route17BattleText8:
-	TX_FAR _Route17BattleText8
-	db "@"
+	text ""
+	fartext _Route17BattleText8
+	done
 
 Route17EndBattleText8:
-	TX_FAR _Route17EndBattleText8
-	db "@"
+	text ""
+	fartext _Route17EndBattleText8
+	done
 
 Route17AfterBattleText8:
-	TX_FAR _Route17AfterBattleText8
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText8
+	done
 
 Route17Text9:
 	TX_ASM
@@ -273,16 +297,19 @@ Route17Text9:
 	jp TextScriptEnd
 
 Route17BattleText9:
-	TX_FAR _Route17BattleText9
-	db "@"
+	text ""
+	fartext _Route17BattleText9
+	done
 
 Route17EndBattleText9:
-	TX_FAR _Route17EndBattleText9
-	db "@"
+	text ""
+	fartext _Route17EndBattleText9
+	done
 
 Route17AfterBattleText9:
-	TX_FAR _Route17AfterBattleText9
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText9
+	done
 
 Route17Text10:
 	TX_ASM
@@ -291,37 +318,46 @@ Route17Text10:
 	jp TextScriptEnd
 
 Route17BattleText10:
-	TX_FAR _Route17BattleText10
-	db "@"
+	text ""
+	fartext _Route17BattleText10
+	done
 
 Route17EndBattleText10:
-	TX_FAR _Route17EndBattleText10
-	db "@"
+	text ""
+	fartext _Route17EndBattleText10
+	done
 
 Route17AfterBattleText10:
-	TX_FAR _Route17AfterBattleText10
-	db "@"
+	text ""
+	fartext _Route17AfterBattleText10
+	done
 
 Route17Text11:
-	TX_FAR _Route17Text11
-	db "@"
+	text ""
+	fartext _Route17Text11
+	done
 
 Route17Text12:
-	TX_FAR _Route17Text12
-	db "@"
+	text ""
+	fartext _Route17Text12
+	done
 
 Route17Text13:
-	TX_FAR _Route17Text13
-	db "@"
+	text ""
+	fartext _Route17Text13
+	done
 
 Route17Text14:
-	TX_FAR _Route17Text14
-	db "@"
+	text ""
+	fartext _Route17Text14
+	done
 
 Route17Text15:
-	TX_FAR _Route17Text15
-	db "@"
+	text ""
+	fartext _Route17Text15
+	done
 
 Route17Text16:
-	TX_FAR _Route17Text16
-	db "@"
+	text ""
+	fartext _Route17Text16
+	done

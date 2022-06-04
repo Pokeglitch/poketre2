@@ -709,8 +709,9 @@ SwitchEnemyMon:
 	ret
 
 AIBattleWithdrawText:
-	TX_FAR _AIBattleWithdrawText
-	db "@"
+	text ""
+	fartext _AIBattleWithdrawText
+	done
 
 AIUseFullHeal:
 	call AIPlayRestoringSFX
@@ -834,5 +835,6 @@ AIPrintItemUse_:
 	jp PrintText
 
 AIBattleUseItemText:
-	TX_FAR _AIBattleUseItemText
-	db "@"
+	text ""
+	fartext _AIBattleUseItemText
+	done

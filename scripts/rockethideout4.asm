@@ -142,16 +142,19 @@ RocketHideout4Text1:
 	jp TextScriptEnd
 
 RocketHideout4Text_4557a:
-	TX_FAR _RocketHideout4Text_4557a
-	db "@"
+	text ""
+	fartext _RocketHideout4Text_4557a
+	done
 
 RocketHideout4Text_4557f:
-	TX_FAR _RocketHideout4Text_4557f
-	db "@"
+	text ""
+	fartext _RocketHideout4Text_4557f
+	done
 
 RocketHideout4Text10:
-	TX_FAR _RocketHideout4Text_45584
-	db "@"
+	text ""
+	fartext _RocketHideout4Text_45584
+	done
 
 RocketHideout4Text2:
 	TX_ASM
@@ -160,16 +163,19 @@ RocketHideout4Text2:
 	jp TextScriptEnd
 
 RocketHideout4BattleText2:
-	TX_FAR _RocketHideout4BattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout4BattleText2
+	done
 
 RocketHideout4EndBattleText2:
-	TX_FAR _RocketHideout4EndBattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout4EndBattleText2
+	done
 
 RocketHideout4AfterBattleText2:
-	TX_FAR _RocketHide4AfterBattleText2
-	db "@"
+	text ""
+	fartext _RocketHide4AfterBattleText2
+	done
 
 RocketHideout4Text3:
 	TX_ASM
@@ -178,16 +184,19 @@ RocketHideout4Text3:
 	jp TextScriptEnd
 
 RocketHideout4BattleText3:
-	TX_FAR _RocketHideout4BattleText3
-	db "@"
+	text ""
+	fartext _RocketHideout4BattleText3
+	done
 
 RocketHideout4EndBattleText3:
-	TX_FAR _RocketHideout4EndBattleText3
-	db "@"
+	text ""
+	fartext _RocketHideout4EndBattleText3
+	done
 
 RocketHideout4AfterBattleText3:
-	TX_FAR _RocketHide4AfterBattleText3
-	db "@"
+	text ""
+	fartext _RocketHide4AfterBattleText3
+	done
 
 RocketHideout4Text4:
 	TX_ASM
@@ -196,12 +205,14 @@ RocketHideout4Text4:
 	jp TextScriptEnd
 
 RocketHideout4BattleText4:
-	TX_FAR _RocketHideout4BattleText4
-	db "@"
+	text ""
+	fartext _RocketHideout4BattleText4
+	done
 
 RocketHideout4EndBattleText4:
-	TX_FAR _RocketHideout4EndBattleText4
-	db "@"
+	text ""
+	fartext _RocketHideout4EndBattleText4
+	done
 
 RocketHideout4AfterBattleText4:
 	TX_ASM
@@ -216,5 +227,6 @@ RocketHideout4AfterBattleText4:
 	jp TextScriptEnd
 
 RocketHideout4Text_455ec:
-	TX_FAR _RocketHideout4Text_455ec
-	db "@"
+	text ""
+	fartext _RocketHideout4Text_455ec
+	done

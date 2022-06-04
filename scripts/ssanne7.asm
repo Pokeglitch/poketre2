@@ -42,8 +42,9 @@ SSAnne7Text1:
 	jp TextScriptEnd
 
 SSAnne7RubText:
-	TX_FAR _SSAnne7RubText
-	TX_ASM
+	text ""
+	fartext _SSAnne7RubText
+	asmtext
 	ld a, [wAudioROMBank]
 	cp BANK(Audio3_UpdateMusic)
 	ld [wAudioSavedROMBank], a
@@ -68,8 +69,9 @@ SSAnne7RubText:
 	jp TextScriptEnd
 
 ReceivingHM01Text:
-	TX_FAR _ReceivingHM01Text
-	db "@"
+	text ""
+	fartext _ReceivingHM01Text
+	done
 
 ReceivedHM01Text:
 	text ""
@@ -78,17 +80,21 @@ ReceivedHM01Text:
 	done
 
 SSAnne7Text_61932:
-	TX_FAR _SSAnne7Text_61932
-	db "@"
+	text ""
+	fartext _SSAnne7Text_61932
+	done
 
 HM01NoRoomText:
-	TX_FAR _HM01NoRoomText
-	db "@"
+	text ""
+	fartext _HM01NoRoomText
+	done
 
 SSAnne7Text2:
-	TX_FAR _SSAnne7Text2
-	db "@"
+	text ""
+	fartext _SSAnne7Text2
+	done
 
 SSAnne7Text3:
-	TX_FAR _SSAnne7Text3
-	db "@"
+	text ""
+	fartext _SSAnne7Text3
+	done

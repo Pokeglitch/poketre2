@@ -168,21 +168,26 @@ PokemonTower2Text1:
 	jp TextScriptEnd
 
 PokemonTower2Text_6062d:
-	TX_FAR _PokemonTower2Text_6062d
-	db "@"
+	text ""
+	fartext _PokemonTower2Text_6062d
+	done
 
 PokemonTower2Text_60632:
-	TX_FAR _PokemonTower2Text_60632
-	db "@"
+	text ""
+	fartext _PokemonTower2Text_60632
+	done
 
 PokemonTower2Text_60637:
-	TX_FAR _PokemonTower2Text_60637
-	db "@"
+	text ""
+	fartext _PokemonTower2Text_60637
+	done
 
 PokemonTower2Text_6063c:
-	TX_FAR _PokemonTower2Text_6063c
-	db "@"
+	text ""
+	fartext _PokemonTower2Text_6063c
+	done
 
 PokemonTower2Text2:
-	TX_FAR _PokemonTower2Text2
-	db "@"
+	text ""
+	fartext _PokemonTower2Text2
+	done

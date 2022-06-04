@@ -205,59 +205,74 @@ DayCareMText1:
 	jp TextScriptEnd
 
 DayCareIntroText:
-	TX_FAR _DayCareIntroText
-	db "@"
+	text ""
+	fartext _DayCareIntroText
+	done
 
 DayCareWhichMonText:
-	TX_FAR _DayCareWhichMonText
-	db "@"
+	text ""
+	fartext _DayCareWhichMonText
+	done
 
 DayCareWillLookAfterMonText:
-	TX_FAR _DayCareWillLookAfterMonText
-	db "@"
+	text ""
+	fartext _DayCareWillLookAfterMonText
+	done
 
 DayCareComeSeeMeInAWhileText:
-	TX_FAR _DayCareComeSeeMeInAWhileText
-	db "@"
+	text ""
+	fartext _DayCareComeSeeMeInAWhileText
+	done
 
 DayCareMonHasGrownText:
-	TX_FAR _DayCareMonHasGrownText
-	db "@"
+	text ""
+	fartext _DayCareMonHasGrownText
+	done
 
 DayCareOweMoneyText:
-	TX_FAR _DayCareOweMoneyText
-	db "@"
+	text ""
+	fartext _DayCareOweMoneyText
+	done
 
 DayCareGotMonBackText:
-	TX_FAR _DayCareGotMonBackText
-	db "@"
+	text ""
+	fartext _DayCareGotMonBackText
+	done
 
 DayCareMonNeedsMoreTimeText:
-	TX_FAR _DayCareMonNeedsMoreTimeText
-	db "@"
+	text ""
+	fartext _DayCareMonNeedsMoreTimeText
+	done
 
 DayCareAllRightThenText:
-	TX_FAR _DayCareAllRightThenText
+	text ""
+	fartext _DayCareAllRightThenText
 DayCareComeAgainText:
-	TX_FAR _DayCareComeAgainText
-	db "@"
+	text ""
+	fartext _DayCareComeAgainText
+	done
 
 DayCareNoRoomForMonText:
-	TX_FAR _DayCareNoRoomForMonText
-	db "@"
+	text ""
+	fartext _DayCareNoRoomForMonText
+	done
 
 DayCareOnlyHaveOneMonText:
-	TX_FAR _DayCareOnlyHaveOneMonText
-	db "@"
+	text ""
+	fartext _DayCareOnlyHaveOneMonText
+	done
 
 DayCareCantAcceptMonWithHMText:
-	TX_FAR _DayCareCantAcceptMonWithHMText
-	db "@"
+	text ""
+	fartext _DayCareCantAcceptMonWithHMText
+	done
 
 DayCareHeresYourMonText:
-	TX_FAR _DayCareHeresYourMonText
-	db "@"
+	text ""
+	fartext _DayCareHeresYourMonText
+	done
 
 DayCareNotEnoughMoneyText:
-	TX_FAR _DayCareNotEnoughMoneyText
-	db "@"
+	text ""
+	fartext _DayCareNotEnoughMoneyText
+	done

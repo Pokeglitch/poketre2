@@ -135,16 +135,19 @@ CeruleanGymText1:
 	jp TextScriptEnd
 
 CeruleanGymText_5c7be:
-	TX_FAR _CeruleanGymText_5c7be
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c7be
+	done
 
 CeruleanGymText_5c7c3:
-	TX_FAR _CeruleanGymText_5c7c3
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c7c3
+	done
 
 CeruleanGymText5:
-	TX_FAR _CeruleanGymText_5c7c8
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c7c8
+	done
 
 CeruleanGymText6:
 	text ""
@@ -153,8 +156,9 @@ CeruleanGymText6:
 	done
 
 CeruleanGymText7:
-	TX_FAR _CeruleanGymText_5c7d3
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c7d3
+	done
 
 CeruleanGymText_5c7d8:
 	text ""
@@ -170,16 +174,19 @@ CeruleanGymText2:
 	jp TextScriptEnd
 
 CeruleanGymBattleText1:
-	TX_FAR _CeruleanGymBattleText1
-	db "@"
+	text ""
+	fartext _CeruleanGymBattleText1
+	done
 
 CeruleanGymEndBattleText1:
-	TX_FAR _CeruleanGymEndBattleText1
-	db "@"
+	text ""
+	fartext _CeruleanGymEndBattleText1
+	done
 
 CeruleanGymAfterBattleText1:
-	TX_FAR _CeruleanGymAfterBattleText1
-	db "@"
+	text ""
+	fartext _CeruleanGymAfterBattleText1
+	done
 
 CeruleanGymText3:
 	TX_ASM
@@ -188,16 +195,19 @@ CeruleanGymText3:
 	jp TextScriptEnd
 
 CeruleanGymBattleText2:
-	TX_FAR _CeruleanGymBattleText2
-	db "@"
+	text ""
+	fartext _CeruleanGymBattleText2
+	done
 
 CeruleanGymEndBattleText2:
-	TX_FAR _CeruleanGymEndBattleText2
-	db "@"
+	text ""
+	fartext _CeruleanGymEndBattleText2
+	done
 
 CeruleanGymAfterBattleText2:
-	TX_FAR _CeruleanGymAfterBattleText2
-	db "@"
+	text ""
+	fartext _CeruleanGymAfterBattleText2
+	done
 
 CeruleanGymText4:
 	TX_ASM
@@ -213,9 +223,11 @@ CeruleanGymText4:
 	jp TextScriptEnd
 
 CeruleanGymText_5c82a:
-	TX_FAR _CeruleanGymText_5c82a
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c82a
+	done
 
 CeruleanGymText_5c82f:
-	TX_FAR _CeruleanGymText_5c82f
-	db "@"
+	text ""
+	fartext _CeruleanGymText_5c82f
+	done

@@ -7,9 +7,11 @@ CeruleanMartTextPointers:
 	dw CeruleanMartText3
 
 CeruleanMartText2:
-	TX_FAR _CeruleanMartText2
-	db "@"
+	text ""
+	fartext _CeruleanMartText2
+	done
 
 CeruleanMartText3:
-	TX_FAR _CeruleanMartText3
-	db "@"
+	text ""
+	fartext _CeruleanMartText3
+	done

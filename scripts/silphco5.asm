@@ -129,12 +129,14 @@ SilphCo5Text1:
 	jp TextScriptEnd
 
 SilphCo5Text_1a010:
-	TX_FAR _SilphCo5Text_1a010
-	db "@"
+	text ""
+	fartext _SilphCo5Text_1a010
+	done
 
 SilphCo5Text_1a015:
-	TX_FAR _SilphCo5Text_1a015
-	db "@"
+	text ""
+	fartext _SilphCo5Text_1a015
+	done
 
 SilphCo5Text2:
 	TX_ASM
@@ -143,16 +145,19 @@ SilphCo5Text2:
 	jp TextScriptEnd
 
 SilphCo5BattleText2:
-	TX_FAR _SilphCo5BattleText2
-	db "@"
+	text ""
+	fartext _SilphCo5BattleText2
+	done
 
 SilphCo5EndBattleText2:
-	TX_FAR _SilphCo5EndBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo5EndBattleText2
+	done
 
 SilphCo5AfterBattleText2:
-	TX_FAR _SilphCo5AfterBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo5AfterBattleText2
+	done
 
 SilphCo5Text3:
 	TX_ASM
@@ -161,16 +166,19 @@ SilphCo5Text3:
 	jp TextScriptEnd
 
 SilphCo5BattleText3:
-	TX_FAR _SilphCo5BattleText3
-	db "@"
+	text ""
+	fartext _SilphCo5BattleText3
+	done
 
 SilphCo5EndBattleText3:
-	TX_FAR _SilphCo5EndBattleText3
-	db "@"
+	text ""
+	fartext _SilphCo5EndBattleText3
+	done
 
 SilphCo5AfterBattleText3:
-	TX_FAR _SilphCo5AfterBattleText3
-	db "@"
+	text ""
+	fartext _SilphCo5AfterBattleText3
+	done
 
 SilphCo5Text4:
 	TX_ASM
@@ -179,16 +187,19 @@ SilphCo5Text4:
 	jp TextScriptEnd
 
 SilphCo5BattleText4:
-	TX_FAR _SilphCo5BattleText4
-	db "@"
+	text ""
+	fartext _SilphCo5BattleText4
+	done
 
 SilphCo5EndBattleText4:
-	TX_FAR _SilphCo5EndBattleText4
-	db "@"
+	text ""
+	fartext _SilphCo5EndBattleText4
+	done
 
 SilphCo5AfterBattleText4:
-	TX_FAR _SilphCo5AfterBattleText4
-	db "@"
+	text ""
+	fartext _SilphCo5AfterBattleText4
+	done
 
 SilphCo5Text5:
 	TX_ASM
@@ -197,25 +208,31 @@ SilphCo5Text5:
 	jp TextScriptEnd
 
 SilphCo5BattleText5:
-	TX_FAR _SilphCo5BattleText5
-	db "@"
+	text ""
+	fartext _SilphCo5BattleText5
+	done
 
 SilphCo5EndBattleText5:
-	TX_FAR _SilphCo5EndBattleText5
-	db "@"
+	text ""
+	fartext _SilphCo5EndBattleText5
+	done
 
 SilphCo5AfterBattleText5:
-	TX_FAR _SilphCo5AfterBattleText5
-	db "@"
+	text ""
+	fartext _SilphCo5AfterBattleText5
+	done
 
 SilphCo5Text9:
-	TX_FAR _SilphCo5Text9
-	db "@"
+	text ""
+	fartext _SilphCo5Text9
+	done
 
 SilphCo5Text10:
-	TX_FAR _SilphCo5Text10
-	db "@"
+	text ""
+	fartext _SilphCo5Text10
+	done
 
 SilphCo5Text11:
-	TX_FAR _SilphCo5Text11
-	db "@"
+	text ""
+	fartext _SilphCo5Text11
+	done

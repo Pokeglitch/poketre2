@@ -74,7 +74,7 @@ _ReceivedTM28Text::
 	done
 
 _ReceivedTM28Text2::
-	db TEXT_INIT
+	text ""
 	para "I better get"
 	line "moving! Bye!"
 	done

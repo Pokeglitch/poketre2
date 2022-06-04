@@ -168,16 +168,19 @@ SaveSAVConfirm:
 	ret
 
 WouldYouLikeToSaveText:
-	TX_FAR _WouldYouLikeToSaveText
-	db "@"
+	text ""
+	fartext _WouldYouLikeToSaveText
+	done
 
 GameSavedText:
-	TX_FAR _GameSavedText
-	db "@"
+	text ""
+	fartext _GameSavedText
+	done
 
 OlderFileWillBeErasedText:
-	TX_FAR _OlderFileWillBeErasedText
-	db "@"
+	text ""
+	fartext _OlderFileWillBeErasedText
+	done
 
 SaveSAVtoSRAM0:
 	ld a, SRAM_ENABLE
@@ -370,8 +373,9 @@ ChangeBox::
 	ret
 
 WhenYouChangeBoxText:
-	TX_FAR _WhenYouChangeBoxText
-	db "@"
+	text ""
+	fartext _WhenYouChangeBoxText
+	done
 
 CopyBoxToOrFromSRAM:
 ; copy an entire box from hl to de with b as the SRAM bank
@@ -474,8 +478,9 @@ DisplayChangeBoxMenu:
 	ret
 
 ChooseABoxText:
-	TX_FAR _ChooseABoxText
-	db "@"
+	text ""
+	fartext _ChooseABoxText
+	done
 
 BoxNames:
 	db   "BOX 1"

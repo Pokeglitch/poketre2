@@ -122,8 +122,9 @@ RocketHideout1Text5:
 	jp TextScriptEnd
 
 RocketHideout1EndBattleText6:
-	TX_FAR _RocketHideout1EndBattleText6
-	TX_ASM
+	text ""
+	fartext _RocketHideout1EndBattleText6
+	asmtext
 	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_4
 	ld hl, RocketHideout1Text_44c9f
 	ret
@@ -134,57 +135,71 @@ RocketHideout1Text_44c9f:
 	done
 
 RocketHideout1BattleText2:
-	TX_FAR _RocketHideout1BattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout1BattleText2
+	done
 
 RocketHideout1EndBattleText2:
-	TX_FAR _RocketHideout1EndBattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout1EndBattleText2
+	done
 
 RocketHideout1AfterBattleTxt2:
-	TX_FAR _RocketHideout1AfterBattleTxt2
-	db "@"
+	text ""
+	fartext _RocketHideout1AfterBattleTxt2
+	done
 
 RocketHideout1BattleText3:
-	TX_FAR _RocketHideout1BattleText3
-	db "@"
+	text ""
+	fartext _RocketHideout1BattleText3
+	done
 
 RocketHideout1EndBattleText3:
-	TX_FAR _RocketHideout1EndBattleText3
-	db "@"
+	text ""
+	fartext _RocketHideout1EndBattleText3
+	done
 
 RocketHideout1AfterBattleTxt3:
-	TX_FAR _RocketHideout1AfterBattleTxt3
-	db "@"
+	text ""
+	fartext _RocketHideout1AfterBattleTxt3
+	done
 
 RocketHideout1BattleText4:
-	TX_FAR _RocketHideout1BattleText4
-	db "@"
+	text ""
+	fartext _RocketHideout1BattleText4
+	done
 
 RocketHideout1EndBattleText4:
-	TX_FAR _RocketHideout1EndBattleText4
-	db "@"
+	text ""
+	fartext _RocketHideout1EndBattleText4
+	done
 
 RocketHideout1AfterBattleTxt4:
-	TX_FAR _RocketHideout1AfterBattleTxt4
-	db "@"
+	text ""
+	fartext _RocketHideout1AfterBattleTxt4
+	done
 
 RocketHideout1BattleText5:
-	TX_FAR _RocketHideout1BattleText5
-	db "@"
+	text ""
+	fartext _RocketHideout1BattleText5
+	done
 
 RocketHideout1EndBattleText5:
-	TX_FAR _RocketHideout1EndBattleText5
-	db "@"
+	text ""
+	fartext _RocketHideout1EndBattleText5
+	done
 
 RocketHideout1AfterBattleTxt5:
-	TX_FAR _RocketHideout1AfterBattleTxt5
-	db "@"
+	text ""
+	fartext _RocketHideout1AfterBattleTxt5
+	done
 
 RocketHideout1BattleText6:
-	TX_FAR _RocketHideout1BattleText6
-	db "@"
+	text ""
+	fartext _RocketHideout1BattleText6
+	done
 
 RocketHideout1AfterBattleTxt6:
-	TX_FAR _RocketHideout1AfterBattleTxt6
-	db "@"
+	text ""
+	fartext _RocketHideout1AfterBattleTxt6
+	done

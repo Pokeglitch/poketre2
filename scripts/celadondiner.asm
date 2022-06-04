@@ -10,20 +10,24 @@ CeladonDinerTextPointers:
 	dw CeladonDinerText5
 
 CeladonDinerText1:
-	TX_FAR _CeladonDinerText1
-	db "@"
+	text ""
+	fartext _CeladonDinerText1
+	done
 
 CeladonDinerText2:
-	TX_FAR _CeladonDinerText2
-	db "@"
+	text ""
+	fartext _CeladonDinerText2
+	done
 
 CeladonDinerText3:
-	TX_FAR _CeladonDinerText3
-	db "@"
+	text ""
+	fartext _CeladonDinerText3
+	done
 
 CeladonDinerText4:
-	TX_FAR _CeladonDinerText4
-	db "@"
+	text ""
+	fartext _CeladonDinerText4
+	done
 
 CeladonDinerText5:
 	TX_ASM
@@ -49,8 +53,9 @@ CeladonDinerText5:
 	jp TextScriptEnd
 
 CeladonDinerText_491a7:
-	TX_FAR _CeladonDinerText_491a7
-	db "@"
+	text ""
+	fartext _CeladonDinerText_491a7
+	done
 
 ReceivedCoinCaseText:
 	text ""
@@ -59,9 +64,11 @@ ReceivedCoinCaseText:
 	done
 
 CoinCaseNoRoomText:
-	TX_FAR _CoinCaseNoRoomText
-	db "@"
+	text ""
+	fartext _CoinCaseNoRoomText
+	done
 
 CeladonDinerText_491b7:
-	TX_FAR _CeladonDinerText_491b7
-	db "@"
+	text ""
+	fartext _CeladonDinerText_491b7
+	done

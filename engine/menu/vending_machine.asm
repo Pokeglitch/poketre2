@@ -75,8 +75,9 @@ VendingMachineMenu:
 	jp PrintText
 
 VendingMachineText1:
-	TX_FAR _VendingMachineText1
-	db "@"
+	text ""
+	fartext _VendingMachineText1
+	done
 
 DrinkText:
 	db   "FRESH WATER"
@@ -91,20 +92,24 @@ DrinkPriceText:
 	next "@"
 
 VendingMachineText4:
-	TX_FAR _VendingMachineText4
-	db "@"
+	text ""
+	fartext _VendingMachineText4
+	done
 
 VendingMachineText5:
-	TX_FAR _VendingMachineText5
-	db "@"
+	text ""
+	fartext _VendingMachineText5
+	done
 
 VendingMachineText6:
-	TX_FAR _VendingMachineText6
-	db "@"
+	text ""
+	fartext _VendingMachineText6
+	done
 
 VendingMachineText7:
-	TX_FAR _VendingMachineText7
-	db "@"
+	text ""
+	fartext _VendingMachineText7
+	done
 
 LoadVendingMachineItem:
 	ld hl, VendingPrices

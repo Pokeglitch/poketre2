@@ -157,17 +157,20 @@ ArticunoText:
 	jp TextScriptEnd
 
 ArticunoBattleText:
-	TX_FAR _ArticunoBattleText
-	TX_ASM
+	text ""
+	fartext _ArticunoBattleText
+	asmtext
 	ld a, ARTICUNO
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 SeafoamIslands5Text4:
-	TX_FAR _SeafoamIslands5Text4
-	db "@"
+	text ""
+	fartext _SeafoamIslands5Text4
+	done
 
 SeafoamIslands5Text5:
-	TX_FAR _SeafoamIslands5Text5
-	db "@"
+	text ""
+	fartext _SeafoamIslands5Text5
+	done

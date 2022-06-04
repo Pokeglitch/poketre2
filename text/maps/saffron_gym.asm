@@ -61,7 +61,7 @@ ReceivedTM46Text::
 	done
 
 _TM46ExplanationText::
-	db TEXT_INIT
+	text ""
 	para "TM46 is PSYWAVE!"
 	line "It uses powerful"
 	cont "psychic waves to"

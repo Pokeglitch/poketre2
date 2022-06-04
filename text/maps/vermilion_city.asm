@@ -68,7 +68,8 @@ _VermilionCityText4::
 
 _VermilionCityText5::
 	text "MACHOP: Guoh!"
-	line "Gogogoh!@@"
+	line "Gogogoh!"
+	done
 
 _VermilionCityText14::
 	text ""

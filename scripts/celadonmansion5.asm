@@ -6,8 +6,9 @@ CeladonMansion5TextPointers:
 	dw CeladonMansion5Text2
 
 CeladonMansion5Text1:
-	TX_FAR _CeladonMansion5Text1
-	db "@"
+	text ""
+	fartext _CeladonMansion5Text1
+	done
 
 CeladonMansion5Text2:
 	TX_ASM

@@ -171,125 +171,156 @@ Route15TalkToTrainer:
 	jp TextScriptEnd
 
 Route15BattleText1:
-	TX_FAR _Route15BattleText1
-	db "@"
+	text ""
+	fartext _Route15BattleText1
+	done
 
 Route15EndBattleText1:
-	TX_FAR _Route15EndBattleText1
-	db "@"
+	text ""
+	fartext _Route15EndBattleText1
+	done
 
 Route15AfterBattleText1:
-	TX_FAR _Route15AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText1
+	done
 
 Route15BattleText2:
-	TX_FAR _Route15BattleText2
-	db "@"
+	text ""
+	fartext _Route15BattleText2
+	done
 
 Route15EndBattleText2:
-	TX_FAR _Route15EndBattleText2
-	db "@"
+	text ""
+	fartext _Route15EndBattleText2
+	done
 
 Route15AfterBattleText2:
-	TX_FAR _Route15AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText2
+	done
 
 Route15BattleText3:
-	TX_FAR _Route15BattleText3
-	db "@"
+	text ""
+	fartext _Route15BattleText3
+	done
 
 Route15EndBattleText3:
-	TX_FAR _Route15EndBattleText3
-	db "@"
+	text ""
+	fartext _Route15EndBattleText3
+	done
 
 Route15AfterBattleText3:
-	TX_FAR _Route15AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText3
+	done
 
 Route15BattleText4:
-	TX_FAR _Route15BattleText4
-	db "@"
+	text ""
+	fartext _Route15BattleText4
+	done
 
 Route15EndBattleText4:
-	TX_FAR _Route15EndBattleText4
-	db "@"
+	text ""
+	fartext _Route15EndBattleText4
+	done
 
 Route15AfterBattleText4:
-	TX_FAR _Route15AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText4
+	done
 
 Route15BattleText5:
-	TX_FAR _Route15BattleText5
-	db "@"
+	text ""
+	fartext _Route15BattleText5
+	done
 
 Route15EndBattleText5:
-	TX_FAR _Route15EndBattleText5
-	db "@"
+	text ""
+	fartext _Route15EndBattleText5
+	done
 
 Route15AfterBattleText5:
-	TX_FAR _Route15AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText5
+	done
 
 Route15BattleText6:
-	TX_FAR _Route15BattleText6
-	db "@"
+	text ""
+	fartext _Route15BattleText6
+	done
 
 Route15EndBattleText6:
-	TX_FAR _Route15EndBattleText6
-	db "@"
+	text ""
+	fartext _Route15EndBattleText6
+	done
 
 Route15AfterBattleText6:
-	TX_FAR _Route15AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText6
+	done
 
 Route15BattleText7:
-	TX_FAR _Route15BattleText7
-	db "@"
+	text ""
+	fartext _Route15BattleText7
+	done
 
 Route15EndBattleText7:
-	TX_FAR _Route15EndBattleText7
-	db "@"
+	text ""
+	fartext _Route15EndBattleText7
+	done
 
 Route15AfterBattleText7:
-	TX_FAR _Route15AfterBattleText7
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText7
+	done
 
 Route15BattleText8:
-	TX_FAR _Route15BattleText8
-	db "@"
+	text ""
+	fartext _Route15BattleText8
+	done
 
 Route15EndBattleText8:
-	TX_FAR _Route15EndBattleText8
-	db "@"
+	text ""
+	fartext _Route15EndBattleText8
+	done
 
 Route15AfterBattleText8:
-	TX_FAR _Route15AfterBattleText8
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText8
+	done
 
 Route15BattleText9:
-	TX_FAR _Route15BattleText9
-	db "@"
+	text ""
+	fartext _Route15BattleText9
+	done
 
 Route15EndBattleText9:
-	TX_FAR _Route15EndBattleText9
-	db "@"
+	text ""
+	fartext _Route15EndBattleText9
+	done
 
 Route15AfterBattleText9:
-	TX_FAR _Route15AfterBattleText9
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText9
+	done
 
 Route15BattleText10:
-	TX_FAR _Route15BattleText10
-	db "@"
+	text ""
+	fartext _Route15BattleText10
+	done
 
 Route15EndBattleText10:
-	TX_FAR _Route15EndBattleText10
-	db "@"
+	text ""
+	fartext _Route15EndBattleText10
+	done
 
 Route15AfterBattleText10:
-	TX_FAR _Route15AfterBattleText10
-	db "@"
+	text ""
+	fartext _Route15AfterBattleText10
+	done
 
 Route15Text12:
-	TX_FAR _Route15Text12
-	db "@"
+	text ""
+	fartext _Route15Text12
+	done

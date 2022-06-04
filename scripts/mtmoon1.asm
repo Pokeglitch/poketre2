@@ -136,89 +136,111 @@ MtMoon1Text7:
 	jp TextScriptEnd
 
 MtMoon1BattleText2:
-	TX_FAR _MtMoon1BattleText2
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText2
+	done
 
 MtMoon1EndBattleText2:
-	TX_FAR _MtMoon1EndBattleText2
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText2
+	done
 
 MtMoon1AfterBattleText2:
-	TX_FAR _MtMoon1AfterBattleText2
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText2
+	done
 
 MtMoon1BattleText3:
-	TX_FAR _MtMoon1BattleText3
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText3
+	done
 
 MtMoon1EndBattleText3:
-	TX_FAR _MtMoon1EndBattleText3
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText3
+	done
 
 MtMoon1AfterBattleText3:
-	TX_FAR _MtMoon1AfterBattleText3
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText3
+	done
 
 MtMoon1BattleText4:
-	TX_FAR _MtMoon1BattleText4
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText4
+	done
 
 MtMoon1EndBattleText4:
-	TX_FAR _MtMoon1EndBattleText4
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText4
+	done
 
 MtMoon1AfterBattleText4:
-	TX_FAR _MtMoon1AfterBattleText4
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText4
+	done
 
 MtMoon1BattleText5:
-	TX_FAR _MtMoon1BattleText5
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText5
+	done
 
 MtMoon1EndBattleText5:
-	TX_FAR _MtMoon1EndBattleText5
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText5
+	done
 
 MtMoon1AfterBattleText5:
-	TX_FAR _MtMoon1AfterBattleText5
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText5
+	done
 
 MtMoon1BattleText6:
-	TX_FAR _MtMoon1BattleText6
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText6
+	done
 
 MtMoon1EndBattleText6:
-	TX_FAR _MtMoon1EndBattleText6
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText6
+	done
 
 MtMoon1AfterBattleText6:
-	TX_FAR _MtMoon1AfterBattleText6
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText6
+	done
 
 MtMoon1BattleText7:
-	TX_FAR _MtMoon1BattleText7
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText7
+	done
 
 MtMoon1EndBattleText7:
-	TX_FAR _MtMoon1EndBattleText7
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText7
+	done
 
 MtMoon1AfterBattleText7:
-	TX_FAR _MtMoon1AfterBattleText7
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText7
+	done
 
 MtMoon1BattleText8:
-	TX_FAR _MtMoon1BattleText8
-	db "@"
+	text ""
+	fartext _MtMoon1BattleText8
+	done
 
 MtMoon1EndBattleText8:
-	TX_FAR _MtMoon1EndBattleText8
-	db "@"
+	text ""
+	fartext _MtMoon1EndBattleText8
+	done
 
 MtMoon1AfterBattleText8:
-	TX_FAR _MtMoon1AfterBattleText8
-	db "@"
+	text ""
+	fartext _MtMoon1AfterBattleText8
+	done
 
 MtMoon1Text14:
-	TX_FAR _MtMoon1Text14
-	db "@"
+	text ""
+	fartext _MtMoon1Text14
+	done

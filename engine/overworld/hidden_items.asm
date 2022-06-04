@@ -21,8 +21,9 @@ HiddenItems:
 INCLUDE "data/hidden_item_coords.asm"
 
 FoundHiddenItemText:
-	TX_FAR _FoundHiddenItemText
-	TX_ASM
+	text ""
+	fartext _FoundHiddenItemText
+	asmtext
 	ld a, [wHiddenObjectFunctionArgument] ; item ID
 	ld b, a
 	ld c, 1
@@ -46,8 +47,9 @@ FoundHiddenItemText:
 	jp TextScriptEnd
 
 HiddenItemBagFullText:
-	TX_FAR _HiddenItemBagFullText
-	db "@"
+	text ""
+	fartext _HiddenItemBagFullText
+	done
 
 HiddenCoins:
 	ld b, COIN_CASE

@@ -35,8 +35,9 @@ VermilionHouse2Text1:
 	jp TextScriptEnd
 
 VermilionHouse2Text_560b1:
-	TX_FAR _VermilionHouse2Text_560b1
-	db "@"
+	text ""
+	fartext _VermilionHouse2Text_560b1
+	done
 
 VermilionHouse2Text_560b6:
 	text ""
@@ -46,13 +47,16 @@ VermilionHouse2Text_560b6:
 	done
 
 VermilionHouse2Text_560c0:
-	TX_FAR _VermilionHouse2Text_560c0
-	db "@"
+	text ""
+	fartext _VermilionHouse2Text_560c0
+	done
 
 VermilionHouse2Text_560c5:
-	TX_FAR _VermilionHouse2Text_560c5
-	db "@"
+	text ""
+	fartext _VermilionHouse2Text_560c5
+	done
 
 VermilionHouse2Text_560ca:
-	TX_FAR _VermilionHouse2Text_560ca
-	db "@"
+	text ""
+	fartext _VermilionHouse2Text_560ca
+	done

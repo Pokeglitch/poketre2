@@ -144,5 +144,6 @@ TransformEffect_:
 	jp BankswitchEtoF
 
 TransformedText:
-	TX_FAR _TransformedText
-	db "@"
+	text ""
+	fartext _TransformedText
+	done

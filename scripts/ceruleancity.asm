@@ -262,20 +262,24 @@ CeruleanCityText1:
 	jp TextScriptEnd
 
 CeruleanCityText_19668:
-	TX_FAR _CeruleanCityText_19668
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19668
+	done
 
 CeruleanCityText_1966d:
-	TX_FAR _CeruleanCityText_1966d
-	db "@"
+	text ""
+	fartext _CeruleanCityText_1966d
+	done
 
 CeruleanCityText_19672:
-	TX_FAR _CeruleanCityText_19672
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19672
+	done
 
 CeruleanCityText_19677:
-	TX_FAR _CeruleanCityText_19677
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19677
+	done
 
 CeruleanCityText2:
 	TX_ASM
@@ -315,8 +319,9 @@ CeruleanCityText2:
 	jp TextScriptEnd
 
 CeruleanCityText_196d9:
-	TX_FAR _CeruleanCityText_196d9
-	db "@"
+	text ""
+	fartext _CeruleanCityText_196d9
+	done
 
 ReceivedTM28Text:
 	text ""
@@ -327,33 +332,40 @@ ReceivedTM28Text:
 	done
 
 TM28NoRoomText:
-	TX_FAR _TM28NoRoomText
-	db "@"
+	text ""
+	fartext _TM28NoRoomText
+	done
 
 CeruleanCityText_196ee:
-	TX_FAR _CeruleanCityText_196ee
-	db "@"
+	text ""
+	fartext _CeruleanCityText_196ee
+	done
 
 CeruleanCityText_196f3:
-	TX_FAR _CeruleanCityText_196f3
-	db "@"
+	text ""
+	fartext _CeruleanCityText_196f3
+	done
 
 CeruleanCityText3:
-	TX_FAR _CeruleanCityText3
-	db "@"
+	text ""
+	fartext _CeruleanCityText3
+	done
 
 CeruleanCityText4:
-	TX_FAR _CeruleanCityText4
-	db "@"
+	text ""
+	fartext _CeruleanCityText4
+	done
 
 CeruleanCityText5:
-	TX_FAR _CeruleanCityText5
-	db "@"
+	text ""
+	fartext _CeruleanCityText5
+	done
 
 CeruleanCityText11:
 CeruleanCityText6:
-	TX_FAR _CeruleanCityText6
-	db "@"
+	text ""
+	fartext _CeruleanCityText6
+	done
 
 CeruleanCityText7:
 	TX_ASM
@@ -376,16 +388,19 @@ CeruleanCityText7:
 	jp TextScriptEnd
 
 CeruleanCityText_19730:
-	TX_FAR _CeruleanCityText_19730
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19730
+	done
 
 CeruleanCityText_19735:
-	TX_FAR _CeruleanCityText_19735
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19735
+	done
 
 CeruleanCityText_1973a:
-	TX_FAR _CeruleanCityText_1973a
-	db "@"
+	text ""
+	fartext _CeruleanCityText_1973a
+	done
 
 CeruleanCityText8:
 	TX_ASM
@@ -414,41 +429,51 @@ CeruleanCityText8:
 	jp TextScriptEnd
 
 CeruleanCityText_1976f:
-	TX_FAR _CeruleanCityText_1976f
-	db "@"
+	text ""
+	fartext _CeruleanCityText_1976f
+	done
 
 CeruleanCityText_19774:
-	TX_FAR _CeruleanCityText_19774
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19774
+	done
 
 CeruleanCityText_19779:
-	TX_FAR _CeruleanCityText_19779
-	db "@"
+	text ""
+	fartext _CeruleanCityText_19779
+	done
 
 CeruleanCityText_1977e:
-	TX_FAR _CeruleanCityText_1977e
-	db "@"
+	text ""
+	fartext _CeruleanCityText_1977e
+	done
 
 CeruleanCityText9:
-	TX_FAR _CeruleanCityText9
-	db "@"
+	text ""
+	fartext _CeruleanCityText9
+	done
 
 CeruleanCityText10:
-	TX_FAR _CeruleanCityText10
-	db "@"
+	text ""
+	fartext _CeruleanCityText10
+	done
 
 CeruleanCityText12:
-	TX_FAR _CeruleanCityText12
-	db "@"
+	text ""
+	fartext _CeruleanCityText12
+	done
 
 CeruleanCityText13:
-	TX_FAR _CeruleanCityText13
-	db "@"
+	text ""
+	fartext _CeruleanCityText13
+	done
 
 CeruleanCityText16:
-	TX_FAR _CeruleanCityText16
-	db "@"
+	text ""
+	fartext _CeruleanCityText16
+	done
 
 CeruleanCityText17:
-	TX_FAR _CeruleanCityText17
-	db "@"
+	text ""
+	fartext _CeruleanCityText17
+	done

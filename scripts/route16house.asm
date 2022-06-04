@@ -25,8 +25,9 @@ Route16HouseText1:
 	jp TextScriptEnd
 
 Route16HouseText3:
-	TX_FAR _Route16HouseText3
-	db "@"
+	text ""
+	fartext _Route16HouseText3
+	done
 
 ReceivedHM02Text:
 	text ""
@@ -35,12 +36,14 @@ ReceivedHM02Text:
 	done
 
 HM02ExplanationText:
-	TX_FAR _HM02ExplanationText
-	db "@"
+	text ""
+	fartext _HM02ExplanationText
+	done
 
 HM02NoRoomText:
-	TX_FAR _HM02NoRoomText
-	db "@"
+	text ""
+	fartext _HM02NoRoomText
+	done
 
 Route16HouseText2:
 	TX_ASM
@@ -52,5 +55,6 @@ Route16HouseText2:
 	jp TextScriptEnd
 
 Route16HouseText_1e652:
-	TX_FAR _Route16HouseText_1e652
-	db "@"
+	text ""
+	fartext _Route16HouseText_1e652
+	done

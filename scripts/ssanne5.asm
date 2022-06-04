@@ -40,16 +40,19 @@ SSAnne5TrainerHeader1:
 	db $ff
 
 SSAnne5Text1:
-	TX_FAR _SSAnne5Text1
-	db "@"
+	text ""
+	fartext _SSAnne5Text1
+	done
 
 SSAnne5Text2:
-	TX_FAR _SSAnne5Text2
-	db "@"
+	text ""
+	fartext _SSAnne5Text2
+	done
 
 SSAnne5Text3:
-	TX_FAR _SSAnne5Text3
-	db "@"
+	text ""
+	fartext _SSAnne5Text3
+	done
 
 SSAnne5Text4:
 	TX_ASM
@@ -58,16 +61,19 @@ SSAnne5Text4:
 	jp TextScriptEnd
 
 SSAnne5BattleText1:
-	TX_FAR _SSAnne5BattleText1
-	db "@"
+	text ""
+	fartext _SSAnne5BattleText1
+	done
 
 SSAnne5EndBattleText1:
-	TX_FAR _SSAnne5EndBattleText1
-	db "@"
+	text ""
+	fartext _SSAnne5EndBattleText1
+	done
 
 SSAnne5AfterBattleText1:
-	TX_FAR _SSAnne5AfterBattleText1
-	db "@"
+	text ""
+	fartext _SSAnne5AfterBattleText1
+	done
 
 SSAnne5Text5:
 	TX_ASM
@@ -76,13 +82,16 @@ SSAnne5Text5:
 	jp TextScriptEnd
 
 SSAnne5BattleText2:
-	TX_FAR _SSAnne5BattleText2
-	db "@"
+	text ""
+	fartext _SSAnne5BattleText2
+	done
 
 SSAnne5EndBattleText2:
-	TX_FAR _SSAnne5EndBattleText2
-	db "@"
+	text ""
+	fartext _SSAnne5EndBattleText2
+	done
 
 SSAnne5AfterBattleText2:
-	TX_FAR _SSAnne5AfterBattleText2
-	db "@"
+	text ""
+	fartext _SSAnne5AfterBattleText2
+	done

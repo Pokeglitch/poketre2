@@ -52,8 +52,9 @@ DisplayDexRating:
 	ret
 
 PokedexRatingText_441cc:
-	TX_FAR _OaksLabText_441cc
-	db "@"
+	text ""
+	fartext _OaksLabText_441cc
+	done
 
 DexRatingsTable:
 	db 10
@@ -90,65 +91,81 @@ DexRatingsTable:
 	dw PokedexRatingText_4424c
 
 PokedexRatingText_44201:
-	TX_FAR _OaksLabText_44201
-	db "@"
+	text ""
+	fartext _OaksLabText_44201
+	done
 
 PokedexRatingText_44206:
-	TX_FAR _OaksLabText_44206
-	db "@"
+	text ""
+	fartext _OaksLabText_44206
+	done
 
 PokedexRatingText_4420b:
-	TX_FAR _OaksLabText_4420b
-	db "@"
+	text ""
+	fartext _OaksLabText_4420b
+	done
 
 PokedexRatingText_44210:
-	TX_FAR _OaksLabText_44210
-	db "@"
+	text ""
+	fartext _OaksLabText_44210
+	done
 
 PokedexRatingText_44215:
-	TX_FAR _OaksLabText_44215
-	db "@"
+	text ""
+	fartext _OaksLabText_44215
+	done
 
 PokedexRatingText_4421a:
-	TX_FAR _OaksLabText_4421a
-	db "@"
+	text ""
+	fartext _OaksLabText_4421a
+	done
 
 PokedexRatingText_4421f:
-	TX_FAR _OaksLabText_4421f
-	db "@"
+	text ""
+	fartext _OaksLabText_4421f
+	done
 
 PokedexRatingText_44224:
-	TX_FAR _OaksLabText_44224
-	db "@"
+	text ""
+	fartext _OaksLabText_44224
+	done
 
 PokedexRatingText_44229:
-	TX_FAR _OaksLabText_44229
-	db "@"
+	text ""
+	fartext _OaksLabText_44229
+	done
 
 PokedexRatingText_4422e:
-	TX_FAR _OaksLabText_4422e
-	db "@"
+	text ""
+	fartext _OaksLabText_4422e
+	done
 
 PokedexRatingText_44233:
-	TX_FAR _OaksLabText_44233
-	db "@"
+	text ""
+	fartext _OaksLabText_44233
+	done
 
 PokedexRatingText_44238:
-	TX_FAR _OaksLabText_44238
-	db "@"
+	text ""
+	fartext _OaksLabText_44238
+	done
 
 PokedexRatingText_4423d:
-	TX_FAR _OaksLabText_4423d
-	db "@"
+	text ""
+	fartext _OaksLabText_4423d
+	done
 
 PokedexRatingText_44242:
-	TX_FAR _OaksLabText_44242
-	db "@"
+	text ""
+	fartext _OaksLabText_44242
+	done
 
 PokedexRatingText_44247:
-	TX_FAR _OaksLabText_44247
-	db "@"
+	text ""
+	fartext _OaksLabText_44247
+	done
 
 PokedexRatingText_4424c:
-	TX_FAR _OaksLabText_4424c
-	db "@"
+	text ""
+	fartext _OaksLabText_4424c
+	done

@@ -42,8 +42,9 @@ Route11GateUpstairsText2:
 	jr Route11GateUpstairsScriptEnd
 
 Route11GateUpstairsText_494a3:
-	TX_FAR _Route11GateUpstairsText_494a3
-	db "@"
+	text ""
+	fartext _Route11GateUpstairsText_494a3
+	done
 
 Route11GateUpstairsText3:
 	TX_ASM
@@ -59,12 +60,14 @@ Route11GateUpstairsText3:
 	jp TextScriptEnd
 
 BinocularsSnorlaxText:
-	TX_FAR _BinocularsSnorlaxText
-	db "@"
+	text ""
+	fartext _BinocularsSnorlaxText
+	done
 
 BinocularsNoSnorlaxText:
-	TX_FAR _BinocularsNoSnorlaxText
-	db "@"
+	text ""
+	fartext _BinocularsNoSnorlaxText
+	done
 
 Route11GateUpstairsText4:
 	TX_ASM
@@ -72,5 +75,6 @@ Route11GateUpstairsText4:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route11GateUpstairsText_494d5:
-	TX_FAR _Route11GateUpstairsText_494d5
-	db "@"
+	text ""
+	fartext _Route11GateUpstairsText_494d5
+	done

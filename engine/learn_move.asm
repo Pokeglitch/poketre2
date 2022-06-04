@@ -191,27 +191,30 @@ LearnedMove1Text:
 	done
 
 WhichMoveToForgetText:
-	TX_FAR _WhichMoveToForgetText
-	db "@"
+	text ""
+	fartext _WhichMoveToForgetText
+	done
 
 AbandonLearningText:
-	TX_FAR _AbandonLearningText
-	db "@"
+	text ""
+	fartext _AbandonLearningText
+	done
 
 DidNotLearnText:
-	TX_FAR _DidNotLearnText
-	db "@"
+	text ""
+	fartext _DidNotLearnText
+	done
 
 TryingToLearnText:
-	TX_FAR _TryingToLearnText
-	db "@"
+	text ""
+	fartext _TryingToLearnText
+	done
 
 OneTwoAndText:
 	text ""
 	fartext _OneTwoAndText
 	delaytext
-	endtext
-	TX_ASM
+	asmtext
 	ld a, SFX_SWAP
 	call PlaySoundWaitForCurrent
 	ld hl, PoofText
@@ -228,5 +231,6 @@ ForgotAndText:
 	done
 
 HMCantDeleteText:
-	TX_FAR _HMCantDeleteText
-	db "@"
+	text ""
+	fartext _HMCantDeleteText
+	done

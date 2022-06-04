@@ -17,7 +17,7 @@ _SaffronGateText_8aaa9::
 	done
 
 _SaffronGateText_1dff1::
-	db TEXT_INIT
+	text ""
 	para "..."
 	line "Glug glug..."
 	cont "..."

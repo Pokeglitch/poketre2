@@ -86,20 +86,24 @@ BikeShopMenuPrice:
 	db "$1000000@"
 
 BikeShopText_1d810:
-	TX_FAR _BikeShopText_1d810
-	db "@"
+	text ""
+	fartext _BikeShopText_1d810
+	done
 
 BikeShopText_1d815:
-	TX_FAR _BikeShopText_1d815
-	db "@"
+	text ""
+	fartext _BikeShopText_1d815
+	done
 
 BikeShopCantAffordText:
-	TX_FAR _BikeShopCantAffordText
-	db "@"
+	text ""
+	fartext _BikeShopCantAffordText
+	done
 
 BikeShopText_1d81f:
-	TX_FAR _BikeShopText_1d81f
-	db "@"
+	text ""
+	fartext _BikeShopText_1d81f
+	done
 
 BikeShopText_1d824:
 	text ""
@@ -108,16 +112,19 @@ BikeShopText_1d824:
 	done
 
 BikeShopComeAgainText:
-	TX_FAR _BikeShopComeAgainText
-	db "@"
+	text ""
+	fartext _BikeShopComeAgainText
+	done
 
 BikeShopText_1d82f:
-	TX_FAR _BikeShopText_1d82f
-	db "@"
+	text ""
+	fartext _BikeShopText_1d82f
+	done
 
 BikeShopText_1d834:
-	TX_FAR _BikeShopText_1d834
-	db "@"
+	text ""
+	fartext _BikeShopText_1d834
+	done
 
 BikeShopText2:
 	TX_ASM
@@ -126,8 +133,9 @@ BikeShopText2:
 	jp TextScriptEnd
 
 BikeShopText_1d843:
-	TX_FAR _BikeShopText_1d843
-	db "@"
+	text ""
+	fartext _BikeShopText_1d843
+	done
 
 BikeShopText3:
 	TX_ASM
@@ -140,9 +148,11 @@ BikeShopText3:
 	jp TextScriptEnd
 
 BikeShopText_1d85c:
-	TX_FAR _BikeShopText_1d85c
-	db "@"
+	text ""
+	fartext _BikeShopText_1d85c
+	done
 
 BikeShopText_1d861:
-	TX_FAR _BikeShopText_1d861
-	db "@"
+	text ""
+	fartext _BikeShopText_1d861
+	done

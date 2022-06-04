@@ -67,7 +67,7 @@ _ReceivedTM27Text::
 	done
 
 _TM27ExplanationText::
-	db TEXT_INIT
+	text ""
 	para "TM27 is FISSURE!"
 	line "It will take out"
 	cont "POKéMON with just"

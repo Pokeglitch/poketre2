@@ -963,7 +963,8 @@ _VermilionGymTrashSuccessText1::
 	cont "Turn it on!"
 
 	para "The 1st electric"
-	line "lock opened!@@"
+	line "lock opened!"
+	done
 
 _VermilionGymTrashSuccessText2::
 	text "Hey! There's"
@@ -977,7 +978,8 @@ _VermilionGymTrashSuccessText3::
 	line "lock opened!"
 
 	para "The motorized door"
-	line "opened!@@"
+	line "opened!"
+	done
 
 _VermilionGymTrashFailText::
 	text "Nope! There's"
@@ -1313,15 +1315,18 @@ _MoveIsDisabledText::
 	prompt
 
 _MonName1Text::
-	text "<USER>@@"
+	text "<USER>"
+	done
 
 _UsedText::
 	text ""
-	line "used @@"
+	line "used "
+	done
 
 _InsteadText::
 	text "instead,"
-	cont "@@"
+	cont ""
+	done
 
 _CF4BText::
 	text ""
@@ -1492,17 +1497,21 @@ _GhostCantBeIDdText::
 	prompt
 
 _GoText::
-	text "Go! @@"
+	text "Go! "
+	done
 
 _DoItText::
-	text "Do it! @@"
+	text "Do it! "
+	done
 
 _GetmText::
-	text "Get'm! @@"
+	text "Get'm! "
+	done
 
 _EnemysWeakText::
 	text "The enemy's weak!"
-	line "Get'm! @@"
+	line "Get'm! "
+	done
 
 _PlayerMon1Text::
 	text ""
@@ -1513,16 +1522,20 @@ _PlayerMon1Text::
 _PlayerMon2Text::
 	text ""
 	ramtext wBattleMonNick
-	text " @@"
+	text " "
+	done
 
 _EnoughText::
-	text "enough!@@"
+	text "enough!"
+	done
 
 _OKExclamationText::
-	text "OK!@@"
+	text "OK!"
+	done
 
 _GoodText::
-	text "good!@@"
+	text "good!"
+	done
 
 _ComeBackText::
 	text ""
@@ -1542,14 +1555,14 @@ _NotVeryEffectiveText::
 _SafariZoneEatingText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	db TEXT_INIT
+	text ""
 	line "is eating!"
 	prompt
 
 _SafariZoneAngryText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	db TEXT_INIT
+	text ""
 	line "is angry!"
 	prompt
 
@@ -2045,7 +2058,8 @@ _WhenYouChangeBoxText::
 
 _ChooseABoxText::
 	text "Choose a"
-	line "<pkmn> BOX.@@"
+	line "<pkmn> BOX."
+	done
 
 _EvolvedText::
 	text ""
@@ -2113,7 +2127,8 @@ _MonsStatsRoseText::
 	text "<USER>'s"
 	line ""
 	ramtext wcf4b
-	text "@@"
+	text ""
+	done
 
 _GreatlyRoseText::
 	text ""
@@ -2128,7 +2143,8 @@ _MonsStatsFellText::
 	text "<TARGET>'s"
 	line ""
 	ramtext wcf4b
-	text "@@"
+	text ""
+	done
 
 _GreatlyFellText::
 	text ""
@@ -2155,7 +2171,8 @@ _WasBlownAwayText::
 	prompt
 
 _ChargeMoveEffectText::
-	text "<USER>@@"
+	text "<USER>"
+	done
 
 _MadeWhirlwindText::
 	text ""
@@ -2473,7 +2490,7 @@ _PokemonFaintedText::
 	text
 	ramtext wcd6d
 	str " fainted!"
-	endtext
+	done
 
 _PlayerBlackedOutText::
 	text "<PLAYER> is out of"
@@ -2495,7 +2512,7 @@ _PokemartTellBuyPriceText::
 	cont "$"
 	bcdtext hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text ". OK?"
-	endtext
+	done
 
 _PokemartBoughtItemText::
 	text "Here you are!"
@@ -2671,7 +2688,8 @@ _UsedStrengthText::
 	text ""
 	ramtext wcd6d
 	text " used"
-	line "STRENGTH.@@"
+	line "STRENGTH."
+	done
 
 _CanMoveBouldersText::
 	text ""

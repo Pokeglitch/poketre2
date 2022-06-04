@@ -324,8 +324,9 @@ SilphCo11Text1:
 	jp TextScriptEnd
 
 SilphCoPresidentText:
-	TX_FAR _SilphCoPresidentText
-	db "@"
+	text ""
+	fartext _SilphCoPresidentText
+	done
 
 ReceivedSilphCoMasterBallText:
 	text ""
@@ -334,28 +335,34 @@ ReceivedSilphCoMasterBallText:
 	done
 
 SilphCo10Text_6231c:
-	TX_FAR _SilphCo10Text_6231c
-	db "@"
+	text ""
+	fartext _SilphCo10Text_6231c
+	done
 
 SilphCoMasterBallNoRoomText:
-	TX_FAR _SilphCoMasterBallNoRoomText
-	db "@"
+	text ""
+	fartext _SilphCoMasterBallNoRoomText
+	done
 
 SilphCo11Text2:
-	TX_FAR _SilphCo11Text2
-	db "@"
+	text ""
+	fartext _SilphCo11Text2
+	done
 
 SilphCo11Text3:
-	TX_FAR _SilphCo11Text3
-	db "@"
+	text ""
+	fartext _SilphCo11Text3
+	done
 
 SilphCo10Text_62330:
-	TX_FAR _SilphCo10Text_62330
-	db "@"
+	text ""
+	fartext _SilphCo10Text_62330
+	done
 
 SilphCo11Text6:
-	TX_FAR _SilphCo10Text_62335
-	db "@"
+	text ""
+	fartext _SilphCo10Text_62335
+	done
 
 SilphCo11Text4:
 	TX_ASM
@@ -364,16 +371,19 @@ SilphCo11Text4:
 	jp TextScriptEnd
 
 SilphCo11BattleText1:
-	TX_FAR _SilphCo11BattleText1
-	db "@"
+	text ""
+	fartext _SilphCo11BattleText1
+	done
 
 SilphCo11EndBattleText1:
-	TX_FAR _SilphCo11EndBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo11EndBattleText1
+	done
 
 SilphCo11AfterBattleText1:
-	TX_FAR _SilphCo11AfterBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo11AfterBattleText1
+	done
 
 SilphCo11Text5:
 	TX_ASM
@@ -382,16 +392,19 @@ SilphCo11Text5:
 	jp TextScriptEnd
 
 SilphCo11BattleText2:
-	TX_FAR _SilphCo11BattleText2
-	db "@"
+	text ""
+	fartext _SilphCo11BattleText2
+	done
 
 SilphCo11EndBattleText2:
-	TX_FAR _SilphCo11EndBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo11EndBattleText2
+	done
 
 SilphCo11AfterBattleText2:
-	TX_FAR _SilphCo11AfterBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo11AfterBattleText2
+	done
 
 SilphCo10Text_6236c:
 	TX_ASM
@@ -402,5 +415,6 @@ SilphCo10Text_6236c:
 	jp TextScriptEnd
 
 SilphCo10Text_6237b:
-	TX_FAR _SilphCo10Text_6237b
-	db "@"
+	text ""
+	fartext _SilphCo10Text_6237b
+	done

@@ -409,37 +409,46 @@ Route22Text2:
 	jp TextScriptEnd
 
 Route22RivalBeforeBattleText1:
-	TX_FAR _Route22RivalBeforeBattleText1
-	db "@"
+	text ""
+	fartext _Route22RivalBeforeBattleText1
+	done
 
 Route22RivalAfterBattleText1:
-	TX_FAR _Route22RivalAfterBattleText1
-	db "@"
+	text ""
+	fartext _Route22RivalAfterBattleText1
+	done
 
 Route22RivalDefeatedText1:
-	TX_FAR _Route22RivalDefeatedText1
-	db "@"
+	text ""
+	fartext _Route22RivalDefeatedText1
+	done
 
 Route22Text_511bc:
-	TX_FAR _Route22Text_511bc
-	db "@"
+	text ""
+	fartext _Route22Text_511bc
+	done
 
 Route22RivalBeforeBattleText2:
-	TX_FAR _Route22RivalBeforeBattleText2
-	db "@"
+	text ""
+	fartext _Route22RivalBeforeBattleText2
+	done
 
 Route22RivalAfterBattleText2:
-	TX_FAR _Route22RivalAfterBattleText2
-	db "@"
+	text ""
+	fartext _Route22RivalAfterBattleText2
+	done
 
 Route22RivalDefeatedText2:
-	TX_FAR _Route22RivalDefeatedText2
-	db "@"
+	text ""
+	fartext _Route22RivalDefeatedText2
+	done
 
 Route22Text_511d0:
-	TX_FAR _Route22Text_511d0
-	db "@"
+	text ""
+	fartext _Route22Text_511d0
+	done
 
 Route22FrontGateText:
-	TX_FAR _Route22FrontGateText
-	db "@"
+	text ""
+	fartext _Route22FrontGateText
+	done

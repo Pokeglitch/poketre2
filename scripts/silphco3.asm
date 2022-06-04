@@ -92,12 +92,14 @@ SilphCo3Text1:
 	jp TextScriptEnd
 
 SilphCo3Text_59ff9:
-	TX_FAR _SilphCo3Text_59ff9
-	db "@"
+	text ""
+	fartext _SilphCo3Text_59ff9
+	done
 
 SilphCo3Text_59ffe:
-	TX_FAR _SilphCo3Text_59ffe
-	db "@"
+	text ""
+	fartext _SilphCo3Text_59ffe
+	done
 
 SilphCo3Text2:
 	TX_ASM
@@ -106,16 +108,19 @@ SilphCo3Text2:
 	jp TextScriptEnd
 
 SilphCo3BattleText1:
-	TX_FAR _SilphCo3BattleText1
-	db "@"
+	text ""
+	fartext _SilphCo3BattleText1
+	done
 
 SilphCo3EndBattleText1:
-	TX_FAR _SilphCo3EndBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo3EndBattleText1
+	done
 
 SilphCo3AfterBattleText1:
-	TX_FAR _SilphCo3AfterBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo3AfterBattleText1
+	done
 
 SilphCo3Text3:
 	TX_ASM
@@ -124,13 +129,16 @@ SilphCo3Text3:
 	jp TextScriptEnd
 
 SilphCo3BattleText2:
-	TX_FAR _SilphCo3BattleText2
-	db "@"
+	text ""
+	fartext _SilphCo3BattleText2
+	done
 
 SilphCo3EndBattleText2:
-	TX_FAR _SilphCo3EndBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo3EndBattleText2
+	done
 
 SilphCo3AfterBattleText2:
-	TX_FAR _SilphCo3AfterBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo3AfterBattleText2
+	done

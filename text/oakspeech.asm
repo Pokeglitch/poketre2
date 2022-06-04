@@ -12,7 +12,8 @@ _OakSpeechText2A::
 	text "This world is"
 	line "inhabited by"
 	cont "creatures called"
-	cont "POKéMON!@@"
+	cont "POKéMON!"
+	done
 
 _OakSpeechText2B::
 	text ""

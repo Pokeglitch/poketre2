@@ -129,8 +129,9 @@ VermilionCityTextPointers:
 	dw VermilionCityText13
 
 VermilionCityText1:
-	TX_FAR _VermilionCityText1
-	db "@"
+	text ""
+	fartext _VermilionCityText1
+	done
 
 VermilionCityText2:
 	TX_ASM
@@ -146,12 +147,14 @@ VermilionCityText2:
 	jp TextScriptEnd
 
 VermilionCityText_198a7:
-	TX_FAR _VermilionCityText_198a7
-	db "@"
+	text ""
+	fartext _VermilionCityText_198a7
+	done
 
 VermilionCityText_198ac:
-	TX_FAR _VermilionCityText_198ac
-	db "@"
+	text ""
+	fartext _VermilionCityText_198ac
+	done
 
 VermilionCityText3:
 	TX_ASM
@@ -196,32 +199,39 @@ VermilionCityCoords1:
 	db $ff
 
 SSAnneWelcomeText4:
-	TX_FAR _SSAnneWelcomeText4
-	db "@"
+	text ""
+	fartext _SSAnneWelcomeText4
+	done
 
 SSAnneWelcomeText9:
-	TX_FAR _SSAnneWelcomeText9
-	db "@"
+	text ""
+	fartext _SSAnneWelcomeText9
+	done
 
 SSAnneFlashedTicketText:
-	TX_FAR _SSAnneFlashedTicketText
-	db "@"
+	text ""
+	fartext _SSAnneFlashedTicketText
+	done
 
 SSAnneNoTicketText:
-	TX_FAR _SSAnneNoTicketText
-	db "@"
+	text ""
+	fartext _SSAnneNoTicketText
+	done
 
 SSAnneNotHereText:
-	TX_FAR _SSAnneNotHereText
-	db "@"
+	text ""
+	fartext _SSAnneNotHereText
+	done
 
 VermilionCityText4:
-	TX_FAR _VermilionCityText4
-	db "@"
+	text ""
+	fartext _VermilionCityText4
+	done
 
 VermilionCityText5:
-	TX_FAR _VermilionCityText5
-	TX_ASM
+	text ""
+	fartext _VermilionCityText5
+	asmtext
 	ld a, MACHOP
 	call PlayCry
 	call WaitForSoundToFinish
@@ -229,29 +239,36 @@ VermilionCityText5:
 	ret
 
 VermilionCityText14:
-	TX_FAR _VermilionCityText14
-	db "@"
+	text ""
+	fartext _VermilionCityText14
+	done
 
 VermilionCityText6:
-	TX_FAR _VermilionCityText6
-	db "@"
+	text ""
+	fartext _VermilionCityText6
+	done
 
 VermilionCityText7:
-	TX_FAR _VermilionCityText7
-	db "@"
+	text ""
+	fartext _VermilionCityText7
+	done
 
 VermilionCityText8:
-	TX_FAR _VermilionCityText8
-	db "@"
+	text ""
+	fartext _VermilionCityText8
+	done
 
 VermilionCityText11:
-	TX_FAR _VermilionCityText11
-	db "@"
+	text ""
+	fartext _VermilionCityText11
+	done
 
 VermilionCityText12:
-	TX_FAR _VermilionCityText12
-	db "@"
+	text ""
+	fartext _VermilionCityText12
+	done
 
 VermilionCityText13:
-	TX_FAR _VermilionCityText13
-	db "@"
+	text ""
+	fartext _VermilionCityText13
+	done

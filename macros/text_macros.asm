@@ -6,7 +6,10 @@
 text     EQUS "db TEXT_INIT," ; Start writing text.
 ramtext  EQUS "dbw RAM_TEXT,"
 neartext EQUS "dbw NEAR_TEXT,"
-textasm  EQUS "db TEXT_ASM"
+
+asmtext  EQUS "db TEXT_ASM"
+TX_ASM     EQUS "db TEXT_INIT, TEXT_ASM"
+
 delaytext EQUS "db DELAY_TEXT"
 textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
 cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
@@ -18,7 +21,6 @@ autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
 done     EQUS "db TEXT_DONE"  ; End a text box.
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
-endtext  EQUS "db TEXT_END" ; "@"
 
 page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
 dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
@@ -73,14 +75,6 @@ ENDM
 gototext: MACRO
 	db GOTO_TEXT
 	dw \1
-ENDM
-
-TX_ASM     EQUS "db $08"
-
-TX_FAR: MACRO
-	db $17
-	dw \1
-	db BANK(\1)
 ENDM
 
 TX_VENDING_MACHINE         EQUS "db $f5"

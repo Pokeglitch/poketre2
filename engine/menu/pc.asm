@@ -83,16 +83,19 @@ LogOff:
 	ret
 
 TurnedOnPC1Text:
-	TX_FAR _TurnedOnPC1Text
-	db "@"
+	text ""
+	fartext _TurnedOnPC1Text
+	done
 
 AccessedBillsPCText:
-	TX_FAR _AccessedBillsPCText
-	db "@"
+	text ""
+	fartext _AccessedBillsPCText
+	done
 
 AccessedSomeonesPCText:
-	TX_FAR _AccessedSomeonesPCText
-	db "@"
+	text ""
+	fartext _AccessedSomeonesPCText
+	done
 
 ; removes one of the specified item ID [hItemToRemoveID] from bag
 RemoveItemByID:

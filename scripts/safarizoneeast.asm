@@ -11,13 +11,16 @@ SafariZoneEastTextPointers:
 	dw SafariZoneEastText7
 
 SafariZoneEastText5:
-	TX_FAR _SafariZoneEastText5
-	db "@"
+	text ""
+	fartext _SafariZoneEastText5
+	done
 
 SafariZoneEastText6:
-	TX_FAR _SafariZoneEastText6
-	db "@"
+	text ""
+	fartext _SafariZoneEastText6
+	done
 
 SafariZoneEastText7:
-	TX_FAR _SafariZoneEastText7
-	db "@"
+	text ""
+	fartext _SafariZoneEastText7
+	done

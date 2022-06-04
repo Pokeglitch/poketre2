@@ -25,12 +25,14 @@ IndigoHealNurseText:
 	TX_POKECENTER_NURSE
 
 IndigoPlateauLobbyText2:
-	TX_FAR _IndigoPlateauLobbyText2
-	db "@"
+	text ""
+	fartext _IndigoPlateauLobbyText2
+	done
 
 IndigoPlateauLobbyText3:
-	TX_FAR _IndigoPlateauLobbyText3
-	db "@"
+	text ""
+	fartext _IndigoPlateauLobbyText3
+	done
 
 IndigoTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST

@@ -176,16 +176,19 @@ RocketHideout3Text1:
 	jp TextScriptEnd
 
 RocketHideout3BattleText2:
-	TX_FAR _RocketHideout3BattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout3BattleText2
+	done
 
 RocketHideout3EndBattleText2:
-	TX_FAR _RocketHideout3EndBattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout3EndBattleText2
+	done
 
 RocketHideout3AfterBattleTxt2:
-	TX_FAR _RocketHideout3AfterBattleTxt2
-	db "@"
+	text ""
+	fartext _RocketHideout3AfterBattleTxt2
+	done
 
 RocketHideout3Text2:
 	TX_ASM
@@ -194,13 +197,16 @@ RocketHideout3Text2:
 	jp TextScriptEnd
 
 RocketHideout3BattleTxt:
-	TX_FAR _RocketHideout3BattleTxt
-	db "@"
+	text ""
+	fartext _RocketHideout3BattleTxt
+	done
 
 RocketHideout3EndBattleText3:
-	TX_FAR _RocketHideout3EndBattleText3
-	db "@"
+	text ""
+	fartext _RocketHideout3EndBattleText3
+	done
 
 RocketHideout3AfterBattleText3:
-	TX_FAR _RocketHide3AfterBattleText3
-	db "@"
+	text ""
+	fartext _RocketHide3AfterBattleText3
+	done

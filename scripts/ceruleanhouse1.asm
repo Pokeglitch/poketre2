@@ -6,8 +6,9 @@ CeruleanHouse1TextPointers:
 	dw CeruleanHouse1Text2
 
 CeruleanHouse1Text1:
-	TX_FAR _CeruleanHouse1Text1
-	db "@"
+	text ""
+	fartext _CeruleanHouse1Text1
+	done
 
 CeruleanHouse1Text2:
 	TX_ASM

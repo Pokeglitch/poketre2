@@ -28,10 +28,12 @@ _LavenderHouse1Text_1d8f9::
 	done
 
 _LavenderHouse1Text3::
-	text "PSYDUCK: Gwappa!@@"
+	text "PSYDUCK: Gwappa!"
+	done
 
 _LavenderHouse1Text4::
-	text "NIDORINO: Gaoo!@@"
+	text "NIDORINO: Gaoo!"
+	done
 
 _LavenderHouse1Text_1d94c::
 	text "MR.FUJI: <PLAYER>."
@@ -53,7 +55,7 @@ _ReceivedFluteText::
 	done
 
 _FluteExplanationText::
-	db TEXT_INIT
+	text ""
 	para "Upon hearing #"
 	line "FLUTE, sleeping"
 	cont "POKéMON will"

@@ -31,7 +31,7 @@ _Lab4Text_75dd5::
 
 	para "It was "
 	ramtext wcf4b
-	db TEXT_INIT
+	text ""
 	line "like I think!"
 	prompt
 

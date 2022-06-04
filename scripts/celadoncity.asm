@@ -25,20 +25,24 @@ CeladonCityTextPointers:
 	dw CeladonCityText18
 
 CeladonCityText1:
-	TX_FAR _CeladonCityText1
-	db "@"
+	text ""
+	fartext _CeladonCityText1
+	done
 
 CeladonCityText2:
-	TX_FAR _CeladonCityText2
-	db "@"
+	text ""
+	fartext _CeladonCityText2
+	done
 
 CeladonCityText3:
-	TX_FAR _CeladonCityText3
-	db "@"
+	text ""
+	fartext _CeladonCityText3
+	done
 
 CeladonCityText4:
-	TX_FAR _CeladonCityText4
-	db "@"
+	text ""
+	fartext _CeladonCityText4
+	done
 
 CeladonCityText5:
 	TX_ASM
@@ -64,8 +68,9 @@ CeladonCityText5:
 	jp TextScriptEnd
 
 TM41PreText:
-	TX_FAR _TM41PreText
-	db "@"
+	text ""
+	fartext _TM41PreText
+	done
 
 ReceivedTM41Text:
 	text ""
@@ -74,60 +79,74 @@ ReceivedTM41Text:
 	done
 
 TM41ExplanationText:
-	TX_FAR _TM41ExplanationText
-	db "@"
+	text ""
+	fartext _TM41ExplanationText
+	done
 
 TM41NoRoomText:
-	TX_FAR _TM41NoRoomText
-	db "@"
+	text ""
+	fartext _TM41NoRoomText
+	done
 
 CeladonCityText6:
-	TX_FAR _CeladonCityText6
-	db "@"
+	text ""
+	fartext _CeladonCityText6
+	done
 
 CeladonCityText7:
-	TX_FAR _CeladonCityText7
-	TX_ASM
+	text ""
+	fartext _CeladonCityText7
+	asmtext
 	ld a, POLIWRATH
 	call PlayCry
 	jp TextScriptEnd
 
 CeladonCityText8:
-	TX_FAR _CeladonCityText8
-	db "@"
+	text ""
+	fartext _CeladonCityText8
+	done
 
 CeladonCityText9:
-	TX_FAR _CeladonCityText9
-	db "@"
+	text ""
+	fartext _CeladonCityText9
+	done
 
 CeladonCityText10:
-	TX_FAR _CeladonCityText10
-	db "@"
+	text ""
+	fartext _CeladonCityText10
+	done
 
 CeladonCityText11:
-	TX_FAR _CeladonCityText11
-	db "@"
+	text ""
+	fartext _CeladonCityText11
+	done
 
 CeladonCityText13:
-	TX_FAR _CeladonCityText13
-	db "@"
+	text ""
+	fartext _CeladonCityText13
+	done
 
 CeladonCityText14:
-	TX_FAR _CeladonCityText14
-	db "@"
+	text ""
+	fartext _CeladonCityText14
+	done
 
 CeladonCityText15:
-	TX_FAR _CeladonCityText15
-	db "@"
+	text ""
+	fartext _CeladonCityText15
+	done
 
 CeladonCityText16:
-	TX_FAR _CeladonCityText16
-	db "@"
+	text ""
+	fartext _CeladonCityText16
+	done
 
 CeladonCityText17:
-	TX_FAR _CeladonCityText17
-	db "@"
+	text ""
+	fartext _CeladonCityText17
+	done
 
 CeladonCityText18:
-	TX_FAR _CeladonCityText18
-	db "@"
+	text ""
+	fartext _CeladonCityText18
+	done

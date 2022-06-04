@@ -5,5 +5,6 @@ Route7TextPointers:
 	dw Route7Text1
 
 Route7Text1:
-	TX_FAR _Route7Text1
-	db "@"
+	text ""
+	fartext _Route7Text1
+	done

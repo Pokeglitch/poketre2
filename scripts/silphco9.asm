@@ -178,16 +178,19 @@ SilphCo9Text1:
 	jp TextScriptEnd
 
 SilphCo9Text_5d8e5:
-	TX_FAR _SilphCo9Text_5d8e5
-	db "@"
+	text ""
+	fartext _SilphCo9Text_5d8e5
+	done
 
 SilphCo9Text_5d8ea:
-	TX_FAR _SilphCo9Text_5d8ea
-	db "@"
+	text ""
+	fartext _SilphCo9Text_5d8ea
+	done
 
 SilphCo9Text_5d8ef:
-	TX_FAR _SilphCo9Text_5d8ef
-	db "@"
+	text ""
+	fartext _SilphCo9Text_5d8ef
+	done
 
 SilphCo9Text2:
 	TX_ASM
@@ -208,37 +211,46 @@ SilphCo9Text4:
 	jp TextScriptEnd
 
 SilphCo9BattleText1:
-	TX_FAR _SilphCo9BattleText1
-	db "@"
+	text ""
+	fartext _SilphCo9BattleText1
+	done
 
 SilphCo9EndBattleText1:
-	TX_FAR _SilphCo9EndBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo9EndBattleText1
+	done
 
 SilphCo9AfterBattleText1:
-	TX_FAR _SilphCo9AfterBattleText1
-	db "@"
+	text ""
+	fartext _SilphCo9AfterBattleText1
+	done
 
 SilphCo9BattleText2:
-	TX_FAR _SilphCo9BattleText2
-	db "@"
+	text ""
+	fartext _SilphCo9BattleText2
+	done
 
 SilphCo9EndBattleText2:
-	TX_FAR _SilphCo9EndBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo9EndBattleText2
+	done
 
 SilphCo9AfterBattleText2:
-	TX_FAR _SilphCo9AfterBattleText2
-	db "@"
+	text ""
+	fartext _SilphCo9AfterBattleText2
+	done
 
 SilphCo9BattleText3:
-	TX_FAR _SilphCo9BattleText3
-	db "@"
+	text ""
+	fartext _SilphCo9BattleText3
+	done
 
 SilphCo9EndBattleText3:
-	TX_FAR _SilphCo9EndBattleText3
-	db "@"
+	text ""
+	fartext _SilphCo9EndBattleText3
+	done
 
 SilphCo9AfterBattleText3:
-	TX_FAR _SilphCo9AfterBattleText3
-	db "@"
+	text ""
+	fartext _SilphCo9AfterBattleText3
+	done

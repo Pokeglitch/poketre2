@@ -7,9 +7,11 @@ CinnabarMartTextPointers:
 	dw CinnabarMartText3
 
 CinnabarMartText2:
-	TX_FAR _CinnabarMartText2
-	db "@"
+	text ""
+	fartext _CinnabarMartText2
+	done
 
 CinnabarMartText3:
-	TX_FAR _CinnabarMartText3
-	db "@"
+	text ""
+	fartext _CinnabarMartText3
+	done

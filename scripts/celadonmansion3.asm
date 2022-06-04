@@ -12,16 +12,19 @@ CeladonMansion3TextPointers:
 	dw GameFreakSignText
 
 ProgrammerText:
-	TX_FAR _ProgrammerText
-	db "@"
+	text ""
+	fartext _ProgrammerText
+	done
 
 GraphicArtistText:
-	TX_FAR _GraphicArtistText
-	db "@"
+	text ""
+	fartext _GraphicArtistText
+	done
 
 WriterText:
-	TX_FAR _WriterText
-	db "@"
+	text ""
+	fartext _WriterText
+	done
 
 DirectorText:
 	TX_ASM
@@ -42,32 +45,36 @@ DirectorText:
 	jp TextScriptEnd
 
 .GameDesigner
-	TX_FAR _GameDesignerText
-	db "@"
+	text ""
+	fartext _GameDesignerText
+	done
 
 .CompletedDexText
 	text ""
 	fartext _CompletedDexText
 	wait
-	endtext
-	TX_ASM
+	asmtext
 	callab DisplayDiploma
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	jp TextScriptEnd
 
 GameFreakPCText1:
-	TX_FAR _CeladonMansion3Text5
-	db "@"
+	text ""
+	fartext _CeladonMansion3Text5
+	done
 
 GameFreakPCText2:
-	TX_FAR _CeladonMansion3Text6
-	db "@"
+	text ""
+	fartext _CeladonMansion3Text6
+	done
 
 GameFreakPCText3:
-	TX_FAR _CeladonMansion3Text7
-	db "@"
+	text ""
+	fartext _CeladonMansion3Text7
+	done
 
 GameFreakSignText:
-	TX_FAR _CeladonMansion3Text8
-	db "@"
+	text ""
+	fartext _CeladonMansion3Text8
+	done

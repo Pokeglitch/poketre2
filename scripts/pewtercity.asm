@@ -212,8 +212,7 @@ PewterCityText3:
 .no
 	autopara
 	fartext _PewterCityText_193fb
-	endtext
-	TX_ASM
+	asmtext
 	xor a
 	ld [hJoyPressed], a
 	ld [hJoyHeld], a
@@ -258,16 +257,19 @@ PewterCityText4:
 	jp TextScriptEnd
 
 PewterCityText_19427:
-	TX_FAR _PewterCityText_19427
-	db "@"
+	text ""
+	fartext _PewterCityText_19427
+	done
 
 PewterCityText_1942c:
-	TX_FAR _PewterCityText_1942c
-	db "@"
+	text ""
+	fartext _PewterCityText_1942c
+	done
 
 PewterCityText_19431:
-	TX_FAR _PewterCityText_19431
-	db "@"
+	text ""
+	fartext _PewterCityText_19431
+	done
 
 PewterCityText5:
 	TX_ASM
@@ -288,8 +290,9 @@ PewterCityText5:
 	jp TextScriptEnd
 
 PewterCityText_1945d:
-	TX_FAR _PewterCityText_1945d
-	db "@"
+	text ""
+	fartext _PewterCityText_1945d
+	done
 
 PewterCityText14:
 	textbox BLACK_ON_WHITE | LINES_3

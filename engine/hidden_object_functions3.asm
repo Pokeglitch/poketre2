@@ -88,16 +88,19 @@ IndigoPlateauStatues:
 	jp TextScriptEnd
 
 IndigoPlateauStatuesText1:
-	TX_FAR _IndigoPlateauStatuesText1
-	db "@"
+	text ""
+	fartext _IndigoPlateauStatuesText1
+	done
 
 IndigoPlateauStatuesText2:
-	TX_FAR _IndigoPlateauStatuesText2
-	db "@"
+	text ""
+	fartext _IndigoPlateauStatuesText2
+	done
 
 IndigoPlateauStatuesText3:
-	TX_FAR _IndigoPlateauStatuesText3
-	db "@"
+	text ""
+	fartext _IndigoPlateauStatuesText3
+	done
 
 BookOrSculptureText:
 	TX_ASM
@@ -114,23 +117,25 @@ BookOrSculptureText:
 	jp TextScriptEnd
 
 PokemonBooksText:
-	TX_FAR _PokemonBooksText
-	db "@"
+	text ""
+	fartext _PokemonBooksText
+	done
 
 DiglettSculptureText:
-	TX_FAR _DiglettSculptureText
-	db "@"
+	text ""
+	fartext _DiglettSculptureText
+	done
 
 ElevatorText:
-	TX_FAR _ElevatorText
-	db "@"
+	text ""
+	fartext _ElevatorText
+	done
 
 TownMapText:
 	text ""
 	fartext _TownMapText
 	wait
-	endtext
-	TX_ASM
+	asmtext
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, wd730
@@ -151,5 +156,6 @@ TownMapText:
 	jp CloseTextDisplay
 
 PokemonStuffText:
-	TX_FAR _PokemonStuffText
-	db "@"
+	text ""
+	fartext _PokemonStuffText
+	done

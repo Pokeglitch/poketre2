@@ -12,12 +12,14 @@ CinnabarHealNurseText:
 	TX_POKECENTER_NURSE
 
 CinnabarPokecenterText2:
-	TX_FAR _CinnabarPokecenterText2
-	db "@"
+	text ""
+	fartext _CinnabarPokecenterText2
+	done
 
 CinnabarPokecenterText3:
-	TX_FAR _CinnabarPokecenterText3
-	db "@"
+	text ""
+	fartext _CinnabarPokecenterText3
+	done
 
 CinnabarTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST

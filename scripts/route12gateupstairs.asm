@@ -30,8 +30,9 @@ Route12GateUpstairsText1:
 	jp TextScriptEnd
 
 TM39PreReceiveText:
-	TX_FAR _TM39PreReceiveText
-	db "@"
+	text ""
+	fartext _TM39PreReceiveText
+	done
 
 ReceivedTM39Text:
 	text ""
@@ -40,12 +41,14 @@ ReceivedTM39Text:
 	done
 
 TM39ExplanationText:
-	TX_FAR _TM39ExplanationText
-	db "@"
+	text ""
+	fartext _TM39ExplanationText
+	done
 
 TM39NoRoomText:
-	TX_FAR _TM39NoRoomText
-	db "@"
+	text ""
+	fartext _TM39NoRoomText
+	done
 
 Route12GateUpstairsText2:
 	TX_ASM
@@ -53,8 +56,9 @@ Route12GateUpstairsText2:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route12GateUpstairsText_495b8:
-	TX_FAR _Route12GateUpstairsText_495b8
-	db "@"
+	text ""
+	fartext _Route12GateUpstairsText_495b8
+	done
 
 Route12GateUpstairsText3:
 	TX_ASM
@@ -62,8 +66,9 @@ Route12GateUpstairsText3:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route12GateUpstairsText_495c4:
-	TX_FAR _Route12GateUpstairsText_495c4
-	db "@"
+	text ""
+	fartext _Route12GateUpstairsText_495c4
+	done
 
 GateUpstairsScript_PrintIfFacingUp:
 	ld a, [wSpriteStateData1 + 9]

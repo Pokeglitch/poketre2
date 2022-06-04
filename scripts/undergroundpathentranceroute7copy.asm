@@ -8,17 +8,21 @@ UndergroundPathEntranceRoute7CopyTextPointers:
 	dw UGPathRoute7EntranceUnusedText_5d77d
 
 UGPathRoute7EntranceUnusedText_5d773:
-	TX_FAR _UGPathRoute7EntranceUnusedText_5d773
-	db "@"
+	text ""
+	fartext _UGPathRoute7EntranceUnusedText_5d773
+	done
 
 UGPathRoute7EntranceUnusedText_5d778:
-	TX_FAR _UGPathRoute7EntranceUnusedText_5d778
-	db "@"
+	text ""
+	fartext _UGPathRoute7EntranceUnusedText_5d778
+	done
 
 UGPathRoute7EntranceUnusedText_5d77d:
-	TX_FAR _UGPathRoute7EntranceUnusedText_5d77d
-	db "@"
+	text ""
+	fartext _UGPathRoute7EntranceUnusedText_5d77d
+	done
 
 UGPathRoute7EntranceUnusedText_5d782:
-	TX_FAR _UGPathRoute7EntranceUnusedText_5d782
-	db "@"
+	text ""
+	fartext _UGPathRoute7EntranceUnusedText_5d782
+	done

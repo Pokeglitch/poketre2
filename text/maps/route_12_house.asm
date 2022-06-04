@@ -23,7 +23,7 @@ _Route12HouseText_564c5::
 	done
 
 _Route12HouseText_564ca::
-	db TEXT_INIT
+	text ""
 	para "Fishing is a way"
 	line "of life!"
 

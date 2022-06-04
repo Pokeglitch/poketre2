@@ -23,9 +23,11 @@ AbleToPlaySlotsCheck:
 	ret
 
 GameCornerCoinCaseText:
-	TX_FAR _GameCornerCoinCaseText
-	db "@"
+	text ""
+	fartext _GameCornerCoinCaseText
+	done
 
 GameCornerNoCoinsText:
-	TX_FAR _GameCornerNoCoinsText
-	db "@"
+	text ""
+	fartext _GameCornerNoCoinsText
+	done

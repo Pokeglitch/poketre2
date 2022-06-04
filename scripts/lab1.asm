@@ -10,21 +10,26 @@ Lab1TextPointers:
 	dw Lab1Text5
 
 Lab1Text1:
-	TX_FAR _Lab1Text1
-	db "@"
+	text ""
+	fartext _Lab1Text1
+	done
 
 Lab1Text2:
-	TX_FAR _Lab1Text2
-	db "@"
+	text ""
+	fartext _Lab1Text2
+	done
 
 Lab1Text3:
-	TX_FAR _Lab1Text3
-	db "@"
+	text ""
+	fartext _Lab1Text3
+	done
 
 Lab1Text4:
-	TX_FAR _Lab1Text4
-	db "@"
+	text ""
+	fartext _Lab1Text4
+	done
 
 Lab1Text5:
-	TX_FAR _Lab1Text5
-	db "@"
+	text ""
+	fartext _Lab1Text5
+	done

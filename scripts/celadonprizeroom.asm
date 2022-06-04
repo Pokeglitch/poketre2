@@ -9,12 +9,14 @@ CeladonPrizeRoomTextPointers:
 	dw CeladonPrizeRoomText3
 
 CeladonPrizeRoomText1:
-	TX_FAR _CeladonPrizeRoomText1
-	db "@"
+	text ""
+	fartext _CeladonPrizeRoomText1
+	done
 
 CeladonPrizeRoomText2:
-	TX_FAR _CeladonPrizeRoomText2
-	db "@"
+	text ""
+	fartext _CeladonPrizeRoomText2
+	done
 
 CeladonPrizeRoomText3:
 	TX_PRIZE_VENDOR

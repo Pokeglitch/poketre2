@@ -19,8 +19,9 @@ RedsHouse1FText1: ; Mom
 	jp TextScriptEnd
 
 MomWakeUpText:
-	TX_FAR _MomWakeUpText
-	db "@"
+	text ""
+	fartext _MomWakeUpText
+	done
 
 MomHealPokemon:
 	ld hl, MomHealText1
@@ -43,11 +44,13 @@ MomHealPokemon:
 	jp PrintText
 
 MomHealText1:
-	TX_FAR _MomHealText1
-	db "@"
+	text ""
+	fartext _MomHealText1
+	done
 MomHealText2:
-	TX_FAR _MomHealText2
-	db "@"
+	text ""
+	fartext _MomHealText2
+	done
 
 RedsHouse1FText2: ; TV
 	TX_ASM
@@ -61,9 +64,11 @@ RedsHouse1FText2: ; TV
 	jp TextScriptEnd
 
 StandByMeText:
-	TX_FAR _StandByMeText
-	db "@"
+	text ""
+	fartext _StandByMeText
+	done
 
 TVWrongSideText:
-	TX_FAR _TVWrongSideText
-	db "@"
+	text ""
+	fartext _TVWrongSideText
+	done

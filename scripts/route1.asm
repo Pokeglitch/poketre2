@@ -27,8 +27,9 @@ Route1Text1:
 	jp TextScriptEnd
 
 Route1ViridianMartSampleText:
-	TX_FAR _Route1ViridianMartSampleText
-	db "@"
+	text ""
+	fartext _Route1ViridianMartSampleText
+	done
 
 Route1Text_1cae8:
 	text ""
@@ -37,17 +38,21 @@ Route1Text_1cae8:
 	done
 
 Route1Text_1caee:
-	TX_FAR _Route1Text_1caee
-	db "@"
+	text ""
+	fartext _Route1Text_1caee
+	done
 
 Route1Text_1caf3:
-	TX_FAR _Route1Text_1caf3
-	db "@"
+	text ""
+	fartext _Route1Text_1caf3
+	done
 
 Route1Text2:
-	TX_FAR _Route1Text2
-	db "@"
+	text ""
+	fartext _Route1Text2
+	done
 
 Route1Text3:
-	TX_FAR _Route1Text3
-	db "@"
+	text ""
+	fartext _Route1Text3
+	done

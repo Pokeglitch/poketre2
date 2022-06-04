@@ -102,29 +102,36 @@ Mansion4Text2:
 	jp TextScriptEnd
 
 Mansion4BattleText1:
-	TX_FAR _Mansion4BattleText1
-	db "@"
+	text ""
+	fartext _Mansion4BattleText1
+	done
 
 Mansion4EndBattleText1:
-	TX_FAR _Mansion4EndBattleText1
-	db "@"
+	text ""
+	fartext _Mansion4EndBattleText1
+	done
 
 Mansion4AfterBattleText1:
-	TX_FAR _Mansion4AfterBattleText1
-	db "@"
+	text ""
+	fartext _Mansion4AfterBattleText1
+	done
 
 Mansion4BattleText2:
-	TX_FAR _Mansion4BattleText2
-	db "@"
+	text ""
+	fartext _Mansion4BattleText2
+	done
 
 Mansion4EndBattleText2:
-	TX_FAR _Mansion4EndBattleText2
-	db "@"
+	text ""
+	fartext _Mansion4EndBattleText2
+	done
 
 Mansion4AfterBattleText2:
-	TX_FAR _Mansion4AfterBattleText2
-	db "@"
+	text ""
+	fartext _Mansion4AfterBattleText2
+	done
 
 Mansion4Text7:
-	TX_FAR _Mansion4Text7
-	db "@"
+	text ""
+	fartext _Mansion4Text7
+	done

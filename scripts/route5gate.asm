@@ -98,8 +98,9 @@ Route8GateText2:
 Route7GateText2:
 Route6GateText2:
 Route5GateText2:
-	TX_FAR _SaffronGateText_1dfe7
-	db "@"
+	text ""
+	fartext _SaffronGateText_1dfe7
+	done
 
 Route8GateText3:
 Route7GateText3:
@@ -112,7 +113,8 @@ Route5GateText3:
 	done
 
 SaffronGateText_1dff6:
-	TX_FAR _SaffronGateText_1dff6
-	db "@"
+	text ""
+	fartext _SaffronGateText_1dff6
+	done
 
 

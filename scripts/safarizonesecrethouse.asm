@@ -28,8 +28,9 @@ SafariZoneSecretHouseText1:
 	jp TextScriptEnd
 
 SafariZoneSecretHouseText_4a350:
-	TX_FAR _SecretHouseText_4a350
-	db "@"
+	text ""
+	fartext _SecretHouseText_4a350
+	done
 
 ReceivedHM03Text:
 	text ""
@@ -38,9 +39,11 @@ ReceivedHM03Text:
 	done
 
 HM03ExplanationText:
-	TX_FAR _HM03ExplanationText
-	db "@"
+	text ""
+	fartext _HM03ExplanationText
+	done
 
 HM03NoRoomText:
-	TX_FAR _HM03NoRoomText
-	db "@"
+	text ""
+	fartext _HM03NoRoomText
+	done

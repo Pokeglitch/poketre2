@@ -445,52 +445,64 @@ StatsCancelPCText:
 	next "CANCEL@"
 
 SwitchOnText:
-	TX_FAR _SwitchOnText
-	db "@"
+	text ""
+	fartext _SwitchOnText
+	done
 
 WhatText:
-	TX_FAR _WhatText
-	db "@"
+	text ""
+	fartext _WhatText
+	done
 
 DepositWhichMonText:
-	TX_FAR _DepositWhichMonText
-	db "@"
+	text ""
+	fartext _DepositWhichMonText
+	done
 
 MonWasStoredText:
-	TX_FAR _MonWasStoredText
-	db "@"
+	text ""
+	fartext _MonWasStoredText
+	done
 
 CantDepositLastMonText:
-	TX_FAR _CantDepositLastMonText
-	db "@"
+	text ""
+	fartext _CantDepositLastMonText
+	done
 
 BoxFullText:
-	TX_FAR _BoxFullText
-	db "@"
+	text ""
+	fartext _BoxFullText
+	done
 
 MonIsTakenOutText:
-	TX_FAR _MonIsTakenOutText
-	db "@"
+	text ""
+	fartext _MonIsTakenOutText
+	done
 
 NoMonText:
-	TX_FAR _NoMonText
-	db "@"
+	text ""
+	fartext _NoMonText
+	done
 
 CantTakeMonText:
-	TX_FAR _CantTakeMonText
-	db "@"
+	text ""
+	fartext _CantTakeMonText
+	done
 
 ReleaseWhichMonText:
-	TX_FAR _ReleaseWhichMonText
-	db "@"
+	text ""
+	fartext _ReleaseWhichMonText
+	done
 
 OnceReleasedText:
-	TX_FAR _OnceReleasedText
-	db "@"
+	text ""
+	fartext _OnceReleasedText
+	done
 
 MonWasReleasedText:
-	TX_FAR _MonWasReleasedText
-	db "@"
+	text ""
+	fartext _MonWasReleasedText
+	done
 
 CableClubLeftGameboy::
 	ld a, [hSerialConnectionStatus]
@@ -527,8 +539,9 @@ CableClubRightGameboy::
 	tx_pre_jump JustAMomentText
 
 JustAMomentText::
-	TX_FAR _JustAMomentText
-	db "@"
+	text ""
+	fartext _JustAMomentText
+	done
 
 	ld a, [wSpriteStateData1 + 9] ; player's sprite facing direction
 	cp SPRITE_FACING_UP

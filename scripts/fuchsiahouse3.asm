@@ -44,8 +44,9 @@ FuchsiaHouse3Text1:
 	jp TextScriptEnd
 
 FuchsiaHouse3Text_561bd:
-	TX_FAR _FuchsiaHouse3Text_561bd
-	db "@"
+	text ""
+	fartext _FuchsiaHouse3Text_561bd
+	done
 
 FuchsiaHouse3Text_561c2:
 	text ""
@@ -54,13 +55,16 @@ FuchsiaHouse3Text_561c2:
 	done
 
 FuchsiaHouse3Text_56212:
-	TX_FAR _FuchsiaHouse3Text_56212
-	db "@"
+	text ""
+	fartext _FuchsiaHouse3Text_56212
+	done
 
 FuchsiaHouse3Text_56217:
-	TX_FAR _FuchsiaHouse3Text_56217
-	db "@"
+	text ""
+	fartext _FuchsiaHouse3Text_56217
+	done
 
 FuchsiaHouse3Text_5621c:
-	TX_FAR _FuchsiaHouse3Text_5621c
-	db "@"
+	text ""
+	fartext _FuchsiaHouse3Text_5621c
+	done

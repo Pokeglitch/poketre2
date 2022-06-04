@@ -6,5 +6,6 @@ MtMoon2TextPointers:
 	dw MtMoonText1
 
 MtMoonText1:
-	TX_FAR _MtMoonText1
-	db "@"
+	text ""
+	fartext _MtMoonText1
+	done

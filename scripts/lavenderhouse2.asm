@@ -7,8 +7,9 @@ LavenderHouse2TextPointers:
 	dw LavenderHouse2Text2
 
 LavenderHouse2Text1:
-	TX_FAR _LavenderHouse2Text1
-	TX_ASM
+	text ""
+	fartext _LavenderHouse2Text1
+	asmtext
 	ld a, CUBONE
 	call PlayCry
 	jp TextScriptEnd
@@ -27,9 +28,11 @@ LavenderHouse2Text2:
 	jp TextScriptEnd
 
 LavenderHouse2Text_1d9dc:
-	TX_FAR _LavenderHouse2Text_1d9dc
-	db "@"
+	text ""
+	fartext _LavenderHouse2Text_1d9dc
+	done
 
 LavenderHouse2Text_1d9e1:
-	TX_FAR _LavenderHouse2Text_1d9e1
-	db "@"
+	text ""
+	fartext _LavenderHouse2Text_1d9e1
+	done

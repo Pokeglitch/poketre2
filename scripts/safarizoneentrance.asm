@@ -139,12 +139,14 @@ SafariZoneEntranceTextPointers:
 	dw .SafariZoneEntranceText6
 
 .SafariZoneEntranceText1
-	TX_FAR _SafariZoneEntranceText1
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText1
+	done
 
 .SafariZoneEntranceText4
-	TX_FAR SafariZoneEntranceText_9e6e4
-	TX_ASM
+	text ""
+	fartext SafariZoneEntranceText_9e6e4
+	asmtext
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
@@ -209,16 +211,19 @@ SafariZoneEntranceTextPointers:
 	done
 
 .PleaseComeAgainText
-	TX_FAR _SafariZoneEntranceText_75365
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_75365
+	done
 
 .NotEnoughMoneyText
-	TX_FAR _SafariZoneEntranceText_7536a
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_7536a
+	done
 
 .SafariZoneEntranceText5
-	TX_FAR SafariZoneEntranceText_9e814
-	TX_ASM
+	text ""
+	fartext SafariZoneEntranceText_9e814
+	asmtext
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
@@ -250,16 +255,19 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .SafariZoneEntranceText_753bb
-	TX_FAR _SafariZoneEntranceText_753bb
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753bb
+	done
 
 .SafariZoneEntranceText_753c0
-	TX_FAR _SafariZoneEntranceText_753c0
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753c0
+	done
 
 .SafariZoneEntranceText6
-	TX_FAR _SafariZoneEntranceText_753c5
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753c5
+	done
 
 .SafariZoneEntranceText2
 	TX_ASM
@@ -276,13 +284,16 @@ SafariZoneEntranceTextPointers:
 	jp TextScriptEnd
 
 .FirstTimeQuestionText
-	TX_FAR _SafariZoneEntranceText_753e6
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753e6
+	done
 
 .ExplanationText
-	TX_FAR _SafariZoneEntranceText_753eb
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753eb
+	done
 
 .RegularText
-	TX_FAR _SafariZoneEntranceText_753f0
-	db "@"
+	text ""
+	fartext _SafariZoneEntranceText_753f0
+	done

@@ -84,5 +84,6 @@ DrawText:
 	db "  DRAW@"
 
 PickUpPayDayMoneyText:
-	TX_FAR _PickUpPayDayMoneyText
-	db "@"
+	text ""
+	fartext _PickUpPayDayMoneyText
+	done

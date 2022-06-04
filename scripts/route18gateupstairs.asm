@@ -19,8 +19,9 @@ Route18GateUpstairsText2:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route18GateUpstairsText_49993:
-	TX_FAR _Route18GateUpstairsText_49993
-	db "@"
+	text ""
+	fartext _Route18GateUpstairsText_49993
+	done
 
 Route18GateUpstairsText3:
 	TX_ASM
@@ -28,5 +29,6 @@ Route18GateUpstairsText3:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route18GateUpstairsText_4999f:
-	TX_FAR _Route18GateUpstairsText_4999f
-	db "@"
+	text ""
+	fartext _Route18GateUpstairsText_4999f
+	done

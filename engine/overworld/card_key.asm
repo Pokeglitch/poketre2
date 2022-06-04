@@ -79,8 +79,9 @@ CardKeySuccessText:
 	done
 
 CardKeyFailText:
-	TX_FAR _CardKeyFailText
-	db "@"
+	text ""
+	fartext _CardKeyFailText
+	done
 
 ; d = Y
 ; e = X

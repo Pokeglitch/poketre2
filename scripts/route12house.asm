@@ -35,8 +35,9 @@ Route12HouseText1:
 	jp TextScriptEnd
 
 Route12HouseText_564c0:
-	TX_FAR _Route12HouseText_564c0
-	db "@"
+	text ""
+	fartext _Route12HouseText_564c0
+	done
 
 Route12HouseText_564c5:
 	text ""
@@ -46,13 +47,16 @@ Route12HouseText_564c5:
 	done
 
 Route12HouseText_564cf:
-	TX_FAR _Route12HouseText_564cf
-	db "@"
+	text ""
+	fartext _Route12HouseText_564cf
+	done
 
 Route12HouseText_564d4:
-	TX_FAR _Route12HouseText_564d4
-	db "@"
+	text ""
+	fartext _Route12HouseText_564d4
+	done
 
 Route12HouseText_564d9:
-	TX_FAR _Route12HouseText_564d9
-	db "@"
+	text ""
+	fartext _Route12HouseText_564d9
+	done

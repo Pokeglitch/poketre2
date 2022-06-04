@@ -96,9 +96,11 @@ DrainHPEffect_:
 	jp PrintText
 
 SuckedHealthText:
-	TX_FAR _SuckedHealthText
-	db "@"
+	text ""
+	fartext _SuckedHealthText
+	done
 
 DreamWasEatenText:
-	TX_FAR _DreamWasEatenText
-	db "@"
+	text ""
+	fartext _DreamWasEatenText
+	done

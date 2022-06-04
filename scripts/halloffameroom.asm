@@ -105,5 +105,6 @@ HallofFameRoomTextPointers:
 	dw HallofFameRoomText1
 
 HallofFameRoomText1:
-	TX_FAR _HallofFameRoomText1
-	db "@"
+	text ""
+	fartext _HallofFameRoomText1
+	done

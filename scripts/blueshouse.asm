@@ -25,7 +25,8 @@ BluesHouseTextPointers:
 	dw BluesHouseText3
 
 BluesHouseText1:
-	TX_ASM
+	text ""
+	asmtext
 	CheckEvent EVENT_GOT_TOWN_MAP
 	jr nz, .GotMap
 	CheckEvent EVENT_GOT_POKEDEX
@@ -60,12 +61,14 @@ BluesHouseText1:
 	jp TextScriptEnd
 
 DaisyInitialText:
-	TX_FAR _DaisyInitialText
-	db "@"
+	text ""
+	fartext _DaisyInitialText
+	done
 
 DaisyOfferMapText:
-	TX_FAR _DaisyOfferMapText
-	db "@"
+	text ""
+	fartext _DaisyOfferMapText
+	done
 
 GotMapText:
 	text ""
@@ -74,17 +77,21 @@ GotMapText:
 	done
 
 DaisyBagFullText:
-	TX_FAR _DaisyBagFullText
-	db "@"
+	text ""
+	fartext _DaisyBagFullText
+	done
 
 DaisyUseMapText:
-	TX_FAR _DaisyUseMapText
-	db "@"
+	text ""
+	fartext _DaisyUseMapText
+	done
 
 BluesHouseText2: ; Daisy, walking around
-	TX_FAR _BluesHouseText2
-	db "@"
+	text ""
+	fartext _BluesHouseText2
+	done
 
 BluesHouseText3: ; map on table
-	TX_FAR _BluesHouseText3
-	db "@"
+	text ""
+	fartext _BluesHouseText3
+	done

@@ -149,8 +149,9 @@ OakSpeech:
 	jp ClearScreen
 
 OakSpeechText1:
-	TX_FAR _OakSpeechText1
-	db "@"
+	text ""
+	fartext _OakSpeechText1
+	done
 
 OakSpeechText2:
 	text ""
@@ -160,14 +161,17 @@ OakSpeechText2:
 	done
 
 IntroducePlayerText:
-	TX_FAR _IntroducePlayerText
-	db "@"
+	text ""
+	fartext _IntroducePlayerText
+	done
 IntroduceRivalText:
-	TX_FAR _IntroduceRivalText
-	db "@"
+	text ""
+	fartext _IntroduceRivalText
+	done
 OakSpeechText3:
-	TX_FAR _OakSpeechText3
-	db "@"
+	text ""
+	fartext _OakSpeechText3
+	done
 
 InitializeRAM:
 ; Field/Battle Select Actions

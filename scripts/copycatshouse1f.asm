@@ -7,16 +7,19 @@ CopycatsHouse1FTextPointers:
 	dw CopycatsHouse1FText3
 
 CopycatsHouse1FText1:
-	TX_FAR _CopycatsHouse1FText1
-	db "@"
+	text ""
+	fartext _CopycatsHouse1FText1
+	done
 
 CopycatsHouse1FText2:
-	TX_FAR _CopycatsHouse1FText2
-	db "@"
+	text ""
+	fartext _CopycatsHouse1FText2
+	done
 
 CopycatsHouse1FText3:
-	TX_FAR _CopycatsHouse1FText3
-	TX_ASM
+	text ""
+	fartext _CopycatsHouse1FText3
+	asmtext
 	ld a, CHANSEY
 	call PlayCry
 	jp TextScriptEnd

@@ -184,8 +184,9 @@ SSAnne2TextPointers:
 	dw SSAnne2Text3
 
 SSAnne2Text1:
-	TX_FAR _SSAnne2Text1
-	db "@"
+	text ""
+	fartext _SSAnne2Text1
+	done
 
 SSAnne2Text2:
 	TX_ASM
@@ -200,17 +201,21 @@ SSAnne2Text2:
 	jp TextScriptEnd
 
 SSAnneRivalBeforeBattleText:
-	TX_FAR _SSAnneRivalBeforeBattleText
-	db "@"
+	text ""
+	fartext _SSAnneRivalBeforeBattleText
+	done
 
 SSAnneRivalDefeatedText:
-	TX_FAR _SSAnneRivalDefeatedText
-	db "@"
+	text ""
+	fartext _SSAnneRivalDefeatedText
+	done
 
 SSAnneRivalWonText:
-	TX_FAR _SSAnneRivalWonText
-	db "@"
+	text ""
+	fartext _SSAnneRivalWonText
+	done
 
 SSAnne2Text3:
-	TX_FAR _SSAnneRivalCaptainText
-	db "@"
+	text ""
+	fartext _SSAnneRivalCaptainText
+	done

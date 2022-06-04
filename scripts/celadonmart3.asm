@@ -42,8 +42,9 @@ CeladonMart3Text1:
 	jp TextScriptEnd
 
 TM18PreReceiveText:
-	TX_FAR _TM18PreReceiveText
-	db "@"
+	text ""
+	fartext _TM18PreReceiveText
+	done
 
 ReceivedTM18Text:
 	text ""
@@ -52,58 +53,71 @@ ReceivedTM18Text:
 	done
 
 TM18ExplanationText:
-	TX_FAR _TM18ExplanationText
-	db "@"
+	text ""
+	fartext _TM18ExplanationText
+	done
 
 TM18NoRoomText:
-	TX_FAR _TM18NoRoomText
-	db "@"
+	text ""
+	fartext _TM18NoRoomText
+	done
 
 CeladonMart3Text2:
-	TX_FAR _CeladonMart3Text2
-	db "@"
+	text ""
+	fartext _CeladonMart3Text2
+	done
 
 CeladonMart3Text3:
-	TX_FAR _CeladonMart3Text3
-	db "@"
+	text ""
+	fartext _CeladonMart3Text3
+	done
 
 CeladonMart3Text4:
-	TX_FAR _CeladonMart3Text4
-	db "@"
+	text ""
+	fartext _CeladonMart3Text4
+	done
 
 CeladonMart3Text5:
-	TX_FAR _CeladonMart3Text5
-	db "@"
+	text ""
+	fartext _CeladonMart3Text5
+	done
 
 CeladonMart3Text12:
 CeladonMart3Text10:
 CeladonMart3Text8:
 CeladonMart3Text6:
-	TX_FAR _CeladonMart3Text6
-	db "@"
+	text ""
+	fartext _CeladonMart3Text6
+	done
 
 CeladonMart3Text7:
-	TX_FAR _CeladonMart3Text7
-	db "@"
+	text ""
+	fartext _CeladonMart3Text7
+	done
 
 CeladonMart3Text9:
-	TX_FAR _CeladonMart3Text9
-	db "@"
+	text ""
+	fartext _CeladonMart3Text9
+	done
 
 CeladonMart3Text11:
-	TX_FAR _CeladonMart3Text11
-	db "@"
+	text ""
+	fartext _CeladonMart3Text11
+	done
 
 CeladonMart3Text13:
-	TX_FAR _CeladonMart3Text13
-	db "@"
+	text ""
+	fartext _CeladonMart3Text13
+	done
 
 CeladonMart3Text14:
-	TX_FAR _CeladonMart3Text14
-	db "@"
+	text ""
+	fartext _CeladonMart3Text14
+	done
 
 CeladonMart3Text17:
 CeladonMart3Text16:
 CeladonMart3Text15:
-	TX_FAR _CeladonMart3Text15
-	db "@"
+	text ""
+	fartext _CeladonMart3Text15
+	done

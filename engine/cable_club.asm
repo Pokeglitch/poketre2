@@ -872,8 +872,9 @@ TradeCenter_Trade:
 	jp CallCurrentTradeCenterFunction
 
 WillBeTradedText:
-	TX_FAR _WillBeTradedText
-	db "@"
+	text ""
+	fartext _WillBeTradedText
+	done
 
 TradeCompleted:
 	db "Trade completed!@"

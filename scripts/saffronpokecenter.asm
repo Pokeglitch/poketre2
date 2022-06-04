@@ -12,12 +12,14 @@ SaffronHealNurseText:
 	TX_POKECENTER_NURSE
 
 SaffronPokecenterText2:
-	TX_FAR _SaffronPokecenterText2
-	db "@"
+	text ""
+	fartext _SaffronPokecenterText2
+	done
 
 SaffronPokecenterText3:
-	TX_FAR _SaffronPokecenterText3
-	db "@"
+	text ""
+	fartext _SaffronPokecenterText3
+	done
 
 SaffronTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST

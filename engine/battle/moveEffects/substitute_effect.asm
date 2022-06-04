@@ -65,13 +65,16 @@ SubstituteEffect_:
 	jp PrintText
 
 SubstituteText:
-	TX_FAR _SubstituteText
-	db "@"
+	text ""
+	fartext _SubstituteText
+	done
 
 HasSubstituteText:
-	TX_FAR _HasSubstituteText
-	db "@"
+	text ""
+	fartext _HasSubstituteText
+	done
 
 TooWeakSubstituteText:
-	TX_FAR _TooWeakSubstituteText
-	db "@"
+	text ""
+	fartext _TooWeakSubstituteText
+	done

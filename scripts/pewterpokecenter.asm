@@ -12,8 +12,9 @@ PewterHealNurseText:
 	TX_POKECENTER_NURSE
 
 PewterPokecenterText2:
-	TX_FAR _PewterPokecenterText2
-	db "@"
+	text ""
+	fartext _PewterPokecenterText2
+	done
 
 PewterJigglypuffText:
 	TX_ASM
@@ -70,8 +71,9 @@ PewterJigglypuffText:
 	jp TextScriptEnd
 
 .Text
-	TX_FAR _PewterJigglypuffText
-	db "@"
+	text ""
+	fartext _PewterJigglypuffText
+	done
 
 JigglypuffFacingDirections:
 	db $30 | SPRITE_FACING_DOWN

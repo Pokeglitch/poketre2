@@ -40,12 +40,14 @@ GymStatues:
 	db $ff
 
 GymStatueText1:
-	TX_FAR _GymStatueText1
-	db "@"
+	text ""
+	fartext _GymStatueText1
+	done
 
 GymStatueText2:
-	TX_FAR _GymStatueText2
-	db "@"
+	text ""
+	fartext _GymStatueText2
+	done
 
 PrintBenchGuyText:
 	call EnableAutoTextBoxDrawing
@@ -99,56 +101,69 @@ BenchGuyTextPointers:
 	db $FF
 
 ViridianCityPokecenterBenchGuyText:
-	TX_FAR _ViridianCityPokecenterGuyText
-	db "@"
+	text ""
+	fartext _ViridianCityPokecenterGuyText
+	done
 
 PewterCityPokecenterBenchGuyText:
-	TX_FAR _PewterCityPokecenterGuyText
-	db "@"
+	text ""
+	fartext _PewterCityPokecenterGuyText
+	done
 
 CeruleanCityPokecenterBenchGuyText:
-	TX_FAR _CeruleanPokecenterGuyText
-	db "@"
+	text ""
+	fartext _CeruleanPokecenterGuyText
+	done
 
 LavenderCityPokecenterBenchGuyText:
-	TX_FAR _LavenderPokecenterGuyText
-	db "@"
+	text ""
+	fartext _LavenderPokecenterGuyText
+	done
 
 MtMoonPokecenterBenchGuyText:
-	TX_FAR _MtMoonPokecenterBenchGuyText
-	db "@"
+	text ""
+	fartext _MtMoonPokecenterBenchGuyText
+	done
 
 RockTunnelPokecenterBenchGuyText:
-	TX_FAR _RockTunnelPokecenterGuyText
-	db "@"
+	text ""
+	fartext _RockTunnelPokecenterGuyText
+	done
 
 UnusedBenchGuyText1:
-	TX_FAR _UnusedBenchGuyText1
-	db "@"
+	text ""
+	fartext _UnusedBenchGuyText1
+	done
 
 UnusedBenchGuyText2:
-	TX_FAR _UnusedBenchGuyText2
-	db "@"
+	text ""
+	fartext _UnusedBenchGuyText2
+	done
 
 UnusedBenchGuyText3:
-	TX_FAR _UnusedBenchGuyText3
-	db "@"
+	text ""
+	fartext _UnusedBenchGuyText3
+	done
 
 VermilionCityPokecenterBenchGuyText:
-	TX_FAR _VermilionPokecenterGuyText
-	db "@"
+	text ""
+	fartext _VermilionPokecenterGuyText
+	done
 
 CeladonCityPokecenterBenchGuyText:
-	TX_FAR _CeladonCityPokecenterGuyText
-	db "@"
+	text ""
+	fartext _CeladonCityPokecenterGuyText
+	done
 
 FuchsiaCityPokecenterBenchGuyText:
-	TX_FAR _FuchsiaCityPokecenterGuyText
-	db "@"
+	text ""
+	fartext _FuchsiaCityPokecenterGuyText
+	done
 
 CinnabarIslandPokecenterBenchGuyText:
-	TX_FAR _CinnabarPokecenterGuyText
-	db "@"
+	text ""
+	fartext _CinnabarPokecenterGuyText
+	done
 
 SaffronCityPokecenterBenchGuyText:
 	TX_ASM
@@ -161,16 +176,19 @@ SaffronCityPokecenterBenchGuyText:
 	jp TextScriptEnd
 
 SaffronCityPokecenterBenchGuyText1:
-	TX_FAR _SaffronCityPokecenterGuyText1
-	db "@"
+	text ""
+	fartext _SaffronCityPokecenterGuyText1
+	done
 
 SaffronCityPokecenterBenchGuyText2:
-	TX_FAR _SaffronCityPokecenterGuyText2
-	db "@"
+	text ""
+	fartext _SaffronCityPokecenterGuyText2
+	done
 
 CeladonCityHotelText:
-	TX_FAR _CeladonCityHotelText
-	db "@"
+	text ""
+	fartext _CeladonCityHotelText
+	done
 
 	ret
 
@@ -182,8 +200,9 @@ PrintBookcaseText:
 	tx_pre_jump BookcaseText
 
 BookcaseText:
-	TX_FAR _BookcaseText
-	db "@"
+	text ""
+	fartext _BookcaseText
+	done
 
 OpenPokemonCenterPC:
 	ld a, [wSpriteStateData1 + 9]

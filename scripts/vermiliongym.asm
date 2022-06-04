@@ -165,16 +165,19 @@ VermilionGymText1:
 	jp TextScriptEnd
 
 VermilionGymText_5cb6d:
-	TX_FAR _VermilionGymText_5cb6d
-	db "@"
+	text ""
+	fartext _VermilionGymText_5cb6d
+	done
 
 VermilionGymText_5cb72:
-	TX_FAR _VermilionGymText_5cb72
-	db "@"
+	text ""
+	fartext _VermilionGymText_5cb72
+	done
 
 VermilionGymText6:
-	TX_FAR _VermilionGymText_5cb77
-	db "@"
+	text ""
+	fartext _VermilionGymText_5cb77
+	done
 
 VermilionGymText7:
 	text ""
@@ -184,12 +187,14 @@ VermilionGymText7:
 	done
 
 VermilionGymText8:
-	TX_FAR _TM24NoRoomText
-	db "@"
+	text ""
+	fartext _TM24NoRoomText
+	done
 
 ReceivedThunderbadgeText:
-	TX_FAR _ReceivedThunderbadgeText
-	db "@"
+	text ""
+	fartext _ReceivedThunderbadgeText
+	done
 
 VermilionGymText2:
 	TX_ASM
@@ -198,16 +203,19 @@ VermilionGymText2:
 	jp TextScriptEnd
 
 VermilionGymBattleText1:
-	TX_FAR _VermilionGymBattleText1
-	db "@"
+	text ""
+	fartext _VermilionGymBattleText1
+	done
 
 VermilionGymEndBattleText1:
-	TX_FAR _VermilionGymEndBattleText1
-	db "@"
+	text ""
+	fartext _VermilionGymEndBattleText1
+	done
 
 VermilionGymAfterBattleText1:
-	TX_FAR _VermilionGymAfterBattleText1
-	db "@"
+	text ""
+	fartext _VermilionGymAfterBattleText1
+	done
 
 VermilionGymText3:
 	TX_ASM
@@ -216,16 +224,19 @@ VermilionGymText3:
 	jp TextScriptEnd
 
 VermilionGymBattleText2:
-	TX_FAR _VermilionGymBattleText2
-	db "@"
+	text ""
+	fartext _VermilionGymBattleText2
+	done
 
 VermilionGymEndBattleText2:
-	TX_FAR _VermilionGymEndBattleText2
-	db "@"
+	text ""
+	fartext _VermilionGymEndBattleText2
+	done
 
 VermilionGymAfterBattleText2:
-	TX_FAR _VermilionGymAfterBattleText2
-	db "@"
+	text ""
+	fartext _VermilionGymAfterBattleText2
+	done
 
 VermilionGymText4:
 	TX_ASM
@@ -234,16 +245,19 @@ VermilionGymText4:
 	jp TextScriptEnd
 
 VermilionGymBattleText3:
-	TX_FAR _VermilionGymBattleText3
-	db "@"
+	text ""
+	fartext _VermilionGymBattleText3
+	done
 
 VermilionGymEndBattleText3:
-	TX_FAR _VermilionGymEndBattleText3
-	db "@"
+	text ""
+	fartext _VermilionGymEndBattleText3
+	done
 
 VermilionGymAfterBattleText3:
-	TX_FAR _VermilionGymAfterBattleText3
-	db "@"
+	text ""
+	fartext _VermilionGymAfterBattleText3
+	done
 
 VermilionGymText5:
 	TX_ASM
@@ -260,9 +274,11 @@ VermilionGymText5:
 	jp TextScriptEnd
 
 VermilionGymText_5cbf4:
-	TX_FAR _VermilionGymText_5cbf4
-	db "@"
+	text ""
+	fartext _VermilionGymText_5cbf4
+	done
 
 VermilionGymText_5cbf9:
-	TX_FAR _VermilionGymText_5cbf9
-	db "@"
+	text ""
+	fartext _VermilionGymText_5cbf9
+	done

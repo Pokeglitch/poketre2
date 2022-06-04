@@ -920,31 +920,39 @@ UpdateSprites::
 
 INCLUDE "data/mart_inventories.asm"
 
+; TODO - made this two @'s temporarily, since the inline asm processor
+; kicks back out to the text processor
 TextScriptEndingChar::
-	db "@"
+	db "@@"
+
 TextScriptEnd::
 	ld hl, TextScriptEndingChar
 	ret
 
 ExclamationText::
-	TX_FAR _ExclamationText
-	db "@"
+	text ""
+	fartext _ExclamationText
+	done
 
 GroundRoseText::
-	TX_FAR _GroundRoseText
-	db "@"
+	text ""
+	fartext _GroundRoseText
+	done
 
 BoulderText::
-	TX_FAR _BoulderText
-	db "@"
+	text ""
+	fartext _BoulderText
+	done
 
 MartSignText::
-	TX_FAR _MartSignText
-	db "@"
+	text ""
+	fartext _MartSignText
+	done
 
 PokeCenterSignText::
-	TX_FAR _PokeCenterSignText
-	db "@"
+	text ""
+	fartext _PokeCenterSignText
+	done
 
 PickUpItemText::
 	TX_ASM
@@ -1206,8 +1214,9 @@ DisplayPokemartDialogue::
 	jp AfterDisplayingTextID
 
 PokemartGreetingText::
-	TX_FAR _PokemartGreetingText
-	db "@"
+	text ""
+	fartext _PokemartGreetingText
+	done
 
 LoadItemList::
 	ld a, 1
@@ -1253,8 +1262,9 @@ DisplayPokemonFaintedText::
 
 PokemonFaintedText::
 	textbox BLACK_ON_WHITE | LINES_2
-	TX_FAR _PokemonFaintedText
-	db "@"
+	text ""
+	fartext _PokemonFaintedText
+	done
 
 DisplayPlayerBlackedOutText::
 	ld hl, PlayerBlackedOutText
@@ -1265,8 +1275,9 @@ DisplayPlayerBlackedOutText::
 	jp HoldTextDisplayOpen
 
 PlayerBlackedOutText::
-	TX_FAR _PlayerBlackedOutText
-	db "@"
+	text ""
+	fartext _PlayerBlackedOutText
+	done
 
 DisplayRepelWoreOffText::
 	ld hl, RepelWoreOffText
@@ -1274,8 +1285,9 @@ DisplayRepelWoreOffText::
 	jp AfterDisplayingTextID
 
 RepelWoreOffText::
-	TX_FAR _RepelWoreOffText
-	db "@"
+	text ""
+	fartext _RepelWoreOffText
+	done
 
 INCLUDE "engine/menu/start_menu.asm"
 
@@ -2393,8 +2405,9 @@ GetSavedEndBattleTextPointer::
 	ret
 
 TrainerEndBattleText::
-	TX_FAR _TrainerNameText
-	TX_ASM
+	text ""
+	fartext _TrainerNameText
+	asmtext
 	call GetSavedEndBattleTextPointer
 	call TextCommandProcessor
 	jp TextScriptEnd

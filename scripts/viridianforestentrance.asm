@@ -6,9 +6,11 @@ ViridianForestEntranceTextPointers:
 	dw ViridianForestEntranceText2
 
 ViridianForestEntranceText1:
-	TX_FAR _ViridianForestEntranceText1
-	db "@"
+	text ""
+	fartext _ViridianForestEntranceText1
+	done
 
 ViridianForestEntranceText2:
-	TX_FAR _ViridianForestEntranceText2
-	db "@"
+	text ""
+	fartext _ViridianForestEntranceText2
+	done

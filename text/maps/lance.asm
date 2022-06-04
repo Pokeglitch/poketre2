@@ -60,4 +60,5 @@ _LanceAfterBattleText::
 
 	para "He is the real"
 	line "POKéMON LEAGUE"
-	cont "champion!@@"
+	cont "champion!"
+	done

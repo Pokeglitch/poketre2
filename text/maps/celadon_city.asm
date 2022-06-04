@@ -73,7 +73,8 @@ _CeladonCityText6::
 
 _CeladonCityText7::
 	text "POLIWRATH: Ribi"
-	line "ribit!@@"
+	line "ribit!"
+	done
 
 _CeladonCityText8::
 	text "What are you"

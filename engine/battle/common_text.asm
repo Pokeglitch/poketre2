@@ -71,28 +71,34 @@ PrintBeginningBattleText:
 	ret
 
 WildMonAppearedText:
-	TX_FAR _WildMonAppearedText
-	db "@"
+	text ""
+	fartext _WildMonAppearedText
+	done
 
 HookedMonAttackedText:
-	TX_FAR _HookedMonAttackedText
-	db "@"
+	text ""
+	fartext _HookedMonAttackedText
+	done
 
 EnemyAppearedText:
-	TX_FAR _EnemyAppearedText
-	db "@"
+	text ""
+	fartext _EnemyAppearedText
+	done
 
 TrainerWantsToFightText:
-	TX_FAR _TrainerWantsToFightText
-	db "@"
+	text ""
+	fartext _TrainerWantsToFightText
+	done
 
 UnveiledGhostText:
-	TX_FAR _UnveiledGhostText
-	db "@"
+	text ""
+	fartext _UnveiledGhostText
+	done
 
 GhostCantBeIDdText:
-	TX_FAR _GhostCantBeIDdText
-	db "@"
+	text ""
+	fartext _GhostCantBeIDdText
+	done
 
 PrintSendOutMonMessage:
 	ld hl, wEnemyMonHP
@@ -138,39 +144,45 @@ PrintSendOutMonMessage:
 	jp PrintText
 
 GoText:
-	TX_FAR _GoText
-	TX_ASM
+	text ""
+	fartext _GoText
+	asmtext
 	jr PrintPlayerMon1Text
 
 DoItText:
-	TX_FAR _DoItText
-	TX_ASM
+	text ""
+	fartext _DoItText
+	asmtext
 	jr PrintPlayerMon1Text
 
 GetmText:
-	TX_FAR _GetmText
-	TX_ASM
+	text ""
+	fartext _GetmText
+	asmtext
 	jr PrintPlayerMon1Text
 
 EnemysWeakText:
-	TX_FAR _EnemysWeakText
-	TX_ASM
+	text ""
+	fartext _EnemysWeakText
+	asmtext
 
 PrintPlayerMon1Text:
 	ld hl, PlayerMon1Text
 	ret
 
 PlayerMon1Text:
-	TX_FAR _PlayerMon1Text
-	db "@"
+	text ""
+	fartext _PlayerMon1Text
+	done
 
 RetreatMon:
 	ld hl, PlayerMon2Text
 	jp PrintText
 
 PlayerMon2Text:
-	TX_FAR _PlayerMon2Text
-	TX_ASM
+	text ""
+	fartext _PlayerMon2Text
+	asmtext
 	push de
 	push bc
 	ld hl, wEnemyMonHP + 1
@@ -220,18 +232,21 @@ PlayerMon2Text:
 	ret
 
 EnoughText:
-	TX_FAR _EnoughText
-	TX_ASM
+	text ""
+	fartext _EnoughText
+	asmtext
 	jr PrintComeBackText
 
 OKExclamationText:
-	TX_FAR _OKExclamationText
-	TX_ASM
+	text ""
+	fartext _OKExclamationText
+	asmtext
 	jr PrintComeBackText
 
 GoodText:
-	TX_FAR _GoodText
-	TX_ASM
+	text ""
+	fartext _GoodText
+	asmtext
 	jr PrintComeBackText
 
 PrintComeBackText:
@@ -239,5 +254,6 @@ PrintComeBackText:
 	ret
 
 ComeBackText:
-	TX_FAR _ComeBackText
-	db "@"
+	text ""
+	fartext _ComeBackText
+	done

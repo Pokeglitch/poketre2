@@ -11,29 +11,36 @@ Museum2FTextPointers:
 	dw Museum2FText7
 
 Museum2FText1:
-	TX_FAR _Museum2FText1
-	db "@"
+	text ""
+	fartext _Museum2FText1
+	done
 
 Museum2FText2:
-	TX_FAR _Museum2FText2
-	db "@"
+	text ""
+	fartext _Museum2FText2
+	done
 
 Museum2FText3:
-	TX_FAR _Museum2FText3
-	db "@"
+	text ""
+	fartext _Museum2FText3
+	done
 
 Museum2FText4:
-	TX_FAR _Museum2FText4
-	db "@"
+	text ""
+	fartext _Museum2FText4
+	done
 
 Museum2FText5:
-	TX_FAR _Museum2FText5
-	db "@"
+	text ""
+	fartext _Museum2FText5
+	done
 
 Museum2FText6:
-	TX_FAR _Museum2FText6
-	db "@"
+	text ""
+	fartext _Museum2FText6
+	done
 
 Museum2FText7:
-	TX_FAR _Museum2FText7
-	db "@"
+	text ""
+	fartext _Museum2FText7
+	done

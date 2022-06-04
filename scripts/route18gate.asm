@@ -100,13 +100,16 @@ Route18GateText1:
 	jp TextScriptEnd
 
 Route18GateText_49928:
-	TX_FAR _Route18GateText_49928
-	db "@"
+	text ""
+	fartext _Route18GateText_49928
+	done
 
 Route18GateText_4992d:
-	TX_FAR _Route18GateText_4992d
-	db "@"
+	text ""
+	fartext _Route18GateText_4992d
+	done
 
 Route18GateText2:
-	TX_FAR _Route18GateText_49932
-	db "@"
+	text ""
+	fartext _Route18GateText_49932
+	done

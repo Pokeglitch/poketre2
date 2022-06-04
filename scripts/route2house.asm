@@ -6,8 +6,9 @@ Route2HouseTextPointers:
 	dw Route2HouseText2
 
 Route2HouseText1:
-	TX_FAR _Route2HouseText1
-	db "@"
+	text ""
+	fartext _Route2HouseText1
+	done
 
 Route2HouseText2:
 	TX_ASM

@@ -134,40 +134,49 @@ Museum1FScriptEnd:
 	jp TextScriptEnd
 
 Museum1FText_5c21a:
-	TX_FAR _Museum1FText_5c21a
-	db "@"
+	text ""
+	fartext _Museum1FText_5c21a
+	done
 
 Museum1FText_5c21f:
-	TX_FAR _Museum1FText_5c21f
-	db "@"
+	text ""
+	fartext _Museum1FText_5c21f
+	done
 
 Museum1FText_5c224:
-	TX_FAR _Museum1FText_5c224
-	db "@"
+	text ""
+	fartext _Museum1FText_5c224
+	done
 
 Museum1FText_5c229:
-	TX_FAR _Museum1FText_5c229
-	db "@"
+	text ""
+	fartext _Museum1FText_5c229
+	done
 
 Museum1FText_5c22e:
-	TX_FAR _Museum1FText_5c22e
-	db "@"
+	text ""
+	fartext _Museum1FText_5c22e
+	done
 
 Museum1FText_5c233:
-	TX_FAR _Museum1FText_5c233
-	db "@"
+	text ""
+	fartext _Museum1FText_5c233
+	done
 
 Museum1FText_5c238:
-	TX_FAR _Museum1FText_5c238
-	db "@"
+	text ""
+	fartext _Museum1FText_5c238
+	done
 
 Museum1FText_5c23d:
-	TX_FAR _Museum1FText_5c23d
-	db "@"
+	text ""
+	fartext _Museum1FText_5c23d
+	done
 
 Museum1FText_5c242:
-	TX_FAR _Museum1FText_5c242
-	db "@"
+	text ""
+	fartext _Museum1FText_5c242
+	done
 
 Museum1FText2:
 	TX_ASM
@@ -176,8 +185,9 @@ Museum1FText2:
 	jp TextScriptEnd
 
 Museum1FText_5c251:
-	TX_FAR _Museum1FText_5c251
-	db "@"
+	text ""
+	fartext _Museum1FText_5c251
+	done
 
 Museum1FText3:
 	TX_ASM
@@ -204,8 +214,9 @@ Museum1FText3:
 	jp TextScriptEnd
 
 Museum1FText_5c28e:
-	TX_FAR _Museum1FText_5c28e
-	db "@"
+	text ""
+	fartext _Museum1FText_5c28e
+	done
 
 ReceivedOldAmberText:
 	text ""
@@ -214,12 +225,14 @@ ReceivedOldAmberText:
 	done
 
 Museum1FText_5c299:
-	TX_FAR _Museum1FText_5c299
-	db "@"
+	text ""
+	fartext _Museum1FText_5c299
+	done
 
 Museum1FText_5c29e:
-	TX_FAR _Museum1FText_5c29e
-	db "@"
+	text ""
+	fartext _Museum1FText_5c29e
+	done
 
 Museum1FText4:
 	TX_ASM
@@ -228,8 +241,9 @@ Museum1FText4:
 	jp TextScriptEnd
 
 Museum1FText_5c2ad:
-	TX_FAR _Museum1FText_5c2ad
-	db "@"
+	text ""
+	fartext _Museum1FText_5c2ad
+	done
 
 Museum1FText5:
 	TX_ASM
@@ -238,5 +252,6 @@ Museum1FText5:
 	jp TextScriptEnd
 
 Museum1FText_5c2bc:
-	TX_FAR _Museum1FText_5c2bc
-	db "@"
+	text ""
+	fartext _Museum1FText_5c2bc
+	done

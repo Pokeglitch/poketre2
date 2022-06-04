@@ -31,8 +31,9 @@ Route15GateUpstairsText1:
 	jp TextScriptEnd
 
 Route15GateUpstairsText_4968c:
-	TX_FAR _Route15GateUpstairsText_4968c
-	db "@"
+	text ""
+	fartext _Route15GateUpstairsText_4968c
+	done
 
 Route15GateUpstairsText2:
 	TX_ASM
@@ -40,5 +41,6 @@ Route15GateUpstairsText2:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 Route15GateUpstairsText_49698:
-	TX_FAR _Route15GateUpstairsText_49698
-	db "@"
+	text ""
+	fartext _Route15GateUpstairsText_49698
+	done

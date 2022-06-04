@@ -58,8 +58,9 @@ ViridianForestTrainerHeader2:
 	db $ff
 
 ViridianForestText1:
-	TX_FAR _ViridianForestText1
-	db "@"
+	text ""
+	fartext _ViridianForestText1
+	done
 
 ViridianForestText2:
 	TX_ASM
@@ -80,65 +81,81 @@ ViridianForestText4:
 	jp TextScriptEnd
 
 ViridianForestBattleText1:
-	TX_FAR _ViridianForestBattleText1
-	db "@"
+	text ""
+	fartext _ViridianForestBattleText1
+	done
 
 ViridianForestEndBattleText1:
-	TX_FAR _ViridianForestEndBattleText1
-	db "@"
+	text ""
+	fartext _ViridianForestEndBattleText1
+	done
 
 ViridianForestAfterBattleText1:
-	TX_FAR _ViridianFrstAfterBattleText1
-	db "@"
+	text ""
+	fartext _ViridianFrstAfterBattleText1
+	done
 
 ViridianForestBattleText2:
-	TX_FAR _ViridianForestBattleText2
-	db "@"
+	text ""
+	fartext _ViridianForestBattleText2
+	done
 
 ViridianForestEndBattleText2:
-	TX_FAR _ViridianForestEndBattleText2
-	db "@"
+	text ""
+	fartext _ViridianForestEndBattleText2
+	done
 
 ViridianForestAfterBattleText2:
-	TX_FAR _ViridianFrstAfterBattleText2
-	db "@"
+	text ""
+	fartext _ViridianFrstAfterBattleText2
+	done
 
 ViridianForestBattleText3:
-	TX_FAR _ViridianForestBattleText3
-	db "@"
+	text ""
+	fartext _ViridianForestBattleText3
+	done
 
 ViridianForestEndBattleText3:
-	TX_FAR _ViridianForestEndBattleText3
-	db "@"
+	text ""
+	fartext _ViridianForestEndBattleText3
+	done
 
 ViridianForestAfterBattleText3:
-	TX_FAR _ViridianFrstAfterBattleText3
-	db "@"
+	text ""
+	fartext _ViridianFrstAfterBattleText3
+	done
 
 ViridianForestText8:
-	TX_FAR _ViridianForestText8
-	db "@"
+	text ""
+	fartext _ViridianForestText8
+	done
 
 ViridianForestText9:
-	TX_FAR _ViridianForestText9
-	db "@"
+	text ""
+	fartext _ViridianForestText9
+	done
 
 ViridianForestText10:
-	TX_FAR _ViridianForestText10
-	db "@"
+	text ""
+	fartext _ViridianForestText10
+	done
 
 ViridianForestText11:
-	TX_FAR _ViridianForestText11
-	db "@"
+	text ""
+	fartext _ViridianForestText11
+	done
 
 ViridianForestText12:
-	TX_FAR _ViridianForestText12
-	db "@"
+	text ""
+	fartext _ViridianForestText12
+	done
 
 ViridianForestText13:
-	TX_FAR _ViridianForestText13
-	db "@"
+	text ""
+	fartext _ViridianForestText13
+	done
 
 ViridianForestText14:
-	TX_FAR _ViridianForestText14
-	db "@"
+	text ""
+	fartext _ViridianForestText14
+	done

@@ -142,8 +142,9 @@ ViridianCityTextPointers:
 	dw ViridianCityText15
 
 ViridianCityText1:
-	TX_FAR _ViridianCityText1
-	db "@"
+	text ""
+	fartext _ViridianCityText1
+	done
 
 ViridianCityText2:
 	TX_ASM
@@ -159,12 +160,14 @@ ViridianCityText2:
 	jp TextScriptEnd
 
 ViridianCityText_19122:
-	TX_FAR _ViridianCityText_19122
-	db "@"
+	text ""
+	fartext _ViridianCityText_19122
+	done
 
 ViridianCityText_19127:
-	TX_FAR _ViridianCityText_19127
-	db "@"
+	text ""
+	fartext _ViridianCityText_19127
+	done
 
 ViridianCityText3:
 	TX_ASM
@@ -184,16 +187,19 @@ ViridianCityText3:
 	jp TextScriptEnd
 
 ViridianCityText_1914d:
-	TX_FAR _ViridianCityText_1914d
-	db "@"
+	text ""
+	fartext _ViridianCityText_1914d
+	done
 
 ViridianCityText_19152:
-	TX_FAR _ViridianCityText_19152
-	db "@"
+	text ""
+	fartext _ViridianCityText_19152
+	done
 
 ViridianCityText_19157:
-	TX_FAR _ViridianCityText_19157
-	db "@"
+	text ""
+	fartext _ViridianCityText_19157
+	done
 
 ViridianCityText4:
 	TX_ASM
@@ -209,12 +215,14 @@ ViridianCityText4:
 	jp TextScriptEnd
 
 ViridianCityText_19175:
-	TX_FAR _ViridianCityText_19175
-	db "@"
+	text ""
+	fartext _ViridianCityText_19175
+	done
 
 ViridianCityText_1917a:
-	TX_FAR _ViridianCityText_1917a
-	db "@"
+	text ""
+	fartext _ViridianCityText_1917a
+	done
 
 ViridianCityText5:
 	TX_ASM
@@ -226,8 +234,9 @@ ViridianCityText5:
 	jp TextScriptEnd
 
 ViridianCityText_19191:
-	TX_FAR _ViridianCityText_19191
-	db "@"
+	text ""
+	fartext _ViridianCityText_19191
+	done
 
 ViridianCityText6:
 	TX_ASM
@@ -253,8 +262,9 @@ ViridianCityText6:
 	jp TextScriptEnd
 
 ViridianCityText_191ca:
-	TX_FAR _ViridianCityText_191ca
-	db "@"
+	text ""
+	fartext _ViridianCityText_191ca
+	done
 
 ReceivedTM42Text:
 	text ""
@@ -263,12 +273,14 @@ ReceivedTM42Text:
 	done
 
 TM42Explanation:
-	TX_FAR _TM42Explanation
-	db "@"
+	text ""
+	fartext _TM42Explanation
+	done
 
 TM42NoRoomText:
-	TX_FAR _TM42NoRoomText
-	db "@"
+	text ""
+	fartext _TM42NoRoomText
+	done
 
 ViridianCityText7:
 	TX_ASM
@@ -292,37 +304,46 @@ ViridianCityText7:
 	jp TextScriptEnd
 
 ViridianCityText_1920a:
-	TX_FAR _ViridianCityText_1920a
-	db "@"
+	text ""
+	fartext _ViridianCityText_1920a
+	done
 
 ViridianCityText_1920f:
-	TX_FAR _ViridianCityText_1920f
-	db "@"
+	text ""
+	fartext _ViridianCityText_1920f
+	done
 
 ViridianCityText_19214:
-	TX_FAR _ViridianCityText_19214
-	db "@"
+	text ""
+	fartext _ViridianCityText_19214
+	done
 
 ViridianCityText15:
-	TX_FAR _ViridianCityText_19219
-	db "@"
+	text ""
+	fartext _ViridianCityText_19219
+	done
 
 ViridianCityText8:
-	TX_FAR _ViridianCityText8
-	db "@"
+	text ""
+	fartext _ViridianCityText8
+	done
 
 ViridianCityText9:
-	TX_FAR _ViridianCityText9
-	db "@"
+	text ""
+	fartext _ViridianCityText9
+	done
 
 ViridianCityText10:
-	TX_FAR _ViridianCityText10
-	db "@"
+	text ""
+	fartext _ViridianCityText10
+	done
 
 ViridianCityText13:
-	TX_FAR _ViridianCityText13
-	db "@"
+	text ""
+	fartext _ViridianCityText13
+	done
 
 ViridianCityText14:
-	TX_FAR _ViridianCityText14
-	db "@"
+	text ""
+	fartext _ViridianCityText14
+	done

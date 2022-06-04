@@ -24,7 +24,7 @@ _WardenTeethText1::
 	done
 
 _WardenTeethText2::
-	db TEXT_INIT
+	text ""
 	para "The WARDEN popped"
 	line "in his teeth!"
 	prompt

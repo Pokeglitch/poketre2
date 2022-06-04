@@ -197,20 +197,24 @@ Route24Text_5151a:
 	done
 
 Route24Text_51521:
-	TX_FAR _Route24Text_51521
-	db "@"
+	text ""
+	fartext _Route24Text_51521
+	done
 
 Route24Text_51526:
-	TX_FAR _Route24Text_51526
-	db "@"
+	text ""
+	fartext _Route24Text_51526
+	done
 
 Route24Text_5152b:
-	TX_FAR _Route24Text_5152b
-	db "@"
+	text ""
+	fartext _Route24Text_5152b
+	done
 
 Route24Text_51530:
-	TX_FAR _Route24Text_51530
-	db "@"
+	text ""
+	fartext _Route24Text_51530
+	done
 
 Route24Text2:
 	TX_ASM
@@ -249,73 +253,91 @@ Route24Text7:
 	jp TextScriptEnd
 
 Route24BattleText1:
-	TX_FAR _Route24BattleText1
-	db "@"
+	text ""
+	fartext _Route24BattleText1
+	done
 
 Route24EndBattleText1:
-	TX_FAR _Route24EndBattleText1
-	db "@"
+	text ""
+	fartext _Route24EndBattleText1
+	done
 
 Route24AfterBattleText1:
-	TX_FAR _Route24AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText1
+	done
 
 Route24BattleText2:
-	TX_FAR _Route24BattleText2
-	db "@"
+	text ""
+	fartext _Route24BattleText2
+	done
 
 Route24EndBattleText2:
-	TX_FAR _Route24EndBattleText2
-	db "@"
+	text ""
+	fartext _Route24EndBattleText2
+	done
 
 Route24AfterBattleText2:
-	TX_FAR _Route24AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText2
+	done
 
 Route24BattleText3:
-	TX_FAR _Route24BattleText3
-	db "@"
+	text ""
+	fartext _Route24BattleText3
+	done
 
 Route24EndBattleText3:
-	TX_FAR _Route24EndBattleText3
-	db "@"
+	text ""
+	fartext _Route24EndBattleText3
+	done
 
 Route24AfterBattleText3:
-	TX_FAR _Route24AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText3
+	done
 
 Route24BattleText4:
-	TX_FAR _Route24BattleText4
-	db "@"
+	text ""
+	fartext _Route24BattleText4
+	done
 
 Route24EndBattleText4:
-	TX_FAR _Route24EndBattleText4
-	db "@"
+	text ""
+	fartext _Route24EndBattleText4
+	done
 
 Route24AfterBattleText4:
-	TX_FAR _Route24AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText4
+	done
 
 Route24BattleText5:
-	TX_FAR _Route24BattleText5
-	db "@"
+	text ""
+	fartext _Route24BattleText5
+	done
 
 Route24EndBattleText5:
-	TX_FAR _Route24EndBattleText5
-	db "@"
+	text ""
+	fartext _Route24EndBattleText5
+	done
 
 Route24AfterBattleText5:
-	TX_FAR _Route24AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText5
+	done
 
 Route24BattleText6:
-	TX_FAR _Route24BattleText6
-	db "@"
+	text ""
+	fartext _Route24BattleText6
+	done
 
 Route24EndBattleText6:
-	TX_FAR _Route24EndBattleText6
-	db "@"
+	text ""
+	fartext _Route24EndBattleText6
+	done
 
 Route24AfterBattleText6:
-	TX_FAR _Route24AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route24AfterBattleText6
+	done

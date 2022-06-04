@@ -28,8 +28,9 @@ ChoosePlayerName:
 	jp PrintText
 
 YourNameIsText:
-	TX_FAR _YourNameIsText
-	db "@"
+	text ""
+	fartext _YourNameIsText
+	done
 
 ChooseRivalName:
 	call OakSpeechSlidePicRight
@@ -61,8 +62,9 @@ ChooseRivalName:
 	jp PrintText
 
 HisNameIsText:
-	TX_FAR _HisNameIsText
-	db "@"
+	text ""
+	fartext _HisNameIsText
+	done
 
 OakSpeechSlidePicLeft:
 	push de

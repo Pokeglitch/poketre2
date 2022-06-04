@@ -8,5 +8,6 @@ DiglettsCaveEntranceRoute11TextPointers:
 	dw DiglettsCaveEntranceRoute11Text1
 
 DiglettsCaveEntranceRoute11Text1:
-	TX_FAR _DiglettsCaveEntRoute11Text1
-	db "@"
+	text ""
+	fartext _DiglettsCaveEntRoute11Text1
+	done

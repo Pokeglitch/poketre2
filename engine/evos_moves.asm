@@ -296,20 +296,24 @@ CancelledEvolution:
 	jp Evolution_PartyMonLoop
 
 EvolvedText:
-	TX_FAR _EvolvedText
-	db "@"
+	text ""
+	fartext _EvolvedText
+	done
 
 IntoText:
-	TX_FAR _IntoText
-	db "@"
+	text ""
+	fartext _IntoText
+	done
 
 StoppedEvolvingText:
-	TX_FAR _StoppedEvolvingText
-	db "@"
+	text ""
+	fartext _StoppedEvolvingText
+	done
 
 IsEvolvingText:
-	TX_FAR _IsEvolvingText
-	db "@"
+	text ""
+	fartext _IsEvolvingText
+	done
 
 Evolution_ReloadTilesetTilePatterns:
 	ld a, [wLinkState]

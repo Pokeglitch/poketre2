@@ -257,24 +257,29 @@ GaryText1:
 	jp TextScriptEnd
 
 GaryChampionIntroText:
-	TX_FAR _GaryChampionIntroText
-	db "@"
+	text ""
+	fartext _GaryChampionIntroText
+	done
 
 GaryDefeatedText:
-	TX_FAR _GaryDefeatedText
-	db "@"
+	text ""
+	fartext _GaryDefeatedText
+	done
 
 GaryVictoryText:
-	TX_FAR _GaryVictoryText
-	db "@"
+	text ""
+	fartext _GaryVictoryText
+	done
 
 GaryText_76103:
-	TX_FAR _GaryText_76103
-	db "@"
+	text ""
+	fartext _GaryText_76103
+	done
 
 GaryText2:
-	TX_FAR _GaryText2
-	db "@"
+	text ""
+	fartext _GaryText2
+	done
 
 GaryText3:
 	TX_ASM
@@ -286,13 +291,16 @@ GaryText3:
 	jp TextScriptEnd
 
 GaryText_76120:
-	TX_FAR _GaryText_76120
-	db "@"
+	text ""
+	fartext _GaryText_76120
+	done
 
 GaryText4:
-	TX_FAR _GaryText_76125
-	db "@"
+	text ""
+	fartext _GaryText_76125
+	done
 
 GaryText5:
-	TX_FAR _GaryText_7612a
-	db "@"
+	text ""
+	fartext _GaryText_7612a
+	done

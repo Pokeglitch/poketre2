@@ -33,12 +33,14 @@ ReflectLightScreenEffect_:
 	jp BankswitchEtoF
 
 LightScreenProtectedText:
-	TX_FAR _LightScreenProtectedText
-	db "@"
+	text ""
+	fartext _LightScreenProtectedText
+	done
 
 ReflectGainedArmorText:
-	TX_FAR _ReflectGainedArmorText
-	db "@"
+	text ""
+	fartext _ReflectGainedArmorText
+	done
 
 BankswitchEtoF:
 	ld b, BANK(BattleCore)

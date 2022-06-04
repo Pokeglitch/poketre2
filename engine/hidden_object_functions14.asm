@@ -41,8 +41,9 @@ TurnPageSchoolNotebook:
 	ret
 
 TurnPageText:
-	TX_FAR _TurnPageText
-	db "@"
+	text ""
+	fartext _TurnPageText
+	done
 
 ViridianSchoolNotebookText5:
 	text ""
@@ -51,44 +52,51 @@ ViridianSchoolNotebookText5:
 	done
 
 ViridianSchoolNotebookText1:
-	TX_FAR _ViridianSchoolNotebookText1
-	db "@"
+	text ""
+	fartext _ViridianSchoolNotebookText1
+	done
 
 ViridianSchoolNotebookText2:
-	TX_FAR _ViridianSchoolNotebookText2
-	db "@"
+	text ""
+	fartext _ViridianSchoolNotebookText2
+	done
 
 ViridianSchoolNotebookText3:
-	TX_FAR _ViridianSchoolNotebookText3
-	db "@"
+	text ""
+	fartext _ViridianSchoolNotebookText3
+	done
 
 ViridianSchoolNotebookText4:
-	TX_FAR _ViridianSchoolNotebookText4
-	db "@"
+	text ""
+	fartext _ViridianSchoolNotebookText4
+	done
 
 PrintFightingDojoText2:
 	call EnableAutoTextBoxDrawing
 	tx_pre_jump EnemiesOnEverySideText
 
 EnemiesOnEverySideText:
-	TX_FAR _EnemiesOnEverySideText
-	db "@"
+	text ""
+	fartext _EnemiesOnEverySideText
+	done
 
 PrintFightingDojoText3:
 	call EnableAutoTextBoxDrawing
 	tx_pre_jump WhatGoesAroundComesAroundText
 
 WhatGoesAroundComesAroundText:
-	TX_FAR _WhatGoesAroundComesAroundText
-	db "@"
+	text ""
+	fartext _WhatGoesAroundComesAroundText
+	done
 
 PrintFightingDojoText:
 	call EnableAutoTextBoxDrawing
 	tx_pre_jump FightingDojoText
 
 FightingDojoText:
-	TX_FAR _FightingDojoText
-	db "@"
+	text ""
+	fartext _FightingDojoText
+	done
 
 PrintIndigoPlateauHQText:
 	ld a, [wSpriteStateData1 + 9]
@@ -98,5 +106,6 @@ PrintIndigoPlateauHQText:
 	tx_pre_jump IndigoPlateauHQText
 
 IndigoPlateauHQText:
-	TX_FAR _IndigoPlateauHQText
-	db "@"
+	text ""
+	fartext _IndigoPlateauHQText
+	done

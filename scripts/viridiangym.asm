@@ -301,8 +301,9 @@ ViridianGymText1:
 	jp TextScriptEnd
 
 ViridianGymText_74ace:
-	TX_FAR _ViridianGymText_74ace
-	db "@"
+	text ""
+	fartext _ViridianGymText_74ace
+	done
 
 ViridianGymText_74ad3:
 	text ""
@@ -317,8 +318,9 @@ ViridianGymText_74ad9:
 	done
 
 ViridianGymText12:
-	TX_FAR _ViridianGymText12
-	db "@"
+	text ""
+	fartext _ViridianGymText12
+	done
 
 ViridianGymText13:
 	text ""
@@ -331,8 +333,9 @@ TM27ExplanationText:
 	done
 
 ViridianGymText14:
-	TX_FAR _TM27NoRoomText
-	db "@"
+	text ""
+	fartext _TM27NoRoomText
+	done
 
 ViridianGymText2:
 	TX_ASM
@@ -341,16 +344,19 @@ ViridianGymText2:
 	jp TextScriptEnd
 
 ViridianGymBattleText1:
-	TX_FAR _ViridianGymBattleText1
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText1
+	done
 
 ViridianGymEndBattleText1:
-	TX_FAR _ViridianGymEndBattleText1
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText1
+	done
 
 ViridianGymAfterBattleText1:
-	TX_FAR _ViridianGymAfterBattleText1
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText1
+	done
 
 ViridianGymText3:
 	TX_ASM
@@ -359,16 +365,19 @@ ViridianGymText3:
 	jp TextScriptEnd
 
 ViridianGymBattleText2:
-	TX_FAR _ViridianGymBattleText2
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText2
+	done
 
 ViridianGymEndBattleText2:
-	TX_FAR _ViridianGymEndBattleText2
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText2
+	done
 
 ViridianGymAfterBattleText2:
-	TX_FAR _ViridianGymAfterBattleText2
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText2
+	done
 
 ViridianGymText4:
 	TX_ASM
@@ -377,16 +386,19 @@ ViridianGymText4:
 	jp TextScriptEnd
 
 ViridianGymBattleText3:
-	TX_FAR _ViridianGymBattleText3
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText3
+	done
 
 ViridianGymEndBattleText3:
-	TX_FAR _ViridianGymEndBattleText3
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText3
+	done
 
 ViridianGymAfterBattleText3:
-	TX_FAR _ViridianGymAfterBattleText3
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText3
+	done
 
 ViridianGymText5:
 	TX_ASM
@@ -395,16 +407,19 @@ ViridianGymText5:
 	jp TextScriptEnd
 
 ViridianGymBattleText4:
-	TX_FAR _ViridianGymBattleText4
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText4
+	done
 
 ViridianGymEndBattleText4:
-	TX_FAR _ViridianGymEndBattleText4
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText4
+	done
 
 ViridianGymAfterBattleText4:
-	TX_FAR _ViridianGymAfterBattleText4
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText4
+	done
 
 ViridianGymText6:
 	TX_ASM
@@ -413,16 +428,19 @@ ViridianGymText6:
 	jp TextScriptEnd
 
 ViridianGymBattleText5:
-	TX_FAR _ViridianGymBattleText5
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText5
+	done
 
 ViridianGymEndBattleText5:
-	TX_FAR _ViridianGymEndBattleText5
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText5
+	done
 
 ViridianGymAfterBattleText5:
-	TX_FAR _ViridianGymAfterBattleText5
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText5
+	done
 
 ViridianGymText7:
 	TX_ASM
@@ -431,16 +449,19 @@ ViridianGymText7:
 	jp TextScriptEnd
 
 ViridianGymBattleText6:
-	TX_FAR _ViridianGymBattleText6
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText6
+	done
 
 ViridianGymEndBattleText6:
-	TX_FAR _ViridianGymEndBattleText6
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText6
+	done
 
 ViridianGymAfterBattleText6:
-	TX_FAR _ViridianGymAfterBattleText6
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText6
+	done
 
 ViridianGymText8:
 	TX_ASM
@@ -449,16 +470,19 @@ ViridianGymText8:
 	jp TextScriptEnd
 
 ViridianGymBattleText7:
-	TX_FAR _ViridianGymBattleText7
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText7
+	done
 
 ViridianGymEndBattleText7:
-	TX_FAR _ViridianGymEndBattleText7
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText7
+	done
 
 ViridianGymAfterBattleText7:
-	TX_FAR _ViridianGymAfterBattleText7
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText7
+	done
 
 ViridianGymText9:
 	TX_ASM
@@ -467,16 +491,19 @@ ViridianGymText9:
 	jp TextScriptEnd
 
 ViridianGymBattleText8:
-	TX_FAR _ViridianGymBattleText8
-	db "@"
+	text ""
+	fartext _ViridianGymBattleText8
+	done
 
 ViridianGymEndBattleText8:
-	TX_FAR _ViridianGymEndBattleText8
-	db "@"
+	text ""
+	fartext _ViridianGymEndBattleText8
+	done
 
 ViridianGymAfterBattleText8:
-	TX_FAR _ViridianGymAfterBattleText8
-	db "@"
+	text ""
+	fartext _ViridianGymAfterBattleText8
+	done
 
 ViridianGymText10:
 	TX_ASM
@@ -492,9 +519,11 @@ ViridianGymText10:
 	jp TextScriptEnd
 
 ViridianGymText_74bd4:
-	TX_FAR _ViridianGymText_74bd4
-	db "@"
+	text ""
+	fartext _ViridianGymText_74bd4
+	done
 
 ViridianGymText_74bd9:
-	TX_FAR _ViridianGymText_74bd9
-	db "@"
+	text ""
+	fartext _ViridianGymText_74bd9
+	done

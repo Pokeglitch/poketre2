@@ -438,13 +438,16 @@ RocketHideout2Text1:
 	jp TextScriptEnd
 
 RocketHideout2BattleText2:
-	TX_FAR _RocketHideout2BattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout2BattleText2
+	done
 
 RocketHideout2EndBattleText2:
-	TX_FAR _RocketHideout2EndBattleText2
-	db "@"
+	text ""
+	fartext _RocketHideout2EndBattleText2
+	done
 
 RocketHideout2AfterBattleTxt2:
-	TX_FAR _RocketHideout2AfterBattleTxt2
-	db "@"
+	text ""
+	fartext _RocketHideout2AfterBattleTxt2
+	done

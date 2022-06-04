@@ -190,8 +190,9 @@ StartMenu_Pokemon:
 	call GBPalWhiteOutWithDelay3
 	jp .goBackToMap
 .flashLightsAreaText
-	TX_FAR _FlashLightsAreaText
-	db "@"
+	text ""
+	fartext _FlashLightsAreaText
+	done
 .dig
 	ld a, ESCAPE_ROPE
 	ld [wcf91], a
@@ -225,14 +226,17 @@ StartMenu_Pokemon:
 	call GBPalWhiteOutWithDelay3
 	jp .goBackToMap
 .warpToLastPokemonCenterText
-	TX_FAR _WarpToLastPokemonCenterText
-	db "@"
+	text ""
+	fartext _WarpToLastPokemonCenterText
+	done
 .cannotUseTeleportNowText
-	TX_FAR _CannotUseTeleportNowText
-	db "@"
+	text ""
+	fartext _CannotUseTeleportNowText
+	done
 .cannotFlyHereText
-	TX_FAR _CannotFlyHereText
-	db "@"
+	text ""
+	fartext _CannotFlyHereText
+	done
 .softboiled
 	ld hl, wPartyMon1MaxHP
 	ld a, [wWhichPokemon]
@@ -270,8 +274,9 @@ StartMenu_Pokemon:
 	call PrintText
 	jp .loop
 .notHealthyEnoughText
-	TX_FAR _NotHealthyEnoughText
-	db "@"
+	text ""
+	fartext _NotHealthyEnoughText
+	done
 .goBackToMap
 	call RestoreScreenTilesAndReloadTilePatterns
 	jp CloseTextDisplay
@@ -280,8 +285,9 @@ StartMenu_Pokemon:
 	call PrintText
 	jp .loop
 .newBadgeRequiredText
-	TX_FAR _NewBadgeRequiredText
-	db "@"
+	text ""
+	fartext _NewBadgeRequiredText
+	done
 
 ; writes a blank tile to all possible menu cursor positions on the party menu
 ErasePartyMenuCursors:
@@ -509,8 +515,9 @@ CancelOptionText:
 	db "Cancel@"
 
 CannotUseItemsHereText:
-	TX_FAR _CannotUseItemsHereText
-	db "@"
+	text ""
+	fartext _CannotUseItemsHereText
+	done
 
 ; items which bring up the party menu when used
 UsableItems_PartyMenu:

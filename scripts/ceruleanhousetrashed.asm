@@ -23,17 +23,21 @@ CeruleanHouseTrashedText1:
 	jp TextScriptEnd
 
 CeruleanHouseTrashedText_1d6ab:
-	TX_FAR _CeruleanTrashedText_1d6ab
-	db "@"
+	text ""
+	fartext _CeruleanTrashedText_1d6ab
+	done
 
 CeruleanHouseTrashedText_1d6b0:
-	TX_FAR _CeruleanTrashedText_1d6b0
-	db "@"
+	text ""
+	fartext _CeruleanTrashedText_1d6b0
+	done
 
 CeruleanHouseTrashedText2:
-	TX_FAR _CeruleanHouseTrashedText2
-	db "@"
+	text ""
+	fartext _CeruleanHouseTrashedText2
+	done
 
 CeruleanHouseTrashedText3:
-	TX_FAR _CeruleanHouseTrashedText3
-	db "@"
+	text ""
+	fartext _CeruleanHouseTrashedText3
+	done

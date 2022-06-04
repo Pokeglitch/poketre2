@@ -163,12 +163,14 @@ ZapdosText:
 	jr InitVoltorbBattle
 
 VoltorbBattleText:
-	TX_FAR _VoltorbBattleText
-	db "@"
+	text ""
+	fartext _VoltorbBattleText
+	done
 
 ZapdosBattleText:
-	TX_FAR _ZapdosBattleText
-	TX_ASM
+	text ""
+	fartext _ZapdosBattleText
+	asmtext
 	ld a, ZAPDOS
 	call PlayCry
 	call WaitForSoundToFinish

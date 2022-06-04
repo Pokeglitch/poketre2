@@ -768,16 +768,19 @@ OaksLabText1:
 	jp TextScriptEnd
 
 OaksLabGaryText1:
-	TX_FAR _OaksLabGaryText1
-	db "@"
+	text ""
+	fartext _OaksLabGaryText1
+	done
 
 OaksLabText40:
-	TX_FAR _OaksLabText40
-	db "@"
+	text ""
+	fartext _OaksLabText40
+	done
 
 OaksLabText41:
-	TX_FAR _OaksLabText41
-	db "@"
+	text ""
+	fartext _OaksLabText41
+	done
 
 OaksLabText2:
 	TX_ASM
@@ -822,8 +825,9 @@ OaksLabScript_1d133:
 	jp TextScriptEnd
 
 OaksLabText39:
-	TX_FAR _OaksLabText39
-	db "@"
+	text ""
+	fartext _OaksLabText39
+	done
 
 OaksLabScript_1d157:
 	ld a, $5
@@ -857,22 +861,25 @@ OaksLabLookAtCharmander:
 	ld hl, OaksLabCharmanderText
 	jr OaksLabMonChoiceMenu
 OaksLabCharmanderText:
-	TX_FAR _OaksLabCharmanderText
-	db "@"
+	text ""
+	fartext _OaksLabCharmanderText
+	done
 
 OaksLabLookAtSquirtle:
 	ld hl, OaksLabSquirtleText
 	jr OaksLabMonChoiceMenu
 OaksLabSquirtleText:
-	TX_FAR _OaksLabSquirtleText
-	db "@"
+	text ""
+	fartext _OaksLabSquirtleText
+	done
 
 OaksLabLookAtBulbasaur:
 	ld hl, OaksLabBulbasaurText
 	jr OaksLabMonChoiceMenu
 OaksLabBulbasaurText:
-	TX_FAR _OaksLabBulbasaurText
-	db "@"
+	text ""
+	fartext _OaksLabBulbasaurText
+	done
 
 OaksLabMonChoiceMenu:
 	call PrintText
@@ -924,8 +931,9 @@ OaksLabMonChoiceEnd:
 	jp TextScriptEnd
 
 OaksLabMonEnergeticText:
-	TX_FAR _OaksLabMonEnergeticText
-	db "@"
+	text ""
+	fartext _OaksLabMonEnergeticText
+	done
 
 OaksLabReceivedMonText:
 	text ""
@@ -945,8 +953,9 @@ OaksLabScript_1d22d:
 	jp TextScriptEnd
 
 OaksLabLastMonText:
-	TX_FAR _OaksLabLastMonText
-	db "@"
+	text ""
+	fartext _OaksLabLastMonText
+	done
 
 OaksLabText32:
 OaksLabText5:
@@ -1021,16 +1030,19 @@ OaksLabText5:
 	jp TextScriptEnd
 
 OaksLabText_1d2f0:
-	TX_FAR _OaksLabText_1d2f0
-	db "@"
+	text ""
+	fartext _OaksLabText_1d2f0
+	done
 
 OaksLabText_1d2f5:
-	TX_FAR _OaksLabText_1d2f5
-	db "@"
+	text ""
+	fartext _OaksLabText_1d2f5
+	done
 
 OaksLabText_1d2fa:
-	TX_FAR _OaksLabText_1d2fa
-	db "@"
+	text ""
+	fartext _OaksLabText_1d2fa
+	done
 
 OaksLabDeliverParcelText:
 	text ""
@@ -1040,8 +1052,9 @@ OaksLabDeliverParcelText:
 	done
 
 OaksLabAroundWorldText:
-	TX_FAR _OaksLabAroundWorldText
-	db "@"
+	text ""
+	fartext _OaksLabAroundWorldText
+	done
 
 OaksLabGivePokeballsText:
 	text ""
@@ -1051,12 +1064,14 @@ OaksLabGivePokeballsText:
 	done
 
 OaksLabPleaseVisitText:
-	TX_FAR _OaksLabPleaseVisitText
-	db "@"
+	text ""
+	fartext _OaksLabPleaseVisitText
+	done
 
 OaksLabText_1d31d:
-	TX_FAR _OaksLabText_1d31d
-	db "@"
+	text ""
+	fartext _OaksLabText_1d31d
+	done
 
 OaksLabText7:
 OaksLabText6:
@@ -1066,12 +1081,14 @@ OaksLabText6:
 	jp TextScriptEnd
 
 OaksLabText_1d32c:
-	TX_FAR _OaksLabText_1d32c
-	db "@"
+	text ""
+	fartext _OaksLabText_1d32c
+	done
 
 OaksLabText8:
-	TX_FAR _OaksLabText8
-	db "@"
+	text ""
+	fartext _OaksLabText8
+	done
 
 OaksLabText9:
 	TX_ASM
@@ -1080,8 +1097,9 @@ OaksLabText9:
 	jp TextScriptEnd
 
 OaksLabText_1d340:
-	TX_FAR _OaksLabText_1d340
-	db "@"
+	text ""
+	fartext _OaksLabText_1d340
+	done
 
 OaksLabText17:
 	TX_ASM
@@ -1090,8 +1108,9 @@ OaksLabText17:
 	jp TextScriptEnd
 
 OaksLabRivalWaitingText:
-	TX_FAR _OaksLabRivalWaitingText
-	db "@"
+	text ""
+	fartext _OaksLabRivalWaitingText
+	done
 
 OaksLabText18:
 	TX_ASM
@@ -1100,8 +1119,9 @@ OaksLabText18:
 	jp TextScriptEnd
 
 OaksLabChooseMonText:
-	TX_FAR _OaksLabChooseMonText
-	db "@"
+	text ""
+	fartext _OaksLabChooseMonText
+	done
 
 OaksLabText19:
 	TX_ASM
@@ -1110,8 +1130,9 @@ OaksLabText19:
 	jp TextScriptEnd
 
 OaksLabRivalInterjectionText:
-	TX_FAR _OaksLabRivalInterjectionText
-	db "@"
+	text ""
+	fartext _OaksLabRivalInterjectionText
+	done
 
 OaksLabText20:
 	TX_ASM
@@ -1120,8 +1141,9 @@ OaksLabText20:
 	jp TextScriptEnd
 
 OaksLabBePatientText:
-	TX_FAR _OaksLabBePatientText
-	db "@"
+	text ""
+	fartext _OaksLabBePatientText
+	done
 
 OaksLabText12:
 	TX_ASM
@@ -1130,8 +1152,9 @@ OaksLabText12:
 	jp TextScriptEnd
 
 OaksLabLeavingText:
-	TX_FAR _OaksLabLeavingText
-	db "@"
+	text ""
+	fartext _OaksLabLeavingText
+	done
 
 OaksLabText13:
 	TX_ASM
@@ -1140,8 +1163,9 @@ OaksLabText13:
 	jp TextScriptEnd
 
 OaksLabRivalPickingMonText:
-	TX_FAR _OaksLabRivalPickingMonText
-	db "@"
+	text ""
+	fartext _OaksLabRivalPickingMonText
+	done
 
 OaksLabText14:
 	TX_ASM
@@ -1162,16 +1186,19 @@ OaksLabText15:
 	jp TextScriptEnd
 
 OaksLabRivalChallengeText:
-	TX_FAR _OaksLabRivalChallengeText
-	db "@"
+	text ""
+	fartext _OaksLabRivalChallengeText
+	done
 
 OaksLabText_1d3be:
-	TX_FAR _OaksLabText_1d3be
-	db "@"
+	text ""
+	fartext _OaksLabText_1d3be
+	done
 
 OaksLabText_1d3c3:
-	TX_FAR _OaksLabText_1d3c3
-	db "@"
+	text ""
+	fartext _OaksLabText_1d3c3
+	done
 
 OaksLabText16:
 	TX_ASM
@@ -1180,24 +1207,29 @@ OaksLabText16:
 	jp TextScriptEnd
 
 OaksLabRivalToughenUpText:
-	TX_FAR _OaksLabRivalToughenUpText
-	db "@"
+	text ""
+	fartext _OaksLabRivalToughenUpText
+	done
 
 OaksLabText21:
-	TX_FAR _OaksLabText21
-	db "@"
+	text ""
+	fartext _OaksLabText21
+	done
 
 OaksLabText22:
-	TX_FAR _OaksLabText22
-	db "@"
+	text ""
+	fartext _OaksLabText22
+	done
 
 OaksLabText23:
-	TX_FAR _OaksLabText23
-	db "@"
+	text ""
+	fartext _OaksLabText23
+	done
 
 OaksLabText24:
-	TX_FAR _OaksLabText24
-	db "@"
+	text ""
+	fartext _OaksLabText24
+	done
 
 OaksLabText25:
 	text ""
@@ -1206,12 +1238,14 @@ OaksLabText25:
 	done
 
 OaksLabText26:
-	TX_FAR _OaksLabText26
-	db "@"
+	text ""
+	fartext _OaksLabText26
+	done
 
 OaksLabText27:
-	TX_FAR _OaksLabText27
-	db "@"
+	text ""
+	fartext _OaksLabText27
+	done
 
 OaksLabText11:
 OaksLabText10:
@@ -1221,5 +1255,6 @@ OaksLabText10:
 	jp TextScriptEnd
 
 OaksLabText_1d405:
-	TX_FAR _OaksLabText_1d405
-	db "@"
+	text ""
+	fartext _OaksLabText_1d405
+	done

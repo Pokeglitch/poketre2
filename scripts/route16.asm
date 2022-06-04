@@ -137,16 +137,19 @@ Route16Text1:
 	jp TextScriptEnd
 
 Route16BattleText1:
-	TX_FAR _Route16BattleText1
-	db "@"
+	text ""
+	fartext _Route16BattleText1
+	done
 
 Route16EndBattleText1:
-	TX_FAR _Route16EndBattleText1
-	db "@"
+	text ""
+	fartext _Route16EndBattleText1
+	done
 
 Route16AfterBattleText1:
-	TX_FAR _Route16AfterBattleText1
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText1
+	done
 
 Route16Text2:
 	TX_ASM
@@ -155,16 +158,19 @@ Route16Text2:
 	jp TextScriptEnd
 
 Route16BattleText2:
-	TX_FAR _Route16BattleText2
-	db "@"
+	text ""
+	fartext _Route16BattleText2
+	done
 
 Route16EndBattleText2:
-	TX_FAR _Route16EndBattleText2
-	db "@"
+	text ""
+	fartext _Route16EndBattleText2
+	done
 
 Route16AfterBattleText2:
-	TX_FAR _Route16AfterBattleText2
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText2
+	done
 
 Route16Text3:
 	TX_ASM
@@ -173,16 +179,19 @@ Route16Text3:
 	jp TextScriptEnd
 
 Route16BattleText3:
-	TX_FAR _Route16BattleText3
-	db "@"
+	text ""
+	fartext _Route16BattleText3
+	done
 
 Route16EndBattleText3:
-	TX_FAR _Route16EndBattleText3
-	db "@"
+	text ""
+	fartext _Route16EndBattleText3
+	done
 
 Route16AfterBattleText3:
-	TX_FAR _Route16AfterBattleText3
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText3
+	done
 
 Route16Text4:
 	TX_ASM
@@ -191,16 +200,19 @@ Route16Text4:
 	jp TextScriptEnd
 
 Route16BattleText4:
-	TX_FAR _Route16BattleText4
-	db "@"
+	text ""
+	fartext _Route16BattleText4
+	done
 
 Route16EndBattleText4:
-	TX_FAR _Route16EndBattleText4
-	db "@"
+	text ""
+	fartext _Route16EndBattleText4
+	done
 
 Route16AfterBattleText4:
-	TX_FAR _Route16AfterBattleText4
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText4
+	done
 
 Route16Text5:
 	TX_ASM
@@ -209,16 +221,19 @@ Route16Text5:
 	jp TextScriptEnd
 
 Route16BattleText5:
-	TX_FAR _Route16BattleText5
-	db "@"
+	text ""
+	fartext _Route16BattleText5
+	done
 
 Route16EndBattleText5:
-	TX_FAR _Route16EndBattleText5
-	db "@"
+	text ""
+	fartext _Route16EndBattleText5
+	done
 
 Route16AfterBattleText5:
-	TX_FAR _Route16AfterBattleText5
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText5
+	done
 
 Route16Text6:
 	TX_ASM
@@ -227,33 +242,41 @@ Route16Text6:
 	jp TextScriptEnd
 
 Route16BattleText6:
-	TX_FAR _Route16BattleText6
-	db "@"
+	text ""
+	fartext _Route16BattleText6
+	done
 
 Route16EndBattleText6:
-	TX_FAR _Route16EndBattleText6
-	db "@"
+	text ""
+	fartext _Route16EndBattleText6
+	done
 
 Route16AfterBattleText6:
-	TX_FAR _Route16AfterBattleText6
-	db "@"
+	text ""
+	fartext _Route16AfterBattleText6
+	done
 
 Route16Text7:
-	TX_FAR _Route16Text7
-	db "@"
+	text ""
+	fartext _Route16Text7
+	done
 
 Route16Text10:
-	TX_FAR _Route16Text10
-	db "@"
+	text ""
+	fartext _Route16Text10
+	done
 
 Route16Text11:
-	TX_FAR _Route16Text11
-	db "@"
+	text ""
+	fartext _Route16Text11
+	done
 
 Route16Text8:
-	TX_FAR _Route16Text8
-	db "@"
+	text ""
+	fartext _Route16Text8
+	done
 
 Route16Text9:
-	TX_FAR _Route16Text9
-	db "@"
+	text ""
+	fartext _Route16Text9
+	done

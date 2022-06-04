@@ -203,20 +203,24 @@ PokemartTellBuyPriceText:
 	done
 
 PokemartBoughtItemText:
-	TX_FAR _PokemartBoughtItemText
-	db "@"
+	text ""
+	fartext _PokemartBoughtItemText
+	done
 
 PokemartNotEnoughMoneyText:
-	TX_FAR _PokemartNotEnoughMoneyText
-	db "@"
+	text ""
+	fartext _PokemartNotEnoughMoneyText
+	done
 
 PokemartItemBagFullText:
-	TX_FAR _PokemartItemBagFullText
-	db "@"
+	text ""
+	fartext _PokemartItemBagFullText
+	done
 
 PokemartAnythingElseText:
-	TX_FAR _PokemartAnythingElseText
-	db "@"
+	text ""
+	fartext _PokemartAnythingElseText
+	done
 
 DisplayChooseQuantityMenu::
 	call ClearTextBox

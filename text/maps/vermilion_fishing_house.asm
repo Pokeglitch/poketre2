@@ -23,7 +23,7 @@ _VermilionHouse2Text_560b6::
 	done
 
 _VermilionHouse2Text_560bb::
-	db TEXT_INIT
+	text ""
 	para "Fishing is a way"
 	line "of life!"
 

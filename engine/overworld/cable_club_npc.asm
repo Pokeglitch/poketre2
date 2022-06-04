@@ -110,16 +110,19 @@ CableClubNPC:
 	jpab LinkMenu
 
 CableClubNPCAreaReservedFor2FriendsLinkedByCableText:
-	TX_FAR _CableClubNPCAreaReservedFor2FriendsLinkedByCableText
-	db "@"
+	text ""
+	fartext _CableClubNPCAreaReservedFor2FriendsLinkedByCableText
+	done
 
 CableClubNPCWelcomeText:
-	TX_FAR _CableClubNPCWelcomeText
-	db "@"
+	text ""
+	fartext _CableClubNPCWelcomeText
+	done
 
 CableClubNPCPleaseApplyHereHaveToSaveText:
-	TX_FAR _CableClubNPCPleaseApplyHereHaveToSaveText
-	db "@"
+	text ""
+	fartext _CableClubNPCPleaseApplyHereHaveToSaveText
+	done
 
 CableClubNPCPleaseWaitText:
 	text ""
@@ -128,16 +131,19 @@ CableClubNPCPleaseWaitText:
 	done
 
 CableClubNPCLinkClosedBecauseOfInactivityText:
-	TX_FAR _CableClubNPCLinkClosedBecauseOfInactivityText
-	db "@"
+	text ""
+	fartext _CableClubNPCLinkClosedBecauseOfInactivityText
+	done
 
 CableClubNPCPleaseComeAgainText:
-	TX_FAR _CableClubNPCPleaseComeAgainText
-	db "@"
+	text ""
+	fartext _CableClubNPCPleaseComeAgainText
+	done
 
 CableClubNPCMakingPreparationsText:
-	TX_FAR _CableClubNPCMakingPreparationsText
-	db "@"
+	text ""
+	fartext _CableClubNPCMakingPreparationsText
+	done
 
 CloseLinkConnection:
 	call Delay3

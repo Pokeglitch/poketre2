@@ -125,89 +125,111 @@ RockTunnel1TalkToTrainer:
 	jp TextScriptEnd
 
 RockTunnel1BattleText1:
-	TX_FAR _RockTunnel1BattleText1
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText1
+	done
 
 RockTunnel1EndBattleText1:
-	TX_FAR _RockTunnel1EndBattleText1
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText1
+	done
 
 RockTunnel1AfterBattleText1:
-	TX_FAR _RockTunnel1AfterBattleText1
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText1
+	done
 
 RockTunnel1BattleText2:
-	TX_FAR _RockTunnel1BattleText2
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText2
+	done
 
 RockTunnel1EndBattleText2:
-	TX_FAR _RockTunnel1EndBattleText2
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText2
+	done
 
 RockTunnel1AfterBattleText2:
-	TX_FAR _RockTunnel1AfterBattleText2
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText2
+	done
 
 RockTunnel1BattleText3:
-	TX_FAR _RockTunnel1BattleText3
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText3
+	done
 
 RockTunnel1EndBattleText3:
-	TX_FAR _RockTunnel1EndBattleText3
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText3
+	done
 
 RockTunnel1AfterBattleText3:
-	TX_FAR _RockTunnel1AfterBattleText3
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText3
+	done
 
 RockTunnel1BattleText4:
-	TX_FAR _RockTunnel1BattleText4
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText4
+	done
 
 RockTunnel1EndBattleText4:
-	TX_FAR _RockTunnel1EndBattleText4
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText4
+	done
 
 RockTunnel1AfterBattleText4:
-	TX_FAR _RockTunnel1AfterBattleText4
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText4
+	done
 
 RockTunnel1BattleText5:
-	TX_FAR _RockTunnel1BattleText5
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText5
+	done
 
 RockTunnel1EndBattleText5:
-	TX_FAR _RockTunnel1EndBattleText5
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText5
+	done
 
 RockTunnel1AfterBattleText5:
-	TX_FAR _RockTunnel1AfterBattleText5
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText5
+	done
 
 RockTunnel1BattleText6:
-	TX_FAR _RockTunnel1BattleText6
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText6
+	done
 
 RockTunnel1EndBattleText6:
-	TX_FAR _RockTunnel1EndBattleText6
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText6
+	done
 
 RockTunnel1AfterBattleText6:
-	TX_FAR _RockTunnel1AfterBattleText6
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText6
+	done
 
 RockTunnel1BattleText7:
-	TX_FAR _RockTunnel1BattleText7
-	db "@"
+	text ""
+	fartext _RockTunnel1BattleText7
+	done
 
 RockTunnel1EndBattleText7:
-	TX_FAR _RockTunnel1EndBattleText7
-	db "@"
+	text ""
+	fartext _RockTunnel1EndBattleText7
+	done
 
 RockTunnel1AfterBattleText7:
-	TX_FAR _RockTunnel1AfterBattleText7
-	db "@"
+	text ""
+	fartext _RockTunnel1AfterBattleText7
+	done
 
 RockTunnel1Text8:
-	TX_FAR _RockTunnel1Text8
-	db "@"
+	text ""
+	fartext _RockTunnel1Text8
+	done

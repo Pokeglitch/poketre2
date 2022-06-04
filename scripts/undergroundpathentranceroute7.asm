@@ -7,5 +7,6 @@ UndergroundPathEntranceRoute7TextPointers:
 	dw UndergroundPathEntranceRoute7Text1
 
 UndergroundPathEntranceRoute7Text1:
-	TX_FAR _UndergroundPathEntRoute7Text1
-	db "@"
+	text ""
+	fartext _UndergroundPathEntRoute7Text1
+	done

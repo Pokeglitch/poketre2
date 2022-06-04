@@ -31,9 +31,11 @@ Route2GateText1:
 	jp TextScriptEnd
 
 Route2GateText_5d616:
-	TX_FAR _Route2GateText_5d616
-	db "@"
+	text ""
+	fartext _Route2GateText_5d616
+	done
 
 Route2GateText2:
-	TX_FAR _Route2GateText2
-	db "@"
+	text ""
+	fartext _Route2GateText2
+	done

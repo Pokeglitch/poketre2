@@ -49,12 +49,14 @@ RequireCoinCaseTextPtr:
 	done
 
 ExchangeCoinsForPrizesTextPtr:
-	TX_FAR _ExchangeCoinsForPrizesText
-	db "@"
+	text ""
+	fartext _ExchangeCoinsForPrizesText
+	done
 
 WhichPrizeTextPtr:
-	TX_FAR _WhichPrizeText
-	db "@"
+	text ""
+	fartext _WhichPrizeText
+	done
 
 GetPrizeMenuId:
 ; determine which one among the three
@@ -272,8 +274,9 @@ HereYouGoTextPtr:
 	done
 
 SoYouWantPrizeTextPtr:
-	TX_FAR _SoYouWantPrizeText
-	db "@"
+	text ""
+	fartext _SoYouWantPrizeText
+	done
 
 SorryNeedMoreCoinsText:
 	text ""

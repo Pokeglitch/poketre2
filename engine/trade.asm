@@ -785,8 +785,9 @@ PrintTradeWentToText:
 	jp Trade_SlideTextBoxOffScreen
 
 TradeWentToText:
-	TX_FAR _TradeWentToText
-	db "@"
+	text ""
+	fartext _TradeWentToText
+	done
 
 PrintTradeForSendsText:
 	ld hl, TradeForText
@@ -797,12 +798,14 @@ PrintTradeForSendsText:
 	jp Trade_Delay80
 
 TradeForText:
-	TX_FAR _TradeForText
-	db "@"
+	text ""
+	fartext _TradeForText
+	done
 
 TradeSendsText:
-	TX_FAR _TradeSendsText
-	db "@"
+	text ""
+	fartext _TradeSendsText
+	done
 
 PrintTradeFarewellText:
 	ld hl, TradeWavesFarewellText
@@ -814,12 +817,14 @@ PrintTradeFarewellText:
 	jp Trade_SlideTextBoxOffScreen
 
 TradeWavesFarewellText:
-	TX_FAR _TradeWavesFarewellText
-	db "@"
+	text ""
+	fartext _TradeWavesFarewellText
+	done
 
 TradeTransferredText:
-	TX_FAR _TradeTransferredText
-	db "@"
+	text ""
+	fartext _TradeTransferredText
+	done
 
 PrintTradeTakeCareText:
 	ld hl, TradeTakeCareText
@@ -827,8 +832,9 @@ PrintTradeTakeCareText:
 	jp Trade_Delay80
 
 TradeTakeCareText:
-	TX_FAR _TradeTakeCareText
-	db "@"
+	text ""
+	fartext _TradeTakeCareText
+	done
 
 PrintTradeWillTradeText:
 	ld hl, TradeWillTradeText
@@ -839,12 +845,14 @@ PrintTradeWillTradeText:
 	jp Trade_Delay80
 
 TradeWillTradeText:
-	TX_FAR _TradeWillTradeText
-	db "@"
+	text ""
+	fartext _TradeWillTradeText
+	done
 
 TradeforText:
-	TX_FAR _TradeforText
-	db "@"
+	text ""
+	fartext _TradeforText
+	done
 
 Trade_ShowAnimation:
 	ld [wAnimationID], a

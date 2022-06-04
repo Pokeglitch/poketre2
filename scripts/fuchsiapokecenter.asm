@@ -12,12 +12,14 @@ FuchsiaHealNurseText:
 	TX_POKECENTER_NURSE
 
 FuchsiaPokecenterText2:
-	TX_FAR _FuchsiaPokecenterText1
-	db "@"
+	text ""
+	fartext _FuchsiaPokecenterText1
+	done
 
 FuchsiaPokecenterText3:
-	TX_FAR _FuchsiaPokecenterText3
-	db "@"
+	text ""
+	fartext _FuchsiaPokecenterText3
+	done
 
 FuchsiaTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST

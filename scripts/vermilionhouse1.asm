@@ -8,17 +8,20 @@ VermilionHouse1TextPointers:
 	dw VermilionHouse1Text3
 
 VermilionHouse1Text1:
-	TX_FAR _VermilionHouse1Text1
-	db "@"
+	text ""
+	fartext _VermilionHouse1Text1
+	done
 
 VermilionHouse1Text2:
-	TX_FAR _VermilionHouse1Text2
-	TX_ASM
+	text ""
+	fartext _VermilionHouse1Text2
+	asmtext
 	ld a, PIDGEY
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 VermilionHouse1Text3:
-	TX_FAR _VermilionHouse1Text3
-	db "@"
+	text ""
+	fartext _VermilionHouse1Text3
+	done

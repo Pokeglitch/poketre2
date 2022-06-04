@@ -12,28 +12,34 @@ SSAnne6TextPointers:
 	dw SSAnne6Text7
 
 SSAnne6Text1:
-	TX_FAR _SSAnne6Text1
-	db "@"
+	text ""
+	fartext _SSAnne6Text1
+	done
 
 SSAnne6Text2:
-	TX_FAR _SSAnne6Text2
-	db "@"
+	text ""
+	fartext _SSAnne6Text2
+	done
 
 SSAnne6Text3:
-	TX_FAR _SSAnne6Text3
-	db "@"
+	text ""
+	fartext _SSAnne6Text3
+	done
 
 SSAnne6Text4:
-	TX_FAR _SSAnne6Text4
-	db "@"
+	text ""
+	fartext _SSAnne6Text4
+	done
 
 SSAnne6Text5:
-	TX_FAR _SSAnne6Text5
-	db "@"
+	text ""
+	fartext _SSAnne6Text5
+	done
 
 SSAnne6Text6:
-	TX_FAR _SSAnne6Text6
-	db "@"
+	text ""
+	fartext _SSAnne6Text6
+	done
 
 SSAnne6Text7:
 	TX_ASM
@@ -56,17 +62,21 @@ SSAnne6Text7:
 	jp TextScriptEnd
 
 SSAnne6Text_61807:
-	TX_FAR _SSAnne6Text_61807
-	db "@"
+	text ""
+	fartext _SSAnne6Text_61807
+	done
 
 SSAnne6Text_6180c:
-	TX_FAR _SSAnne6Text_6180c
-	db "@"
+	text ""
+	fartext _SSAnne6Text_6180c
+	done
 
 SSAnne6Text_61811:
-	TX_FAR _SSAnne6Text_61811
-	db "@"
+	text ""
+	fartext _SSAnne6Text_61811
+	done
 
 SSAnne6Text_61816:
-	TX_FAR _SSAnne6Text_61816
-	db "@"
+	text ""
+	fartext _SSAnne6Text_61816
+	done

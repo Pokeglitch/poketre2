@@ -340,8 +340,9 @@ BoostExp:
 	ret
 
 GainedText:
-	TX_FAR _GainedText
-	TX_ASM
+	text ""
+	fartext _GainedText
+	asmtext
 	ld a, [wBoostExpByExpAll]
 	ld hl, WithExpAllText
 	and a
@@ -354,17 +355,20 @@ GainedText:
 	ret
 
 WithExpAllText:
-	TX_FAR _WithExpAllText
-	TX_ASM
+	text ""
+	fartext _WithExpAllText
+	asmtext
 	ld hl, ExpPointsText
 	ret
 
 BoostedText:
-	TX_FAR _BoostedText
+	text ""
+	fartext _BoostedText
 
 ExpPointsText:
-	TX_FAR _ExpPointsText
-	db "@"
+	text ""
+	fartext _ExpPointsText
+	done
 
 GrewLevelText:
 	text ""

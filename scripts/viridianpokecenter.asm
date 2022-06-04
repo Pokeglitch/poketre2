@@ -12,12 +12,14 @@ ViridianHealNurseText:
 	TX_POKECENTER_NURSE
 
 ViridianPokeCenterText2:
-	TX_FAR _ViridianPokeCenterText2
-	db "@"
+	text ""
+	fartext _ViridianPokeCenterText2
+	done
 
 ViridianPokeCenterText3:
-	TX_FAR _ViridianPokeCenterText3
-	db "@"
+	text ""
+	fartext _ViridianPokeCenterText3
+	done
 
 ViridianTradeNurseText:
 	TX_CABLE_CLUB_RECEPTIONIST

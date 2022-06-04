@@ -44,5 +44,6 @@ DisplayElevatorFloorMenu:
 	ret
 
 WhichFloorText:
-	TX_FAR _WhichFloorText
-	db "@"
+	text ""
+	fartext _WhichFloorText
+	done

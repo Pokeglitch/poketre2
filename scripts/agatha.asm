@@ -138,17 +138,21 @@ AgathaText1:
 	jp TextScriptEnd
 
 AgathaBeforeBattleText:
-	TX_FAR _AgathaBeforeBattleText
-	db "@"
+	text ""
+	fartext _AgathaBeforeBattleText
+	done
 
 AgathaEndBattleText:
-	TX_FAR _AgathaEndBattleText
-	db "@"
+	text ""
+	fartext _AgathaEndBattleText
+	done
 
 AgathaAfterBattleText:
-	TX_FAR _AgathaAfterBattleText
-	db "@"
+	text ""
+	fartext _AgathaAfterBattleText
+	done
 
 AgathaDontRunAwayText:
-	TX_FAR _AgathaDontRunAwayText
-	db "@"
+	text ""
+	fartext _AgathaDontRunAwayText
+	done

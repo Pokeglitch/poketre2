@@ -272,41 +272,51 @@ PokemonTower7FujiText:
 	jp TextScriptEnd
 
 TowerRescueFujiText:
-	TX_FAR _TowerRescueFujiText
-	db "@"
+	text ""
+	fartext _TowerRescueFujiText
+	done
 
 PokemonTower7BattleText1:
-	TX_FAR _PokemonTower7BattleText1
-	db "@"
+	text ""
+	fartext _PokemonTower7BattleText1
+	done
 
 PokemonTower7EndBattleText1:
-	TX_FAR _PokemonTower7EndBattleText1
-	db "@"
+	text ""
+	fartext _PokemonTower7EndBattleText1
+	done
 
 PokemonTower7AfterBattleText1:
-	TX_FAR _PokemonTower7AfterBattleText1
-	db "@"
+	text ""
+	fartext _PokemonTower7AfterBattleText1
+	done
 
 PokemonTower7BattleText2:
-	TX_FAR _PokemonTower7BattleText2
-	db "@"
+	text ""
+	fartext _PokemonTower7BattleText2
+	done
 
 PokemonTower7EndBattleText2:
-	TX_FAR _PokemonTower7EndBattleText2
-	db "@"
+	text ""
+	fartext _PokemonTower7EndBattleText2
+	done
 
 PokemonTower7AfterBattleText2:
-	TX_FAR _PokemonTower7AfterBattleText2
-	db "@"
+	text ""
+	fartext _PokemonTower7AfterBattleText2
+	done
 
 PokemonTower7BattleText3:
-	TX_FAR _PokemonTower7BattleText3
-	db "@"
+	text ""
+	fartext _PokemonTower7BattleText3
+	done
 
 PokemonTower7EndBattleText3:
-	TX_FAR _PokemonTower7EndBattleText3
-	db "@"
+	text ""
+	fartext _PokemonTower7EndBattleText3
+	done
 
 PokemonTower7AfterBattleText3:
-	TX_FAR _PokemonTower7AfterBattleText3
-	db "@"
+	text ""
+	fartext _PokemonTower7AfterBattleText3
+	done

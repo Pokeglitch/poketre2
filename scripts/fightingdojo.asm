@@ -161,20 +161,24 @@ FightingDojoText1:
 	jp TextScriptEnd
 
 FightingDojoText_5ce8e:
-	TX_FAR _FightingDojoText_5ce8e
-	db "@"
+	text ""
+	fartext _FightingDojoText_5ce8e
+	done
 
 FightingDojoText_5ce93:
-	TX_FAR _FightingDojoText_5ce93
-	db "@"
+	text ""
+	fartext _FightingDojoText_5ce93
+	done
 
 FightingDojoText8:
-	TX_FAR _FightingDojoText_5ce98
-	db "@"
+	text ""
+	fartext _FightingDojoText_5ce98
+	done
 
 FightingDojoText_5ce9d:
-	TX_FAR _FightingDojoText_5ce9d
-	db "@"
+	text ""
+	fartext _FightingDojoText_5ce9d
+	done
 
 FightingDojoText2:
 	TX_ASM
@@ -183,16 +187,19 @@ FightingDojoText2:
 	jp TextScriptEnd
 
 FightingDojoBattleText1:
-	TX_FAR _FightingDojoBattleText1
-	db "@"
+	text ""
+	fartext _FightingDojoBattleText1
+	done
 
 FightingDojoEndBattleText1:
-	TX_FAR _FightingDojoEndBattleText1
-	db "@"
+	text ""
+	fartext _FightingDojoEndBattleText1
+	done
 
 FightingDojoAfterBattleText1:
-	TX_FAR _FightingDojoAfterBattleText1
-	db "@"
+	text ""
+	fartext _FightingDojoAfterBattleText1
+	done
 
 FightingDojoText3:
 	TX_ASM
@@ -201,16 +208,19 @@ FightingDojoText3:
 	jp TextScriptEnd
 
 FightingDojoBattleText2:
-	TX_FAR _FightingDojoBattleText2
-	db "@"
+	text ""
+	fartext _FightingDojoBattleText2
+	done
 
 FightingDojoEndBattleText2:
-	TX_FAR _FightingDojoEndBattleText2
-	db "@"
+	text ""
+	fartext _FightingDojoEndBattleText2
+	done
 
 FightingDojoAfterBattleText2:
-	TX_FAR _FightingDojoAfterBattleText2
-	db "@"
+	text ""
+	fartext _FightingDojoAfterBattleText2
+	done
 
 FightingDojoText4:
 	TX_ASM
@@ -219,16 +229,19 @@ FightingDojoText4:
 	jp TextScriptEnd
 
 FightingDojoBattleText3:
-	TX_FAR _FightingDojoBattleText3
-	db "@"
+	text ""
+	fartext _FightingDojoBattleText3
+	done
 
 FightingDojoEndBattleText3:
-	TX_FAR _FightingDojoEndBattleText3
-	db "@"
+	text ""
+	fartext _FightingDojoEndBattleText3
+	done
 
 FightingDojoAfterBattleText3:
-	TX_FAR _FightingDojoAfterBattleText3
-	db "@"
+	text ""
+	fartext _FightingDojoAfterBattleText3
+	done
 
 FightingDojoText5:
 	TX_ASM
@@ -237,16 +250,19 @@ FightingDojoText5:
 	jp TextScriptEnd
 
 FightingDojoBattleText4:
-	TX_FAR _FightingDojoBattleText4
-	db "@"
+	text ""
+	fartext _FightingDojoBattleText4
+	done
 
 FightingDojoEndBattleText4:
-	TX_FAR _FightingDojoEndBattleText4
-	db "@"
+	text ""
+	fartext _FightingDojoEndBattleText4
+	done
 
 FightingDojoAfterBattleText4:
-	TX_FAR _FightingDojoAfterBattleText4
-	db "@"
+	text ""
+	fartext _FightingDojoAfterBattleText4
+	done
 
 FightingDojoText6:
 ; Hitmonlee Poké Ball
@@ -280,8 +296,9 @@ FightingDojoText6:
 	jp TextScriptEnd
 
 WantHitmonleeText:
-	TX_FAR _WantHitmonleeText
-	db "@"
+	text ""
+	fartext _WantHitmonleeText
+	done
 
 FightingDojoText7:
 ; Hitmonchan Poké Ball
@@ -315,9 +332,11 @@ FightingDojoText7:
 	jp TextScriptEnd
 
 WantHitmonchanText:
-	TX_FAR _WantHitmonchanText
-	db "@"
+	text ""
+	fartext _WantHitmonchanText
+	done
 
 OtherHitmonText:
-	TX_FAR _OtherHitmonText
-	db "@"
+	text ""
+	fartext _OtherHitmonText
+	done

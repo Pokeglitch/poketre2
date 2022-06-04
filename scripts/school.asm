@@ -6,9 +6,11 @@ SchoolTextPointers:
 	dw SchoolText2
 
 SchoolText1:
-	TX_FAR _SchoolText1
-	db "@"
+	text ""
+	fartext _SchoolText1
+	done
 
 SchoolText2:
-	TX_FAR _SchoolText2
-	db "@"
+	text ""
+	fartext _SchoolText2
+	done

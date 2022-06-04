@@ -8,7 +8,8 @@ _SSAnne7RubText::
 	cont "back!"
 
 	para "Rub-rub..."
-	line "Rub-rub...@@"
+	line "Rub-rub..."
+	done
 
 _ReceivingHM01Text::
 	text "CAPTAIN: Whew!"
