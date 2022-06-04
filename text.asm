@@ -1406,11 +1406,13 @@ _ExpPointsText::
 	prompt
 
 _GrewLevelText::
-	TX_RAM wcd6d
+	text ""
+	ramtext wcd6d
 	text " grew"
-	line "to level @"
-	TX_NUM wCurEnemyLVL, 1, 3
-	text "!@@"
+	line "to level "
+	numtext wCurEnemyLVL, (3 << 3) | 1 ; 1 byte, 3 digits
+	text "!"
+	done
 
 _WildMonAppearedText::
 	text "Wild "

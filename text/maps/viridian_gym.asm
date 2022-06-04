@@ -24,7 +24,8 @@ _ViridianGymText_74ad3::
 	cont "intense fight!"
 	cont "You have won!"
 	cont "As proof, here is"
-	cont "the EARTHBADGE!@@"
+	cont "the EARTHBADGE!"
+	done
 
 _ViridianGymText_74ad9::
 	text "Having lost, I"

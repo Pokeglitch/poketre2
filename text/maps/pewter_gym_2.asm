@@ -58,10 +58,11 @@ _PewterGymText_5c4bc::
 	cont "the BOULDERBADGE!"
 
 	para "<PLAYER> received"
-	line "the BOULDERBADGE!@@"
+	line "the BOULDERBADGE!"
+	done
 
 _PewterGymText_5c4c1::
-	db $0
+	db TEXT_INIT
 	para "That's an official"
 	line "POKéMON LEAGUE"
 	cont "BADGE!"

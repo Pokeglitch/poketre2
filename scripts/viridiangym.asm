@@ -305,9 +305,10 @@ ViridianGymText_74ace:
 	db "@"
 
 ViridianGymText_74ad3:
-	TX_FAR _ViridianGymText_74ad3
-	TX_SFX_LEVEL_UP ; probably supposed to play SFX_GET_ITEM_1 but the wrong music bank is loaded
-	db "@"
+	text ""
+	fartext _ViridianGymText_74ad3
+	sfxtext SFX_GET_ITEM_1 ; plays SFX_LEVEL_UP instead since the wrong music bank is loaded
+	done
 
 ViridianGymText_74ad9:
 	TX_FAR _ViridianGymText_74ad9

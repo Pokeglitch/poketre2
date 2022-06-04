@@ -367,6 +367,7 @@ ExpPointsText:
 	db "@"
 
 GrewLevelText:
-	TX_FAR _GrewLevelText
-	TX_SFX_LEVEL_UP
-	db "@"
+	text ""
+	fartext _GrewLevelText
+	sfxtext SFX_LEVEL_UP
+	done

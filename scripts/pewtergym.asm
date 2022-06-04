@@ -157,10 +157,11 @@ PewterGymText6:
 	db "@"
 
 PewterGymText_5c4bc:
-	TX_FAR _PewterGymText_5c4bc
-	TX_SFX_LEVEL_UP ; probably supposed to play SFX_GET_ITEM_1 but the wrong music bank is loaded
-	TX_FAR _PewterGymText_5c4c1
-	db "@"
+	text ""
+	fartext _PewterGymText_5c4bc
+	sfxtext SFX_GET_ITEM_1 ; plays SFX_LEVEL_UP instead since the wrong music bank is loaded
+	fartext _PewterGymText_5c4c1
+	done
 
 PewterGymText2:
 	TX_ASM
