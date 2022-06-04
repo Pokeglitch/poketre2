@@ -60,6 +60,7 @@ PlaceNextChar::
 	jr z, MoveToNextChar
 
 	; Commands that have arguments needs to be processed in home bank
+	; TODO - Make this into a table
 	cp RAM_TEXT
 	jp z, RAMTextCommand
 	
@@ -78,15 +79,30 @@ PlaceNextChar::
 	cp GOTO_TEXT
 	jp z, GotoTextCommand
 
+	cp CRY_TEXT
+	jp z, CryTextCommand
+
 	; Otherwise, process in different bank
 	ld b, a
 	ld a, BANK(HandleNextChar)
 	call SetNewBank
 	jp HandleNextChar
 
+CryTextCommand:
+	inc de
+	ld a, [de]
+	inc de
+	push de
+	push hl
+	call PlayCry
+	pop hl
+	pop de
+	jp PlaceNextChar
+
 ; TODO - include in word wrap lookahead
 PrintNumberCommand:
 	call PrepareInlineString
+	inc de
 	push de
 
 	ld a, [de]
@@ -106,7 +122,6 @@ PrintNumberCommand:
 	call PrintNumber
 
 	pop de
-	inc de
 	jp PlaceNextChar
 
 ; TODO - include in word wrap lookahead
@@ -311,6 +326,7 @@ TextCommandProcessor_NoInit::
 	ld a, b
 	ld [wTextDest + 1], a
 	push bc
+	;fall through
 
 NextTextCommand::
 	ld a, [hli]
@@ -324,7 +340,7 @@ NextTextCommand::
 	jp z, TextCommand17
 	cp TEXTBOX_DEF
 	jp z, TextboxDefinitionCommand
-	cp $0e
+	cp $0E
 	jp nc, TextCommand0B ; if a != 0x17 and a >= 0xE, go to command 0xB
 ; if a < 0xE, use a jump table
 	ld hl, TextCommandJumpTable
@@ -461,22 +477,6 @@ TextCommand06::
 	pop hl
 	jp NextTextCommand
 
-; scroll text up one line
-; 07
-; (no arguments)
-TextCommand07::
-	call ScrollTextUpOneLine
-	call ScrollTextUpOneLine
-	pop hl
-	pop bc
-	push hl
-	call GetStartOfBottomRow
-	ld b, h
-	ld c, l
-	pop hl
-	push bc
-	jp NextTextCommand
-
 ; execute asm inline
 ; 08{code}
 TextCommand08::
@@ -549,23 +549,9 @@ TextCommand0B::
 	inc hl
 	jr .loop
 .matchFound
-	cp $14
-	jr z, .pokemonCry
-	cp $15
-	jr z, .pokemonCry
-	cp $16
-	jr z, .pokemonCry
 	ld a, [hl]
 	call PlaySound
 	call WaitForSoundToFinish
-	pop hl
-	pop bc
-	jp NextTextCommand
-.pokemonCry
-	push de
-	ld a, [hl]
-	call PlayCry
-	pop de
 	pop hl
 	pop bc
 	jp NextTextCommand
@@ -580,43 +566,10 @@ TextboxDefinitionCommand:
 TextCommandSounds::
 	db $0B, SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded
 	db $12, SFX_CAUGHT_MON
-	db $0E, SFX_POKEDEX_RATING ; unused?
 	db $0F, SFX_GET_ITEM_1 ; unused?
 	db $10, SFX_GET_ITEM_2
 	db $11, SFX_GET_KEY_ITEM
 	db $13, SFX_DEX_PAGE_ADDED
-	db $14, NIDORINA ; used in OakSpeech
-	db $15, PIDGEOT  ; used in SaffronCityText12
-	db $16, DEWGONG  ; unused?
-
-; draw ellipses
-; 0CAA
-; AA = number of ellipses to draw
-TextCommand0C::
-	pop hl
-	ld a, [hli]
-	ld d, a
-	push hl
-	ld h, b
-	ld l, c
-.loop
-	ld a, "."
-	ld [hli], a
-	push de
-	call Joypad
-	pop de
-	ld a, [hJoyHeld] ; joypad state
-	and A_BUTTON | B_BUTTON
-	jr nz, .skipDelay ; if so, skip the delay
-	ld c, 10
-	call DelayFrames
-.skipDelay
-	dec d
-	jr nz, .loop
-	ld b, h
-	ld c, l
-	pop hl
-	jp NextTextCommand
 
 ; wait for A or B to be pressed
 ; 0D
@@ -659,12 +612,12 @@ TextCommandJumpTable::
 	dw TextCommand04
 	dw TextCommand05
 	dw TextCommand06
-	dw TextCommand07
+	dw $0000 ; TODO - delete (not used)
 	dw TextCommand08
 	dw TextCommand09
 	dw TextCommand0A
 	dw TextCommand0B
-	dw TextCommand0C
+	dw $0000 ; TODO - delete (not used)
 	dw TextCommand0D
 
 ; Check if the next word should be wrapped

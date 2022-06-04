@@ -2424,13 +2424,13 @@ _RepelWoreOffText::
 	done
 
 _PokemartTellBuyPriceText::
-	TX_RAM wcf4b
+	ramtext wcf4b
 	text "?"
-	line "That will be"
-	cont "$@"
-	TX_BCD hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
+	next "That will be"
+	cont "$"
+	bcdtext hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text ". OK?"
-	done
+	endtext
 
 _PokemartBoughtItemText::
 	text "Here you are!"

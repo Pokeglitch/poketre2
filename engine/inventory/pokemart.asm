@@ -198,8 +198,9 @@ ReloadPokemartDataFromInventory:
 	jp GBFadeInFromWhiteCustomDelay
 
 PokemartTellBuyPriceText:
-	TX_FAR _PokemartTellBuyPriceText
-	db "@"
+	text ""
+	fartext _PokemartTellBuyPriceText
+	done
 
 PokemartBoughtItemText:
 	TX_FAR _PokemartBoughtItemText

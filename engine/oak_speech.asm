@@ -147,14 +147,18 @@ OakSpeech:
 	call DelayFrames
 	call GBFadeOutToWhite
 	jp ClearScreen
+
 OakSpeechText1:
 	TX_FAR _OakSpeechText1
 	db "@"
+
 OakSpeechText2:
-	TX_FAR _OakSpeechText2A
-	TX_CRY_NIDORINA
-	TX_FAR _OakSpeechText2B
-	db "@"
+	text ""
+	fartext _OakSpeechText2A
+	crytext NIDORINA
+	fartext _OakSpeechText2B
+	done
+
 IntroducePlayerText:
 	TX_FAR _IntroducePlayerText
 	db "@"

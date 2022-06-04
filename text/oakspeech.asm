@@ -15,7 +15,8 @@ _OakSpeechText2A::
 	cont "POKéMON!@@"
 
 _OakSpeechText2B::
-	text $51,"For some people,"
+	text ""
+	para "For some people,"
 	line "POKéMON are"
 	cont "pets. Others use"
 	cont "them for fights."

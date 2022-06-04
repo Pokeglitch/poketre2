@@ -17,7 +17,7 @@ autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
 done     EQUS "db TEXT_DONE"  ; End a text box.
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
-endtext  EQUS "db TEXT_END"
+endtext  EQUS "db TEXT_END" ; "@"
 
 page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
 dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
@@ -40,6 +40,11 @@ bcdtext: MACRO
 	db BCD_TEXT
 	dw \1
 	db \2
+ENDM
+
+crytext: MACRO
+	db CRY_TEXT
+	db \1
 ENDM
 
 two_opt: MACRO
@@ -78,7 +83,6 @@ ENDM
 
 TX_LINE    EQUS "db $05"
 TX_BLINK   EQUS "db $06"
-;TX_SCROLL EQUS "db $07"
 TX_ASM     EQUS "db $08"
 
 TX_NUM: MACRO
@@ -94,16 +98,11 @@ ENDM
 TX_DELAY              EQUS "db $0a"
 TX_SFX_ITEM_1         EQUS "db $0b"
 TX_SFX_LEVEL_UP       EQUS "db $0b"
-;TX_ELLIPSES          EQUS "db $0c"
 TX_WAIT               EQUS "db $0d"
-;TX_SFX_DEX_RATING    EQUS "db $0e"
 TX_SFX_ITEM_2         EQUS "db $10"
 TX_SFX_KEY_ITEM       EQUS "db $11"
 TX_SFX_CAUGHT_MON     EQUS "db $12"
 TX_SFX_DEX_PAGE_ADDED EQUS "db $13"
-TX_CRY_NIDORINA       EQUS "db $14"
-TX_CRY_PIDGEOT        EQUS "db $15"
-;TX_CRY_DEWGONG       EQUS "db $16"
 
 TX_FAR: MACRO
 	db $17
