@@ -96,20 +96,20 @@ _OaksAideHiText::
 	line "I'm PROF.OAK's"
 	cont "AIDE!"
 
-	para "If you caught @"
-	TX_NUM hOaksAideRequirement, 1, 3
+	para "If you caught "
+	numtext hOaksAideRequirement, 3, 1
 	text ""
 	line "kinds of POKéMON,"
 	cont "I'm supposed to"
 	cont "give you an"
-	cont "@"
-	TX_RAM wOaksAideRewardItemName
+	cont ""
+	ramtext wOaksAideRewardItemName
 	text "!"
 
 	para "So, <PLAYER>! Have"
 	line "you caught at"
-	cont "least @"
-	TX_NUM hOaksAideRequirement, 1, 3
+	cont "least "
+	numtext hOaksAideRequirement, 3, 1
 	text " kinds of"
 	cont "POKéMON?"
 	done
@@ -117,25 +117,25 @@ _OaksAideHiText::
 _OaksAideUhOhText::
 	text "Let's see..."
 	line "Uh-oh! You have"
-	cont "caught only @"
-	TX_NUM hOaksAideNumMonsOwned, 1, 3
+	cont "caught only "
+	numtext hOaksAideNumMonsOwned, 3, 1
 	text ""
 	cont "kinds of POKéMON!"
 
-	para "You need @"
-	TX_NUM hOaksAideRequirement, 1, 3
+	para "You need "
+	numtext hOaksAideRequirement, 3, 1
 	text " kinds"
 	line "if you want the"
-	cont "@"
-	TX_RAM wOaksAideRewardItemName
+	cont ""
+	ramtext wOaksAideRewardItemName
 	text "."
 	done
 
 _OaksAideComeBackText::
 	text "Oh. I see."
 
-	para "When you get @"
-	TX_NUM hOaksAideRequirement, 1, 3
+	para "When you get "
+	numtext hOaksAideRequirement, 3, 1
 	text ""
 	line "kinds, come back"
 	cont "for @"
@@ -145,8 +145,8 @@ _OaksAideComeBackText::
 
 _OaksAideHereYouGoText::
 	text "Great! You have"
-	line "caught @"
-	TX_NUM hOaksAideNumMonsOwned, 1, 3
+	line "caught "
+	numtext hOaksAideNumMonsOwned, 3, 1
 	text " kinds "
 	cont "of POKéMON!"
 	cont "Congratulations!"
@@ -353,11 +353,11 @@ _YeahText::
 	done
 
 _DexSeenOwnedText::
-	text "POKéDEX   Seen:@"
-	TX_NUM wDexRatingNumMonsSeen, 1, 3
+	text "POKéDEX   Seen:"
+	numtext wDexRatingNumMonsSeen, 3, 1
 	text ""
-	line "         Owned:@"
-	TX_NUM wDexRatingNumMonsOwned, 1, 3
+	line "         Owned:"
+	numtext wDexRatingNumMonsOwned, 3, 1
 	db "@"
 
 _DexRatingText::
@@ -1194,8 +1194,8 @@ _NoMovesLeftText::
 
 _MultiHitText::
 	text "Hit the enemy"
-	line "@"
-	TX_NUM wPlayerNumHits,1,1
+	line ""
+	numtext wPlayerNumHits, 1, 1
 	text " times!"
 	prompt
 
@@ -1391,8 +1391,8 @@ _MirrorMoveFailedText::
 	prompt
 
 _HitXTimesText::
-	text "Hit @"
-	TX_NUM wEnemyNumHits, 1, 1
+	text "Hit "
+	numtext wEnemyNumHits, 1, 1
 	text " times!"
 	prompt
 
@@ -1410,7 +1410,8 @@ _BoostedText::
 	cont "@@"
 
 _ExpPointsText::
-	TX_NUM wExpAmountGained, 2, 4
+	text ""
+	numtext wExpAmountGained, 4, 2
 	text " EXP. Points!"
 	prompt
 
@@ -1419,7 +1420,7 @@ _GrewLevelText::
 	ramtext wcd6d
 	text " grew"
 	line "to level "
-	numtext wCurEnemyLVL, (3 << 3) | 1 ; 1 byte, 3 digits
+	numtext wCurEnemyLVL, 3, 1 ; 3 digits, 1 byte
 	text "!"
 	done
 
@@ -1566,8 +1567,8 @@ _PartyMenuSwapMonText::
 _PotionText::
 	TX_RAM wcd6d
 	text ""
-	line "recovered by @"
-	TX_NUM wHPBarHPDifference, 2, 3
+	line "recovered by "
+	numtext wHPBarHPDifference, 3, 2
 	text "!"
 	done
 
@@ -1618,7 +1619,7 @@ _RareCandyText::
 	ramtext wcd6d
 	text " grew"
 	line "to level "
-	numtext wCurEnemyLVL, (3 << 3) | 1 ; 1 byte, 3 digits
+	numtext wCurEnemyLVL, 3, 1 ; 3 digits, 1 byte
 	text "!"
 	done
 

@@ -30,8 +30,8 @@ _DayCareMonHasGrownText::
 	line "has grown a lot!"
 
 	para "By level, it's"
-	line "grown by @"
-	TX_NUM wDayCareNumLevelsGrown,$1,$3
+	line "grown by "
+	numtext wDayCareNumLevelsGrown, 3, 1
 	text "!"
 
 	para "Aren't I great?"

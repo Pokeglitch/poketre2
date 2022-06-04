@@ -31,10 +31,13 @@ str: MACRO
 	db TEXT_END
 ENDM
 
+; 1 - address
+; 2 - num digits
+; 3 - num bytes & flags
 numtext: MACRO
 	db NUM_TEXT
 	dw \1
-	db \2
+	db (\2 << 3) | \3
 ENDM
 
 bcdtext: MACRO
@@ -80,16 +83,6 @@ TX_RAM: MACRO
 ENDM
 
 TX_ASM     EQUS "db $08"
-
-TX_NUM: MACRO
-; print a big-endian decimal number.
-; \1: address to read from
-; \2: number of bytes to read
-; \3: number of digits to display
-	db $09
-	dw \1
-	db \2 << 4 | \3
-ENDM
 
 TX_FAR: MACRO
 	db $17

@@ -367,11 +367,11 @@ _OaksLabText_441cc::
 	text "POKéDEX comp-"
 	line "letion is:"
 
-	para "@"
-	TX_NUM hDexRatingNumMonsSeen, 1, 3
+	para ""
+	numtext hDexRatingNumMonsSeen, 3, 1
 	text " POKéMON seen"
-	line "@"
-	TX_NUM hDexRatingNumMonsOwned, 1, 3
+	line ""
+	numtext hDexRatingNumMonsOwned, 3, 1
 	text " POKéMON owned"
 
 	para "PROF.OAK's"

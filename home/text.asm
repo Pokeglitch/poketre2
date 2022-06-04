@@ -116,6 +116,8 @@ CryTextCommand:
 	jp PlaceNextChar
 
 ; TODO - include in word wrap lookahead
+; TODO - legacy code had left align enabled by default
+; so the input flag should be right align?
 PrintNumberCommand:
 	call PrepareInlineString
 	ld a, [de]
@@ -442,36 +444,6 @@ TextCommand08::
 	push de ; return address
 	jp hl
 
-; print decimal number (converted from binary number)
-; 09AAAABB
-; AAAA = address of number
-; BB
-; bits 0-3 = how many digits to display
-; bits 4-7 = how long the number is in bytes
-TextCommand09::
-	pop hl
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	push hl
-	ld h, b
-	ld l, c
-	ld b, a
-	and $0f
-	ld c, a
-	ld a, b
-	and $f0
-	swap a
-	set BIT_LEFT_ALIGN,a
-	ld b, a
-	call PrintNumber
-	ld b, h
-	ld c, l
-	pop hl
-	jp NextTextCommand
-
 TextboxDefinitionCommand:
 	pop hl
 	ld a, [hli]
@@ -511,7 +483,7 @@ TextCommandJumpTable::
 	dw $0000
 	dw $0000
 	dw TextCommand08
-	dw TextCommand09
+	dw $0000
 	dw $0000
 	dw $0000
 	dw $0000
