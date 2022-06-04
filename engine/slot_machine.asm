@@ -514,16 +514,16 @@ SlotRewardPointers:
 	dw SlotReward15Text
 
 SlotReward300Text:
-	db "300@"
+	str "300"
 
 SlotReward100Text:
-	db "100@"
+	str "100"
 
 SlotReward8Text:
-	db "8@"
+	str "8"
 
 SlotReward15Text:
-	db "15@"
+	str "15"
 
 NotThisTimeText:
 	text ""

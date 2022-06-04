@@ -73,11 +73,11 @@ DisplayPCMainMenu::
 	ld [H_AUTOBGTRANSFERENABLED], a
 	ret
 
-SomeonesPCText:   db "SOMEONE's PC@"
-BillsPCText:      db "BILL's PC@"
-OaksPCText:       db "PROF.OAK's PC@"
+SomeonesPCText:   str "SOMEONE's PC"
+BillsPCText:      str "BILL's PC"
+OaksPCText:       str "PROF.OAK's PC"
 PKMNLeaguePCText: db $4a, "LEAGUE@"
-LogOffPCText:     db "LOG OFF@"
+LogOffPCText:     str "LOG OFF"
 
 BillsPC_::
 	ld hl, wd730
@@ -334,7 +334,7 @@ BillsPCMenuText:
 	db "@"
 
 BoxNoPCText:
-	db "BOX No.@"
+	str "BOX No."
 
 KnowsHMMove::
 ; returns whether mon with party index [wWhichPokemon] knows an HM move
@@ -438,8 +438,8 @@ DisplayDepositWithdrawMenu:
 	call LoadGBPal
 	jr .loop
 
-DepositPCText:  db "DEPOSIT@"
-WithdrawPCText: db "WITHDRAW@"
+DepositPCText:  str "DEPOSIT"
+WithdrawPCText: str "WITHDRAW"
 StatsCancelPCText:
 	db   "STATS"
 	next "CANCEL@"

@@ -376,22 +376,22 @@ NestedStringsTable:
     db 00
 
 PokeText::
-	db "Poké@"
+	str "Poké"
 
 PCText::
-	db "PC@"
+	str "PC"
 
 RocketText::
-	db "ROCKET@"
+	str "ROCKET"
 
 TMText::
-	db "TM@"
+	str "TM"
 
 TrainerText::
-	db "TRAINER@"
+	str "TRAINER"
 
 DotsText::
-	db "..@"
+	str ".."
 
 PKMNText::
 	db $E1,$E2,"@" ; PKMN

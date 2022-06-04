@@ -216,10 +216,10 @@ OTText:
 	next "@"
 
 StatusText:
-	db "STATUS/@"
+	str "STATUS/"
 
 OKText:
-	db "OK@"
+	str "OK"
 
 ; Draws a line starting from hl high b and wide c
 DrawLineBox:

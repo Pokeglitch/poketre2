@@ -263,7 +263,7 @@ HandlePokedexListMenu:
 	ld de, .dashedLine ; print a dashed line in place of the name if the player hasn't seen the pokemon
 	jr .skipGettingName
 .dashedLine ; for unseen pokemon in the list
-	db "----------@"
+	str "----------"
 .getPokemonName
 	call PokedexToIndex
 	call GetMonName
@@ -360,13 +360,13 @@ DrawPokedexVerticalLine:
 	ret
 
 PokedexSeenText:
-	db "SEEN@"
+	str "SEEN"
 
 PokedexOwnText:
-	db "OWN@"
+	str "OWN"
 
 PokedexContentsText:
-	db "CONTENTS@"
+	str "CONTENTS"
 
 PokedexMenuItemsText:
 	db   "DATA"
@@ -593,7 +593,7 @@ HeightWeightText:
 
 ; XXX does anything point to this?
 UnusedPokeText:
-	db "#@"
+	str "#"
 
 ; horizontal line that divides the pokedex text description from the rest of the data
 PokedexDataDividerLine:

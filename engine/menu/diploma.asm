@@ -97,7 +97,7 @@ DiplomaText:
 	db $70,"Diploma",$70,"@"
 
 DiplomaPlayer:
-	db "Player@"
+	str "Player"
 
 DiplomaEmptyText:
 	db "@"
@@ -110,4 +110,4 @@ DiplomaCongrats:
 	next "POKéDEX.@"
 
 DiplomaGameFreak:
-	db "GAME FREAK@"
+	str "GAME FREAK"

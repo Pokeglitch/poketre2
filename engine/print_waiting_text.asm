@@ -17,4 +17,4 @@ PrintWaitingText:
 	jp DelayFrames
 
 WaitingText:
-	db "Waiting...!@"
+	str "Waiting...!"

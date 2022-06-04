@@ -503,16 +503,16 @@ ChoseItemText:
 	db "@"
 
 TeachOptionText:
-	db "Teach@"
+	str "Teach"
 
 UseOptionText:
-	db "Use@"
+	str "Use"
 
 GiveOptionText:
-	db "Give@"
+	str "Give"
 	
 CancelOptionText:
-	db "Cancel@"
+	str "Cancel"
 
 CannotUseItemsHereText:
 	text ""

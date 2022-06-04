@@ -429,7 +429,7 @@ ContinueTextScript:
 	next "been corrupted@"
 	
 .AwardsText
-	db "Awards:@"
+	str "Awards:"
 	
 AdventureTextScript:
 	ld hl, wBestTime
@@ -770,7 +770,7 @@ BattleStyleOptionText:
 	next " SHIFT    SET@"
 
 OptionMenuCancelText:
-	db "CANCEL@"
+	str "CANCEL"
 
 ; sets the options variable according to the current placement of the menu cursors in the options menu
 SetOptionsFromCursorPositions:

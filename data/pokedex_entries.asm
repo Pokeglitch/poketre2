@@ -196,7 +196,7 @@ PokedexEntryPointers:
 ; text entry
 
 RhydonDexEntry:
-	db "DRILL@"
+	str "DRILL"
 	db 6,3
 	dw 2650
 	text ""
@@ -204,7 +204,7 @@ RhydonDexEntry:
 	done
 
 KangaskhanDexEntry:
-	db "PARENT@"
+	str "PARENT"
 	db 7,3
 	dw 1760
 	text ""
@@ -212,7 +212,7 @@ KangaskhanDexEntry:
 	done
 
 NidoranMDexEntry:
-	db "POISON PIN@"
+	str "POISON PIN"
 	db 1,8
 	dw 200
 	text ""
@@ -220,7 +220,7 @@ NidoranMDexEntry:
 	done
 
 ClefairyDexEntry:
-	db "FAIRY@"
+	str "FAIRY"
 	db 2,0
 	dw 170
 	text ""
@@ -228,7 +228,7 @@ ClefairyDexEntry:
 	done
 
 SpearowDexEntry:
-	db "TINY BIRD@"
+	str "TINY BIRD"
 	db 1,0
 	dw 40
 	text ""
@@ -236,7 +236,7 @@ SpearowDexEntry:
 	done
 
 VoltorbDexEntry:
-	db "BALL@"
+	str "BALL"
 	db 1,8
 	dw 230
 	text ""
@@ -244,7 +244,7 @@ VoltorbDexEntry:
 	done
 
 NidokingDexEntry:
-	db "DRILL@"
+	str "DRILL"
 	db 4,7
 	dw 1370
 	text ""
@@ -252,7 +252,7 @@ NidokingDexEntry:
 	done
 
 SlowbroDexEntry:
-	db "HERMITCRAB@"
+	str "HERMITCRAB"
 	db 5,3
 	dw 1730
 	text ""
@@ -260,7 +260,7 @@ SlowbroDexEntry:
 	done
 
 IvysaurDexEntry:
-	db "SEED@"
+	str "SEED"
 	db 3,3
 	dw 290
 	text ""
@@ -268,7 +268,7 @@ IvysaurDexEntry:
 	done
 
 ExeggutorDexEntry:
-	db "COCONUT@"
+	str "COCONUT"
 	db 6,7
 	dw 2650
 	text ""
@@ -276,7 +276,7 @@ ExeggutorDexEntry:
 	done
 
 LickitungDexEntry:
-	db "LICKING@"
+	str "LICKING"
 	db 3,11
 	dw 1440
 	text ""
@@ -284,7 +284,7 @@ LickitungDexEntry:
 	done
 
 ExeggcuteDexEntry:
-	db "EGG@"
+	str "EGG"
 	db 1,4
 	dw 60
 	text ""
@@ -292,7 +292,7 @@ ExeggcuteDexEntry:
 	done
 
 GrimerDexEntry:
-	db "SLUDGE@"
+	str "SLUDGE"
 	db 2,11
 	dw 660
 	text ""
@@ -300,7 +300,7 @@ GrimerDexEntry:
 	done
 
 GengarDexEntry:
-	db "SHADOW@"
+	str "SHADOW"
 	db 4,11
 	dw 890
 	text ""
@@ -308,7 +308,7 @@ GengarDexEntry:
 	done
 
 NidoranFDexEntry:
-	db "POISON PIN@"
+	str "POISON PIN"
 	db 1,4
 	dw 150
 	text ""
@@ -316,7 +316,7 @@ NidoranFDexEntry:
 	done
 
 NidoqueenDexEntry:
-	db "DRILL@"
+	str "DRILL"
 	db 4,3
 	dw 1320
 	text ""
@@ -324,7 +324,7 @@ NidoqueenDexEntry:
 	done
 
 CuboneDexEntry:
-	db "LONELY@"
+	str "LONELY"
 	db 1,4
 	dw 140
 	text ""
@@ -332,7 +332,7 @@ CuboneDexEntry:
 	done
 
 RhyhornDexEntry:
-	db "SPIKES@"
+	str "SPIKES"
 	db 3,3
 	dw 2540
 	text ""
@@ -340,7 +340,7 @@ RhyhornDexEntry:
 	done
 
 LaprasDexEntry:
-	db "TRANSPORT@"
+	str "TRANSPORT"
 	db 8,2
 	dw 4850
 	text ""
@@ -348,7 +348,7 @@ LaprasDexEntry:
 	done
 
 ArcanineDexEntry:
-	db "LEGENDARY@"
+	str "LEGENDARY"
 	db 6,3
 	dw 3420
 	text ""
@@ -356,7 +356,7 @@ ArcanineDexEntry:
 	done
 
 MewDexEntry:
-	db "NEW SPECIE@"
+	str "NEW SPECIE"
 	db 1,4
 	dw 90
 	text ""
@@ -364,7 +364,7 @@ MewDexEntry:
 	done
 
 GyaradosDexEntry:
-	db "ATROCIOUS@"
+	str "ATROCIOUS"
 	db 21,4
 	dw 5180
 	text ""
@@ -372,7 +372,7 @@ GyaradosDexEntry:
 	done
 
 ShellderDexEntry:
-	db "BIVALVE@"
+	str "BIVALVE"
 	db 1,0
 	dw 90
 	text ""
@@ -380,7 +380,7 @@ ShellderDexEntry:
 	done
 
 TentacoolDexEntry:
-	db "JELLYFISH@"
+	str "JELLYFISH"
 	db 2,11
 	dw 1000
 	text ""
@@ -388,7 +388,7 @@ TentacoolDexEntry:
 	done
 
 GastlyDexEntry:
-	db "GAS@"
+	str "GAS"
 	db 4,3
 	dw 2
 	text ""
@@ -396,7 +396,7 @@ GastlyDexEntry:
 	done
 
 ScytherDexEntry:
-	db "MANTIS@"
+	str "MANTIS"
 	db 4,11
 	dw 1230
 	text ""
@@ -404,7 +404,7 @@ ScytherDexEntry:
 	done
 
 StaryuDexEntry:
-	db "STARSHAPE@"
+	str "STARSHAPE"
 	db 2,7
 	dw 760
 	text ""
@@ -412,7 +412,7 @@ StaryuDexEntry:
 	done
 
 BlastoiseDexEntry:
-	db "SHELLFISH@"
+	str "SHELLFISH"
 	db 5,3
 	dw 1890
 	text ""
@@ -420,7 +420,7 @@ BlastoiseDexEntry:
 	done
 
 PinsirDexEntry:
-	db "STAGBEETLE@"
+	str "STAGBEETLE"
 	db 4,11
 	dw 1210
 	text ""
@@ -428,7 +428,7 @@ PinsirDexEntry:
 	done
 
 TangelaDexEntry:
-	db "VINE@"
+	str "VINE"
 	db 3,3
 	dw 770
 	text ""
@@ -436,7 +436,7 @@ TangelaDexEntry:
 	done
 
 GrowlitheDexEntry:
-	db "PUPPY@"
+	str "PUPPY"
 	db 2,4
 	dw 420
 	text ""
@@ -444,7 +444,7 @@ GrowlitheDexEntry:
 	done
 
 OnixDexEntry:
-	db "ROCK SNAKE@"
+	str "ROCK SNAKE"
 	db 28,10
 	dw 4630
 	text ""
@@ -452,7 +452,7 @@ OnixDexEntry:
 	done
 
 FearowDexEntry:
-	db "BEAK@"
+	str "BEAK"
 	db 3,11
 	dw 840
 	text ""
@@ -460,7 +460,7 @@ FearowDexEntry:
 	done
 
 PidgeyDexEntry:
-	db "TINY BIRD@"
+	str "TINY BIRD"
 	db 1,0
 	dw 40
 	text ""
@@ -468,7 +468,7 @@ PidgeyDexEntry:
 	done
 
 SlowpokeDexEntry:
-	db "DOPEY@"
+	str "DOPEY"
 	db 3,11
 	dw 790
 	text ""
@@ -476,7 +476,7 @@ SlowpokeDexEntry:
 	done
 
 KadabraDexEntry:
-	db "PSI@"
+	str "PSI"
 	db 4,3
 	dw 1250
 	text ""
@@ -484,7 +484,7 @@ KadabraDexEntry:
 	done
 
 GravelerDexEntry:
-	db "ROCK@"
+	str "ROCK"
 	db 3,3
 	dw 2320
 	text ""
@@ -492,7 +492,7 @@ GravelerDexEntry:
 	done
 
 ChanseyDexEntry:
-	db "EGG@"
+	str "EGG"
 	db 3,7
 	dw 760
 	text ""
@@ -500,7 +500,7 @@ ChanseyDexEntry:
 	done
 
 MachokeDexEntry:
-	db "SUPERPOWER@"
+	str "SUPERPOWER"
 	db 4,11
 	dw 1550
 	text ""
@@ -508,7 +508,7 @@ MachokeDexEntry:
 	done
 
 MrMimeDexEntry:
-	db "BARRIER@"
+	str "BARRIER"
 	db 4,3
 	dw 1200
 	text ""
@@ -516,7 +516,7 @@ MrMimeDexEntry:
 	done
 
 HitmonleeDexEntry:
-	db "KICKING@"
+	str "KICKING"
 	db 4,11
 	dw 1100
 	text ""
@@ -524,7 +524,7 @@ HitmonleeDexEntry:
 	done
 
 HitmonchanDexEntry:
-	db "PUNCHING@"
+	str "PUNCHING"
 	db 4,7
 	dw 1110
 	text ""
@@ -532,7 +532,7 @@ HitmonchanDexEntry:
 	done
 
 ArbokDexEntry:
-	db "COBRA@"
+	str "COBRA"
 	db 11,6
 	dw 1430
 	text ""
@@ -540,7 +540,7 @@ ArbokDexEntry:
 	done
 
 ParasectDexEntry:
-	db "MUSHROOM@"
+	str "MUSHROOM"
 	db 3,3
 	dw 650
 	text ""
@@ -548,7 +548,7 @@ ParasectDexEntry:
 	done
 
 PsyduckDexEntry:
-	db "DUCK@"
+	str "DUCK"
 	db 2,7
 	dw 430
 	text ""
@@ -556,7 +556,7 @@ PsyduckDexEntry:
 	done
 
 DrowzeeDexEntry:
-	db "HYPNOSIS@"
+	str "HYPNOSIS"
 	db 3,3
 	dw 710
 	text ""
@@ -564,7 +564,7 @@ DrowzeeDexEntry:
 	done
 
 GolemDexEntry:
-	db "MEGATON@"
+	str "MEGATON"
 	db 4,7
 	dw 6620
 	text ""
@@ -572,7 +572,7 @@ GolemDexEntry:
 	done
 
 MagmarDexEntry:
-	db "SPITFIRE@"
+	str "SPITFIRE"
 	db 4,3
 	dw 980
 	text ""
@@ -580,7 +580,7 @@ MagmarDexEntry:
 	done
 
 ElectabuzzDexEntry:
-	db "ELECTRIC@"
+	str "ELECTRIC"
 	db 3,7
 	dw 660
 	text ""
@@ -588,7 +588,7 @@ ElectabuzzDexEntry:
 	done
 
 MagnetonDexEntry:
-	db "MAGNET@"
+	str "MAGNET"
 	db 3,3
 	dw 1320
 	text ""
@@ -596,7 +596,7 @@ MagnetonDexEntry:
 	done
 
 KoffingDexEntry:
-	db "POISON GAS@"
+	str "POISON GAS"
 	db 2,0
 	dw 20
 	text ""
@@ -604,7 +604,7 @@ KoffingDexEntry:
 	done
 
 MankeyDexEntry:
-	db "PIG MONKEY@"
+	str "PIG MONKEY"
 	db 1,8
 	dw 620
 	text ""
@@ -612,7 +612,7 @@ MankeyDexEntry:
 	done
 
 SeelDexEntry:
-	db "SEA LION@"
+	str "SEA LION"
 	db 3,7
 	dw 1980
 	text ""
@@ -620,7 +620,7 @@ SeelDexEntry:
 	done
 
 DiglettDexEntry:
-	db "MOLE@"
+	str "MOLE"
 	db 0,8
 	dw 20
 	text ""
@@ -628,7 +628,7 @@ DiglettDexEntry:
 	done
 
 TaurosDexEntry:
-	db "WILD BULL@"
+	str "WILD BULL"
 	db 4,7
 	dw 1950
 	text ""
@@ -636,7 +636,7 @@ TaurosDexEntry:
 	done
 
 FarfetchdDexEntry:
-	db "WILD DUCK@"
+	str "WILD DUCK"
 	db 2,7
 	dw 330
 	text ""
@@ -644,7 +644,7 @@ FarfetchdDexEntry:
 	done
 
 VenonatDexEntry:
-	db "INSECT@"
+	str "INSECT"
 	db 3,3
 	dw 660
 	text ""
@@ -652,7 +652,7 @@ VenonatDexEntry:
 	done
 
 DragoniteDexEntry:
-	db "DRAGON@"
+	str "DRAGON"
 	db 7,3
 	dw 4630
 	text ""
@@ -660,7 +660,7 @@ DragoniteDexEntry:
 	done
 
 DoduoDexEntry:
-	db "TWIN BIRD@"
+	str "TWIN BIRD"
 	db 4,7
 	dw 860
 	text ""
@@ -668,7 +668,7 @@ DoduoDexEntry:
 	done
 
 PoliwagDexEntry:
-	db "TADPOLE@"
+	str "TADPOLE"
 	db 2,0
 	dw 270
 	text ""
@@ -676,7 +676,7 @@ PoliwagDexEntry:
 	done
 
 JynxDexEntry:
-	db "HUMANSHAPE@"
+	str "HUMANSHAPE"
 	db 4,7
 	dw 900
 	text ""
@@ -684,7 +684,7 @@ JynxDexEntry:
 	done
 
 MoltresDexEntry:
-	db "FLAME@"
+	str "FLAME"
 	db 6,7
 	dw 1320
 	text ""
@@ -692,7 +692,7 @@ MoltresDexEntry:
 	done
 
 ArticunoDexEntry:
-	db "FREEZE@"
+	str "FREEZE"
 	db 5,7
 	dw 1220
 	text ""
@@ -700,7 +700,7 @@ ArticunoDexEntry:
 	done
 
 ZapdosDexEntry:
-	db "ELECTRIC@"
+	str "ELECTRIC"
 	db 5,3
 	dw 1160
 	text ""
@@ -708,7 +708,7 @@ ZapdosDexEntry:
 	done
 
 DittoDexEntry:
-	db "TRANSFORM@"
+	str "TRANSFORM"
 	db 1,0
 	dw 90
 	text ""
@@ -716,7 +716,7 @@ DittoDexEntry:
 	done
 
 MeowthDexEntry:
-	db "SCRATCHCAT@"
+	str "SCRATCHCAT"
 	db 1,4
 	dw 90
 	text ""
@@ -724,7 +724,7 @@ MeowthDexEntry:
 	done
 
 KrabbyDexEntry:
-	db "RIVER CRAB@"
+	str "RIVER CRAB"
 	db 1,4
 	dw 140
 	text ""
@@ -732,7 +732,7 @@ KrabbyDexEntry:
 	done
 
 VulpixDexEntry:
-	db "FOX@"
+	str "FOX"
 	db 2,0
 	dw 220
 	text ""
@@ -740,7 +740,7 @@ VulpixDexEntry:
 	done
 
 NinetalesDexEntry:
-	db "FOX@"
+	str "FOX"
 	db 3,7
 	dw 440
 	text ""
@@ -748,7 +748,7 @@ NinetalesDexEntry:
 	done
 
 PikachuDexEntry:
-	db "MOUSE@"
+	str "MOUSE"
 	db 1,4
 	dw 130
 	text ""
@@ -756,7 +756,7 @@ PikachuDexEntry:
 	done
 
 RaichuDexEntry:
-	db "MOUSE@"
+	str "MOUSE"
 	db 2,7
 	dw 660
 	text ""
@@ -764,7 +764,7 @@ RaichuDexEntry:
 	done
 
 DratiniDexEntry:
-	db "DRAGON@"
+	str "DRAGON"
 	db 5,11
 	dw 70
 	text ""
@@ -772,7 +772,7 @@ DratiniDexEntry:
 	done
 
 DragonairDexEntry:
-	db "DRAGON@"
+	str "DRAGON"
 	db 13,1
 	dw 360
 	text ""
@@ -780,7 +780,7 @@ DragonairDexEntry:
 	done
 
 KabutoDexEntry:
-	db "SHELLFISH@"
+	str "SHELLFISH"
 	db 1,8
 	dw 250
 	text ""
@@ -788,7 +788,7 @@ KabutoDexEntry:
 	done
 
 KabutopsDexEntry:
-	db "SHELLFISH@"
+	str "SHELLFISH"
 	db 4,3
 	dw 890
 	text ""
@@ -796,7 +796,7 @@ KabutopsDexEntry:
 	done
 
 HorseaDexEntry:
-	db "DRAGON@"
+	str "DRAGON"
 	db 1,4
 	dw 180
 	text ""
@@ -804,7 +804,7 @@ HorseaDexEntry:
 	done
 
 SeadraDexEntry:
-	db "DRAGON@"
+	str "DRAGON"
 	db 3,11
 	dw 550
 	text ""
@@ -812,7 +812,7 @@ SeadraDexEntry:
 	done
 
 SandshrewDexEntry:
-	db "MOUSE@"
+	str "MOUSE"
 	db 2,0
 	dw 260
 	text ""
@@ -820,7 +820,7 @@ SandshrewDexEntry:
 	done
 
 SandslashDexEntry:
-	db "MOUSE@"
+	str "MOUSE"
 	db 3,3
 	dw 650
 	text ""
@@ -828,7 +828,7 @@ SandslashDexEntry:
 	done
 
 OmanyteDexEntry:
-	db "SPIRAL@"
+	str "SPIRAL"
 	db 1,4
 	dw 170
 	text ""
@@ -836,7 +836,7 @@ OmanyteDexEntry:
 	done
 
 OmastarDexEntry:
-	db "SPIRAL@"
+	str "SPIRAL"
 	db 3,3
 	dw 770
 	text ""
@@ -844,7 +844,7 @@ OmastarDexEntry:
 	done
 
 JigglypuffDexEntry:
-	db "BALLOON@"
+	str "BALLOON"
 	db 1,8
 	dw 120
 	text ""
@@ -852,7 +852,7 @@ JigglypuffDexEntry:
 	done
 
 WigglytuffDexEntry:
-	db "BALLOON@"
+	str "BALLOON"
 	db 3,3
 	dw 260
 	text ""
@@ -860,7 +860,7 @@ WigglytuffDexEntry:
 	done
 
 EeveeDexEntry:
-	db "EVOLUTION@"
+	str "EVOLUTION"
 	db 1,0
 	dw 140
 	text ""
@@ -868,7 +868,7 @@ EeveeDexEntry:
 	done
 
 FlareonDexEntry:
-	db "FLAME@"
+	str "FLAME"
 	db 2,11
 	dw 550
 	text ""
@@ -876,7 +876,7 @@ FlareonDexEntry:
 	done
 
 JolteonDexEntry:
-	db "LIGHTNING@"
+	str "LIGHTNING"
 	db 2,7
 	dw 540
 	text ""
@@ -884,7 +884,7 @@ JolteonDexEntry:
 	done
 
 VaporeonDexEntry:
-	db "BUBBLE JET@"
+	str "BUBBLE JET"
 	db 3,3
 	dw 640
 	text ""
@@ -892,7 +892,7 @@ VaporeonDexEntry:
 	done
 
 MachopDexEntry:
-	db "SUPERPOWER@"
+	str "SUPERPOWER"
 	db 2,7
 	dw 430
 	text ""
@@ -900,7 +900,7 @@ MachopDexEntry:
 	done
 
 ZubatDexEntry:
-	db "BAT@"
+	str "BAT"
 	db 2,7
 	dw 170
 	text ""
@@ -908,7 +908,7 @@ ZubatDexEntry:
 	done
 
 EkansDexEntry:
-	db "SNAKE@"
+	str "SNAKE"
 	db 6,7
 	dw 150
 	text ""
@@ -916,7 +916,7 @@ EkansDexEntry:
 	done
 
 ParasDexEntry:
-	db "MUSHROOM@"
+	str "MUSHROOM"
 	db 1,0
 	dw 120
 	text ""
@@ -924,7 +924,7 @@ ParasDexEntry:
 	done
 
 PoliwhirlDexEntry:
-	db "TADPOLE@"
+	str "TADPOLE"
 	db 3,3
 	dw 440
 	text ""
@@ -932,7 +932,7 @@ PoliwhirlDexEntry:
 	done
 
 PoliwrathDexEntry:
-	db "TADPOLE@"
+	str "TADPOLE"
 	db 4,3
 	dw 1190
 	text ""
@@ -940,7 +940,7 @@ PoliwrathDexEntry:
 	done
 
 WeedleDexEntry:
-	db "HAIRY BUG@"
+	str "HAIRY BUG"
 	db 1,0
 	dw 70
 	text ""
@@ -948,7 +948,7 @@ WeedleDexEntry:
 	done
 
 KakunaDexEntry:
-	db "COCOON@"
+	str "COCOON"
 	db 2,0
 	dw 220
 	text ""
@@ -956,7 +956,7 @@ KakunaDexEntry:
 	done
 
 BeedrillDexEntry:
-	db "POISON BEE@"
+	str "POISON BEE"
 	db 3,3
 	dw 650
 	text ""
@@ -964,7 +964,7 @@ BeedrillDexEntry:
 	done
 
 DodrioDexEntry:
-	db "TRIPLEBIRD@"
+	str "TRIPLEBIRD"
 	db 5,11
 	dw 1880
 	text ""
@@ -972,7 +972,7 @@ DodrioDexEntry:
 	done
 
 PrimeapeDexEntry:
-	db "PIG MONKEY@"
+	str "PIG MONKEY"
 	db 3,3
 	dw 710
 	text ""
@@ -980,7 +980,7 @@ PrimeapeDexEntry:
 	done
 
 DugtrioDexEntry:
-	db "MOLE@"
+	str "MOLE"
 	db 2,4
 	dw 730
 	text ""
@@ -988,7 +988,7 @@ DugtrioDexEntry:
 	done
 
 VenomothDexEntry:
-	db "POISONMOTH@"
+	str "POISONMOTH"
 	db 4,11
 	dw 280
 	text ""
@@ -996,7 +996,7 @@ VenomothDexEntry:
 	done
 
 DewgongDexEntry:
-	db "SEA LION@"
+	str "SEA LION"
 	db 5,7
 	dw 2650
 	text ""
@@ -1004,7 +1004,7 @@ DewgongDexEntry:
 	done
 
 CaterpieDexEntry:
-	db "WORM@"
+	str "WORM"
 	db 1,0
 	dw 60
 	text ""
@@ -1012,7 +1012,7 @@ CaterpieDexEntry:
 	done
 
 MetapodDexEntry:
-	db "COCOON@"
+	str "COCOON"
 	db 2,4
 	dw 220
 	text ""
@@ -1020,7 +1020,7 @@ MetapodDexEntry:
 	done
 
 ButterfreeDexEntry:
-	db "BUTTERFLY@"
+	str "BUTTERFLY"
 	db 3,7
 	dw 710
 	text ""
@@ -1028,7 +1028,7 @@ ButterfreeDexEntry:
 	done
 
 MachampDexEntry:
-	db "SUPERPOWER@"
+	str "SUPERPOWER"
 	db 5,3
 	dw 2870
 	text ""
@@ -1036,7 +1036,7 @@ MachampDexEntry:
 	done
 
 GolduckDexEntry:
-	db "DUCK@"
+	str "DUCK"
 	db 5,7
 	dw 1690
 	text ""
@@ -1044,7 +1044,7 @@ GolduckDexEntry:
 	done
 
 HypnoDexEntry:
-	db "HYPNOSIS@"
+	str "HYPNOSIS"
 	db 5,3
 	dw 1670
 	text ""
@@ -1052,7 +1052,7 @@ HypnoDexEntry:
 	done
 
 GolbatDexEntry:
-	db "BAT@"
+	str "BAT"
 	db 5,3
 	dw 1210
 	text ""
@@ -1060,7 +1060,7 @@ GolbatDexEntry:
 	done
 
 MewtwoDexEntry:
-	db "GENETIC@"
+	str "GENETIC"
 	db 6,7
 	dw 2690
 	text ""
@@ -1068,7 +1068,7 @@ MewtwoDexEntry:
 	done
 
 SnorlaxDexEntry:
-	db "SLEEPING@"
+	str "SLEEPING"
 	db 6,11
 	dw 10140
 	text ""
@@ -1076,7 +1076,7 @@ SnorlaxDexEntry:
 	done
 
 MagikarpDexEntry:
-	db "FISH@"
+	str "FISH"
 	db 2,11
 	dw 220
 	text ""
@@ -1084,7 +1084,7 @@ MagikarpDexEntry:
 	done
 
 MukDexEntry:
-	db "SLUDGE@"
+	str "SLUDGE"
 	db 3,11
 	dw 660
 	text ""
@@ -1092,7 +1092,7 @@ MukDexEntry:
 	done
 
 KinglerDexEntry:
-	db "PINCER@"
+	str "PINCER"
 	db 4,3
 	dw 1320
 	text ""
@@ -1100,7 +1100,7 @@ KinglerDexEntry:
 	done
 
 CloysterDexEntry:
-	db "BIVALVE@"
+	str "BIVALVE"
 	db 4,11
 	dw 2920
 	text ""
@@ -1108,7 +1108,7 @@ CloysterDexEntry:
 	done
 
 ElectrodeDexEntry:
-	db "BALL@"
+	str "BALL"
 	db 3,11
 	dw 1470
 	text ""
@@ -1116,7 +1116,7 @@ ElectrodeDexEntry:
 	done
 
 ClefableDexEntry:
-	db "FAIRY@"
+	str "FAIRY"
 	db 4,3
 	dw 880
 	text ""
@@ -1124,7 +1124,7 @@ ClefableDexEntry:
 	done
 
 WeezingDexEntry:
-	db "POISON GAS@"
+	str "POISON GAS"
 	db 3,11
 	dw 210
 	text ""
@@ -1132,7 +1132,7 @@ WeezingDexEntry:
 	done
 
 PersianDexEntry:
-	db "CLASSY CAT@"
+	str "CLASSY CAT"
 	db 3,3
 	dw 710
 	text ""
@@ -1140,7 +1140,7 @@ PersianDexEntry:
 	done
 
 MarowakDexEntry:
-	db "BONEKEEPER@"
+	str "BONEKEEPER"
 	db 3,3
 	dw 990
 	text ""
@@ -1148,7 +1148,7 @@ MarowakDexEntry:
 	done
 
 HaunterDexEntry:
-	db "GAS@"
+	str "GAS"
 	db 5,3
 	dw 2
 	text ""
@@ -1156,7 +1156,7 @@ HaunterDexEntry:
 	done
 
 AbraDexEntry:
-	db "PSI@"
+	str "PSI"
 	db 2,11
 	dw 430
 	text ""
@@ -1164,7 +1164,7 @@ AbraDexEntry:
 	done
 
 AlakazamDexEntry:
-	db "PSI@"
+	str "PSI"
 	db 4,11
 	dw 1060
 	text ""
@@ -1172,7 +1172,7 @@ AlakazamDexEntry:
 	done
 
 PidgeottoDexEntry:
-	db "BIRD@"
+	str "BIRD"
 	db 3,7
 	dw 660
 	text ""
@@ -1180,7 +1180,7 @@ PidgeottoDexEntry:
 	done
 
 PidgeotDexEntry:
-	db "BIRD@"
+	str "BIRD"
 	db 4,11
 	dw 870
 	text ""
@@ -1188,7 +1188,7 @@ PidgeotDexEntry:
 	done
 
 StarmieDexEntry:
-	db "MYSTERIOUS@"
+	str "MYSTERIOUS"
 	db 3,7
 	dw 1760
 	text ""
@@ -1196,7 +1196,7 @@ StarmieDexEntry:
 	done
 
 BulbasaurDexEntry:
-	db "SEED@"
+	str "SEED"
 	db 2,4
 	dw 150
 	text ""
@@ -1204,7 +1204,7 @@ BulbasaurDexEntry:
 	done
 
 VenusaurDexEntry:
-	db "SEED@"
+	str "SEED"
 	db 6,7
 	dw 2210
 	text ""
@@ -1212,7 +1212,7 @@ VenusaurDexEntry:
 	done
 
 TentacruelDexEntry:
-	db "JELLYFISH@"
+	str "JELLYFISH"
 	db 5,3
 	dw 1210
 	text ""
@@ -1220,7 +1220,7 @@ TentacruelDexEntry:
 	done
 
 GoldeenDexEntry:
-	db "GOLDFISH@"
+	str "GOLDFISH"
 	db 2,0
 	dw 330
 	text ""
@@ -1228,7 +1228,7 @@ GoldeenDexEntry:
 	done
 
 SeakingDexEntry:
-	db "GOLDFISH@"
+	str "GOLDFISH"
 	db 4,3
 	dw 860
 	text ""
@@ -1236,7 +1236,7 @@ SeakingDexEntry:
 	done
 
 PonytaDexEntry:
-	db "FIRE HORSE@"
+	str "FIRE HORSE"
 	db 3,3
 	dw 660
 	text ""
@@ -1244,7 +1244,7 @@ PonytaDexEntry:
 	done
 
 RapidashDexEntry:
-	db "FIRE HORSE@"
+	str "FIRE HORSE"
 	db 5,7
 	dw 2090
 	text ""
@@ -1252,7 +1252,7 @@ RapidashDexEntry:
 	done
 
 RattataDexEntry:
-	db "RAT@"
+	str "RAT"
 	db 1,0
 	dw 80
 	text ""
@@ -1260,7 +1260,7 @@ RattataDexEntry:
 	done
 
 RaticateDexEntry:
-	db "RAT@"
+	str "RAT"
 	db 2,4
 	dw 410
 	text ""
@@ -1268,7 +1268,7 @@ RaticateDexEntry:
 	done
 
 NidorinoDexEntry:
-	db "POISON PIN@"
+	str "POISON PIN"
 	db 2,11
 	dw 430
 	text ""
@@ -1276,7 +1276,7 @@ NidorinoDexEntry:
 	done
 
 NidorinaDexEntry:
-	db "POISON PIN@"
+	str "POISON PIN"
 	db 2,7
 	dw 440
 	text ""
@@ -1284,7 +1284,7 @@ NidorinaDexEntry:
 	done
 
 GeodudeDexEntry:
-	db "ROCK@"
+	str "ROCK"
 	db 1,4
 	dw 440
 	text ""
@@ -1292,7 +1292,7 @@ GeodudeDexEntry:
 	done
 
 PorygonDexEntry:
-	db "VIRTUAL@"
+	str "VIRTUAL"
 	db 2,7
 	dw 800
 	text ""
@@ -1300,7 +1300,7 @@ PorygonDexEntry:
 	done
 
 AerodactylDexEntry:
-	db "FOSSIL@"
+	str "FOSSIL"
 	db 5,11
 	dw 1300
 	text ""
@@ -1308,7 +1308,7 @@ AerodactylDexEntry:
 	done
 
 MagnemiteDexEntry:
-	db "MAGNET@"
+	str "MAGNET"
 	db 1,0
 	dw 130
 	text ""
@@ -1316,7 +1316,7 @@ MagnemiteDexEntry:
 	done
 
 CharmanderDexEntry:
-	db "LIZARD@"
+	str "LIZARD"
 	db 2,0
 	dw 190
 	text ""
@@ -1324,7 +1324,7 @@ CharmanderDexEntry:
 	done
 
 SquirtleDexEntry:
-	db "TINYTURTLE@"
+	str "TINYTURTLE"
 	db 1,8
 	dw 200
 	text ""
@@ -1332,7 +1332,7 @@ SquirtleDexEntry:
 	done
 
 CharmeleonDexEntry:
-	db "FLAME@"
+	str "FLAME"
 	db 3,7
 	dw 420
 	text ""
@@ -1340,7 +1340,7 @@ CharmeleonDexEntry:
 	done
 
 WartortleDexEntry:
-	db "TURTLE@"
+	str "TURTLE"
 	db 3,3
 	dw 500
 	text ""
@@ -1348,7 +1348,7 @@ WartortleDexEntry:
 	done
 
 CharizardDexEntry:
-	db "FLAME@"
+	str "FLAME"
 	db 5,7
 	dw 2000
 	text ""
@@ -1356,7 +1356,7 @@ CharizardDexEntry:
 	done
 
 OddishDexEntry:
-	db "WEED@"
+	str "WEED"
 	db 1,8
 	dw 120
 	text ""
@@ -1364,7 +1364,7 @@ OddishDexEntry:
 	done
 
 GloomDexEntry:
-	db "WEED@"
+	str "WEED"
 	db 2,7
 	dw 190
 	text ""
@@ -1372,7 +1372,7 @@ GloomDexEntry:
 	done
 
 VileplumeDexEntry:
-	db "FLOWER@"
+	str "FLOWER"
 	db 3,11
 	dw 410
 	text ""
@@ -1380,7 +1380,7 @@ VileplumeDexEntry:
 	done
 
 BellsproutDexEntry:
-	db "FLOWER@"
+	str "FLOWER"
 	db 2,4
 	dw 90
 	text ""
@@ -1388,7 +1388,7 @@ BellsproutDexEntry:
 	done
 
 WeepinbellDexEntry:
-	db "FLYCATCHER@"
+	str "FLYCATCHER"
 	db 3,3
 	dw 140
 	text ""
@@ -1396,7 +1396,7 @@ WeepinbellDexEntry:
 	done
 
 VictreebelDexEntry:
-	db "FLYCATCHER@"
+	str "FLYCATCHER"
 	db 5,7
 	dw 340
 	text ""
@@ -1404,7 +1404,7 @@ VictreebelDexEntry:
 	done
 
 MissingNoDexEntry:
-	db "???@"
+	str "???"
 	db 10 ; 1.0 m
 	db 100 ; 10.0 kg
 	db 0,"コメント さくせいちゅう@" ; コメント作成中 (Comment to be written)

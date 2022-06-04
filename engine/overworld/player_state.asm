@@ -266,10 +266,10 @@ PrintSafariZoneSteps:
 	jp PrintNumber
 
 SafariSteps:
-	db "/500@"
+	str "/500"
 
 SafariBallText:
-	db "BALLxx @"
+	str "BALLxx "
 
 GetTileAndCoordsInFrontOfPlayer:
 	call GetPredefRegisters

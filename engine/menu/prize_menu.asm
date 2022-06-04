@@ -169,10 +169,10 @@ PrintPrizePrice:
 	ret
 
 .CoinString:
-	db "COIN@"
+	str "COIN"
 
 .SixSpacesString:
-	db "      @"
+	str "      "
 
 LoadCoinsToSubtract:
 	ld a, [wWhichPrize]

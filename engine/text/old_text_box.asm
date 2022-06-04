@@ -197,7 +197,7 @@ SwitchStatsCancelText:
 	next "CANCEL@"
 
 CurrencyString:
-	db "      $@"
+	str "      $"
 
 DoBuySellQuitMenu:
 	ld a, [wd730]
@@ -594,15 +594,15 @@ DisplayFieldMoveMonMenu:
 	jp PlaceString
 
 FieldMoveNames:
-	db "CUT@"
-	db "FLY@"
+	str "CUT"
+	str "FLY"
 	db "@"
-	db "SURF@"
-	db "STRENGTH@"
-	db "FLASH@"
-	db "DIG@"
-	db "TELEPORT@"
-	db "SOFTBOILED@"
+	str "SURF"
+	str "STRENGTH"
+	str "FLASH"
+	str "DIG"
+	str "TELEPORT"
+	str "SOFTBOILED"
 
 PokemonMenuEntries:
 	db   "STATS"

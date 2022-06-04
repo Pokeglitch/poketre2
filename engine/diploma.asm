@@ -57,5 +57,5 @@ CopyrightTextString:
 	next $60,$61,$62,$61,$63,$61,$64,$7F,$73,$74,$75,$76,$77,$78,$79,$7A,$7B ; ©'95.'96.'98 GAME FREAK inc.
 	db   "@"
 
-NintenText: db "NINTEN@"
-SonyText:   db "SONY@"
+NintenText: str "NINTEN"
+SonyText:   str "SONY"

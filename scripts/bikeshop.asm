@@ -84,7 +84,7 @@ BikeShopMenuText:
 	next "CANCEL@"
 
 BikeShopMenuPrice:
-	db "$1000000@"
+	str "$1000000"
 
 BikeShopText_1d810:
 	text ""

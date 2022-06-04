@@ -92,7 +92,7 @@ AnimateHallOfFame:
 	ret
 
 HallOfFameText:
-	db "HALL OF FAME@"
+	str "HALL OF FAME"
 
 HoFShowMonOrPlayer:
 	call ClearScreen
@@ -251,10 +251,10 @@ HoFPrintTextAndDelay:
 	jp DelayFrames
 
 HoFPlayTimeText:
-	db "PLAY TIME@"
+	str "PLAY TIME"
 
 HoFMoneyText:
-	db "MONEY@"
+	str "MONEY"
 
 DexSeenOwnedText:
 	text ""

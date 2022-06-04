@@ -23,9 +23,9 @@ CinnabarGymScript_75772:
 	jp LoadGymLeaderAndCityName
 
 Gym7CityName:
-	db "CINNABAR ISLAND@"
+	str "CINNABAR ISLAND"
 Gym7LeaderName:
-	db "BLAINE@"
+	str "BLAINE"
 
 CinnabarGymScript_75792:
 	xor a

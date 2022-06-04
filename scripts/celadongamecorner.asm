@@ -545,16 +545,16 @@ CeladonGameCornerScript_48f1e:
 	ret
 
 GameCornerMoneyText:
-	db "MONEY@"
+	str "MONEY"
 
 GameCornerCoinText:
-	db "COIN@"
+	str "COIN"
 
 GameCornerBlankText1:
-	db "       @"
+	str "       "
 
 GameCornerBlankText2:
-	db "       @"
+	str "       "
 
 Has9990Coins:
 	ld a, $99

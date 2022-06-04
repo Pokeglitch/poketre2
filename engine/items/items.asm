@@ -1451,11 +1451,11 @@ VitaminNoEffectText:
 	done
 
 VitaminText:
-	db "HEALTH@"
-	db "ATTACK@"
-	db "DEFENSE@"
-	db "SPEED@"
-	db "SPECIAL@"
+	str "HEALTH"
+	str "ATTACK"
+	str "DEFENSE"
+	str "SPEED"
+	str "SPECIAL"
 
 ItemUseBait:
 	ld hl, ThrewBaitText

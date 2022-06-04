@@ -1326,7 +1326,7 @@ SlideDownFaintedMonPic:
 	ret
 
 SevenSpacesText:
-	db "       @"
+	str "       "
 
 ; slides the player or enemy trainer off screen
 ; a is the number of tiles to slide it horizontally (always 9 for the player trainer or 8 for the enemy trainer)
@@ -2152,7 +2152,7 @@ DisplayBattleMenuAfterLoad:
 	ld a, $2 ; select the "ITEM" menu
 	jp .upperLeftMenuItemWasNotSelected
 .oldManName
-	db "OLD MAN@"
+	str "OLD MAN"
 .handleBattleMenuInput
 	ld a, [wBattleAndStartSavedMenuItem]
 	ld [wCurrentMenuItem], a
@@ -2798,7 +2798,7 @@ MoveDisabledText:
 	done
 
 WhichTechniqueString:
-	db "WHICH TECHNIQUE?@"
+	str "WHICH TECHNIQUE?"
 
 SelectMenuItem_CursorUp:
 	ld a, [wCurrentMenuItem]
@@ -3019,10 +3019,10 @@ PrintMenuItem:
 	jp Delay3
 
 DisabledText:
-	db "disabled!@"
+	str "disabled!"
 
 TypeText:
-	db "TYPE@"
+	str "TYPE"
 
 SelectEnemyMove:
 	ld a, [wLinkState]
@@ -7938,12 +7938,12 @@ PrintStatText:
 	jp CopyData
 
 StatsTextStrings:
-	db "ATTACK@"
-	db "DEFENSE@"
-	db "SPEED@"
-	db "SPECIAL@"
-	db "ACCURACY@"
-	db "EVADE@"
+	str "ATTACK"
+	str "DEFENSE"
+	str "SPEED"
+	str "SPECIAL"
+	str "ACCURACY"
+	str "EVADE"
 
 StatModifierRatios:
 ; first byte is numerator, second byte is denominator
