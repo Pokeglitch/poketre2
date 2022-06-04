@@ -47,6 +47,11 @@ crytext: MACRO
 	db \1
 ENDM
 
+sfxtext: MACRO
+	db SFX_TEXT
+	db \1
+ENDM
+
 two_opt: MACRO
 	db TWO_OPTION_TEXT
 	dw \1

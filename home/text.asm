@@ -82,11 +82,26 @@ PlaceNextChar::
 	cp CRY_TEXT
 	jp z, CryTextCommand
 
+	cp SFX_TEXT
+	jp z, SoundFXCommand
+
 	; Otherwise, process in different bank
 	ld b, a
 	ld a, BANK(HandleNextChar)
 	call SetNewBank
 	jp HandleNextChar
+
+SoundFXCommand:
+	inc de
+	ld a, [de]
+	inc de
+	push de
+	push hl
+	call PlaySound
+	call WaitForSoundToFinish
+	pop hl
+	pop de
+	jp PlaceNextChar
 
 CryTextCommand:
 	inc de
@@ -154,7 +169,7 @@ ReturnAndPlaceNextChar::
 
 MoveToNextChar:
 	inc de
-	jr PlaceNextChar
+	jp PlaceNextChar
 
 TwoOptionTextCommand::
 	ld a, [wLetterPrintingDelayFlags]
@@ -690,6 +705,7 @@ JumpToTablePointer:
     ld l, a
     jp hl
 
+; TODO - double check when all new commands are implemented
 EndOfWordChars:
 	db " ", PARAGRAPH, AUTO_PARAGRAPH
 	db TEXT_END, TEXT_ASM, TEXTBOX_DEF

@@ -980,15 +980,10 @@ _HiddenItemBagFullText::
 
 _FoundHiddenCoinsText::
 	text "<PLAYER> found"
-	line "@"
-	TX_BCD hCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
-	text " coins!@@"
-
-_FoundHiddenCoins2Text::
-	text "<PLAYER> found"
-	line "@"
-	TX_BCD hCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
-	text " coins!@@"
+	line ""
+	bcdtext hCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
+	db " coins!"
+	done
 
 _DroppedHiddenCoinsText::
 	text ""

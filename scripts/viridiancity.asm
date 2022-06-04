@@ -257,9 +257,10 @@ ViridianCityText_191ca:
 	db "@"
 
 ReceivedTM42Text:
-	TX_FAR _ReceivedTM42Text
-	TX_SFX_ITEM_2
-	db "@"
+	text ""
+	fartext _ReceivedTM42Text
+	sfxtext SFX_GET_ITEM_2
+	done
 
 TM42Explanation:
 	TX_FAR _TM42Explanation

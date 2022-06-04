@@ -121,15 +121,17 @@ HiddenCoins:
 INCLUDE "data/hidden_coins.asm"
 
 FoundHiddenCoinsText:
-	TX_FAR _FoundHiddenCoinsText
-	TX_SFX_ITEM_2
-	db "@"
+	text ""
+	fartext _FoundHiddenCoinsText
+	sfxtext SFX_GET_ITEM_2
+	done
 
 DroppedHiddenCoinsText:
-	TX_FAR _FoundHiddenCoins2Text
-	TX_SFX_ITEM_2
-	TX_FAR _DroppedHiddenCoinsText
-	db "@"
+	text ""
+	fartext _FoundHiddenCoinsText
+	sfxtext SFX_GET_ITEM_2
+	fartext _DroppedHiddenCoinsText
+	done
 
 FindHiddenItemOrCoinsIndex:
 	ld a, [wHiddenObjectY]
