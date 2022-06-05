@@ -53,7 +53,17 @@ HandleNextChar:
 .checkCommandTableLoop
     ld a, [hli]
     cp b
-    jp z, JumpToTablePointer
+    jr nz, .moveToNextRow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc ; text destination now in bc
+	push hl ; store pointer pointer from table as return address
+	ld h, b ; move text destination back into hl
+	ld l, c
+	ret
+
+.moveToNextRow
     inc hl
     inc hl
     and a
@@ -108,8 +118,8 @@ StringCommandTable:
 	dbw DELAY_TEXT, DelayCommand ; delay
     dbw NEXT_TEXT_LINE, NextLineCommand ; next
     dbw NEXT_TEXT_LINE_2, NextLineCommand ; line
-	dbw AUTO_CONTINUE_TEXT, AutoContinueTextCommand ; autocont
-	dbw CONTINUE_TEXT, ContinueTextCommand ; cont
+	dbw AUTO_CONTINUE_TEXT, AutoContinueText ; autocont
+	dbw CONTINUE_TEXT, ContinueText ; cont
 	dbw PARAGRAPH, ParagraphCommand ; para
 	dbw AUTO_PARAGRAPH, AutoParagraphCommand ; autopara
 	dbw TEXT_DONE, TextDoneCommand ; done
@@ -121,7 +131,6 @@ StringCommandTable:
     db 00
 
 SpaceCommand:
-    pop hl
 	inc de
     ld a, [wTextboxSettings]
     bit BIT_NO_WORD_WRAP, a
@@ -155,7 +164,6 @@ HandleWordWrap:
 	jp ContinueText
 
 NextLineCommand:
-	pop hl
 	ld a, [wTextboxSettings]
 	bit BIT_NO_WORD_WRAP, a
 	jr z, HandleWordWrap
@@ -167,9 +175,6 @@ UpdateCurrentLine:
 	push hl
 	jp ReturnAndPlaceNextChar
 
-ContinueTextCommand::
-    pop hl
-
 ContinueText::
 	push de
 	call Delay3
@@ -178,8 +183,6 @@ ContinueText::
 	pop de
 	jr ScrollCommon
 
-AutoContinueTextCommand::
-    pop hl
 
 AutoContinueText::
 	; decrease the auto scroll count
@@ -253,13 +256,11 @@ ScrollTextUpOneLine::
 	ret
 
 AutoParagraphCommand:: ; autopara
-    pop hl
 	push de
 	call Delay3
 	jr ParagraphCommandCommon
 
 ParagraphCommand:: ; para
-    pop hl
 	push de
 	call Delay3
 	call CheckRevealTextbox
@@ -289,21 +290,18 @@ ParagraphCommandCommon::
 	jp AutoContinueText
 
 WaitCommand:: ; wait
-	pop hl
 	push de
 	call ManualTextScroll
 	pop de
 	jp ReturnAndPlaceNextChar
 
 TextPromptCommand:: ; prompt
-    pop hl
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
 	jr TextFinishCommon
 
 TextDoneCommand:: ; done
-    pop hl
 	call Delay3
 	call CheckRevealTextbox
 
@@ -315,7 +313,6 @@ TextFinishCommon::
 
 ; Pokedex Page
 DexPageCommand::
-    pop hl
 	push de
 	ld a, "▼"
 	Coorda 18, 16
@@ -334,28 +331,26 @@ DexPageCommand::
 
 DexEndCommand::
 ; ends a Pokédex entry
-    pop hl
 	ld [hl], "."
 	pop hl
 	jp HomeBankswitchReturn
 
-MoveTargetTextCommand::
 ; depending on whose turn it is, print
 ; enemy active monster’s name, prefixed with “Enemy ”
 ; or
 ; player active monster’s name
+MoveTargetTextCommand::
 	ld a, [H_WHOSETURN]
 	xor 1
 	jr MonsterNameCharsCommon
 
-MoveUserTextCommand::
 ; depending on whose turn it is, print
 ; player active monster’s name
 ; or
 ; enemy active monster’s name, prefixed with “Enemy ”
+MoveUserTextCommand::
 	ld a, [H_WHOSETURN]
 MonsterNameCharsCommon::
-    pop hl
 	push de
 	ld de, wBattleMonNick ; player active monster name
 	and a
@@ -414,7 +409,6 @@ DelayCommand: ; delay
 	call DelayFrames
 .skipDelay
 	pop de
-	pop hl
 	jp ReturnAndPlaceNextChar
 
 DrawOptionBox:

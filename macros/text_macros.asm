@@ -1,14 +1,8 @@
-; TODO
-; Add in repeat, skip macros 
-
-
 ; text macros
 text     EQUS "db " ; Start writing text.
 ramtext  EQUS "dbw RAM_TEXT,"
 neartext EQUS "dbw NEAR_TEXT,"
-
 asmtext  EQUS "db TEXT_ASM"
-
 delaytext EQUS "db DELAY_TEXT"
 textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
 cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
@@ -17,7 +11,7 @@ next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
 line     EQUS "db NEXT_TEXT_LINE_2," ; Start writing at the bottom line.
 para     EQUS "db PARAGRAPH," ; Start a new paragraph.
 autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
-done     EQUS "db TEXT_DONE"  ; End a text box.
+done     EQUS "db TEXT_DONE"  ; End a string
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
 
