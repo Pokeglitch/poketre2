@@ -162,7 +162,6 @@ HandleWordWrap:
 
 	jp ContinueText
 
-; TODO - if at bottom of textbox, then autocont first
 NextLineCommand:
 	ld a, [wTextboxSettings]
 	bit BIT_NO_WORD_WRAP, a

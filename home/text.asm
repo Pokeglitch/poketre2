@@ -1,11 +1,3 @@
-; TODO:
-;
-; FIX:
-; - The Pokemon Caught and New Pokedex Data SFX doesnt get played
-;   because the SFX_PRESS_AB from the text box "continue" is still active
-;
-; Down arrow motion freezes when sound is playing
-
 TextBoxBorder::
 	homejump TextBoxBorder_
 
@@ -114,8 +106,6 @@ CryTextCommand:
 	jp PlaceNextChar
 
 ; TODO - include in word wrap lookahead
-; TODO - legacy code had left align enabled by default
-; so the input flag should be right align?
 PrintNumberCommand:
 	call PrepareInlineString
 	ld a, [de]

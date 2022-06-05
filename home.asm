@@ -920,8 +920,6 @@ UpdateSprites::
 
 INCLUDE "data/mart_inventories.asm"
 
-; TODO - made this two @'s temporarily, since the inline asm processor
-; kicks back out to the text processor
 TextScriptEndingChar::
 	db "@"
 
