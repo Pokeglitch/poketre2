@@ -442,12 +442,8 @@ wMenuWatchMovingOutOfBounds:: ; cc37
 wTradeCenterPointerTableIndex:: ; cc38
 	ds 1
 
-	ds 1
-
-wTextDest:: ; cc3a
-; destination pointer for text output
-; this variable is written to, but is never read from
-	ds 2
+wUnusedCC39:: ; cc39
+	ds 3
 
 wDoNotWaitForButtonPressAfterDisplayingText:: ; cc3c
 ; if non-zero, skip waiting for a button press after displaying text in DisplayTextID

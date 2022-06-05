@@ -122,7 +122,6 @@ StringCommandTable:
 	dbw CONTINUE_TEXT, ContinueText ; cont
 	dbw PARAGRAPH, ParagraphCommand ; para
 	dbw AUTO_PARAGRAPH, AutoParagraphCommand ; autopara
-	dbw TEXT_DONE, TextDoneCommand ; done
 	dbw TEXT_PROMPT, TextPromptCommand ; prompt
 	dbw DEX_PAGE, DexPageCommand ; page
 	dbw DEX_END, DexEndCommand ; dex
@@ -163,11 +162,19 @@ HandleWordWrap:
 
 	jp ContinueText
 
+; TODO - if at bottom of textbox, then autocont first
 NextLineCommand:
 	ld a, [wTextboxSettings]
 	bit BIT_NO_WORD_WRAP, a
 	jr z, HandleWordWrap
-	; fall through if word wrap is off
+
+	; If No Delay is on, use the HandleWordWrap logic
+	; This is because the Para command will simply call autocont when no delay is on
+	; so there will be no more space in the textbox
+	bit BIT_NO_DELAY, a
+	jr nz, HandleWordWrap
+
+	; otherwise, fall through
 
 UpdateCurrentLine:
 	pop hl
@@ -279,13 +286,14 @@ ParagraphCommandCommon::
 	push hl
 	jp ReturnAndPlaceNextChar
 
-; if no delay is on, then autoscroll instead
+; if no delay is on, then autocont instead
 .noDelay
 	; reset the autoscroll count to the full size
 	and TEXT_LINES_MASK
 	inc a
 	swap a
 	ld [wTextboxRowParams], a
+
 	pop de
 	jp AutoContinueText
 
@@ -299,13 +307,6 @@ TextPromptCommand:: ; prompt
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
-	jr TextFinishCommon
-
-TextDoneCommand:: ; done
-	call Delay3
-	call CheckRevealTextbox
-
-TextFinishCommon::
 	ld b, h
 	ld c, l
 	pop hl ; hl = start of line

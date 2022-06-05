@@ -11,7 +11,7 @@ next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
 line     EQUS "db NEXT_TEXT_LINE_2," ; Start writing at the bottom line.
 para     EQUS "db PARAGRAPH," ; Start a new paragraph.
 autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
-done     EQUS "db TEXT_DONE"  ; End a string
+done     EQUS "db TEXT_END"  ; End a string
 prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
 wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
 

@@ -384,10 +384,6 @@ TextCommandProcessor::
 	ret
 
 TextCommandProcessor_NoInit::
-	ld a, c
-	ld [wTextDest], a
-	ld a, b
-	ld [wTextDest + 1], a
 	push bc
 
 	ld d, h
@@ -395,8 +391,10 @@ TextCommandProcessor_NoInit::
 	ld h, b
 	ld l, c ; bc = start of line
 	call PlaceTextboxString
-	ld h, d
-	ld l, e
+	push de
+	call Delay3
+	farcall CheckRevealTextbox
+	pop hl
 	inc hl
 	
 	pop bc
@@ -495,7 +493,7 @@ EndOfWordChars:
 	db TWO_OPTION_TEXT, TEXT_WAIT
 	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
 	db NEXT_TEXT_LINE, NEXT_TEXT_LINE_2
-	db TEXT_DONE, TEXT_PROMPT
+	db TEXT_PROMPT
 	db DEX_PAGE, DEX_END
 	db 0
 
