@@ -211,7 +211,7 @@ MovePicLeft:
 	call DelayFrame
 
 	ld a, %11100100
-	ld [rBGP], a
+	call GBPalCommon
 .next
 	call DelayFrame
 	ld a, [rWX]

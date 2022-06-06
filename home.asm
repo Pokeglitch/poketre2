@@ -3318,8 +3318,13 @@ WaitForTextScrollButtonPress::
 	ld a, [hJoy5]
 	and A_BUTTON | B_BUTTON
 	jr z, .loop
+	; move the tiles offscreen
+	; (only dont automatically in overworld)
+	ld a, $a0
+	ld [$c398], a
+	ld [$c39c], a
+
 	pop af
-	ld hl, wd736
 	pop af
 	ld [wd736], a ; reset the oam tile data
 	pop hl
