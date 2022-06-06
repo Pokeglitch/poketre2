@@ -1,29 +1,29 @@
 _LanceBeforeBattleText::
 	text "Ah! I heard about"
-	line "you <PLAYER>!"
+	next "you <PLAYER>!"
 
 	para "I lead the ELITE"
-	line "FOUR! You can"
+	next "FOUR! You can"
 	cont "call me LANCE the"
 	cont "dragon trainer!"
 
 	para "You know that"
-	line "dragons are"
+	next "dragons are"
 	cont "mythical POKéMON!"
 
 	para "They're hard to"
-	line "catch and raise,"
+	next "catch and raise,"
 	cont "but their powers"
 	cont "are superior!"
 
 	para "They're virtually"
-	line "indestructible!"
+	next "indestructible!"
 
 	para "Well, are you"
-	line "ready to lose?"
+	next "ready to lose?"
 
 	para "Your LEAGUE"
-	line "challenge ends"
+	next "challenge ends"
 	cont "with me, <PLAYER>!"
 	done
 
@@ -31,34 +31,34 @@ _LanceEndBattleText::
 	text "That's it!"
 
 	para "I hate to admit"
-	line "it, but you are a"
+	next "it, but you are a"
 	cont "POKéMON master!"
 	prompt
 
 _LanceAfterBattleText::
 	text "I still can't"
-	line "believe my"
+	next "believe my"
 	cont "dragons lost to"
 	cont "you, <PLAYER>!"
 
 	para "You are now the"
-	line "POKéMON LEAGUE"
+	next "POKéMON LEAGUE"
 	cont "champion!"
 
 	para "...Or, you would"
-	line "have been, but"
+	next "have been, but"
 	cont "you have one more"
 	cont "challenge ahead."
 
 	para "You have to face"
-	line "another trainer!"
+	next "another trainer!"
 	cont "His name is..."
 
 	para "<RIVAL>!"
-	line "He beat the ELITE"
+	next "He beat the ELITE"
 	cont "FOUR before you!"
 
 	para "He is the real"
-	line "POKéMON LEAGUE"
+	next "POKéMON LEAGUE"
 	cont "champion!"
 	done

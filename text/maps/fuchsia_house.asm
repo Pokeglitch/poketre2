@@ -1,26 +1,26 @@
 _FuchsiaHouse1Text1::
 	text "SAFARI ZONE's"
-	line "WARDEN is old,"
+	next "WARDEN is old,"
 	cont "but still active!"
 
 	para "All his teeth are"
-	line "false, though."
+	next "false, though."
 	done
 
 _FuchsiaHouse1Text2::
 	text "Hmm? You've met"
-	line "BILL?"
+	next "BILL?"
 
 	para "He's my grandson!"
 
 	para "He always liked"
-	line "collecting things"
+	next "collecting things"
 	cont "even as a child!"
 	done
 
 _FuchsiaHouse1Text3::
 	text "BILL files his"
-	line "own POKéMON data"
+	next "own POKéMON data"
 	cont "on his PC!"
 
 	para "Did he show you?"

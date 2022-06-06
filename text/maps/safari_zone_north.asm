@@ -6,7 +6,7 @@ _SafariZoneNorthText4::
 	text "TRAINER TIPS"
 
 	para "The SECRET HOUSE"
-	line "is still ahead!"
+	next "is still ahead!"
 	done
 
 _SafariZoneNorthText5::
@@ -17,10 +17,10 @@ _SafariZoneNorthText6::
 	text "TRAINER TIPS"
 
 	para "POKéMON hide in"
-	line "tall grass!"
+	next "tall grass!"
 
 	para "Zigzag through"
-	line "grassy areas to"
+	next "grassy areas to"
 	cont "flush them out."
 	done
 
@@ -28,6 +28,6 @@ _SafariZoneNorthText7::
 	text "TRAINER TIPS"
 
 	para "Win a free HM for"
-	line "finding the"
+	next "finding the"
 	cont "SECRET HOUSE!"
 	done

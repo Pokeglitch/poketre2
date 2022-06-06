@@ -1,45 +1,45 @@
 _SafariZoneEntranceText1::
 	text "Welcome to the"
-	line "SAFARI ZONE!"
+	next "SAFARI ZONE!"
 	done
 
 SafariZoneEntranceText_9e6e4::
 	text "For just $500,"
-	line "you can catch all"
+	next "you can catch all"
 	cont "the POKéMON you"
 	cont "want in the park!"
 
 	para "Would you like to"
-	line "join the hunt?"
+	next "join the hunt?"
 	done
 
 SafariZoneEntranceText_9e747::
 	text "That'll be $500"
-	line "please!"
+	next "please!"
 
 	para "We only use a"
-	line "special POKé BALL"
+	next "special POKé BALL"
 	cont "here."
 
 	para "<PLAYER> received"
-	line "30 SAFARI BALLs!"
+	next "30 SAFARI BALLs!"
 	done
 
 _SafariZoneEntranceText_75360::
 	para "We'll call you on"
-	line "the PA when you"
+	next "the PA when you"
 	cont "run out of time"
 	cont "or SAFARI BALLs!"
 	done
 
 _SafariZoneEntranceText_75365::
 	text "OK! Please come"
-	line "again!"
+	next "again!"
 	done
 
 _SafariZoneEntranceText_7536a::
 	text "Oops! Not enough"
-	line "money!"
+	next "money!"
 	done
 
 SafariZoneEntranceText_9e814::
@@ -48,7 +48,7 @@ SafariZoneEntranceText_9e814::
 
 _SafariZoneEntranceText_753bb::
 	text "Please return any"
-	line "SAFARI BALLs you"
+	next "SAFARI BALLs you"
 	cont "have left."
 	done
 
@@ -58,32 +58,32 @@ _SafariZoneEntranceText_753c0::
 
 _SafariZoneEntranceText_753c5::
 	text "Did you get a"
-	line "good haul?"
+	next "good haul?"
 	cont "Come again!"
 	done
 
 _SafariZoneEntranceText_753e6::
 	text "Hi! Is it your"
-	line "first time here?"
+	next "first time here?"
 	done
 
 _SafariZoneEntranceText_753eb::
 	text "SAFARI ZONE has 4"
-	line "zones in it."
+	next "zones in it."
 
 	para "Each zone has"
-	line "different kinds"
+	next "different kinds"
 	cont "of POKéMON. Use"
 	cont "SAFARI BALLs to"
 	cont "catch them!"
 
 	para "When you run out"
-	line "of time or SAFARI"
+	next "of time or SAFARI"
 	cont "BALLs, it's game"
 	cont "over for you!"
 
 	para "Before you go,"
-	line "open an unused"
+	next "open an unused"
 	cont "POKéMON BOX so"
 	cont "there's room for"
 	cont "new POKéMON!"
@@ -91,5 +91,5 @@ _SafariZoneEntranceText_753eb::
 
 _SafariZoneEntranceText_753f0::
 	text "Sorry, you're a"
-	line "regular here!"
+	next "regular here!"
 	done

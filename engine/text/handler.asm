@@ -117,7 +117,6 @@ StringCommandTable:
     dbw TEXT_WAIT, WaitCommand ; wait
 	dbw DELAY_TEXT, DelayCommand ; delay
     dbw NEXT_TEXT_LINE, NextLineCommand ; next
-    dbw NEXT_TEXT_LINE_2, NextLineCommand ; line
 	dbw AUTO_CONTINUE_TEXT, AutoContinueText ; autocont
 	dbw CONTINUE_TEXT, ContinueText ; cont
 	dbw PARAGRAPH, ParagraphCommand ; para

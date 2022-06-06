@@ -1,6 +1,6 @@
 _Mansion1BattleText2::
 	text "Who are you? There"
-	line "shouldn't be"
+	next "shouldn't be"
 	cont "anyone here."
 	done
 
@@ -10,7 +10,7 @@ _Mansion1EndBattleText2::
 
 _Mansion1AfterBattleText2::
 	text "A key? I don't"
-	line "know what you're"
+	next "know what you're"
 	cont "talking about."
 	done
 

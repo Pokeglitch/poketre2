@@ -1,97 +1,97 @@
 _CeruleanHouse2Text_74e77::
 	text "POKéMON BADGEs"
-	line "are owned only by"
+	next "are owned only by"
 	cont "skilled trainers."
 
 	para "I see you have"
-	line "at least one."
+	next "at least one."
 
 	para "Those BADGEs have"
-	line "amazing secrets!"
+	next "amazing secrets!"
 	prompt
 
 _CeruleanHouse2Text_74e7c::
 	text "Now then..."
 
 	para "Which of the 8"
-	line "BADGEs should I"
+	next "BADGEs should I"
 	cont "describe?"
 	done
 
 _CeruleanHouse2Text_74e81::
 	text "Come visit me any"
-	line "time you wish."
+	next "time you wish."
 	done
 
 _CeruleanHouse2Text_74e96::
 	text "The ATTACK of all"
-	line "POKéMON increases"
+	next "POKéMON increases"
 	cont "a little bit."
 
 	para "It also lets you"
-	line "use FLASH any"
+	next "use FLASH any"
 	cont "time you desire."
 	prompt
 
 _CeruleanHouse2Text_74e9b::
 	text "POKéMON up to L30"
-	line "will obey you."
+	next "will obey you."
 
 	para "Any higher, they"
-	line "become unruly!"
+	next "become unruly!"
 
 	para "It also lets you"
-	line "use CUT outside"
+	next "use CUT outside"
 	cont "of battle."
 	prompt
 
 _CeruleanHouse2Text_74ea0::
 	text "The SPEED of all"
-	line "POKéMON increases"
+	next "POKéMON increases"
 	cont "a little bit."
 
 	para "It also lets you"
-	line "use FLY outside"
+	next "use FLY outside"
 	cont "of battle."
 	prompt
 
 _CeruleanHouse2Text_74ea5::
 	text "POKéMON up to L50"
-	line "will obey you."
+	next "will obey you."
 
 	para "Any higher, they"
-	line "become unruly!"
+	next "become unruly!"
 
 	para "It also lets you"
-	line "use STRENGTH out-"
+	next "use STRENGTH out-"
 	cont "side of battle."
 	prompt
 
 _CeruleanHouse2Text_74eaa::
 	text "The DEFENSE of all"
-	line "POKéMON increases"
+	next "POKéMON increases"
 	cont "a little bit."
 
 	para "It also lets you"
-	line "use SURF outside"
+	next "use SURF outside"
 	cont "of battle."
 	prompt
 
 _CeruleanHouse2Text_74eaf::
 	text "POKéMON up to L70"
-	line "will obey you."
+	next "will obey you."
 
 	para "Any higher, they"
-	line "become unruly!"
+	next "become unruly!"
 	prompt
 
 _CeruleanHouse2Text_74eb4::
 	text "Your POKéMON's"
-	line "SPECIAL abilities"
+	next "SPECIAL abilities"
 	cont "increase a bit."
 	prompt
 
 _CeruleanHouse2Text_74eb9::
 	text "All POKéMON will"
-	line "obey you!"
+	next "obey you!"
 	prompt

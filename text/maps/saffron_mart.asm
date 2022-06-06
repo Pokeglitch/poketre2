@@ -1,6 +1,6 @@
 _SaffronMartText2::
 	text "MAX REPEL lasts"
-	line "longer than SUPER"
+	next "longer than SUPER"
 	cont "REPEL for keeping"
 	cont "weaker POKéMON"
 	cont "away!"
@@ -8,6 +8,6 @@ _SaffronMartText2::
 
 _SaffronMartText3::
 	text "REVIVE is costly,"
-	line "but it revives"
+	next "but it revives"
 	cont "fainted POKéMON!"
 	done

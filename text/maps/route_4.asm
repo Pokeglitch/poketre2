@@ -1,35 +1,35 @@
 _Route4Text1::
 	text "Ouch! I tripped"
-	line "over a rocky"
+	next "over a rocky"
 	cont "POKéMON, GEODUDE!"
 	done
 
 _Route4BattleText1::
 	text "I came to get my"
-	line "mushroom POKéMON!"
+	next "mushroom POKéMON!"
 	done
 
 _Route4EndBattleText1::
 	text "Oh! My cute"
-	line "mushroom POKéMON!"
+	next "mushroom POKéMON!"
 	prompt
 
 _Route4AfterBattleText1::
 	text "There might not"
-	line "be any more"
+	next "be any more"
 	cont "mushrooms here."
 
 	para "I think I got"
-	line "them all."
+	next "them all."
 	done
 
 _Route4Text5::
 	text "MT.MOON"
-	line "Tunnel Entrance"
+	next "Tunnel Entrance"
 	done
 
 _Route4Text6::
 	text "ROUTE 4"
-	line "MT.MOON -"
+	next "MT.MOON -"
 	cont "CERULEAN CITY"
 	done

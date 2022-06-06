@@ -5,38 +5,38 @@ _SilphCo10Text_5a1d3::
 
 _SilphCo10Text_5a1d8::
 	text "Please keep quiet"
-	line "about my crying!"
+	next "about my crying!"
 	done
 
 _SilphCo10BattleText1::
 	text "Welcome to the"
-	line "10F! So good of"
+	next "10F! So good of"
 	cont "you to join me!"
 	done
 
 _SilphCo10EndBattleText1::
 	text "I'm"
-	line "stunned!"
+	next "stunned!"
 	prompt
 
 _SilphCo10AfterBattleText1::
 	text "Nice try, but the"
-	line "boardroom is up"
+	next "boardroom is up"
 	cont "one more floor!"
 	done
 
 _SilphCo10BattleText2::
 	text "Enough of your"
-	line "silly games!"
+	next "silly games!"
 	done
 
 _SilphCo10EndBattleText2::
 	text "No"
-	line "continues left!"
+	next "continues left!"
 	prompt
 
 _SilphCo10AfterBattleText2::
 	text "Are you satisfied"
-	line "with beating me?"
+	next "with beating me?"
 	cont "Then go on home!"
 	done

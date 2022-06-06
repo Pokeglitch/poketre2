@@ -2,21 +2,21 @@ _SecretHouseText_4a350::
 	text "Ah! Finally!"
 
 	para "You're the first"
-	line "person to reach"
+	next "person to reach"
 	cont "the SECRET HOUSE!"
 
 	para "I was getting"
-	line "worried that no"
+	next "worried that no"
 	cont "one would win our"
 	cont "campaign prize."
 
 	para "Congratulations!"
-	line "You have won!"
+	next "You have won!"
 	prompt
 
 _ReceivedHM03Text::
 	text "<PLAYER> received"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "!"
 	done
@@ -25,21 +25,21 @@ _HM03ExplanationText::
 	text "HM03 is SURF!"
 
 	para "POKéMON will be"
-	line "able to ferry you"
+	next "able to ferry you"
 	cont "across water!"
 
 	para "And, this HM isn't"
-	line "disposable! You"
+	next "disposable! You"
 	cont "can use it over"
 	cont "and over!"
 
 	para "You're super lucky"
-	line "for winning this"
+	next "for winning this"
 	cont "fabulous prize!"
 	done
 
 _HM03NoRoomText::
 	text "You don't have"
-	line "room for this"
+	next "room for this"
 	cont "fabulous prize!"
 	done

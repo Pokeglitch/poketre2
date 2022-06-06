@@ -1,16 +1,16 @@
 _ViridianHouseText1::
 	text "Coming up with"
-	line "nicknames is fun,"
+	next "nicknames is fun,"
 	cont "but hard."
 
 	para "Simple names are"
-	line "the easiest to"
+	next "the easiest to"
 	cont "remember."
 	done
 
 _ViridianHouseText2::
 	text "My Daddy loves"
-	line "POKéMON too."
+	next "POKéMON too."
 	done
 
 _ViridianHouseText_1d5b1::
@@ -19,5 +19,5 @@ _ViridianHouseText_1d5b1::
 
 _ViridianHouseText4::
 	text "SPEAROW"
-	line "Name: SPEARY"
+	next "Name: SPEARY"
 	done

@@ -1,20 +1,20 @@
 _BrunoBeforeBattleText::
 	text "I am BRUNO of"
-	line "the ELITE FOUR!"
+	next "the ELITE FOUR!"
 
 	para "Through rigorous"
-	line "training, people"
+	next "training, people"
 	cont "and POKéMON can"
 	cont "become stronger!"
 
 	para "I've weight"
-	line "trained with"
+	next "trained with"
 	cont "my POKéMON!"
 
 	para "<PLAYER>!"
 
 	para "We will grind you"
-	line "down with our"
+	next "down with our"
 	cont "superior power!"
 
 	para "Hoo hah!"
@@ -22,16 +22,16 @@ _BrunoBeforeBattleText::
 
 _BrunoEndBattleText::
 	text "Why?"
-	line "How could I lose?"
+	next "How could I lose?"
 	prompt
 
 _BrunoAfterBattleText::
 	text "My job is done!"
-	line "Go face your next"
+	next "Go face your next"
 	cont "challenge!"
 	done
 
 _BrunoDontRunAwayText::
 	text "Someone's voice:"
-	line "Don't run away!"
+	next "Don't run away!"
 	done

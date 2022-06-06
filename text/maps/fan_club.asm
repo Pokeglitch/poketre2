@@ -1,33 +1,33 @@
 PikachuFanText::
 	text "Won't you admire"
-	line "my PIKACHU's"
+	next "my PIKACHU's"
 	cont "adorable tail?"
 	done
 
 PikachuFanBetterText::
 	text "Humph! My PIKACHU"
-	line "is twice as cute"
+	next "is twice as cute"
 	cont "as that one!"
 	done
 
 SeelFanText::
 	text "I just love my"
-	line "SEEL!"
+	next "SEEL!"
 
 	para "It squeals when I"
-	line "hug it!"
+	next "hug it!"
 	done
 
 SeelFanBetterText::
 	text "Oh dear!"
 
 	para "My SEEL is far"
-	line "more attractive!"
+	next "more attractive!"
 	done
 
 FanClubPikachuText::
 	text "PIKACHU: Chu!"
-	line "Pikachu!"
+	next "Pikachu!"
 	done
 
 FanClubSeelText::
@@ -36,31 +36,31 @@ FanClubSeelText::
 
 FanClubMeetChairText::
 	text "I chair the"
-	line "POKéMON Fan Club!"
+	next "POKéMON Fan Club!"
 
 	para "I have collected"
-	line "over 100 POKéMON!"
+	next "over 100 POKéMON!"
 
 	para "I'm very fussy"
-	line "when it comes to"
+	next "when it comes to"
 	cont "POKéMON!"
 
 	para "So..."
 
 	para "Did you come"
-	line "visit to hear"
+	next "visit to hear"
 	cont "about my POKéMON?"
 	done
 
 FanClubChairStoryText::
 	text "Good!"
-	line "Then listen up!"
+	next "Then listen up!"
 
 	para "My favorite"
-	line "RAPIDASH..."
+	next "RAPIDASH..."
 
 	para "It...cute..."
-	line "lovely...smart..."
+	next "lovely...smart..."
 	cont "plus...amazing..."
 	cont "you think so?..."
 	cont "oh yes...it..."
@@ -78,35 +78,35 @@ FanClubChairStoryText::
 	cont "you too long!"
 
 	para "Thanks for hearing"
-	line "me out! I want"
+	next "me out! I want"
 	cont "you to have this!"
 	prompt
 
 ReceivedBikeVoucherText::
 	text "<PLAYER> received"
-	line "a "
+	next "a "
 	ramtext wcf4b
 	text "!"
 	done
 
 ExplainBikeVoucherText::
 	para "Exchange that for"
-	line "a BICYCLE!"
+	next "a BICYCLE!"
 
 	para "Don't worry, my"
-	line "FEAROW will FLY"
+	next "FEAROW will FLY"
 	cont "me anywhere!"
 
 	para "So, I don't need a"
-	line "BICYCLE!"
+	next "BICYCLE!"
 
 	para "I hope you like"
-	line "cycling!"
+	next "cycling!"
 	done
 
 FanClubNoStoryText::
 	text "Oh. Come back"
-	line "when you want to"
+	next "when you want to"
 	cont "hear my story!"
 	done
 
@@ -114,7 +114,7 @@ FanClubChairFinalText::
 	text "Hello, <PLAYER>!"
 
 	para "Did you come see"
-	line "me about my"
+	next "me about my"
 	cont "POKéMON again?"
 
 	para "No? Too bad!"
@@ -122,22 +122,22 @@ FanClubChairFinalText::
 
 FanClubBagFullText::
 	text "Make room for"
-	line "this!"
+	next "this!"
 	done
 
 _FanClubText6::
 	text "Our Chairman is"
-	line "very vocal about"
+	next "very vocal about"
 	cont "POKéMON."
 	done
 
 _FanClubText7::
 	text "Let's all listen"
-	line "politely to other"
+	next "politely to other"
 	cont "trainers!"
 	done
 
 _FanClubText8::
 	text "If someone brags,"
-	line "brag right back!"
+	next "brag right back!"
 	done

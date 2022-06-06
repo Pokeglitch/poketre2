@@ -4,23 +4,23 @@ _CeladonMansion1Text1::
 
 _CeladonMansion1Text2::
 	text "My dear POKéMON"
-	line "keep me company."
+	next "keep me company."
 
 	para "MEOWTH even brings"
-	line "money home!"
+	next "money home!"
 	done
 
 _CeladonMansion1Text3::
 	text "CLEFAIRY: Pi"
-	line "pippippi!"
+	next "pippippi!"
 	done
 
 _CeladonMansion1Text4::
 	text "NIDORAN: Kya"
-	line "kyaoo!"
+	next "kyaoo!"
 	done
 
 _CeladonMansion1Text5::
 	text "CELADON MANSION"
-	line "Manager's Suite"
+	next "Manager's Suite"
 	done

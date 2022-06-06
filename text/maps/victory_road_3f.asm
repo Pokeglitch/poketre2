@@ -1,63 +1,63 @@
 _VictoryRoad3BattleText2::
 	text "I heard rumors of"
-	line "a child prodigy!"
+	next "a child prodigy!"
 	done
 
 _VictoryRoad3EndBattleText2::
 	text "The"
-	line "rumors were true!"
+	next "rumors were true!"
 	prompt
 
 _VictoryRoad3AfterBattleText2::
 	text "You beat GIOVANNI"
-	line "of TEAM ROCKET?"
+	next "of TEAM ROCKET?"
 	done
 
 _VictoryRoad3BattleText3::
 	text "I'll show you just"
-	line "how good you are!"
+	next "how good you are!"
 	done
 
 _VictoryRoad3EndBattleText3::
 	text "I'm"
-	line "furious!"
+	next "furious!"
 	prompt
 
 _VictoryRoad3AfterBattleText3::
 	text "You showed me just"
-	line "how good I was!"
+	next "how good I was!"
 	done
 
 _VictoryRoad3BattleText4::
 	text "Only the chosen"
-	line "can pass here!"
+	next "can pass here!"
 	done
 
 _VictoryRoad3EndBattleText4::
 	text "I"
-	line "don't believe it!"
+	next "don't believe it!"
 	prompt
 
 _VictoryRoad3AfterBattleText4::
 	text "All trainers here"
-	line "are headed to the"
+	next "are headed to the"
 	cont "POKéMON LEAGUE!"
 	cont "Be careful!"
 	done
 
 _VictoryRoad3BattleText5::
 	text "Trainers live to"
-	line "seek stronger"
+	next "seek stronger"
 	cont "opponents!"
 	done
 
 _VictoryRoad3EndBattleText5::
 	text "Oh!"
-	line "So strong!"
+	next "So strong!"
 	prompt
 
 _VictoryRoad3AfterBattleText5::
 	text "By fighting tough"
-	line "battles, you get"
+	next "battles, you get"
 	cont "stronger!"
 	done

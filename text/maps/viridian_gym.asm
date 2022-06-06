@@ -1,26 +1,26 @@
 _ViridianGymText_74ace::
 	text "Fwahahaha! This is"
-	line "my hideout!"
+	next "my hideout!"
 
 	para "I planned to"
-	line "resurrect TEAM"
+	next "resurrect TEAM"
 	cont "ROCKET here!"
 
 	para "But, you have"
-	line "caught me again!"
+	next "caught me again!"
 	cont "So be it! This"
 	cont "time, I'm not"
 	cont "holding back!"
 
 	para "Once more, you"
-	line "shall face"
+	next "shall face"
 	cont "GIOVANNI, the"
 	cont "greatest trainer!"
 	done
 
 _ViridianGymText_74ad3::
 	text "Ha!"
-	line "That was a truly"
+	next "That was a truly"
 	cont "intense fight!"
 	cont "You have won!"
 	cont "As proof, here is"
@@ -29,79 +29,79 @@ _ViridianGymText_74ad3::
 
 _ViridianGymText_74ad9::
 	text "Having lost, I"
-	line "cannot face my"
+	next "cannot face my"
 	cont "underlings!"
 	cont "TEAM ROCKET is"
 	cont "finished forever!"
 
 	para "I will dedicate my"
-	line "life to the study"
+	next "life to the study"
 	cont "of POKéMON!"
 
 	para "Let us meet again"
-	line "some day!"
+	next "some day!"
 	cont "Farewell!"
 	done
 
 _ViridianGymText12::
 	text "The EARTHBADGE"
-	line "makes POKéMON of"
+	next "makes POKéMON of"
 	cont "any level obey!"
 
 	para "It is evidence of"
-	line "your mastery as a"
+	next "your mastery as a"
 	cont "POKéMON trainer!"
 
 	para "With it, you can"
-	line "enter the POKéMON"
+	next "enter the POKéMON"
 	cont "LEAGUE!"
 
 	para "It is my gift for"
-	line "your POKéMON"
+	next "your POKéMON"
 	cont "LEAGUE challenge!"
 	done
 
 _ReceivedTM27Text::
 	text "<PLAYER> received"
-	line "TM27!"
+	next "TM27!"
 	done
 
 _TM27ExplanationText::
 	para "TM27 is FISSURE!"
-	line "It will take out"
+	next "It will take out"
 	cont "POKéMON with just"
 	cont "one hit!"
 
 	para "I made it when I"
-	line "ran the GYM here,"
+	next "ran the GYM here,"
 	cont "too long ago..."
 	done
 
 _TM27NoRoomText::
 	text "You do not have"
-	line "space for this!"
+	next "space for this!"
 	done
 
 _ViridianGymBattleText1::
 	text "Heh! You must be"
-	line "running out of"
+	next "running out of"
 	cont "steam by now!"
 	done
 
 _ViridianGymEndBattleText1::
 	text "I"
-	line "ran out of gas!"
+	next "ran out of gas!"
 	prompt
 
 _ViridianGymAfterBattleText1::
 	text "You need power to"
-	line "keep up with our"
+	next "keep up with our"
 	cont "GYM LEADER!"
 	done
 
 _ViridianGymBattleText2::
 	text "Rrrroar! I'm"
-	line "working myself"
+	next "working myself"
 	cont "into a rage!"
 	done
 
@@ -111,29 +111,29 @@ _ViridianGymEndBattleText2::
 
 _ViridianGymAfterBattleText2::
 	text "I'm still not"
-	line "worthy!"
+	next "worthy!"
 	done
 
 _ViridianGymBattleText3::
 	text "POKéMON and I, we"
-	line "make wonderful"
+	next "make wonderful"
 	cont "music together!"
 	done
 
 _ViridianGymEndBattleText3::
 	text "You are in"
-	line "perfect harmony!"
+	next "perfect harmony!"
 	prompt
 
 _ViridianGymAfterBattleText3::
 	text "Do you know the"
-	line "identity of our"
+	next "identity of our"
 	cont "GYM LEADER?"
 	done
 
 _ViridianGymBattleText4::
 	text "Karate is the"
-	line "ultimate form of"
+	next "ultimate form of"
 	cont "martial arts!"
 	done
 
@@ -143,28 +143,28 @@ _ViridianGymEndBattleText4::
 
 _ViridianGymAfterBattleText4::
 	text "If my POKéMON"
-	line "were as good at"
+	next "were as good at"
 	cont "Karate as I..."
 	done
 
 _ViridianGymBattleText5::
 	text "The truly talented"
-	line "win with style!"
+	next "win with style!"
 	done
 
 _ViridianGymEndBattleText5::
 	text "I"
-	line "lost my grip!"
+	next "lost my grip!"
 	prompt
 
 _ViridianGymAfterBattleText5::
 	text "The LEADER will"
-	line "scold me!"
+	next "scold me!"
 	done
 
 _ViridianGymBattleText6::
 	text "I'm the KARATE"
-	line "KING! Your fate"
+	next "KING! Your fate"
 	cont "rests with me!"
 	done
 
@@ -174,65 +174,65 @@ _ViridianGymEndBattleText6::
 
 _ViridianGymAfterBattleText6::
 	text "POKéMON LEAGUE?"
-	line "You? Don't get"
+	next "You? Don't get"
 	cont "cocky!"
 	done
 
 _ViridianGymBattleText7::
 	text "Your POKéMON will"
-	line "cower at the"
+	next "cower at the"
 	cont "crack of my whip!"
 	done
 
 _ViridianGymEndBattleText7::
 	text "Yowch!"
-	line "Whiplash!"
+	next "Whiplash!"
 	prompt
 
 _ViridianGymAfterBattleText7::
 	text "Wait! I was just"
-	line "careless!"
+	next "careless!"
 	done
 
 _ViridianGymBattleText8::
 	text "VIRIDIAN GYM was"
-	line "closed for a long"
+	next "closed for a long"
 	cont "time, but now our"
 	cont "LEADER is back!"
 	done
 
 _ViridianGymEndBattleText8::
 	text "I"
-	line "was beaten?"
+	next "was beaten?"
 	prompt
 
 _ViridianGymAfterBattleText8::
 	text "You can go onto"
-	line "POKéMON LEAGUE"
+	next "POKéMON LEAGUE"
 	cont "only by defeating"
 	cont "our GYM LEADER!"
 	done
 
 _ViridianGymText_74bd4::
 	text "Yo! Champ in"
-	line "making!"
+	next "making!"
 
 	para "Even I don't know"
-	line "VIRIDIAN LEADER's"
+	next "VIRIDIAN LEADER's"
 	cont "identity!"
 
 	para "This will be the"
-	line "toughest of all"
+	next "toughest of all"
 	cont "the GYM LEADERs!"
 
 	para "I heard that the"
-	line "trainers here"
+	next "trainers here"
 	cont "like ground-type"
 	cont "POKéMON!"
 	done
 
 _ViridianGymText_74bd9::
 	text "Blow me away!"
-	line "GIOVANNI was the"
+	next "GIOVANNI was the"
 	cont "GYM LEADER here?"
 	done

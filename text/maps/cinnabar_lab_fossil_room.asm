@@ -2,13 +2,13 @@ _Lab4Text_75dc6::
 	text "Hiya!"
 
 	para "I am important"
-	line "doctor!"
+	next "doctor!"
 
 	para "I study here rare"
-	line "POKéMON fossils!"
+	next "POKéMON fossils!"
 
 	para "You! Have you a"
-	line "fossil for me?"
+	next "fossil for me?"
 	prompt
 
 _Lab4Text_75dcb::
@@ -17,61 +17,61 @@ _Lab4Text_75dcb::
 
 _Lab4Text_75dd0::
 	text "I take a little"
-	line "time!"
+	next "time!"
 
 	para "You go for walk a"
-	line "little while!"
+	next "little while!"
 	done
 
 _Lab4Text_75dd5::
 	text "Where were you?"
 
 	para "Your fossil is"
-	line "back to life!"
+	next "back to life!"
 
 	para "It was "
 	ramtext wcf4b
-	line "like I think!"
+	next "like I think!"
 	prompt
 
 _Lab4Text_610ae::
 	text "Oh! That is"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 
 	para "It is fossil of"
-	line ""
+	next ""
 	ramtext wcf4b
 	text ", a"
 	cont "POKéMON that is"
 	cont "already extinct!"
 
 	para "My Resurrection"
-	line "Machine will make"
+	next "Machine will make"
 	cont "that POKéMON live"
 	cont "again!"
 	done
 
 _Lab4Text_610b3::
 	text "So! You hurry and"
-	line "give me that!"
+	next "give me that!"
 
 	para "<PLAYER> handed"
-	line "over "
+	next "over "
 	ramtext wcd6d
 	text "!"
 	prompt
 
 _Lab4Text_610b8::
 	text "I take a little"
-	line "time!"
+	next "time!"
 
 	para "You go for walk a"
-	line "little while!"
+	next "little while!"
 	done
 
 _Lab4Text_610bd::
 	text "Aiyah! You come"
-	line "again!"
+	next "again!"
 	done

@@ -1,6 +1,6 @@
 _Mansion4BattleText1::
 	text "Uh-oh. Where am"
-	line "I now?"
+	next "I now?"
 	done
 
 _Mansion4EndBattleText1::
@@ -9,31 +9,31 @@ _Mansion4EndBattleText1::
 
 _Mansion4AfterBattleText1::
 	text "You can find stuff"
-	line "lying around."
+	next "lying around."
 	done
 
 _Mansion4BattleText2::
 	text "This place is"
-	line "ideal for a lab."
+	next "ideal for a lab."
 	done
 
 _Mansion4EndBattleText2::
 	text "What"
-	line "was that for?"
+	next "was that for?"
 	prompt
 
 _Mansion4AfterBattleText2::
 	text "I like it here!"
-	line "It's conducive to"
+	next "It's conducive to"
 	cont "my studies!"
 	done
 
 _Mansion4Text7::
 	text "Diary; Sept. 1"
-	line "MEWTWO is far too"
+	next "MEWTWO is far too"
 	cont "powerful."
 
 	para "We have failed to"
-	line "curb its vicious"
+	next "curb its vicious"
 	cont "tendencies..."
 	done

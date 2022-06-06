@@ -1,6 +1,6 @@
 _DayCareAllRightThenText::
 	text "All right then,"
-	line ""
+	next ""
 	done
 
 _DayCareComeAgainText::
@@ -9,26 +9,26 @@ _DayCareComeAgainText::
 
 _DayCareNoRoomForMonText::
 	text "You have no room"
-	line "for this POKéMON!"
+	next "for this POKéMON!"
 	done
 
 _DayCareOnlyHaveOneMonText::
 	text "You only have one"
-	line "POKéMON with you."
+	next "POKéMON with you."
 	done
 
 _DayCareCantAcceptMonWithHMText::
 	text "I can't accept a"
-	line "POKéMON that"
+	next "POKéMON that"
 	cont "knows an HM move."
 	done
 
 _DayCareHeresYourMonText::
 	text "Thank you! Here's"
-	line "your POKéMON!"
+	next "your POKéMON!"
 	prompt
 
 _DayCareNotEnoughMoneyText::
 	text "Hey, you don't"
-	line "have enough $!"
+	next "have enough $!"
 	done

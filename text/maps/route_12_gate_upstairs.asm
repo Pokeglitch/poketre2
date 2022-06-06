@@ -1,43 +1,43 @@
 _TM39PreReceiveText::
 	text "My POKéMON's"
-	line "ashes are stored"
+	next "ashes are stored"
 	cont "in POKéMON TOWER."
 
 	para "You can have this"
-	line "TM. I don't need"
+	next "TM. I don't need"
 	cont "it any more..."
 	prompt
 
 _ReceivedTM39Text::
 	text "<PLAYER> received"
-	line "TM39!"
+	next "TM39!"
 	done
 
 _TM39ExplanationText::
 	text "TM39 is a move"
-	line "called SWIFT."
+	next "called SWIFT."
 
 	para "It's very accurate,"
-	line "so use it during"
+	next "so use it during"
 	cont "battles you can't"
 	cont "afford to lose."
 	done
 
 _TM39NoRoomText::
 	text "You don't have"
-	line "room for this."
+	next "room for this."
 	done
 
 _Route12GateUpstairsText_495b8::
 	text "Looked into the"
-	line "binoculars."
+	next "binoculars."
 
 	para "A man fishing!"
 	done
 
 _Route12GateUpstairsText_495c4::
 	text "Looked into the"
-	line "binoculars."
+	next "binoculars."
 
 	para "It's POKéMON TOWER!"
 	done

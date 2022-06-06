@@ -1,6 +1,6 @@
 _CeladonHotelText1::
 	text "POKéMON? No, this"
-	line "is a hotel for"
+	next "is a hotel for"
 	cont "people."
 
 	para "We're full up."
@@ -8,14 +8,14 @@ _CeladonHotelText1::
 
 _CeladonHotelText2::
 	text "I'm on vacation"
-	line "with my brother"
+	next "with my brother"
 	cont "and boy friend."
 
 	para "CELADON is such a"
-	line "pretty city!"
+	next "pretty city!"
 	done
 
 _CeladonHotelText3::
 	text "Why did she bring"
-	line "her brother?"
+	next "her brother?"
 	done

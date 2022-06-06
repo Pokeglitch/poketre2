@@ -1,21 +1,21 @@
 _SSAnne1Text1::
 	text "Bonjour!"
-	line "I am le waiter on"
+	next "I am le waiter on"
 	cont "this ship!"
 
 	para "I will be happy"
-	line "to serve you any-"
+	next "to serve you any-"
 	cont "thing you please!"
 
 	para "Ah! Le strong"
-	line "silent type!"
+	next "silent type!"
 	done
 
 _SSAnne1Text2::
 	text "The passengers"
-	line "are restless!"
+	next "are restless!"
 
 	para "You might be"
-	line "challenged by the"
+	next "challenged by the"
 	cont "more bored ones!"
 	done

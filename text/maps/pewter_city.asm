@@ -18,24 +18,24 @@ _PewterCityText13::
 
 _PewterCityText_19427::
 	text "Psssst!"
-	line "Do you know what"
+	next "Do you know what"
 	cont "I'm doing?"
 	done
 
 _PewterCityText_1942c::
 	text "That's right!"
-	line "It's hard work!"
+	next "It's hard work!"
 	done
 
 _PewterCityText_19431::
 	text "I'm spraying REPEL"
-	line "to keep POKéMON"
+	next "to keep POKéMON"
 	cont "out of my garden!"
 	done
 
 _PewterCityText_1945d::
 	text "You're a trainer"
-	line "right? BROCK's"
+	next "right? BROCK's"
 	cont "looking for new"
 	cont "challengers!"
 	cont "Follow me!"

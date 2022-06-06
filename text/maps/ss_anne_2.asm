@@ -1,63 +1,63 @@
 _SSAnne2Text1::
 	text "This ship, she is"
-	line "a luxury liner"
+	next "a luxury liner"
 	cont "for trainers!"
 
 	para "At every port, we"
-	line "hold parties with"
+	next "hold parties with"
 	cont "invited trainers!"
 	done
 
 _SSAnneRivalBeforeBattleText::
 	text "<RIVAL>: Bonjour!"
-	line "<PLAYER>!"
+	next "<PLAYER>!"
 
 	para "Imagine seeing"
-	line "you here!"
+	next "you here!"
 
 	para "<PLAYER>, were you"
-	line "really invited?"
+	next "really invited?"
 
 	para "So how's your"
-	line "POKéDEX coming?"
+	next "POKéDEX coming?"
 
 	para "I already caught"
-	line "40 kinds, pal!"
+	next "40 kinds, pal!"
 
 	para "Different kinds"
-	line "are everywhere!"
+	next "are everywhere!"
 
 	para "Crawl around in"
-	line "grassy areas!"
+	next "grassy areas!"
 	done
 
 _SSAnneRivalDefeatedText::
 	text "Humph!"
 
 	para "At least you're"
-	line "raising your"
+	next "raising your"
 	cont "POKéMON!"
 	prompt
 
 _SSAnneRivalWonText::
 	text "<PLAYER>! What are"
-	line "you, seasick?"
+	next "you, seasick?"
 
 	para "You should shape"
-	line "up, pal!"
+	next "up, pal!"
 	prompt
 
 _SSAnneRivalCaptainText::
 	text "<RIVAL>: I heard"
-	line "there was a CUT"
+	next "there was a CUT"
 	cont "master on board."
 
 	para "But, he was just a"
-	line "seasick, old man!"
+	next "seasick, old man!"
 
 	para "But, CUT itself is"
-	line "really useful!"
+	next "really useful!"
 
 	para "You should go see"
-	line "him! Smell ya!"
+	next "him! Smell ya!"
 	done

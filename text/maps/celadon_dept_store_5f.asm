@@ -1,26 +1,26 @@
 _CeladonMart5Text1::
 	text "POKéMON ability"
-	line "enhancers can be"
+	next "enhancers can be"
 	cont "bought only here."
 
 	para "Use CALCIUM to"
-	line "increase SPECIAL"
+	next "increase SPECIAL"
 	cont "abilities."
 
 	para "Use CARBOS to"
-	line "increase SPEED."
+	next "increase SPEED."
 	done
 
 _CeladonMart5Text2::
 	text "I'm here for"
-	line "POKéMON ability"
+	next "POKéMON ability"
 	cont "enhancers."
 
 	para "PROTEIN increases"
-	line "ATTACK power."
+	next "ATTACK power."
 
 	para "IRON increases"
-	line "DEFENSE!"
+	next "DEFENSE!"
 	done
 
 _CeladonMart5Text5::

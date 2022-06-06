@@ -4,34 +4,34 @@ _Museum1FText_5c21a::
 
 _Museum1FText_5c21f::
 	text "It's $50 for a"
-	line "child's ticket."
+	next "child's ticket."
 
 	para "Would you like to"
-	line "come in?"
+	next "come in?"
 	done
 
 _Museum1FText_5c224::
 	text "Right, $50!"
-	line "Thank you!"
+	next "Thank you!"
 	done
 
 _Museum1FText_5c229::
 	text "You don't have"
-	line "enough money."
+	next "enough money."
 	prompt
 
 _Museum1FText_5c22e::
 	text "You can't sneak"
-	line "in the back way!"
+	next "in the back way!"
 
 	para "Oh, whatever!"
-	line "Do you know what"
+	next "Do you know what"
 	cont "AMBER is?"
 	done
 
 _Museum1FText_5c233::
 	text "There's a lab"
-	line "somewhere trying"
+	next "somewhere trying"
 	cont "to resurrect"
 	cont "ancient POKéMON"
 	cont "from AMBER."
@@ -39,70 +39,70 @@ _Museum1FText_5c233::
 
 _Museum1FText_5c238::
 	text "AMBER is fossil-"
-	line "ized tree sap."
+	next "ized tree sap."
 	done
 
 _Museum1FText_5c23d::
 	text "Please go to the"
-	line "other side!"
+	next "other side!"
 	done
 
 _Museum1FText_5c242::
 	text "Take plenty of"
-	line "time to look!"
+	next "time to look!"
 	done
 
 _Museum1FText_5c251::
 	text "That is one"
-	line "magnificent"
+	next "magnificent"
 	cont "fossil!"
 	done
 
 _Museum1FText_5c28e::
 	text "Ssh! I think that"
-	line "this chunk of"
+	next "this chunk of"
 	cont "AMBER contains"
 	cont "POKéMON DNA!"
 
 	para "It would be great"
-	line "if POKéMON could"
+	next "if POKéMON could"
 	cont "be resurrected"
 	cont "from it!"
 
 	para "But, my colleagues"
-	line "just ignore me!"
+	next "just ignore me!"
 
 	para "So I have a favor"
-	line "to ask!"
+	next "to ask!"
 
 	para "Take this to a"
-	line "POKéMON LAB and"
+	next "POKéMON LAB and"
 	cont "get it examined!"
 	prompt
 
 _ReceivedOldAmberText::
 	text "<PLAYER> received"
-	line "OLD AMBER!"
+	next "OLD AMBER!"
 	done
 
 _Museum1FText_5c299::
 	text "Ssh! Get the OLD"
-	line "AMBER checked!"
+	next "AMBER checked!"
 	done
 
 _Museum1FText_5c29e::
 	text "You don't have"
-	line "space for this!"
+	next "space for this!"
 	done
 
 _Museum1FText_5c2ad::
 	text "We are proud of 2"
-	line "fossils of very"
+	next "fossils of very"
 	cont "rare, prehistoric"
 	cont "POKéMON!"
 	done
 
 _Museum1FText_5c2bc::
 	text "The AMBER is"
-	line "clear and gold!"
+	next "clear and gold!"
 	done

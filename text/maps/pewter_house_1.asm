@@ -8,18 +8,18 @@ _PewterHouse1Text2::
 
 _PewterHouse1Text3::
 	text "Our POKéMON's an"
-	line "outsider, so it's"
+	next "outsider, so it's"
 	cont "hard to handle."
 
 	para "An outsider is a"
-	line "POKéMON that you"
+	next "POKéMON that you"
 	cont "get in a trade."
 
 	para "It grows fast, but"
-	line "it may ignore an"
+	next "it may ignore an"
 	cont "unskilled trainer"
 	cont "in battle!"
 
 	para "If only we had"
-	line "some BADGEs..."
+	next "some BADGEs..."
 	done

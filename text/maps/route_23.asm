@@ -1,39 +1,39 @@
 _VictoryRoadGuardText1::
 	text "You can pass here"
-	line "only if you have"
+	next "only if you have"
 	cont "the "
 	ramtext wcd6d
 	text "!"
 
 	para "You don't have the"
-	line ""
+	next ""
 	ramtext wcd6d
 	text " yet!"
 
 	para "You have to have"
-	line "it to get to"
+	next "it to get to"
 	cont "POKéMON LEAGUE!"
 	done
 
 _VictoryRoadGuardText2::
 	text "You can pass here"
-	line "only if you have"
+	next "only if you have"
 	cont "the "
 	ramtext wcd6d
 	text "!"
 
 	para "Oh! That is the"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 	done
 
 _VictoryRoadGuardText_513a3::
 	para "OK then! Please,"
-	line "go right ahead!"
+	next "go right ahead!"
 	done
 
 _Route23Text8::
 	text "VICTORY ROAD GATE"
-	line "- POKéMON LEAGUE"
+	next "- POKéMON LEAGUE"
 	done

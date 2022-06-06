@@ -1,29 +1,29 @@
 _LavenderHouse1Text_1d8d1::
 	text "That's odd, MR.FUJI"
-	line "isn't here."
+	next "isn't here."
 	cont "Where'd he go?"
 	done
 
 _LavenderHouse1Text_1d8d6::
 	text "MR.FUJI had been"
-	line "praying alone for"
+	next "praying alone for"
 	cont "CUBONE's mother."
 	done
 
 _LavenderHouse1Text_1d8f4::
 	text "This is really"
-	line "MR.FUJI's house."
+	next "MR.FUJI's house."
 
 	para "He's really kind!"
 
 	para "He looks after"
-	line "abandoned and"
+	next "abandoned and"
 	cont "orphaned POKéMON!"
 	done
 
 _LavenderHouse1Text_1d8f9::
 	text "It's so warm!"
-	line "POKéMON are so"
+	next "POKéMON are so"
 	cont "nice to hug!"
 	done
 
@@ -39,49 +39,49 @@ _LavenderHouse1Text_1d94c::
 	text "MR.FUJI: <PLAYER>."
 
 	para "Your POKéDEX quest"
-	line "may fail without"
+	next "may fail without"
 	cont "love for your"
 	cont "POKéMON."
 
 	para "I think this may"
-	line "help your quest."
+	next "help your quest."
 	prompt
 
 _ReceivedFluteText::
 	text "<PLAYER> received"
-	line "a "
+	next "a "
 	ramtext wcf4b
 	text "!"
 	done
 
 _FluteExplanationText::
 	para "Upon hearing #"
-	line "FLUTE, sleeping"
+	next "FLUTE, sleeping"
 	cont "POKéMON will"
 	cont "spring awake."
 
 	para "It works on all"
-	line "sleeping POKéMON."
+	next "sleeping POKéMON."
 	done
 
 _FluteNoRoomText::
 	text "You must make"
-	line "room for this!"
+	next "room for this!"
 	done
 
 _MrFujiAfterFluteText::
 	text "MR.FUJI: Has my"
-	line "FLUTE helped you?"
+	next "FLUTE helped you?"
 	done
 
 _LavenderHouse1Text6::
 	text "POKéMON Monthly"
-	line "Grand Prize"
+	next "Grand Prize"
 	cont "Drawing!"
 
 	para "The application"
-	line "form is..."
+	next "form is..."
 
 	para "Gone! It's been"
-	line "clipped out!"
+	next "clipped out!"
 	done

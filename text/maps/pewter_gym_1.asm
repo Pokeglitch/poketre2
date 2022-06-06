@@ -1,18 +1,18 @@
 _PewterGymText_5c49e::
 	text "I'm BROCK!"
-	line "I'm PEWTER's GYM"
+	next "I'm PEWTER's GYM"
 	cont "LEADER!"
 
 	para "I believe in rock"
-	line "hard defense and"
+	next "hard defense and"
 	cont "determination!"
 
 	para "That's why my"
-	line "POKéMON are all"
+	next "POKéMON are all"
 	cont "the rock-type!"
 
 	para "Do you still want"
-	line "to challenge me?"
+	next "to challenge me?"
 	cont "Fine then! Show"
 	cont "me your best!"
 	done

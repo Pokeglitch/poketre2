@@ -1,42 +1,42 @@
 _ProgrammerText::
 	text "Me? I'm the"
-	line "programmer!"
+	next "programmer!"
 	done
 
 _GraphicArtistText::
 	text "I'm the graphic"
-	line "artist!"
+	next "artist!"
 	cont "I drew you!"
 	done
 
 _WriterText::
 	text "I wrote the story!"
-	line "Isn't ERIKA cute?"
+	next "Isn't ERIKA cute?"
 
 	para "I like MISTY a"
-	line "lot too!"
+	next "lot too!"
 
 	para "Oh, and SABRINA,"
-	line "I like her!"
+	next "I like her!"
 	done
 
 _GameDesignerText::
 	text "Is that right?"
 
 	para "I'm the game"
-	line "designer!"
+	next "designer!"
 
 	para "Filling up your"
-	line "POKéDEX is tough,"
+	next "POKéDEX is tough,"
 	cont "but don't quit!"
 
 	para "When you finish,"
-	line "come tell me!"
+	next "come tell me!"
 	done
 
 _CompletedDexText::
 	text "Wow! Excellent!"
-	line "You completed"
+	next "You completed"
 	cont "your POKéDEX!"
 	cont "Congratulations!"
 	cont "..."
@@ -44,24 +44,24 @@ _CompletedDexText::
 
 _CeladonMansion3Text5::
 	text "It's the game"
-	line "program! Messing"
+	next "program! Messing"
 	cont "with it could bug"
 	cont "out the game!"
 	done
 
 _CeladonMansion3Text6::
 	text "Someone's playing"
-	line "a game instead of"
+	next "a game instead of"
 	cont "working!"
 	done
 
 _CeladonMansion3Text7::
 	text "It's the script!"
-	line "Better not look"
+	next "Better not look"
 	cont "at the ending!"
 	done
 
 _CeladonMansion3Text8::
 	text "GAME FREAK"
-	line "Development Room"
+	next "Development Room"
 	done

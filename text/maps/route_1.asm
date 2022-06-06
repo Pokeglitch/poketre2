@@ -1,50 +1,50 @@
 _Route1ViridianMartSampleText::
 	text "Hi! I work at a"
-	line "POKéMON MART."
+	next "POKéMON MART."
 
 	para "It's a convenient"
-	line "shop, so please"
+	next "shop, so please"
 	cont "visit us in"
 	cont "VIRIDIAN CITY."
 
 	para "I know, I'll give"
-	line "you a sample!"
+	next "you a sample!"
 	cont "Here you go!"
 	prompt
 
 _Route1Text_1cae8::
 	text "<PLAYER> got"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "!"
 	done
 
 _Route1Text_1caee::
 	text "We also carry"
-	line "POKé BALLs for"
+	next "POKé BALLs for"
 	cont "catching POKéMON!"
 	done
 
 _Route1Text_1caf3::
 	text "You have too much"
-	line "stuff with you!"
+	next "stuff with you!"
 	done
 
 _Route1Text2::
 	text "See those ledges"
-	line "along the road?"
+	next "along the road?"
 
 	para "It's a bit scary,"
-	line "but you can jump"
+	next "but you can jump"
 	cont "from them."
 
 	para "You can get back"
-	line "to PALLET TOWN"
+	next "to PALLET TOWN"
 	cont "quicker that way."
 	done
 
 _Route1Text3::
 	text "ROUTE 1"
-	line "PALLET TOWN -"
+	next "PALLET TOWN -"
 	cont "VIRIDIAN CITY"
 	done

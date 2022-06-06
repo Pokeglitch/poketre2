@@ -1,33 +1,33 @@
 _Mansion2BattleText1::
 	text "I can't get out!"
-	line "This old place is"
+	next "This old place is"
 	cont "one big puzzle!"
 	done
 
 _Mansion2EndBattleText1::
 	text "Oh no!"
-	line "My bag of loot!"
+	next "My bag of loot!"
 	prompt
 
 _Mansion2AfterBattleText1::
 	text "Switches open and"
-	line "close alternating"
+	next "close alternating"
 	cont "sets of doors!"
 	done
 
 _Mansion2Text3::
 	text "Diary: July 5"
-	line "Guyana,"
+	next "Guyana,"
 	cont "South America"
 
 	para "A new POKéMON was"
-	line "discovered deep"
+	next "discovered deep"
 	cont "in the jungle."
 	done
 
 _Mansion2Text4::
 	text "Diary: July 10"
-	line "We christened the"
+	next "We christened the"
 	cont "newly discovered"
 	cont "POKéMON, MEW."
 	done

@@ -26,13 +26,13 @@ _CardKeySuccessText1::
 	done
 
 _CardKeySuccessText2::
-	line "The CARD KEY"
+	next "The CARD KEY"
 	cont "opened the door!"
 	done
 
 _CardKeyFailText::
 	text "Darn! It needs a"
-	line "CARD KEY!"
+	next "CARD KEY!"
 	done
 
 _TrainerNameText::
@@ -46,12 +46,12 @@ _NoNibbleText::
 
 _NothingHereText::
 	text "Looks like there's"
-	line "nothing here."
+	next "nothing here."
 	prompt
 
 _ItsABiteText::
 	text "Oh!"
-	line "It's a bite!"
+	next "It's a bite!"
 	prompt
 
 _ExclamationText::
@@ -60,45 +60,45 @@ _ExclamationText::
 
 _GroundRoseText::
 	text "Ground rose up"
-	line "somewhere!"
+	next "somewhere!"
 	done
 
 _BoulderText::
 	text "This requires"
-	line "STRENGTH to move!"
+	next "STRENGTH to move!"
 	done
 
 _MartSignText::
 	text "All your item"
-	line "needs fulfilled!"
+	next "needs fulfilled!"
 	cont "POKéMON MART"
 	done
 
 _PokeCenterSignText::
 	text "Heal Your POKéMON!"
-	line "POKéMON CENTER"
+	next "POKéMON CENTER"
 	done
 
 _FoundItemText::
 	text "<PLAYER> found"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "!"
 	done
 
 _NoMoreRoomForItemText::
 	text "No more room for"
-	line "items!"
+	next "items!"
 	done
 
 _OaksAideHiText::
 	text "Hi! Remember me?"
-	line "I'm PROF.OAK's"
+	next "I'm PROF.OAK's"
 	cont "AIDE!"
 
 	para "If you caught "
 	numtext hOaksAideRequirement, 3, 1
-	line "kinds of POKéMON,"
+	next "kinds of POKéMON,"
 	cont "I'm supposed to"
 	cont "give you an"
 	cont ""
@@ -106,7 +106,7 @@ _OaksAideHiText::
 	text "!"
 
 	para "So, <PLAYER>! Have"
-	line "you caught at"
+	next "you caught at"
 	cont "least "
 	numtext hOaksAideRequirement, 3, 1
 	text " kinds of"
@@ -115,7 +115,7 @@ _OaksAideHiText::
 
 _OaksAideUhOhText::
 	text "Let's see..."
-	line "Uh-oh! You have"
+	next "Uh-oh! You have"
 	cont "caught only "
 	numtext hOaksAideNumMonsOwned, 3, 1
 	cont "kinds of POKéMON!"
@@ -123,7 +123,7 @@ _OaksAideUhOhText::
 	para "You need "
 	numtext hOaksAideRequirement, 3, 1
 	text " kinds"
-	line "if you want the"
+	next "if you want the"
 	cont ""
 	ramtext wOaksAideRewardItemName
 	text "."
@@ -134,7 +134,7 @@ _OaksAideComeBackText::
 
 	para "When you get "
 	numtext hOaksAideRequirement, 3, 1
-	line "kinds, come back"
+	next "kinds, come back"
 	cont "for "
 	ramtext wOaksAideRewardItemName
 	text "."
@@ -142,7 +142,7 @@ _OaksAideComeBackText::
 
 _OaksAideHereYouGoText::
 	text "Great! You have"
-	line "caught "
+	next "caught "
 	numtext hOaksAideNumMonsOwned, 3, 1
 	text " kinds "
 	cont "of POKéMON!"
@@ -153,14 +153,14 @@ _OaksAideHereYouGoText::
 
 _OaksAideGotItemText::
 	text "<PLAYER> got the"
-	line ""
+	next ""
 	ramtext wOaksAideRewardItemName
 	text "!"
 	done
 
 _OaksAideNoRoomText::
 	text "Oh! I see you"
-	line "don't have any"
+	next "don't have any"
 	cont "room for the"
 	cont ""
 	ramtext wOaksAideRewardItemName
@@ -232,14 +232,14 @@ INCLUDE "text/maps/seafoam_islands_b4f.asm"
 _AIBattleWithdrawText::
 	ramtext wTrainerName
 	text " with-"
-	line "drew "
+	next "drew "
 	ramtext wEnemyMonNick
 	text "!"
 	prompt
 
 _AIBattleUseItemText::
 	ramtext wTrainerName
-	line "used "
+	next "used "
 	ramtext wcd6d
 	cont "on "
 	ramtext wEnemyMonNick
@@ -249,14 +249,14 @@ _AIBattleUseItemText::
 _TradeWentToText::
 	ramtext wcf4b
 	text " went"
-	line "to "
+	next "to "
 	ramtext wGrassRate
 	text "."
 	done
 
 _TradeForText::
 	text "For <PLAYER>'s"
-	line ""
+	next ""
 	ramtext wcf4b
 	text ","
 	done
@@ -264,7 +264,7 @@ _TradeForText::
 _TradeSendsText::
 	ramtext wGrassRate
 	text " sends"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "."
 	done
@@ -272,18 +272,18 @@ _TradeSendsText::
 _TradeWavesFarewellText::
 	ramtext wGrassRate
 	text " waves"
-	line "farewell as"
+	next "farewell as"
 	done
 
 _TradeTransferredText::
 	ramtext wcd6d
 	text " is"
-	line "transferred."
+	next "transferred."
 	done
 
 _TradeTakeCareText::
 	text "Take good care of"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "."
 	done
@@ -291,30 +291,30 @@ _TradeTakeCareText::
 _TradeWillTradeText::
 	ramtext wGrassRate
 	text " will"
-	line "trade "
+	next "trade "
 	ramtext wcd6d
 	done
 
 _TradeforText::
 	text "for <PLAYER>'s"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "."
 	done
 
 _PlaySlotMachineText::
 	text "A slot machine!"
-	line "Want to play?"
+	next "Want to play?"
 	done
 
 _OutOfCoinsSlotMachineText::
 	text "Darn!"
-	line "Ran out of coins!"
+	next "Ran out of coins!"
 	done
 
 _BetHowManySlotMachineText::
 	text "Bet how many"
-	line "coins?"
+	next "coins?"
 	done
 
 _StartSlotMachineText::
@@ -323,17 +323,17 @@ _StartSlotMachineText::
 
 _NotEnoughCoinsSlotMachineText::
 	text "Not enough"
-	line "coins!"
+	next "coins!"
 	prompt
 
 _OneMoreGoSlotMachineText::
 	text "One more "
-	line "go?"
+	next "go?"
 	done
 
 _LinedUpText::
 	text " lined up!"
-	line "Scored "
+	next "Scored "
 	ramtext wcf4b
 	text " coins!"
 	done
@@ -349,7 +349,7 @@ _YeahText::
 _DexSeenOwnedText::
 	text "POKéDEX   Seen:"
 	numtext wDexRatingNumMonsSeen, 3, 1
-	line "         Owned:"
+	next "         Owned:"
 	numtext wDexRatingNumMonsOwned, 3, 1
 	db "@"
 
@@ -359,28 +359,28 @@ _DexRatingText::
 
 _GymStatueText1::
 	ramtext wGymCityName
-	line "POKéMON GYM"
+	next "POKéMON GYM"
 	cont "LEADER: "
 	ramtext wGymLeaderName
 
 	para "WINNING TRAINERS:"
-	line "<RIVAL>"
+	next "<RIVAL>"
 	done
 
 _GymStatueText2::
 	ramtext wGymCityName
-	line "POKéMON GYM"
+	next "POKéMON GYM"
 	cont "LEADER: "
 	ramtext wGymLeaderName
 
 	para "WINNING TRAINERS:"
-	line "<RIVAL>"
+	next "<RIVAL>"
 	cont "<PLAYER>"
 	done
 
 _ViridianCityPokecenterGuyText::
 	text "POKéMON CENTERs"
-	line "heal your tired,"
+	next "heal your tired,"
 	cont "hurt or fainted"
 	cont "POKéMON!"
 	done
@@ -389,143 +389,143 @@ _PewterCityPokecenterGuyText::
 	text "Yawn!"
 
 	para "When JIGGLYPUFF"
-	line "sings, POKéMON"
+	next "sings, POKéMON"
 	cont "get drowsy..."
 
 	para "...Me too..."
-	line "Snore..."
+	next "Snore..."
 	done
 
 _CeruleanPokecenterGuyText::
 	text "BILL has lots of"
-	line "POKéMON!"
+	next "POKéMON!"
 
 	para "He collects rare"
-	line "ones too!"
+	next "ones too!"
 	done
 
 _LavenderPokecenterGuyText::
 	text "CUBONEs wear"
-	line "skulls, right?"
+	next "skulls, right?"
 
 	para "People will pay a"
-	line "lot for one!"
+	next "lot for one!"
 	done
 
 _MtMoonPokecenterBenchGuyText::
 	text "If you have too"
-	line "many POKéMON, you"
+	next "many POKéMON, you"
 	cont "should store them"
 	cont "via PC!"
 	done
 
 _RockTunnelPokecenterGuyText::
 	text "I heard that"
-	line "GHOSTs haunt"
+	next "GHOSTs haunt"
 	cont "LAVENDER TOWN!"
 	done
 
 _UnusedBenchGuyText1::
 	text "I wish I could"
-	line "catch POKéMON."
+	next "catch POKéMON."
 	done
 
 _UnusedBenchGuyText2::
 	text "I'm tired from"
-	line "all the fun..."
+	next "all the fun..."
 	done
 
 _UnusedBenchGuyText3::
 	text "SILPH's manager"
-	line "is hiding in the"
+	next "is hiding in the"
 	cont "SAFARI ZONE."
 	done
 
 _VermilionPokecenterGuyText::
 	text "It is true that a"
-	line "higher level"
+	next "higher level"
 	cont "POKéMON will be"
 	cont "more powerful..."
 
 	para "But, all POKéMON"
-	line "will have weak"
+	next "will have weak"
 	cont "points against"
 	cont "specific types."
 
 	para "So, there is no"
-	line "universally"
+	next "universally"
 	cont "strong POKéMON."
 	done
 
 _CeladonCityPokecenterGuyText::
 	text "If I had a BIKE,"
-	line "I would go to"
+	next "I would go to"
 	cont "CYCLING ROAD!"
 	done
 
 _FuchsiaCityPokecenterGuyText::
 	text "If you're studying "
-	line "POKéMON, visit"
+	next "POKéMON, visit"
 	cont "the SAFARI ZONE."
 
 	para "It has all sorts"
-	line "of rare POKéMON."
+	next "of rare POKéMON."
 	done
 
 _CinnabarPokecenterGuyText::
 	text "POKéMON can still"
-	line "learn techniques"
+	next "learn techniques"
 	cont "after canceling"
 	cont "evolution."
 
 	para "Evolution can wait"
-	line "until new moves"
+	next "until new moves"
 	cont "have been learned."
 	done
 
 _SaffronCityPokecenterGuyText1::
 	text "It would be great"
-	line "if the ELITE FOUR"
+	next "if the ELITE FOUR"
 	cont "came and stomped"
 	cont "TEAM ROCKET!"
 	done
 
 _SaffronCityPokecenterGuyText2::
 	text "TEAM ROCKET took"
-	line "off! We can go"
+	next "off! We can go"
 	cont "out safely again!"
 	cont "That's great!"
 	done
 
 _CeladonCityHotelText::
 	text "My sis brought me"
-	line "on this vacation!"
+	next "on this vacation!"
 	done
 
 _BookcaseText::
 	text "Crammed full of"
-	line "POKéMON books!"
+	next "POKéMON books!"
 	done
 
 _NewBicycleText::
 	text "A shiny new"
-	line "BICYCLE!"
+	next "BICYCLE!"
 	done
 
 _PushStartText::
 	text "Push START to"
-	line "open the MENU!"
+	next "open the MENU!"
 	done
 
 _SaveOptionText::
 	text "The SAVE option is"
-	line "on the MENU"
+	next "on the MENU"
 	cont "screen."
 	done
 
 _StrengthsAndWeaknessesText::
 	text "All POKéMON types"
-	line "have strong and"
+	next "have strong and"
 	cont "weak points"
 	cont "against others."
 	done
@@ -540,59 +540,59 @@ _CinnabarGymQuizIntroText::
 	text "POKéMON Quiz!"
 
 	para "Get it right and"
-	line "the door opens to"
+	next "the door opens to"
 	cont "the next room!"
 
 	para "Get it wrong and"
-	line "face a trainer!"
+	next "face a trainer!"
 
 	para "If you want to"
-	line "conserve your"
+	next "conserve your"
 	cont "POKéMON for the"
 	cont "GYM LEADER..."
 
 	para "Then get it right!"
-	line "Here we go!"
+	next "Here we go!"
 	prompt
 
 _CinnabarQuizQuestionsText1::
 	text "CATERPIE evolves"
-	line "into BUTTERFREE?"
+	next "into BUTTERFREE?"
 	done
 
 _CinnabarQuizQuestionsText2::
 	text "There are 9"
-	line "certified POKéMON"
+	next "certified POKéMON"
 	cont "LEAGUE BADGEs?"
 	done
 
 _CinnabarQuizQuestionsText3::
 	text "POLIWAG evolves 3"
-	line "times?"
+	next "times?"
 	done
 
 _CinnabarQuizQuestionsText4::
 	text "Are thunder moves"
-	line "effective against"
+	next "effective against"
 	cont "ground element-"
 	cont "type POKéMON?"
 	done
 
 _CinnabarQuizQuestionsText5::
 	text "POKéMON of the"
-	line "same kind and"
+	next "same kind and"
 	cont "level are not"
 	cont "identical?"
 	done
 
 _CinnabarQuizQuestionsText6::
 	text "TM28 contains"
-	line "TOMBSTONER?"
+	next "TOMBSTONER?"
 	done
 
 _CinnabarGymQuizCorrectText::
 	text "You're absolutely"
-	line "correct!"
+	next "correct!"
 
 	para "Go on through!"
 	done
@@ -611,76 +611,76 @@ _MagazinesText::
 
 _BillsHouseMonitorText::
 	text "TELEPORTER is"
-	line "displayed on the"
+	next "displayed on the"
 	cont "PC monitor."
 	done
 
 _BillsHouseInitiatedText::
 	text "<PLAYER> initiated"
-	line "TELEPORTER's Cell"
+	next "TELEPORTER's Cell"
 	cont "Separator!"
 	done
 
 _BillsHousePokemonListText1::
 	text "BILL's favorite"
-	line "POKéMON list!"
+	next "POKéMON list!"
 	prompt
 
 _BillsHousePokemonListText2::
 	text "Which POKéMON do"
-	line "you want to see?"
+	next "you want to see?"
 	done
 
 _OakLabEmailText::
 	text "There's an e-mail"
-	line "message here!"
+	next "message here!"
 
 	para "..."
 
 	para "Calling all"
-	line "POKéMON trainers!"
+	next "POKéMON trainers!"
 
 	para "The elite trainers"
-	line "of POKéMON LEAGUE"
+	next "of POKéMON LEAGUE"
 	cont "are ready to take"
 	cont "on all comers!"
 
 	para "Bring your best"
-	line "POKéMON and see"
+	next "POKéMON and see"
 	cont "how you rate as a"
 	cont "trainer!"
 
 	para "POKéMON LEAGUE HQ"
-	line "INDIGO PLATEAU"
+	next "INDIGO PLATEAU"
 
 	para "PS: PROF.OAK,"
-	line "please visit us!"
+	next "please visit us!"
 	cont "..."
 	done
 
 _GameCornerCoinCaseText::
 	text "A COIN CASE is"
-	line "required!"
+	next "required!"
 	done
 
 _GameCornerNoCoinsText::
 	text "You don't have"
-	line "any coins!"
+	next "any coins!"
 	done
 
 _GameCornerOutOfOrderText::
 	text "OUT OF ORDER"
-	line "This is broken."
+	next "This is broken."
 	done
 
 _GameCornerOutToLunchText::
 	text "OUT TO LUNCH"
-	line "This is reserved."
+	next "This is reserved."
 	done
 
 _GameCornerSomeonesKeysText::
 	text "Someone's keys!"
-	line "They'll be back."
+	next "They'll be back."
 	done
 
 _JustAMomentText::
@@ -689,15 +689,15 @@ _JustAMomentText::
 
 TMNotebookText::
 	text "It's a pamphlet"
-	line "on TMs."
+	next "on TMs."
 
 	para "..."
 
 	para "There are 50 TMs"
-	line "in all."
+	next "in all."
 
 	para "There are also 5"
-	line "HMs that can be"
+	next "HMs that can be"
 	cont "used repeatedly."
 
 	para "SILPH CO."
@@ -709,24 +709,24 @@ _TurnPageText::
 
 _ViridianSchoolNotebookText5::
 	text "GIRL: Hey! Don't"
-	line "look at my notes!"
+	next "look at my notes!"
 	done
 
 _ViridianSchoolNotebookText1::
 	text "Looked at the"
-	line "notebook!"
+	next "notebook!"
 
 	para "First page..."
 
 	para "POKé BALLs are"
-	line "used to catch"
+	next "used to catch"
 	cont "POKéMON."
 
 	para "Up to 6 POKéMON"
-	line "can be carried."
+	next "can be carried."
 
 	para "People who raise"
-	line "and make POKéMON"
+	next "and make POKéMON"
 	cont "fight are called"
 	cont "POKéMON trainers."
 	prompt
@@ -735,12 +735,12 @@ _ViridianSchoolNotebookText2::
 	text "Second page..."
 
 	para "A healthy POKéMON"
-	line "may be hard to"
+	next "may be hard to"
 	cont "catch, so weaken"
 	cont "it first!"
 
 	para "Poison, burns and"
-	line "other damage are"
+	next "other damage are"
 	cont "effective!"
 	prompt
 
@@ -748,12 +748,12 @@ _ViridianSchoolNotebookText3::
 	text "Third page..."
 
 	para "POKéMON trainers"
-	line "seek others to"
+	next "seek others to"
 	cont "engage in POKéMON"
 	cont "fights."
 
 	para "Battles are"
-	line "constantly fought"
+	next "constantly fought"
 	cont "at POKéMON GYMs."
 	prompt
 
@@ -761,26 +761,26 @@ _ViridianSchoolNotebookText4::
 	text "Fourth page..."
 
 	para "The goal for"
-	line "POKéMON trainers"
+	next "POKéMON trainers"
 	cont "is to beat the "
 	cont "top 8 POKéMON"
 	cont "GYM LEADERs."
 
 	para "Do so to earn the"
-	line "right to face..."
+	next "right to face..."
 
 	para "The ELITE FOUR of"
-	line "POKéMON LEAGUE!"
+	next "POKéMON LEAGUE!"
 	prompt
 
 _EnemiesOnEverySideText::
 	text "Enemies on every"
-	line "side!"
+	next "side!"
 	done
 
 _WhatGoesAroundComesAroundText::
 	text "What goes around"
-	line "comes around!"
+	next "comes around!"
 	done
 
 _FightingDojoText::
@@ -789,34 +789,34 @@ _FightingDojoText::
 
 _IndigoPlateauHQText::
 	text "INDIGO PLATEAU"
-	line "POKéMON LEAGUE HQ"
+	next "POKéMON LEAGUE HQ"
 	done
 
 _RedBedroomSNESText::
 	text "<PLAYER> is"
-	line "playing the SNES!"
+	next "playing the SNES!"
 	cont "...Okay!"
 	cont "It's time to go!"
 	done
 
 _Route15UpstairsBinocularsText::
 	text "Looked into the"
-	line "binoculars..."
+	next "binoculars..."
 
 	para "A large, shining"
-	line "bird is flying"
+	next "bird is flying"
 	cont "toward the sea."
 	done
 
 _AerodactylFossilText::
 	text "AERODACTYL Fossil"
-	line "A primitive and"
+	next "A primitive and"
 	cont "rare POKéMON."
 	done
 
 _KabutopsFossilText::
 	text "KABUTOPS Fossil"
-	line "A primitive and"
+	next "A primitive and"
 	cont "rare POKéMON."
 	done
 
@@ -824,17 +824,17 @@ _LinkCableHelpText1::
 	text "TRAINER TIPS"
 
 	para "Using a Game Link"
-	line "Cable"
+	next "Cable"
 	prompt
 
 _LinkCableHelpText2::
 	text "Which heading do"
-	line "you want to read?"
+	next "you want to read?"
 	done
 
 _LinkCableInfoText1::
 	text "When you have"
-	line "linked your GAME"
+	next "linked your GAME"
 	cont "BOY with another"
 	cont "GAME BOY, talk to"
 	cont "the attendant on"
@@ -844,151 +844,151 @@ _LinkCableInfoText1::
 
 _LinkCableInfoText2::
 	text "COLOSSEUM lets"
-	line "you play against"
+	next "you play against"
 	cont "a friend."
 	prompt
 
 _LinkCableInfoText3::
 	text "TRADE CENTER is"
-	line "used for trading"
+	next "used for trading"
 	cont "POKéMON."
 	prompt
 
 _ViridianSchoolBlackboardText1::
 	text "The blackboard"
-	line "describes POKéMON"
+	next "describes POKéMON"
 	cont "STATUS changes"
 	cont "during battles."
 	prompt
 
 _ViridianSchoolBlackboardText2::
 	text "Which heading do"
-	line "you want to read?"
+	next "you want to read?"
 	done
 
 _ViridianBlackboardSleepText::
 	text "A POKéMON can't"
-	line "attack if it's"
+	next "attack if it's"
 	cont "asleep!"
 
 	para "POKéMON will stay"
-	line "asleep even after"
+	next "asleep even after"
 	cont "battles."
 
 	para "Use AWAKENING to"
-	line "wake them up!"
+	next "wake them up!"
 	prompt
 
 _ViridianBlackboardPoisonText::
 	text "When poisoned, a"
-	line "POKéMON's health"
+	next "POKéMON's health"
 	cont "steadily drops."
 
 	para "Poison lingers"
-	line "after battles."
+	next "after battles."
 
 	para "Use an ANTIDOTE"
-	line "to cure poison!"
+	next "to cure poison!"
 	prompt
 
 _ViridianBlackboardPrlzText::
 	text "Paralysis could"
-	line "make POKéMON"
+	next "make POKéMON"
 	cont "moves misfire!"
 
 	para "Paralysis remains"
-	line "after battles."
+	next "after battles."
 
 	para "Use PARLYZ HEAL"
-	line "for treatment!"
+	next "for treatment!"
 	prompt
 
 _ViridianBlackboardBurnText::
 	text "A burn reduces"
-	line "power and speed."
+	next "power and speed."
 	cont "It also causes"
 	cont "ongoing damage."
 
 	para "Burns remain"
-	line "after battles."
+	next "after battles."
 
 	para "Use BURN HEAL to"
-	line "cure a burn!"
+	next "cure a burn!"
 	prompt
 
 _ViridianBlackboardFrozenText::
 	text "If frozen, a"
-	line "POKéMON becomes"
+	next "POKéMON becomes"
 	cont "totally immobile!"
 
 	para "It stays frozen"
-	line "even after the"
+	next "even after the"
 	cont "battle ends."
 
 	para "Use ICE HEAL to"
-	line "thaw out POKéMON!"
+	next "thaw out POKéMON!"
 	prompt
 
 _VermilionGymTrashText::
 	text "Nope, there's"
-	line "only trash here."
+	next "only trash here."
 	done
 
 _VermilionGymTrashSuccessText1::
 	text "Hey! There's a"
-	line "switch under the"
+	next "switch under the"
 	cont "trash!"
 	cont "Turn it on!"
 
 	para "The 1st electric"
-	line "lock opened!"
+	next "lock opened!"
 	done
 
 _VermilionGymTrashSuccessText2::
 	text "Hey! There's"
-	line "another switch"
+	next "another switch"
 	cont "under the trash!"
 	cont "Turn it on!"
 	prompt
 
 _VermilionGymTrashSuccessText3::
 	text "The 2nd electric"
-	line "lock opened!"
+	next "lock opened!"
 
 	para "The motorized door"
-	line "opened!"
+	next "opened!"
 	done
 
 _VermilionGymTrashFailText::
 	text "Nope! There's"
-	line "only trash here."
+	next "only trash here."
 	cont "Hey! The electric"
 	cont "locks were reset!"
 	done
 
 _FoundHiddenItemText::
 	text "<PLAYER> found"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 	done
 
 _HiddenItemBagFullText::
 	text "But, <PLAYER> has"
-	line "no more room for"
+	next "no more room for"
 	cont "other items!"
 	done
 
 _FoundHiddenCoinsText::
 	text "<PLAYER> found"
-	line ""
+	next ""
 	bcdtext hCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
 	db " coins!"
 	done
 
 _DroppedHiddenCoinsText::
 	para "Oops! Dropped"
-	line "some coins!"
+	next "some coins!"
 	done
 
 _IndigoPlateauStatuesText1::
@@ -997,29 +997,29 @@ _IndigoPlateauStatuesText1::
 
 _IndigoPlateauStatuesText2::
 	text "The ultimate goal"
-	line "of trainers!"
+	next "of trainers!"
 	cont "POKéMON LEAGUE HQ"
 	done
 
 _IndigoPlateauStatuesText3::
 	text "The highest"
-	line "POKéMON authority"
+	next "POKéMON authority"
 	cont "POKéMON LEAGUE HQ"
 	done
 
 _PokemonBooksText::
 	text "Crammed full of"
-	line "POKéMON books!"
+	next "POKéMON books!"
 	done
 
 _DiglettSculptureText::
 	text "It's a sculpture"
-	line "of DIGLETT."
+	next "of DIGLETT."
 	done
 
 _ElevatorText::
 	text "This is an"
-	line "elevator."
+	next "elevator."
 	done
 
 _TownMapText::
@@ -1028,65 +1028,65 @@ _TownMapText::
 
 _PokemonStuffText::
 	text "Wow! Tons of"
-	line "POKéMON stuff!"
+	next "POKéMON stuff!"
 	done
 
 _OutOfSafariBallsText::
 	text "PA: Ding-dong!"
 
 	para "You are out of"
-	line "SAFARI BALLs!"
+	next "SAFARI BALLs!"
 	prompt
 
 _WildRanText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	line "ran!"
+	next "ran!"
 	prompt
 
 _EnemyRanText::
 	text "Enemy "
 	ramtext wEnemyMonNick
-	line "ran!"
+	next "ran!"
 	prompt
 
 _HurtByPoisonText::
 	text "<USER>'s"
-	line "hurt by poison!"
+	next "hurt by poison!"
 	prompt
 
 _HurtByBurnText::
 	text "<USER>'s"
-	line "hurt by the burn!"
+	next "hurt by the burn!"
 	prompt
 
 _HurtByLeechSeedText::
 	text "LEECH SEED saps"
-	line "<USER>!"
+	next "<USER>!"
 	prompt
 
 _EnemyMonFaintedText::
 	text "Enemy "
 	ramtext wEnemyMonNick
-	line "fainted!"
+	next "fainted!"
 	prompt
 
 _MoneyForWinningText::
 	text "<PLAYER> got $"
 	bcdtext wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
-	line "for winning!"
+	next "for winning!"
 	prompt
 
 _TrainerDefeatedText::
 	text "<PLAYER> defeated"
-	line ""
+	next ""
 	ramtext wTrainerName
 	text "!"
 	prompt
 
 _PlayerMonFaintedText::
 	ramtext wBattleMonNick
-	line "fainted!"
+	next "fainted!"
 	prompt
 
 _UseNextMonText::
@@ -1095,20 +1095,20 @@ _UseNextMonText::
 
 _Sony1WinText::
 	text "<RIVAL>: Yeah! Am"
-	line "I great or what?"
+	next "I great or what?"
 	prompt
 
 _PlayerBlackedOutText2::
 	text "<PLAYER> is out of"
-	line "useable POKéMON!"
+	next "useable POKéMON!"
 
 	para "<PLAYER> blacked"
-	line "out!"
+	next "out!"
 	prompt
 
 _LinkBattleLostText::
 	text "<PLAYER> lost to"
-	line ""
+	next ""
 	ramtext wTrainerName
 	text "!"
 	prompt
@@ -1116,26 +1116,26 @@ _LinkBattleLostText::
 _TrainerAboutToUseText::
 	ramtext wTrainerName
 	text " is"
-	line "about to use"
+	next "about to use"
 	cont ""
 	ramtext wEnemyMonNick
 	text "!"
 
 	para "Will <PLAYER>"
-	line "change POKéMON?"
+	next "change POKéMON?"
 	done
 
 _TrainerSentOutText::
 	ramtext wTrainerName
 	text " sent"
-	line "out "
+	next "out "
 	ramtext wEnemyMonNick
 	text "!"
 	done
 
 _NoWillText::
 	text "There's no will"
-	line "to fight!"
+	next "to fight!"
 	prompt
 
 _CantEscapeText::
@@ -1144,7 +1144,7 @@ _CantEscapeText::
 
 _NoRunningText::
 	text "No! There's no"
-	line "running from a"
+	next "running from a"
 	cont "trainer battle!"
 	prompt
 
@@ -1154,34 +1154,34 @@ _GotAwayText::
 
 _ItemsCantBeUsedHereText::
 	text "Items can't be"
-	line "used here."
+	next "used here."
 	prompt
 
 _AlreadyOutText::
 	ramtext wBattleMonNick
 	text " is"
-	line "already out!"
+	next "already out!"
 	prompt
 
 _MoveNoPPText::
 	text "No PP left for"
-	line "this move!"
+	next "this move!"
 	prompt
 
 _MoveDisabledText::
 	text "The move is"
-	line "disabled!"
+	next "disabled!"
 	prompt
 
 _NoMovesLeftText::
 	ramtext wBattleMonNick
 	text " has no"
-	line "moves left!"
+	next "moves left!"
 	done
 
 _MultiHitText::
 	text "Hit the enemy"
-	line ""
+	next ""
 	numtext wPlayerNumHits, 1, 1
 	text " times!"
 	prompt
@@ -1189,92 +1189,92 @@ _MultiHitText::
 _ScaredText::
 	ramtext wBattleMonNick
 	text " is too"
-	line "scared to move!"
+	next "scared to move!"
 	prompt
 
 _GetOutText::
 	text "GHOST: Get out..."
-	line "Get out..."
+	next "Get out..."
 	prompt
 
 _FastAsleepText::
 	text "<USER>"
-	line "is fast asleep!"
+	next "is fast asleep!"
 	prompt
 
 _WokeUpText::
 	text "<USER>"
-	line "woke up!"
+	next "woke up!"
 	prompt
 
 _IsFrozenText::
 	text "<USER>"
-	line "is frozen solid!"
+	next "is frozen solid!"
 	prompt
 
 _FullyParalyzedText::
 	text "<USER>'s"
-	line "fully paralyzed!"
+	next "fully paralyzed!"
 	prompt
 
 _FlinchedText::
 	text "<USER>"
-	line "flinched!"
+	next "flinched!"
 	prompt
 
 _MustRechargeText::
 	text "<USER>"
-	line "must recharge!"
+	next "must recharge!"
 	prompt
 
 _DisabledNoMoreText::
 	text "<USER>'s"
-	line "disabled no more!"
+	next "disabled no more!"
 	prompt
 
 _IsConfusedText::
 	text "<USER>"
-	line "is confused!"
+	next "is confused!"
 	prompt
 
 _HurtItselfText::
 	text "It hurt itself in"
-	line "its confusion!"
+	next "its confusion!"
 	prompt
 
 _ConfusedNoMoreText::
 	text "<USER>'s"
-	line "confused no more!"
+	next "confused no more!"
 	prompt
 
 _SavingEnergyText::
 	text "<USER>"
-	line "is saving energy!"
+	next "is saving energy!"
 	prompt
 
 _UnleashedEnergyText::
 	text "<USER>"
-	line "unleashed energy!"
+	next "unleashed energy!"
 	prompt
 
 _ThrashingAboutText::
 	text "<USER>'s"
-	line "thrashing about!"
+	next "thrashing about!"
 	done
 
 _AttackContinuesText::
 	text "<USER>'s"
-	line "attack continues!"
+	next "attack continues!"
 	done
 
 _CantMoveText::
 	text "<USER>"
-	line "can't move!"
+	next "can't move!"
 	prompt
 
 _MoveIsDisabledText::
 	text "<USER>'s"
-	line ""
+	next ""
 	ramtext wcd6d
 	text " is"
 	cont "disabled!"
@@ -1285,7 +1285,7 @@ _MonName1Text::
 	done
 
 _UsedText::
-	line "used "
+	next "used "
 	done
 
 _InsteadText::
@@ -1300,23 +1300,23 @@ _CF4BText::
 
 _AttackMissedText::
 	text "<USER>'s"
-	line "attack missed!"
+	next "attack missed!"
 	prompt
 
 _KeptGoingAndCrashedText::
 	text "<USER>"
-	line "kept going and"
+	next "kept going and"
 	cont "crashed!"
 	prompt
 
 _UnaffectedText::
 	text "<TARGET>'s"
-	line "unaffected!"
+	next "unaffected!"
 	prompt
 
 _DoesntAffectMonText::
 	text "It doesn't affect"
-	line "<TARGET>!"
+	next "<TARGET>!"
 	prompt
 
 _CriticalHitText::
@@ -1330,46 +1330,46 @@ _OHKOText::
 _LoafingAroundText::
 	ramtext wBattleMonNick
 	text " is"
-	line "loafing around."
+	next "loafing around."
 	prompt
 
 _BeganToNapText::
 	ramtext wBattleMonNick
 	text " began"
-	line "to nap!"
+	next "to nap!"
 	prompt
 
 _WontObeyText::
 	ramtext wBattleMonNick
 	text " won't"
-	line "obey!"
+	next "obey!"
 	prompt
 
 _TurnedAwayText::
 	ramtext wBattleMonNick
 	text " turned"
-	line "away!"
+	next "away!"
 	prompt
 
 _IgnoredOrdersText::
 	ramtext wBattleMonNick
-	line "ignored orders!"
+	next "ignored orders!"
 	prompt
 
 _SubstituteTookDamageText::
 	text "The SUBSTITUTE"
-	line "took damage for"
+	next "took damage for"
 	cont "<TARGET>!"
 	prompt
 
 _SubstituteBrokeText::
 	text "<TARGET>'s"
-	line "SUBSTITUTE broke!"
+	next "SUBSTITUTE broke!"
 	prompt
 
 _BuildingRageText::
 	text "<USER>'s"
-	line "RAGE is building!"
+	next "RAGE is building!"
 	prompt
 
 _MirrorMoveFailedText::
@@ -1386,7 +1386,7 @@ _HitXTimesText::
 _GainedText::
 	ramtext wcd6d
 	text " gained"
-	line ""
+	next ""
 	done
 
 _WithExpAllText::
@@ -1407,7 +1407,7 @@ _ExpPointsText::
 _GrewLevelText::
 	ramtext wcd6d
 	text " grew"
-	line "to level "
+	next "to level "
 	numtext wCurEnemyLVL, 3, 1 ; 3 digits, 1 byte
 	text "!"
 	done
@@ -1415,36 +1415,36 @@ _GrewLevelText::
 _WildMonAppearedText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	line "appeared!"
+	next "appeared!"
 	prompt
 
 _HookedMonAttackedText::
 	text "The hooked"
-	line ""
+	next ""
 	ramtext wEnemyMonNick
 	cont "attacked!"
 	prompt
 
 _EnemyAppearedText::
 	ramtext wEnemyMonNick
-	line "appeared!"
+	next "appeared!"
 	prompt
 
 _TrainerWantsToFightText::
 	ramtext wTrainerName
 	text " wants"
-	line "to fight!"
+	next "to fight!"
 	prompt
 
 _UnveiledGhostText::
 	text "SILPH SCOPE"
-	line "unveiled the"
+	next "unveiled the"
 	cont "GHOST's identity!"
 	prompt
 
 _GhostCantBeIDdText::
 	text "Darn! The GHOST"
-	line "can't be ID'd!"
+	next "can't be ID'd!"
 	prompt
 
 _GoText::
@@ -1461,7 +1461,7 @@ _GetmText::
 
 _EnemysWeakText::
 	text "The enemy's weak!"
-	line "Get'm! "
+	next "Get'm! "
 	done
 
 _PlayerMon1Text::
@@ -1487,47 +1487,47 @@ _GoodText::
 	done
 
 _ComeBackText::
-	line "Come back!"
+	next "Come back!"
 	done
 
 _SuperEffectiveText::
 	text "It's super"
-	line "effective!"
+	next "effective!"
 	prompt
 
 _NotVeryEffectiveText::
 	text "It's not very"
-	line "effective..."
+	next "effective..."
 	prompt
 
 _SafariZoneEatingText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	line "is eating!"
+	next "is eating!"
 	prompt
 
 _SafariZoneAngryText::
 	text "Wild "
 	ramtext wEnemyMonNick
-	line "is angry!"
+	next "is angry!"
 	prompt
 
 ; money related
 _PickUpPayDayMoneyText::
 	text "<PLAYER> picked up"
-	line "$"
+	next "$"
 	bcdtext wTotalPayDayMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
 	text "!"
 	prompt
 
 _ClearSaveDataText::
 	text "Clear all saved"
-	line "data?"
+	next "data?"
 	done
 
 _WhichFloorText::
 	text "Which floor do"
-	line "you want? "
+	next "you want? "
 	done
 
 _PartyMenuNormalText::
@@ -1536,27 +1536,27 @@ _PartyMenuNormalText::
 
 _PartyMenuItemUseText::
 	text "Use item on which"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _PartyMenuBattleText::
 	text "Bring out which"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _PartyMenuUseTMText::
 	text "Use TM on which"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _PartyMenuSwapMonText::
 	text "Move POKéMON"
-	line "where?"
+	next "where?"
 	done
 
 _PotionText::
 	ramtext wcd6d
-	line "recovered by "
+	next "recovered by "
 	numtext wHPBarHPDifference, 3, 2
 	text "!"
 	done
@@ -1564,85 +1564,85 @@ _PotionText::
 _AntidoteText::
 	ramtext wcd6d
 	text " was"
-	line "cured of poison!"
+	next "cured of poison!"
 	done
 
 _ParlyzHealText::
 	ramtext wcd6d
 	text "'s"
-	line "rid of paralysis!"
+	next "rid of paralysis!"
 	done
 
 _BurnHealText::
 	ramtext wcd6d
 	text "'s"
-	line "burn was healed!"
+	next "burn was healed!"
 	done
 
 _IceHealText::
 	ramtext wcd6d
 	text " was"
-	line "defrosted!"
+	next "defrosted!"
 	done
 
 _AwakeningText::
 	ramtext wcd6d
-	line "woke up!"
+	next "woke up!"
 	done
 
 _FullHealText::
 	ramtext wcd6d
 	text "'s"
-	line "health returned!"
+	next "health returned!"
 	done
 
 _ReviveText::
 	ramtext wcd6d
-	line "is revitalized!"
+	next "is revitalized!"
 	done
 
 _RareCandyText::
 	ramtext wcd6d
 	text " grew"
-	line "to level "
+	next "to level "
 	numtext wCurEnemyLVL, 3, 1 ; 3 digits, 1 byte
 	text "!"
 	done
 
 _TurnedOnPC1Text::
 	text "<PLAYER> turned on"
-	line "the PC."
+	next "the PC."
 	prompt
 
 _AccessedBillsPCText::
 	text "Accessed BILL's"
-	line "PC."
+	next "PC."
 
 	para "Accessed POKéMON"
-	line "Storage System."
+	next "Storage System."
 	prompt
 
 _AccessedSomeonesPCText::
 	text "Accessed someone's"
-	line "PC."
+	next "PC."
 
 	para "Accessed POKéMON"
-	line "Storage System."
+	next "Storage System."
 	prompt
 
 _TurnedOnPC2Text::
 	text "<PLAYER> turned on"
-	line "the PC."
+	next "the PC."
 	prompt
 
 _WhatDoYouWantText::
 	text "What do you want"
-	line "to do?"
+	next "to do?"
 	done
 
 _WhatToDepositText::
 	text "What do you want"
-	line "to deposit?"
+	next "to deposit?"
 	done
 
 _DepositHowManyText::
@@ -1652,22 +1652,22 @@ _DepositHowManyText::
 _ItemWasStoredText::
 	ramtext wcd6d
 	text " was"
-	line "stored via PC."
+	next "stored via PC."
 	prompt
 
 _NothingToDepositText::
 	text "You have nothing"
-	line "to deposit."
+	next "to deposit."
 	prompt
 
 _NoRoomToStoreText::
 	text "No room left to"
-	line "store items."
+	next "store items."
 	prompt
 
 _WhatToWithdrawText::
 	text "What do you want"
-	line "to withdraw?"
+	next "to withdraw?"
 	done
 
 _WithdrawHowManyText::
@@ -1676,24 +1676,24 @@ _WithdrawHowManyText::
 
 _WithdrewItemText::
 	text "Withdrew"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "."
 	prompt
 
 _NothingStoredText::
 	text "There is nothing"
-	line "stored."
+	next "stored."
 	prompt
 
 _CantCarryMoreText::
 	text "You can't carry"
-	line "any more items."
+	next "any more items."
 	prompt
 
 _WhatToTossText::
 	text "What do you want"
-	line "to toss away?"
+	next "to toss away?"
 	done
 
 _TossHowManyText::
@@ -1702,10 +1702,10 @@ _TossHowManyText::
 
 _AccessedHoFPCText::
 	text "Accessed POKéMON"
-	line "LEAGUE's site."
+	next "LEAGUE's site."
 
 	para "Accessed the HALL"
-	line "OF FAME List."
+	next "OF FAME List."
 	prompt
 
 _SwitchOnText::
@@ -1718,31 +1718,31 @@ _WhatText::
 
 _DepositWhichMonText::
 	text "Deposit which"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _MonWasStoredText::
 	ramtext wcf4b
 	text " was"
-	line "stored in Box "
+	next "stored in Box "
 	ramtext wBoxNumString
 	text "."
 	prompt
 
 _CantDepositLastMonText::
 	text "You can't deposit"
-	line "the last POKéMON!"
+	next "the last POKéMON!"
 	prompt
 
 _BoxFullText::
 	text "Oops! This Box is"
-	line "full of POKéMON."
+	next "full of POKéMON."
 	prompt
 
 _MonIsTakenOutText::
 	ramtext wcf4b
 	text " is"
-	line "taken out."
+	next "taken out."
 	cont "Got "
 	ramtext wcf4b
 	text "."
@@ -1750,25 +1750,25 @@ _MonIsTakenOutText::
 
 _NoMonText::
 	text "What? There are"
-	line "no POKéMON here!"
+	next "no POKéMON here!"
 	prompt
 
 _CantTakeMonText::
 	text "You can't take"
-	line "any more POKéMON."
+	next "any more POKéMON."
 
 	para "Deposit POKéMON"
-	line "first."
+	next "first."
 	prompt
 
 _ReleaseWhichMonText::
 	text "Release which"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _OnceReleasedText::
 	text "Once released,"
-	line ""
+	next ""
 	ramtext wcf4b
 	text " is"
 	cont "gone forever. OK?"
@@ -1777,7 +1777,7 @@ _OnceReleasedText::
 _MonWasReleasedText::
 	ramtext wcf4b
 	text " was"
-	line "released outside."
+	next "released outside."
 	cont "Bye @"
 
 _CF4BExclamationText::
@@ -1787,17 +1787,17 @@ _CF4BExclamationText::
 
 _RequireCoinCaseText::
 	text "A COIN CASE is"
-	line "required!"
+	next "required!"
 	done
 
 _ExchangeCoinsForPrizesText::
 	text "We exchange your"
-	line "coins for prizes."
+	next "coins for prizes."
 	prompt
 
 _WhichPrizeText::
 	text "Which prize do"
-	line "you want?"
+	next "you want?"
 	done
 
 _HereYouGoText::
@@ -1806,19 +1806,19 @@ _HereYouGoText::
 
 _SoYouWantPrizeText::
 	text "So, you want"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "?"
 	done
 
 _SorryNeedMoreCoinsText::
 	text "Sorry, you need"
-	line "more coins."
+	next "more coins."
 	done
 
 _OopsYouDontHaveEnoughRoomText::
 	text "Oops! You don't"
-	line "have enough room."
+	next "have enough room."
 	done
 
 _OhFineThenText::
@@ -1827,42 +1827,42 @@ _OhFineThenText::
 
 _GetDexRatedText::
 	text "Want to get your"
-	line "POKéDEX rated?"
+	next "POKéDEX rated?"
 	done
 
 _ClosedOaksPCText::
 	text "Closed link to"
-	line "PROF.OAK's PC."
+	next "PROF.OAK's PC."
 	done
 
 _AccessedOaksPCText::
 	text "Accessed PROF."
-	line "OAK's PC."
+	next "OAK's PC."
 
 	para "Accessed POKéDEX"
-	line "Rating System."
+	next "Rating System."
 	prompt
 
 _WhereWouldYouLikeText::
 	text "Where would you"
-	line "like to go?"
+	next "like to go?"
 	done
 
 _PleaseWaitText::
 	text "OK, please wait"
-	line "just a moment."
+	next "just a moment."
 	done
 
 _LinkCanceledText::
 	text "The link was"
-	line "canceled."
+	next "canceled."
 	done
 
 INCLUDE "text/oakspeech.asm"
 
 _DoYouWantToNicknameText::
 	text "Do you want to"
-	line "give a nickname"
+	next "give a nickname"
 	cont "to "
 	ramtext wcd6d
 	text "?"
@@ -1870,19 +1870,19 @@ _DoYouWantToNicknameText::
 
 _YourNameIsText::
 	text "Right! So your"
-	line "name is <PLAYER>!"
+	next "name is <PLAYER>!"
 	prompt
 
 _HisNameIsText::
 	text "That's right! I"
-	line "remember now! His"
+	next "remember now! His"
 	cont "name is <RIVAL>!"
 	prompt
 
 _WillBeTradedText::
 	ramtext wNameOfPlayerMonToBeTraded
 	text " and"
-	line ""
+	next ""
 	ramtext wcd6d
 	text " will"
 	cont "be traded."
@@ -1962,23 +1962,23 @@ INCLUDE "text/maps/route_25.asm"
 
 _WouldYouLikeToSaveText::
 	text "Would you like to"
-	line "SAVE the game?"
+	next "SAVE the game?"
 	done
 
 _GameSavedText::
 	text "<PLAYER> saved"
-	line "the game!"
+	next "the game!"
 	done
 
 _OlderFileWillBeErasedText::
 	text "The older file"
-	line "will be erased to"
+	next "will be erased to"
 	cont "save. Okay?"
 	done
 
 _WhenYouChangeBoxText::
 	text "When you change a"
-	line "POKéMON BOX, data"
+	next "POKéMON BOX, data"
 	cont "will be saved."
 
 	para "Is that okay?"
@@ -1986,7 +1986,7 @@ _WhenYouChangeBoxText::
 
 _ChooseABoxText::
 	text "Choose a"
-	line "<pkmn> BOX."
+	next "<pkmn> BOX."
 	done
 
 _EvolvedText::
@@ -1995,7 +1995,7 @@ _EvolvedText::
 	done
 
 _IntoText::
-	line "into "
+	next "into "
 	ramtext wcd6d
 	text "!"
 	done
@@ -2003,53 +2003,53 @@ _IntoText::
 _StoppedEvolvingText::
 	text "Huh? "
 	ramtext wcf4b
-	line "stopped evolving!"
+	next "stopped evolving!"
 	prompt
 
 _IsEvolvingText::
 	text "What? "
 	ramtext wcf4b
-	line "is evolving!"
+	next "is evolving!"
 	done
 
 _FellAsleepText::
 	text "<TARGET>"
-	line "fell asleep!"
+	next "fell asleep!"
 	prompt
 
 _AlreadyAsleepText::
 	text "<TARGET>'s"
-	line "already asleep!"
+	next "already asleep!"
 	prompt
 
 _PoisonedText::
 	text "<TARGET>"
-	line "was poisoned!"
+	next "was poisoned!"
 	prompt
 
 _BadlyPoisonedText::
 	text "<TARGET>'s"
-	line "badly poisoned!"
+	next "badly poisoned!"
 	prompt
 
 _BurnedText::
 	text "<TARGET>"
-	line "was burned!"
+	next "was burned!"
 	prompt
 
 _FrozenText::
 	text "<TARGET>"
-	line "was frozen solid!"
+	next "was frozen solid!"
 	prompt
 
 _FireDefrostedText::
 	text "Fire defrosted"
-	line "<TARGET>!"
+	next "<TARGET>!"
 	prompt
 
 _MonsStatsRoseText::
 	text "<USER>'s"
-	line ""
+	next ""
 	ramtext wcf4b
 	done
 
@@ -2063,7 +2063,7 @@ _RoseText::
 
 _MonsStatsFellText::
 	text "<TARGET>'s"
-	line ""
+	next ""
 	ramtext wcf4b
 	done
 
@@ -2077,17 +2077,17 @@ _FellText::
 
 _RanFromBattleText::
 	text "<USER>"
-	line "ran from battle!"
+	next "ran from battle!"
 	prompt
 
 _RanAwayScaredText::
 	text "<TARGET>"
-	line "ran away scared!"
+	next "ran away scared!"
 	prompt
 
 _WasBlownAwayText::
 	text "<TARGET>"
-	line "was blown away!"
+	next "was blown away!"
 	prompt
 
 _ChargeMoveEffectText::
@@ -2095,37 +2095,37 @@ _ChargeMoveEffectText::
 	done
 
 _MadeWhirlwindText::
-	line "made a whirlwind!"
+	next "made a whirlwind!"
 	prompt
 
 _TookInSunlightText::
-	line "took in sunlight!"
+	next "took in sunlight!"
 	prompt
 
 _LoweredItsHeadText::
-	line "lowered its head!"
+	next "lowered its head!"
 	prompt
 
 _SkyAttackGlowingText::
-	line "is glowing!"
+	next "is glowing!"
 	prompt
 
 _FlewUpHighText::
-	line "flew up high!"
+	next "flew up high!"
 	prompt
 
 _DugAHoleText::
-	line "dug a hole!"
+	next "dug a hole!"
 	prompt
 
 _BecameConfusedText::
 	text "<TARGET>"
-	line "became confused!"
+	next "became confused!"
 	prompt
 
 _MimicLearnedMoveText::
 	text "<USER>"
-	line "learned"
+	next "learned"
 	cont ""
 	ramtext wcd6d
 	text "!"
@@ -2133,7 +2133,7 @@ _MimicLearnedMoveText::
 
 _MoveWasDisabledText::
 	text "<TARGET>'s"
-	line ""
+	next ""
 	ramtext wcd6d
 	text " was"
 	cont "disabled!"
@@ -2153,89 +2153,89 @@ _ButItFailedText::
 
 _DidntAffectText::
 	text "It didn't affect"
-	line "<TARGET>!"
+	next "<TARGET>!"
 	prompt
 
 _IsUnaffectedText::
 	text "<TARGET>"
-	line "is unaffected!"
+	next "is unaffected!"
 	prompt
 
 _ParalyzedMayNotAttackText::
 	text "<TARGET>'s"
-	line "paralyzed! It may"
+	next "paralyzed! It may"
 	cont "not attack!"
 	prompt
 
 _SubstituteText::
 	text "It created a"
-	line "SUBSTITUTE!"
+	next "SUBSTITUTE!"
 	prompt
 
 _HasSubstituteText::
 	text "<USER>"
-	line "has a SUBSTITUTE!"
+	next "has a SUBSTITUTE!"
 	prompt
 
 _TooWeakSubstituteText::
 	text "Too weak to make"
-	line "a SUBSTITUTE!"
+	next "a SUBSTITUTE!"
 	prompt
 
 _CoinsScatteredText::
 	text "Coins scattered"
-	line "everywhere!"
+	next "everywhere!"
 	prompt
 
 _GettingPumpedText::
 	text "<USER>'s"
-	line "getting pumped!"
+	next "getting pumped!"
 	prompt
 
 _WasSeededText::
 	text "<TARGET>"
-	line "was seeded!"
+	next "was seeded!"
 	prompt
 
 _EvadedAttackText::
 	text "<TARGET>"
-	line "evaded attack!"
+	next "evaded attack!"
 	prompt
 
 _HitWithRecoilText::
 	text "<USER>'s"
-	line "hit with recoil!"
+	next "hit with recoil!"
 	prompt
 
 _ConvertedTypeText::
 	text "Converted type to"
-	line "<TARGET>'s!"
+	next "<TARGET>'s!"
 	prompt
 
 _StatusChangesEliminatedText::
 	text "All STATUS changes"
-	line "are eliminated!"
+	next "are eliminated!"
 	prompt
 
 _StartedSleepingEffect::
 	text "<USER>"
-	line "started sleeping!"
+	next "started sleeping!"
 	done
 
 _FellAsleepBecameHealthyText::
 	text "<USER>"
-	line "fell asleep and"
+	next "fell asleep and"
 	cont "became healthy!"
 	done
 
 _RegainedHealthText::
 	text "<USER>"
-	line "regained health!"
+	next "regained health!"
 	prompt
 
 _TransformedText::
 	text "<USER>"
-	line "transformed into"
+	next "transformed into"
 	cont ""
 	ramtext wcd6d
 	text "!"
@@ -2243,28 +2243,28 @@ _TransformedText::
 
 _LightScreenProtectedText::
 	text "<USER>'s"
-	line "protected against"
+	next "protected against"
 	cont "special attacks!"
 	prompt
 
 _ReflectGainedArmorText::
 	text "<USER>"
-	line "gained armor!"
+	next "gained armor!"
 	prompt
 
 _ShroudedInMistText::
 	text "<USER>'s"
-	line "shrouded in mist!"
+	next "shrouded in mist!"
 	prompt
 
 _SuckedHealthText::
 	text "Sucked health from"
-	line "<TARGET>!"
+	next "<TARGET>!"
 	prompt
 
 _DreamWasEatenText::
 	text "<TARGET>'s"
-	line "dream was eaten!"
+	next "dream was eaten!"
 	prompt
 
 _TradeCenterText1::
@@ -2397,7 +2397,7 @@ PokemartBuySellMenu:
 
 _PokemartAnythingElseText::
 	text "Is there anything"
-	line "else I can do?"
+	next "else I can do?"
 	gototext PokemartBuySellMenu
 
 _PokemonFaintedText::
@@ -2408,15 +2408,15 @@ _PokemonFaintedText::
 
 _PlayerBlackedOutText::
 	text "<PLAYER> is out of"
-	line "useable POKéMON!"
+	next "useable POKéMON!"
 
 	para "<PLAYER> blacked"
-	line "out!"
+	next "out!"
 	prompt
 
 _RepelWoreOffText::
 	text "REPEL's effect"
-	line "wore off."
+	next "wore off."
 	done
 
 _PokemartTellBuyPriceText::
@@ -2430,23 +2430,23 @@ _PokemartTellBuyPriceText::
 
 _PokemartBoughtItemText::
 	text "Here you are!"
-	line "Thank you!"
+	next "Thank you!"
 	prompt
 
 _PokemartNotEnoughMoneyText::
 	text "You don't have"
-	line "enough money."
+	next "enough money."
 	prompt
 
 _PokemartItemBagFullText::
 	text "You can't carry"
-	line "any more items."
+	next "any more items."
 	prompt
 
 _LearnedMove1Text::
 	ramtext wLearnMoveMonName
 	text " learned"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "!"
 	done
@@ -2458,14 +2458,14 @@ _WhichMoveToForgetText::
 
 _AbandonLearningText::
 	text "Abandon learning"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "?"
 	done
 
 _DidNotLearnText::
 	ramtext wLearnMoveMonName
-	line "did not learn"
+	next "did not learn"
 	cont ""
 	ramtext wcf4b
 	text "!"
@@ -2474,18 +2474,18 @@ _DidNotLearnText::
 _TryingToLearnText::
 	ramtext wLearnMoveMonName
 	text " is"
-	line "trying to learn"
+	next "trying to learn"
 	cont ""
 	ramtext wcf4b
 	text "!"
 
 	para "But, "
 	ramtext wLearnMoveMonName
-	line "can't learn more"
+	next "can't learn more"
 	cont "than 4 moves!"
 
 	para "Delete an older"
-	line "move to make room"
+	next "move to make room"
 	cont "for "
 	ramtext wcf4b
 	text "?"
@@ -2503,7 +2503,7 @@ _ForgotAndText::
 	para ""
 	ramtext wLearnMoveMonName
 	text " forgot"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 
@@ -2512,56 +2512,56 @@ _ForgotAndText::
 
 _HMCantDeleteText::
 	text "HM techniques"
-	line "can't be deleted!"
+	next "can't be deleted!"
 	prompt
 
 _PokemonCenterWelcomeText::
 	text "Welcome to our"
-	line "POKéMON CENTER!"
+	next "POKéMON CENTER!"
 
 	para "We heal your"
-	line "POKéMON back to"
+	next "POKéMON back to"
 	cont "perfect health!"
 	prompt
 
 _ShallWeHealYourPokemonText::
 	text "Shall we heal your"
-	line "POKéMON?"
+	next "POKéMON?"
 	done
 
 _NeedYourPokemonText::
 	text "OK. We'll need"
-	line "your POKéMON."
+	next "your POKéMON."
 	done
 
 _PokemonFightingFitText::
 	text "Thank you!"
-	line "Your POKéMON are"
+	next "Your POKéMON are"
 	cont "fighting fit!"
 	prompt
 
 _PokemonCenterFarewellText::
 	text "We hope to see"
-	line "you again!"
+	next "you again!"
 	done
 
 _CableClubNPCAreaReservedFor2FriendsLinkedByCableText::
 	text "This area is"
-	line "reserved for 2"
+	next "reserved for 2"
 	cont "friends who are"
 	cont "linked by cable."
 	done
 
 _CableClubNPCWelcomeText::
 	text "Welcome to the"
-	line "Cable Club!"
+	next "Cable Club!"
 	done
 
 _CableClubNPCPleaseApplyHereHaveToSaveText::
 	text "Please apply here."
 
 	para "Before opening"
-	line "the link, we have"
+	next "the link, we have"
 	cont "to save the game."
 	done
 
@@ -2571,11 +2571,11 @@ _CableClubNPCPleaseWaitText::
 
 _CableClubNPCLinkClosedBecauseOfInactivityText::
 	text "The link has been"
-	line "closed because of"
+	next "closed because of"
 	cont "inactivity."
 
 	para "Please contact"
-	line "your friend and"
+	next "your friend and"
 	cont "come again!"
 	done
 
@@ -2588,84 +2588,84 @@ _CableClubNPCPleaseComeAgainText::
 
 _CableClubNPCMakingPreparationsText::
 	text "We're making"
-	line "preparations."
+	next "preparations."
 	cont "Please wait."
 	done
 
 _UsedStrengthText::
 	ramtext wcd6d
 	text " used"
-	line "STRENGTH."
+	next "STRENGTH."
 	done
 
 _CanMoveBouldersText::
 	ramtext wcd6d
 	text " can"
-	line "move boulders."
+	next "move boulders."
 	prompt
 
 _CurrentTooFastText::
 	text "The current is"
-	line "much too fast!"
+	next "much too fast!"
 	prompt
 
 _CyclingIsFunText::
 	text "Cycling is fun!"
-	line "Forget SURFing!"
+	next "Forget SURFing!"
 	prompt
 
 _FlashLightsAreaText::
 	text "A blinding FLASH"
-	line "lights the area!"
+	next "lights the area!"
 	prompt
 
 _WarpToLastPokemonCenterText::
 	text "Warp to the last"
-	line "POKéMON CENTER."
+	next "POKéMON CENTER."
 	done
 
 _CannotUseTeleportNowText::
 	ramtext wcd6d
 	text " can't"
-	line "use TELEPORT now."
+	next "use TELEPORT now."
 	prompt
 
 _CannotFlyHereText::
 	ramtext wcd6d
 	text " can't"
-	line "FLY here."
+	next "FLY here."
 	prompt
 
 _NotHealthyEnoughText::
 	text "Not healthy"
-	line "enough."
+	next "enough."
 	prompt
 
 _NewBadgeRequiredText::
 	text "No! A new BADGE"
-	line "is required."
+	next "is required."
 	prompt
 
 _CannotUseItemsHereText::
 	text "You can't use items"
-	line "here."
+	next "here."
 	prompt
 
 _CannotGetOffHereText::
 	text "You can't get off"
-	line "here."
+	next "here."
 	prompt
 
 _GotMonText::
 	text "<PLAYER> got"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 	done
 
 _SetToBoxText::
 	text "There's no more"
-	line "room for POKéMON!"
+	next "room for POKéMON!"
 	cont ""
 	ramtext wBoxMonNicks
 	text " was"
@@ -2677,14 +2677,14 @@ _SetToBoxText::
 
 _BoxIsFullText::
 	text "There's no more"
-	line "room for POKéMON!"
+	next "room for POKéMON!"
 
 	para "The POKéMON BOX"
-	line "is full and can't"
+	next "is full and can't"
 	cont "accept any more!"
 
 	para "Change the BOX at"
-	line "a POKéMON CENTER!"
+	next "a POKéMON CENTER!"
 	done
 
 INCLUDE "text/maps/pallet_town.asm"
@@ -2700,35 +2700,35 @@ INCLUDE "text/maps/saffron_city.asm"
 
 _ItemUseBallText00::
 	text "It dodged the"
-	line "thrown BALL!"
+	next "thrown BALL!"
 
 	para "This POKéMON"
-	line "can't be caught!"
+	next "can't be caught!"
 	prompt
 
 _ItemUseBallText01::
 	text "You missed the"
-	line "POKéMON!"
+	next "POKéMON!"
 	prompt
 
 _ItemUseBallText02::
 	text "Darn! The POKéMON"
-	line "broke free!"
+	next "broke free!"
 	prompt
 
 _ItemUseBallText03::
 	text "Aww! It appeared"
-	line "to be caught! "
+	next "to be caught! "
 	prompt
 
 _ItemUseBallText04::
 	text "Shoot! It was so"
-	line "close too!"
+	next "close too!"
 	prompt
 
 _ItemUseBallText05::
 	text "All right!"
-	line ""
+	next ""
 	ramtext wEnemyMonNick
 	db " was"
 	cont "caught!"
@@ -2737,20 +2737,20 @@ _ItemUseBallText05::
 _ItemUseBallText07::
 	ramtext wBoxMonNicks
 	text " was"
-	line "transferred to"
+	next "transferred to"
 	cont "BILL's PC!"
 	prompt
 
 _ItemUseBallText08::
 	ramtext wBoxMonNicks
 	text " was"
-	line "transferred to"
+	next "transferred to"
 	cont "someone's PC!"
 	prompt
 
 _ItemUseBallText06::
 	text "New POKéDEX data"
-	line "will be added for"
+	next "will be added for"
 	cont ""
 	ramtext wEnemyMonNick
 	db "!"
@@ -2758,95 +2758,95 @@ _ItemUseBallText06::
 
 _SurfingGotOnText::
 	text "<PLAYER> got on"
-	line ""
+	next ""
 	ramtext wcd6d
 	text "!"
 	prompt
 
 _SurfingNoPlaceToGetOffText::
 	text "There's no place"
-	line "to get off!"
+	next "to get off!"
 	prompt
 
 _VitaminStatRoseText::
 	ramtext wcd6d
 	text "'s"
-	line ""
+	next ""
 	ramtext wcf4b
 	text " rose."
 	prompt
 
 _VitaminNoEffectText::
 	text "It won't have any"
-	line "effect."
+	next "effect."
 	prompt
 
 _ThrewBaitText::
 	text "<PLAYER> threw"
-	line "some BAIT."
+	next "some BAIT."
 	done
 
 _ThrewRockText::
 	text "<PLAYER> threw a"
-	line "ROCK."
+	next "ROCK."
 	done
 
 _PlayedFluteNoEffectText::
 	text "Played the #"
-	line "FLUTE."
+	next "FLUTE."
 
 	para "Now, that's a"
-	line "catchy tune!"
+	next "catchy tune!"
 	prompt
 
 _FluteWokeUpText::
 	text "All sleeping"
-	line "POKéMON woke up."
+	next "POKéMON woke up."
 	prompt
 
 _PlayedFluteHadEffectText::
 	text "<PLAYER> played the"
-	line "# FLUTE."
+	next "# FLUTE."
 	done
 
 _CoinCaseNumCoinsText::
 	text "Coins"
-	line ""
+	next ""
 	bcdtext wPlayerCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
 	text " "
 	prompt
 
 _ItemfinderFoundItemText::
 	text "Yes! ITEMFINDER"
-	line "indicates there's"
+	next "indicates there's"
 	cont "an item nearby."
 	prompt
 
 _ItemfinderFoundNothingText::
 	text "Nope! ITEMFINDER"
-	line "isn't responding."
+	next "isn't responding."
 	prompt
 
 _RaisePPWhichTechniqueText::
 	text "Raise PP of which"
-	line "technique?"
+	next "technique?"
 	done
 
 _RestorePPWhichTechniqueText::
 	text "Restore PP of"
-	line "which technique?"
+	next "which technique?"
 	done
 
 _PPMaxedOutText::
 	ramtext wcf4b
 	text "'s PP"
-	line "is maxed out."
+	next "is maxed out."
 	prompt
 
 _PPIncreasedText::
 	ramtext wcf4b
 	text "'s PP"
-	line "increased."
+	next "increased."
 	prompt
 
 _PPRestoredText::
@@ -2856,36 +2856,36 @@ _PPRestoredText::
 _MonCannotLearnMachineMoveText::
 	ramtext wcd6d
 	text " is not"
-	line "compatible with"
+	next "compatible with"
 	cont ""
 	ramtext wcf4b
 	text "."
 
 	para "It can't learn"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "."
 	prompt
 
 _ItemUseNotTimeText::
 	text "OAK: <PLAYER>!"
-	line "This isn't the"
+	next "This isn't the"
 	cont "time to use that! "
 	prompt
 
 _ItemUseNotYoursToUseText::
 	text "This isn't yours"
-	line "to use!"
+	next "to use!"
 	prompt
 
 _ItemUseNoEffectText::
 	text "It won't have any"
-	line "effect."
+	next "effect."
 	prompt
 
 _ThrowBallAtTrainerMonText1::
 	text "The trainer"
-	line "blocked the BALL!"
+	next "blocked the BALL!"
 	prompt
 
 _ThrowBallAtTrainerMonText2::
@@ -2899,14 +2899,14 @@ _NoCyclingAllowedHereText::
 
 _NoSurfingHereText::
 	text "No SURFing on"
-	line ""
+	next ""
 	ramtext wcd6d
 	text " here!"
 	prompt
 
 _BoxFullCannotThrowBallText::
 	text "The POKéMON BOX"
-	line "is full! Can't"
+	next "is full! Can't"
 	cont "use that item!"
 	prompt
 
@@ -2915,21 +2915,21 @@ SECTION "Text 11", ROMX, BANK[TEXT_11]
 
 _ItemUseText001::
 	text "<PLAYER> used"
-	line ""
+	next ""
 	ramtext wcf4b
 	db "!"
 	done
 
 _GotOnBicycleText1::
 	text "<PLAYER> got on the"
-	line ""
+	next ""
 	ramtext wcf4b
 	db "!"
 	prompt
 
 _GotOffBicycleText1::
 	text "<PLAYER> got off"
-	line ""
+	next ""
 	db "the "
 	ramtext wcf4b
 	db "."
@@ -2938,19 +2938,19 @@ _GotOffBicycleText1::
 _AlreadyKnowsText::
 	ramtext wcd6d
 	text " knows"
-	line ""
+	next ""
 	ramtext wcf4b
 	text "!"
 	prompt
 
 _ConnectCableText::
 	text "Okay, connect the"
-	line "cable like so!"
+	next "cable like so!"
 	prompt
 
 _TradedForText::
 	text "<PLAYER> traded"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text " for"
 	cont ""
@@ -2960,29 +2960,29 @@ _TradedForText::
 
 _WannaTrade1Text::
 	text "I'm looking for"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text "! Wanna"
 
 	para "trade one for"
-	line ""
+	next ""
 	ramtext wInGameTradeReceiveMonName
 	text "? "
 	done
 
 _NoTrade1Text::
 	text "Awww!"
-	line "Oh well..."
+	next "Oh well..."
 	done
 
 _WrongMon1Text::
 	text "What? That's not"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text "!"
 
 	para "If you get one,"
-	line "come back here!"
+	next "come back here!"
 	done
 
 _Thanks1Text::
@@ -2991,35 +2991,35 @@ _Thanks1Text::
 
 _AfterTrade1Text::
 	text "Isn't my old"
-	line ""
+	next ""
 	ramtext wInGameTradeReceiveMonName
 	text " great?"
 	done
 
 _WannaTrade2Text::
 	text "Hello there! Do"
-	line "you want to trade"
+	next "you want to trade"
 
 	para "your "
 	ramtext wInGameTradeGiveMonName
-	line "for "
+	next "for "
 	ramtext wInGameTradeReceiveMonName
 	text "?"
 	done
 
 _NoTrade2Text::
 	text "Well, if you"
-	line "don't want to..."
+	next "don't want to..."
 	done
 
 _WrongMon2Text::
 	text "Hmmm? This isn't"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text "."
 
 	para "Think of me when"
-	line "you get one."
+	next "you get one."
 	done
 
 _Thanks2Text::
@@ -3030,19 +3030,19 @@ _AfterTrade2Text::
 	text "The "
 	ramtext wInGameTradeGiveMonName
 	text " you"
-	line "traded to me"
+	next "traded to me"
 
 	para "went and evolved!"
 	done
 
 _WannaTrade3Text::
 	text "Hi! Do you have"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text "?"
 
 	para "Want to trade it"
-	line "for "
+	next "for "
 	ramtext wInGameTradeReceiveMonName
 	text "?"
 	done
@@ -3053,12 +3053,12 @@ _NoTrade3Text::
 
 _WrongMon3Text::
 	text "...This is no"
-	line ""
+	next ""
 	ramtext wInGameTradeGiveMonName
 	text "."
 
 	para "If you get one,"
-	line "trade it with me!"
+	next "trade it with me!"
 	done
 
 _Thanks3Text::
@@ -3067,25 +3067,25 @@ _Thanks3Text::
 
 _AfterTrade3Text::
 	text "How is my old"
-	line ""
+	next ""
 	ramtext wInGameTradeReceiveMonName
 	text "?"
 
 	para "My "
 	ramtext wInGameTradeGiveMonName
 	text " is"
-	line "doing great!"
+	next "doing great!"
 	done
 
 _NothingToCutText::
 	text "There isn't"
-	line "anything to CUT!"
+	next "anything to CUT!"
 	prompt
 
 _UsedCutText::
 	ramtext wcd6d
 	text " hacked"
-	line "away with CUT!"
+	next "away with CUT!"
 	prompt
 
 

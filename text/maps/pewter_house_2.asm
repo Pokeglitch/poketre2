@@ -1,19 +1,19 @@
 _PewterHouse2Text1::
 	text "POKéMON learn new"
-	line "techniques as"
+	next "techniques as"
 	cont "they grow!"
 
 	para "But, some moves"
-	line "must be taught by"
+	next "must be taught by"
 	cont "the trainer!"
 	done
 
 _PewterHouse2Text2::
 	text "POKéMON become"
-	line "easier to catch"
+	next "easier to catch"
 	cont "when they are"
 	cont "hurt or asleep!"
 
 	para "But, it's not a"
-	line "sure thing!"
+	next "sure thing!"
 	done

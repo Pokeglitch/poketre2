@@ -1,26 +1,26 @@
 _CeladonMart4Text2::
 	text "I'm getting a"
-	line "# DOLL for my"
+	next "# DOLL for my"
 	cont "girl friend!"
 	done
 
 _CeladonMart4Text3::
 	text "I heard something"
-	line "useful."
+	next "useful."
 
 	para "You can run from"
-	line "wild POKéMON by"
+	next "wild POKéMON by"
 	cont "distracting them"
 	cont "with a # DOLL!"
 	done
 
 _CeladonMart4Text4::
 	text "Express yourself"
-	line "with gifts!"
+	next "with gifts!"
 
 	para "4F: WISEMAN GIFTS"
 
 	para "Evolution Special!"
-	line "Element STONEs on"
+	next "Element STONEs on"
 	cont "sale now!"
 	done

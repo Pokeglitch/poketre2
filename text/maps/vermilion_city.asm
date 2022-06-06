@@ -1,56 +1,56 @@
 _VermilionCityText1::
 	text "We're careful"
-	line "about pollution!"
+	next "about pollution!"
 
 	para "We've heard GRIMER"
-	line "multiplies in"
+	next "multiplies in"
 	cont "toxic sludge!"
 	done
 
 _VermilionCityText_198a7::
 	text "Did you see S.S."
-	line "ANNE moored in"
+	next "ANNE moored in"
 	cont "the harbor?"
 	done
 
 _VermilionCityText_198ac::
 	text "So, S.S.ANNE has"
-	line "departed!"
+	next "departed!"
 
 	para "She'll be back in"
-	line "about a year."
+	next "about a year."
 	done
 
 _SSAnneWelcomeText4::
 	text "Welcome to S.S."
-	line "ANNE!"
+	next "ANNE!"
 	done
 
 _SSAnneWelcomeText9::
 	text "Welcome to S.S."
-	line "ANNE!"
+	next "ANNE!"
 
 	para "Excuse me, do you"
-	line "have a ticket?"
+	next "have a ticket?"
 	prompt
 
 _SSAnneFlashedTicketText::
 	text "<PLAYER> flashed"
-	line "the S.S.TICKET!"
+	next "the S.S.TICKET!"
 
 	para "Great! Welcome to"
-	line "S.S.ANNE!"
+	next "S.S.ANNE!"
 	done
 
 _SSAnneNoTicketText::
 	text "<PLAYER> doesn't"
-	line "have the needed"
+	next "have the needed"
 	cont "S.S.TICKET."
 
 	para "Sorry!"
 
 	para "You need a ticket"
-	line "to get aboard."
+	next "to get aboard."
 	done
 
 _SSAnneNotHereText::
@@ -59,36 +59,36 @@ _SSAnneNotHereText::
 
 _VermilionCityText4::
 	text "I'm putting up a"
-	line "building on this"
+	next "building on this"
 	cont "plot of land."
 
 	para "My POKéMON is"
-	line "tamping the land."
+	next "tamping the land."
 	done
 
 _VermilionCityText5::
 	text "MACHOP: Guoh!"
-	line "Gogogoh!"
+	next "Gogogoh!"
 	done
 
 _VermilionCityText14::
 	para "A MACHOP is"
-	line "stomping the land"
+	next "stomping the land"
 	cont "flat."
 	done
 
 _VermilionCityText6::
 	text "S.S.ANNE is a"
-	line "famous luxury"
+	next "famous luxury"
 	cont "cruise ship."
 
 	para "We visit VERMILION"
-	line "once a year."
+	next "once a year."
 	done
 
 _VermilionCityText7::
 	text "VERMILION CITY"
-	line "The Port of"
+	next "The Port of"
 	cont "Exquisite Sunsets"
 	done
 
@@ -96,11 +96,11 @@ _VermilionCityText8::
 	text "NOTICE!"
 
 	para "ROUTE 12 may be"
-	line "blocked off by a"
+	next "blocked off by a"
 	cont "sleeping POKéMON."
 
 	para "Detour through"
-	line "ROCK TUNNEL to"
+	next "ROCK TUNNEL to"
 	cont "LAVENDER TOWN."
 
 	para "VERMILION POLICE"
@@ -108,17 +108,17 @@ _VermilionCityText8::
 
 _VermilionCityText11::
 	text "POKéMON FAN CLUB"
-	line "All POKéMON fans"
+	next "All POKéMON fans"
 	cont "welcome!"
 	done
 
 _VermilionCityText12::
 	text "VERMILION CITY"
-	line "POKéMON GYM"
+	next "POKéMON GYM"
 	cont "LEADER: LT.SURGE"
 
 	para "The Lightning "
-	line "American!"
+	next "American!"
 	done
 
 _VermilionCityText13::

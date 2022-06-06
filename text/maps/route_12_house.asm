@@ -1,60 +1,60 @@
 _Route12HouseText_564c0::
 	text "I'm the FISHING"
-	line "GURU's brother!"
+	next "GURU's brother!"
 
 	para "I simply Looove"
-	line "fishing!"
+	next "fishing!"
 
 	para "Do you like to"
-	line "fish?"
+	next "fish?"
 	done
 
 _Route12HouseText_564c5::
 	text "Grand! I like"
-	line "your style!"
+	next "your style!"
 
 	para "Take this and"
-	line "fish, young one!"
+	next "fish, young one!"
 
 	para "<PLAYER> received"
-	line "a "
+	next "a "
 	ramtext wcf4b
 	text "!"
 	done
 
 _Route12HouseText_564ca::
 	para "Fishing is a way"
-	line "of life!"
+	next "of life!"
 
 	para "From the seas to"
-	line "rivers, go out"
+	next "rivers, go out"
 	cont "and land the big"
 	cont "one!"
 	done
 
 _Route12HouseText_564cf::
 	text "Oh... That's so"
-	line "disappointing..."
+	next "disappointing..."
 	done
 
 _Route12HouseText_564d4::
 	text "Hello there,"
-	line "<PLAYER>!"
+	next "<PLAYER>!"
 
 	para "Use the SUPER ROD"
-	line "in any water!"
+	next "in any water!"
 	cont "You can catch"
 	cont "different kinds"
 	cont "of POKéMON."
 
 	para "Try fishing"
-	line "wherever you can!"
+	next "wherever you can!"
 	done
 
 _Route12HouseText_564d9::
 	text "Oh no!"
 
 	para "I had a gift for"
-	line "you, but you have"
+	next "you, but you have"
 	cont "no room for it!"
 	done

@@ -1,6 +1,6 @@
 _Route2Text3::
 	text "ROUTE 2"
-	line "VIRIDIAN CITY -"
+	next "VIRIDIAN CITY -"
 	cont "PEWTER CITY"
 	done
 

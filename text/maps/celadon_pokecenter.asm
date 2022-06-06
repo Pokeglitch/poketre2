@@ -1,12 +1,12 @@
 _CeladonPokecenterText2::
 	text "# FLUTE awakens"
-	line "POKéMON with a"
+	next "POKéMON with a"
 	cont "sound that only"
 	cont "they can hear!"
 	done
 
 _CeladonPokecenterText3::
 	text "I rode uphill on"
-	line "CYCLING ROAD from"
+	next "CYCLING ROAD from"
 	cont "FUCHSIA!"
 	done

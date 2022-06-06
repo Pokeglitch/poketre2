@@ -1,34 +1,34 @@
 _DayCareIntroText::
 	text "I run a DAYCARE."
-	line "Would you like me"
+	next "Would you like me"
 	cont "to raise one of"
 	cont "your POKéMON?"
 	done
 
 _DayCareWhichMonText::
 	text "Which POKéMON"
-	line "should I raise?"
+	next "should I raise?"
 	prompt
 
 _DayCareWillLookAfterMonText::
 	text "Fine, I'll look"
-	line "after "
+	next "after "
 	ramtext wcd6d
 	cont "for a while."
 	prompt
 
 _DayCareComeSeeMeInAWhileText::
 	text "Come see me in"
-	line "a while."
+	next "a while."
 	done
 
 _DayCareMonHasGrownText::
 	text "Your "
 	ramtext wcd6d
-	line "has grown a lot!"
+	next "has grown a lot!"
 
 	para "By level, it's"
-	line "grown by "
+	next "grown by "
 	numtext wDayCareNumLevelsGrown, 3, 1
 	text "!"
 
@@ -38,20 +38,20 @@ _DayCareMonHasGrownText::
 _DayCareOweMoneyText::
 	text "You owe me $"
 	bcdtext wDayCareTotalCost, $c2
-	line "for the return"
+	next "for the return"
 	cont "of this POKéMON."
 	done
 
 _DayCareGotMonBackText::
 	text "<PLAYER> got"
-	line ""
+	next ""
 	ramtext wDayCareMonName
 	text " back!"
 	done
 
 _DayCareMonNeedsMoreTimeText::
 	text "Back already?"
-	line "Your "
+	next "Your "
 	ramtext wcd6d
 	cont "needs some more"
 	cont "time with me."

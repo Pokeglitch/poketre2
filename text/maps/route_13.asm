@@ -1,140 +1,140 @@
 _Route13BattleText2::
 	text "My bird POKéMON"
-	line "want to scrap!"
+	next "want to scrap!"
 	done
 
 _Route13EndBattleText2::
 	text "My"
-	line "bird combo lost?"
+	next "bird combo lost?"
 	prompt
 
 _Route13AfterBattleText2::
 	text "My POKéMON look"
-	line "happy even though"
+	next "happy even though"
 	cont "they lost."
 	done
 
 _Route13BattleText3::
 	text "I'm told I'm good"
-	line "for a kid!"
+	next "for a kid!"
 	done
 
 _Route13EndBattleText3::
 	text "Ohh!"
-	line "I lost!"
+	next "I lost!"
 	prompt
 
 _Route13AfterBattleText3::
 	text "I want to become"
-	line "a good trainer."
+	next "a good trainer."
 	cont "I'll train hard."
 	done
 
 _Route13BattleText4::
 	text "Wow! Your BADGEs"
-	line "are too cool!"
+	next "are too cool!"
 	done
 
 _Route13EndBattleText4::
 	text "Not"
-	line "enough!"
+	next "enough!"
 	prompt
 
 _Route13AfterBattleText4::
 	text "You got those"
-	line "BADGEs from GYM"
+	next "BADGEs from GYM"
 	cont "LEADERs. I know!"
 	done
 
 _Route13BattleText5::
 	text "My cute POKéMON"
-	line "wish to make your"
+	next "wish to make your"
 	cont "acquaintance."
 	done
 
 _Route13EndBattleText5::
 	text "Wow!"
-	line "You totally won!"
+	next "You totally won!"
 	prompt
 
 _Route13AfterBattleText5::
 	text "You have to make"
-	line "POKéMON fight to"
+	next "POKéMON fight to"
 	cont "toughen them up!"
 	done
 
 _Route13BattleText6::
 	text "I found CARBOS in"
-	line "a cave once."
+	next "a cave once."
 	done
 
 _Route13EndBattleText6::
 	text "Just"
-	line "messed up!"
+	next "messed up!"
 	prompt
 
 _Route13AfterBattleText6::
 	text "CARBOS boosted"
-	line "the SPEED of my"
+	next "the SPEED of my"
 	cont "POKéMON."
 	done
 
 _Route13BattleText7::
 	text "The wind's blowing"
-	line "my way!"
+	next "my way!"
 	done
 
 _Route13EndBattleText7::
 	text "The"
-	line "wind turned!"
+	next "wind turned!"
 	prompt
 
 _Route13AfterBattleText7::
 	text "I'm beat. I guess"
-	line "I'll FLY home."
+	next "I'll FLY home."
 	done
 
 _Route13BattleText8::
 	text "Sure, I'll play"
-	line "with you!"
+	next "with you!"
 	done
 
 _Route13EndBattleText8::
 	text "Oh!"
-	line "You little brute!"
+	next "You little brute!"
 	prompt
 
 _Route13AfterBattleText8::
 	text "I wonder which is"
-	line "stronger, male or"
+	next "stronger, male or"
 	cont "female POKéMON?"
 	done
 
 _Route13BattleText9::
 	text "Do you want to"
-	line "POKéMON with me?"
+	next "POKéMON with me?"
 	done
 
 _Route13EndBattleText9::
 	text "It's over"
-	line "already?"
+	next "already?"
 	prompt
 
 _Route13AfterBattleText9::
 	text "I don't know"
-	line "anything about"
+	next "anything about"
 	cont "POKéMON. I just"
 	cont "like cool ones!"
 	done
 
 _Route13BattleText10::
 	text "What're you"
-	line "lookin' at?"
+	next "lookin' at?"
 	done
 
 _Route13EndBattleText10::
 	text "Dang!"
-	line "Stripped gears!"
+	next "Stripped gears!"
 	prompt
 
 _Route13AfterBattleText10::
@@ -143,17 +143,17 @@ _Route13AfterBattleText10::
 
 _Route13BattleText11::
 	text "I always go with"
-	line "bird POKéMON!"
+	next "bird POKéMON!"
 	done
 
 _Route13EndBattleText11::
 	text "Out"
-	line "of power!"
+	next "of power!"
 	prompt
 
 _Route13AfterBattleText11::
 	text "I wish I could"
-	line "fly like PIDGEY"
+	next "fly like PIDGEY"
 	cont "and PIDGEOTTO..."
 	done
 
@@ -161,19 +161,19 @@ _Route13Text11::
 	text "TRAINER TIPS"
 
 	para "Look to the left"
-	line "of that post!"
+	next "of that post!"
 	done
 
 _Route13Text12::
 	text "TRAINER TIPS"
 
 	para "Use SELECT to"
-	line "switch items in"
+	next "switch items in"
 	cont "the ITEM window!"
 	done
 
 _Route13Text13::
 	text "ROUTE 13"
-	line "North to SILENCE"
+	next "North to SILENCE"
 	cont "BRIDGE"
 	done

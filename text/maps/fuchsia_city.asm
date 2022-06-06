@@ -1,29 +1,29 @@
 _FuchsiaCityText1::
 	text "Did you try the"
-	line "SAFARI GAME? Some"
+	next "SAFARI GAME? Some"
 	cont "POKéMON can only"
 	cont "be caught there."
 	done
 
 _FuchsiaCityText2::
 	text "SAFARI ZONE has a"
-	line "zoo in front of"
+	next "zoo in front of"
 	cont "the entrance."
 
 	para "Out back is the"
-	line "SAFARI GAME for"
+	next "SAFARI GAME for"
 	cont "catching POKéMON."
 	done
 
 _FuchsiaCityText3::
 	text "ERIK: Where's"
-	line "SARA? I said I'd"
+	next "SARA? I said I'd"
 	cont "meet her here."
 	done
 
 _FuchsiaCityText4::
 	text "That item ball in"
-	line "there is really a"
+	next "there is really a"
 	cont "POKéMON."
 	done
 
@@ -33,53 +33,53 @@ _FuchsiaCityText5::
 
 _FuchsiaCityText11::
 	text "FUCHSIA CITY"
-	line "Behold! It's"
+	next "Behold! It's"
 	cont "Passion Pink!"
 	done
 
 _FuchsiaCityText13::
 	text "SAFARI GAME"
-	line "POKéMON-U-CATCH!"
+	next "POKéMON-U-CATCH!"
 	done
 
 _FuchsiaCityText16::
 	text "SAFARI ZONE"
-	line "WARDEN's HOME"
+	next "WARDEN's HOME"
 	done
 
 _FuchsiaCityText17::
 	text "POKéMON PARADISE"
-	line "SAFARI ZONE"
+	next "SAFARI ZONE"
 	done
 
 _FuchsiaCityText18::
 	text "FUCHSIA CITY"
-	line "POKéMON GYM"
+	next "POKéMON GYM"
 	cont "LEADER: KOGA"
 
 	para "The Poisonous"
-	line "Ninja Master"
+	next "Ninja Master"
 	done
 
 _FuchsiaCityChanseyText::
 	text "Name: CHANSEY"
 
 	para "Catching one is"
-	line "all up to chance."
+	next "all up to chance."
 	prompt
 
 _FuchsiaCityVoltorbText::
 	text "Name: VOLTORB"
 
 	para "The very image of"
-	line "a POKé BALL."
+	next "a POKé BALL."
 	prompt
 
 _FuchsiaCityKangaskhanText::
 	text "Name: KANGASKHAN"
 
 	para "A maternal POKéMON"
-	line "that raises its"
+	next "that raises its"
 	cont "young in a pouch"
 	cont "on its belly."
 	prompt
@@ -88,21 +88,21 @@ _FuchsiaCitySlowpokeText::
 	text "Name: SLOWPOKE"
 
 	para "Friendly and very"
-	line "slow moving."
+	next "slow moving."
 	prompt
 
 _FuchsiaCityLaprasText::
 	text "Name: LAPRAS"
 
 	para "A.K.A. the king"
-	line "of the seas."
+	next "of the seas."
 	prompt
 
 _FuchsiaCityOmanyteText::
 	text "Name: OMANYTE"
 
 	para "A POKéMON that"
-	line "was resurrected"
+	next "was resurrected"
 	cont "from a fossil."
 	prompt
 
@@ -110,7 +110,7 @@ _FuchsiaCityKabutoText::
 	text "Name: KABUTO"
 
 	para "A POKéMON that"
-	line "was resurrected"
+	next "was resurrected"
 	cont "from a fossil."
 	prompt
 

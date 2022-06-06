@@ -1,51 +1,51 @@
 _Route19BattleText1::
 	text "Have to warm up"
-	line "before my swim!"
+	next "before my swim!"
 	done
 
 _Route19EndBattleText1::
 	text "All"
-	line "warmed up!"
+	next "warmed up!"
 	prompt
 
 _Route19AfterBattleText1::
 	text "Thanks, kid! I'm"
-	line "ready for a swim!"
+	next "ready for a swim!"
 	done
 
 _Route19BattleText2::
 	text "Wait! You'll have"
-	line "a heart attack!"
+	next "a heart attack!"
 	done
 
 _Route19EndBattleText2::
 	text "Ooh!"
-	line "That's chilly!"
+	next "That's chilly!"
 	prompt
 
 _Route19AfterBattleText2::
 	text "Watch out for"
-	line "TENTACOOL!"
+	next "TENTACOOL!"
 	done
 
 _Route19BattleText3::
 	text "I love swimming!"
-	line "What about you?"
+	next "What about you?"
 	done
 
 _Route19EndBattleText3::
 	text "Belly"
-	line "flop!"
+	next "flop!"
 	prompt
 
 _Route19AfterBattleText3::
 	text "I can beat POKéMON"
-	line "at swimming!"
+	next "at swimming!"
 	done
 
 _Route19BattleText4::
 	text "What's beyond the"
-	line "horizon?"
+	next "horizon?"
 	done
 
 _Route19EndBattleText4::
@@ -54,12 +54,12 @@ _Route19EndBattleText4::
 
 _Route19AfterBattleText4::
 	text "I see a couple of"
-	line "islands!"
+	next "islands!"
 	done
 
 _Route19BattleText5::
 	text "I tried diving"
-	line "for POKéMON, but"
+	next "for POKéMON, but"
 	cont "it was a no go!"
 	done
 
@@ -69,44 +69,44 @@ _Route19EndBattleText5::
 
 _Route19AfterBattleText5::
 	text "You have to fish"
-	line "for sea POKéMON!"
+	next "for sea POKéMON!"
 	done
 
 _Route19BattleText6::
 	text "I look at the"
-	line "sea to forget!"
+	next "sea to forget!"
 	done
 
 _Route19EndBattleText6::
 	text "Ooh!"
-	line "Traumatic!"
+	next "Traumatic!"
 	prompt
 
 _Route19AfterBattleText6::
 	text "I'm looking at the"
-	line "sea to forget!"
+	next "sea to forget!"
 	done
 
 _Route19BattleText7::
 	text "Oh, I just love"
-	line "your ride! Can I"
+	next "your ride! Can I"
 	cont "have it if I win?"
 	done
 
 _Route19EndBattleText7::
 	text "Oh!"
-	line "I lost!"
+	next "I lost!"
 	prompt
 
 _Route19AfterBattleText7::
 	text "It's still a long"
-	line "way to go to"
+	next "way to go to"
 	cont "SEAFOAM ISLANDS."
 	done
 
 _Route19BattleText8::
 	text "Swimming's great!"
-	line "Sunburns aren't!"
+	next "Sunburns aren't!"
 	done
 
 _Route19EndBattleText8::
@@ -115,43 +115,43 @@ _Route19EndBattleText8::
 
 _Route19AfterBattleText8::
 	text "My boy friend"
-	line "wanted to swim to"
+	next "wanted to swim to"
 	cont "SEAFOAM ISLANDS."
 	done
 
 _Route19BattleText9::
 	text "These waters are"
-	line "treacherous!"
+	next "treacherous!"
 	done
 
 _Route19EndBattleText9::
 	text "Ooh!"
-	line "Dangerous!"
+	next "Dangerous!"
 	prompt
 
 _Route19AfterBattleText9::
 	text "I got a cramp!"
-	line "Glub, glub..."
+	next "Glub, glub..."
 	done
 
 _Route19BattleText10::
 	text "I swam here, but"
-	line "I'm tired."
+	next "I'm tired."
 	done
 
 _Route19EndBattleText10::
 	text "I'm"
-	line "exhausted..."
+	next "exhausted..."
 	prompt
 
 _Route19AfterBattleText10::
 	text "LAPRAS is so big,"
-	line "it must keep you"
+	next "it must keep you"
 	cont "dry on water."
 	done
 
 _Route19Text11::
 	text "SEA ROUTE 19"
-	line "FUCHSIA CITY -"
+	next "FUCHSIA CITY -"
 	cont "SEAFOAM ISLANDS"
 	done

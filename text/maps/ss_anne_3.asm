@@ -1,7 +1,7 @@
 _SSAnne3Text1::
 	text "Our CAPTAIN is a"
-	line "sword master!"
+	next "sword master!"
 
 	para "He even teaches"
-	line "CUT to POKéMON!"
+	next "CUT to POKéMON!"
 	done

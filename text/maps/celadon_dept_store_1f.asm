@@ -1,19 +1,19 @@
 _CeladonMart1Text1::
 	text "Hello! Welcome to"
-	line "CELADON DEPT."
+	next "CELADON DEPT."
 	cont "STORE."
 
 	para "The board on the"
-	line "right describes"
+	next "right describes"
 	cont "the store layout."
 	done
 
 _CeladonMart1Text2::
 	text "1F: SERVICE"
-	line "    COUNTER"
+	next "    COUNTER"
 
 	para "2F: TRAINER'S"
-	line "    MARKET"
+	next "    MARKET"
 
 	para "3F: TV GAME SHOP"
 
@@ -22,10 +22,10 @@ _CeladonMart1Text2::
 	para "5F: DRUG STORE"
 
 	para "ROOFTOP SQUARE:"
-	line "VENDING MACHINES"
+	next "VENDING MACHINES"
 	done
 
 _CeladonMart1Text3::
 	text "1F: SERVICE"
-	line "    COUNTER"
+	next "    COUNTER"
 	done

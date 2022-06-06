@@ -1,6 +1,6 @@
 _Route20BattleText1::
 	text "The water is"
-	line "shallow here."
+	next "shallow here."
 	done
 
 _Route20EndBattleText1::
@@ -9,12 +9,12 @@ _Route20EndBattleText1::
 
 _Route20AfterBattleText1::
 	text "I wish I could"
-	line "ride my POKéMON."
+	next "ride my POKéMON."
 	done
 
 _Route20BattleText2::
 	text "SEAFOAM is a"
-	line "quiet getaway!"
+	next "quiet getaway!"
 	done
 
 _Route20EndBattleText2::
@@ -23,13 +23,13 @@ _Route20EndBattleText2::
 
 _Route20AfterBattleText2::
 	text "There's a huge"
-	line "cavern underneath"
+	next "cavern underneath"
 	cont "this island."
 	done
 
 _Route20BattleText3::
 	text "I love floating"
-	line "with the fishes!"
+	next "with the fishes!"
 	done
 
 _Route20EndBattleText3::
@@ -38,27 +38,27 @@ _Route20EndBattleText3::
 
 _Route20AfterBattleText3::
 	text "Want to float"
-	line "with me?"
+	next "with me?"
 	done
 
 _Route20BattleText4::
 	text "Are you on"
-	line "vacation too?"
+	next "vacation too?"
 	done
 
 _Route20EndBattleText4::
 	text "No"
-	line "mercy at all!"
+	next "mercy at all!"
 	prompt
 
 _Route20AfterBattleText4::
 	text "SEAFOAM used to"
-	line "be one island!"
+	next "be one island!"
 	done
 
 _Route20BattleText5::
 	text "Check out my buff"
-	line "physique!"
+	next "physique!"
 	done
 
 _Route20EndBattleText5::
@@ -67,77 +67,77 @@ _Route20EndBattleText5::
 
 _Route20AfterBattleText5::
 	text "I should've been"
-	line "buffing up my"
+	next "buffing up my"
 	cont "POKéMON, not me!"
 	done
 
 _Route20BattleText6::
 	text "Why are you"
-	line "riding a POKéMON?"
+	next "riding a POKéMON?"
 	cont "Can't you swim?"
 	done
 
 _Route20EndBattleText6::
 	text "Ouch!"
-	line "Torpedoed!"
+	next "Torpedoed!"
 	prompt
 
 _Route20AfterBattleText6::
 	text "Riding a POKéMON"
-	line "sure looks fun!"
+	next "sure looks fun!"
 	done
 
 _Route20BattleText7::
 	text "I rode my bird"
-	line "POKéMON here!"
+	next "POKéMON here!"
 	done
 
 _Route20EndBattleText7::
 	text "Oh"
-	line "no!"
+	next "no!"
 	prompt
 
 _Route20AfterBattleText7::
 	text "My birds can't"
-	line "FLY me back!"
+	next "FLY me back!"
 	done
 
 _Route20BattleText8::
 	text "My boy friend gave"
-	line "me big pearls!"
+	next "me big pearls!"
 	done
 
 _Route20EndBattleText8::
 	text "Don't"
-	line "touch my pearls!"
+	next "touch my pearls!"
 	prompt
 
 _Route20AfterBattleText8::
 	text "Will my pearls"
-	line "grow bigger"
+	next "grow bigger"
 	cont "inside CLOYSTER?"
 	done
 
 _Route20BattleText9::
 	text "I swam here from"
-	line "CINNABAR ISLAND!"
+	next "CINNABAR ISLAND!"
 	done
 
 _Route20EndBattleText9::
 	text "I'm"
-	line "so disappointed!"
+	next "so disappointed!"
 	prompt
 
 _Route20AfterBattleText9::
 	text "POKéMON have"
-	line "taken over an"
+	next "taken over an"
 	cont "abandoned mansion"
 	cont "on CINNABAR!"
 	done
 
 _Route20BattleText10::
 	text "CINNABAR, in the"
-	line "west, has a LAB"
+	next "west, has a LAB"
 	cont "for POKéMON."
 	done
 
@@ -147,7 +147,7 @@ _Route20EndBattleText10::
 
 _Route20AfterBattleText10::
 	text "CINNABAR is a "
-	line "volcanic island!"
+	next "volcanic island!"
 	done
 
 _Route20Text12::

@@ -1,6 +1,6 @@
 _PokemonTower5Text1::
 	text "Come, child! I"
-	line "sealed this space"
+	next "sealed this space"
 	cont "with white magic!"
 
 	para "You can rest here!"
@@ -8,7 +8,7 @@ _PokemonTower5Text1::
 
 _PokemonTower5BattleText1::
 	text "Give...me..."
-	line "your...soul..."
+	next "your...soul..."
 	done
 
 _PokemonTower5EndBattleText1::
@@ -17,17 +17,17 @@ _PokemonTower5EndBattleText1::
 
 _PokemonTower5AfterBattleText1::
 	text "I was under"
-	line "possession!"
+	next "possession!"
 	done
 
 _PokemonTower5BattleText2::
 	text "You...shall..."
-	line "join...us..."
+	next "join...us..."
 	done
 
 _PokemonTower5EndBattleText2::
 	text "What"
-	line "a nightmare!"
+	next "a nightmare!"
 	prompt
 
 _PokemonTower5AfterBattleText2::
@@ -44,12 +44,12 @@ _PokemonTower5EndBattleText3::
 
 _PokemonTower5AfterBattleText3::
 	text "I regained my"
-	line "senses!"
+	next "senses!"
 	done
 
 _PokemonTower5BattleText4::
 	text "Urgah..."
-	line "Urff...."
+	next "Urff...."
 	done
 
 _PokemonTower5EndBattleText4::
@@ -58,14 +58,14 @@ _PokemonTower5EndBattleText4::
 
 _PokemonTower5AfterBattleText4::
 	text "I fell to evil"
-	line "spirits despite"
+	next "spirits despite"
 	cont "my training!"
 	done
 
 _PokemonTower5Text7::
 	text "Entered purified,"
-	line "protected zone!"
+	next "protected zone!"
 
 	para "<PLAYER>'s POKéMON"
-	line "are fully healed!"
+	next "are fully healed!"
 	done

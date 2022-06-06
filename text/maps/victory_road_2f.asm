@@ -4,7 +4,7 @@ _MoltresBattleText::
 
 _VictoryRoad2BattleText1::
 	text "VICTORY ROAD is"
-	line "the final test"
+	next "the final test"
 	cont "for trainers!"
 	done
 
@@ -14,73 +14,73 @@ _VictoryRoad2EndBattleText1::
 
 _VictoryRoad2AfterBattleText1::
 	text "If you get stuck,"
-	line "try moving some"
+	next "try moving some"
 	cont "boulders around!"
 	done
 
 _VictoryRoad2BattleText2::
 	text "Ah, so you wish"
-	line "to challenge the"
+	next "to challenge the"
 	cont "ELITE FOUR?"
 	done
 
 _VictoryRoad2EndBattleText2::
 	text "You"
-	line "got me!"
+	next "got me!"
 	prompt
 
 _VictoryRoad2AfterBattleText2::
 	text "<RIVAL> also came"
-	line "through here!"
+	next "through here!"
 	done
 
 _VictoryRoad2BattleText3::
 	text "Come on!"
-	line "I'll whip you!"
+	next "I'll whip you!"
 	done
 
 _VictoryRoad2EndBattleText3::
 	text "I got"
-	line "whipped!"
+	next "whipped!"
 	prompt
 
 _VictoryRoad2AfterBattleText3::
 	text "You earned the"
-	line "right to be on"
+	next "right to be on"
 	cont "VICTORY ROAD!"
 	done
 
 _VictoryRoad2BattleText4::
 	text "If you can get"
-	line "through here, you"
+	next "through here, you"
 	cont "can go meet the"
 	cont "ELITE FOUR!"
 	done
 
 _VictoryRoad2EndBattleText4::
 	text "No!"
-	line "Unbelievable!"
+	next "Unbelievable!"
 	prompt
 
 _VictoryRoad2AfterBattleText4::
 	text "I can beat you"
-	line "when it comes to"
+	next "when it comes to"
 	cont "knowledge about"
 	cont "POKéMON!"
 	done
 
 _VictoryRoad2BattleText5::
 	text "Is VICTORY ROAD"
-	line "too tough?"
+	next "too tough?"
 	done
 
 _VictoryRoad2EndBattleText5::
 	text "Well"
-	line "done!"
+	next "done!"
 	prompt
 
 _VictoryRoad2AfterBattleText5::
 	text "Many trainers give"
-	line "up the challenge"
+	next "up the challenge"
 	cont "here."
 	done

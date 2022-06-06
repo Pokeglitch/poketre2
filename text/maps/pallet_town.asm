@@ -1,49 +1,49 @@
 _OakAppearsText::
 	text "OAK: Hey! Wait!"
-	line "Don't go out!"
+	next "Don't go out!"
 	done
 
 _OakWalksUpText::
 	text "OAK: It's unsafe!"
-	line "Wild POKéMON live"
+	next "Wild POKéMON live"
 	cont "in tall grass!"
 
 	para "You need your own"
-	line "POKéMON for your"
+	next "POKéMON for your"
 	cont "protection."
 	cont "I know!"
 
 	para "Here, come with"
-	line "me!"
+	next "me!"
 	done
 
 _PalletTownText2::
 	text "I'm raising"
-	line "POKéMON too!"
+	next "POKéMON too!"
 
 	para "When they get"
-	line "strong, they can"
+	next "strong, they can"
 	cont "protect me!"
 	done
 
 _PalletTownText3::
 	text "Technology is"
-	line "incredible!"
+	next "incredible!"
 
 	para "You can now store"
-	line "and recall items"
+	next "and recall items"
 	cont "and POKéMON as"
 	cont "data via PC!"
 	done
 
 _PalletTownText4::
 	text "OAK POKéMON"
-	line "RESEARCH LAB"
+	next "RESEARCH LAB"
 	done
 
 _PalletTownText5::
 	text "PALLET TOWN"
-	line "Shades of your"
+	next "Shades of your"
 	cont "journey await!"
 	done
 

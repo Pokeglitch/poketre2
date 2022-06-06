@@ -1,45 +1,45 @@
 _Route22RivalBeforeBattleText1::
 	text "<RIVAL>: Hey!"
-	line "<PLAYER>!"
+	next "<PLAYER>!"
 
 	para "You're going to"
-	line "POKéMON LEAGUE?"
+	next "POKéMON LEAGUE?"
 
 	para "Forget it! You"
-	line "probably don't"
+	next "probably don't"
 	cont "have any BADGEs!"
 
 	para "The guard won't"
-	line "let you through!"
+	next "let you through!"
 
 	para "By the way, did"
-	line "your POKéMON"
+	next "your POKéMON"
 	cont "get any stronger?"
 	done
 
 _Route22RivalAfterBattleText1::
 	text "I heard POKéMON"
-	line "LEAGUE has many"
+	next "LEAGUE has many"
 	cont "tough trainers!"
 
 	para "I have to figure"
-	line "out how to get"
+	next "out how to get"
 	cont "past them!"
 
 	para "You should quit"
-	line "dawdling and get"
+	next "dawdling and get"
 	cont "a move on!"
 	done
 
 _Route22RivalDefeatedText1::
 	text "Awww!"
-	line "You just lucked"
+	next "You just lucked"
 	cont "out!"
 	prompt
 
 _Route22Text_511bc::
 	text "<RIVAL>: What?"
-	line "Why do I have 2"
+	next "Why do I have 2"
 	cont "POKéMON?"
 
 	para "You should catch"
@@ -48,19 +48,19 @@ _Route22Text_511bc::
 
 _Route22RivalBeforeBattleText2::
 	text "<RIVAL>: What?"
-	line "<PLAYER>! What a"
+	next "<PLAYER>! What a"
 	cont "surprise to see"
 	cont "you here!"
 
 	para "So you're going to"
-	line "POKéMON LEAGUE?"
+	next "POKéMON LEAGUE?"
 
 	para "You collected all"
-	line "the BADGEs too?"
+	next "the BADGEs too?"
 	cont "That's cool!"
 
 	para "Then I'll whip you"
-	line "<PLAYER> as a"
+	next "<PLAYER> as a"
 	cont "warm up for"
 	cont "POKéMON LEAGUE!"
 
@@ -69,14 +69,14 @@ _Route22RivalBeforeBattleText2::
 
 _Route22RivalAfterBattleText2::
 	text "That loosened me"
-	line "up! I'm ready for"
+	next "up! I'm ready for"
 	cont "POKéMON LEAGUE!"
 
 	para "<PLAYER>, you need"
-	line "more practice!"
+	next "more practice!"
 
 	para "But hey, you know"
-	line "that! I'm out of"
+	next "that! I'm out of"
 	cont "here. Smell ya!"
 	done
 
@@ -84,21 +84,21 @@ _Route22RivalDefeatedText2::
 	text "What!?"
 
 	para "I was just"
-	line "careless!"
+	next "careless!"
 	prompt
 
 _Route22Text_511d0::
 	text "<RIVAL>: Hahaha!"
-	line "<PLAYER>! That's"
+	next "<PLAYER>! That's"
 	cont "your best? You're"
 	cont "nowhere near as"
 	cont "good as me, pal!"
 
 	para "Go train some"
-	line "more! You loser!"
+	next "more! You loser!"
 	prompt
 
 _Route22FrontGateText::
 	text "POKéMON LEAGUE"
-	line "Front Gate"
+	next "Front Gate"
 	done

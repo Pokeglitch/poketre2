@@ -1,21 +1,21 @@
 _Route22GateText_1e704::
 	text "Only truly skilled"
-	line "trainers are"
+	next "trainers are"
 	cont "allowed through."
 
 	para "You don't have the"
-	line "BOULDERBADGE yet!"
+	next "BOULDERBADGE yet!"
 	done
 
 _Route22GateText_1e715::
 	db $0
 	para "The rules are"
-	line "rules. I can't"
+	next "rules. I can't"
 	cont "let you pass."
 	done
 
 _Route22GateText_1e71a::
 	text "Oh! That is the"
-	line "BOULDERBADGE!"
+	next "BOULDERBADGE!"
 	cont "Go right ahead!"
 	done

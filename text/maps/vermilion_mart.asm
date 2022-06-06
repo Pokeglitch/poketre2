@@ -1,15 +1,15 @@
 _VermilionMartText2::
 	text "There are evil"
-	line "people who will"
+	next "people who will"
 	cont "use POKéMON for"
 	cont "criminal acts."
 
 	para "TEAM ROCKET"
-	line "traffics in rare"
+	next "traffics in rare"
 	cont "POKéMON."
 
 	para "They also abandon"
-	line "POKéMON that they"
+	next "POKéMON that they"
 	cont "consider not to"
 	cont "be popular or"
 	cont "useful."
@@ -17,7 +17,7 @@ _VermilionMartText2::
 
 _VermilionMartText3::
 	text "I think POKéMON"
-	line "can be good or"
+	next "can be good or"
 	cont "evil. It depends"
 	cont "on the trainer."
 	done

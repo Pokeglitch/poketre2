@@ -1,86 +1,86 @@
 _CeruleanGymText_5c7be::
 	text "Hi, you're a new"
-	line "face!"
+	next "face!"
 
 	para "Trainers who want"
-	line "to turn pro have"
+	next "to turn pro have"
 	cont "to have a policy"
 	cont "about POKéMON!"
 
 	para "What is your"
-	line "approach when you"
+	next "approach when you"
 	cont "catch POKéMON?"
 
 	para "My policy is an"
-	line "all-out offensive"
+	next "all-out offensive"
 	cont "with water-type"
 	cont "POKéMON!"
 	done
 
 _CeruleanGymText_5c7c3::
 	text "TM11 teaches"
-	line "BUBBLEBEAM!"
+	next "BUBBLEBEAM!"
 
 	para "Use it on an"
-	line "aquatic POKéMON!"
+	next "aquatic POKéMON!"
 	done
 
 _CeruleanGymText_5c7c8::
 	text "The CASCADEBADGE"
-	line "makes all POKéMON"
+	next "makes all POKéMON"
 	cont "up to L30 obey!"
 
 	para "That includes"
-	line "even outsiders!"
+	next "even outsiders!"
 
 	para "There's more, you"
-	line "can now use CUT"
+	next "can now use CUT"
 	cont "any time!"
 
 	para "You can CUT down"
-	line "small bushes to"
+	next "small bushes to"
 	cont "open new paths!"
 
 	para "You can also have"
-	line "my favorite TM!"
+	next "my favorite TM!"
 	done
 
 _ReceivedTM11Text::
 	text "<PLAYER> received"
-	line "TM11!"
+	next "TM11!"
 	done
 
 _CeruleanGymText_5c7d3::
 	text "You better make"
-	line "room for this!"
+	next "room for this!"
 	done
 
 _CeruleanGymText_5c7d8::
 	text "Wow!"
-	line "You're too much!"
+	next "You're too much!"
 
 	para "All right!"
 
 	para "You can have the"
-	line "CASCADEBADGE to"
+	next "CASCADEBADGE to"
 	cont "show you beat me!"
 	done
 
 _CeruleanGymBattleText1::
 	text "I'm more than good"
-	line "enough for you!"
+	next "enough for you!"
 
 	para "MISTY can wait!"
 	done
 
 _CeruleanGymEndBattleText1::
 	text "You"
-	line "overwhelmed me!"
+	next "overwhelmed me!"
 	prompt
 
 _CeruleanGymAfterBattleText1::
 	text "You have to face"
-	line "other trainers to"
+	next "other trainers to"
 	cont "find out how good"
 	cont "you really are."
 	done
@@ -89,45 +89,45 @@ _CeruleanGymBattleText2::
 	text "Splash!"
 
 	para "I'm first up!"
-	line "Let's do it!"
+	next "Let's do it!"
 	done
 
 _CeruleanGymEndBattleText2::
 	text "That"
-	line "can't be!"
+	next "can't be!"
 	prompt
 
 _CeruleanGymAfterBattleText2::
 	text "MISTY is going to"
-	line "keep improving!"
+	next "keep improving!"
 
 	para "She won't lose to"
-	line "someone like you!"
+	next "someone like you!"
 	done
 
 _CeruleanGymText_5c82a::
 	text "Yo! Champ in"
-	line "making!"
+	next "making!"
 
 	para "Here's my advice!"
 
 	para "The LEADER, MISTY,"
-	line "is a pro who uses"
+	next "is a pro who uses"
 	cont "water POKéMON!"
 
 	para "You can drain all"
-	line "their water with"
+	next "their water with"
 	cont "plant POKéMON!"
 
 	para "Or, zap them with"
-	line "electricity!"
+	next "electricity!"
 	done
 
 _CeruleanGymText_5c82f::
 	text "You beat MISTY!"
-	line "What'd I tell ya?"
+	next "What'd I tell ya?"
 
 	para "You and me kid,"
-	line "we make a pretty"
+	next "we make a pretty"
 	cont "darn good team!"
 	done

@@ -1,26 +1,26 @@
 _FuchsiaMeetingRoomText1::
 	text "We nicknamed the"
-	line "WARDEN SLOWPOKE."
+	next "WARDEN SLOWPOKE."
 
 	para "He and SLOWPOKE"
-	line "both look vacant!"
+	next "both look vacant!"
 	done
 
 _FuchsiaMeetingRoomText2::
 	text "SLOWPOKE is very"
-	line "knowledgeable"
+	next "knowledgeable"
 	cont "about POKéMON!"
 
 	para "He even has some"
-	line "fossils of rare,"
+	next "fossils of rare,"
 	cont "extinct POKéMON!"
 	done
 
 _FuchsiaMeetingRoomText3::
 	text "SLOWPOKE came in,"
-	line "but I couldn't"
+	next "but I couldn't"
 	cont "understand him."
 
 	para "I think he's got"
-	line "a speech problem!"
+	next "a speech problem!"
 	done
