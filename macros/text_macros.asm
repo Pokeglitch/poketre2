@@ -1,21 +1,108 @@
-; text macros
-text     EQUS "db " ; Start writing text.
-ramtext  EQUS "dbw RAM_TEXT,"
-neartext EQUS "dbw NEAR_TEXT,"
-asmtext  EQUS "db TEXT_ASM"
-delaytext EQUS "db DELAY_TEXT"
-textbox  EQUS "db TEXTBOX_DEF," ; Define the textbox before writing the text
-cont     EQUS "db CONTINUE_TEXT," ; Scroll to the next line.
-autocont EQUS "db AUTO_CONTINUE_TEXT," ; Scroll without user interaction
-next     EQUS "db NEXT_TEXT_LINE," ; Move a line down.
-para     EQUS "db PARAGRAPH," ; Start a new paragraph.
-autopara EQUS "db AUTO_PARAGRAPH," ; Auto start a new paragraph.
-done     EQUS "db TEXT_END"  ; End a string
-prompt   EQUS "db TEXT_PROMPT"  ; Prompt the player to end a text box (initiating some other event).
-wait     EQUS "db TEXT_WAIT" ; Just wait for a keypress before continuing
+; Define the textbox before writing the text
+textbox: MACRO
+	db TEXTBOX_DEF
+	db \1
+ENDM
 
-page   EQUS "db DEX_PAGE,"     ; Start a new Pokedex page.
-dex    EQUS "db DEX_END, TEXT_END" ; End a Pokedex entry.
+text: MACRO
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+ramtext: MACRO
+	db RAM_TEXT
+	dw \1
+ENDM
+
+neartext: MACRO
+	db NEAR_TEXT
+	dw \1
+ENDM
+
+asmtext: MACRO
+	db TEXT_ASM
+ENDM
+
+delaytext: MACRO
+	db DELAY_TEXT
+ENDM
+
+; Scroll to the next line.
+cont: MACRO
+	db CONTINUE_TEXT
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; Scroll without user interaction
+autocont: MACRO
+	db AUTO_CONTINUE_TEXT
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; Move a line down.
+next: MACRO
+	db NEXT_TEXT_LINE
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; Start a new paragraph.
+para: MACRO
+	db PARAGRAPH
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; Start a new paragraph without user interaction
+autopara: MACRO
+	db AUTO_PARAGRAPH
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; End a string
+done: MACRO
+	db TEXT_END
+ENDM
+
+; Prompt the player to end a text box (initiating some other event).
+prompt: MACRO
+	db TEXT_PROMPT
+ENDM
+
+; Just wait for a keypress before continuing
+wait: MACRO
+	db TEXT_WAIT
+ENDM
+
+; Start a new Pokedex page.
+page: MACRO
+	db DEX_PAGE
+	REPT _NARG
+	db \1
+	SHIFT
+	ENDR
+ENDM
+
+; End a Pokedex entry.
+dex: MACRO
+	db DEX_END
+	db TEXT_END
+ENDM
 
 str: MACRO
 	REPT _NARG
