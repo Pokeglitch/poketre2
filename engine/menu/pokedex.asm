@@ -389,10 +389,12 @@ IsPokemonBitSet:
 	ret
 
 ; function to display pokedex data from outside the pokedex
+; TODO
+; - add white tile
+; - add angles tiles surrounding pokedex #
+; - add " and ' tiles
+; - fix description and blinking arrow
 ShowPokedexData:
-	call GBPalWhiteOutWithDelay3
-	call ClearScreen
-	call UpdateSprites
 	callab LoadPokedexTilePatterns ; load pokedex tiles
 
 ; function to display pokedex data from inside the pokedex
@@ -401,7 +403,6 @@ ShowPokedexDataInternal:
 	set 1, [hl]
 	ld a, $33 ; 3/7 volume
 	ld [rNR50], a
-	call GBPalWhiteOut ; zero all palettes
 	call ClearScreen
 	ld a, [wd11e] ; pokemon ID
 	ld [wcf91], a
@@ -415,43 +416,138 @@ ShowPokedexDataInternal:
 	xor a
 	ld [hTilesetType], a
 
+	; top border 1
 	coord hl, 0, 0
-	ld de, 1
-	lb bc, $64, SCREEN_WIDTH
-	call DrawTileLine ; draw top border
+	ld a, $C0
+	ld b, 5
 
-	coord hl, 0, 17
-	ld b, $6f
-	call DrawTileLine ; draw bottom border
+.loop1
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .loop1
 
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	inc a
+	ld [hl], a
+
+	; top border 2
 	coord hl, 0, 1
-	ld de, 20
-	lb bc, $66, $10
-	call DrawTileLine ; draw left border
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld a, " "  ; TODO - white tile
+	ld b, 6
+.loop2
+	ld [hli], a
+	dec b
+	jr nz, .loop2
+	ld [hl], $CB
 
-	coord hl, 19, 1
-	ld b, $67
-	call DrawTileLine ; draw right border
+	; row 3
+	coord hl, 0, 2
+	call DrawEmptyRow
 
-	ld a, $63 ; upper left corner tile
-	Coorda 0, 0
-	ld a, $65 ; upper right corner tile
-	Coorda 19, 0
-	ld a, $6c ; lower left corner tile
-	Coorda 0, 17
-	ld a, $6e ; lower right corner tile
-	Coorda 19, 17
+	; row 4
+	coord hl, 0, 3
+	ld b, $66
+	call DrawQuestionMarkRow
+	
+	; row 5
+	coord hl, 0, 4
+	ld b, $6B
+	call DrawQuestionMarkRow
+	
+	; row 6
+	coord hl, 0, 5
+	ld b, $70
+	call DrawQuestionMarkRow
+	
+	; row 7
+	coord hl, 0, 6
+	ld b, $75
+	call DrawQuestionMarkRow
+	
+	; row 8
+	coord hl, 0, 7
+	ld b, $7A
+	call DrawQuestionMarkRow
+	
+	; row 9
+	coord hl, 0, 8
+	call DrawEmptyRow
 
+	;bottom border 1
 	coord hl, 0, 9
-	ld de, PokedexDataDividerLine
-	call PlaceString ; draw horizontal divider line
+	ld a, $CC
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], $CD
+	inc hl
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld [hl], $CD
+	inc hl
+	inc a
+	ld [hl], a	
 
-	coord hl, 9, 6
+	;bottom border 2
+	coord hl, 0, 10
+	inc a
+	ld [hli], a
+	inc a
+	ld b, 5
+.loop10
+	ld [hli], a
+	dec b
+	jr nz, .loop10
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld [hl], $D7
+	inc hl
+	inc a
+	ld [hl], a
+
+	;divider 1
+	coord hl, 10, 8
+	ld a, $D9
+	call DrawDividerRow
+
+
+	;divider 2
+	coord hl, 10, 9
+	ld a, $DB
+	call DrawDividerRow
+
+	;divider 3
+	coord hl, 10, 10
+	ld a, $DD
+	call DrawDividerRow
+
+	call FullyRevealWindow
+
+	coord hl, 10, 4
 	ld de, HeightWeightText
 	call PlaceString
 
 	call GetMonName
-	coord hl, 9, 2
+	coord hl, 10, 0
 	call PlaceString
 
 	ld hl, PokedexEntryPointers
@@ -465,7 +561,7 @@ ShowPokedexDataInternal:
 	ld e, a
 	ld d, [hl] ; de = address of pokedex entry
 
-	coord hl, 9, 4
+	coord hl, 10, 2
 	call PlaceString ; print species name
 
 	ld h, b
@@ -475,12 +571,13 @@ ShowPokedexDataInternal:
 	push af
 	call IndexToPokedex
 
-	coord hl, 2, 8
-	ld a, "#"
+	coord hl, 4, 1
+	ld a, " " ; todo - open angle tile
 	ld [hli], a
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
 	call PrintNumber ; print pokedex number
+	ld [hl], " " ; todo - close angle tile after
 
 	ld hl, wPokedexOwned
 	call IsPokemonBitSet
@@ -495,10 +592,9 @@ ShowPokedexDataInternal:
 	push de
 	push hl
 
-	call Delay3
-	call GBPalNormal
+	; TODO - load pokemon sprite into buffer before scrolling?
 	call GetMonHeader ; load pokemon picture location
-	coord hl, 1, 1
+	coord hl, 2, 2
 	call LoadFlippedFrontSpriteByMonIndex ; draw pokemon picture
 	ld a, [wcf91]
 	call PlayCry ; play pokemon cry
@@ -513,14 +609,14 @@ ShowPokedexDataInternal:
 	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
 	inc de ; de = address of feet (height)
 	ld a, [de] ; reads feet, but a is overwritten without being used
-	coord hl, 12, 6
+	coord hl, 13, 4
 	lb bc, 1, 2
 	call PrintNumber ; print feet (height)
 	ld a, $60 ; feet symbol tile (one tick)
 	ld [hl], a
 	inc de
 	inc de ; de = address of inches (height)
-	coord hl, 15, 6
+	coord hl, 16, 4
 	lb bc, LEADING_ZEROES | 1, 2
 	call PrintNumber ; print inches (height)
 	ld a, $61 ; inches symbol tile (two ticks)
@@ -542,10 +638,10 @@ ShowPokedexDataInternal:
 	ld a, [de] ; a = lower byte of weight
 	ld [hl], a ; store lower byte of weight in [hDexWeight + 1]
 	ld de, hDexWeight
-	coord hl, 11, 8
+	coord hl, 13, 6
 	lb bc, 2, 5 ; 2 bytes, 5 digits
 	call PrintNumber ; print weight
-	coord hl, 14, 8
+	coord hl, 16, 6
 	ld a, [hDexWeight + 1]
 	sub 10
 	ld a, [hDexWeight]
@@ -557,16 +653,21 @@ ShowPokedexDataInternal:
 	ld a, [hli]
 	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
 	ld [hl], "." ; decimal point tile
+	inc hl
+	inc hl
+	ld [hl], $DE ;lb tile
+
 	pop af
 	ld [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
 	pop af
 	ld [hDexWeight], a ; restore original value of [hDexWeight]
+
 	pop hl
 	inc hl ; hl = address of pokedex description text
-	coord bc, 1, 11
+	coord bc, 1, 12
 	ld a, 2
 	ld [$fff4], a
-	call TextCommandProcessor ; print pokedex description text
+	;call TextCommandProcessor ; print pokedex description text
 	xor a
 	ld [$fff4], a
 .waitForButtonPress
@@ -576,11 +677,16 @@ ShowPokedexDataInternal:
 	jr z, .waitForButtonPress
 	pop af
 	ld [hTilesetType], a
-	call GBPalWhiteOut
-	call ClearScreen
+
+	; TODO
+	; - re-draw the question mark
+	; - reload the tilset
+	; - close text display (need to make sure overworld is drawn properly)
+	; - load proper font/textbox tiles
 	call RunDefaultPaletteCommand
 	call LoadTextBoxTilePatterns
-	call GBPalNormal
+	call CloseTextDisplay
+	
 	ld hl, wd72c
 	res 1, [hl]
 	ld a, $77 ; max volume
@@ -588,20 +694,62 @@ ShowPokedexDataInternal:
 	ret
 
 HeightWeightText:
-	db   "HT  ?",$60,"??",$61
-	next "WT   ???lb@"
+	db   $60, $61, $62
+	next $63, $64, $65
+	done
+
+DrawEmptyRow:
+	ld [hl], $CA
+	inc hl
+	ld a, " "  ; TODO - white tile
+	ld b, 8
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+
+	ld [hl], $CB
+	ret
+
+DrawQuestionMarkRow:
+	ld [hl], $CA
+	inc hl
+	ld a, " "  ; TODO - white tile
+	ld [hli], a
+	ld [hli], a
+	ld a, b
+	ld b, 5
+.loop
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .loop
+
+	ld a, " "  ; TODO - white tile
+	ld [hli], a
+	ld [hl], $CB
+	ret
+
+DrawDividerRow:
+	ld [hli], a
+	dec a
+	ld [hli], a
+	inc a
+	ld b, 6
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+
+	dec a
+	ld [hli], a
+	inc a
+	ld [hl], a
+	ret
 
 ; XXX does anything point to this?
 UnusedPokeText:
 	str "#"
-
-; horizontal line that divides the pokedex text description from the rest of the data
-PokedexDataDividerLine:
-	db $68,$69,$6B,$69,$6B
-	db $69,$6B,$69,$6B,$6B
-	db $6B,$6B,$69,$6B,$69
-	db $6B,$69,$6B,$69,$6A
-	db "@"
 
 ; draws a line of tiles
 ; INPUT:

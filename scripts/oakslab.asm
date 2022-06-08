@@ -780,6 +780,7 @@ OaksLabText41:
 	done
 
 OaksLabText2:
+	textbox DONT_REVEAL
 	asmtext
 	ld a, STARTER2
 	ld [wRivalStarterTemp], a
@@ -790,6 +791,7 @@ OaksLabText2:
 	jr OaksLabScript_1d133
 
 OaksLabText3:
+	textbox DONT_REVEAL
 	asmtext
 	ld a, STARTER3
 	ld [wRivalStarterTemp], a
@@ -800,6 +802,7 @@ OaksLabText3:
 	jr OaksLabScript_1d133
 
 OaksLabText4:
+	textbox DONT_REVEAL
 	asmtext
 	ld a, STARTER1
 	ld [wRivalStarterTemp], a

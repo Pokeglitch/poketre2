@@ -168,8 +168,29 @@ GamefreakLogoGraphics:          INCBIN "gfx/gamefreak.2bpp"
 GamefreakLogoGraphicsEnd:
 TextBoxGraphics:                INCBIN "gfx/text_box.2bpp"
 TextBoxGraphicsEnd:
-PokedexTileGraphics:            INCBIN "gfx/pokedex.2bpp"
-PokedexTileGraphicsEnd:
+
+PokedexTileGraphics1:
+	INCBIN "gfx/pokedex/pic_top_border.2bpp"
+	INCBIN "gfx/pokedex/pic_top_border2.2bpp"
+	INCBIN "gfx/pokedex/pic_left_border.2bpp"
+	INCBIN "gfx/pokedex/pic_right_border.2bpp"
+	INCBIN "gfx/pokedex/pic_bottom_border.2bpp"
+	INCBIN "gfx/pokedex/pic_bottom_border2.2bpp"
+	INCBIN "gfx/pokedex/divider.2bpp"
+	INCBIN "gfx/pokedex/lbs.2bpp"
+	
+PokedexTileGraphics1End:
+	
+PokedexTileGraphics2:
+	INCBIN "gfx/pokedex/height.2bpp"
+	INCBIN "gfx/pokedex/weight.2bpp"
+	INCBIN "gfx/pokedex/question_mark.2bpp"
+	;INCBIN "gfx/pokedex/arrow.2bpp" ; TODO - this can be part of the 'symbol' overwrite
+PokedexTileGraphics2End:
+
+;PokedexTileGraphics:            INCBIN "gfx/pokedex.2bpp"
+;PokedexTileGraphicsEnd:
+
 WorldMapTileGraphics:           INCBIN "gfx/town_map.2bpp"
 WorldMapTileGraphicsEnd:
 PlayerCharacterTitleGraphics:   INCBIN "gfx/player_title.2bpp"
