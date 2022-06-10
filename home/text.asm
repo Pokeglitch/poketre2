@@ -459,10 +459,17 @@ ASMTextCommand:
 	pop hl
 	jp PlaceNextChar
 
+; TODO - handle textbox definition within the string
 TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	ld a, [hl]
+	cp NO_TEXTBOX
+	jr nz, .drawTextbox
+	inc hl
+	jr .handleText
+
+.drawTextbox
 	cp TEXTBOX_DEF
 	jr nz, .notCustomTextbox
 	inc hl

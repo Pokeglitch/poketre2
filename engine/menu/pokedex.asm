@@ -391,7 +391,7 @@ IsPokemonBitSet:
 ; function to display pokedex data from outside the pokedex
 ; TODO
 ; - DONT load any font GFX before displaying dex
-; - load Type tiles
+; - clean up
 ShowPokedexData:
 	callab LoadPokedexTilePatterns ; load pokedex tiles
 
