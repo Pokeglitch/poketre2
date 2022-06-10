@@ -80,6 +80,7 @@ charmap "'t", $BE
 charmap "'v", $BF
 
 charmap "'", $E0
+charmap "\"", $E1
 charmap "฿", $E1
 charmap "/", $E2
 charmap "-", $E3

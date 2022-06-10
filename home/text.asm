@@ -4,6 +4,136 @@ TextBoxBorder::
 NewTextBoxBorder::
 	homejump NewTextBoxBorder_
 
+; de = pointer to string
+; hl = vram destination
+; a = length
+CopyStringToVRAM_WhiteOnBlack:
+	ld bc, WhiteOnBlackFontLettersGFX
+	jr CopyStringToVRAMCommon
+
+CopyStringToVRAM_BlackOnWhite:
+	ld bc, BlackOnWhiteFontLettersGFX
+	jr CopyStringToVRAMCommon
+
+CopyStringToVRAM_BlackOnLight:
+	ld bc, BlackOnLightFontLettersGFX
+	; fall through
+
+; todo - option to left align, center, right align
+; can center by counting string length, then shfiting vram destination by half that * bytes per tile?
+CopyStringToVRAMCommon:
+	inc a
+	push af
+.loop
+	pop af
+	dec a
+	push af
+	push de
+	push hl
+
+	push bc
+	and a
+	jr z, .finish ; if the max length was reached
+
+	ld a, [de]
+	cp "@"
+	jr z, .finish ; if the end of string was reached
+
+	pop bc
+	call GetPointerToCharacterTile ; in de	
+	pop hl ; hl = destination
+
+	push hl
+	push bc
+	lb bc, BANK(BlackOnLightFontLettersGFX), 1
+	call CopyVideoData
+	pop bc
+	pop hl
+
+	ld de, BYTES_PER_TILE
+	add hl, de
+
+	pop de
+	inc de
+	jr .loop
+
+.finish
+	pop bc
+	pop hl
+	pop de
+	pop af
+
+	push de
+	ld de, LightTextboxSpaceGFX
+
+.fillerLoop
+	and a
+	jr z, .exit
+
+	push de
+	push hl
+	push af
+
+	lb bc, BANK(BlackOnLightFontLettersGFX), 1
+	call CopyVideoData
+	
+	pop af
+	dec a
+	
+	pop hl
+	ld de, BYTES_PER_TILE
+	add hl, de
+
+	pop de
+	jr .fillerLoop
+
+.exit
+	pop de
+	ret
+
+; a = character
+; bc = starting pointer
+; returns pointer in de
+GetPointerToCharacterTile:
+	push bc
+	ld h, b
+	ld l, c
+
+	cp " " ; space
+	jr nz, .notSpace
+	ld bc, LightTextboxSpaceGFX - BlackOnLightFontLettersGFX
+	add hl, bc
+	xor a
+	jr .skip
+
+.notSpace
+	cp "'" ; first symbol
+	jr nc, .notLetter
+
+	sub "A" ; start at 0
+	jr .skip
+
+.notLetter
+	ld bc, BlackOnLightFontSymbolsGFX - BlackOnLightFontLettersGFX
+	add hl, bc
+	sub "'" ; start at 0
+
+.skip
+	add a ; double (will not overflow since "A" is 80)
+	ld d, 0
+	ld e, a
+	ld b, 8
+
+.loop2
+	add hl, de
+	dec b
+	jr nz, .loop2
+
+	ld d, h
+	ld e, l ; de points to the letter
+	pop bc
+	ret
+
 NPlaceChar::
 ; Place char a c times.
 	ld d, c

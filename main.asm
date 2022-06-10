@@ -169,27 +169,24 @@ GamefreakLogoGraphicsEnd:
 TextBoxGraphics:                INCBIN "gfx/text_box.2bpp"
 TextBoxGraphicsEnd:
 
-PokedexTileGraphics1:
+PokedexTileGFX:
 	INCBIN "gfx/pokedex/pic_top_border.2bpp"
 	INCBIN "gfx/pokedex/pic_top_border2.2bpp"
 	INCBIN "gfx/pokedex/pic_left_border.2bpp"
 	INCBIN "gfx/pokedex/pic_right_border.2bpp"
 	INCBIN "gfx/pokedex/pic_bottom_border.2bpp"
 	INCBIN "gfx/pokedex/pic_bottom_border2.2bpp"
-	INCBIN "gfx/pokedex/divider.2bpp"
 	INCBIN "gfx/pokedex/lbs.2bpp"
+	INCBIN "gfx/pokedex/white_tile.2bpp"
+PokedexTileGFXEnd:
 	
-PokedexTileGraphics1End:
+PokedexSymbolsGFX:
+	INCBIN "gfx/pokedex/symbols.2bpp"
+PokedexSymbolsGFXEnd:
 	
-PokedexTileGraphics2:
-	INCBIN "gfx/pokedex/height.2bpp"
-	INCBIN "gfx/pokedex/weight.2bpp"
+PokedexQuestionMarkGFX:
 	INCBIN "gfx/pokedex/question_mark.2bpp"
-	;INCBIN "gfx/pokedex/arrow.2bpp" ; TODO - this can be part of the 'symbol' overwrite
-PokedexTileGraphics2End:
-
-;PokedexTileGraphics:            INCBIN "gfx/pokedex.2bpp"
-;PokedexTileGraphicsEnd:
+PokedexQuestionMarkGFXEnd:
 
 WorldMapTileGraphics:           INCBIN "gfx/town_map.2bpp"
 WorldMapTileGraphicsEnd:
@@ -2181,17 +2178,29 @@ WhiteOnBlackFontLettersGFX: INCBIN "gfx/text/white_on_black_font_letters.2bpp"
 WhiteOnBlackFontLettersGFXEnd:
 WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/text/white_on_black_font_symbols.2bpp"
 WhiteOnBlackFontSymbolsGFXEnd:
-BlackTextboxBorderGFX: INCBIN "gfx/text/black_border.2bpp"
+BlackTextboxBorderGFX:
+	INCBIN "gfx/text/black_border.2bpp"
+BlackTextboxSpaceGFX:
+	INCBIN "gfx/text/black_space.2bpp"
 BlackTextboxBorderGFXEnd:
 
 BlackOnWhiteFontLettersGFX:		INCBIN "gfx/text/black_on_white_font_letters.2bpp"
 BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/text/black_on_white_font_symbols.2bpp"
-WhiteTextboxBorderGFX: INCBIN "gfx/text/white_border.2bpp"
+WhiteTextboxBorderGFX:
+	INCBIN "gfx/text/white_border.2bpp"
+WhiteTextboxSpaceGFX:
+	INCBIN "gfx/text/white_space.2bpp"
 
 BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
 BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
-LightTextboxBorderGFX: INCBIN "gfx/text/light_border.2bpp"
+LightTextboxBorderGFX:
+	INCBIN "gfx/text/light_border.2bpp"
+LightTextboxSpaceGFX:
+	INCBIN "gfx/text/light_space.2bpp"
 
 GlyphFontLettersGFX: INCBIN "gfx/text/glyph_font_letters.2bpp"
 GlyphFontSymbolsGFX: INCBIN "gfx/text/glyph_font_symbols.2bpp"
-GlyphTextboxBorderGFX: INCBIN "gfx/text/glyph_border.2bpp"
+GlyphTextboxBorderGFX:
+	INCBIN "gfx/text/glyph_border.2bpp"
+GlyphTextboxSpaceGFX:
+	INCBIN "gfx/text/light_space.2bpp"

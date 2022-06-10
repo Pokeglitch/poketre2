@@ -416,6 +416,213 @@ ShowPokedexDataInternal:
 	xor a
 	ld [hTilesetType], a
 
+	call DrawPokemonPicFrame
+	call DrawPokemonDescription
+
+	; TODO - Load type tiles to VRAM
+
+	; Pokemon's name to VRAM
+	call GetMonName
+	ld de, wcd6d
+	ld hl, vChars2 + $600
+	ld a, 11
+	call CopyStringToVRAM_BlackOnLight
+	push hl
+	
+	; Pokemon's species to VRAM
+	ld hl, PokedexEntryPointers
+	ld a, [wd11e]
+	dec a
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl] ; de = address of pokedex entry
+
+	pop hl
+	ld a, 11
+	call CopyStringToVRAM_BlackOnLight
+
+	; Pokemon's Index to VRAM
+	push de
+	ld h, b
+	ld l, c
+	ld a, [wd11e]
+	push af
+	call IndexToPokedex
+
+	ld de, wd11e
+	lb bc, LEADING_ZEROES | 1, 3
+	ld hl, wcf4b
+	call PrintNumber ; copy pokedex number to CF4B
+
+	ld hl, vChars1 + $710
+	ld de, wcf4b
+	ld a, 3
+	call CopyStringToVRAM_BlackOnWhite
+
+	; Pokemon's Height to VRAM
+.heightVRAM
+	pop af
+	pop de
+	push de
+	push af
+
+	inc de ; address of feet (height)
+	push de
+	ld hl, wcf4b
+	ld [hl], " " ; since no leading zero's, initialize the first digit to be empty
+	lb bc, 1, 2
+	call PrintNumber ; print feet (height)
+	pop de
+
+	inc de ; address of inches (height)
+	push de
+	ld hl, wcf4b + 2
+	lb bc, LEADING_ZEROES | 1, 2
+	call PrintNumber ; print inches (height)
+
+	ld hl, vChars2 + $760
+	ld de, wcf4b
+	ld a, 4
+	call CopyStringToVRAM_BlackOnLight
+
+	; Pokemon's Weight to VRAM
+.weight
+	pop de
+	inc de
+	inc de
+	push de
+	; put weight in big-endian order at hDexWeight
+	ld hl, hDexWeight
+	ld a, [hl] ; save existing value of [hDexWeight]
+	push af
+	ld a, [de] ; a = upper byte of weight
+	ld [hli], a ; store upper byte of weight in [hDexWeight]
+	ld a, [hl] ; save existing value of [hDexWeight + 1]
+	push af
+	dec de
+	ld a, [de] ; a = lower byte of weight
+	ld [hl], a ; store lower byte of weight in [hDexWeight + 1]
+	ld de, hDexWeight
+	ld hl, wcf4b
+	push hl
+	; Prefill with "   00 "
+	; the last space is so the space tile will be loaded into $7F
+	ld a, " "
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], "0"
+	inc hl
+	ld [hl], "0"
+	inc hl
+	ld [hl], a
+	pop hl
+	lb bc, 2, 5 ; 2 bytes, 5 digits
+	call PrintNumber ; print weight
+
+	ld hl, vChars2 + $7A0
+	ld de, wcf4b
+	ld a, 6
+	call CopyStringToVRAM_BlackOnLight
+	
+	pop af
+	ld [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
+	pop af
+	ld [hDexWeight], a ; restore original value of [hDexWeight]
+
+	pop de
+	inc de ; de = pointer to description
+
+
+	ld hl, wPokedexOwned
+	call IsPokemonBitSet
+	ld a, [wd11e] 
+	pop af
+	ld [wd11e], a
+	ld a, [wcf91]
+	ld [wd0b5], a
+	pop de
+
+	push af
+	push bc
+	push de
+	push hl
+
+	; a already points to the dex id
+	call GetMonHeader ; load pokemon picture location
+	ld de, vChars1
+	call LoadMonFrontSprite
+
+	call FullyRevealWindow
+	ld a, [wcf91]
+	call PlayCry ; play pokemon cry
+
+	pop hl
+	pop de
+	pop bc
+	pop af
+
+	ld a, c
+	and a
+	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
+	
+	inc de ; de = address of feet (height)
+	
+	;coord hl, 13, 4
+	;lb bc, 1, 2
+	;call PrintNumber ; print feet (height)
+	;ld a, $60 ; feet symbol tile (one tick)
+	;ld [hl], a
+	inc de
+	inc de ; de = address of inches (height)
+	;coord hl, 16, 4
+	;lb bc, LEADING_ZEROES | 1, 2
+	;call PrintNumber ; print inches (height)
+	;ld a, $61 ; inches symbol tile (two ticks)
+	;ld [hl], a
+
+; now print the weight (note that weight is stored in tenths of pounds internally)
+	inc de
+	inc de
+	inc de ; de = address of upper byte of weight
+	push de
+
+	pop hl
+	inc hl ; hl = address of pokedex description text
+	coord bc, 1, 12
+	ld a, 2
+	ld [$fff4], a
+	;call TextCommandProcessor ; print pokedex description text
+	xor a
+	ld [$fff4], a
+.waitForButtonPress
+	call JoypadLowSensitivity
+	ld a, [hJoy5]
+	and A_BUTTON | B_BUTTON
+	jr z, .waitForButtonPress
+	pop af
+	ld [hTilesetType], a
+
+	; TODO
+	; - hide description, move sprite to $80, draw those tiles
+	; - reload the tileset
+	; - close text display (need to make sure overworld is drawn properly)
+	; - load proper font/textbox tiles
+	call RunDefaultPaletteCommand
+	call LoadTextBoxTilePatterns
+	call CloseTextDisplay
+	
+	ld hl, wd72c
+	res 1, [hl]
+	ld a, $77 ; max volume
+	ld [rNR50], a
+	ret
+
+DrawPokemonPicFrame:
 	; top border 1
 	coord hl, 0, 0
 	ld a, $C0
@@ -430,7 +637,6 @@ ShowPokedexDataInternal:
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld [hli], a
 	inc a
 	ld [hl], a
 
@@ -442,53 +648,32 @@ ShowPokedexDataInternal:
 	ld [hli], a
 	inc a
 	ld [hli], a
-	ld a, " "  ; TODO - white tile
-	ld b, 6
-.loop2
+	ld [hl], $D9
+	inc hl
+	ld a, $F1
 	ld [hli], a
-	dec b
-	jr nz, .loop2
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld [hl], $D9
+	inc hl
 	ld [hl], $CB
 
-	; row 3
-	coord hl, 0, 2
-	call DrawEmptyRow
-
-	; row 4
-	coord hl, 0, 3
-	ld b, $66
-	call DrawQuestionMarkRow
-	
-	; row 5
-	coord hl, 0, 4
-	ld b, $6B
-	call DrawQuestionMarkRow
-	
-	; row 6
-	coord hl, 0, 5
-	ld b, $70
-	call DrawQuestionMarkRow
-	
-	; row 7
-	coord hl, 0, 6
-	ld b, $75
-	call DrawQuestionMarkRow
-	
-	; row 8
-	coord hl, 0, 7
-	ld b, $7A
-	call DrawQuestionMarkRow
-	
-	; row 9
-	coord hl, 0, 8
-	call DrawEmptyRow
+	ld a, $80
+	call DrawDexSpriteRow ;row 3
+	call DrawDexSpriteRow ;row 4
+	call DrawDexSpriteRow ;row 5
+	call DrawDexSpriteRow ;row 6
+	call DrawDexSpriteRow ;row 7
+	call DrawDexSpriteRow ;row 8
+	call DrawDexSpriteRow ;row 9
 
 	;bottom border 1
 	coord hl, 0, 9
 	ld a, $CC
 	ld [hli], a
 	inc a
-	ld [hli], a
 	inc a
 	ld [hli], a
 	inc a
@@ -510,7 +695,7 @@ ShowPokedexDataInternal:
 	inc a
 	ld [hli], a
 	inc a
-	ld b, 5
+	ld b, 4
 .loop10
 	ld [hli], a
 	dec b
@@ -519,223 +704,137 @@ ShowPokedexDataInternal:
 	ld [hli], a
 	inc a
 	ld [hli], a
-	ld [hl], $D7
+	ld [hl], $D4
 	inc hl
 	inc a
 	ld [hl], a
+	ret
+
+DrawDexSpriteRow:
+	push af
+	ld de, 12
+	add hl, de
+	ld [hl], $CA
+	inc hl
+	ld b, 7
+.loop
+	ld [hli], a
+	add 7
+	dec b
+	jr nz, .loop
+	ld [hl], $CB
+	pop af
+	inc a
+	ret
+
+DrawPokemonDescription:
+	
+	
+	; Display name
+	coord hl, 9, 0
+	ld a, $60
+	call DrawVRAMTileRow
+	push af
+	call DrawLightTileRow
+	pop af
+	
+	; Display species
+	call DrawVRAMTileRow
+	call DrawLightTileRow
+
+	; TODO - If only 1 type, then display that in the row between height & width
+
+	; display 1st type & height
+	ld a, $DA ; 1st type tile
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc hl
+	inc hl
+	ld a, $76
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hl], "'" ; feet symbol
+	inc hl
+	ld [hli], a
+	inc a
+	ld [hli], a
+	ld [hl], "\"" ; inches symbol
+	inc hl
+	call DrawLightTileRow
+
+	; Display 2nd type & width
+	ld a, $DD ; 2nd type tile
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc hl
+	ld a, $7A
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hl], "." ; decimal
+	inc hl
+	ld [hli], a
+	ld [hl], $D8 ; lb symbol
+	inc hl
+	call DrawLightTileRow
 
 	;divider 1
-	coord hl, 10, 8
-	ld a, $D9
+	ld a, $E7
 	call DrawDividerRow
 
-
 	;divider 2
-	coord hl, 10, 9
-	ld a, $DB
+	ld a, $EB
 	call DrawDividerRow
 
 	;divider 3
-	coord hl, 10, 10
-	ld a, $DD
-	call DrawDividerRow
+	ld a, $ED
+	jp DrawDividerRow
 
-	call FullyRevealWindow
-
-	coord hl, 10, 4
-	ld de, HeightWeightText
-	call PlaceString
-
-	call GetMonName
-	coord hl, 10, 0
-	call PlaceString
-
-	ld hl, PokedexEntryPointers
-	ld a, [wd11e]
-	dec a
-	ld e, a
-	ld d, 0
+; hl = destination
+DrawLightTileRow:
+	ld de, 9
 	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld e, a
-	ld d, [hl] ; de = address of pokedex entry
-
-	coord hl, 10, 2
-	call PlaceString ; print species name
-
-	ld h, b
-	ld l, c
-	push de
-	ld a, [wd11e]
-	push af
-	call IndexToPokedex
-
-	coord hl, 4, 1
-	ld a, " " ; todo - open angle tile
-	ld [hli], a
-	ld de, wd11e
-	lb bc, LEADING_ZEROES | 1, 3
-	call PrintNumber ; print pokedex number
-	ld [hl], " " ; todo - close angle tile after
-
-	ld hl, wPokedexOwned
-	call IsPokemonBitSet
-	pop af
-	ld [wd11e], a
-	ld a, [wcf91]
-	ld [wd0b5], a
-	pop de
-
-	push af
-	push bc
-	push de
-	push hl
-
-	; TODO - load pokemon sprite into buffer before scrolling?
-	call GetMonHeader ; load pokemon picture location
-	coord hl, 2, 2
-	call LoadFlippedFrontSpriteByMonIndex ; draw pokemon picture
-	ld a, [wcf91]
-	call PlayCry ; play pokemon cry
-
-	pop hl
-	pop de
-	pop bc
-	pop af
-
-	ld a, c
-	and a
-	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
-	inc de ; de = address of feet (height)
-	ld a, [de] ; reads feet, but a is overwritten without being used
-	coord hl, 13, 4
-	lb bc, 1, 2
-	call PrintNumber ; print feet (height)
-	ld a, $60 ; feet symbol tile (one tick)
-	ld [hl], a
-	inc de
-	inc de ; de = address of inches (height)
-	coord hl, 16, 4
-	lb bc, LEADING_ZEROES | 1, 2
-	call PrintNumber ; print inches (height)
-	ld a, $61 ; inches symbol tile (two ticks)
-	ld [hl], a
-; now print the weight (note that weight is stored in tenths of pounds internally)
-	inc de
-	inc de
-	inc de ; de = address of upper byte of weight
-	push de
-; put weight in big-endian order at hDexWeight
-	ld hl, hDexWeight
-	ld a, [hl] ; save existing value of [hDexWeight]
-	push af
-	ld a, [de] ; a = upper byte of weight
-	ld [hli], a ; store upper byte of weight in [hDexWeight]
-	ld a, [hl] ; save existing value of [hDexWeight + 1]
-	push af
-	dec de
-	ld a, [de] ; a = lower byte of weight
-	ld [hl], a ; store lower byte of weight in [hDexWeight + 1]
-	ld de, hDexWeight
-	coord hl, 13, 6
-	lb bc, 2, 5 ; 2 bytes, 5 digits
-	call PrintNumber ; print weight
-	coord hl, 16, 6
-	ld a, [hDexWeight + 1]
-	sub 10
-	ld a, [hDexWeight]
-	sbc 0
-	jr nc, .next
-	ld [hl], "0" ; if the weight is less than 10, put a 0 before the decimal point
-.next
-	inc hl
-	ld a, [hli]
-	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
-	ld [hl], "." ; decimal point tile
-	inc hl
-	inc hl
-	ld [hl], $DE ;lb tile
-
-	pop af
-	ld [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
-	pop af
-	ld [hDexWeight], a ; restore original value of [hDexWeight]
-
-	pop hl
-	inc hl ; hl = address of pokedex description text
-	coord bc, 1, 12
-	ld a, 2
-	ld [$fff4], a
-	;call TextCommandProcessor ; print pokedex description text
-	xor a
-	ld [$fff4], a
-.waitForButtonPress
-	call JoypadLowSensitivity
-	ld a, [hJoy5]
-	and A_BUTTON | B_BUTTON
-	jr z, .waitForButtonPress
-	pop af
-	ld [hTilesetType], a
-
-	; TODO
-	; - re-draw the question mark
-	; - reload the tilset
-	; - close text display (need to make sure overworld is drawn properly)
-	; - load proper font/textbox tiles
-	call RunDefaultPaletteCommand
-	call LoadTextBoxTilePatterns
-	call CloseTextDisplay
-	
-	ld hl, wd72c
-	res 1, [hl]
-	ld a, $77 ; max volume
-	ld [rNR50], a
-	ret
-
-HeightWeightText:
-	db   $60, $61, $62
-	next $63, $64, $65
-	done
-
-DrawEmptyRow:
-	ld [hl], $CA
-	inc hl
-	ld a, " "  ; TODO - white tile
-	ld b, 8
+	ld a, " "
+	ld b, 11
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
-
-	ld [hl], $CB
+	
+	add hl, de
 	ret
 
-DrawQuestionMarkRow:
-	ld [hl], $CA
-	inc hl
-	ld a, " "  ; TODO - white tile
-	ld [hli], a
-	ld [hli], a
-	ld a, b
-	ld b, 5
+; a = start tile
+; hl = destination
+DrawVRAMTileRow:
+	ld b, 11
 .loop
 	ld [hli], a
 	inc a
 	dec b
 	jr nz, .loop
-
-	ld a, " "  ; TODO - white tile
-	ld [hli], a
-	ld [hl], $CB
 	ret
 
 DrawDividerRow:
 	ld [hli], a
+	ld [hli], a
 	dec a
 	ld [hli], a
 	inc a
-	ld b, 6
+	ld b, 5
 .loop
 	ld [hli], a
 	dec b
@@ -744,7 +843,10 @@ DrawDividerRow:
 	dec a
 	ld [hli], a
 	inc a
+	ld [hli], a
 	ld [hl], a
+	ld de, 10
+	add hl, de
 	ret
 
 ; XXX does anything point to this?
