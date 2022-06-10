@@ -89,21 +89,6 @@ wait: MACRO
 	db TEXT_WAIT
 ENDM
 
-; Start a new Pokedex page.
-page: MACRO
-	db DEX_PAGE
-	REPT _NARG
-	db \1
-	SHIFT
-	ENDR
-ENDM
-
-; End a Pokedex entry.
-dex: MACRO
-	db DEX_END
-	db TEXT_END
-ENDM
-
 str: MACRO
 	REPT _NARG
 	db \1

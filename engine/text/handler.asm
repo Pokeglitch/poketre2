@@ -122,8 +122,6 @@ StringCommandTable:
 	dbw PARAGRAPH, ParagraphCommand ; para
 	dbw AUTO_PARAGRAPH, AutoParagraphCommand ; autopara
 	dbw TEXT_PROMPT, TextPromptCommand ; prompt
-	dbw DEX_PAGE, DexPageCommand ; page
-	dbw DEX_END, DexEndCommand ; dex
 	dbw MOVE_TARGET_TEXT, MoveTargetTextCommand ; TARGET
 	dbw MOVE_USER_TEXT, MoveUserTextCommand ; USER
     db 00
@@ -308,30 +306,6 @@ TextPromptCommand:: ; prompt
 	ld b, h
 	ld c, l
 	pop hl ; hl = start of line
-	jp HomeBankswitchReturn
-
-; Pokedex Page
-DexPageCommand::
-	push de
-	ld a, "▼"
-	Coorda 18, 16
-	call Delay3
-	call ManualTextScroll
-	coord hl, 1, 10
-	lb bc, 7, 18
-	call ClearScreenArea
-	ld c, 20
-	call DelayFrames
-	pop de
-	pop hl
-	coord hl, 1, 11
-	push hl
-	jp ReturnAndPlaceNextChar
-
-DexEndCommand::
-; ends a Pokédex entry
-	ld [hl], "."
-	pop hl
 	jp HomeBankswitchReturn
 
 ; depending on whose turn it is, print

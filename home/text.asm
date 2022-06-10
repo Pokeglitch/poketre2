@@ -614,7 +614,6 @@ EndOfWordChars:
 	db AUTO_CONTINUE_TEXT, CONTINUE_TEXT
 	db NEXT_TEXT_LINE
 	db TEXT_PROMPT
-	db DEX_PAGE, DEX_END
 	db 0
 
 FixedLengthChars:

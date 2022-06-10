@@ -878,6 +878,18 @@ LoadTilesetTilePatternData::
 	ld a, [wTilesetBank]
 	jp FarCopyData2
 
+; this assumes LCD is on
+ReloadTilesetTilePatternData::
+	ld a, [wTilesetGfxPtr]
+	ld e, a
+	ld a, [wTilesetGfxPtr + 1]
+	ld d, a
+	ld hl, vTileset
+	ld a, [wTilesetBank]
+	ld b, a
+	ld c, $60
+	jp CopyVideoData
+
 ; this loads the current maps complete tile map (which references blocks, not individual tiles) to C6E8
 ; it can also load partial tile maps of connected maps into a border of length 3 around the current map
 LoadTileBlockMap::

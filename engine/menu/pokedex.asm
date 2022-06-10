@@ -390,10 +390,8 @@ IsPokemonBitSet:
 
 ; function to display pokedex data from outside the pokedex
 ; TODO
-; - add white tile
-; - add angles tiles surrounding pokedex #
-; - add " and ' tiles
-; - fix description and blinking arrow
+; - DONT load any font GFX before displaying dex
+; - load Type tiles
 ShowPokedexData:
 	callab LoadPokedexTilePatterns ; load pokedex tiles
 
@@ -403,7 +401,7 @@ ShowPokedexDataInternal:
 	set 1, [hl]
 	ld a, $33 ; 3/7 volume
 	ld [rNR50], a
-	call ClearScreen
+
 	ld a, [wd11e] ; pokemon ID
 	ld [wcf91], a
 	push af
@@ -418,6 +416,7 @@ ShowPokedexDataInternal:
 
 	call DrawPokemonPicFrame
 	call DrawPokemonDescription
+	call ClearEntryArea
 
 	; TODO - Load type tiles to VRAM
 
@@ -464,7 +463,6 @@ ShowPokedexDataInternal:
 	call CopyStringToVRAM_BlackOnWhite
 
 	; Pokemon's Height to VRAM
-.heightVRAM
 	pop af
 	pop de
 	push de
@@ -490,7 +488,6 @@ ShowPokedexDataInternal:
 	call CopyStringToVRAM_BlackOnLight
 
 	; Pokemon's Weight to VRAM
-.weight
 	pop de
 	inc de
 	inc de
@@ -534,9 +531,12 @@ ShowPokedexDataInternal:
 	pop af
 	ld [hDexWeight], a ; restore original value of [hDexWeight]
 
+	pop hl
+	pop af
 	pop de
-	inc de ; de = pointer to description
-
+	push hl
+	push de
+	push af
 
 	ld hl, wPokedexOwned
 	call IsPokemonBitSet
@@ -561,6 +561,27 @@ ShowPokedexDataInternal:
 	ld a, [wcf91]
 	call PlayCry ; play pokemon cry
 
+	; copy sprite from vChars1 to vFrontPic
+	ld de, vChars1
+	ld hl, vFrontPic
+	lb bc, 0, 7*7 ; bank doesnt matter
+	call CopyVideoData
+
+	; change the screen tiles to use vFrontPic
+	coord hl, 8, 1
+	ld a, 0
+	call DrawDexPic
+	call Delay3
+
+	; Load the letter tiles
+	ld de, BlackOnLightFontLettersGFX
+	ld hl, vChars1
+    lb bc, BANK(BlackOnLightFontLettersGFX), (BlackOnLightFontLettersGFXEnd - BlackOnLightFontLettersGFX) / BYTES_PER_TILE
+    call CopyVideoData
+
+	; TODO - in future, different pages will be added with left/right
+	; Only if the pokemon is in the pokedex
+
 	pop hl
 	pop de
 	pop bc
@@ -570,33 +591,24 @@ ShowPokedexDataInternal:
 	and a
 	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
 	
-	inc de ; de = address of feet (height)
+	pop de
+	inc de ; de = address of pokedex description text
+	coord hl, 1, 11
+
+	; TODO - if NO_DELAY is set, then this is not necessary
+	ld a, %10
+	ld [$fff4], a ;hClearLetterPrintingDelayFlags
+
+	ld a, [hFlags_0xFFF6]
+	set 2, a
+	ld [hFlags_0xFFF6], a ; single spacing
+
+	call PlaceString
 	
-	;coord hl, 13, 4
-	;lb bc, 1, 2
-	;call PrintNumber ; print feet (height)
-	;ld a, $60 ; feet symbol tile (one tick)
-	;ld [hl], a
-	inc de
-	inc de ; de = address of inches (height)
-	;coord hl, 16, 4
-	;lb bc, LEADING_ZEROES | 1, 2
-	;call PrintNumber ; print inches (height)
-	;ld a, $61 ; inches symbol tile (two ticks)
-	;ld [hl], a
+	ld a, [hFlags_0xFFF6]
+	res 2, a
+	ld [hFlags_0xFFF6], a ; restore double spacing
 
-; now print the weight (note that weight is stored in tenths of pounds internally)
-	inc de
-	inc de
-	inc de ; de = address of upper byte of weight
-	push de
-
-	pop hl
-	inc hl ; hl = address of pokedex description text
-	coord bc, 1, 12
-	ld a, 2
-	ld [$fff4], a
-	;call TextCommandProcessor ; print pokedex description text
 	xor a
 	ld [$fff4], a
 .waitForButtonPress
@@ -607,14 +619,31 @@ ShowPokedexDataInternal:
 	pop af
 	ld [hTilesetType], a
 
-	; TODO
-	; - hide description, move sprite to $80, draw those tiles
-	; - reload the tileset
-	; - close text display (need to make sure overworld is drawn properly)
-	; - load proper font/textbox tiles
+	; Hide the description
+	call ClearEntryArea ; Hide the description
+	call Delay3
+	
+	; copy sprite back to vChars1 from vFrontPic
+	ld de, vFrontPic
+	ld hl, vChars1
+	lb bc, 0, 7*7 ; bank doesnt matter
+	call CopyVideoData
+
+	; redraw the pic using the vChars1 tiles
+	coord hl, 8, 1
+	ld a, $80
+	call DrawDexPic
+	call Delay3
+	
 	call RunDefaultPaletteCommand
-	call LoadTextBoxTilePatterns
+	call ReloadTilesetTilePatternData
+
+	; todo - why does OAM appear above window?
 	call CloseTextDisplay
+	
+	; todo - load proper font/textbox tiles
+	; todo - why does screen flash?
+	;
 	
 	ld hl, wd72c
 	res 1, [hl]
@@ -661,13 +690,7 @@ DrawPokemonPicFrame:
 	ld [hl], $CB
 
 	ld a, $80
-	call DrawDexSpriteRow ;row 3
-	call DrawDexSpriteRow ;row 4
-	call DrawDexSpriteRow ;row 5
-	call DrawDexSpriteRow ;row 6
-	call DrawDexSpriteRow ;row 7
-	call DrawDexSpriteRow ;row 8
-	call DrawDexSpriteRow ;row 9
+	call DrawDexPic
 
 	;bottom border 1
 	coord hl, 0, 9
@@ -710,6 +733,16 @@ DrawPokemonPicFrame:
 	ld [hl], a
 	ret
 
+DrawDexPic:
+	ld b, 7
+.loop
+	push bc
+	call DrawDexSpriteRow
+	pop bc
+	dec b
+	jr nz, .loop
+	ret
+
 DrawDexSpriteRow:
 	push af
 	ld de, 12
@@ -728,8 +761,6 @@ DrawDexSpriteRow:
 	ret
 
 DrawPokemonDescription:
-	
-	
 	; Display name
 	coord hl, 9, 0
 	ld a, $60
@@ -751,7 +782,9 @@ DrawPokemonDescription:
 	ld [hli], a
 	inc a
 	ld [hli], a
+	ld [hl], " "
 	inc hl
+	ld [hl], " "
 	inc hl
 	ld a, $76
 	ld [hli], a
@@ -774,6 +807,7 @@ DrawPokemonDescription:
 	ld [hli], a
 	inc a
 	ld [hli], a
+	ld [hl], " "
 	inc hl
 	ld a, $7A
 	ld [hli], a
@@ -849,9 +883,10 @@ DrawDividerRow:
 	add hl, de
 	ret
 
-; XXX does anything point to this?
-UnusedPokeText:
-	str "#"
+ClearEntryArea:
+	lb bc, 7, SCREEN_WIDTH
+	coord hl, 0, 11
+	jp ClearScreenArea
 
 ; draws a line of tiles
 ; INPUT:

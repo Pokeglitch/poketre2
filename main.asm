@@ -179,7 +179,7 @@ PokedexTileGFX:
 	INCBIN "gfx/pokedex/lbs.2bpp"
 	INCBIN "gfx/pokedex/white_tile.2bpp"
 PokedexTileGFXEnd:
-	
+
 PokedexSymbolsGFX:
 	INCBIN "gfx/pokedex/symbols.2bpp"
 PokedexSymbolsGFXEnd:
@@ -2174,25 +2174,41 @@ InventoryMovesPocketGFX: INCBIN "gfx/inventory/moves_pocket.2bpp"
 INCLUDE "text/item_descriptions.asm"
 
 SECTION "TextGFX", ROMX, BANK[$3E]
-WhiteOnBlackFontLettersGFX: INCBIN "gfx/text/white_on_black_font_letters.2bpp"
+WhiteOnBlackFontLettersGFX:
+	INCBIN "gfx/text/white_on_black_font_letters.2bpp"
 WhiteOnBlackFontLettersGFXEnd:
-WhiteOnBlackFontSymbolsGFX: INCBIN "gfx/text/white_on_black_font_symbols.2bpp"
+
+WhiteOnBlackFontSymbolsGFX:
+	INCBIN "gfx/text/white_on_black_font_symbols.2bpp"
 WhiteOnBlackFontSymbolsGFXEnd:
+
 BlackTextboxBorderGFX:
 	INCBIN "gfx/text/black_border.2bpp"
 BlackTextboxSpaceGFX:
 	INCBIN "gfx/text/black_space.2bpp"
 BlackTextboxBorderGFXEnd:
 
-BlackOnWhiteFontLettersGFX:		INCBIN "gfx/text/black_on_white_font_letters.2bpp"
-BlackOnWhiteFontSymbolsGFX:		INCBIN "gfx/text/black_on_white_font_symbols.2bpp"
+BlackOnWhiteFontLettersGFX:	
+	INCBIN "gfx/text/black_on_white_font_letters.2bpp"
+BlackOnWhiteFontLettersGFXEnd:
+
+BlackOnWhiteFontSymbolsGFX:
+	INCBIN "gfx/text/black_on_white_font_symbols.2bpp"
+BlackOnWhiteFontSymbolsGFXEnd:
+
 WhiteTextboxBorderGFX:
 	INCBIN "gfx/text/white_border.2bpp"
 WhiteTextboxSpaceGFX:
 	INCBIN "gfx/text/white_space.2bpp"
 
-BlackOnLightFontLettersGFX: INCBIN "gfx/text/black_on_light_font_letters.2bpp"
-BlackOnLightFontSymbolsGFX: INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
+BlackOnLightFontLettersGFX:
+	INCBIN "gfx/text/black_on_light_font_letters.2bpp"
+BlackOnLightFontLettersGFXEnd:
+
+BlackOnLightFontSymbolsGFX:
+	INCBIN "gfx/text/black_on_light_font_symbols.2bpp"
+BlackOnLightFontSymbolsGFXEnd:
+
 LightTextboxBorderGFX:
 	INCBIN "gfx/text/light_border.2bpp"
 LightTextboxSpaceGFX:
