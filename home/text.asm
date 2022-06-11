@@ -459,7 +459,7 @@ ASMTextCommand:
 	pop hl
 	jp PlaceNextChar
 
-; TODO - handle textbox definition within the string
+; TODO - handle textbox definition within the text
 TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
 	push af

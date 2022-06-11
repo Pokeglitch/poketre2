@@ -642,6 +642,7 @@ ShowPokedexDataInternal:
 	call CloseTextDisplay
 	
 	; todo - load proper font/textbox tiles
+	; todo - have this be an inline text command
 	; todo - why does screen flash?
 	;
 	

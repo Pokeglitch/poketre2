@@ -90,7 +90,6 @@ UpdateTextboxPositionAndCheckSpritesToReveal:
 	
 	; check if sprites need to be restored
 	ld a, [hWY]
-	sub 12 ; the sprite data refers to the top of the sprite
 	ld c, a
 
 	;check each sprite
@@ -108,7 +107,15 @@ UpdateTextboxPositionAndCheckSpritesToReveal:
 	jr z, .checkNextSpriteDownwards
 
 	; check the y position
-	ld a, [hld]
+	; sprite data is from the top of the sprite, so add 16 to get bottom
+	ld a, 16
+	push hl
+	ld hl, wTextboxScrollDelta
+	sub [hl]
+	sub [hl] ; it takes two frames for the sprite to appear, so calculate 2 frames ahead
+	pop hl
+	add [hl]
+	dec hl
 	cp c
 	jr nc, .checkNextSpriteDownwards
 
