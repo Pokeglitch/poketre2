@@ -144,9 +144,7 @@ TownMapText:
 	res 6, [hl]
 	ld de, TextScriptEnd
 	push de
-	ld a, [H_LOADEDROMBANK]
-	push af
-	jp CloseTextDisplay
+	jp CloseTextDisplay_StoreBank
 
 PokemonStuffText:
 	fartext _PokemonStuffText

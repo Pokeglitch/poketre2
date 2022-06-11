@@ -637,14 +637,9 @@ ShowPokedexDataInternal:
 	
 	call RunDefaultPaletteCommand
 	call ReloadTilesetTilePatternData
-
-	; todo - why does OAM appear above window?
-	call CloseTextDisplay
+	call CloseTextDisplay_StoreBank
 	
-	; todo - load proper font/textbox tiles
-	; todo - have this be an inline text command
 	; todo - why does screen flash?
-	;
 	
 	ld hl, wd72c
 	res 1, [hl]

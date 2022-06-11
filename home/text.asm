@@ -183,6 +183,9 @@ PlaceNextChar::
 .notEnd
 	; Commands that have arguments needs to be processed in home bank
 	; TODO - Make this into a table
+	cp TEXTBOX_DEF
+	jp z, TextboxCommand
+
 	cp RAM_TEXT
 	jp z, RAMTextCommand
 	
@@ -459,6 +462,28 @@ ASMTextCommand:
 	pop hl
 	jp PlaceNextChar
 
+TextboxCommand:
+	inc de
+	push de
+	ld a, [hWY]
+	cp SCREEN_HEIGHT_PIXELS
+	ld a, [de]
+	jr nc, .notDisplayed ; initialize if its not onscreen already
+	push hl
+	push bc
+	push af
+	call CloseTextDisplay_StoreBank
+	pop af
+	pop bc
+	pop hl
+
+.notDisplayed
+	call InitializeTextbox
+	pop de
+	inc de
+	jp PlaceNextChar
+
+
 ; TODO - handle textbox definition within the text
 TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
@@ -471,12 +496,8 @@ TextCommandProcessor::
 
 .drawTextbox
 	cp TEXTBOX_DEF
-	jr nz, .notCustomTextbox
-	inc hl
-	ld a, [hli]
-	jr .initializeTextbox
-
-.notCustomTextbox
+	jr z, .handleText ;dont use default if there is a definiton
+	
 	ld a, [hWY]
 	and a
 	jr nz, .notFullscreen

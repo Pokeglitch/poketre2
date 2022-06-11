@@ -1178,8 +1178,15 @@ CloseTextDisplay::
 	call SetNewBank
 	jp UpdateSprites
 
+CloseTextDisplay_StoreBank:
+	ld a, [H_LOADEDROMBANK]
+	push af
+	jr CloseTextDisplay
+
 InitializeTextbox:
 	ld [wTextboxSettings], a
+	ld a, 1
+	ld [H_AUTOBGTRANSFERENABLED], a ; enable auto bg transfer
 	push hl
 	push bc
 	farcall InitializeTextbox_
