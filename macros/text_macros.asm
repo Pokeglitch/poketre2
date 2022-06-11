@@ -89,6 +89,11 @@ wait: MACRO
 	db TEXT_WAIT
 ENDM
 
+; Exit without waiting for keypress
+exit: MACRO
+	db TEXT_EXIT
+ENDM
+
 str: MACRO
 	REPT _NARG
 	db \1

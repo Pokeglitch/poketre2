@@ -1135,7 +1135,10 @@ HoldTextDisplayOpen::
 	bit 0, a ; is the A button being pressed?
 	jr nz, HoldTextDisplayOpen
 
-CloseTextDisplay::	
+CloseTextDisplay::
+	xor a
+	ld [H_AUTOBGTRANSFERENABLED], a ; disable continuous WRAM to VRAM transfer each V-blank
+
 	ld a, SFX_PRESS_AB
 	call PlaySound
 	ld a, [wCurMap]
@@ -1146,13 +1149,12 @@ CloseTextDisplay::
 	cpl
 	inc a ; a = offset
 	call ScrollTextboxDown
+	
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a ; just in case window hasn't fully left the screen
 	call DelayFrame
 
 	call LoadGBPal
-	xor a
-	ld [H_AUTOBGTRANSFERENABLED], a ; disable continuous WRAM to VRAM transfer each V-blank
 ; loop to make sprites face the directions they originally faced before the dialogue
 	ld hl, wSpriteStateData2 + $19
 	ld c, $0f

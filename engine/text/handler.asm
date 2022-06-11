@@ -122,6 +122,7 @@ StringCommandTable:
 	dbw PARAGRAPH, ParagraphCommand ; para
 	dbw AUTO_PARAGRAPH, AutoParagraphCommand ; autopara
 	dbw TEXT_PROMPT, TextPromptCommand ; prompt
+	dbw TEXT_EXIT, TextExitCommand ; exit
 	dbw MOVE_TARGET_TEXT, MoveTargetTextCommand ; TARGET
 	dbw MOVE_USER_TEXT, MoveUserTextCommand ; USER
     db 00
@@ -303,6 +304,14 @@ TextPromptCommand:: ; prompt
 	call Delay3
 	call CheckRevealTextbox
 	call ManualTextScroll
+	ld b, h
+	ld c, l
+	pop hl ; hl = start of line
+	jp HomeBankswitchReturn
+
+TextExitCommand:: ; exit
+	ld a, 1
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld b, h
 	ld c, l
 	pop hl ; hl = start of line

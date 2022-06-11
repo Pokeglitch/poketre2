@@ -13,11 +13,6 @@ AskName:
 	call GetMonName
 	ld hl, DoYouWantToNicknameText
 	call PrintText
-	coord hl, 14, 7
-	lb bc, 8, 15
-	ld a, TWO_OPTION_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
 	pop hl
 	ld a, [wCurrentMenuItem]
 	and a
@@ -51,6 +46,8 @@ AskName:
 
 DoYouWantToNicknameText:
 	fartext _DoYouWantToNicknameText
+	two_opt YesText, NoText, .done, .done ; the option is handled back in the script
+.done
 	done
 
 DisplayNameRaterScreen:

@@ -748,6 +748,10 @@ OaksLabTextPointers2:
 	dw OaksLabText10
 	dw OaksLabText11
 
+; TODO - remove the series of nested "PrintText" within asmtext when selecting a pokemon
+; Why don't the sprites load properly for gary after selection?
+; related to autobgtransferred?
+
 OaksLabText1:
 	asmtext
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB_2
@@ -821,10 +825,10 @@ OaksLabScript_1d133:
 	CheckEventReuseA EVENT_OAK_ASKED_TO_CHOOSE_MON
 	jr nz, OaksLabScript_1d157
 	ld hl, OaksLabText39
-	call PrintText
-	jp TextScriptEnd
+	ret
 
 OaksLabText39:
+	textbox DEFAULT_SPEECH_TEXTBOX
 	fartext _OaksLabText39
 	done
 
@@ -846,7 +850,6 @@ OaksLabScript_1d157:
 	predef StarterDex
 	ld hl, wd730
 	res 6, [hl]
-	call ReloadMapData
 	ld c, 10
 	call DelayFrames
 	ld a, [wSpriteIndex]
@@ -858,33 +861,32 @@ OaksLabScript_1d157:
 
 OaksLabLookAtCharmander:
 	ld hl, OaksLabCharmanderText
-	jr OaksLabMonChoiceMenu
+	ret
 OaksLabCharmanderText:
+	textbox DEFAULT_SPEECH_TEXTBOX
 	fartext _OaksLabCharmanderText
-	done
+	gototext OaksLabYesNoText
 
 OaksLabLookAtSquirtle:
 	ld hl, OaksLabSquirtleText
-	jr OaksLabMonChoiceMenu
+	ret
 OaksLabSquirtleText:
 	fartext _OaksLabSquirtleText
-	done
+	gototext OaksLabYesNoText
 
 OaksLabLookAtBulbasaur:
 	ld hl, OaksLabBulbasaurText
-	jr OaksLabMonChoiceMenu
+	ret
 OaksLabBulbasaurText:
 	fartext _OaksLabBulbasaurText
-	done
+	; fall through
 
-OaksLabMonChoiceMenu:
-	call PrintText
-	ld a, $1
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	call YesNoChoice ; yes/no menu
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, OaksLabMonChoiceEnd
+OaksLabYesNoText:
+	two_opt YesText, NoText, .yes, .no
+.no
+	exit
+.yes
+	asmtext
 	ld a, [wcf91]
 	ld [wPlayerStarter], a
 	ld [wd11e], a
@@ -923,7 +925,6 @@ OaksLabMonChoiceMenu:
 	ld [wJoyIgnore], a
 	ld a, $8
 	ld [wOaksLabCurScript], a
-OaksLabMonChoiceEnd:
 	jp TextScriptEnd
 
 OaksLabMonEnergeticText:
@@ -943,10 +944,10 @@ OaksLabScript_1d22d:
 	call GetPointerWithinSpriteStateData1
 	ld [hl], $0
 	ld hl, OaksLabLastMonText
-	call PrintText
-	jp TextScriptEnd
+	ret
 
 OaksLabLastMonText:
+	textbox DEFAULT_SPEECH_TEXTBOX
 	fartext _OaksLabLastMonText
 	done
 

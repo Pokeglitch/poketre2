@@ -389,9 +389,7 @@ IsPokemonBitSet:
 	ret
 
 ; function to display pokedex data from outside the pokedex
-; TODO
-; - DONT load any font GFX before displaying dex
-; - clean up
+; TODO - clean up
 ShowPokedexData:
 	callab LoadPokedexTilePatterns ; load pokedex tiles
 
@@ -639,8 +637,11 @@ ShowPokedexDataInternal:
 	call ReloadTilesetTilePatternData
 	call CloseTextDisplay_StoreBank
 	
-	; todo - why does screen flash?
-	
+	; ReloadTilesetTilePatternData will unset this
+	; which causes the OAM sprites to be loaded incorrectly later on
+	ld hl, wFontLoaded
+	set 0, [hl]
+
 	ld hl, wd72c
 	res 1, [hl]
 	ld a, $77 ; max volume

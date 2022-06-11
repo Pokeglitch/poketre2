@@ -503,7 +503,7 @@ TextCommandProcessor::
 	jr nz, .notFullscreen
 	
 	; initialize settings
-	ld a, NO_WORD_WRAP | BLACK_ON_WHITE | LINES_2
+	ld a, DEFAULT_SPEECH_TEXTBOX
 	ld [wTextboxSettings], a
 	jr .resetTextbox
 
@@ -512,7 +512,7 @@ TextCommandProcessor::
 	cp SCREEN_HEIGHT_PIXELS
 	jr c, .resetTextbox
 
-	ld a, NO_WORD_WRAP | BLACK_ON_WHITE | LINES_2
+	ld a, DEFAULT_SPEECH_TEXTBOX
 
 .initializeTextbox
 	call InitializeTextbox
