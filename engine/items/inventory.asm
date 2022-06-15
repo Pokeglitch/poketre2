@@ -3,7 +3,6 @@
 ; [wcf91] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
-; TODO - should it just set to 250 instead of fail?
 AddItemToInventory_:
 	ld a, [wcf91] ; a = item ID
 	call GetItemRAMPointer ; hl = RAM pointer

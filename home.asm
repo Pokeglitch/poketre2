@@ -1149,7 +1149,7 @@ CloseTextDisplay::
 	cpl
 	inc a ; a = offset
 	call ScrollTextboxDown
-	
+
 	ld a, SCREEN_HEIGHT_PIXELS
 	ld [hWY], a ; just in case window hasn't fully left the screen
 	call DelayFrame
@@ -3280,7 +3280,7 @@ WaitForTextScrollButtonPress::
 	ld a, [hl]
 	push af
 	set 6, [hl] ; disable 4 reserved oam tiles from being reset
-	ld hl, $c398 ; todo - make a formula
+	ld hl, wOAMBuffer + 38 * 4 ; use the last two OAM sprites
 	ld [hl], $8c
 	inc hl
 	ld [hl], $08

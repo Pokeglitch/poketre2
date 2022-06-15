@@ -619,6 +619,9 @@ TryWrapAroundInventoryList:
     jr .findNonEmptyBufferPosition
 
 ; To print the inventory list on the screen
+; TODO - Bug when all prices disappear:
+; repeat: PROTEIN is 5th item in list, and then gets highlighted
+; only when PP up is not filtered...
 DisplayInventoryList:
 
     ; Disable screen updates
@@ -705,23 +708,23 @@ DisplayInventoryList:
     call IsItemFiltered
     jr z, .nextItem
 
-    ld a, PRICEDITEMLISTMENU
-	ld [wListMenuID], a
-    ld de, ItemPrices
-    ld hl, wItemPrices
-    ld [hl], e
-    inc hl
-    ld [hl], d
-    call GetItemPrice
-    push de
-    call HalveItemPrice
-    pop de
+    call GetHalfItemPriceFromCF91
+
     pop hl
     push hl
-    ld bc, SCREEN_WIDTH + 4
+    ld bc, SCREEN_WIDTH + 8
     add hl, bc
-    ld c, LEADING_ZEROES | MONEY_SIGN | 3
-    call PrintBCDNumber
+    ld de, hItemPrice
+    lb bc, 3, 4 ; 3 bytes, 4 digits
+    call PrintNumber
+    
+.placeDollarSign
+    dec hl
+    ld a, [hl]
+    cp " "
+    jr nz, .placeDollarSign
+
+    ld [hl], "$"
     jr .nextItem
 
 .checkQuickUse

@@ -38,9 +38,15 @@ POCKET_ATTRIBUTE_DATA_LENGTH = 7
 INVENTORY_BUFFER_SIZE = 5
 
 ; Item Data Constants
-ITEM_DESCRIPTION = 0
-ITEM_FILTER = 2
-ITEM_ATTRIBUTE_DATA_SIZE = 3
+; TODO - make this algorithmic
+ITEM_DESCRIPTION = 0 ; 2 bytes
+ITEM_PRICE = 2 ; 1 byte
+ITEM_FILTER = 3 ; 1 byte
+ITEM_ATTRIBUTE_DATA_SIZE = 4
+
+; Item Price Constants
+BIT_FIFTY_BUCKS = 7
+FIFTY_BUCKS = 1 << BIT_FIFTY_BUCKS ; $50 is represented by the high bit
 
 ; Inventory Properties Constants
 MASK_ACTIVE_POCKET = %00000011

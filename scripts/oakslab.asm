@@ -748,10 +748,6 @@ OaksLabTextPointers2:
 	dw OaksLabText10
 	dw OaksLabText11
 
-; TODO - remove the series of nested "PrintText" within asmtext when selecting a pokemon
-; Why don't the sprites load properly for gary after selection?
-; related to autobgtransferred?
-
 OaksLabText1:
 	asmtext
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB_2

@@ -36,15 +36,10 @@ DisplayPokemartDialogue_:
 
 	ld a, PRICEDITEMLISTMENU
 	ld [wListMenuID], a
-	
-    ld de, ItemPrices
-    ld hl, wItemPrices
-    ld [hl], e
-    inc hl
-    ld [hl], d
-    call GetItemPrice
 
-	ld [hHalveItemPrices], a ; halve prices when selling
+	call GetHalfItemPriceFromCF91
+
+	; TODO - last two digits dont get cleared when number changes from 6/7 digits to 1-5 digits...
 	call DisplayChooseQuantityMenu
 	inc a
 	jr z, .reenterSellMenu ; if the player closed the choose quantity menu with the B button
@@ -326,7 +321,6 @@ DisplayChooseQuantityMenu::
 
 .handleNewQuantity
 	; print price
-	ld c, $03
 	ld a, [wItemQuantity]
 	ld b, a
 	ld hl, hMoney ; total price
@@ -336,32 +330,28 @@ DisplayChooseQuantityMenu::
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+	ld hl, 0
+
+	ld a, [hItemPrice+1]
+	ld d, a
+	ld a, [hItemPrice+2]
+	ld e, a
+
 .addLoop ; loop to multiply the individual price by the quantity to get the total price
-	ld de, hMoney + 2
-	ld hl, hItemPrice + 2
-	push bc
-	predef AddBCDPredef ; add the individual price to the current sum
-	pop bc
+	add hl, de
+	jr nc, .noCarry
+	ld a, [hMoney]
+	inc a
+	ld [hMoney], a
+.noCarry
 	dec b
 	jr nz, .addLoop
-	ld a, [hHalveItemPrices]
-	and a ; should the price be halved (for selling items)?
-	jr z, .skipHalvingPrice
-	xor a
-	ld [hDivideBCDDivisor], a
-	ld [hDivideBCDDivisor + 1], a
-	ld a, 2
-	ld [hDivideBCDDivisor + 2], a
-	predef DivideBCDPredef3 ; halves the price
-; store the halved price
-	ld a, [hDivideBCDQuotient]
-	ld [hMoney], a
-	ld a, [hDivideBCDQuotient + 1]
-	ld [hMoney + 1], a
-	ld a, [hDivideBCDQuotient + 2]
-	ld [hMoney + 2], a
-.skipHalvingPrice
-
+	
+	ld a, h
+	ld [hMoney+1], a
+	ld a, l
+	ld [hMoney+2], a
+	
 	coord hl, 3, 16
 	lb bc, 1, 14
 	call ClearScreenArea
@@ -393,14 +383,14 @@ QuantityMenuSellItemString:
 
 QuantityMenuSelectionString:
 	numtext wItemQuantity, 3, 1 | RIGHT_ALIGN ; 3 digits, 1 byte
-	db " for "
-	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	db " for $"
+	numtext hMoney, 7, 3 ; 7 digits, 3 bytes
 	done
 
 QuantityMenuConfirmString:
 	db "x"
 	numtext wItemQuantity, 3, 1 ; 3 digits, 1 byte
-	db " for "
-	bcdtext hMoney, LEFT_ALIGN | NO_LEADING_ZEROES | MONEY_SIGN | 3
+	db " for $"
+	numtext hMoney, 7, 3 ; 7 digits, 3 bytes
 	db "?"
 	done
