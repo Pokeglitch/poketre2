@@ -1490,7 +1490,7 @@ DisplayListMenuIDLoop::
 	and a ; is it a PC pokemon list?
 	jr z, .pokemonList
 	push hl
-	call GetItemPrice
+	farcall GetItemPriceFromCF91
 	pop hl
 	ld a, [wListMenuID]
 	cp ITEMLISTMENU
@@ -1648,14 +1648,14 @@ PrintListMenuEntries::
 .printItemPrice
 	push hl
 	ld a, [de]
-	ld de, ItemPrices
 	ld [wcf91], a
-	call GetItemPrice ; get price
+	farcall GetItemPriceFromCF91 ; get price
 	pop hl
-	ld bc, SCREEN_WIDTH + 5 ; 1 row down and 5 columns right
+	ld bc, SCREEN_WIDTH + 8 ; 1 row down and 5 columns right
 	add hl, bc
-	ld c, $a3 ; no leading zeroes, right-aligned, print currency symbol, 3 bytes
-	call PrintBCDNumber
+	lb bc, 3, 5 ; 3 bytes, 5 digit TODO - print currency symbol
+    ld de, hItemPrice
+	call PrintNumber
 .skipPrintingItemPrice
 	ld a, [wListMenuID]
 	and a
@@ -3166,46 +3166,6 @@ GetName::
 	pop hl
 	jp HomeBankswitchReturn
 
-GetItemPrice::
-; Stores item's price as BCD at hItemPrice (3 bytes)
-; Input: [wcf91] = item id
-	ld a, [H_LOADEDROMBANK]
-	push af
-	ld a, [wListMenuID]
-	cp MOVESLISTMENU
-	ld a, BANK(ItemPrices)
-	jr nz, .ok
-	ld a, $f ; hardcoded Bank
-.ok
-	call SetNewBank
-	ld hl, wItemPrices
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wcf91] ; a contains item id
-	cp HM_01
-	jr nc, .getTMPrice
-	ld bc, $3
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-	dec hl
-	ld a, [hld]
-	ld [hItemPrice + 2], a
-	ld a, [hld]
-	ld [hItemPrice + 1], a
-	ld a, [hl]
-	ld [hItemPrice], a
-	jr .done
-.getTMPrice
-	ld a, Bank(GetMachinePrice)
-	call SetNewBank
-	call GetMachinePrice
-.done
-	ld de, hItemPrice
-	jp HomeBankswitchReturn
-
 ; copies a string from [de] to [wcf4b]
 CopyStringToCF4B::
 	ld hl, wcf4b
@@ -4073,8 +4033,9 @@ PrintNumber::
 ; Print the c-digit, b-byte value at de.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNumber.
-; Flags LEADING_ZEROES and LEFT_ALIGN can be given
-; in bits 7 and 6 of b respectively.
+; Flags LEADING_ZEROES, LEFT_ALIGN and MONEY_SIGN can be given
+; in bits 7, 6, and 5 of b respectively.
+; TODO - incorporate MONEY_SIGN...
 	push bc
 	xor a
 	ld [H_PASTLEADINGZEROES], a

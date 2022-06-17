@@ -4,6 +4,7 @@ item: MACRO
     db \3 ; filter
 ENDM
 
+; TODO - use the full price and the macro can divie by 100 and set the FIFTY_BUCKS flag if there is a remainder
 ItemAttributeTable:
     item MasterBall,    0, QUICK_BATTLE_USE
 	item UltraBall,    12, QUICK_BATTLE_USE | SELLABLE

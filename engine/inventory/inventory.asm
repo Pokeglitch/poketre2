@@ -704,6 +704,7 @@ DisplayInventoryList:
     jr nz, .nextItem
 
     ; If the item isn't sellable, then don't print the price
+    ; TODO - this doesnt work for PP_UP...
     call GetCurrentItemID
     call IsItemFiltered
     jr z, .nextItem

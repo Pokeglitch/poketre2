@@ -30,7 +30,6 @@ INCLUDE "engine/intro/titlescreen.asm"
 INCLUDE "engine/diploma.asm"
 INCLUDE "engine/load_mon_data.asm"
 
-INCLUDE "data/item_prices.asm"
 INCLUDE "text/item_names.asm"
 
 INCLUDE "engine/overworld/oam.asm"

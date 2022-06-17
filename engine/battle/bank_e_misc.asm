@@ -95,11 +95,6 @@ InitList:
 	ld [wUnusedCF8D], a
 	ld a, d
 	ld [wUnusedCF8D + 1], a
-	ld bc, ItemPrices
-	ld a, c
-	ld [wItemPrices], a
-	ld a, b
-	ld [wItemPrices + 1], a
 	ret
 
 ; get species of mon e in list [wMonDataLocation] for LoadMonData

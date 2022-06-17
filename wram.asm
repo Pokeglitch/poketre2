@@ -1454,7 +1454,7 @@ wUnusedCF8D:: ; cf8d
 ; used to store pointers, but never read
 	ds 2
 
-wItemPrices:: ; cf8f
+wUnusedCF8F:: ; cf8f
 	ds 2
 
 wcf91:: ds 1 ; used with a lot of things (too much to list here)

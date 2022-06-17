@@ -20,6 +20,9 @@ GetItemPriceFromCF91:
 ; Stores item's price at hItemPrice (3 bytes)
 ; Input: [wcf91] = item id
 ; TODO - only need to store 2 bytes in hItemPrice
+; TODO - fix when adding/subtracting price with players money
+; - also when checking if enough money...
+; make player money bytes, not BCD...
 GetItemPriceCommon:
     ld a, [wcf91]
     call LookupItemPrice

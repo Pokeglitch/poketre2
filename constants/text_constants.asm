@@ -21,6 +21,9 @@ NO_LEADING_ZEROES EQU (1 << BIT_NO_LEADING_ZEROES)
 
 ; Textbox settings
 BIT_NO_DELAY EQU 4
+; TODO - instead, use 2 bits to represent the border style
+; each font color has 4 potential borders (though 00 = no border for all)
+; remove the NO_WORD_WRAP ??
 BIT_NO_BORDER EQU 5
 BIT_DONT_REVEAL EQU 6
 BIT_NO_WORD_WRAP EQU 7

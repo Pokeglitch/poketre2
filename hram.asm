@@ -72,8 +72,6 @@ hSpriteImageIndex EQU $FF8D
 hLoadSpriteTemp1 EQU $FF8D
 hLoadSpriteTemp2 EQU $FF8E
 
-hHalveItemPrices EQU $FF8E
-
 hSpriteOffset2 EQU $FF8F
 
 hOAMBufferOffset EQU $FF90

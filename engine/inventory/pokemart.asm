@@ -79,8 +79,6 @@ DisplayPokemartDialogue_:
 
 .buyMenu
 ; the same variables are set again below, so this code has no effect
-	ld a, 1
-	ld [wPrintItemPrices], a
 	ld a, INIT_OTHER_ITEM_LIST
 	ld [wInitListType], a
 	callab InitList
@@ -103,8 +101,6 @@ DisplayPokemartDialogue_:
 	jr c, .returnToMainPokemartMenu ; if the player closed the menu
 	ld a, 99
 	ld [wMaxItemQuantity], a
-	xor a
-	ld [hHalveItemPrices], a ; don't halve item prices when buying
 	call DisplayChooseQuantityMenu
 	inc a
 	jr z, .buyMenuLoop ; if the player closed the choose quantity menu with the B button
