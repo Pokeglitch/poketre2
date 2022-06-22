@@ -130,6 +130,8 @@ SafariZoneEntranceScript_752b4:
 	and a
 	ret
 
+SAFARI_ZONE_TICKET_PRICE EQU 500
+
 SafariZoneEntranceTextPointers:
 	dw .SafariZoneEntranceText1
 	dw .SafariZoneEntranceText2
@@ -151,9 +153,9 @@ SafariZoneEntranceTextPointers:
 	jp nz, .PleaseComeAgain
 	xor a
 	ld [hMoney], a
-	ld a, $05
+	ld a, SAFARI_ZONE_TICKET_PRICE / $100
 	ld [hMoney + 1], a
-	ld a, $00
+	ld a, SAFARI_ZONE_TICKET_PRICE & $FF
 	ld [hMoney + 2], a
 	call HasEnoughMoney
 	jr nc, .success
@@ -164,14 +166,14 @@ SafariZoneEntranceTextPointers:
 .success
 	xor a
 	ld [wPriceTemp], a
-	ld a, $05
+	ld a, SAFARI_ZONE_TICKET_PRICE / $100
 	ld [wPriceTemp + 1], a
-	ld a, $00
+	ld a, SAFARI_ZONE_TICKET_PRICE & $FF
 	ld [wPriceTemp + 2], a
 	ld hl, wPriceTemp + 2
 	ld de, wPlayerMoney + 2
 	ld c, 3
-	predef SubBCDPredef
+	call SubtractBytes
 	ld hl, .MakePaymentText
 	call PrintText
 	ld a, 30

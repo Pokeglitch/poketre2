@@ -483,8 +483,6 @@ TextboxCommand:
 	inc de
 	jp PlaceNextChar
 
-
-; TODO - handle textbox definition within the text
 TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
 	push af

@@ -713,19 +713,11 @@ DisplayInventoryList:
 
     pop hl
     push hl
-    ld bc, SCREEN_WIDTH + 8
+    ld bc, SCREEN_WIDTH + 7
     add hl, bc
     ld de, hItemPrice
-    lb bc, 3, 4 ; 3 bytes, 4 digits
+    lb bc, MONEY_SIGN | 3, 4 ; 3 bytes, 4 digits
     call PrintNumber
-    
-.placeDollarSign
-    dec hl
-    ld a, [hl]
-    cp " "
-    jr nz, .placeDollarSign
-
-    ld [hl], "$"
     jr .nextItem
 
 .checkQuickUse
@@ -1064,35 +1056,6 @@ IsItemFiltered:
     ; otherwise, check if there are pokemon in the party
     ld a, [wPartyCount]
     and a
-    ret
-
-; To halve the price of the item
-HalveItemPrice:
-    ld hl, hItemPrice
-    ld de, hMoney
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, [hl]
-    ld [de], a
-    
-    ; halve the price
-    xor a
-	ld [hDivideBCDDivisor], a
-	ld [hDivideBCDDivisor + 1], a
-	ld a, 2
-	ld [hDivideBCDDivisor + 2], a
-	predef DivideBCDPredef3 ; halves the price
-; store the halved price
-	ld a, [hDivideBCDQuotient]
-	ld [hItemPrice], a
-	ld a, [hDivideBCDQuotient + 1]
-	ld [hItemPrice + 1], a
-	ld a, [hDivideBCDQuotient + 2]
-	ld [hItemPrice + 2], a
     ret
 
 ; To select the current item

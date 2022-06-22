@@ -235,10 +235,10 @@ HoFDisplayPlayerStats:
 	coord hl, 1, 9
 	ld de, HoFMoneyText
 	call PlaceString
-	coord hl, 4, 10
+	coord hl, 3, 10
 	ld de, wPlayerMoney
-	ld c, $a3
-	call PrintBCDNumber
+	lb bc, MONEY_SIGN | 3, 7 ; 3 bytes, 7 digits
+	call PrintNumber
 	ld hl, DexSeenOwnedText
 	call HoFPrintTextAndDelay
 	ld hl, DexRatingText

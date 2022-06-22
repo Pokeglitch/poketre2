@@ -135,6 +135,8 @@ CeladonGameCornerText1:
 	fartext _CeladonGameCornerText1
 	done
 
+COIN_PURCHASE_PRICE EQU 1000 ; $
+
 CeladonGameCornerText2:
 	asmtext
 	call CeladonGameCornerScript_48f1e
@@ -149,25 +151,27 @@ CeladonGameCornerText2:
 	jr z, .asm_48d19
 	call Has9990Coins
 	jr nc, .asm_48d14
-	xor a
-	ld [hMoney], a
-	ld [hMoney + 2], a
-	ld a, $10
-	ld [hMoney + 1], a
+	ld hl, hMoney
+	ld [hl], 0
+	inc hl
+	ld [hl], COIN_PURCHASE_PRICE / $100
+	inc hl
+	ld [hl], COIN_PURCHASE_PRICE & $FF
 	call HasEnoughMoney
 	jr nc, .asm_48cdb
 	ld hl, CeladonGameCornerText_48d31
 	jr .asm_48d1c
 .asm_48cdb
-	xor a
-	ld [hMoney], a
-	ld [hMoney + 2], a
-	ld a, $10
-	ld [hMoney + 1], a
+	ld hl, hMoney
+	ld [hl], 0
+	inc hl
+	ld [hl], COIN_PURCHASE_PRICE / $100
+	inc hl
+	ld [hl], COIN_PURCHASE_PRICE & $FF
 	ld hl, hMoney + 2
 	ld de, wPlayerMoney + 2
-	ld c, $3
-	predef SubBCDPredef
+	ld c, 3
+	call SubtractBytes
 	xor a
 	ld [hUnusedCoinsByte], a
 	ld [hCoins], a
@@ -489,10 +493,10 @@ CeladonGameCornerScript_48f1e:
 	coord hl, 12, 3
 	ld de, GameCornerBlankText1
 	call PlaceString
-	coord hl, 12, 3
+	coord hl, 11, 3
 	ld de, wPlayerMoney
-	ld c, $a3
-	call PrintBCDNumber
+	lb bc, MONEY_SIGN | 3, 7 ; 3 bytes, 7 digits
+	call PrintNumber
 	coord hl, 12, 4
 	ld de, GameCornerCoinText
 	call PlaceString

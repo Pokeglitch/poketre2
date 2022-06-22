@@ -60,8 +60,6 @@ INCLUDE "engine/menu/naming_screen.asm"
 
 INCLUDE "engine/oak_speech2.asm"
 
-INCLUDE "engine/subtract_paid_money.asm"
-
 INCLUDE "engine/menu/swap_items.asm"
 
 INCLUDE "engine/learn_move.asm"

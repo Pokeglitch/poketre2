@@ -4,6 +4,8 @@ DayCareMScript:
 DayCareMTextPointers:
 	dw DayCareMText1
 
+DAY_CARE_PRICE_PER_LEVEL EQU 100
+
 DayCareMText1:
 	asmtext
 	call SaveScreenTilesToBuffer2
@@ -110,9 +112,8 @@ DayCareMText1:
 	inc de
 	ld [de], a
 	ld hl, wDayCarePerLevelCost
-	ld a, $1
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], DAY_CARE_PRICE_PER_LEVEL
 	ld a, [wDayCareNumLevelsGrown]
 	inc a
 	ld b, a
@@ -121,7 +122,7 @@ DayCareMText1:
 	push hl
 	push de
 	push bc
-	predef AddBCDPredef
+	call AddBytes
 	pop bc
 	pop de
 	pop hl
@@ -148,12 +149,12 @@ DayCareMText1:
 .enoughMoney
 	xor a
 	ld [wDayCareInUse], a
-	ld hl, wDayCareNumLevelsGrown
+	ld hl, wDayCareTotalCost-1
 	ld [hli], a
 	inc hl
 	ld de, wPlayerMoney + 2
-	ld c, $3
-	predef SubBCDPredef
+	ld c, 3
+	call SubtractBytes
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
 	ld hl, DayCareHeresYourMonText

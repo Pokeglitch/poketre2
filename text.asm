@@ -1073,7 +1073,7 @@ _EnemyMonFaintedText::
 
 _MoneyForWinningText::
 	text "<PLAYER> got $"
-	bcdtext wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
+	numtext wAmountMoneyWon, 7, 3 ; 7 digits, 3 bytes
 	next "for winning!"
 	prompt
 
@@ -1516,7 +1516,7 @@ _SafariZoneAngryText::
 _PickUpPayDayMoneyText::
 	text "<PLAYER> picked up"
 	next "$"
-	bcdtext wTotalPayDayMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
+	numtext wTotalPayDayMoney, 7, 3 ; 7 digits, 3 bytes
 	text "!"
 	prompt
 
@@ -2424,7 +2424,7 @@ _PokemartTellBuyPriceText::
 	text "?"
 	next "That will be"
 	cont "$"
-	bcdtext hMoney, 3 | LEADING_ZEROES | LEFT_ALIGN
+	numtext hMoney, 7, 3 ; 7 digits, 3 bytes
 	text ". OK?"
 	done
 

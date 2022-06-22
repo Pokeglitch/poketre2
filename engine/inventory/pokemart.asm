@@ -39,7 +39,6 @@ DisplayPokemartDialogue_:
 
 	call GetHalfItemPriceFromCF91
 
-	; TODO - last two digits dont get cleared when number changes from 6/7 digits to 1-5 digits...
 	call DisplayChooseQuantityMenu
 	inc a
 	jr z, .reenterSellMenu ; if the player closed the choose quantity menu with the B button
@@ -126,7 +125,7 @@ DisplayPokemartDialogue_:
 	jr z, .buyMenuLoop
 
 .buyItem
-	call .isThereEnoughMoney
+	call HasEnoughMoney
 	jr c, .notEnoughMoney
 	call AddItemToInventory
 	jr nc, .bagFull
@@ -145,11 +144,6 @@ DisplayPokemartDialogue_:
 	ld hl, PokemartAnythingElseText
 	call PrintText
 	jp .loop
-.isThereEnoughMoney
-	ld de, wPlayerMoney
-	ld hl, hMoney
-	ld c, 3 ; length of money in bytes
-	jp StringCmp
 .notEnoughMoney
 	ld hl, PokemartNotEnoughMoneyText
 	call PrintText
@@ -349,7 +343,7 @@ DisplayChooseQuantityMenu::
 	ld [hMoney+2], a
 	
 	coord hl, 3, 16
-	lb bc, 1, 14
+	lb bc, 1, 16
 	call ClearScreenArea
 
 	coord hl, 3, 16
@@ -390,3 +384,25 @@ QuantityMenuConfirmString:
 	numtext hMoney, 7, 3 ; 7 digits, 3 bytes
 	db "?"
 	done
+
+; adds the amount the player sold to their money
+AddAmountSoldToMoney::
+	ld de, wPlayerMoney + 2
+	ld hl, hMoney + 2 ; total price of items
+	ld c, 3 ; length of money in bytes
+	call AddBytes
+	ld a, SFX_PURCHASE
+	call PlaySoundWaitForCurrent
+	jp WaitForSoundToFinish
+
+; subtracts the amount the player paid from their money
+; sets carry flag if there is enough money and unsets carry flag if not
+SubtractAmountPaidFromMoney::
+	call HasEnoughMoney
+	ret c
+	ld de, wPlayerMoney + 2
+	ld hl, hMoney + 2 ; total price of items
+	ld c, 3 ; length of money in bytes
+	call SubtractBytes ; subtract total price from money
+	and a
+	ret

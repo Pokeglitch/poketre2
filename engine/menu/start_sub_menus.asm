@@ -654,8 +654,8 @@ DrawTrainerInfo:
 	call PlaceString
 	coord hl, 8, 4
 	ld de, wPlayerMoney
-	ld c, $e3
-	call PrintBCDNumber
+	lb bc, MONEY_SIGN | LEFT_ALIGN | 3, 7 ; 3 bytes, 7 digits
+	call PrintNumber
 	coord hl, 9, 6
 	ld de, wPlayTimeHours ; hours
 	lb bc, LEFT_ALIGN | 1, 3

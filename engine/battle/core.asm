@@ -1032,8 +1032,8 @@ TrainerBattleVictory:
 	call PrintText
 	ld de, wPlayerMoney + 2
 	ld hl, wAmountMoneyWon + 2
-	ld c, $3
-	predef_jump AddBCDPredef
+	ld c, 3
+	jp AddBytes
 
 MoneyForWinningText:
 	fartext _MoneyForWinningText

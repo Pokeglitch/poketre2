@@ -35,8 +35,8 @@ EndOfBattle:
 	or [hl]
 	jr z, .evolution ; if pay day money is 0, jump
 	ld de, wPlayerMoney + 2
-	ld c, $3
-	predef AddBCDPredef
+	ld c, 3
+	call AddBytes
 	ld hl, PickUpPayDayMoneyText
 	call PrintText
 .evolution

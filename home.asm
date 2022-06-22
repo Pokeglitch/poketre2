@@ -1314,20 +1314,50 @@ CountSetBits::
 	ld [wNumSetBits], a
 	ret
 
-; subtracts the amount the player paid from their money
-; sets carry flag if there is enough money and unsets carry flag if not
-SubtractAmountPaidFromMoney::
-	jpba SubtractAmountPaidFromMoney_
+; subtract c bytes at hl from de
+SubtractBytes:
+	ld a, [de]
 
-; adds the amount the player sold to their money
-AddAmountSoldToMoney::
-	ld de, wPlayerMoney + 2
-	ld hl, $ffa1 ; total price of items
-	ld c, 3 ; length of money in bytes
-	predef AddBCDPredef ; add total price to money
-	ld a, SFX_PURCHASE
-	call PlaySoundWaitForCurrent
-	jp WaitForSoundToFinish
+.loop
+	sub [hl]
+	push af
+	ld [de], a
+	dec c
+	jr z, .exit
+	dec hl
+	dec de
+	pop af
+	ld a, [de]
+	jr nc, .loop
+	dec a
+	jr .loop
+
+.exit
+	pop af
+	ret
+
+; add c bytes at hl to de
+AddBytes:
+	ld a, [de]
+
+.loop
+	add [hl]
+	push af
+	ld [de], a
+	dec c
+	jr z, .exit
+	dec hl
+	dec de
+	pop af
+	ld a, [de]
+	jr nc, .loop
+	inc a
+	jr .loop
+
+.exit
+	pop af
+	ret
+
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
@@ -1651,9 +1681,9 @@ PrintListMenuEntries::
 	ld [wcf91], a
 	farcall GetItemPriceFromCF91 ; get price
 	pop hl
-	ld bc, SCREEN_WIDTH + 8 ; 1 row down and 5 columns right
+	ld bc, SCREEN_WIDTH + 7 ; 1 row down and 7 columns right
 	add hl, bc
-	lb bc, 3, 5 ; 3 bytes, 5 digit TODO - print currency symbol
+	lb bc, MONEY_SIGN | 3, 5 ; 3 bytes, 5 digit
     ld de, hItemPrice
 	call PrintNumber
 .skipPrintingItemPrice
@@ -2747,7 +2777,7 @@ GetTrainerName::
 
 HasEnoughMoney::
 ; Check if the player has at least as much
-; money as the 3-byte BCD value at hMoney.
+; money as the 3-byte value at hMoney.
 	ld de, wPlayerMoney
 	ld hl, hMoney
 	ld c, 3
@@ -4035,7 +4065,6 @@ PrintNumber::
 ; the value to char "0" instead of calling PrintNumber.
 ; Flags LEADING_ZEROES, LEFT_ALIGN and MONEY_SIGN can be given
 ; in bits 7, 6, and 5 of b respectively.
-; TODO - incorporate MONEY_SIGN...
 	push bc
 	xor a
 	ld [H_PASTLEADINGZEROES], a
@@ -4222,7 +4251,7 @@ endm
 	ld a, [H_PASTLEADINGZEROES]
 	or c
 	jr z, .PrintLeadingZero
-
+	call .TryPrintMoneySign
 	ld a, "0"
 	add c
 	ld [hl], a
@@ -4232,6 +4261,7 @@ endm
 .PrintLeadingZero:
 	bit BIT_LEADING_ZEROES, d
 	ret z
+	call .TryPrintMoneySign
 	ld [hl], "0"
 	ret
 
@@ -4247,6 +4277,16 @@ endm
 	and a
 	ret z
 .inc
+	inc hl
+	ret
+
+.TryPrintMoneySign:
+	bit BIT_MONEY_SIGN, d
+	ret z ; return if not printing $
+	bit BIT_ALREADY_PRINTED_MONEY_SIGN, d
+	ret nz ; return if $ already printed
+	set BIT_ALREADY_PRINTED_MONEY_SIGN, d ; set flag indicating $ printed
+	ld [hl], "$"
 	inc hl
 	ret
 

@@ -2334,7 +2334,7 @@ wInventoryProperties:: ; d346
 	ds 1
 
 wPlayerMoney:: ; d347
-	ds 3 ; BCD
+	ds 3
 
 wRivalName:: ; d34a
 	ds NAME_LENGTH

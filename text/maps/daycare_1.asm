@@ -37,7 +37,7 @@ _DayCareMonHasGrownText::
 
 _DayCareOweMoneyText::
 	text "You owe me $"
-	bcdtext wDayCareTotalCost, $c2
+	numtext wDayCareTotalCost, 5, 2 ; 5 digits, 2 bytes
 	next "for the return"
 	cont "of this POKéMON."
 	done

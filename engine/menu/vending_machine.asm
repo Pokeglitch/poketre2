@@ -33,11 +33,13 @@ VendingMachineMenu:
 	ld a, [wCurrentMenuItem]
 	cp 3 ; chose Cancel?
 	jr z, .notThirsty
-	xor a
+	ld hl, hVendingMachinePrice
+	ld a, [hli]
 	ld [hMoney], a
-	ld [hMoney + 2], a
-	ld a, $2
+	ld a, [hli]
 	ld [hMoney + 1], a
+	ld a, [hl]
+	ld [hMoney + 2], a
 	call HasEnoughMoney
 	jr nc, .enoughMoney
 	ld hl, VendingMachineText4
@@ -65,8 +67,8 @@ VendingMachineMenu:
 	call PrintText
 	ld hl, hVendingMachinePrice + 2
 	ld de, wPlayerMoney + 2
-	ld c, $3
-	predef SubBCDPredef
+	ld c, 3
+	call SubtractBytes
 .BagFull
 	ld hl, VendingMachineText6
 	jp PrintText
@@ -116,7 +118,7 @@ LoadVendingMachineItem:
 	add hl, de
 	ld a, [hli]
 	ld [hVendingMachineItem], a
-	ld a, [hli]
+	xor a
 	ld [hVendingMachinePrice], a
 	ld a, [hli]
 	ld [hVendingMachinePrice + 1], a
@@ -125,9 +127,6 @@ LoadVendingMachineItem:
 	ret
 
 VendingPrices:
-	db FRESH_WATER
-	money 200
-	db SODA_POP
-	money 300
-	db LEMONADE
-	money 350
+	dbw FRESH_WATER, 200
+	dbw SODA_POP, 300
+	dbw LEMONADE, 350

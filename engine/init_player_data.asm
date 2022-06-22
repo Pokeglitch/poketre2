@@ -17,15 +17,16 @@ InitPlayerData2:
 	ld hl, wNumInBox
 	call InitializeEmptyList
 
-START_MONEY EQU $3000
-	ld hl, wPlayerMoney + 1
-	ld a, START_MONEY / $100
-	ld [hld], a
+START_MONEY EQU 3000
+	ld hl, wPlayerMoney
 	xor a
 	ld [hli], a
-	inc hl
+	ld a, START_MONEY / $100
+	ld [hli], a
+	ld a, START_MONEY & $FF
 	ld [hl], a
 
+	xor a
 	ld [wMonDataLocation], a
 
 	ld hl, wObtainedBadges

@@ -1,11 +1,13 @@
 item: MACRO
     dw \1Description
+	; price
 	IF \2 % 100
 		db ( (\2 - 50) / 100 ) | FIFTY_BUCKS
 	ELSE
 		db \2 / 100
 	ENDC
-    db \3 ; filter
+	; filter
+    db \3
 ENDM
 
 ItemAttributeTable:

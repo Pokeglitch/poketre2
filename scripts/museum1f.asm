@@ -38,6 +38,8 @@ Museum1FTextPointers:
 	dw Museum1FText4
 	dw Museum1FText5
 
+MUSEUM_TICKET_PRICE EQU 50
+
 Museum1FText1:
 	asmtext
 	ld a, [wYCoord]
@@ -78,7 +80,7 @@ Museum1FText1:
 	xor a
 	ld [hMoney], a
 	ld [hMoney + 1], a
-	ld a, $50
+	ld a, MUSEUM_TICKET_PRICE
 	ld [hMoney + 2], a
 	call HasEnoughMoney
 	jr nc, .asm_0f3e3
@@ -92,12 +94,12 @@ Museum1FText1:
 	xor a
 	ld [wPriceTemp], a
 	ld [wPriceTemp + 1], a
-	ld a, $50
+	ld a, MUSEUM_TICKET_PRICE
 	ld [wPriceTemp + 2], a
 	ld hl, wPriceTemp + 2
 	ld de, wPlayerMoney + 2
-	ld c, $3
-	predef SubBCDPredef
+	ld c, 3
+	call SubtractBytes
 	ld a, SFX_PURCHASE
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
