@@ -31,7 +31,7 @@ Route15UpstairsBinocularsText:
 AerodactylFossil:
 	ld a, FOSSIL_AERODACTYL
 	ld [wcf91], a
-	call DisplayMonFrontSpriteInBox
+	call DisplayFossilSpriteInBox
 	call EnableAutoTextBoxDrawing
 	tx_pre AerodactylFossilText
 	ret
@@ -43,7 +43,7 @@ AerodactylFossilText:
 KabutopsFossil:
 	ld a, FOSSIL_KABUTOPS
 	ld [wcf91], a
-	call DisplayMonFrontSpriteInBox
+	call DisplayFossilSpriteInBox
 	call EnableAutoTextBoxDrawing
 	tx_pre KabutopsFossilText
 	ret
@@ -52,9 +52,27 @@ KabutopsFossilText:
 	fartext _KabutopsFossilText
 	done
 
-DisplayMonFrontSpriteInBox:
-; Displays a pokemon's front sprite in a pop-up window.
-; [wcf91] = pokemon internal id number
+DisplayFossilSpriteInBox:
+	call InitializeSpriteInBox
+	ld a, [wcf91]
+	cp FOSSIL_AERODACTYL
+	ld a, Aerofossil
+	jr z, .idFound
+	ld a, Skebutops
+.idFound
+	ld [wWhichInstance], a
+	ld a, OtherClass
+	ld [wWhichClass], a
+
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
+	
+	ld de, vChars1 + $310
+	farcall LoadFrontPCEImageToVRAM
+
+	jp FinalizeSpriteInBox
+
+InitializeSpriteInBox:
 	ld a, 1
 	ld [H_AUTOBGTRANSFERENABLED], a
 	call Delay3
@@ -64,12 +82,22 @@ DisplayMonFrontSpriteInBox:
 	ld a, MON_SPRITE_POPUP
 	ld [wTextBoxID], a
 	call DisplayTextBoxID
-	call UpdateSprites
+	jp UpdateSprites
+
+DisplayMonFrontSpriteInBox:
+; Displays a pokemon's front sprite in a pop-up window.
+; [wcf91] = pokemon internal id number
+	call InitializeSpriteInBox
 	ld a, [wcf91]
 	ld [wd0b5], a
+	inc a
 	call GetMonHeader
+	
 	ld de, vChars1 + $310
-	call LoadMonFrontSprite
+	call LoadFrontSpriteByMonIndexToDE
+	;fall through
+
+FinalizeSpriteInBox:
 	ld a, $80
 	ld [hStartTileID], a
 	coord hl, 10, 11

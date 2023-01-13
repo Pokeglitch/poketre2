@@ -8,8 +8,7 @@ db GROUND ; species type 1
 db GROUND ; species type 2
 db 75 ; catch rate
 db 124 ; base exp yield
-INCBIN "pic/bmon/marowak.pic",0,1 ; 66, sprite dimensions
-dw MarowakPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw MarowakPicBack
 ; attacks known at lvl 0
 db BONE_CLUB

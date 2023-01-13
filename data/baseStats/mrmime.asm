@@ -8,8 +8,7 @@ db PSYCHIC ; species type 1
 db PSYCHIC ; species type 2
 db 45 ; catch rate
 db 136 ; base exp yield
-INCBIN "pic/bmon/mr.mime.pic",0,1 ; 66, sprite dimensions
-dw MrMimePicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw MrMimePicBack
 ; attacks known at lvl 0
 db CONFUSION

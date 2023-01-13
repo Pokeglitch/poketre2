@@ -8,8 +8,7 @@ db BUG ; species type 1
 db GRASS ; species type 2
 db 190 ; catch rate
 db 70 ; base exp yield
-INCBIN "pic/bmon/paras.pic",0,1 ; 55, sprite dimensions
-dw ParasPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw ParasPicBack
 ; attacks known at lvl 0
 db SCRATCH

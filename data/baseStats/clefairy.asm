@@ -8,8 +8,7 @@ db NORMAL ; species type 1
 db NORMAL ; species type 2
 db 150 ; catch rate
 db 68 ; base exp yield
-INCBIN "pic/bmon/clefairy.pic",0,1 ; 55, sprite dimensions
-dw ClefairyPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw ClefairyPicBack
 ; attacks known at lvl 0
 db POUND

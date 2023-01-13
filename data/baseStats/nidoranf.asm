@@ -8,8 +8,7 @@ db POISON ; species type 1
 db POISON ; species type 2
 db 235 ; catch rate
 db 59 ; base exp yield
-INCBIN "pic/bmon/nidoranf.pic",0,1 ; 55, sprite dimensions
-dw NidoranFPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw NidoranFPicBack
 ; attacks known at lvl 0
 db GROWL

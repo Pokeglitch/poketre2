@@ -8,8 +8,7 @@ db WATER ; species type 1
 db ICE ; species type 2
 db 45 ; catch rate
 db 219 ; base exp yield
-INCBIN "pic/bmon/lapras.pic",0,1 ; 77, sprite dimensions
-dw LaprasPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw LaprasPicBack
 ; attacks known at lvl 0
 db WATER_GUN

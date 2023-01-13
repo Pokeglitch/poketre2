@@ -8,8 +8,7 @@ db ROCK ; species type 1
 db GROUND ; species type 2
 db 255 ; catch rate
 db 86 ; base exp yield
-INCBIN "pic/bmon/geodude.pic",0,1 ; 55, sprite dimensions
-dw GeodudePicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw GeodudePicBack
 ; attacks known at lvl 0
 db TACKLE

@@ -8,8 +8,7 @@ db FIRE ; species type 1
 db FIRE ; species type 2
 db 190 ; catch rate
 db 152 ; base exp yield
-INCBIN "pic/bmon/ponyta.pic",0,1 ; 66, sprite dimensions
-dw PonytaPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw PonytaPicBack
 ; attacks known at lvl 0
 db EMBER

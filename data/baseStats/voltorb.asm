@@ -8,8 +8,7 @@ db ELECTRIC ; species type 1
 db ELECTRIC ; species type 2
 db 190 ; catch rate
 db 103 ; base exp yield
-INCBIN "pic/bmon/voltorb.pic",0,1 ; 55, sprite dimensions
-dw VoltorbPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw VoltorbPicBack
 ; attacks known at lvl 0
 db TACKLE

@@ -8,8 +8,7 @@ db PSYCHIC ; species type 1
 db PSYCHIC ; species type 2
 db 100 ; catch rate
 db 145 ; base exp yield
-INCBIN "pic/bmon/kadabra.pic",0,1 ; 66, sprite dimensions
-dw KadabraPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw KadabraPicBack
 ; attacks known at lvl 0
 db TELEPORT

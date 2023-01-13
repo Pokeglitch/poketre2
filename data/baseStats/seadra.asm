@@ -8,8 +8,7 @@ db WATER ; species type 1
 db WATER ; species type 2
 db 75 ; catch rate
 db 155 ; base exp yield
-INCBIN "pic/bmon/seadra.pic",0,1 ; 66, sprite dimensions
-dw SeadraPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw SeadraPicBack
 ; attacks known at lvl 0
 db BUBBLE

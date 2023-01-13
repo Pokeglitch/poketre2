@@ -97,7 +97,7 @@ LeaguePCShowMon:
 	call RunPaletteCommand
 	coord hl, 12, 5
 	call GetMonHeader
-	call LoadFrontSpriteByMonIndex
+	call LoadFrontSpriteByMonIndexAndDraw
 	call GBPalNormal
 	coord hl, 0, 13
 	ld b, 2

@@ -8,8 +8,7 @@ db WATER ; species type 1
 db ICE ; species type 2
 db 60 ; catch rate
 db 203 ; base exp yield
-INCBIN "pic/bmon/cloyster.pic",0,1 ; 77, sprite dimensions
-dw CloysterPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw CloysterPicBack
 ; attacks known at lvl 0
 db WITHDRAW

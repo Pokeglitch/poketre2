@@ -1,5 +1,6 @@
 
 INCLUDE "constants.asm"
+INCLUDE "./classes/ram.asm"
 
 flag_array: MACRO
 	ds ((\1) + 7) / 8
@@ -202,7 +203,17 @@ wFrequencyModifier:: ; c0f1
 wTempoModifier:: ; c0f2
 	ds 1
 
-	ds 13
+
+wPCEPaletteID:: db ; c0f3
+wPCEPalette:: ds 5 ; c0f4
+wWhichClass:: ds 1 ;c0f9
+wWhichInstance:: ds 1 ; c0fa
+wWhichProperty:: ds 1 ; c0fb
+	
+wPCESandboxUpdateType:: db
+wPCESandboxBacking:: db
+wPCESandboxList :: db
+wPCESandboxListMax :: db
 
 
 SECTION "Sprite State Data", WRAM0[$c100]
@@ -2306,13 +2317,13 @@ wPartyDataEnd::
 wMainDataStart::
 
 wPokedexOwned:: ; d2f7
-	flag_array NUM_POKEMON
+	flag_array PokemonCount
 wPokedexOwnedEnd::
 
 wPokedexSeen:: ; d30a
-	flag_array NUM_POKEMON
+	flag_array PokemonCount
 wPokedexSeenEnd::
-
+	
 wWhichItem:: ; d31d
 	ds 1
 
@@ -3274,7 +3285,6 @@ wSpritesHiddenByTextbox::
 ; The original value of the sprite C1x2 before being replaced with $ff
 wSpriteImageIndexBackup::
 	ds 16
-
 ENDU
 
 SECTION "Stack", WRAM0[$df00]

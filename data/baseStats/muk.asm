@@ -8,8 +8,7 @@ db POISON ; species type 1
 db POISON ; species type 2
 db 75 ; catch rate
 db 157 ; base exp yield
-INCBIN "pic/bmon/muk.pic",0,1 ; 77, sprite dimensions
-dw MukPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw MukPicBack
 ; attacks known at lvl 0
 db POUND

@@ -550,10 +550,8 @@ ShowPokedexDataInternal:
 	push de
 	push hl
 
-	; a already points to the dex id
-	call GetMonHeader ; load pokemon picture location
 	ld de, vChars1
-	call LoadMonFrontSprite
+	call LoadFrontSpriteByMonIndexToDE
 
 	call FullyRevealWindow
 	ld a, [wcf91]
@@ -614,6 +612,7 @@ ShowPokedexDataInternal:
 	ld a, [hJoy5]
 	and A_BUTTON | B_BUTTON
 	jr z, .waitForButtonPress
+
 	pop af
 	ld [hTilesetType], a
 
@@ -628,6 +627,9 @@ ShowPokedexDataInternal:
 	call CopyVideoData
 
 	; redraw the pic using the vChars1 tiles
+	
+	; TODO - tile animations are enabled while this sprite is visible
+	; TODO - is this true? they should have been disabled...
 	coord hl, 8, 1
 	ld a, $80
 	call DrawDexPic
@@ -639,6 +641,7 @@ ShowPokedexDataInternal:
 	
 	; ReloadTilesetTilePatternData will unset this
 	; which causes the OAM sprites to be loaded incorrectly later on
+	; TODO - clean up? use ReloadTilesetTilePattern instead?
 	ld hl, wFontLoaded
 	set 0, [hl]
 

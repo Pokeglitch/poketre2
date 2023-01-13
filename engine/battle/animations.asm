@@ -2146,7 +2146,7 @@ ChangeMonPic:
 	ld [wSpriteFlipped], a
 	call GetMonHeader
 	coord hl, 12, 0
-	call LoadFrontSpriteByMonIndex
+	call LoadFrontSpriteByMonIndexAndDraw
 	jr .done
 .playerTurn
 	ld a, [wBattleMonSpecies2]

@@ -264,30 +264,10 @@ LoadFlippedFrontSpriteByMonIndex::
 	ld a, 1
 	ld [wSpriteFlipped], a
 
-LoadFrontSpriteByMonIndex::
-	push hl
-	ld a, [wd11e]
-	push af
-	ld a, [wcf91]
-	ld [wd11e], a
-	predef IndexToPokedex
-	ld hl, wd11e
-	ld a, [hl]
-	pop bc
-	ld [hl], b
-	and a
-	pop hl
-	jr z, .invalidDexNumber ; dex #0 invalid
-	cp NUM_POKEMON + 1
-	jr c, .validDexNumber   ; dex >#151 invalid
-.invalidDexNumber
-	ld a, RHYDON ; $1
-	ld [wcf91], a
-	ret
-.validDexNumber
+LoadFrontSpriteByMonIndexAndDraw::
 	push hl
 	ld de, vFrontPic
-	call LoadMonFrontSprite
+	call LoadFrontSpriteByMonIndexToDE
 	pop hl
 	ld a, [H_LOADEDROMBANK]
 	push af
@@ -300,6 +280,29 @@ LoadFrontSpriteByMonIndex::
 	ld [wSpriteFlipped], a
 	jp HomeBankswitchReturn
 
+; de = vram destination
+LoadFrontSpriteByMonIndexToDE::
+	push de
+	ld a, [wd11e]
+	push af
+	ld a, [wcf91]
+	ld [wd11e], a
+	predef IndexToPokedex
+	ld a, [wd11e]
+	dec a ; pokedex starts at 1
+	ld [wWhichInstance], a
+	pop af
+	ld [wd11e], a
+	pop de
+	;fall through
+
+; de: destination location
+	ld a, PokemonClass
+	ld [wWhichClass], a
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
+	farcall LoadFrontPCEImageToVRAM
+	ret
 
 PlayCry::
 ; Play monster a's cry.
@@ -553,17 +556,6 @@ GetMonHeader::
 	push af
 	ld a, [wd0b5]
 	ld [wd11e], a
-	ld de, FossilKabutopsPic
-	ld b, $66 ; size of Kabutops fossil and Ghost sprites
-	cp FOSSIL_KABUTOPS ; Kabutops fossil
-	jr z, .specialID
-	ld de, GhostPic
-	cp MON_GHOST ; Ghost
-	jr z, .specialID
-	ld de, FossilAerodactylPic
-	ld b, $77 ; size of Aerodactyl fossil sprite
-	cp FOSSIL_AERODACTYL ; Aerodactyl fossil
-	jr z, .specialID
 	cp MEW
 	jr z, .mew
 	predef IndexToPokedex   ; convert pokemon ID in [wd11e] to pokedex number
@@ -575,14 +567,6 @@ GetMonHeader::
 	ld de, wMonHeader
 	ld bc, MonBaseStatsEnd - MonBaseStats
 	call CopyData
-	jr .done
-.specialID
-	ld hl, wMonHSpriteDim
-	ld [hl], b ; write sprite dimensions
-	inc hl
-	ld [hl], e ; write front sprite pointer
-	inc hl
-	ld [hl], d
 	jr .done
 .mew
 	ld hl, MewBaseStats
@@ -718,42 +702,27 @@ UncompressMonSprite::
 	ld a, [wcf91] ; XXX name for this ram location
 	ld b, a
 	cp MEW
-	ld a, BANK(MewPicFront)
-	jr z, .GotBank
-	ld a, b
-	cp FOSSIL_KABUTOPS
-	ld a, BANK(FossilKabutopsPic)
+	ld a, BANK(MewPicBack)
 	jr z, .GotBank
 	ld a, b
 	cp TANGELA + 1
-	ld a, BANK(TangelaPicFront)
+	ld a, BANK(TangelaPicBack)
 	jr c, .GotBank
 	ld a, b
 	cp MOLTRES + 1
-	ld a, BANK(MoltresPicFront)
+	ld a, BANK(MoltresPicBack)
 	jr c, .GotBank
 	ld a, b
 	cp BEEDRILL + 2
-	ld a, BANK(BeedrillPicFront)
+	ld a, BANK(BeedrillPicBack)
 	jr c, .GotBank
 	ld a, b
 	cp STARMIE + 1
-	ld a, BANK(StarmiePicFront)
+	ld a, BANK(StarmiePicBack)
 	jr c, .GotBank
-	ld a, BANK(VictreebelPicFront)
+	ld a, BANK(VictreebelPicBack)
 .GotBank
 	jp UncompressSpriteData
-
-; de: destination location
-LoadMonFrontSprite::
-	push de
-	ld hl, wMonHFrontSprite - wMonHeader
-	call UncompressMonSprite
-	ld hl, wMonHSpriteDim
-	ld a, [hli]
-	ld c, a
-	pop de
-	; fall through
 
 ; postprocesses uncompressed sprite chunks to a 2bpp sprite and loads it into video ram
 ; calculates alignment parameters to place both sprite chunks in the center of the 7*7 tile sprite buffers

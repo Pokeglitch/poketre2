@@ -189,3 +189,10 @@ ENDM
 ldPal: MACRO
 	ld \1, \2 << 6 | \3 << 4 | \4 << 2 | \5
 ENDM
+
+load_vram: MACRO
+    ld hl, \2
+    lb bc, BANK(\1), (\1End - \1) / BYTES_PER_TILE
+	ld de, \1
+    call CopyVideoData
+ENDM

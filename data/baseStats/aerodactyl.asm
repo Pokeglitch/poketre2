@@ -8,8 +8,7 @@ db ROCK ; species type 1
 db FLYING ; species type 2
 db 45 ; catch rate
 db 202 ; base exp yield
-INCBIN "pic/bmon/aerodactyl.pic",0,1 ; 77, sprite dimensions
-dw AerodactylPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw AerodactylPicBack
 ; attacks known at lvl 0
 db WING_ATTACK

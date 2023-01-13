@@ -63,7 +63,7 @@ DisplayCreditsMon:
 	ld [wd0b5], a
 	coord hl, 8, 6
 	call GetMonHeader
-	call LoadFrontSpriteByMonIndex
+	call LoadFrontSpriteByMonIndexAndDraw
 	ld hl, vBGMap0 + $c
 	call CreditsCopyTileMapToVRAM
 	xor a

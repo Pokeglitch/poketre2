@@ -1510,8 +1510,10 @@ EnemySendOutFirstMon:
 	ld [wcf91], a
 	ld [wd0b5], a
 	call GetMonHeader
+
 	ld de, vFrontPic
-	call LoadMonFrontSprite
+	call LoadFrontSpriteByMonIndexToDE
+
 	ld a, -$31
 	ld [hStartTileID], a
 	coord hl, 15, 6
@@ -2478,8 +2480,10 @@ PartyMenuOrRockOrRun:
 	ld [wcf91], a
 	ld [wd0b5], a
 	call GetMonHeader
+	
 	ld de, vFrontPic
-	call LoadMonFrontSprite
+	call LoadFrontSpriteByMonIndexToDE
+
 	jr .enemyMonPicReloaded
 .doEnemyMonAnimation
 	ld b, BANK(AnimationSubstitute) ; BANK(AnimationMinimizeMon)
@@ -6801,13 +6805,6 @@ InitWildBattle:
 	call IsGhostBattle
 	jr nz, .isNoGhost
 .isGhost
-	ld hl, wMonHSpriteDim
-	ld a, $66
-	ld [hli], a   ; write sprite dimensions
-	ld bc, GhostPic
-	ld a, c
-	ld [hli], a   ; write front sprite pointer
-	ld [hl], b
 	ld hl, wEnemyMonNick  ; set name to "GHOST"
 	ld a, "G"
 	ld [hli], a
@@ -6820,18 +6817,18 @@ InitWildBattle:
 	ld a, "T"
 	ld [hli], a
 	ld [hl], "@"
-	ld a, [wcf91]
-	push af
-	ld a, MON_GHOST
-	ld [wcf91], a
+	ld a, OtherClass
+	ld [wWhichClass], a
+	ld a, Poltergost
+	ld [wWhichInstance], a
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
 	ld de, vFrontPic
-	call LoadMonFrontSprite ; load ghost sprite
-	pop af
-	ld [wcf91], a
+	farcall LoadFrontPCEImageToVRAM
 	jr .spriteLoaded
 .isNoGhost
 	ld de, vFrontPic
-	call LoadMonFrontSprite ; load mon sprite
+	call LoadFrontSpriteByMonIndexToDE
 .spriteLoaded
 	xor a
 	ld [wTrainerClass], a

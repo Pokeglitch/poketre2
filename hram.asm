@@ -318,7 +318,24 @@ hFlags_0xFFF6 EQU $FFF6
 
 hFieldMoveMonMenuTopMenuItemX EQU $FFF7
 
+hJoyInput EQU $FFF8
+
 hDisableJoypadPolling EQU $FFF9
 
-hJoyInput EQU $FFF8
+; For Sprite unpacking
+hColorPrevious EQU $FF95
+hColor0 EQU $FF96
+hColor1 EQU $FF97
+hCountTilColor1 EQU $FF98 ; & $FF99
+hColor2 EQU $FF9A
+hCountTilColor2 EQU $FF9B ; & $FF9C
+hColor3 EQU $FF9D
+hCountTilColor3 EQU $FF9E ; & $FF9F
+hColor4 EQU $FFA0
+hCountTilColor4 EQU $FFA1 ; & $FFA2
+
+hImageAddress EQU $FFA3 ; & $FFA4
+hImageBit EQU $FFA5
+hImageByte EQU $FFA6
+hImageDestinationBit EQU $FFA7
 

@@ -8,8 +8,7 @@ db GROUND ; species type 1
 db GROUND ; species type 2
 db 50 ; catch rate
 db 153 ; base exp yield
-INCBIN "pic/bmon/dugtrio.pic",0,1 ; 66, sprite dimensions
-dw DugtrioPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw DugtrioPicBack
 ; attacks known at lvl 0
 db SCRATCH

@@ -8,8 +8,7 @@ db WATER ; species type 1
 db WATER ; species type 2
 db 45 ; catch rate
 db 196 ; base exp yield
-INCBIN "pic/bmon/vaporeon.pic",0,1 ; 66, sprite dimensions
-dw VaporeonPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw VaporeonPicBack
 ; attacks known at lvl 0
 db TACKLE

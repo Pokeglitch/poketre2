@@ -114,7 +114,7 @@ HoFShowMonOrPlayer:
 .showMon
 	coord hl, 12, 5
 	call GetMonHeader
-	call LoadFrontSpriteByMonIndex
+	call LoadFrontSpriteByMonIndexAndDraw
 	predef LoadMonBackPic
 .next1
 	ld b, SET_PAL_POKEMON_WHOLE_SCREEN

@@ -8,8 +8,7 @@ db NORMAL ; species type 1
 db NORMAL ; species type 2
 db 45 ; catch rate
 db 211 ; base exp yield
-INCBIN "pic/bmon/tauros.pic",0,1 ; 77, sprite dimensions
-dw TaurosPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw TaurosPicBack
 ; attacks known at lvl 0
 db TACKLE

@@ -8,8 +8,7 @@ db POISON ; species type 1
 db POISON ; species type 2
 db 255 ; catch rate
 db 62 ; base exp yield
-INCBIN "pic/bmon/ekans.pic",0,1 ; 55, sprite dimensions
-dw EkansPicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw EkansPicBack
 ; attacks known at lvl 0
 db WRAP

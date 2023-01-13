@@ -8,8 +8,7 @@ db FIGHTING ; species type 1
 db FIGHTING ; species type 2
 db 45 ; catch rate
 db 139 ; base exp yield
-INCBIN "pic/bmon/hitmonlee.pic",0,1 ; 77, sprite dimensions
-dw HitmonleePicFront
+db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
 dw HitmonleePicBack
 ; attacks known at lvl 0
 db DOUBLE_KICK

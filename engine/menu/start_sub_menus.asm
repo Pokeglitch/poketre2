@@ -552,6 +552,10 @@ UsableItems_PartyMenu:
 	db MAX_ELIXER
 	db $ff
 
+DebugMenu_PCESandbox:
+	farcall PCESandboxScreen
+	jp RedisplayStartMenu
+	
 StartMenu_TrainerInfo:
 	call GBPalWhiteOut
 	call ClearScreen

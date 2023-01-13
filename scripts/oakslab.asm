@@ -867,6 +867,7 @@ OaksLabLookAtSquirtle:
 	ld hl, OaksLabSquirtleText
 	ret
 OaksLabSquirtleText:
+	textbox DEFAULT_SPEECH_TEXTBOX
 	fartext _OaksLabSquirtleText
 	gototext OaksLabYesNoText
 
@@ -874,6 +875,7 @@ OaksLabLookAtBulbasaur:
 	ld hl, OaksLabBulbasaurText
 	ret
 OaksLabBulbasaurText:
+	textbox DEFAULT_SPEECH_TEXTBOX
 	fartext _OaksLabBulbasaurText
 	; fall through
 
