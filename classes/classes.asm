@@ -8,6 +8,7 @@
     Table Class, Byte, Pointer
     Class Pokemon, Front, Sprite
     Class Other, Sprites, Sprite
+    Class Trainer, Front, Sprite
 
 GetInstancePropertyPointer:
     ld hl, ClassTable

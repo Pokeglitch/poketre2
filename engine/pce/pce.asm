@@ -14,7 +14,7 @@ Handle flipping sprite
 
 Auto convert png to pce when building
 
-Add in real backing options (besides just colors)
+Add in real Scene options (besides just colors)
 
 Update code for title screen ivnentory, etc to use new struct/table/tile macros
 
@@ -22,7 +22,7 @@ Update scan-includes to work with the IncludeTiles macro
 -----------------------
 Brainstorming:
 
-Can quicky change backing using normal drawing routine by:
+Can quicky change Scene using normal drawing routine by:
  - For all non-alpha palette colors, simply skip those pixels
  - For all alpha palette colors, pull the corresponding pixel from the other image
  -- can use masks for quick effect

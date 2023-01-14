@@ -211,7 +211,7 @@ wWhichInstance:: ds 1 ; c0fa
 wWhichProperty:: ds 1 ; c0fb
 	
 wPCESandboxUpdateType:: db
-wPCESandboxBacking:: db
+wPCESandboxScene:: db
 wPCESandboxList :: db
 wPCESandboxListMax :: db
 

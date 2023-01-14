@@ -1,4 +1,26 @@
-NUM_PCE_SANDBOX_OPTIONS EQU 8
+PCE_SANDBOX_KEY_COUNT = 8
+PCE_SANDBOX_KEY_ROW_SPACING = 2
+PCE_SANDBOX_TOP_ROW = 1
+
+; todo - macro to define these...
+PCE_SANDBOX_TYPE_KEY_INDEX = 0
+PCE_SANDBOX_SPRITE_NAME_KEY_INDEX = 1
+PCE_SANDBOX_COLOR1_KEY_INDEX = 2
+
+PCE_SANDBOX_TYPE_ROW = PCE_SANDBOX_TOP_ROW + PCE_SANDBOX_TYPE_KEY_INDEX*PCE_SANDBOX_KEY_ROW_SPACING
+PCE_SANDBOX_SPRITE_NAME_ROW = PCE_SANDBOX_TOP_ROW + PCE_SANDBOX_SPRITE_NAME_KEY_INDEX*PCE_SANDBOX_KEY_ROW_SPACING
+PCE_SANDBOX_COLOR1_ROW = PCE_SANDBOX_TOP_ROW + PCE_SANDBOX_COLOR1_KEY_INDEX*PCE_SANDBOX_KEY_ROW_SPACING
+
+PCE_SANDBOX_SLIDER_COL = 13
+PCE_SANDBOX_SLIDER_ROW = 17
+
+PCE_SANDBOX_SPRITE_COL = 12
+PCE_SANDBOX_SPRITE_ROW = 6
+PCE_SANDBOX_SPRITE_DIMENSION = 7
+
+PCE_SANDBOX_KEY_COL = 1
+PCE_SANDBOX_VALUE_COL = 8
+PCE_SANDBOX_CURSOR_COL = 7
 
 SandboxType: MACRO
     DEF SandboxType\1 = SandboxTypeCount
@@ -14,7 +36,18 @@ ENDM
 
     Table SandboxType, Byte, Byte, Pointer
     SandboxType Pokemon
+    SandboxType Trainer
     SandboxType Other
+
+PokemonTypesName:
+    str "Pokémon"
+    
+OtherTypesName:
+    str "Other"
+
+TrainerTypesName:
+    str "Trainer"
+    
 
 PCESandboxScreen::
 	ld a, [hTilesetType]
@@ -28,9 +61,9 @@ PCESandboxScreen::
 
     xor a
     ld [wPCESandboxUpdateType], a
-    ld [wPCESandboxBacking], a
+    ld [wPCESandboxScene], a
 
-    coord hl, 1, 1
+    coord hl, PCE_SANDBOX_KEY_COL, PCE_SANDBOX_TOP_ROW
     ld de, TypeString
     call PlaceSandboxMenuItem
     ld de, SpriteString
@@ -45,7 +78,7 @@ PCESandboxScreen::
     call PlaceSandboxMenuItem
     ld de, Color5String
     call PlaceSandboxMenuItem
-    ld de, BackingString
+    ld de, SceneString
     call PlaceSandboxMenuItem
     ld de, ToggleString
     call PlaceString
@@ -64,13 +97,10 @@ PCESandboxScreen::
 
     ld a, SandboxTypePokemon
     call LoadPCESandboxList
+    call DrawPCESprite
 
     ld a, PCEPalettePrevious
 	ld [wPCEPaletteID], a
-
-	coord hl, 12, 6
-	ld a, 0
-	call DrawPCESprite
     
     ld b, SET_PAL_GENERIC
 	call RunPaletteCommand
@@ -99,13 +129,13 @@ PCESandboxKeypressHandler:
 
 .updateCursorLocation
     ; erase all possible previous cursor locations
-    coord hl, 8, 1
-    lb bc, NUM_PCE_SANDBOX_OPTIONS*2-1, 1
+    coord hl, PCE_SANDBOX_CURSOR_COL, PCE_SANDBOX_TOP_ROW
+    lb bc, PCE_SANDBOX_KEY_COUNT*PCE_SANDBOX_KEY_ROW_SPACING - 1, 1
     call ClearScreenArea
 
     ; find current cursor location
-    coord hl, 8, 1
-    ld de, SCREEN_WIDTH*2
+    coord hl, PCE_SANDBOX_CURSOR_COL, PCE_SANDBOX_TOP_ROW
+    ld de, SCREEN_WIDTH*PCE_SANDBOX_KEY_ROW_SPACING
 
     ld a, [wCurrentMenuItem]
 .findCursorLocationLoop
@@ -157,13 +187,13 @@ PCESandboxKeypressHandler:
     dec a
     cp -1
     jr nz, .storeCurrentMenuItem
-    ld a, NUM_PCE_SANDBOX_OPTIONS-1
+    ld a, PCE_SANDBOX_KEY_COUNT-1
     jr .storeCurrentMenuItem
 
 .downPressed
     ld a, [wCurrentMenuItem]
     inc a
-    cp NUM_PCE_SANDBOX_OPTIONS
+    cp PCE_SANDBOX_KEY_COUNT
     jr nz, .storeCurrentMenuItem
     xor a
     jr .storeCurrentMenuItem
@@ -178,7 +208,7 @@ PCESandboxKeypressHandler:
 .adjustMenuOption
     ld a, [wCurrentMenuItem]
     cp 7
-    jr z, .updateBacking
+    jr z, .updateScene
     and a
     jr z, .updateList
     dec a
@@ -187,8 +217,8 @@ PCESandboxKeypressHandler:
     call UpdatePaletteColor
     jr .keypressLoop
 
-.updateBacking
-    ld hl, wPCESandboxBacking
+.updateScene
+    ld hl, wPCESandboxScene
     call UpdateColor
     jr .keypressLoop
 
@@ -214,7 +244,7 @@ ToggleUpdateMode:
     ld a, PCESandboxGUISliderLeftLightTile
 
 .updateSliderTiles
-    coord hl, 13, 17
+    coord hl, PCE_SANDBOX_SLIDER_COL, PCE_SANDBOX_SLIDER_ROW
     ld [hli], a
     inc a
     ld  [hl], a
@@ -247,11 +277,11 @@ UpdateColor:
 .storeColor
     ld b, a
     ld [hl], a
-    coord hl, 9, 5
-    ld de, SCREEN_WIDTH*2
+    coord hl, PCE_SANDBOX_VALUE_COL, PCE_SANDBOX_COLOR1_ROW
+    ld de, SCREEN_WIDTH*PCE_SANDBOX_KEY_ROW_SPACING
     
     ld a, [wCurrentMenuItem]
-    sub 2
+    sub PCE_SANDBOX_COLOR1_KEY_INDEX
     jr z, .placeColorTile
 
 .findColorTileLocationLoop
@@ -283,8 +313,8 @@ UpdatePCESandboxList:
 
 LoadPCESandboxList:
     ld [wPCESandboxList], a
-    coord hl, 9, 1
-    lb bc, 1, NAME_LENGTH
+    coord hl, PCE_SANDBOX_VALUE_COL, PCE_SANDBOX_TYPE_ROW
+    lb bc, 1, SCREEN_WIDTH - PCE_SANDBOX_VALUE_COL
     call ClearScreenArea
     
     ld hl, SandboxTypeTable
@@ -307,8 +337,8 @@ LoadPCESandboxList:
     
     ld e, [hl]
     inc hl
-    ld d, [hl] ; de = name string
-    coord hl, 9, 1
+    ld d, [hl] ; de = type name string
+    coord hl, PCE_SANDBOX_VALUE_COL, PCE_SANDBOX_TYPE_ROW
     call PlaceString
 
     ; Go to the start of the list
@@ -316,7 +346,7 @@ LoadPCESandboxList:
 	ld [wWhichInstance], a
 
     ; update the name
-    call UpdatePCESandboxName
+    call UpdatePCESandboxSpriteName
     
     ; load sprite if auto is enabled
     jp TryLoadPCESandboxSprite
@@ -342,7 +372,7 @@ UpdatePCESandboxSprite:
     xor a
 .storeSprite
 	ld [wWhichInstance], a
-    call UpdatePCESandboxName
+    call UpdatePCESandboxSpriteName
 
     ; fall through
 
@@ -354,13 +384,13 @@ TryLoadPCESandboxSprite:
     ; fall through
 
 LoadPCESandboxSprite:
-    call FillBacking
+    call FillScene
     ld de, vFrontPic
 	jp LoadFrontPCEImageToVRAM
 
-UpdatePCESandboxName:
-    coord hl, 9, 3
-    lb bc, 1, NAME_LENGTH
+UpdatePCESandboxSpriteName:
+    coord hl, PCE_SANDBOX_VALUE_COL, PCE_SANDBOX_SPRITE_NAME_ROW
+    lb bc, 1, SCREEN_WIDTH - PCE_SANDBOX_VALUE_COL
     call ClearScreenArea
 
     ld a, PokemonName ; All names use the same property ID
@@ -369,28 +399,37 @@ UpdatePCESandboxName:
 
     ld d, h
     ld e, l
-    coord hl, 9, 3
+    coord hl, PCE_SANDBOX_VALUE_COL, PCE_SANDBOX_SPRITE_NAME_ROW
     jp PlaceString
 
-; a = start tile
-; hl = coords
 DrawPCESprite:
-	ld de, 13
-	ld c, 7
+    ld a, PCE_SANDBOX_SPRITE_DIMENSION
+
+    ld b, a
+    ld c, a
+    ld a, SCREEN_WIDTH
+    sub b
+    ld e, a
+
+	ld a, 0
+	coord hl, PCE_SANDBOX_SPRITE_COL, PCE_SANDBOX_SPRITE_ROW
 
 .rowLoop
+    push bc
     push af
-	ld b, 7
+    ld d, b
 
 .colLoop
 	ld [hli], a
-	add 7
+	add d
 	dec b
 	jr nz, .colLoop
 
+    ld d, 0
 	add hl, de
     pop af
     inc a
+    pop bc
 	dec c
 	jr nz, .rowLoop
 
@@ -400,27 +439,27 @@ PlaceSandboxMenuItem:
 	push hl
 	call PlaceString
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCREEN_WIDTH * PCE_SANDBOX_KEY_ROW_SPACING
 	add hl, de
 	ret
 
 Color1String:
-    str "Color 1 ", PCESandboxPaletteWhiteTile
+    str "Color1 ", PCESandboxPaletteWhiteTile
 
 Color2String:
-    str "Color 2 ", PCESandboxPaletteLightTile
+    str "Color2 ", PCESandboxPaletteLightTile
 
 Color3String:
-    str "Color 3 ", PCESandboxPaletteDarkTile
+    str "Color3 ", PCESandboxPaletteDarkTile
 
 Color4String:
-    str "Color 4 ", PCESandboxPaletteBlackTile
+    str "Color4 ", PCESandboxPaletteBlackTile
 
 Color5String:
-    str "Color 5 ", PCESandboxPaletteAlphaTile
+    str "Color5 ", PCESandboxPaletteAlphaTile
 
-BackingString:
-    str "Backing ", PCESandboxPaletteWhiteTile
+SceneString:
+    str "Scene  ", PCESandboxPaletteWhiteTile
 
 TypeString:
     str "Type"
@@ -437,20 +476,13 @@ InstantString:
 APressString:
     str "A Press"
 
-PokemonTypesName:
-    str "Pokémon"
-    
-OtherTypesName:
-    str "Other"
-
-
-FillBacking:
+FillScene:
 	ld a, SRAM_ENABLE
 	ld [MBC1SRamEnable], a
 	xor a
 	ld [MBC1SRamBank], a
 
-    ld a, [wPCESandboxBacking]
+    ld a, [wPCESandboxScene]
     lb bc, 0, 0
     and a
     jr z, .continue
@@ -466,7 +498,7 @@ FillBacking:
 
 .continue
     ld hl, sPCESpriteBuffer
-    ld de, 7 * 7 * BYTES_PER_TILE/2
+    ld de, PCE_SANDBOX_SPRITE_DIMENSION * PCE_SANDBOX_SPRITE_DIMENSION * BYTES_PER_TILE/2
 
 .loop
     ld [hl], b
