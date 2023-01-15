@@ -516,14 +516,12 @@ SetBitsLookupTable:
     db %11111111
 
 PCEPixel: MACRO
-    DEF PCEPixel\1 = PCEPixelCount
     dw Fill\1Pixels
-    DEF PCEPixelCount += 1
 ENDM
 
-    Table PCEPixel, Pointer
-    PCEPixel White
-    PCEPixel Light
-    PCEPixel Dark
-    PCEPixel Black
-    PCEPixel Alpha
+    Table PCEPixel, FillPixels, Pointer
+    Entry White
+    Entry Light
+    Entry Dark
+    Entry Black
+    Entry Alpha

@@ -4,11 +4,16 @@
 ; - (update places where DEX is reduced by 1 in PCE code)
 ; - also all pokemon name calls should use new table (& remove old name strings)
 
+; TODO - make this an input variable to the class macro....(?)
+CLASSES_BANK EQU $2D
+
+SECTION "Classes", ROMX, BANK[CLASSES_BANK]
+
     ; Initialize the Data for the Class Table
-    Table Class, Byte, Pointer
-    Class Pokemon, Front, Sprite
-    Class Other, Sprites, Sprite
-    Class Trainer, Front, Sprite
+    Table Class, Size, Byte, Instances, Pointer
+    Entry Pokemon, Front, Sprite
+    Entry Other, Sprites, Sprite
+    Entry Trainer, Front, Sprite
 
 GetInstancePropertyPointer:
     ld hl, ClassTable

@@ -6817,7 +6817,7 @@ InitWildBattle:
 	ld a, "T"
 	ld [hli], a
 	ld [hl], "@"
-	ld a, OtherClass
+	ld a, ClassOther
 	ld [wWhichClass], a
 	ld a, Poltergost
 	ld [wWhichInstance], a

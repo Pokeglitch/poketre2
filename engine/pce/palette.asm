@@ -29,20 +29,18 @@ LoadPCEPalette:
     ret
 
 PCEPalette: MACRO
-    DEF PCEPalette\1 = PCEPaletteCount
     FOR I, 2, PCEPaletteSize+2
         db PCEPixel\<I>
     ENDR
-    DEF PCEPaletteCount += 1
 ENDM
 
-    Table PCEPalette, Byte, Byte, Byte, Byte, Byte
-    PCEPalette StandardAlphaBG, White, Light, Dark, Black, Alpha
-    PCEPalette StandardWhiteBG, White, Light, Dark, Black, White
-    PCEPalette StandardLightBG, White, Light, Dark, Black, Light
-    PCEPalette StandardDarkBG, White, Light, Dark, Black, Dark 
-    PCEPalette StandardBlackBG, White, Light, Dark, Black, Black
-    PCEPalette SilhouetteAlphaBG, Black, Black, Black, Black, Alpha 
-    PCEPalette SilhouetteWhiteBG, Black, Black, Black, Black, White
+    Table PCEPalette, Color0, Byte, Color1, Byte, Color2, Byte, Color3, Byte, Color4, Byte
+    Entry StandardAlphaBG, White, Light, Dark, Black, Alpha
+    Entry StandardWhiteBG, White, Light, Dark, Black, White
+    Entry StandardLightBG, White, Light, Dark, Black, Light
+    Entry StandardDarkBG, White, Light, Dark, Black, Dark 
+    Entry StandardBlackBG, White, Light, Dark, Black, Black
+    Entry SilhouetteAlphaBG, Black, Black, Black, Black, Alpha 
+    Entry SilhouetteWhiteBG, Black, Black, Black, Black, White
 
     DEF PCEPalettePrevious = -1

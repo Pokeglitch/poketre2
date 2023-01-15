@@ -61,7 +61,7 @@ DisplayFossilSpriteInBox:
 	ld a, Skebutops
 .idFound
 	ld [wWhichInstance], a
-	ld a, OtherClass
+	ld a, ClassOther
 	ld [wWhichClass], a
 
 	ld a, PCEPaletteStandardWhiteBG

@@ -48,23 +48,21 @@ PCE_SANDBOX_SPRITE_ROW = 6
 PCE_SANDBOX_SPRITE_DIMENSION = 7
 
 ; TODO - use CleanString so only 1 argument is needed...
-; Then, can use named keys (like struct)
+; Then, can use named keys, and 'String' type can automatically be placed into section...
 SandboxType: MACRO
-    DEF SandboxType\1 = SandboxTypeCount
-    db \1Class
+    db Class\1
     db \1Count - 1
     IF _NARG == 2
         dw \2
     ELSE
         dw \1TypesName
     ENDC
-    DEF SandboxTypeCount += 1
 ENDM
 
-    Table SandboxType, Byte, Byte, Pointer
-    SandboxType Pokemon
-    SandboxType Trainer
-    SandboxType Other
+    Table SandboxType, Class, Byte, Count, Byte, Name, Pointer
+    Entry Pokemon
+    Entry Trainer
+    Entry Other
 
 PokemonTypesName:
     str "Pokémon"

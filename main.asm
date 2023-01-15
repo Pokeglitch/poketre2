@@ -1,5 +1,6 @@
 INCLUDE "constants.asm"
 INCLUDE "gfx.asm"
+INCLUDE "classes/classes.asm"
 
 NPC_SPRITES_1 EQU $4
 NPC_SPRITES_2 EQU $5
@@ -1938,9 +1939,6 @@ INCLUDE "engine/items/tm_prices.asm"
 
 SECTION "PCE", ROMX, BANK[$2D]
 INCLUDE "engine/pce/pce.asm"
-
-SECTION "Classes", ROMX, BANK[CLASSES_BANK]
-INCLUDE "classes/classes.asm"
 
 SECTION "TextGFX", ROMX, BANK[$3E]
 WhiteOnBlackFontLettersGFX:

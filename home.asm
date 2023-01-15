@@ -297,7 +297,7 @@ LoadFrontSpriteByMonIndexToDE::
 	;fall through
 
 ; de: destination location
-	ld a, PokemonClass
+	ld a, ClassPokemon
 	ld [wWhichClass], a
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
