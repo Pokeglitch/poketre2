@@ -9,10 +9,12 @@ Table: MACRO
     DEF \1Size = TABLE_SIZE
     ; Initialize the Count of the Table
     DEF \1Count = 0
+
     ; Create the table pointer
     \1Table:
 ENDM
 
+; TODO - make this an input variable to the class macro....
 CLASSES_BANK EQU $2D
 
 ByteAllocate EQU 1
@@ -141,7 +143,6 @@ Instantiate: MACRO
 
         ; Strip Out bad characters
         REDEF INSTANCE_NAME EQUS STRRPL("{INSTANCE_NAME_STR}","♀","F")
-        REDEF INSTANCE_NAME EQUS STRRPL("{INSTANCE_NAME}","♀","F")
         REDEF INSTANCE_NAME EQUS STRRPL("{INSTANCE_NAME}","♂","M")
         REDEF INSTANCE_NAME EQUS STRRPL("{INSTANCE_NAME}","é","e")
         REDEF INSTANCE_NAME EQUS STRRPL("{INSTANCE_NAME}","'","")

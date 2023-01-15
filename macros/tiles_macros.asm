@@ -1,5 +1,3 @@
-; If the arguments are arranged in order they have been written to the ROM
-; It will combing loading for those that are next to each other
 DEF TILE_ID = 0
 
 ; Arguments:
@@ -34,6 +32,9 @@ ENDM
 ; Arguments
 ; - Starting Tile ID (-1 will use previous tile id)
 ; - Screen Name
+;
+; If the arguments are arranged in order they have been written to the ROM
+; It will combine loading for those that are next to each other
 load_tiles: MACRO
     ; Update the TILE_ID if first argument is positive
     IF \1 > -1
@@ -112,10 +113,10 @@ ResetPreviousTile: MACRO
 ENDM
 
 ; Arguments:
-; - Directory Name
+; 1 - Directory Name
 ; - Repeating:
-; - - File Name
-; - - File Size (in Tiles) | Optional
+; - 1 - File Name
+; - 2 - File Size (in Tiles) | Optional
 IncludeTiles: MACRO
     REDEF DIR EQUS "\1"
     SHIFT
