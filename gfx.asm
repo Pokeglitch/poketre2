@@ -1,8 +1,8 @@
 SECTION "CustomGFX", ROMX, BANK[$3D]
     ResetPreviousTile
     IncludeTiles GUI, Cursor, 1, SliderLeftLight, 2, SliderRightLight, 2, SliderLeftDark, 2, SliderRightDark, 2
-    IncludeTiles Palette, White, 1, Light, 1, Dark, 1, Black, 1, Alpha, 1
-	IncludeTiles Buttons, A, 1, Select, 3
+    IncludeTiles Palette, White, Light, Dark, Black, Alpha
+	IncludeTiles Buttons, A, Select, 3
 
 TitleScreenSharedGFX: INCBIN "gfx/titlescreen/shared.2bpp"
 TitleScreenShareGFXEnd:

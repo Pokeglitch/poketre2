@@ -91,7 +91,7 @@ PCESandboxScreen::
     call LoadBlackOnWhiteFontTilePatterns
     
     load_tiles $C0, PCESandbox, GUICursor, GUISliderLeftLight, GUISliderRightLight, Palette, ButtonsA, ButtonsSelect
-
+ 
     ld a, PCEPaletteStandardAlphaBG
 	ld [wPCEPaletteID], a
 
@@ -468,7 +468,7 @@ SpriteString:
     str "Sprite"
 
 ToggleString:
-    str PCESandboxButtonsSelectTile, PCESandboxButtonsSelectTile+1, PCESandboxButtonsSelectTile+2, " Apply: ", PCESandboxButtonsATile, PCESandboxGUISliderRightLightTile, PCESandboxGUISliderRightLightTile+1, "Auto"
+    str PCESandboxButtonsSelectTiles, " Apply: ", PCESandboxButtonsATile, PCESandboxGUISliderRightLightTiles, "Auto"
 
 InstantString:
     str "Instant"
