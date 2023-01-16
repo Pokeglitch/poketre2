@@ -1,25 +1,19 @@
-; TODO
-; PrintText function to get name of class instance
-; Update all DEX_ constants to just use the pokemon name
-; - (update places where DEX is reduced by 1 in PCE code)
-; - also all pokemon name calls should use new table (& remove old name strings)
-
-; TODO - make this an input variable to the class macro....(?)
-CLASSES_BANK EQU $2D
-
-SECTION "Classes", ROMX, BANK[CLASSES_BANK]
+Class: MACRO
+    Prop Size, Byte, \1EntrySize
+    Prop Instances, Pointer, \1Table
+ENDM
 
     ; Initialize the Data for the Class Table
-    Table Class, Size, Byte, Instances, Pointer
-    Entry Pokemon, Front, Sprite
-    Entry Other, Sprites, Sprite
-    Entry Trainer, Front, Sprite
+    Table Class
+    Entry Pokemon
+    Entry Trainer
+    Entry Other
 
 GetInstancePropertyPointer:
     ld hl, ClassTable
     ld a, [wWhichClass]
     ld c, a
-    ld a, ClassSize
+    ld a, ClassEntrySize
     call GetIndexInTable ; hl = pointer to start of class
 
     ld a, [hli] ; a = size

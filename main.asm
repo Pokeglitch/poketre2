@@ -1,6 +1,6 @@
-INCLUDE "constants.asm"
-INCLUDE "gfx.asm"
-INCLUDE "classes/classes.asm"
+
+INCLUDE "macros/rom.asm"
+INCLUDE "constants/constants.asm"
 
 NPC_SPRITES_1 EQU $4
 NPC_SPRITES_2 EQU $5
@@ -13,6 +13,47 @@ PICS_3 EQU $B
 PICS_4 EQU $C
 PICS_5 EQU $D
 
+SECTION "CustomGFX", ROMX, BANK[$3D]
+INCLUDE "gfx.asm"
+
+SECTION "Classes", ROMX, BANK[$2D]
+INCLUDE "classes/pokemon.asm"
+INCLUDE "classes/Trainer.asm"
+INCLUDE "classes/other.asm"
+INCLUDE "classes/classes.asm"
+
+; The rst vectors are unused.
+SECTION "rst 00", ROM0 [$00]
+	rst $38
+SECTION "rst 08", ROM0 [$08]
+	rst $38
+SECTION "rst 10", ROM0 [$10]
+	rst $38
+SECTION "rst 18", ROM0 [$18]
+	rst $38
+SECTION "rst 20", ROM0 [$20]
+	rst $38
+SECTION "rst 28", ROM0 [$28]
+	rst $38
+SECTION "rst 30", ROM0 [$30]
+	rst $38
+SECTION "rst 38", ROM0 [$38]
+	rst $38
+
+; Hardware interrupts
+SECTION "vblank", ROM0 [$40]
+	jp VBlank
+SECTION "hblank", ROM0 [$48]
+	rst $38
+SECTION "timer",  ROM0 [$50]
+	jp Timer
+SECTION "serial", ROM0 [$58]
+	jp Serial
+SECTION "joypad", ROM0 [$60]
+	reti
+
+
+SECTION "Home", ROM0
 INCLUDE "home.asm"
 
 SECTION "bank1",ROMX,BANK[$1]

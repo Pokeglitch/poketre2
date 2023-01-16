@@ -15,7 +15,7 @@ TEXT_11 EQU TEXT_10 + 1
 POKEDEX_TEXT EQU TEXT_11 + 1
 MOVE_NAMES   EQU POKEDEX_TEXT + 1
 
-INCLUDE "macros.asm"
+INCLUDE "macros/rom.asm"
 INCLUDE "hram.asm"
 
 

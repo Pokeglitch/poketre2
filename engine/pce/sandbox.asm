@@ -47,32 +47,18 @@ PCE_SANDBOX_SPRITE_COL = 12
 PCE_SANDBOX_SPRITE_ROW = 6
 PCE_SANDBOX_SPRITE_DIMENSION = 7
 
-; TODO - use CleanString so only 1 argument is needed...
-; Then, can use named keys, and 'String' type can automatically be placed into section...
 SandboxType: MACRO
-    db Class\1
-    db \1Count - 1
-    IF _NARG == 2
-        dw \2
-    ELSE
-        dw \1TypesName
-    ENDC
+    ConvertName \1
+
+    Prop Class, Byte, Class{NAME_VALUE}
+    Prop Max, Byte, {NAME_VALUE}EntryCount - 1
+    Prop Name, String, NAME_STRING
 ENDM
 
-    Table SandboxType, Class, Byte, Count, Byte, Name, Pointer
-    Entry Pokemon
+    Table SandboxType
+    Entry Pokémon
     Entry Trainer
     Entry Other
-
-PokemonTypesName:
-    str "Pokémon"
-    
-OtherTypesName:
-    str "Other"
-
-TrainerTypesName:
-    str "Trainer"
-    
 
 PCESandboxScreen::
 	ld a, [hTilesetType]
@@ -290,11 +276,11 @@ UpdateColor:
     cp -1
     jr nz, .checkMax
 
-    ld a, PCEPaletteSize-1
+    ld a, PCEPaletteEntrySize-1
     jr .storeColor
 
 .checkMax
-    cp PCEPaletteSize
+    cp PCEPaletteEntrySize
     jr nz, .storeColor
 
     xor a
@@ -327,11 +313,11 @@ UpdatePCESandboxList:
     add b
     cp -1
     jr nz, .checkMax
-    ld a, SandboxTypeCount-1
+    ld a, SandboxTypeEntryCount-1
     jr LoadPCESandboxList
 
 .checkMax
-    cp SandboxTypeCount
+    cp SandboxTypeEntryCount
     jr nz, LoadPCESandboxList
     xor a
     ; fall through
@@ -347,7 +333,7 @@ LoadPCESandboxList:
     ld a, [wPCESandboxList]
     ld e, a
 
-    ld a, SandboxTypeSize
+    ld a, SandboxTypeEntrySize
 
 .listNameLoop
     add hl, de
@@ -418,7 +404,7 @@ UpdatePCESandboxSpriteName:
     lb bc, 1, SCREEN_WIDTH - PCESandboxValueCol
     call ClearScreenArea
 
-    ld a, PokemonName ; All names use the same property ID
+    ld a, PokemonPropertyNameOffset ; All names use the same property ID - TODO - get from table..
 	ld [wWhichProperty], a
 	call GetInstanceProperty
 

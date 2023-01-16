@@ -1,6 +1,13 @@
-    Other Aerofossil
-    Other Skebutops
-    Other Poltergost
-    Other Red
-    Other "Shrink 1"
-    Other "Shrink 2"
+Other: MACRO
+    ConvertName \1
+    Prop Name, String, {NAME_STRING}
+    Prop Sprites, Sprite
+ENDM
+
+    Table Other
+    Entry Aerofossil
+    Entry Skebutops
+    Entry Poltergost
+    Entry Red
+    Entry Shrink 1
+    Entry Shrink 2

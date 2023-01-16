@@ -157,7 +157,7 @@ ReadHeaderCounter: MACRO
 ENDM
 
 LoadFrontPCEImageToVRAM:
-    ld a, PokemonFront ; shared with all other front sprites
+    ld a, PokemonPropertyFrontOffset ; shared with all other front sprites - todo - get from table
 	ld [wWhichProperty], a
     ; fall through
 
@@ -516,10 +516,10 @@ SetBitsLookupTable:
     db %11111111
 
 PCEPixel: MACRO
-    dw Fill\1Pixels
+    Prop Fill, Pointer, Fill\1Pixels
 ENDM
 
-    Table PCEPixel, FillPixels, Pointer
+    Table PCEPixel
     Entry White
     Entry Light
     Entry Dark

@@ -1,47 +1,54 @@
-    Trainer Youngster
-    Trainer "Bug Catcher"
-    Trainer Lass
-    Trainer Sailor
-    Trainer "Jr.Trainer♂"
-    Trainer "Jr.Trainer♀"
-    Trainer "PokéManiac"
-    Trainer "Super Nerd"
-    Trainer Hiker
-    Trainer Biker
-    Trainer Burglar
-    Trainer Engineer
-    Trainer Juggler
-    Trainer Fisherman
-    Trainer Swimmer
-    Trainer "Cue Ball"
-    Trainer Gambler
-    Trainer Beauty
-    Trainer Psychic
-    Trainer Rocker
-    ;Trainer Juggler
-    Trainer Tamer
-    Trainer "Bird Keeper"
-    Trainer Blackbelt
-    Trainer Rival1
-    Trainer "Prof. Oak"
-    ;Trainer Chief
-    Trainer Scientist
-    Trainer Giovanni
-    Trainer Rocket
-    Trainer "Cooltrainer♂"
-    Trainer "Cooltrainer♀"
-    Trainer Bruno
-    Trainer Brock
-    Trainer Misty
-    Trainer "Lt. Surge"
-    Trainer Erika
-    Trainer Koga
-    Trainer Blaine
-    Trainer Sabrina
-    Trainer Gentleman
-    Trainer Rival2
-    Trainer Rival3
-    Trainer Lorelei
-    Trainer Channeler
-    Trainer Agatha
-    Trainer Lance
+Trainer: MACRO
+    ConvertName \1
+    Prop Name, String, {NAME_STRING}
+    Prop Front, Sprite
+ENDM
+
+    Table Trainer
+    Entry Youngster
+    Entry Bug Catcher
+    Entry Lass
+    Entry Sailor
+    Entry Jr.Trainer♂
+    Entry Jr.Trainer♀
+    Entry PokéManiac
+    Entry Super Nerd
+    Entry Hiker
+    Entry Biker
+    Entry Burglar
+    Entry Engineer
+    Entry Juggler
+    Entry Fisherman
+    Entry Swimmer
+    Entry Cue Ball
+    Entry Gambler
+    Entry Beauty
+    Entry Psychic
+    Entry Rocker
+    ;Entry Juggler
+    Entry Tamer
+    Entry Bird Keeper
+    Entry Blackbelt
+    Entry Rival1
+    Entry Prof. Oak
+    ;Entry Chief
+    Entry Scientist
+    Entry Giovanni
+    Entry Rocket
+    Entry Cooltrainer♂
+    Entry Cooltrainer♀
+    Entry Bruno
+    Entry Brock
+    Entry Misty
+    Entry Lt. Surge
+    Entry Erika
+    Entry Koga
+    Entry Blaine
+    Entry Sabrina
+    Entry Gentleman
+    Entry Rival2
+    Entry Rival3
+    Entry Lorelei
+    Entry Channeler
+    Entry Agatha
+    Entry Lance

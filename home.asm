@@ -1,37 +1,3 @@
-
-; The rst vectors are unused.
-SECTION "rst 00", ROM0 [$00]
-	rst $38
-SECTION "rst 08", ROM0 [$08]
-	rst $38
-SECTION "rst 10", ROM0 [$10]
-	rst $38
-SECTION "rst 18", ROM0 [$18]
-	rst $38
-SECTION "rst 20", ROM0 [$20]
-	rst $38
-SECTION "rst 28", ROM0 [$28]
-	rst $38
-SECTION "rst 30", ROM0 [$30]
-	rst $38
-SECTION "rst 38", ROM0 [$38]
-	rst $38
-
-; Hardware interrupts
-SECTION "vblank", ROM0 [$40]
-	jp VBlank
-SECTION "hblank", ROM0 [$48]
-	rst $38
-SECTION "timer",  ROM0 [$50]
-	jp Timer
-SECTION "serial", ROM0 [$58]
-	jp Serial
-SECTION "joypad", ROM0 [$60]
-	reti
-
-
-SECTION "Home", ROM0
-
 DisableLCD::
 	xor a
 	ld [rIF], a

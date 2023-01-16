@@ -6,7 +6,7 @@ LoadPCEPalette:
     ld hl, PCEPaletteTable
     ld b, 0
     ld c, a
-    ld a, PCEPaletteSize
+    ld a, PCEPaletteEntrySize
 
 .paletteRowLoop
     and a
@@ -18,7 +18,7 @@ LoadPCEPalette:
 .paletteRowFound
     ; hl = palette row
     ld de, wPCEPalette
-    ld b, PCEPaletteSize
+    ld b, PCEPaletteEntrySize
 
 .copyPaletteLoop
     ld a, [hli]
@@ -29,12 +29,14 @@ LoadPCEPalette:
     ret
 
 PCEPalette: MACRO
-    FOR I, 2, PCEPaletteSize+2
-        db PCEPixel\<I>
-    ENDR
+    Prop Color0, Byte, PCEPixel\2
+    Prop Color1, Byte, PCEPixel\3
+    Prop Color2, Byte, PCEPixel\4
+    Prop Color3, Byte, PCEPixel\5
+    Prop Color4, Byte, PCEPixel\6
 ENDM
 
-    Table PCEPalette, Color0, Byte, Color1, Byte, Color2, Byte, Color3, Byte, Color4, Byte
+    Table PCEPalette
     Entry StandardAlphaBG, White, Light, Dark, Black, Alpha
     Entry StandardWhiteBG, White, Light, Dark, Black, White
     Entry StandardLightBG, White, Light, Dark, Black, Light

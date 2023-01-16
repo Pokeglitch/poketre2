@@ -1,4 +1,3 @@
-SECTION "CustomGFX", ROMX, BANK[$3D]
     ResetPreviousTile
     IncludeTiles GUI, Cursor, SliderLeftLight, 2, SliderRightLight, 2, SliderLeftDark, 2, SliderRightDark, 2
     IncludeTiles Palette, White, Light, Dark, Black, Alpha

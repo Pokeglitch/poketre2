@@ -1,6 +1,6 @@
-
-INCLUDE "constants.asm"
-INCLUDE "./classes/ram.asm"
+INCLUDE "macros/ram.asm"
+INCLUDE "constants/constants.asm"
+INCLUDE "classes/ram.asm"
 
 flag_array: MACRO
 	ds ((\1) + 7) / 8
@@ -2317,11 +2317,11 @@ wPartyDataEnd::
 wMainDataStart::
 
 wPokedexOwned:: ; d2f7
-	flag_array PokemonCount
+	flag_array PokemonEntryCount
 wPokedexOwnedEnd::
 
 wPokedexSeen:: ; d30a
-	flag_array PokemonCount
+	flag_array PokemonEntryCount
 wPokedexSeenEnd::
 	
 wWhichItem:: ; d31d

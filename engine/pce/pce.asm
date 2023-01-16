@@ -1,5 +1,18 @@
 /*
 TODO:
+
+Update sandbox code to include the NameOffset and SpriteOffset in the SandboxTypesTable
+
+Remove hardcoded banks in the source and place in the .link file
+
+Add in the macro to create a menu screen
+
+PrintText function to get name of class instance
+
+Update all DEX_ constants to just use the pokemon name constant
+ - (update places where DEX is reduced by 1 in PCE code) (?)
+ - also all pokemon name calls should use new table (& remove old name strings)
+
 Add in remaining sprites (trainers, pokemon backs, trainer backs, Red/Oak, etc)
  - Remove old sprites and old sprite uncompressing code
  - update all calls to use new algo

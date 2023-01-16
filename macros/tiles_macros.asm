@@ -135,7 +135,8 @@ IncludeTiles: MACRO
                 SHIFT
 
                 IF _NARG > 0
-                    IF ISCONST(\1)
+                    IsNumber \1
+                    IF IS_NUMBER
                         DEF SIZE = \1
                         SHIFT
                     ELSE
