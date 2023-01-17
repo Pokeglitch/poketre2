@@ -4573,3 +4573,17 @@ DrawSprite:
 	
 	add hl, de
 	jr .row_loop
+
+; a = instance
+PrepareTrainerClassData:
+	ld [wWhichInstance], a
+	ld a, ClassTrainer
+	ld [wWhichClass], a
+	ret
+
+; a = instance
+PrepareOtherClassData:
+	ld [wWhichInstance], a
+	ld a, ClassOther
+	ld [wWhichClass], a
+	ret

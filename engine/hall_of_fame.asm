@@ -183,15 +183,13 @@ HoFMonInfoText:
 	next "TYPE2/@"
 
 HoFLoadPlayerPics:
-	ld de, RedPicFront
-	ld a, BANK(RedPicFront)
-	call UncompressSpriteFromDE
-	ld hl, sSpriteBuffer1
-	ld de, sSpriteBuffer0
-	ld bc, $310
-	call CopyData
-	ld de, vFrontPic
-	call InterlaceMergeSpriteBuffers
+	ld a, Red
+	call PrepareOtherClassData
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
+    ld de, vFrontPic
+	farcall LoadFrontPCEImageToVRAM
+
 	ld de, RedPicBack
 	ld a, BANK(RedPicBack)
 	call UncompressSpriteFromDE

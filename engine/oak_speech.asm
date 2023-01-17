@@ -53,8 +53,9 @@ OakSpeech:
 	ld a, [wd732]
 	bit 1, a ; possibly a debug mode bit
 	jp nz, .skipChoosingNames
-	ld de, ProfOakPic
-	lb bc, Bank(ProfOakPic), $00
+	ld a, ProfOak
+	call PrepareTrainerClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, OakSpeechText1
@@ -72,8 +73,9 @@ OakSpeech:
 	call PrintText
 	call GBFadeOutToWhite
 	call ClearScreen
-	ld de, RedPicFront
-	lb bc, Bank(RedPicFront), $00
+	ld a, Red
+	call PrepareOtherClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	call MovePicLeft
 	ld hl, IntroducePlayerText
@@ -81,8 +83,9 @@ OakSpeech:
 	call ChoosePlayerName
 	call GBFadeOutToWhite
 	call ClearScreen
-	ld de, Rival1Pic
-	lb bc, Bank(Rival1Pic), $00
+	ld a, Rival1
+	call PrepareTrainerClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, IntroduceRivalText
@@ -91,8 +94,9 @@ OakSpeech:
 .skipChoosingNames
 	call GBFadeOutToWhite
 	call ClearScreen
-	ld de, RedPicFront
-	lb bc, Bank(RedPicFront), $00
+	ld a, Red
+	call PrepareOtherClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	call GBFadeInFromWhite
 	ld a, [wd72d]
@@ -113,13 +117,15 @@ OakSpeech:
 	ld hl, vSprites
 	lb bc, BANK(RedSprite), $0C
 	call CopyVideoData
-	ld de, ShrinkPic1
-	lb bc, BANK(ShrinkPic1), $00
+	ld a, Shrink1
+	call PrepareOtherClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	ld c, 4
 	call DelayFrames
-	ld de, ShrinkPic2
-	lb bc, BANK(ShrinkPic2), $00
+	ld a, Shrink2
+	call PrepareOtherClassData
+	ld c, DRAW_CENTER
 	call IntroDisplayPicCenteredOrUpperRight
 	call ResetPlayerSpriteData
 	ld a, [H_LOADEDROMBANK]
@@ -223,19 +229,14 @@ MovePicLeft:
 
 DisplayPicCenteredOrUpperRight:
 	call GetPredefRegisters
-IntroDisplayPicCenteredOrUpperRight:
-; b = bank
-; de = address of compressed pic
+
 ; c: 0 = centred, non-zero = upper-right
+IntroDisplayPicCenteredOrUpperRight:
 	push bc
-	ld a, b
-	call UncompressSpriteFromDE
-	ld hl, sSpriteBuffer1
-	ld de, sSpriteBuffer0
-	ld bc, $310
-	call CopyData
-	ld de, vFrontPic
-	call InterlaceMergeSpriteBuffers
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
+    ld de, vFrontPic
+	farcall LoadFrontPCEImageToVRAM
 	pop bc
 	ld a, c
 	and a

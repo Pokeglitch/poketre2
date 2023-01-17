@@ -404,7 +404,7 @@ UpdatePCESandboxSpriteName:
     lb bc, 1, SCREEN_WIDTH - PCESandboxValueCol
     call ClearScreenArea
 
-    ld a, PokemonPropertyNameOffset ; All names use the same property ID - TODO - get from table..
+    ld a, PokemonPropertyNameOffset ; All names use the same property ID
 	ld [wWhichProperty], a
 	call GetInstanceProperty
 
