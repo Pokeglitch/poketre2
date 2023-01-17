@@ -1,12 +1,8 @@
 /*
 TODO:
-
 Update all DEX_ constants to just use the pokemon name constant
  - (update places where DEX is reduced by 1 in PCE code) (?)
  - also all pokemon name calls should use new table (& remove old name strings)
-
-Update calls to load RedSprite and trainer sprites
-- Remove old red/trainer sprites
 
 Remove the flipped sprite loading (intro, stat screen, etc)
 --------
@@ -22,7 +18,6 @@ Things that can be removed:
 --------------
 Add in the macro to create a menu screen
 ---------------
-
 Will have to fix re-loading GHOST sprite when in battle....
  - true for substitute too??
 -----------------------

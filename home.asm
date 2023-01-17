@@ -2674,6 +2674,7 @@ GetSpriteMovementByte2Pointer::
 	pop de
 	ret
 
+; TODO - use new table...
 GetTrainerInformation::
 	call GetTrainerName
 	ld a, [wLinkState]
@@ -2701,10 +2702,7 @@ GetTrainerInformation::
 	jp BankswitchBack
 .linkBattle
 	ld hl, wTrainerPicPointer
-	ld de, RedPicFront
-	ld [hl], e
-	inc hl
-	ld [hl], d
+	ld [hl], Red
 	ret
 
 GetTrainerName::

@@ -6881,20 +6881,20 @@ _InitBattleCommon:
 _LoadTrainerPic:
 ; wd033-wd034 contain pointer to pic
 	ld a, [wTrainerPicPointer]
-	ld e, a
-	ld a, [wTrainerPicPointer + 1]
-	ld d, a ; de contains pointer to trainer pic
+	ld [wWhichInstance], a
+
 	ld a, [wLinkState]
 	and a
-	ld a, Bank(TrainerPics) ; this is where all the trainer pics are (not counting Red's)
+	ld a, ClassTrainer
 	jr z, .loadSprite
-	ld a, Bank(RedPicFront)
+	ld a, ClassOther ; Red Sprite
 .loadSprite
-	call UncompressSpriteFromDE
-	ld de, vFrontPic
-	ld a, $77
-	ld c, a
-	jp LoadUncompressedSpriteData
+	ld [wWhichClass], a
+
+	ld a, PCEPaletteStandardWhiteBG
+	ld [wPCEPaletteID], a
+    ld de, vFrontPic
+	farjump LoadFrontPCEImageToVRAM
 
 ; unreferenced
 ResetCryModifiers:

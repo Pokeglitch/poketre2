@@ -1,143 +1,143 @@
 TrainerPicAndMoneyPointers:
 ; trainer pic pointers and base money.
 ; money received after battle = base money × level of highest-level enemy mon
-	dw YoungsterPic
+	dw Youngster
 	money 1500
 
-	dw BugCatcherPic
+	dw BugCatcher
 	money 1000
 
-	dw LassPic
+	dw Lass
 	money 1500
 
-	dw SailorPic
+	dw Sailor
 	money 3000
 
-	dw JrTrainerMPic
+	dw JrTrainerM
 	money 2000
 
-	dw JrTrainerFPic
+	dw JrTrainerF
 	money 2000
 
-	dw PokemaniacPic
+	dw PokeManiac
 	money 5000
 
-	dw SuperNerdPic
+	dw SuperNerd
 	money 2500
 
-	dw HikerPic
+	dw Hiker
 	money 3500
 
-	dw BikerPic
+	dw Biker
 	money 2000
 
-	dw BurglarPic
+	dw Burglar
 	money 9000
 
-	dw EngineerPic
+	dw Engineer
 	money 5000
 
-	dw JugglerPic
+	dw Juggler
 	money 3500
 
-	dw FisherPic
+	dw Fisherman
 	money 3500
 
-	dw SwimmerPic
+	dw Swimmer
 	money 500
 
-	dw CueBallPic
+	dw CueBall
 	money 2500
 
-	dw GamblerPic
+	dw Gambler
 	money 7000
 
-	dw BeautyPic
+	dw Beauty
 	money 7000
 
-	dw PsychicPic
+	dw Psychic
 	money 1000
 
-	dw RockerPic
+	dw Rocker
 	money 2500
 
-	dw JugglerPic
+	dw Juggler
 	money 3500
 
-	dw TamerPic
+	dw Tamer
 	money 4000
 
-	dw BirdKeeperPic
+	dw BirdKeeper
 	money 2500
 
-	dw BlackbeltPic
+	dw Blackbelt
 	money 2500
 
-	dw Rival1Pic
+	dw Rival1
 	money 3500
 
-	dw ProfOakPic
+	dw ProfOak
 	money 9900
 
-	dw ChiefPic
+	dw Scientist; Chief
 	money 3000
 
-	dw ScientistPic
+	dw Scientist
 	money 5000
 
-	dw GiovanniPic
+	dw Giovanni
 	money 9900
 
-	dw RocketPic
+	dw Rocket
 	money 3000
 
-	dw CooltrainerMPic
+	dw CooltrainerM
 	money 3500
 
-	dw CooltrainerFPic
+	dw CooltrainerF
 	money 3500
 
-	dw BrunoPic
+	dw Bruno
 	money 9900
 
-	dw BrockPic
+	dw Brock
 	money 9900
 
-	dw MistyPic
+	dw Misty
 	money 9900
 
-	dw LtSurgePic
+	dw LtSurge
 	money 9900
 
-	dw ErikaPic
+	dw Erika
 	money 9900
 
-	dw KogaPic
+	dw Koga
 	money 9900
 
-	dw BlainePic
+	dw Blaine
 	money 9900
 
-	dw SabrinaPic
+	dw Sabrina
 	money 9900
 
-	dw GentlemanPic
+	dw Gentleman
 	money 7000
 
-	dw Rival2Pic
+	dw Rival2
 	money 6500
 
-	dw Rival3Pic
+	dw Rival3
 	money 9900
 
-	dw LoreleiPic
+	dw Lorelei
 	money 9900
 
-	dw ChannelerPic
+	dw Channeler
 	money 3000
 
-	dw AgathaPic
+	dw Agatha
 	money 9900
 
-	dw LancePic
+	dw Lance
 	money 9900
