@@ -37,9 +37,6 @@ TrainerPicAndMoneyPointers:
 	dw Engineer
 	money 5000
 
-	dw Juggler
-	money 3500
-
 	dw Fisherman
 	money 3500
 
@@ -78,9 +75,6 @@ TrainerPicAndMoneyPointers:
 
 	dw ProfOak
 	money 9900
-
-	dw Scientist; Chief
-	money 3000
 
 	dw Scientist
 	money 5000

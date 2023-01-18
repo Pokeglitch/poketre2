@@ -288,7 +288,6 @@ TrainerClassMoveChoiceModifications:
 	db 1,0    ; BIKER
 	db 1,3,0  ; BURGLAR
 	db 1,0    ; ENGINEER
-	db 1,2,0  ; JUGGLER_X
 	db 1,3,0  ; FISHER
 	db 1,3,0  ; SWIMMER
 	db 0      ; CUE_BALL
@@ -302,7 +301,6 @@ TrainerClassMoveChoiceModifications:
 	db 1,0    ; BLACKBELT
 	db 1,0    ; SONY1
 	db 1,3,0  ; PROF_OAK
-	db 1,2,0  ; CHIEF
 	db 1,2,0  ; SCIENTIST
 	db 1,3,0  ; GIOVANNI
 	db 1,0    ; ROCKET
@@ -384,7 +382,6 @@ TrainerAIPointers:
 	dbw 3,GenericAI
 	dbw 3,GenericAI
 	dbw 3,GenericAI
-	dbw 3,JugglerAI ; juggler_x
 	dbw 3,GenericAI
 	dbw 3,GenericAI
 	dbw 3,GenericAI
@@ -398,7 +395,6 @@ TrainerAIPointers:
 	dbw 2,BlackbeltAI ; blackbelt
 	dbw 3,GenericAI
 	dbw 3,GenericAI
-	dbw 1,GenericAI ; chief
 	dbw 3,GenericAI
 	dbw 1,GiovanniAI ; giovanni
 	dbw 3,GenericAI

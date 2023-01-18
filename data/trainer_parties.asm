@@ -11,7 +11,6 @@ TrainerDataPointers:
 	dw BikerData
 	dw BurglarData
 	dw EngineerData
-	dw Juggler1Data
 	dw FisherData
 	dw SwimmerData
 	dw CueBallData
@@ -25,7 +24,6 @@ TrainerDataPointers:
 	dw BlackbeltData
 	dw Green1Data
 	dw ProfOakData
-	dw ChiefData
 	dw ScientistData
 	dw GiovanniData
 	dw RocketData
@@ -288,8 +286,6 @@ EngineerData:
 ; Route 11
 	db 21,MAGNEMITE,0
 	db 18,MAGNEMITE,MAGNEMITE,MAGNETON,0
-Juggler1Data:
-; none
 FisherData:
 ; SS Anne 2F Rooms
 	db 17,GOLDEEN,TENTACOOL,GOLDEEN,0
@@ -467,8 +463,6 @@ ProfOakData:
 	db $FF,66,TAUROS,67,EXEGGUTOR,68,ARCANINE,69,BLASTOISE,70,GYARADOS,0
 	db $FF,66,TAUROS,67,EXEGGUTOR,68,ARCANINE,69,VENUSAUR,70,GYARADOS,0
 	db $FF,66,TAUROS,67,EXEGGUTOR,68,ARCANINE,69,CHARIZARD,70,GYARADOS,0
-ChiefData:
-; none
 ScientistData:
 ; Unused
 	db 34,KOFFING,VOLTORB,0

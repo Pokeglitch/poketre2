@@ -17,7 +17,6 @@ ENDM
     Entry Biker
     Entry Burglar
     Entry Engineer
-    Entry Juggler
     Entry Fisherman
     Entry Swimmer
     Entry Cue Ball
@@ -25,13 +24,12 @@ ENDM
     Entry Beauty
     Entry Psychic
     Entry Rocker
-    ;Entry Juggler
+    Entry Juggler
     Entry Tamer
     Entry Bird Keeper
     Entry Blackbelt
     Entry Rival1
     Entry Prof. Oak
-    ;Entry Chief
     Entry Scientist
     Entry Giovanni
     Entry Rocket

@@ -27,8 +27,10 @@ Entry: MACRO
     DEF {TABLE_NAME}{ENTRY_NAME} = {TABLE_NAME}EntryCount
 
     ; Define this entry without the Table Name (unless its already been defined)
+    ; Also map it to the table
     IF DEF({ENTRY_NAME}) == 0
         DEF {ENTRY_NAME} = {TABLE_NAME}EntryCount
+        DEF {ENTRY_NAME}Table EQUS "{TABLE_NAME}"
     ENDC
 
     ; Accumulate the arguments to forwards to the macro

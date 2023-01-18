@@ -5,16 +5,34 @@ Update all DEX_ constants to just use the pokemon name constant
  - also all pokemon name calls should use new table (& remove old name strings)
 
 Remove the flipped sprite loading (intro, stat screen, etc)
---------
-Add in remaining sprites (pokemon backs, trainer backs, etc)
+-------
+Update all trainer information to use new table
+- GetTrainerName
+- GetTrainerInformation
+- ReadTrainerHeaderInfo
+- AIEnemyTrainerChooseMoves
+Tables:
+- TrainerPicAndMoneyPointers
+- TrainerDataPointers
+- FemaleTrainerList
+- EvilTrainerList
+- TrainerNames
+- TrainerNamePointers
+- TrainerAIPointers
+- TrainerClassMoveChoiceModifications
+-------
+Add in remaining sprites (pokemon backs, player backs)
  - Remove old sprites and old sprite uncompressing code
  - update all calls to use new algo
-
+--------
+Converting to PCE can automatically center in 7x7...
+--------
 Things that can be removed:
 	UncompressSpriteFromDE
 	sSpriteBuffer1
 	sSpriteBuffer0
 	InterlaceMergeSpriteBuffers
+    LoadUncompressedSpriteData
 --------------
 Add in the macro to create a menu screen
 ---------------
