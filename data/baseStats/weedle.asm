@@ -8,8 +8,8 @@ db BUG ; species type 1
 db POISON ; species type 2
 db 255 ; catch rate
 db 52 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw WeedlePicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db POISON_STING
 db STRING_SHOT

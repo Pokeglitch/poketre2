@@ -2,6 +2,7 @@ Pokemon: MACRO
     ConvertName \1
     Prop Name, String, {NAME_STRING}
     Prop Front, Sprite
+    Prop Back, Sprite
 ENDM
 
     Table Pokemon

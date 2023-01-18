@@ -8,8 +8,8 @@ db GRASS ; species type 1
 db GRASS ; species type 2
 db 45 ; catch rate
 db 166 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw TangelaPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db CONSTRICT
 db BIND

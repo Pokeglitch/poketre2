@@ -188,12 +188,12 @@ HoFLoadPlayerPics:
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
     ld de, vFrontPic
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 
 	ld a, RedBack
 	call PrepareOtherClassData
 	ld de, vBackPic
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 
 	ld c, $1
 

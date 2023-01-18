@@ -8,8 +8,8 @@ db ROCK ; species type 1
 db WATER ; species type 2
 db 45 ; catch rate
 db 120 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw OmanytePicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db WATER_GUN
 db WITHDRAW

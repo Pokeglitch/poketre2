@@ -8,8 +8,8 @@ db BUG ; species type 1
 db BUG ; species type 2
 db 45 ; catch rate
 db 200 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw PinsirPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db VICEGRIP
 db 0

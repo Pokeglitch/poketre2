@@ -40,23 +40,18 @@ ROMX $8
   "Music 2"
 
 ROMX $9
-  "Pics 1" ; PICS_1
   "Battle (bank 9)"
 
 ROMX $A
-  "Pics 2" ; PICS_2
   "Battle (bank A)"
 
 ROMX $B
-  "Pics 3" ; PICS_3
   "Battle (bank B)"
 
 ROMX $C
-  "Pics 4" ; PICS_4
   "Battle (bank C)"
 
 ROMX $D
-  "Pics 5" ; PICS_5
   "Battle (bank D)"
 
 ROMX $E

@@ -8,8 +8,8 @@ db POISON ; species type 1
 db FLYING ; species type 2
 db 90 ; catch rate
 db 171 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw GolbatPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db LEECH_LIFE
 db SCREECH

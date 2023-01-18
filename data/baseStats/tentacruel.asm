@@ -8,8 +8,8 @@ db WATER ; species type 1
 db POISON ; species type 2
 db 60 ; catch rate
 db 205 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw TentacruelPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db ACID
 db SUPERSONIC

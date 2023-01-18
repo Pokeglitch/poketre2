@@ -8,8 +8,8 @@ db DRAGON ; species type 1
 db DRAGON ; species type 2
 db 45 ; catch rate
 db 144 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw DragonairPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db WRAP
 db LEER

@@ -8,8 +8,8 @@ db NORMAL ; species type 1
 db NORMAL ; species type 2
 db 35 ; catch rate
 db 61 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw DittoPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db TRANSFORM
 db 0

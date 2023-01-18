@@ -1,15 +1,15 @@
 /*
 TODO:
 
-Add in pokemon backs
-
 Old Sprite Code/Refernces that can be removed:
+	UncompressMonSprite
 	UncompressSpriteFromDE
 	sSpriteBuffer1
 	sSpriteBuffer0
 	InterlaceMergeSpriteBuffers
     LoadUncompressedSpriteData
 	ScaleSpriteByTwo
+	wSpriteInputPtr
 -----------
 Update all trainer information to use new constants
 - new constnts start at 0, while old ones start at 1

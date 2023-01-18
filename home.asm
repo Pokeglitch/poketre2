@@ -267,8 +267,7 @@ LoadFrontSpriteByMonIndexToDE::
 	ld [wWhichClass], a
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
-	farcall LoadFrontPCEImageToVRAM
-	ret
+	farjump LoadMainPCEImageToVRAM
 
 PlayCry::
 ; Play monster a's cry.
@@ -646,49 +645,6 @@ PrintBCDDigit::
 	ret nz
 	inc hl ; if right-aligned, "print" a space by advancing the pointer
 	ret
-
-; uncompresses the front or back sprite of the specified mon
-; assumes the corresponding mon header is already loaded
-; hl contains offset to sprite pointer ($b for front or $d for back)
-UncompressMonSprite::
-	ld bc, wMonHeader
-	add hl, bc
-	ld a, [hli]
-	ld [wSpriteInputPtr], a    ; fetch sprite input pointer
-	ld a, [hl]
-	ld [wSpriteInputPtr+1], a
-; define (by index number) the bank that a pokemon's image is in
-; index = Mew, bank 1
-; index = Kabutops fossil, bank $B
-; index < $1F, bank 9
-; $1F ≤ index < $4A, bank $A
-; $4A ≤ index < $74, bank $B
-; $74 ≤ index < $99, bank $C
-; $99 ≤ index,       bank $D
-	ld a, [wcf91] ; XXX name for this ram location
-	ld b, a
-	cp MEW
-	ld a, BANK(MewPicBack)
-	jr z, .GotBank
-	ld a, b
-	cp TANGELA + 1
-	ld a, BANK(TangelaPicBack)
-	jr c, .GotBank
-	ld a, b
-	cp MOLTRES + 1
-	ld a, BANK(MoltresPicBack)
-	jr c, .GotBank
-	ld a, b
-	cp BEEDRILL + 2
-	ld a, BANK(BeedrillPicBack)
-	jr c, .GotBank
-	ld a, b
-	cp STARMIE + 1
-	ld a, BANK(StarmiePicBack)
-	jr c, .GotBank
-	ld a, BANK(VictreebelPicBack)
-.GotBank
-	jp UncompressSpriteData
 
 ; postprocesses uncompressed sprite chunks to a 2bpp sprite and loads it into video ram
 ; calculates alignment parameters to place both sprite chunks in the center of the 7*7 tile sprite buffers
@@ -4583,5 +4539,12 @@ PrepareTrainerClassData:
 PrepareOtherClassData:
 	ld [wWhichInstance], a
 	ld a, ClassOther
+	ld [wWhichClass], a
+	ret
+
+; a = instance
+PreparePokemonClassData:
+	ld [wWhichInstance], a
+	ld a, ClassPokemon
 	ld [wWhichClass], a
 	ret

@@ -68,7 +68,7 @@ DisplayFossilSpriteInBox:
 	ld [wPCEPaletteID], a
 	
 	ld de, vChars1 + $310
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 
 	jp FinalizeSpriteInBox
 

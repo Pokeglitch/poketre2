@@ -6323,7 +6323,7 @@ LoadPlayerBackPic:
 .next
 	call PrepareOtherClassData
 	ld de, vBackPic
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 
 	ld hl, wOAMBuffer
 	xor a
@@ -6824,7 +6824,7 @@ InitWildBattle:
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
 	ld de, vFrontPic
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 	jr .spriteLoaded
 .isNoGhost
 	ld de, vFrontPic
@@ -6894,7 +6894,7 @@ _LoadTrainerPic:
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
     ld de, vFrontPic
-	farjump LoadFrontPCEImageToVRAM
+	farjump LoadMainPCEImageToVRAM
 
 ; unreferenced
 ResetCryModifiers:
@@ -7000,17 +7000,29 @@ CopyUncompressedPicToHL:
 LoadMonBackPic:
 ; Assumes the monster's attributes have
 ; been loaded with GetMonHeader.
+	ld a, [wd11e]
+	push af
+
 	ld a, [wBattleMonSpecies2]
 	ld [wcf91], a
+	ld [wd11e], a
 	coord hl, 1, 5
 	ld b, 7
 	ld c, 8
 	call ClearScreenArea
-	ld hl,  wMonHBackSprite - wMonHeader
-	call UncompressMonSprite
-	predef ScaleSpriteByTwo
+
+	farcall IndexToPokedex
+	ld a, [wd11e]
+	dec a ;pokedex starts at 1
+	ld [wWhichInstance], a
+	ld a, ClassPokemon
+	ld [wWhichClass], a
 	ld de, vBackPic
-	call InterlaceMergeSpriteBuffers ; combine the two buffers to a single 2bpp sprite
+	farcall LoadMainPCEImageToVRAM
+
+	pop af
+	ld [wd11e], a
+
 	ld hl, vSprites
 	ld de, vBackPic
 	ld c, (2*SPRITEBUFFERSIZE)/16 ; count of 16-byte chunks to be copied

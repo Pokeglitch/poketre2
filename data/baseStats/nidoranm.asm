@@ -8,8 +8,8 @@ db POISON ; species type 1
 db POISON ; species type 2
 db 235 ; catch rate
 db 60 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw NidoranMPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db LEER
 db TACKLE

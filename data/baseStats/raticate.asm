@@ -8,8 +8,8 @@ db NORMAL ; species type 1
 db NORMAL ; species type 2
 db 90 ; catch rate
 db 116 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw RaticatePicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db TACKLE
 db TAIL_WHIP

@@ -8,8 +8,8 @@ db WATER ; species type 1
 db WATER ; species type 2
 db 225 ; catch rate
 db 115 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw KrabbyPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db BUBBLE
 db LEER

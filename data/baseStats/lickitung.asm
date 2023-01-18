@@ -8,8 +8,8 @@ db NORMAL ; species type 1
 db NORMAL ; species type 2
 db 45 ; catch rate
 db 127 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw LickitungPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db WRAP
 db SUPERSONIC

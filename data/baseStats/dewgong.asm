@@ -8,8 +8,8 @@ db WATER ; species type 1
 db ICE ; species type 2
 db 75 ; catch rate
 db 176 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw DewgongPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db HEADBUTT
 db GROWL

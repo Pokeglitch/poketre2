@@ -9,8 +9,8 @@ db GRASS ; species type 1
 db POISON ; species type 2
 db 45 ; catch rate
 db 64 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw BulbasaurPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db TACKLE
 db GROWL

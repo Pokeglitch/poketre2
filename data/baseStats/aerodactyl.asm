@@ -8,8 +8,8 @@ db ROCK ; species type 1
 db FLYING ; species type 2
 db 45 ; catch rate
 db 202 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw AerodactylPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db WING_ATTACK
 db AGILITY

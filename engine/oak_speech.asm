@@ -236,7 +236,7 @@ IntroDisplayPicCenteredOrUpperRight:
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
     ld de, vFrontPic
-	farcall LoadFrontPCEImageToVRAM
+	farcall LoadMainPCEImageToVRAM
 	pop bc
 	ld a, c
 	and a

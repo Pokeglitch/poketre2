@@ -8,8 +8,8 @@ db FIGHTING ; species type 1
 db FIGHTING ; species type 2
 db 180 ; catch rate
 db 88 ; base exp yield
-db 0, 0, 0, ; Former Front Sprite Dimension & Pointer
-dw MachopPicBack
+db 0, 0, 0 ; Former Front Sprite Dimension & Pointer
+db 0, 0 ; Former Back Sprite Pointer
 ; attacks known at lvl 0
 db KARATE_CHOP
 db 0

@@ -48,17 +48,25 @@ PCE_SANDBOX_SPRITE_ROW = 6
 PCE_SANDBOX_SPRITE_DIMENSION = 7
 
 SandboxType: MACRO
-    ConvertName \1
+    IF _NARG == 3
+        ConvertName \2
+        REDEF NAME_STRING EQUS "\"\1\""
+        SHIFT
+    ELSE
+        ConvertName \1
+    ENDC
 
     Prop Class, Byte, Class{NAME_VALUE}
     Prop Max, Byte, {NAME_VALUE}EntryCount - 1
+    Prop Property, Byte, {NAME_VALUE}Property\2Offset
     Prop Name, String, NAME_STRING
 ENDM
 
     Table SandboxType
-    Entry Pokémon
-    Entry Trainer
-    Entry Other
+    Entry Pokémon, Front
+    Entry Trainer, Front
+    Entry Other, Sprites
+    Entry Mon Backs, Pokémon, Back
 
 PCESandboxScreen::
 	ld a, [hTilesetType]
@@ -345,6 +353,9 @@ LoadPCESandboxList:
 
     ld a, [hli] ;a = max size
     ld [wPCESandboxListMax], a
+
+    ld a, [hli] ;a = property offset
+    ld [wWhichProperty], a
     
     ld e, [hl]
     inc hl
@@ -397,16 +408,22 @@ TryLoadPCESandboxSprite:
 LoadPCESandboxSprite:
     call FillScene
     ld de, vFrontPic
-	jp LoadFrontPCEImageToVRAM
+	jp LoadPCEImageToVRAM
 
 UpdatePCESandboxSpriteName:
     coord hl, PCESandboxValueCol, PCESandboxSpriteRow
     lb bc, 1, SCREEN_WIDTH - PCESandboxValueCol
     call ClearScreenArea
 
+    ld a, [wWhichProperty]
+    push af
+
     ld a, PokemonPropertyNameOffset ; All names use the same property ID
 	ld [wWhichProperty], a
 	call GetInstanceProperty
+
+    pop af
+	ld [wWhichProperty], a
 
     ld d, h
     ld e, l
