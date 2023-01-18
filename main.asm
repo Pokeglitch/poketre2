@@ -730,10 +730,6 @@ PidgeottoPicBack::     INCBIN "pic/monback/pidgeottob.pic"
 PidgeotPicBack::       INCBIN "pic/monback/pidgeotb.pic"
 StarmiePicBack::       INCBIN "pic/monback/starmieb.pic"
 
-RedPicBack::           INCBIN "pic/trainer/redb.pic"
-OldManPic::            INCBIN "pic/trainer/oldman.pic"
-
-
 SECTION "Battle (bank C)", ROMX, BANK[$C]
 INCLUDE "engine/battle/moveEffects/mist_effect.asm"
 INCLUDE "engine/battle/moveEffects/one_hit_ko_effect.asm"

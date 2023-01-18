@@ -190,12 +190,11 @@ HoFLoadPlayerPics:
     ld de, vFrontPic
 	farcall LoadFrontPCEImageToVRAM
 
-	ld de, RedPicBack
-	ld a, BANK(RedPicBack)
-	call UncompressSpriteFromDE
-	predef ScaleSpriteByTwo
+	ld a, RedBack
+	call PrepareOtherClassData
 	ld de, vBackPic
-	call InterlaceMergeSpriteBuffers
+	farcall LoadFrontPCEImageToVRAM
+
 	ld c, $1
 
 HoFLoadMonPlayerPicTileIDs:

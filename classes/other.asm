@@ -11,3 +11,5 @@ ENDM
     Entry Red
     Entry Shrink 1
     Entry Shrink 2
+    Entry Old Man
+    Entry RedBack

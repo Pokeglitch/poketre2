@@ -6317,13 +6317,14 @@ SwapPlayerAndEnemyLevels:
 LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
-	ld de, RedPicBack
+	ld a, RedBack
 	jr nz, .next
-	ld de, OldManPic
+	ld a, OldMan
 .next
-	ld a, BANK(RedPicBack)
-	call UncompressSpriteFromDE
-	predef ScaleSpriteByTwo
+	call PrepareOtherClassData
+	ld de, vBackPic
+	farcall LoadFrontPCEImageToVRAM
+
 	ld hl, wOAMBuffer
 	xor a
 	ld [hOAMTile], a ; initial tile number
@@ -6355,14 +6356,13 @@ LoadPlayerBackPic:
 	ld e, a
 	dec b
 	jr nz, .loop
-	ld de, vBackPic
-	call InterlaceMergeSpriteBuffers
+	
 	ld a, $a
 	ld [$0], a
 	xor a
 	ld [$4000], a
 	ld hl, vSprites
-	ld de, sSpriteBuffer1
+	ld de, vBackPic
 	ld a, [H_LOADEDROMBANK]
 	ld b, a
 	ld c, 7 * 7
