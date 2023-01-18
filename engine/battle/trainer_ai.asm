@@ -299,7 +299,7 @@ TrainerClassMoveChoiceModifications:
 	db 1,0    ; TAMER
 	db 1,0    ; BIRD_KEEPER
 	db 1,0    ; BLACKBELT
-	db 1,0    ; SONY1
+	db 1,0    ; RIVAL1
 	db 1,3,0  ; PROF_OAK
 	db 1,2,0  ; SCIENTIST
 	db 1,3,0  ; GIOVANNI
@@ -315,8 +315,8 @@ TrainerClassMoveChoiceModifications:
 	db 1,3,0  ; BLAINE
 	db 1,3,0  ; SABRINA
 	db 1,2,0  ; GENTLEMAN
-	db 1,3,0  ; SONY2
-	db 1,3,0  ; SONY3
+	db 1,3,0  ; RIVAL2
+	db 1,3,0  ; RIVAL3
 	db 1,2,3,0; LORELEI
 	db 1,0    ; CHANNELER
 	db 1,0    ; AGATHA
@@ -409,8 +409,8 @@ TrainerAIPointers:
 	dbw 2,BlaineAI ; blaine
 	dbw 1,SabrinaAI ; sabrina
 	dbw 3,GenericAI
-	dbw 1,Sony2AI ; sony2
-	dbw 1,Sony3AI ; sony3
+	dbw 1,Rival2AI ; rival2
+	dbw 1,Rival3AI ; rival3
 	dbw 2,LoreleiAI ; lorelei
 	dbw 3,GenericAI
 	dbw 2,AgathaAI ; agatha
@@ -489,7 +489,7 @@ SabrinaAI:
 	ret nc
 	jp AIUseHyperPotion
 
-Sony2AI:
+Rival2AI:
 	cp $20
 	ret nc
 	ld a, 5
@@ -497,7 +497,7 @@ Sony2AI:
 	ret nc
 	jp AIUsePotion
 
-Sony3AI:
+Rival3AI:
 	cp $20
 	ret nc
 	ld a, 5

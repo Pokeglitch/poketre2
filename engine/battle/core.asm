@@ -1008,7 +1008,7 @@ TrainerBattleVictory:
 	ld b, MUSIC_DEFEATED_TRAINER
 .gymleader
 	ld a, [wTrainerClass]
-	cp SONY3 ; final battle against rival
+	cp RIVAL3 ; final battle against rival
 	jr nz, .notrival
 	ld b, MUSIC_DEFEATED_GYM_LEADER
 	ld hl, wFlags_D733
@@ -1219,22 +1219,22 @@ ChooseNextMon:
 HandlePlayerBlackOut:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
-	jr z, .notSony1Battle
+	jr z, .notRival1Battle
 	ld a, [wCurOpponent]
-	cp OPP_SONY1
-	jr nz, .notSony1Battle
-	coord hl, 0, 0  ; sony 1 battle
+	cp OPP_RIVAL1
+	jr nz, .notRival1Battle
+	coord hl, 0, 0  ; rival 1 battle
 	lb bc, 8, 21
 	call ClearScreenArea
 	call ScrollTrainerPicAfterBattle
 	ld c, 40
 	call DelayFrames
-	ld hl, Sony1WinText
+	ld hl, Rival1WinText
 	call PrintText
 	ld a, [wCurMap]
 	cp OAKS_LAB
 	ret z            ; starter battle in oak's lab: don't black out
-.notSony1Battle
+.notRival1Battle
 	ld b, SET_PAL_BATTLE_BLACK
 	call RunPaletteCommand
 	ld hl, PlayerBlackedOutText2
@@ -1251,8 +1251,8 @@ HandlePlayerBlackOut:
 	scf
 	ret
 
-Sony1WinText:
-	fartext _Sony1WinText
+Rival1WinText:
+	fartext _Rival1WinText
 	done
 
 PlayerBlackedOutText2:

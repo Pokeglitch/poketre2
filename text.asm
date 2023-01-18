@@ -1093,7 +1093,7 @@ _UseNextMonText::
 	text "Use next POKéMON?"
 	done
 
-_Sony1WinText::
+_Rival1WinText::
 	text "<RIVAL>: Yeah! Am"
 	next "I great or what?"
 	prompt
