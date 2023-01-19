@@ -1,16 +1,6 @@
 /*
 TODO:
 
-Old Sprite Code/Refernces that can be removed:
-	UncompressMonSprite
-	UncompressSpriteFromDE
-	sSpriteBuffer1
-	sSpriteBuffer0
-	InterlaceMergeSpriteBuffers
-    LoadUncompressedSpriteData
-	ScaleSpriteByTwo
-	wSpriteInputPtr
------------
 Update all trainer information to use new constants
 - new constnts start at 0, while old ones start at 1
 
@@ -26,7 +16,7 @@ Update all DEX_ constants to just use the pokemon name constant
 - also all pokemon name calls should use new table (& remove old name strings)
 --------
 Remove the flipped sprite loading (intro, stat screen, etc)
-
+- wSpriteFlipped
 --------------
 Add in the macro to create a menu screen
 ---------------

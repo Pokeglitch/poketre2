@@ -1966,54 +1966,13 @@ wSlideMonUpBottomRowLeftTile:: ; d09f
 ; the tile ID of the leftmost tile in the bottom row in AnimationSlideMonUp_
 	ds 1
 
-wDisableVBlankWYUpdate:: ds 1 ; if non-zero, don't update WY during V-blank
+wDisableVBlankWYUpdate:: ds 1 ; d0a0
+; if non-zero, don't update WY during V-blank
 
-wSpriteCurPosX:: ; d0a1
-	ds 1
-wSpriteCurPosY:: ; d0a2
-	ds 1
-wSpriteWidth:: ; d0a3
-	ds 1
-wSpriteHeight:: ; d0a4
-	ds 1
-wSpriteInputCurByte:: ; d0a5
-; current input byte
-	ds 1
-wSpriteInputBitCounter:: ; d0a6
-; bit offset of last read input bit
+wSpriteFlipped:: ; d0a1
 	ds 1
 
-wSpriteOutputBitOffset:: ; d0a7; determines where in the output byte the two bits are placed. Each byte contains four columns (2bpp data)
-; 3 -> XX000000   1st column
-; 2 -> 00XX0000   2nd column
-; 1 -> 0000XX00   3rd column
-; 0 -> 000000XX   4th column
-	ds 1
-
-wSpriteLoadFlags:: ; d0a8
-; bit 0 determines used buffer (0 -> $a188, 1 -> $a310)
-; bit 1 loading last sprite chunk? (there are at most 2 chunks per load operation)
-	ds 1
-wSpriteUnpackMode:: ; d0a9
-	ds 1
-wSpriteFlipped:: ; d0aa
-	ds 1
-
-wSpriteInputPtr:: ; d0ab
-; pointer to next input byte
-	ds 2
-wSpriteOutputPtr:: ; d0ad
-; pointer to current output byte
-	ds 2
-wSpriteOutputPtrCached:: ; d0af
-; used to revert pointer for different bit offsets
-	ds 2
-wSpriteDecodeTable0Ptr:: ; d0b1
-; pointer to differential decoding table (assuming initial value 0)
-	ds 2
-wSpriteDecodeTable1Ptr:: ; d0b3
-; pointer to differential decoding table (assuming initial value 1)
-	ds 2
+	ds 19
 
 wd0b5:: ds 1 ; used as a temp storage area for Pokemon Species, and other Pokemon/Battle related things
 

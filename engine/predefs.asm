@@ -55,7 +55,7 @@ PredefPointers::
 	add_predef DrawPlayerHUDAndHPBar
 	add_predef CopyUncompressedPicToTilemap
 	add_predef AnimateSendingOutMon
-	add_predef ScaleSpriteByTwo
+	db 0, 0, 0
 	add_predef LoadMonBackPic
 	add_predef CopyDownscaledMonTiles
 	dbw $03,JumpMoveEffect ; wrong bank

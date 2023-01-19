@@ -1,10 +1,5 @@
 SECTION "Sprite Buffers", SRAM, BANK[0]
-
-sSpriteBuffer0:: ds SPRITEBUFFERSIZE ; a000
-sSpriteBuffer1:: ds SPRITEBUFFERSIZE ; a188
-sSpriteBuffer2:: ds SPRITEBUFFERSIZE ; a310
-
-	ds $100
+	ds $598
 
 sHallOfFame:: ds HOF_TEAM * HOF_TEAM_CAPACITY ; a598
 

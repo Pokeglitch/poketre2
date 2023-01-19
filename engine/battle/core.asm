@@ -7027,7 +7027,7 @@ LoadMonBackPic:
 
 	ld hl, vSprites
 	ld de, vBackPic
-	ld c, (2*SPRITEBUFFERSIZE)/16 ; count of 16-byte chunks to be copied
+	ld c, 7*7 ; count of 16-byte chunks to be copied
 	ld a, [H_LOADEDROMBANK]
 	ld b, a
 	jp CopyVideoData
