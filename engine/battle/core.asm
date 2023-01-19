@@ -7017,8 +7017,10 @@ LoadMonBackPic:
 	ld [wWhichInstance], a
 	ld a, ClassPokemon
 	ld [wWhichClass], a
+	ld a, PokemonPropertyBackOffset
+	ld [wWhichProperty], a
 	ld de, vBackPic
-	farcall LoadMainPCEImageToVRAM
+	farcall LoadPCEImageToVRAM
 
 	pop af
 	ld [wd11e], a

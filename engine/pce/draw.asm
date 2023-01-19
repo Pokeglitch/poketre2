@@ -157,7 +157,7 @@ ReadHeaderCounter: MACRO
 ENDM
 
 LoadMainPCEImageToVRAM:
-    ld a, PokemonPropertyFrontOffset ; shared with all other front sprites - todo - get from table
+    ld a, PokemonPropertyFrontOffset ; shared with all other front sprites
 	ld [wWhichProperty], a
     ; fall through
 
