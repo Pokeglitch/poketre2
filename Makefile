@@ -3,7 +3,6 @@ objs := audio.o main.o text.o wram.o
 .SUFFIXES:
 .SECONDEXPANSION:
 .PRECIOUS:
-.SECONDARY:
 .PHONY: rom clean tools
 
 roms := poketre2.gbc
@@ -12,12 +11,11 @@ rom: $(roms)
 
 clean:
 	rm -f $(roms) $(objs) $(roms:.gbc=.sym)
-	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pic' \) -exec rm {} +
+	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pce' \) -exec rm {} +
 	$(MAKE) clean -C tools/
 
 tools:
 	$(MAKE) -C tools/
-
 
 # Build tools when building the rom.
 # This has to happen before the rules are processed, since that's when scan_includes is run.
@@ -25,10 +23,10 @@ ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
 $(info $(shell $(MAKE) -C tools))
 endif
 
-
 %.asm: ;
 
-%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
+# Note, this will rebuild all objects when a .pce or .2bpp is required to be built, not simply main.o
+%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm) $(shell ls pce/*/*.png | sed "s|.png|.pce|g") $(shell ls tiles/*/*.png | sed "s|.png|.2bpp|g")
 $(objs): %.o: %.asm $$(dep)
 	rgbasm -l -h -o $@ $*.asm
 
@@ -55,9 +53,11 @@ gfx/titlescreen/team_rocket_edition_text.2bpp: tools/gfx += --trim-whitespace
 	rgbgfx $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -o $@ $@)
+
 %.1bpp: %.png
 	rgbgfx -d1 $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
-%.pic:  %.2bpp
-	tools/pkmncompress $< $@
+
+%.pce: %.png
+	-node tools/pce.js $< $@

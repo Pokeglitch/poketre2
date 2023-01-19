@@ -136,7 +136,7 @@ SpriteDefine: MACRO
     PUSHS
     SECTION "\1\2\3", ROMX
         \1\2\3::
-        INCBIN STRCAT("gfx/pce/", "\1\3","/", STRLWR("\2"),".pce")
+        INCBIN STRCAT("pce/", "\1\3","/", STRLWR("\2"),".pce")
         \1\2\3End::
     POPS
 ENDM

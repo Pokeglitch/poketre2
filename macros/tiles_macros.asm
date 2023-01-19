@@ -152,7 +152,7 @@ IncludeTiles: MACRO
 
                 ; Create the File Label and include the file
                 {DIR}{FILE}Tiles:
-                    INCBIN STRCAT("gfx/", "{DIR}", "/", "{FILE}", ".2bpp")
+                    INCBIN STRCAT("tiles/", "{DIR}", "/", "{FILE}", ".2bpp")
             
                 ; Store the PreviousTile to this
                 DEF {DIR}{FILE}Previous EQUS "{PREVIOUS_TILE}"
