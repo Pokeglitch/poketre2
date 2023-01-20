@@ -9,6 +9,26 @@ ENDM
     Entry Trainer
     Entry Other
 
+GetInstanceName:
+    ld a, PokemonPropertyNameOffset ; shareed with all classes
+    ld [wWhichProperty], a
+    ;fall through
+
+GetInstanceString:
+    push de
+    call GetInstanceProperty
+    pop de
+
+.copyLoop
+    ld a, [hli]
+    ld [de], a
+    inc de
+    cp "@"
+    jr nz, .copyLoop
+
+    ret
+
+
 GetInstancePropertyPointer:
     ld hl, ClassTable
     ld a, [wWhichClass]

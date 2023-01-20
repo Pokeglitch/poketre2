@@ -1539,27 +1539,23 @@ ListMenuCancelText::
 	str "CANCEL"
 
 GetMonName::
-	push hl
-	ld a, [H_LOADEDROMBANK]
-	push af
-	ld a, BANK(MonsterNames)
-	call SetNewBank
 	ld a, [wd11e]
-	dec a
-	ld hl, MonsterNames
-	ld c, 10
-	ld b, 0
-	call AddNTimes
+	push af
+	push hl
+
+	predef IndexToPokedex
+	ld a, [wd11e]
+	ld [wWhichInstance], a
+	ld a, ClassPokemon
+	ld [wWhichClass], a
 	ld de, wcd6d
 	push de
-	ld bc, 10
-	call CopyData
-	ld hl, wcd6d + 10
-	ld [hl], "@"
+	farcall GetInstanceName
+
 	pop de
-	pop af
-	call SetNewBank
 	pop hl
+	pop af
+	ld [wd11e], a
 	ret
 
 GetItemName::
@@ -2843,7 +2839,7 @@ WaitForSoundToFinish::
 	ret
 
 NamePointers::
-	dw MonsterNames
+	dw 0 ; Formerly MonsterNames
 	dw MoveNames
 	dw 0 ; was UnusedNames
 	dw ItemNames
@@ -2861,17 +2857,16 @@ GetName::
 	ld a, [wd0b5]
 	ld [wd11e], a
 
-	; TM names are separate from item names.
-	; BUG: This applies to all names instead of just items.
-	cp HM_01
-	jp nc, GetMachineName
-
 	ld a, [H_LOADEDROMBANK]
 	push af
 	push hl
 	push bc
 	push de
+
 	ld a, [wNameListType]    ;List3759_entrySelector
+	cp ITEM_NAME
+	jr z, .checkMachine
+
 	dec a
 	jr nz, .otherEntries
 	;1 = MON_NAMES
@@ -2881,6 +2876,13 @@ GetName::
 	ld e, l
 	ld d, h
 	jr .gotPtr
+
+; TM names are separate from item names.
+.checkMachine
+	ld a, [wd0b5]
+	cp HM_01
+	jp nc, GetMachineName
+
 .otherEntries
 	;2-7 = OTHER ENTRIES
 	ld a, [wPredefBank]

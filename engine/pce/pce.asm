@@ -1,6 +1,7 @@
 /*
 TODO:
-
+Update Get Trainer Name to use the new table
+---------
 Update all trainer information to use new constants
 - new constnts start at 0, while old ones start at 1
 
@@ -10,10 +11,6 @@ wCurOpponent
 
 Remove OPP_X
 - change object macro to differentiate between Trainers and Pokemon battles
--------
-confirm EvosMovesPointerTable should be in index order, not pokedex
-
-- also all pokemon name calls should use new table (& remove old name strings)
 --------
 Remove the flipped sprite loading (intro, stat screen, etc)
 - wSpriteFlipped

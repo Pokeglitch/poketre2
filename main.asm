@@ -415,8 +415,6 @@ CeruleanHouseTrashedBlocks: INCBIN "maps/ceruleanhousetrashed.blk"
 DiglettsCaveEntranceRoute11Blocks:
 DiglettsCaveRoute2Blocks: INCBIN "maps/diglettscaveroute2.blk"
 
-INCLUDE "text/monster_names.asm"
-
 INCLUDE "engine/predefs7.asm"
 
 INCLUDE "scripts/cinnabarisland.asm"

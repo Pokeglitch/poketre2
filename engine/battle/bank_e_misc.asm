@@ -68,13 +68,6 @@ InitList:
 	ld a, PLAYEROT_NAME
 	jr .done
 .notPlayer
-	cp INIT_MON_LIST
-	jr nz, .notMonster
-	ld hl, wItemList
-	ld de, MonsterNames
-	ld a, MONSTER_NAME
-	jr .done
-.notMonster
 	cp INIT_BAG_ITEM_LIST
 	jr nz, .notBag
 	ld hl, wNumBagItems

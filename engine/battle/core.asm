@@ -7010,7 +7010,7 @@ LoadMonBackPic:
 	ld c, 8
 	call ClearScreenArea
 
-	farcall IndexToPokedex
+	predef IndexToPokedex
 	ld a, [wd11e]
 	ld [wWhichInstance], a
 	ld a, ClassPokemon
