@@ -106,7 +106,15 @@ object: MACRO
 	db \5
 	IF (_NARG > 7)
 		db TRAINER | \6
-		db \7
+		IF DEF(\7Table)
+			IF STRCMP("{\7Table}","Trainer") == 0
+				db \7 + 201
+			ELSE
+				db \1
+			ENDC
+		ELSE
+			db \7
+		ENDC
 		db \8
 	ELSE
 		IF (_NARG > 6)

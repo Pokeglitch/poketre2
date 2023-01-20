@@ -1,4 +1,4 @@
-objs := audio.o main.o text.o wram.o
+objs := main.o text.o wram.o
 
 .SUFFIXES:
 .SECONDEXPANSION:

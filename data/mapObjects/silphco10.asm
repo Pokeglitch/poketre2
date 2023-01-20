@@ -12,8 +12,8 @@ SilphCo10Object:
 	db 0 ; signs
 
 	db 6 ; objects
-	object SPRITE_ROCKET, 1, 9, STAY, RIGHT, 1, OPP_ROCKET, 39
-	object SPRITE_OAK_AIDE, 10, 2, STAY, LEFT, 2, OPP_SCIENTIST, 11
+	object SPRITE_ROCKET, 1, 9, STAY, RIGHT, 1, Rocket, 39
+	object SPRITE_OAK_AIDE, 10, 2, STAY, LEFT, 2, Scientist, 11
 	object SPRITE_ERIKA, 9, 15, WALK, 0, 3 ; person
 	object SPRITE_BALL, 2, 12, STAY, NONE, 4, TM_26
 	object SPRITE_BALL, 4, 14, STAY, NONE, 5, RARE_CANDY

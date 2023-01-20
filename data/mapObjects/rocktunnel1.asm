@@ -15,13 +15,13 @@ RockTunnel1Object:
 	sign 11, 29, 8 ; RockTunnel1Text8
 
 	db 7 ; objects
-	object SPRITE_HIKER, 7, 5, STAY, DOWN, 1, OPP_HIKER, 12
-	object SPRITE_HIKER, 5, 16, STAY, DOWN, 2, OPP_HIKER, 13
-	object SPRITE_HIKER, 17, 15, STAY, LEFT, 3, OPP_HIKER, 14
-	object SPRITE_BLACK_HAIR_BOY_2, 23, 8, STAY, LEFT, 4, OPP_POKEMANIAC, 7
-	object SPRITE_LASS, 37, 21, STAY, LEFT, 5, OPP_JR_TRAINER_F, 17
-	object SPRITE_LASS, 22, 24, STAY, DOWN, 6, OPP_JR_TRAINER_F, 18
-	object SPRITE_LASS, 32, 24, STAY, RIGHT, 7, OPP_JR_TRAINER_F, 19
+	object SPRITE_HIKER, 7, 5, STAY, DOWN, 1, Hiker, 12
+	object SPRITE_HIKER, 5, 16, STAY, DOWN, 2, Hiker, 13
+	object SPRITE_HIKER, 17, 15, STAY, LEFT, 3, Hiker, 14
+	object SPRITE_BLACK_HAIR_BOY_2, 23, 8, STAY, LEFT, 4, PokeManiac, 7
+	object SPRITE_LASS, 37, 21, STAY, LEFT, 5, JrTrainerF, 17
+	object SPRITE_LASS, 22, 24, STAY, DOWN, 6, JrTrainerF, 18
+	object SPRITE_LASS, 32, 24, STAY, RIGHT, 7, JrTrainerF, 19
 
 	; warp-to
 	warp_to 15, 3, ROCK_TUNNEL_1_WIDTH

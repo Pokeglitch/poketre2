@@ -14,10 +14,10 @@ SilphCo5Object:
 
 	db 11 ; objects
 	object SPRITE_LAPRAS_GIVER, 13, 9, STAY, NONE, 1 ; person
-	object SPRITE_ROCKET, 8, 16, STAY, RIGHT, 2, OPP_ROCKET, 28
-	object SPRITE_OAK_AIDE, 8, 3, STAY, RIGHT, 3, OPP_SCIENTIST, 6
-	object SPRITE_ROCKER, 18, 10, STAY, UP, 4, OPP_JUGGLER, 1
-	object SPRITE_ROCKET, 28, 4, STAY, UP, 5, OPP_ROCKET, 29
+	object SPRITE_ROCKET, 8, 16, STAY, RIGHT, 2, Rocket, 28
+	object SPRITE_OAK_AIDE, 8, 3, STAY, RIGHT, 3, Scientist, 6
+	object SPRITE_ROCKER, 18, 10, STAY, UP, 4, Juggler, 1
+	object SPRITE_ROCKET, 28, 4, STAY, UP, 5, Rocket, 29
 	object SPRITE_BALL, 2, 13, STAY, NONE, 6, TM_09
 	object SPRITE_BALL, 4, 6, STAY, NONE, 7, PROTEIN
 	object SPRITE_BALL, 21, 16, STAY, NONE, 8, CARD_KEY

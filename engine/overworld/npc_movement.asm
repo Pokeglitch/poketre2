@@ -272,10 +272,11 @@ FreezeEnemyTrainerSprite:
 	ret z ; the Rockets on Pokemon Tower 7F leave after battling, so don't freeze them
 	ld hl, RivalIDs
 	ld a, [wEngagedTrainerClass]
+	sub 201
 	ld b, a
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .notRival
 	cp b
 	ret z ; the rival leaves after battling, so don't freeze him
@@ -286,7 +287,7 @@ FreezeEnemyTrainerSprite:
 	jp SetSpriteMovementBytesToFF
 
 RivalIDs:
-	db OPP_RIVAL1
-	db OPP_RIVAL2
-	db OPP_RIVAL3
-	db $ff
+	db Rival1
+	db Rival2
+	db Rival3
+	db -1

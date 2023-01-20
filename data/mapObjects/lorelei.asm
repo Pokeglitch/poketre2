@@ -10,7 +10,7 @@ LoreleiObject:
 	db 0 ; signs
 
 	db 1 ; objects
-	object SPRITE_LORELEI, 5, 2, STAY, DOWN, 1, OPP_LORELEI, 1
+	object SPRITE_LORELEI, 5, 2, STAY, DOWN, 1, Lorelei, 1
 
 	; warp-to
 	warp_to 4, 11, LORELEIS_ROOM_WIDTH ; INDIGO_PLATEAU_LOBBY

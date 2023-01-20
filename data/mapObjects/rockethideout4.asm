@@ -9,10 +9,10 @@ RocketHideout4Object:
 	db 0 ; signs
 
 	db 9 ; objects
-	object SPRITE_GIOVANNI, 25, 3, STAY, DOWN, 1, OPP_GIOVANNI, 1
-	object SPRITE_ROCKET, 23, 12, STAY, DOWN, 2, OPP_ROCKET, 16
-	object SPRITE_ROCKET, 26, 12, STAY, DOWN, 3, OPP_ROCKET, 17
-	object SPRITE_ROCKET, 11, 2, STAY, DOWN, 4, OPP_ROCKET, 18
+	object SPRITE_GIOVANNI, 25, 3, STAY, DOWN, 1, Giovanni, 1
+	object SPRITE_ROCKET, 23, 12, STAY, DOWN, 2, Rocket, 16
+	object SPRITE_ROCKET, 26, 12, STAY, DOWN, 3, Rocket, 17
+	object SPRITE_ROCKET, 11, 2, STAY, DOWN, 4, Rocket, 18
 	object SPRITE_BALL, 10, 12, STAY, NONE, 5, HP_UP
 	object SPRITE_BALL, 9, 4, STAY, NONE, 6, TM_02
 	object SPRITE_BALL, 12, 20, STAY, NONE, 7, IRON

@@ -16,6 +16,8 @@ INCLUDE "classes/Trainer.asm"
 INCLUDE "classes/other.asm"
 INCLUDE "classes/classes.asm"
 
+INCLUDE "audio.asm"
+
 ; The rst vectors are unused.
 SECTION "rst 00", ROM0 [$00]
 	rst $38
@@ -239,7 +241,6 @@ INCLUDE "engine/battle/wild_encounters.asm"
 INCLUDE "engine/battle/moveEffects/recoil_effect.asm"
 INCLUDE "engine/battle/moveEffects/conversion_effect.asm"
 INCLUDE "engine/battle/moveEffects/haze_effect.asm"
-INCLUDE "engine/battle/get_trainer_name.asm"
 INCLUDE "engine/random.asm"
 
 INCLUDE "data/inventory/pockets.asm"
@@ -558,7 +559,6 @@ INCLUDE "engine/hidden_object_functions7.asm"
 
 SECTION "Battle (bank 9)", ROMX, BANK[$9]
 INCLUDE "engine/battle/print_type.asm"
-INCLUDE "engine/battle/save_trainer_name.asm"
 INCLUDE "engine/battle/moveEffects/focus_energy_effect.asm"
 
 SECTION "Battle (bank A)", ROMX, BANK[$A]

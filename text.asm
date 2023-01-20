@@ -36,7 +36,7 @@ _CardKeyFailText::
 	done
 
 _TrainerNameText::
-	ramtext wcd6d
+	ramtext wTrainerName
 	text ": "
 	done
 

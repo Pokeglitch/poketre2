@@ -14,10 +14,10 @@ SilphCo2Object:
 
 	db 5 ; objects
 	object SPRITE_ERIKA, 10, 1, STAY, UP, 1 ; person
-	object SPRITE_OAK_AIDE, 5, 12, STAY, DOWN, 2, OPP_SCIENTIST, 2
-	object SPRITE_OAK_AIDE, 24, 13, STAY, LEFT, 3, OPP_SCIENTIST, 3
-	object SPRITE_ROCKET, 16, 11, STAY, UP, 4, OPP_ROCKET, 23
-	object SPRITE_ROCKET, 24, 7, STAY, UP, 5, OPP_ROCKET, 24
+	object SPRITE_OAK_AIDE, 5, 12, STAY, DOWN, 2, Scientist, 2
+	object SPRITE_OAK_AIDE, 24, 13, STAY, LEFT, 3, Scientist, 3
+	object SPRITE_ROCKET, 16, 11, STAY, UP, 4, Rocket, 23
+	object SPRITE_ROCKET, 24, 7, STAY, UP, 5, Rocket, 24
 
 	; warp-to
 	warp_to 24, 0, SILPH_CO_2F_WIDTH ; SILPH_CO_1F

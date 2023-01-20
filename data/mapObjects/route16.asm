@@ -17,12 +17,12 @@ Route16Object:
 	sign 5, 17, 9 ; Route16Text9
 
 	db 7 ; objects
-	object SPRITE_BIKER, 17, 12, STAY, LEFT, 1, OPP_BIKER, 5
-	object SPRITE_BIKER, 14, 13, STAY, RIGHT, 2, OPP_CUE_BALL, 1
-	object SPRITE_BIKER, 11, 12, STAY, UP, 3, OPP_CUE_BALL, 2
-	object SPRITE_BIKER, 9, 11, STAY, LEFT, 4, OPP_BIKER, 6
-	object SPRITE_BIKER, 6, 10, STAY, RIGHT, 5, OPP_CUE_BALL, 3
-	object SPRITE_BIKER, 3, 12, STAY, RIGHT, 6, OPP_BIKER, 7
+	object SPRITE_BIKER, 17, 12, STAY, LEFT, 1, Biker, 5
+	object SPRITE_BIKER, 14, 13, STAY, RIGHT, 2, CueBall, 1
+	object SPRITE_BIKER, 11, 12, STAY, UP, 3, CueBall, 2
+	object SPRITE_BIKER, 9, 11, STAY, LEFT, 4, Biker, 6
+	object SPRITE_BIKER, 6, 10, STAY, RIGHT, 5, CueBall, 3
+	object SPRITE_BIKER, 3, 12, STAY, RIGHT, 6, Biker, 7
 	object SPRITE_SNORLAX, 26, 10, STAY, DOWN, 7 ; person
 
 	; warp-to

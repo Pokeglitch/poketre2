@@ -8,8 +8,8 @@ RocketHideout3Object:
 	db 0 ; signs
 
 	db 4 ; objects
-	object SPRITE_ROCKET, 10, 22, STAY, RIGHT, 1, OPP_ROCKET, 14
-	object SPRITE_ROCKET, 26, 12, STAY, UP, 2, OPP_ROCKET, 15
+	object SPRITE_ROCKET, 10, 22, STAY, RIGHT, 1, Rocket, 14
+	object SPRITE_ROCKET, 26, 12, STAY, UP, 2, Rocket, 15
 	object SPRITE_BALL, 26, 17, STAY, NONE, 3, TM_10
 	object SPRITE_BALL, 20, 14, STAY, NONE, 4, RARE_CANDY
 

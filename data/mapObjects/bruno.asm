@@ -10,7 +10,7 @@ BrunoObject:
 	db 0 ; signs
 
 	db 1 ; objects
-	object SPRITE_BRUNO, 5, 2, STAY, DOWN, 1, OPP_BRUNO, 1
+	object SPRITE_BRUNO, 5, 2, STAY, DOWN, 1, Bruno, 1
 
 	; warp-to
 	warp_to 4, 11, BRUNOS_ROOM_WIDTH ; LORELEIS_ROOM

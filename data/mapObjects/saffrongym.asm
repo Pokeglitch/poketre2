@@ -38,14 +38,14 @@ SaffronGymObject:
 	db 0 ; signs
 
 	db 9 ; objects
-	object SPRITE_GIRL, 9, 8, STAY, DOWN, 1, OPP_SABRINA, 1
-	object SPRITE_MEDIUM, 10, 1, STAY, DOWN, 2, OPP_CHANNELER, 22
-	object SPRITE_BUG_CATCHER, 17, 1, STAY, DOWN, 3, OPP_PSYCHIC_TR, 1
-	object SPRITE_MEDIUM, 3, 7, STAY, DOWN, 4, OPP_CHANNELER, 23
-	object SPRITE_BUG_CATCHER, 17, 7, STAY, DOWN, 5, OPP_PSYCHIC_TR, 2
-	object SPRITE_MEDIUM, 3, 13, STAY, DOWN, 6, OPP_CHANNELER, 24
-	object SPRITE_BUG_CATCHER, 17, 13, STAY, DOWN, 7, OPP_PSYCHIC_TR, 3
-	object SPRITE_BUG_CATCHER, 3, 1, STAY, DOWN, 8, OPP_PSYCHIC_TR, 4
+	object SPRITE_GIRL, 9, 8, STAY, DOWN, 1, Sabrina, 1
+	object SPRITE_MEDIUM, 10, 1, STAY, DOWN, 2, Channeler, 22
+	object SPRITE_BUG_CATCHER, 17, 1, STAY, DOWN, 3, Psychic, 1
+	object SPRITE_MEDIUM, 3, 7, STAY, DOWN, 4, Channeler, 23
+	object SPRITE_BUG_CATCHER, 17, 7, STAY, DOWN, 5, Psychic, 2
+	object SPRITE_MEDIUM, 3, 13, STAY, DOWN, 6, Channeler, 24
+	object SPRITE_BUG_CATCHER, 17, 13, STAY, DOWN, 7, Psychic, 3
+	object SPRITE_BUG_CATCHER, 3, 1, STAY, DOWN, 8, Psychic, 4
 	object SPRITE_GYM_HELPER, 10, 15, STAY, DOWN, 9 ; person
 
 	; warp-to

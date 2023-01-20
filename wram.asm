@@ -1606,11 +1606,7 @@ wBattleMon:: battle_struct wBattleMon ; d014
 wTrainerClass:: ; d031
 	ds 1
 
-	ds 1
-
-wTrainerPicPointer:: ; d033
-	ds 2
-	ds 1
+	ds 4 ; unused
 
 wTempMoveNameBuffer:: ; d036
 

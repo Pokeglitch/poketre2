@@ -9,10 +9,10 @@ PokemonTower5Object:
 
 	db 6 ; objects
 	object SPRITE_MEDIUM, 12, 8, STAY, NONE, 1 ; person
-	object SPRITE_MEDIUM, 17, 7, STAY, LEFT, 2, OPP_CHANNELER, 14
-	object SPRITE_MEDIUM, 14, 3, STAY, LEFT, 3, OPP_CHANNELER, 16
-	object SPRITE_MEDIUM, 6, 10, STAY, RIGHT, 4, OPP_CHANNELER, 17
-	object SPRITE_MEDIUM, 9, 16, STAY, RIGHT, 5, OPP_CHANNELER, 18
+	object SPRITE_MEDIUM, 17, 7, STAY, LEFT, 2, Channeler, 14
+	object SPRITE_MEDIUM, 14, 3, STAY, LEFT, 3, Channeler, 16
+	object SPRITE_MEDIUM, 6, 10, STAY, RIGHT, 4, Channeler, 17
+	object SPRITE_MEDIUM, 9, 16, STAY, RIGHT, 5, Channeler, 18
 	object SPRITE_BALL, 6, 14, STAY, NONE, 6, NUGGET
 
 	; warp-to

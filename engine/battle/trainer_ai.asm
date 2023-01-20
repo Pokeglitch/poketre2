@@ -20,6 +20,7 @@ AIEnemyTrainerChooseMoves:
 .noMoveDisabled
 	ld hl, TrainerClassMoveChoiceModifications
 	ld a, [wTrainerClass]
+	inc a
 	ld b, a
 .loopTrainerClasses
 	dec b
@@ -293,7 +294,7 @@ TrainerClassMoveChoiceModifications:
 	db 0      ; CUE_BALL
 	db 1,0    ; GAMBLER
 	db 1,3,0  ; BEAUTY
-	db 1,2,0  ; PSYCHIC_TR
+	db 1,2,0  ; PSYCHIC
 	db 1,3,0  ; ROCKER
 	db 1,0    ; JUGGLER
 	db 1,0    ; TAMER
@@ -322,10 +323,6 @@ TrainerClassMoveChoiceModifications:
 	db 1,0    ; AGATHA
 	db 1,3,0  ; LANCE
 
-INCLUDE "engine/battle/trainer_pic_money_pointers.asm"
-
-INCLUDE "text/trainer_names.asm"
-
 INCLUDE "engine/battle/bank_e_misc.asm"
 
 INCLUDE "engine/battle/read_trainer_party.asm"
@@ -343,7 +340,6 @@ TrainerAI:
 	cp LINK_STATE_BATTLING
 	ret z
 	ld a, [wTrainerClass] ; what trainer class is this?
-	dec a
 	ld c, a
 	ld b, 0
 	ld hl, TrainerAIPointers

@@ -3,10 +3,6 @@ AUDIO_1 EQU $2
 AUDIO_2 EQU $8
 AUDIO_3 EQU $1f
 
-INCLUDE "macros/rom.asm"
-INCLUDE "constants/constants.asm"
-
-
 SECTION "Sound Effect Headers 1", ROMX, BANK[AUDIO_1]
 INCLUDE "audio/headers/sfxheaders1.asm"
 
@@ -379,11 +375,12 @@ PlayBattleMusic::
 	jr .playSong
 .notGymLeaderBattle
 	ld a, [wCurOpponent]
-	cp 200
+	cp 201
 	jr c, .wildBattle
-	cp OPP_RIVAL3
+	sub 201
+	cp Rival3
 	jr z, .finalBattle
-	cp OPP_LANCE
+	cp Lance
 	jr nz, .normalTrainerBattle
 	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
 	jr .playSong

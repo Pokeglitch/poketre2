@@ -17,8 +17,8 @@ SilphCo3Object:
 
 	db 4 ; objects
 	object SPRITE_LAPRAS_GIVER, 24, 8, STAY, NONE, 1 ; person
-	object SPRITE_ROCKET, 20, 7, STAY, LEFT, 2, OPP_ROCKET, 25
-	object SPRITE_OAK_AIDE, 7, 9, STAY, DOWN, 3, OPP_SCIENTIST, 4
+	object SPRITE_ROCKET, 20, 7, STAY, LEFT, 2, Rocket, 25
+	object SPRITE_OAK_AIDE, 7, 9, STAY, DOWN, 3, Scientist, 4
 	object SPRITE_BALL, 8, 5, STAY, NONE, 4, HYPER_POTION
 
 	; warp-to

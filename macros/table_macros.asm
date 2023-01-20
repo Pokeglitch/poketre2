@@ -83,6 +83,8 @@ ENDM
 
 ByteAllocate EQU 1
 WordAllocate EQU 2
+BCD2Allocate EQU WordAllocate
+BCD3Allocate EQU 3
 PointerAllocate EQU WordAllocate
 StringAllocate EQU PointerAllocate
 BankAllocate EQU ByteAllocate
@@ -91,6 +93,8 @@ SizeAllocate EQU WordAllocate
 SpriteAllocate EQU SizeAllocate + BankPointerAllocate
 
 PointerArgs = 1
+BCD2Args = 1
+BCD3Args = 1
 StringArgs = 1
 ByteArgs = 1
 BankArgs = 1
@@ -143,10 +147,27 @@ ENDM
 
 ; TODO - what to define to idenfitier?
 BankDefine: MACRO
-    db BANK(\3)
+    db BANK(\4)
 ENDM
 
 ; TODO - what to define to idenfitier?
 BankPointerDefine: MACRO
-    dbw BANK(\3), \3
+    dbw BANK(\4), \4
+ENDM
+
+BCD3Define: MACRO
+    ; Define the value to an identifier
+    DEF \1\2\3 = \4
+
+	dn ((\4) / 100000) % 10, ((\4) / 10000) % 10
+	dn ((\4) / 1000) % 10, ((\4) / 100) % 10
+	dn ((\4) / 10) % 10, (\4) % 10
+ENDM
+
+BCD2Define: MACRO
+    ; Define the value to an identifier
+    DEF \1\2\3 = \4
+
+	dn ((\4) / 1000) % 10, ((\4) / 100) % 10
+	dn ((\4) / 10) % 10, (\4) % 10
 ENDM

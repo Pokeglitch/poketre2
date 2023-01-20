@@ -23,7 +23,7 @@ CeruleanCityObject:
 
 	db 11 ; objects
 	object SPRITE_BLUE, 20, 2, STAY, DOWN, 1 ; person
-	object SPRITE_ROCKET, 30, 8, STAY, NONE, 2, OPP_ROCKET, 5
+	object SPRITE_ROCKET, 30, 8, STAY, NONE, 2, Rocket, 5
 	object SPRITE_BLACK_HAIR_BOY_1, 31, 20, STAY, DOWN, 3 ; person
 	object SPRITE_BLACK_HAIR_BOY_2, 15, 18, WALK, 1, 4 ; person
 	object SPRITE_BLACK_HAIR_BOY_2, 9, 21, WALK, 2, 5 ; person

@@ -11,7 +11,7 @@ RocketHideout2Object:
 	db 0 ; signs
 
 	db 5 ; objects
-	object SPRITE_ROCKET, 20, 12, STAY, DOWN, 1, OPP_ROCKET, 13
+	object SPRITE_ROCKET, 20, 12, STAY, DOWN, 1, Rocket, 13
 	object SPRITE_BALL, 1, 11, STAY, NONE, 2, MOON_STONE
 	object SPRITE_BALL, 16, 8, STAY, NONE, 3, NUGGET
 	object SPRITE_BALL, 6, 12, STAY, NONE, 4, TM_07

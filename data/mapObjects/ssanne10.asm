@@ -16,12 +16,12 @@ SSAnne10Object:
 	db 0 ; signs
 
 	db 11 ; objects
-	object SPRITE_SAILOR, 0, 13, STAY, DOWN, 1, OPP_SAILOR, 3
-	object SPRITE_SAILOR, 2, 11, STAY, DOWN, 2, OPP_SAILOR, 4
-	object SPRITE_SAILOR, 12, 3, STAY, LEFT, 3, OPP_SAILOR, 5
-	object SPRITE_SAILOR, 22, 2, STAY, DOWN, 4, OPP_SAILOR, 6
-	object SPRITE_SAILOR, 0, 2, STAY, RIGHT, 5, OPP_SAILOR, 7
-	object SPRITE_FISHER2, 0, 4, STAY, RIGHT, 6, OPP_FISHER, 2
+	object SPRITE_SAILOR, 0, 13, STAY, DOWN, 1, Sailor, 3
+	object SPRITE_SAILOR, 2, 11, STAY, DOWN, 2, Sailor, 4
+	object SPRITE_SAILOR, 12, 3, STAY, LEFT, 3, Sailor, 5
+	object SPRITE_SAILOR, 22, 2, STAY, DOWN, 4, Sailor, 6
+	object SPRITE_SAILOR, 0, 2, STAY, RIGHT, 5, Sailor, 7
+	object SPRITE_FISHER2, 0, 4, STAY, RIGHT, 6, Fisherman, 2
 	object SPRITE_BLACK_HAIR_BOY_2, 10, 13, STAY, RIGHT, 7 ; person
 	object SPRITE_SLOWBRO, 11, 12, STAY, NONE, 8 ; person
 	object SPRITE_BALL, 20, 2, STAY, NONE, 9, ETHER

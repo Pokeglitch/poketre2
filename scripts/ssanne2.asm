@@ -97,7 +97,7 @@ SSAnne2Script1:
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	call Delay3
-	ld a, OPP_RIVAL2
+	ld a, Rival2 + 201
 	ld [wCurOpponent], a
 
 	; select which team to use during the encounter

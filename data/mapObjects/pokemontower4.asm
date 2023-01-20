@@ -8,9 +8,9 @@ PokemonTower4Object:
 	db 0 ; signs
 
 	db 6 ; objects
-	object SPRITE_MEDIUM, 5, 10, STAY, RIGHT, 1, OPP_CHANNELER, 9
-	object SPRITE_MEDIUM, 15, 7, STAY, DOWN, 2, OPP_CHANNELER, 10
-	object SPRITE_MEDIUM, 14, 12, STAY, LEFT, 3, OPP_CHANNELER, 12
+	object SPRITE_MEDIUM, 5, 10, STAY, RIGHT, 1, Channeler, 9
+	object SPRITE_MEDIUM, 15, 7, STAY, DOWN, 2, Channeler, 10
+	object SPRITE_MEDIUM, 14, 12, STAY, LEFT, 3, Channeler, 12
 	object SPRITE_BALL, 12, 10, STAY, NONE, 4, ELIXER
 	object SPRITE_BALL, 9, 10, STAY, NONE, 5, AWAKENING
 	object SPRITE_BALL, 12, 16, STAY, NONE, 6, HP_UP

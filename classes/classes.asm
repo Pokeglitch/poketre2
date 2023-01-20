@@ -14,6 +14,7 @@ GetInstanceName:
     ld [wWhichProperty], a
     ;fall through
 
+; copy into de
 GetInstanceString:
     push de
     call GetInstanceProperty
@@ -27,7 +28,6 @@ GetInstanceString:
     jr nz, .copyLoop
 
     ret
-
 
 GetInstancePropertyPointer:
     ld hl, ClassTable

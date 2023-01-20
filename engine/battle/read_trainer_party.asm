@@ -16,7 +16,7 @@ ReadTrainer:
 
 ; get the pointer to trainer data for this class
 	ld a, [wCurOpponent]
-	sub $C9 ; convert value from pokemon to trainer
+	sub 201 ; convert value from pokemon to trainer
 	add a
 	ld hl, TrainerDataPointers
 	ld c, a
@@ -101,7 +101,7 @@ ReadTrainer:
 
 ; get trainer class number
 	ld a, [wCurOpponent]
-	sub 200
+	sub 201
 	ld b, a
 	ld hl, TeamMoves
 
@@ -116,7 +116,7 @@ ReadTrainer:
 
 ; no matches found. is this trainer champion rival?
 	ld a, b
-	cp RIVAL3
+	cp Rival3
 	jr z, .ChampionRival
 	jr .FinishUp ; nope
 .GiveTeamMoves

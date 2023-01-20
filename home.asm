@@ -1999,7 +1999,7 @@ EndTrainerBattle::
 	ld b, FLAG_SET
 	call TrainerFlagAction   ; flag trainer as fought
 	ld a, [wEnemyMonOrTrainerClass]
-	cp 200
+	cp 201
 	jr nc, .skipRemoveSprite    ; test if trainer was fought (in that case skip removing the corresponding sprite)
 	ld hl, wMissableObjectList
 	ld de, $2
@@ -2033,7 +2033,7 @@ InitBattleEnemyParameters::
 	ld a, [wEngagedTrainerClass]
 	ld [wCurOpponent], a
 	ld [wEnemyMonOrTrainerClass], a
-	cp 200
+	cp 201
 	ld a, [wEngagedTrainerSet]
 	jr c, .noTrainer
 	ld [wTrainerNo], a
@@ -2149,7 +2149,6 @@ PrintEndBattleText::
 	ld a, [wEndBattleTextRomBank]
 	call SetNewBank
 	push hl
-	callba SaveTrainerName
 	ld hl, TrainerEndBattleText
 	call PrintText
 	pop hl
@@ -2194,11 +2193,12 @@ CheckIfAlreadyEngaged::
 
 PlayTrainerMusic::
 	ld a, [wEngagedTrainerClass]
-	cp OPP_RIVAL1
+	sub 201
+	cp Rival1
 	ret z
-	cp OPP_RIVAL2
+	cp Rival2
 	ret z
-	cp OPP_RIVAL3
+	cp Rival3
 	ret z
 	ld a, [wGymLeaderNo]
 	and a
@@ -2211,6 +2211,7 @@ PlayTrainerMusic::
 	ld [wAudioROMBank], a
 	ld [wAudioSavedROMBank], a
 	ld a, [wEngagedTrainerClass]
+	sub 201
 	ld b, a
 	ld hl, EvilTrainerList
 .evilTrainerListLoop
@@ -2481,40 +2482,6 @@ GetSpriteMovementByte2Pointer::
 	add hl, de
 	pop de
 	ret
-
-; TODO - use new table...
-GetTrainerInformation::
-	call GetTrainerName
-	ld a, [wLinkState]
-	and a
-	jr nz, .linkBattle
-	ld a, Bank(TrainerPicAndMoneyPointers)
-	call BankswitchHome
-	ld a, [wTrainerClass]
-	dec a
-	ld hl, TrainerPicAndMoneyPointers
-	ld bc, $5
-	call AddNTimes
-	ld de, wTrainerPicPointer
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	ld de, wTrainerBaseMoney
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	jp BankswitchBack
-.linkBattle
-	ld hl, wTrainerPicPointer
-	ld [hl], Red
-	ret
-
-GetTrainerName::
-	jpba GetTrainerName_
 
 HasEnoughMoney::
 ; Check if the player has at least as much
@@ -2845,7 +2812,7 @@ NamePointers::
 	dw ItemNames
 	dw wPartyMonOT ; player's OT names list
 	dw wEnemyMonOT ; enemy's OT names list
-	dw TrainerNames
+	dw 0 ; Formerly TrainerNames
 
 GetName::
 ; arguments:

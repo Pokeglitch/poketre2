@@ -12,9 +12,9 @@ SilphCo9Object:
 
 	db 4 ; objects
 	object SPRITE_NURSE, 3, 14, STAY, DOWN, 1 ; person
-	object SPRITE_ROCKET, 2, 4, STAY, UP, 2, OPP_ROCKET, 37
-	object SPRITE_OAK_AIDE, 21, 13, STAY, DOWN, 3, OPP_SCIENTIST, 10
-	object SPRITE_ROCKET, 13, 16, STAY, UP, 4, OPP_ROCKET, 38
+	object SPRITE_ROCKET, 2, 4, STAY, UP, 2, Rocket, 37
+	object SPRITE_OAK_AIDE, 21, 13, STAY, DOWN, 3, Scientist, 10
+	object SPRITE_ROCKET, 13, 16, STAY, UP, 4, Rocket, 38
 
 	; warp-to
 	warp_to 14, 0, SILPH_CO_9F_WIDTH ; SILPH_CO_10F

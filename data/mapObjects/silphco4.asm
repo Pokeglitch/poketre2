@@ -14,9 +14,9 @@ SilphCo4Object:
 
 	db 7 ; objects
 	object SPRITE_LAPRAS_GIVER, 6, 2, STAY, NONE, 1 ; person
-	object SPRITE_ROCKET, 9, 14, STAY, RIGHT, 2, OPP_ROCKET, 26
-	object SPRITE_OAK_AIDE, 14, 6, STAY, LEFT, 3, OPP_SCIENTIST, 5
-	object SPRITE_ROCKET, 26, 10, STAY, UP, 4, OPP_ROCKET, 27
+	object SPRITE_ROCKET, 9, 14, STAY, RIGHT, 2, Rocket, 26
+	object SPRITE_OAK_AIDE, 14, 6, STAY, LEFT, 3, Scientist, 5
+	object SPRITE_ROCKET, 26, 10, STAY, UP, 4, Rocket, 27
 	object SPRITE_BALL, 3, 9, STAY, NONE, 5, FULL_HEAL
 	object SPRITE_BALL, 4, 7, STAY, NONE, 6, MAX_REVIVE
 	object SPRITE_BALL, 5, 8, STAY, NONE, 7, ESCAPE_ROPE

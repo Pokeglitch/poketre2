@@ -1008,7 +1008,7 @@ TrainerBattleVictory:
 	ld b, MUSIC_DEFEATED_TRAINER
 .gymleader
 	ld a, [wTrainerClass]
-	cp RIVAL3 ; final battle against rival
+	cp Rival3 ; final battle against rival
 	jr nz, .notrival
 	ld b, MUSIC_DEFEATED_GYM_LEADER
 	ld hl, wFlags_D733
@@ -1221,7 +1221,8 @@ HandlePlayerBlackOut:
 	cp LINK_STATE_BATTLING
 	jr z, .notRival1Battle
 	ld a, [wCurOpponent]
-	cp OPP_RIVAL1
+	sub 201
+	cp Rival1
 	jr nz, .notRival1Battle
 	coord hl, 0, 0  ; rival 1 battle
 	lb bc, 8, 21
@@ -6773,7 +6774,7 @@ InitBattleCommon:
 	res 1, [hl]
 	callab InitBattleVariables
 	ld a, [wEnemyMonSpecies2]
-	sub 200
+	sub 201
 	jp c, InitWildBattle
 	ld [wTrainerClass], a
 	call GetTrainerInformation
@@ -6792,6 +6793,53 @@ InitBattleCommon:
 	ld a, $2
 	ld [wIsInBattle], a
 	jp _InitBattleCommon
+
+GetTrainerInformation:
+	ld a, [wLinkState]
+	and a
+	jr nz, .loadLinkName
+
+	ld a, [wTrainerClass]
+	cp Rival1
+	jr z, .loadRivalName
+	cp Rival2
+	jr z, .loadRivalName
+	cp Rival3
+	jr z, .loadRivalName
+
+	; not rival, so load name from table
+	call PrepareTrainerClassData
+	ld de, wTrainerName
+	farcall GetInstanceName
+	jr .loadTrainerMoney
+
+.loadRivalName
+	call PrepareTrainerClassData
+	ld hl, wRivalName
+	call .copyIntoTrainerName
+
+.loadTrainerMoney
+	ld a, TrainerPropertyMoneyOffset
+	ld [wWhichProperty], a
+	; trainer class and instance is already above
+
+	farcall GetInstanceProperty ; high byte is in l
+
+	ld de, wTrainerBaseMoney
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	ret
+
+.loadLinkName
+	ld hl, wGrassRate
+
+.copyIntoTrainerName
+	ld de, wTrainerName
+	ld bc, 13
+	jp CopyData
 
 InitWildBattle:
 	ld a, $1
@@ -6878,18 +6926,19 @@ _InitBattleCommon:
 	db "@"
 
 _LoadTrainerPic:
-; wd033-wd034 contain pointer to pic
-	ld a, [wTrainerPicPointer]
-	ld [wWhichInstance], a
-
 	ld a, [wLinkState]
 	and a
-	ld a, ClassTrainer
-	jr z, .loadSprite
-	ld a, ClassOther ; Red Sprite
-.loadSprite
-	ld [wWhichClass], a
+	jr nz, .loadLinkBattlePic
+	
+	ld a, [wTrainerClass]
+	call PrepareTrainerClassData
+	jr .loadSprite
 
+.loadLinkBattlePic
+	ld a, Red
+	call PrepareOtherClassData
+	
+.loadSprite
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
     ld de, vFrontPic

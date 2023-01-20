@@ -18,10 +18,10 @@ SSAnne9Object:
 	db 0 ; signs
 
 	db 13 ; objects
-	object SPRITE_GENTLEMAN, 10, 2, STAY, RIGHT, 1, OPP_GENTLEMAN, 3
-	object SPRITE_FISHER2, 13, 4, STAY, LEFT, 2, OPP_FISHER, 1
-	object SPRITE_GENTLEMAN, 0, 14, STAY, RIGHT, 3, OPP_GENTLEMAN, 5
-	object SPRITE_LASS, 2, 11, STAY, DOWN, 4, OPP_LASS, 12
+	object SPRITE_GENTLEMAN, 10, 2, STAY, RIGHT, 1, Gentleman, 3
+	object SPRITE_FISHER2, 13, 4, STAY, LEFT, 2, Fisherman, 1
+	object SPRITE_GENTLEMAN, 0, 14, STAY, RIGHT, 3, Gentleman, 5
+	object SPRITE_LASS, 2, 11, STAY, DOWN, 4, Lass, 12
 	object SPRITE_GENTLEMAN, 1, 2, STAY, DOWN, 5 ; person
 	object SPRITE_BALL, 12, 1, STAY, NONE, 6, MAX_ETHER
 	object SPRITE_GENTLEMAN, 21, 2, STAY, DOWN, 7 ; person
