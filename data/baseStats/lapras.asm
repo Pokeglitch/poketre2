@@ -1,4 +1,4 @@
-db DEX_LAPRAS ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 130 ; base hp
 db 85 ; base attack
 db 80 ; base defense

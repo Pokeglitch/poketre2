@@ -1,4 +1,4 @@
-db DEX_HITMONLEE ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 50 ; base hp
 db 120 ; base attack
 db 53 ; base defense

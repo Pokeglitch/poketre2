@@ -1,4 +1,4 @@
-db DEX_CHARIZARD ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 78 ; base hp
 db 84 ; base attack
 db 78 ; base defense

@@ -521,7 +521,6 @@ ItemUseBall:
 ; Add the caught Pokémon to the Pokédex.
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_TEST
 	ld hl, wPokedexOwned
@@ -529,7 +528,6 @@ ItemUseBall:
 	ld a, c
 	push af
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_SET
 	predef FlagActionPredef

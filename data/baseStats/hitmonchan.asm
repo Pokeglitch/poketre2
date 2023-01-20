@@ -1,4 +1,4 @@
-db DEX_HITMONCHAN ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 50 ; base hp
 db 105 ; base attack
 db 79 ; base defense

@@ -195,12 +195,12 @@ LoadPCEDataIntoBuffer:
     ld h, [hl]
     ld l, a ; hl - sprite pointer
     ld a, e ; a = bank
-    ld de, sPCESpriteBuffer2
+    ld de, sPCESpriteBufferRaw
     jp FarCopyData
 
 DrawPCEImage:
     ld bc, wPCEPalette
-    ld hl, sPCESpriteBuffer2
+    ld hl, sPCESpriteBufferRaw
 
     ; store the colors (converted from palette)
     ReadHeaderColor 0

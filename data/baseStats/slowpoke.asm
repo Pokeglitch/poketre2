@@ -1,4 +1,4 @@
-db DEX_SLOWPOKE ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 90 ; base hp
 db 65 ; base attack
 db 65 ; base defense

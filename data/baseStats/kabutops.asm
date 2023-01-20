@@ -1,4 +1,4 @@
-db DEX_KABUTOPS ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 60 ; base hp
 db 115 ; base attack
 db 105 ; base defense

@@ -86,7 +86,6 @@ _AddPartyMon:
 	predef IndexToPokedex
 	pop de
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_TEST
 	ld hl, wPokedexOwned
@@ -94,7 +93,6 @@ _AddPartyMon:
 	ld a, c ; whether the mon was already flagged as owned
 	ld [wUnusedD153], a ; not read
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_SET
 	push bc
@@ -326,7 +324,6 @@ _AddEnemyMonToPlayerParty:
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_SET
 	ld hl, wPokedexOwned

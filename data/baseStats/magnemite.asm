@@ -1,4 +1,4 @@
-db DEX_MAGNEMITE ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 25 ; base hp
 db 35 ; base attack
 db 70 ; base defense

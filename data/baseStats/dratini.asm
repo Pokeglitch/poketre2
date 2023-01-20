@@ -1,4 +1,4 @@
-db DEX_DRATINI ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 41 ; base hp
 db 64 ; base attack
 db 45 ; base defense

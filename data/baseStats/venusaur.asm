@@ -1,4 +1,4 @@
-db DEX_VENUSAUR ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 80 ; base hp
 db 82 ; base attack
 db 83 ; base defense

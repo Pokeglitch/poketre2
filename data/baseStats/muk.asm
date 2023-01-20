@@ -1,4 +1,4 @@
-db DEX_MUK ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 105 ; base hp
 db 105 ; base attack
 db 75 ; base defense

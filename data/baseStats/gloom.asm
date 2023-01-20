@@ -1,4 +1,4 @@
-db DEX_GLOOM ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 60 ; base hp
 db 65 ; base attack
 db 70 ; base defense

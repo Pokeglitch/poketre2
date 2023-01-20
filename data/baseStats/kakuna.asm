@@ -1,4 +1,4 @@
-db DEX_KAKUNA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 45 ; base hp
 db 25 ; base attack
 db 50 ; base defense

@@ -450,6 +450,8 @@ ShowPokedexDataInternal:
 	push af
 	call IndexToPokedex
 
+	ld hl, wd11e
+	inc [hl]
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
 	ld hl, wcf4b

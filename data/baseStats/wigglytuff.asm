@@ -1,4 +1,4 @@
-db DEX_WIGGLYTUFF ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 140 ; base hp
 db 70 ; base attack
 db 45 ; base defense

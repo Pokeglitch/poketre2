@@ -1,4 +1,4 @@
-db DEX_HORSEA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 30 ; base hp
 db 40 ; base attack
 db 70 ; base defense

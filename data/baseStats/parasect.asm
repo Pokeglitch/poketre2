@@ -1,4 +1,4 @@
-db DEX_PARASECT ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 60 ; base hp
 db 95 ; base attack
 db 80 ; base defense

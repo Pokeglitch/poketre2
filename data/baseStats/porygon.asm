@@ -1,4 +1,4 @@
-db DEX_PORYGON ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 60 ; base attack
 db 70 ; base defense

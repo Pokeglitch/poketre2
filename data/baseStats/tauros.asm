@@ -1,4 +1,4 @@
-db DEX_TAUROS ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 75 ; base hp
 db 100 ; base attack
 db 95 ; base defense

@@ -1,4 +1,4 @@
-db DEX_CLEFAIRY ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 70 ; base hp
 db 45 ; base attack
 db 48 ; base defense

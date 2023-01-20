@@ -1,4 +1,4 @@
-db DEX_ELECTABUZZ ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 83 ; base attack
 db 57 ; base defense

@@ -1,4 +1,4 @@
-db DEX_SHELLDER ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 30 ; base hp
 db 65 ; base attack
 db 100 ; base defense

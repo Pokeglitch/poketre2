@@ -1,4 +1,4 @@
-db DEX_MAGIKARP ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 20 ; base hp
 db 10 ; base attack
 db 55 ; base defense

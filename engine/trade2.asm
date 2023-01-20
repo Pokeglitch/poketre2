@@ -5,6 +5,8 @@ Trade_PrintPlayerMonInfoText:
 	ld a, [wTradedPlayerMonSpecies]
 	ld [wd11e], a
 	predef IndexToPokedex
+	ld hl, wd11e
+	inc [hl]
 	coord hl, 9, 0
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3
@@ -27,6 +29,8 @@ Trade_PrintEnemyMonInfoText:
 	ld a, [wTradedEnemyMonSpecies]
 	ld [wd11e], a
 	predef IndexToPokedex
+	ld hl, wd11e
+	inc [hl]
 	coord hl, 9, 10
 	ld de, wd11e
 	lb bc, LEADING_ZEROES | 1, 3

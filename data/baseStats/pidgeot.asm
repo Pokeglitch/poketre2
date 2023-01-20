@@ -1,4 +1,4 @@
-db DEX_PIDGEOT ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 83 ; base hp
 db 80 ; base attack
 db 75 ; base defense

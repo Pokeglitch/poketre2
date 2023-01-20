@@ -1,10 +1,9 @@
 SECTION "Sprite Buffers", SRAM, BANK[0]
-	ds $598
 
-sHallOfFame:: ds HOF_TEAM * HOF_TEAM_CAPACITY ; a598
-
-sPCESpriteBuffer:: ds 7 * 7 * 16
-sPCESpriteBuffer2:: ds 1000
+	sHallOfFame:: ds HOF_TEAM * HOF_TEAM_CAPACITY ; a598
+	sPCESpriteBuffer:: ds 7 * 7 * 16
+	sPCESpriteBuffer2:: ds 7 * 7 * 16
+	sPCESpriteBufferRaw:: ds 1824
 
 SECTION "Save Data", SRAM, BANK[1]
 

@@ -1,4 +1,4 @@
-db DEX_KABUTO ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 30 ; base hp
 db 80 ; base attack
 db 90 ; base defense

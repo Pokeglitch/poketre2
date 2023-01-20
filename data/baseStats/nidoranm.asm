@@ -1,4 +1,4 @@
-db DEX_NIDORAN_M ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 46 ; base hp
 db 57 ; base attack
 db 40 ; base defense

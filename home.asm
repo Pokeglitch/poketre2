@@ -255,7 +255,6 @@ LoadFrontSpriteByMonIndexToDE::
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a ; pokedex starts at 1
 	ld [wWhichInstance], a
 	pop af
 	ld [wd11e], a
@@ -525,7 +524,6 @@ GetMonHeader::
 	jr z, .mew
 	predef IndexToPokedex   ; convert pokemon ID in [wd11e] to pokedex number
 	ld a, [wd11e]
-	dec a
 	ld bc, MonBaseStatsEnd - MonBaseStats
 	ld hl, BaseStats
 	call AddNTimes

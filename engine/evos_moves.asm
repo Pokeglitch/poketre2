@@ -159,7 +159,6 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a
 	ld hl, BaseStats
 	ld bc, MonBaseStatsEnd - MonBaseStats
 	call AddNTimes
@@ -215,7 +214,6 @@ Evolution_PartyMonLoop: ; loop over party mons
 	call z, Evolution_ReloadTilesetTilePatterns
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_SET
 	ld hl, wPokedexOwned

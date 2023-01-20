@@ -1,4 +1,4 @@
-db DEX_MAGMAR ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 95 ; base attack
 db 57 ; base defense

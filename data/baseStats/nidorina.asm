@@ -1,4 +1,4 @@
-db DEX_NIDORINA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 70 ; base hp
 db 62 ; base attack
 db 67 ; base defense

@@ -1,4 +1,4 @@
-db DEX_WEEPINBELL ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 90 ; base attack
 db 50 ; base defense

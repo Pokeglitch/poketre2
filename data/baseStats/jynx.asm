@@ -1,4 +1,4 @@
-db DEX_JYNX ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 50 ; base attack
 db 35 ; base defense

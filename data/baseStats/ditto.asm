@@ -1,4 +1,4 @@
-db DEX_DITTO ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 48 ; base hp
 db 48 ; base attack
 db 48 ; base defense

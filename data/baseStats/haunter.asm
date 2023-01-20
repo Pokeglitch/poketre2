@@ -1,4 +1,4 @@
-db DEX_HAUNTER ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 45 ; base hp
 db 50 ; base attack
 db 45 ; base defense

@@ -1,4 +1,4 @@
-db DEX_WEEDLE ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 40 ; base hp
 db 35 ; base attack
 db 30 ; base defense

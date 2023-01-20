@@ -1,4 +1,4 @@
-db DEX_GYARADOS ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 95 ; base hp
 db 125 ; base attack
 db 79 ; base defense

@@ -1,4 +1,4 @@
-db DEX_PIDGEOTTO ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 63 ; base hp
 db 60 ; base attack
 db 55 ; base defense

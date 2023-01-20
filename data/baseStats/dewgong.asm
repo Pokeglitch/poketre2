@@ -1,4 +1,4 @@
-db DEX_DEWGONG ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 90 ; base hp
 db 70 ; base attack
 db 80 ; base defense

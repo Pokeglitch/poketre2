@@ -1,4 +1,4 @@
-db DEX_VENONAT ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 60 ; base hp
 db 55 ; base attack
 db 50 ; base defense

@@ -1,4 +1,4 @@
-db DEX_PONYTA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 50 ; base hp
 db 85 ; base attack
 db 55 ; base defense

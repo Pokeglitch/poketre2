@@ -1,4 +1,4 @@
-db DEX_SEADRA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 55 ; base hp
 db 65 ; base attack
 db 95 ; base defense

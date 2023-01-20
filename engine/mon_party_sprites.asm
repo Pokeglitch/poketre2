@@ -401,7 +401,6 @@ GetPartyMonSpriteID:
 	predef IndexToPokedex
 	ld a, [wd11e]
 	ld c, a
-	dec a
 	srl a
 	ld hl, MonPartyData
 	ld e, a
@@ -409,7 +408,7 @@ GetPartyMonSpriteID:
 	add hl, de
 	ld a, [hl]
 	bit 0, c
-	jr nz, .skipSwap
+	jr z, .skipSwap
 	swap a ; use lower nybble if pokedex num is even
 .skipSwap
 	and $f0

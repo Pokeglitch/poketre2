@@ -1,4 +1,4 @@
-db DEX_DIGLETT ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 10 ; base hp
 db 55 ; base attack
 db 25 ; base defense

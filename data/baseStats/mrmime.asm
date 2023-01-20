@@ -1,4 +1,4 @@
-db DEX_MR_MIME ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 40 ; base hp
 db 45 ; base attack
 db 65 ; base defense

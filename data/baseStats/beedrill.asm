@@ -1,4 +1,4 @@
-db DEX_BEEDRILL ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 80 ; base attack
 db 40 ; base defense

@@ -1,4 +1,4 @@
-db DEX_JIGGLYPUFF ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 115 ; base hp
 db 45 ; base attack
 db 20 ; base defense

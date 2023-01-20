@@ -281,6 +281,7 @@ DeterminePaletteIDOutOfBattle:
 	predef IndexToPokedex
 	pop bc
 	ld a, [wd11e]
+	inc a
 .skipDexNumConversion
 	ld e, a
 	ld d, 0

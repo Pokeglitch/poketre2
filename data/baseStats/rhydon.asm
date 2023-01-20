@@ -1,4 +1,4 @@
-db DEX_RHYDON ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 105 ; base hp
 db 130 ; base attack
 db 120 ; base defense

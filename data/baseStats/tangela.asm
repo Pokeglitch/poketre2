@@ -1,4 +1,4 @@
-db DEX_TANGELA ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 65 ; base hp
 db 55 ; base attack
 db 115 ; base defense

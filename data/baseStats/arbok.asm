@@ -1,4 +1,4 @@
-db DEX_ARBOK ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 60 ; base hp
 db 85 ; base attack
 db 69 ; base defense

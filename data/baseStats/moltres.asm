@@ -1,4 +1,4 @@
-db DEX_MOLTRES ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 90 ; base hp
 db 100 ; base attack
 db 90 ; base defense

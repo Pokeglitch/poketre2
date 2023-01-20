@@ -6245,7 +6245,6 @@ LoadEnemyMonData:
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
-	dec a
 	ld c, a
 	ld b, FLAG_SET
 	ld hl, wPokedexSeen
@@ -7013,7 +7012,6 @@ LoadMonBackPic:
 
 	farcall IndexToPokedex
 	ld a, [wd11e]
-	dec a ;pokedex starts at 1
 	ld [wWhichInstance], a
 	ld a, ClassPokemon
 	ld [wWhichClass], a

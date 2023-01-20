@@ -1,4 +1,4 @@
-db DEX_SANDSLASH ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 75 ; base hp
 db 100 ; base attack
 db 110 ; base defense

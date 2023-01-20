@@ -1,4 +1,4 @@
-db DEX_PARAS ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 35 ; base hp
 db 70 ; base attack
 db 55 ; base defense

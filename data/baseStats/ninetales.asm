@@ -1,4 +1,4 @@
-db DEX_NINETALES ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 73 ; base hp
 db 76 ; base attack
 db 75 ; base defense

@@ -1,4 +1,4 @@
-db DEX_HYPNO ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 85 ; base hp
 db 73 ; base attack
 db 70 ; base defense

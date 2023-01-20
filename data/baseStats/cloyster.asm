@@ -1,4 +1,4 @@
-db DEX_CLOYSTER ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 50 ; base hp
 db 95 ; base attack
 db 180 ; base defense

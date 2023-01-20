@@ -1,4 +1,4 @@
-db DEX_KINGLER ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 55 ; base hp
 db 130 ; base attack
 db 115 ; base defense

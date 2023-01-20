@@ -8,7 +8,6 @@ INCLUDE "constants/oam_constants.asm"
 INCLUDE "constants/misc_constants.asm"
 
 INCLUDE "constants/pokemon_constants.asm"
-INCLUDE "constants/pokedex_constants.asm"
 INCLUDE "constants/trainer_constants.asm"
 INCLUDE "constants/item_constants.asm"
 INCLUDE "constants/type_constants.asm"

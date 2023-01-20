@@ -1,4 +1,4 @@
-db DEX_DODUO ; pokedex id
+db 0 ; Former Pokedex ID (was never used anyway)
 db 35 ; base hp
 db 85 ; base attack
 db 45 ; base defense
