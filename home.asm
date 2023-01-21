@@ -2191,18 +2191,20 @@ CheckIfAlreadyEngaged::
 	xor a
 	ret
 
+	print "\nRival3: {Rival3}\nRival1: {Rival1}\nLance: {Lance}\n\n"
+
 PlayTrainerMusic::
 	ld a, [wEngagedTrainerClass]
 	sub 201
-	cp Rival1
-	ret z
-	cp Rival2
-	ret z
-	cp Rival3
-	ret z
-	ld a, [wGymLeaderNo]
-	and a
-	ret nz
+	call PrepareTrainerClassData
+	ld a, TrainerPropertyTraitsOffset
+	ld [wWhichProperty], a
+	farcall GetInstanceProperty ; property in l
+	ld a, l
+	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask
+	ret nz ; no entrance music for Rival or Bosses
+
+	push hl
 	xor a
 	ld [wAudioFadeOutControl], a
 	ld a, $ff
@@ -2210,35 +2212,27 @@ PlayTrainerMusic::
 	ld a, BANK(Music_MeetEvilTrainer)
 	ld [wAudioROMBank], a
 	ld [wAudioSavedROMBank], a
-	ld a, [wEngagedTrainerClass]
-	sub 201
-	ld b, a
-	ld hl, EvilTrainerList
-.evilTrainerListLoop
-	ld a, [hli]
-	cp $ff
-	jr z, .noEvilTrainer
-	cp b
-	jr nz, .evilTrainerListLoop
+	pop hl
+	bit TrainerPropertyTraitsFlagMoralityIndex, l
+	jr nz, .playEvilTrainerMusic
+
+	bit TrainerPropertyTraitsFlagGenderIndex, l
+	jr nz, .playFemaleTrainerMusic
+
+	; otherwise, play male
+	ld a, MUSIC_MEET_MALE_TRAINER
+	jr .PlaySound
+
+.playEvilTrainerMusic
 	ld a, MUSIC_MEET_EVIL_TRAINER
 	jr .PlaySound
-.noEvilTrainer
-	ld hl, FemaleTrainerList
-.femaleTrainerListLoop
-	ld a, [hli]
-	cp $ff
-	jr z, .maleTrainer
-	cp b
-	jr nz, .femaleTrainerListLoop
+
+.playFemaleTrainerMusic
 	ld a, MUSIC_MEET_FEMALE_TRAINER
-	jr .PlaySound
-.maleTrainer
-	ld a, MUSIC_MEET_MALE_TRAINER
+
 .PlaySound
 	ld [wNewSoundID], a
 	jp PlaySound
-
-INCLUDE "data/trainer_types.asm"
 
 ; checks if the player's coordinates match an arrow movement tile's coordinates
 ; and if so, decodes the RLE movement data

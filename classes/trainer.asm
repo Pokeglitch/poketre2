@@ -4,23 +4,22 @@ Trainer: MACRO
 	Prop Front, Sprite
 	Prop Money, BCD2, \2
 
-	Prop Traits, Flags, Gender, \3, Morality, \4, Ranked, \5, Rival, \6, Champion, \7
+	Prop Traits, Flags, Gender, \3, Morality, \4, Boss, \5, Rival, \6
 ENDM
 
 	Table Trainer
 	
 	Flag Gender, 	Male,		Female
 	Flag Morality, 	Good,		Evil
-	Flag Ranked, 	No,			Yes
+	Flag Boss, 		No,			Yes
 	Flag Rival, 	No,			Yes
-	Flag Champion,	No,			Yes
 
-	DEF Standard	EQUS "No,	No,		No"
-	DEF Rival		EQUS "No,	Yes,	No"
-	DEF GymLeader	EQUS "Yes,	No,		No"
-	DEF Elite4		EQUS "Yes,	No,		No"
-	DEF Elite4Champ	EQUS "Yes,	No,		Yes"
-	DEF RivalChamp	EQUS "Yes,	Yes,	Yes"
+	DEF Standard	EQUS "No,	No"
+	DEF Rival		EQUS "No,	Yes"
+	DEF GymLeader	EQUS "Yes,	No"
+	DEF Elite4		EQUS "Yes,	No"
+	DEF Elite4Champ	EQUS "Yes,	No"
+	DEF RivalChamp	EQUS "Yes,	Yes"
 
 	Entry Youngster,	15,		Male,		Good,	{Standard}
 	Entry Bug Catcher,	10,		Male,		Good,	{Standard}

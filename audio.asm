@@ -367,32 +367,41 @@ PlayBattleMusic::
 	ld [wNewSoundID], a
 	call PlaySound ; stop music
 	call DelayFrame
-	ld c, BANK(Music_GymLeaderBattle)
-	ld a, [wGymLeaderNo]
-	and a
-	jr z, .notGymLeaderBattle
-	ld a, MUSIC_GYM_LEADER_BATTLE
-	jr .playSong
-.notGymLeaderBattle
+
 	ld a, [wCurOpponent]
 	cp 201
 	jr c, .wildBattle
+	
 	sub 201
-	cp Rival3
+	call PrepareTrainerClassData
+	ld a, TrainerPropertyTraitsOffset
+	ld [wWhichProperty], a
+	farcall GetInstanceProperty ; property in l
+	
+	ld a, l
+	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask
+	cp TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask
 	jr z, .finalBattle
-	cp Lance
-	jr nz, .normalTrainerBattle
-	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
-	jr .playSong
-.normalTrainerBattle
+
+	bit TrainerPropertyTraitsFlagBossIndex, l
+	jr nz, .bossBattle
+
 	ld a, MUSIC_TRAINER_BATTLE
 	jr .playSong
+
+.bossBattle
+	ld a, MUSIC_GYM_LEADER_BATTLE
+	jr .playSong
+
 .finalBattle
 	ld a, MUSIC_FINAL_BATTLE
 	jr .playSong
+
 .wildBattle
 	ld a, MUSIC_WILD_BATTLE
+
 .playSong
+	ld c, BANK(Music_GymLeaderBattle)
 	jp PlayMusic
 
 

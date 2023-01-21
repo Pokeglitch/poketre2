@@ -92,19 +92,27 @@ Prop: MACRO
             DEF {PROPERTY_BY_KEY}FlagCount = FLAG_COUNT
 
             FOR FLAG_INDEX, FLAG_COUNT
+                DEF FLAG_MASK = 1 << FLAG_INDEX
                 DEF KEY_INDEX = FLAG_INDEX*2 + 3
 
                 REDEF FLAG_KEY EQUS "\<{d:KEY_INDEX}>"
                 REDEF FLAG_BY_INDEX EQUS "Flag{d:FLAG_INDEX}"
                 REDEF FLAG_BY_KEY EQUS "Flag{FLAG_KEY}"
 
-                ; Map the Flag Key to the Property Flag By Index
+
+                ; Map the Flag Key to the Property, Flag By Index
                 DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}Key EQUS "{FLAG_KEY}"
                 DEF {PROPERTY_BY_KEY}{FLAG_BY_INDEX}Key EQUS "{FLAG_KEY}"
 
-                ; Map the Flag Index to the Property Flag by Key
+                ; Map the Flag Index to the Property, Flag by Key
                 DEF {PROPERTY_BY_INDEX}{FLAG_BY_KEY}Index = FLAG_INDEX
                 DEF {PROPERTY_BY_KEY}{FLAG_BY_KEY}Index = FLAG_INDEX
+
+                ; Map the Flag Mask to the Property, Flag
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}Mask = FLAG_MASK
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_KEY}Mask = FLAG_MASK
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_INDEX}Mask = FLAG_MASK
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_KEY}Mask = FLAG_MASK
 
                 ; Map the Property Key to the Property by Index, Flag
                 DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}PropertyKey EQUS "{PROPERTY_KEY}"

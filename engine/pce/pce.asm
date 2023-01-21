@@ -3,6 +3,9 @@ TODO:
 Use entirely separate byte to identify difference between trainer and pokemon battle from map sprite
 - search for 201 (and all associated RAM bytes...)
 --------
+GetInstanceProperty should return to a ram value
+Make macros to check flags (different if flag is 1 vs flag is 0)
+--------
 Remove the flipped sprite loading (intro, stat screen, etc)
 - wSpriteFlipped
 ---------------
