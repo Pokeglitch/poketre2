@@ -19,6 +19,11 @@ Table: MACRO
     {TABLE_NAME}Table:
 ENDM
 
+Flag: MACRO
+    DEF {TABLE_NAME}\1\2 = 0
+    DEF {TABLE_NAME}\1\3 = 1
+ENDM
+
 Entry: MACRO
     REDEF ENTRY_NAME EQUS "\1"
     MakeIdentifier ENTRY_NAME
@@ -55,15 +60,67 @@ ENDM
 
 ; 1 - Key
 ; 2 - Type
-; 3 - Value
+; 3+? - Values
 Prop: MACRO
     ; If this is the first time an entry is being defined, then update the table values
     IF {TABLE_NAME}EntryCount == 0
-        ; Define the index & offset for this property (by Name and by Index)
-        DEF {TABLE_NAME}Property{d:{TABLE_NAME}PropertyCount}Key EQUS "\1"
-        DEF {TABLE_NAME}Property\1Index = {TABLE_NAME}PropertyCount
-        DEF {TABLE_NAME}Property{d:{TABLE_NAME}PropertyCount}Offset = {TABLE_NAME}EntrySize
-        DEF {TABLE_NAME}Property\1Offset = {TABLE_NAME}EntrySize
+        DEF PROPERTY_INDEX = {TABLE_NAME}PropertyCount
+        REDEF PROPERTY_BY_INDEX EQUS "{TABLE_NAME}Property{d:PROPERTY_INDEX}"
+
+        REDEF PROPERTY_KEY EQUS "\1"
+        REDEF PROPERTY_BY_KEY EQUS "{TABLE_NAME}Property\1"
+
+        ; Map the Property Key to the Property by Index
+        DEF {PROPERTY_BY_INDEX}Key EQUS "{PROPERTY_KEY}"
+
+        ; Map the Property Index to the Property by Key
+        DEF {PROPERTY_BY_KEY}Index = PROPERTY_INDEX
+
+
+        ; Map the property offset (within the entry) to the Property
+        DEF PROPERTY_OFFSET = {TABLE_NAME}EntrySize
+
+        DEF {PROPERTY_BY_INDEX}Offset = PROPERTY_OFFSET
+        DEF {PROPERTY_BY_KEY}Offset = PROPERTY_OFFSET
+
+        ; If it is a list of Flags, then define variables for each bit
+        IF STRCMP("\2", "Flags") == 0
+
+            ; Map the Flag Count to the Property
+            DEF FLAG_COUNT = (_NARG-2)/2
+            DEF {PROPERTY_BY_INDEX}FlagCount = FLAG_COUNT
+            DEF {PROPERTY_BY_KEY}FlagCount = FLAG_COUNT
+
+            FOR FLAG_INDEX, FLAG_COUNT
+                DEF KEY_INDEX = FLAG_INDEX*2 + 3
+
+                REDEF FLAG_KEY EQUS "\<{d:KEY_INDEX}>"
+                REDEF FLAG_BY_INDEX EQUS "Flag{d:FLAG_INDEX}"
+                REDEF FLAG_BY_KEY EQUS "Flag{FLAG_KEY}"
+
+                ; Map the Flag Key to the Property Flag By Index
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}Key EQUS "{FLAG_KEY}"
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_INDEX}Key EQUS "{FLAG_KEY}"
+
+                ; Map the Flag Index to the Property Flag by Key
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_KEY}Index = FLAG_INDEX
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_KEY}Index = FLAG_INDEX
+
+                ; Map the Property Key to the Property by Index, Flag
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}PropertyKey EQUS "{PROPERTY_KEY}"
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_KEY}PropertyKey EQUS "{PROPERTY_KEY}"
+                
+                ; Map the Property Index to the Property by Key, Flag
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_INDEX}PropertyIndex = PROPERTY_INDEX
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_KEY}PropertyIndex = PROPERTY_INDEX
+                
+                ; Map the Property Offset to the Property, Flag
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_INDEX}PropertyOffset = PROPERTY_OFFSET
+                DEF {PROPERTY_BY_INDEX}{FLAG_BY_KEY}PropertyOffset = PROPERTY_OFFSET
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_INDEX}PropertyOffset = PROPERTY_OFFSET
+                DEF {PROPERTY_BY_KEY}{FLAG_BY_KEY}PropertyOffset = PROPERTY_OFFSET
+            ENDR
+        ENDC
 
         ; Increase the table entry size
         DEF {TABLE_NAME}EntrySize += \2Allocate
@@ -74,33 +131,22 @@ Prop: MACRO
 
     ; Accumulate the args to send to the definition macro
     REDEF PROP_ARGS_STR EQUS "{TABLE_NAME}, {ENTRY_NAME}, \1"
-    FOR I, 3, 3+\2Args
+    FOR I, 3, _NARG+1
         REDEF PROP_ARGS_STR EQUS STRCAT("{PROP_ARGS_STR}", ", \<{d:I}>")
     ENDR
+
     ; Place the value
     \2Define {PROP_ARGS_STR}
 ENDM
 
 ByteAllocate EQU 1
 WordAllocate EQU 2
-BCD2Allocate EQU WordAllocate
-BCD3Allocate EQU 3
+FlagsAllocate EQU ByteAllocate
+BCD2Allocate EQU 2 * ByteAllocate
+BCD3Allocate EQU 3 * ByteAllocate
 PointerAllocate EQU WordAllocate
 StringAllocate EQU PointerAllocate
-BankAllocate EQU ByteAllocate
-BankPointerAllocate EQU BankAllocate + PointerAllocate
-SizeAllocate EQU WordAllocate
-SpriteAllocate EQU SizeAllocate + BankPointerAllocate
-
-PointerArgs = 1
-BCD2Args = 1
-BCD3Args = 1
-StringArgs = 1
-ByteArgs = 1
-BankArgs = 1
-BankPointerArgs = 1
-SizeArgs = 1
-SpriteArgs = 0
+SpriteAllocate EQU WordAllocate + ByteAllocate + PointerAllocate
 
 StringDefine: MACRO
     ; Define the value to an identifier
@@ -125,6 +171,37 @@ ByteDefine: MACRO
     db \4
 ENDM
 
+WordDefine: MACRO
+    ; Define the value to an identifier
+    DEF \1\2\3 = \4
+
+    dw \4
+ENDM
+
+FlagsDefine: MACRO
+    DEF FLAGS_BYTE = 0
+
+    FOR FLAG_INDEX, (_NARG-3)/2
+        DEF KEY_INDEX = FLAG_INDEX*2 + 4
+        DEF VALUE_INDEX = KEY_INDEX + 1
+        REDEF FLAG_KEY EQUS "\<{d:KEY_INDEX}>"
+        DEF FLAG_VALUE = \1{FLAG_KEY}\<{d:VALUE_INDEX}>
+
+        ; Define the flag's value to an identifier
+        DEF \1\2\3{FLAG_KEY} = FLAG_VALUE
+
+        ; Add to the Flag Value
+        DEF SHIFTED_FLAG_VALUE = FLAG_VALUE << FLAG_INDEX
+        DEF FLAGS_BYTE = FLAGS_BYTE | SHIFTED_FLAG_VALUE
+
+    ENDR
+
+    ; Define the combined flags byte to the identifier
+    DEF \1\2\3 = FLAGS_BYTE
+
+    db FLAGS_BYTE
+ENDM
+
 PointerDefine: MACRO
     ; Define the value to an identifier
     DEF \1\2\3 EQUS "\4"
@@ -143,16 +220,6 @@ SpriteDefine: MACRO
         INCBIN STRCAT("pce/", "\1\3","/", STRLWR("\2"),".pce")
         \1\2\3End::
     POPS
-ENDM
-
-; TODO - what to define to idenfitier?
-BankDefine: MACRO
-    db BANK(\4)
-ENDM
-
-; TODO - what to define to idenfitier?
-BankPointerDefine: MACRO
-    dbw BANK(\4), \4
 ENDM
 
 BCD3Define: MACRO

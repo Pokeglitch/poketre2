@@ -1,53 +1,69 @@
 Trainer: MACRO
-    ConvertName \1
-    Prop Name, String, {NAME_STRING}
-    Prop Front, Sprite
-    Prop Money, BCD2, \2
+	ConvertName \1
+	Prop Name, String, {NAME_STRING}
+	Prop Front, Sprite
+	Prop Money, BCD2, \2
+
+	Prop Traits, Flags, Gender, \3, Morality, \4, Ranked, \5, Rival, \6, Champion, \7
 ENDM
 
-    Table Trainer
-    Entry Youngster, 15
-    Entry Bug Catcher, 10
-    Entry Lass, 15
-    Entry Sailor, 30
-    Entry Jr.Trainer♂, 20
-    Entry Jr.Trainer♀, 20
-    Entry PokéManiac, 50
-    Entry Super Nerd, 25
-    Entry Hiker, 35
-    Entry Biker, 20
-    Entry Burglar, 90
-    Entry Engineer, 50
-    Entry Fisherman, 35
-    Entry Swimmer, 5
-    Entry Cue Ball, 25
-    Entry Gambler, 70
-    Entry Beauty, 70
-    Entry Psychic, 10
-    Entry Rocker, 25
-    Entry Juggler, 35
-    Entry Tamer, 40
-    Entry Bird Keeper, 25
-    Entry Blackbelt, 25
-    Entry Rival1, 35
-    Entry Prof. Oak, 99
-    Entry Scientist, 50
-    Entry Giovanni, 99
-    Entry Rocket, 30
-    Entry Cooltrainer♂, 35
-    Entry Cooltrainer♀, 35
-    Entry Bruno, 99
-    Entry Brock, 99
-    Entry Misty, 99
-    Entry Lt. Surge, 99
-    Entry Erika, 99
-    Entry Koga, 99
-    Entry Blaine, 99
-    Entry Sabrina, 99
-    Entry Gentleman, 70
-    Entry Rival2, 65
-    Entry Rival3, 99
-    Entry Lorelei, 99
-    Entry Channeler, 30
-    Entry Agatha, 99
-    Entry Lance, 99
+	Table Trainer
+	
+	Flag Gender, 	Male,		Female
+	Flag Morality, 	Good,		Evil
+	Flag Ranked, 	No,			Yes
+	Flag Rival, 	No,			Yes
+	Flag Champion,	No,			Yes
+
+	DEF Standard	EQUS "No,	No,		No"
+	DEF Rival		EQUS "No,	Yes,	No"
+	DEF GymLeader	EQUS "Yes,	No,		No"
+	DEF Elite4		EQUS "Yes,	No,		No"
+	DEF Elite4Champ	EQUS "Yes,	No,		Yes"
+	DEF RivalChamp	EQUS "Yes,	Yes,	Yes"
+
+	Entry Youngster,	15,		Male,		Good,	{Standard}
+	Entry Bug Catcher,	10,		Male,		Good,	{Standard}
+	Entry Lass,			15,		Female,		Good,	{Standard}
+	Entry Sailor,		30,		Male,		Good,	{Standard}
+	Entry Jr.Trainer♂,	20,		Male,		Good,	{Standard}
+	Entry Jr.Trainer♀,	20,		Female,		Good,	{Standard}
+	Entry PokéManiac,	50,		Male,		Good,	{Standard}
+	Entry Super Nerd,	25,		Male,		Good,	{Standard}
+	Entry Hiker,		35,		Male,		Good,	{Standard}
+	Entry Biker,		20,		Male,		Good,	{Standard}
+	Entry Burglar,		90,		Male,		Evil,	{Standard}
+	Entry Engineer,		50,		Male,		Good,	{Standard}
+	Entry Fisherman,	35,		Male,		Good,	{Standard}
+	Entry Swimmer,		5,		Male,		Good,	{Standard}
+	Entry Cue Ball,		25,		Male,		Evil,	{Standard}
+	Entry Gambler,		70,		Male,		Evil,	{Standard}
+	Entry Beauty,		70,		Female,		Good,	{Standard}
+	Entry Psychic,		10,		Male,		Good,	{Standard}
+	Entry Rocker,		25,		Male,		Evil,	{Standard}
+	Entry Juggler,		35,		Male,		Evil,	{Standard}
+	Entry Tamer,		40,		Male,		Evil,	{Standard}
+	Entry Bird Keeper,	25,		Male,		Good,	{Standard}
+	Entry Blackbelt,	25,		Male,		Good,	{Standard}
+	Entry Rival1,		35,		Male,		Good,	{Rival}
+	Entry Prof. Oak,	99,		Male,		Good,	{Standard}
+	Entry Scientist,	50,		Male,		Good,	{Standard}
+	Entry Giovanni,		99,		Male,		Evil,	{GymLeader}
+	Entry Rocket,		30,		Male,		Evil,	{Standard}
+	Entry Cooltrainer♂,	35,		Male,		Good,	{Standard}
+	Entry Cooltrainer♀,	35,		Female,		Good,	{Standard}
+	Entry Bruno,		99,		Male,		Good,	{Elite4}
+	Entry Brock,		99,		Male,		Good,	{GymLeader}
+	Entry Misty,		99,		Female,		Good,	{GymLeader}
+	Entry Lt. Surge,	99,		Male,		Good,	{GymLeader}
+	Entry Erika,		99,		Female,		Good,	{GymLeader}
+	Entry Koga,			99,		Male,		Good,	{GymLeader}
+	Entry Blaine,		99,		Male,		Good,	{GymLeader}
+	Entry Sabrina,		99,		Female,		Good,	{GymLeader}
+	Entry Gentleman,	70,		Male,		Good,	{Standard}
+	Entry Rival2,		65,		Male,		Good,	{Rival}
+	Entry Rival3,		99,		Male,		Good,	{RivalChamp}
+	Entry Lorelei,		99,		Female,		Good,	{Elite4}
+	Entry Channeler,	30,		Female,		Good,	{Standard}
+	Entry Agatha,		99,		Female,		Good,	{Elite4}
+	Entry Lance,		99,		Male,		Good,	{Elite4Champ}

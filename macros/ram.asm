@@ -1,4 +1,5 @@
 INCLUDE "macros/data_macros.asm"
+INCLUDE "macros/type_macros.asm"
 
 ; Duplicate Table and Entry so the same class file can be used
 Table: MACRO
@@ -6,6 +7,11 @@ Table: MACRO
     REDEF TABLE_NAME EQUS "\1"
     ; Initialize the Count of the Table Entries
     DEF {TABLE_NAME}EntryCount = 0
+ENDM
+
+Flag: MACRO
+    DEF {TABLE_NAME}\1\2 = 0
+    DEF {TABLE_NAME}\1\3 = 1
 ENDM
 
 Entry: MACRO

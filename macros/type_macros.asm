@@ -48,3 +48,43 @@ IsNumber: MACRO
     StartsWithDigit \1, %
     StartsWithDigit \1, `
 ENDM
+
+; makes a virtual list starting at 0 (or, optionally different value)
+Array: MACRO
+	REDEF ARRAY_NAME EQUS "\1"
+	SHIFT
+
+	IsNumber \1
+	IF IS_NUMBER
+        ; If the array has already  been defined, print the message
+        IF DEF({ARRAY_NAME}Size) == 1
+            PRINT "Warning: Array {ARRAY_NAME} has already been defined. Not changing starting index"
+        ELSE
+            DEF {ARRAY_NAME}FirstIndex = \1
+            DEF {ARRAY_NAME}LastIndex = \1 - 1
+            DEF {ARRAY_NAME}Size = 0
+        ENDC
+
+		SHIFT
+	ELSE
+        ; If this array has not already been defined, then initialize
+        IF DEF({ARRAY_NAME}Size) == 0
+            DEF {ARRAY_NAME}FirstIndex = 0
+            DEF {ARRAY_NAME}LastIndex = -1
+            DEF {ARRAY_NAME}Size = 0
+        ENDC
+	ENDC
+	
+    DEF ARRAY_INDEX = {ARRAY_NAME}LastIndex+1
+
+	REPT _NARG
+		DEF {ARRAY_NAME}\1 = ARRAY_INDEX
+        DEF {ARRAY_NAME}{d:ARRAY_INDEX} EQUS "\1"
+
+        DEF {ARRAY_NAME}LastIndex = {ARRAY_NAME}LastIndex + 1
+		DEF {ARRAY_NAME}Size = {ARRAY_NAME}Size + 1
+        DEF ARRAY_INDEX = ARRAY_INDEX + 1
+		SHIFT
+	ENDR
+
+ENDM

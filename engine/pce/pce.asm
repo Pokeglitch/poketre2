@@ -2,12 +2,9 @@
 TODO:
 Use entirely separate byte to identify difference between trainer and pokemon battle from map sprite
 - search for 201 (and all associated RAM bytes...)
-
 --------
 Remove the flipped sprite loading (intro, stat screen, etc)
 - wSpriteFlipped
---------------
-Add in the macro to create a menu screen
 ---------------
 Will have to fix re-loading GHOST sprite when in battle....
  - true for substitute too??
@@ -15,7 +12,9 @@ Will have to fix re-loading GHOST sprite when in battle....
 Remove hardcoded banks in the source and place in the .link file
 --------------
 Always have sRAM bank 0 available for access
-- move all other game save to different bank so they are safe
+- move all other game save detailsto different bank so they are safe
+--------------
+Add in the macro to create a menu screen
 -----------------------
 Continue updating the Pokedex screen, using the new Pokemon class table
 
