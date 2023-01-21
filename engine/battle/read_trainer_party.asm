@@ -1,5 +1,13 @@
-ReadTrainer:
+; if first byte != FF, then
+	; first byte is level (of all pokemon on this team)
+	; all the next bytes are pokemon species
+	; null-terminated
+; if first byte == FF, then
+	; first byte is FF (obviously)
+	; every next two bytes are a level and species
+	; null-terminated
 
+ReadTrainer:
 ; don't change any moves in a link battle
 	ld a, [wLinkState]
 	and a
@@ -17,14 +25,12 @@ ReadTrainer:
 ; get the pointer to trainer data for this class
 	ld a, [wCurOpponent]
 	sub 201 ; convert value from pokemon to trainer
-	add a
-	ld hl, TrainerDataPointers
-	ld c, a
-	ld b, 0
-	add hl, bc ; hl points to trainer class
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	call PrepareTrainerClassData
+	ld a, TrainerPropertyPartiesOffset
+	ld [wWhichProperty], a
+	farcall GetInstanceProperty
+	
+	; hl = pointer to parties
 	ld a, [wTrainerNo]
 	ld b, a
 ; At this point b contains the trainer number,

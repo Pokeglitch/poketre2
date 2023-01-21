@@ -2191,15 +2191,13 @@ CheckIfAlreadyEngaged::
 	xor a
 	ret
 
-	print "\nRival3: {Rival3}\nRival1: {Rival1}\nLance: {Lance}\n\n"
-
 PlayTrainerMusic::
 	ld a, [wEngagedTrainerClass]
 	sub 201
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
 	ld [wWhichProperty], a
-	farcall GetInstanceProperty ; property in l
+	farcall GetInstanceProperty
 	ld a, l
 	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask
 	ret nz ; no entrance music for Rival or Bosses

@@ -3,8 +3,14 @@ Trainer: MACRO
 	Prop Name, String, {NAME_STRING}
 	Prop Front, Sprite
 	Prop Money, BCD2, \2
-
+	Prop Parties, Pointer, {NAME_VALUE}Parties
 	Prop Traits, Flags, Gender, \3, Morality, \4, Boss, \5, Rival, \6
+
+	PUSHS
+	SECTION "{NAME_VALUE} Parties", ROMX, BANK[$E]
+		{NAME_VALUE}Parties:
+			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
+	POPS
 ENDM
 
 	Table Trainer

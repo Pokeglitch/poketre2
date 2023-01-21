@@ -1,0 +1,14 @@
+; Silph Co. 5F
+db 29,KADABRA,MR_MIME,0
+; Victory Road 2F
+db 41,DROWZEE,HYPNO,KADABRA,KADABRA,0
+; Fuchsia Gym
+db 31,DROWZEE,DROWZEE,KADABRA,DROWZEE,0
+db 34,DROWZEE,HYPNO,0
+; Victory Road 2F
+db 48,MR_MIME,0
+; Unused
+db 33,HYPNO,0
+; Fuchsia Gym
+db 38,HYPNO,0
+db 34,DROWZEE,KADABRA,0

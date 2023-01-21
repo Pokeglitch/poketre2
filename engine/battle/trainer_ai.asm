@@ -329,8 +329,6 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 
 INCLUDE "data/trainer_moves.asm"
 
-INCLUDE "data/trainer_parties.asm"
-
 TrainerAI:
 	and a
 	ld a, [wIsInBattle]

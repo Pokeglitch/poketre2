@@ -1,0 +1,9 @@
+; SS Anne 1F Rooms
+db 18,GROWLITHE,GROWLITHE,0
+db 19,NIDORAN_M,NIDORAN_F,0
+; SS Anne 2F Rooms/Vermilion Gym
+db 23,PIKACHU,0
+; Unused
+db 48,PRIMEAPE,0
+; SS Anne 2F Rooms
+db 17,GROWLITHE,PONYTA,0
