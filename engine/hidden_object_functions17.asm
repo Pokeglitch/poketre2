@@ -60,10 +60,7 @@ DisplayFossilSpriteInBox:
 	jr z, .idFound
 	ld a, Skebutops
 .idFound
-	ld [wWhichInstance], a
-	ld a, ClassOther
-	ld [wWhichClass], a
-
+	call PrepareOtherClassData
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
 	

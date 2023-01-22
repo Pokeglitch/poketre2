@@ -1,23 +1,26 @@
-Class: MACRO
-    Prop Size, Byte, \1EntrySize
-    Prop Instances, Pointer, \1Table
+InstanceAccessor: MACRO
+    GetInstance\1:
+        ld a, [H_LOADEDROMBANK]
+        push af ;store the previous bank
+        ld a, [wWhichClass]
+        call SetNewBank
+        call GetInstance\1_SameBank
+        pop af
+        jp SetNewBank
+
+    GetInstance\1_SameBank:
 ENDM
 
-    ; Initialize the Data for the Class Table
-    Table Class
-    Entry Pokemon
-    Entry Trainer
-    Entry Other
-
-GetInstanceName:
-    ld a, PokemonPropertyNameOffset ; shareed with all classes
-    ld [wWhichProperty], a
-    ;fall through
-
 ; copy into de
-GetInstanceString:
+; GetInstanceName:
+    InstanceAccessor Name
     push de
-    call GetInstanceProperty
+    xor a ; PropertyNameOffset is always the first property
+    ld [wWhichProperty], a
+    call GetInstancePropertyPointer
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a ; hl = pointer to string
     pop de
 
 .copyLoop
@@ -29,50 +32,47 @@ GetInstanceString:
 
     ret
 
-GetInstancePropertyPointer:
-    ld hl, ClassTable
-    ld a, [wWhichClass]
-    ld c, a
-    ld a, ClassEntrySize
-    call GetIndexInTable ; hl = pointer to start of class
+; copy c bytes into de
+; GetInstanceProperties:
+    InstanceAccessor Properties
+    push bc
+    push de
+    call GetInstancePropertyPointer
+    pop de
+    pop bc
 
-    ld a, [hli] ; a = size
-    push af
-
+.loop
     ld a, [hli]
-    ld h, [hl]
-    ld l, a ; hl = pointer to class instance table
-    
-    ld a, [wWhichProperty]
-    ld e, a
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .loop
+    ret
 
-    ld a, [wWhichInstance]
-    ld c, a
-    pop af ; a = class size
-    jp GetPropertyAddressInTable
-
-; returns 2 bytes at properly value into HL
+; returns 2 bytes at property value into HL
 ; high byte is in l
-GetInstanceProperty:
+; GetInstanceProperty:
+    InstanceAccessor Property
     call GetInstancePropertyPointer
     ld a, [hli]
     ld h, [hl]
     ld l, a
     ret
 
-; hl = table
-; c = Index
-; e = Property
-; a = Size
-; returns address into HL
-GetPropertyAddressInTable:
-    ld d, 0
-    add hl, de
-    ; Fall Through
+GetInstancePropertyPointer:
+    ld hl, ClassInstanceTableAddress ; all tables start at $4000
+    ld a, [hli] ; a = class entry size
+    push af
 
-; c = index
-GetIndexInTable:
+    ld a, [wWhichProperty]
     ld b, 0
+    ld c, a
+    add hl, bc ; hl = address to property in first instance
+
+    ld a, [wWhichInstance]
+    ld c, a
+
+    pop af ; a = class entry size
 .loop
     add hl, bc
     dec a

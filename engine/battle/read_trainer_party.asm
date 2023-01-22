@@ -28,7 +28,7 @@ ReadTrainer:
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyPartiesOffset
 	ld [wWhichProperty], a
-	farcall GetInstanceProperty
+	call GetInstanceProperty
 	
 	; hl = pointer to parties
 	ld a, [wTrainerNo]

@@ -376,7 +376,7 @@ PlayBattleMusic::
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
 	ld [wWhichProperty], a
-	farcall GetInstanceProperty ; property in l
+	call GetInstanceProperty ; property in l
 	
 	ld a, l
 	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask

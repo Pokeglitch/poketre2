@@ -6810,7 +6810,8 @@ GetTrainerInformation:
 	; not rival, so load name from table
 	call PrepareTrainerClassData
 	ld de, wTrainerName
-	farcall GetInstanceName
+	call GetInstanceName
+
 	jr .loadTrainerMoney
 
 .loadRivalName
@@ -6823,7 +6824,7 @@ GetTrainerInformation:
 	ld [wWhichProperty], a
 	; trainer class and instance is already above
 
-	farcall GetInstanceProperty ; high byte is in l
+	call GetInstanceProperty ; high byte is in l
 
 	ld de, wTrainerBaseMoney
 	ld a, l
@@ -6864,10 +6865,8 @@ InitWildBattle:
 	ld a, "T"
 	ld [hli], a
 	ld [hl], "@"
-	ld a, ClassOther
-	ld [wWhichClass], a
 	ld a, Poltergost
-	ld [wWhichInstance], a
+	call PrepareOtherClassData
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
 	ld de, vFrontPic
@@ -7061,9 +7060,7 @@ LoadMonBackPic:
 
 	predef IndexToPokedex
 	ld a, [wd11e]
-	ld [wWhichInstance], a
-	ld a, ClassPokemon
-	ld [wWhichClass], a
+	call PreparePokemonClassData
 	ld a, PokemonPropertyBackOffset
 	ld [wWhichProperty], a
 	ld de, vBackPic

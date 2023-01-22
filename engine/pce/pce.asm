@@ -1,31 +1,37 @@
 /*
 TODO:
-	Move the remaining trainer data into the trainer table
+Move the remaining trainer data into the trainer table
 	- TrainerClassMoveChoiceModifications
 	- TrainerAIPointers
 	- LoneMoves
 	- TeamMoves
-------------------
-Move the Class data accessors to be in the home bank
-- GetInstanceProperty should return to a ram value
 
-Make macros (& routines where necessary) to:
-- get an instance value
-- - if expected value is 1 byte, return it into a
-- check flags (need to know if flag is expected to be a 1 or 0)
+- Use Trainer Bank value in the SECTION definition within the Trainer macro
+- move the "parties" and trainer ai data in this bank
+- move all functions that read from the table 
+- - ReadTrainer, ReadTrainerHeaderInfo, GetTrainerInformation
+------------------
+Make macros to check flag value
+- need to know if flag is expected to be a 1 or 0, to place either 'z/c' or 'nz/nc'
+- also macro for masking
+--------------
+Define constant to indicate the byte size of each property
+
+Macro to GetInstanceProperty
+- returns into either a or hl based on the size of the property it is trying to acces
+
+Make a macro for GetInstanceProperties to calculate how many bytes to allocate
 ------------------
 Move all tables to their own bank
+- Class ID can be the bank
+- the tables can all start at $4000
 
 Move all trainer data to a separate bank
-- Use this Bank value in the SECTION definition within the Trainer macro
-- also include the "parties" and trainer ai data in this bank
-- include all functions that read from the table 
-- - ReadTrainer, ReadTrainerHeaderInfo, GetTrainerInformation
 
 ---------------------
 Move the Sprites to be inside the classes/trainer folder
 
-Update the makefiles to include:
+Update the makefiles dependencies:
 - sprites insides classes -> <name> -> pce sub folders
 - asm files inside classes -> <name> -> data sub folders
 --------
@@ -39,6 +45,9 @@ Will have to fix re-loading GHOST sprite when in battle....
  - true for substitute too??
 -----------------------
 Remove hardcoded banks in the source and place in the .link file
+--------------
+Create a macro for running the appropriate functions before/after a screen is displayed
+- or a home routine
 --------------
 Always have sRAM bank 0 available for access
 - move all other game save detailsto different bank so they are safe

@@ -255,15 +255,13 @@ LoadFrontSpriteByMonIndexToDE::
 	ld [wd11e], a
 	predef IndexToPokedex
 	ld a, [wd11e]
-	ld [wWhichInstance], a
+	call PreparePokemonClassData
 	pop af
 	ld [wd11e], a
 	pop de
 	;fall through
 
 ; de: destination location
-	ld a, ClassPokemon
-	ld [wWhichClass], a
 	ld a, PCEPaletteStandardWhiteBG
 	ld [wPCEPaletteID], a
 	farjump LoadMainPCEImageToVRAM
@@ -1545,17 +1543,15 @@ GetMonName::
 
 	predef IndexToPokedex
 	ld a, [wd11e]
-	ld [wWhichInstance], a
-	ld a, ClassPokemon
-	ld [wWhichClass], a
-	ld de, wcd6d
-	push de
-	farcall GetInstanceName
+	call PreparePokemonClassData
 
-	pop de
+	ld de, wcd6d
+	call GetInstanceName
+
 	pop hl
 	pop af
 	ld [wd11e], a
+	ld de, wcd6d
 	ret
 
 GetItemName::
@@ -2197,7 +2193,8 @@ PlayTrainerMusic::
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
 	ld [wWhichProperty], a
-	farcall GetInstanceProperty
+	call GetInstanceProperty
+
 	ld a, l
 	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask
 	ret nz ; no entrance music for Rival or Bosses
@@ -4339,20 +4336,20 @@ DrawSprite:
 ; a = instance
 PrepareTrainerClassData:
 	ld [wWhichInstance], a
-	ld a, ClassTrainer
+	ld a, TrainerClass
 	ld [wWhichClass], a
 	ret
 
 ; a = instance
 PrepareOtherClassData:
 	ld [wWhichInstance], a
-	ld a, ClassOther
+	ld a, OtherClass
 	ld [wWhichClass], a
 	ret
 
 ; a = instance
 PreparePokemonClassData:
 	ld [wWhichInstance], a
-	ld a, ClassPokemon
+	ld a, PokemonClass
 	ld [wWhichClass], a
 	ret

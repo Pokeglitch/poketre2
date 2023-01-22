@@ -10,11 +10,9 @@ GFX EQU $4
 SECTION "CustomGFX", ROMX, BANK[$3D]
 INCLUDE "gfx.asm"
 
-SECTION "Classes", ROMX, BANK[$2D]
 INCLUDE "classes/pokemon.asm"
 INCLUDE "classes/Trainer.asm"
 INCLUDE "classes/other.asm"
-INCLUDE "classes/classes.asm"
 
 INCLUDE "audio.asm"
 
@@ -51,6 +49,7 @@ SECTION "joypad", ROM0 [$60]
 
 SECTION "Home", ROM0
 INCLUDE "home.asm"
+INCLUDE "classes/classes.asm"
 
 SECTION "bank1",ROMX,BANK[$1]
 

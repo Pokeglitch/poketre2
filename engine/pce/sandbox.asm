@@ -56,7 +56,7 @@ SandboxType: MACRO
         ConvertName \1
     ENDC
 
-    Prop Class, Byte, Class{NAME_VALUE}
+    Prop Class, Byte, {NAME_VALUE}Class
     Prop Max, Byte, {NAME_VALUE}EntryCount - 1
     Prop Property, Byte, {NAME_VALUE}Property\2Offset
     Prop Name, String, NAME_STRING
@@ -368,7 +368,7 @@ LoadPCESandboxList:
 	ld [wWhichInstance], a
 
     ; update the name
-    call UpdatePCESandboxSpriteName
+    call UpdatePCESandboxInstanceName
     
     ; load sprite if auto is enabled
     jp TryLoadPCESandboxSprite
@@ -394,7 +394,7 @@ UpdatePCESandboxSprite:
     xor a
 .storeSprite
 	ld [wWhichInstance], a
-    call UpdatePCESandboxSpriteName
+    call UpdatePCESandboxInstanceName
 
     ; fall through
 
@@ -410,7 +410,7 @@ LoadPCESandboxSprite:
     ld de, vFrontPic
 	jp LoadPCEImageToVRAM
 
-UpdatePCESandboxSpriteName:
+UpdatePCESandboxInstanceName:
     coord hl, PCESandboxValueCol, PCESandboxSpriteRow
     lb bc, 1, SCREEN_WIDTH - PCESandboxValueCol
     call ClearScreenArea
@@ -418,15 +418,13 @@ UpdatePCESandboxSpriteName:
     ld a, [wWhichProperty]
     push af
 
-    ld a, PokemonPropertyNameOffset ; All names use the same property ID
-	ld [wWhichProperty], a
-	call GetInstanceProperty
+    ld de, wBuffer
+	call GetInstanceName
 
     pop af
 	ld [wWhichProperty], a
 
-    ld d, h
-    ld e, l
+    ld de, wBuffer
     coord hl, PCESandboxValueCol, PCESandboxSpriteRow
     jp PlaceString
 

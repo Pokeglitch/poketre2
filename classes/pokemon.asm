@@ -5,7 +5,7 @@ Pokemon: MACRO
     Prop Back, Sprite
 ENDM
 
-    Table Pokemon
+    Class Pokemon
     Entry Bulbasaur
     Entry Ivysaur
     Entry Venusaur

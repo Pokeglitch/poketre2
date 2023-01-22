@@ -172,7 +172,7 @@ LoadPCEImageToVRAM:
     call LoadPCEDataIntoBuffer
     call DrawPCEImage
     
-    ; bank doesnt matter, sram wont change sram
+    ; bank doesnt matter, sram wont change bank
     ld de, sPCESpriteBuffer
     ld c, 7*7
     pop hl ; hl = final sprite destination
@@ -183,8 +183,11 @@ LoadPCEImageToVRAM:
     ret
 
 LoadPCEDataIntoBuffer:
-	call GetInstancePropertyPointer
+    ld c, SpriteAllocate
+    ld de, wBuffer
+	call GetInstanceProperties
 
+    ld hl, wBuffer
     ld c, [hl]
     inc hl
     ld b, [hl] ; bc = size

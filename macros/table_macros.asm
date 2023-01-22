@@ -1,3 +1,15 @@
+DEF ClassInstanceTableAddress = $4000
+DEF CLASS_BANK = $30
+Class: MACRO
+    DEF \1Class = CLASS_BANK
+    DEF CLASS_BANK = CLASS_BANK + 1
+    
+    SECTION "\1 Class", ROMX[ClassInstanceTableAddress], BANK[\1Class]
+        db \1EntrySize
+
+        Table \1
+ENDM
+
 REDEF TABLE_NAME EQUS ""
 ; 1 - Table Name
 Table: MACRO

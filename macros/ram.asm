@@ -1,6 +1,10 @@
 INCLUDE "macros/data_macros.asm"
 INCLUDE "macros/type_macros.asm"
 
+Class: MACRO
+    Table \1
+ENDM
+
 ; Duplicate Table and Entry so the same class file can be used
 Table: MACRO
     ; Store the Table Name so the Entry macro can reference it

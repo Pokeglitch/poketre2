@@ -13,7 +13,7 @@ Trainer: MACRO
 	POPS
 ENDM
 
-	Table Trainer
+	Class Trainer
 	
 	Flag Gender, 	Male,		Female
 	Flag Morality, 	Good,		Evil
