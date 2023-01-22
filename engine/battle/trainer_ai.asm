@@ -337,19 +337,23 @@ TrainerAI:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	ret z
-	ld a, [wTrainerClass] ; what trainer class is this?
-	ld c, a
-	ld b, 0
-	ld hl, TrainerAIPointers
-	add hl, bc
-	add hl, bc
-	add hl, bc
+
+	ld a, [wTrainerClass]
+	call PrepareTrainerClassData
+	ld a, TrainerPropertyAIUsesOffset
+	ld [wWhichProperty], a
+    ld c, 3
+    ld de, wBuffer
+	call GetInstanceProperties
+
+    ld hl, wBuffer
 	ld a, [wAICount]
 	and a
 	ret z ; if no AI uses left, we're done here
 	inc hl
 	inc a
 	jr nz, .getpointer
+	; initialize wAICount if it's -1
 	dec hl
 	ld a, [hli]
 	ld [wAICount], a
@@ -359,56 +363,6 @@ TrainerAI:
 	ld l, a
 	call Random
 	jp hl
-
-TrainerAIPointers:
-; one entry per trainer class
-; first byte, number of times (per Pokémon) it can occur
-; next two bytes, pointer to AI subroutine for trainer class
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,JugglerAI ; juggler
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 2,BlackbeltAI ; blackbelt
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 3,GenericAI
-	dbw 1,GiovanniAI ; giovanni
-	dbw 3,GenericAI
-	dbw 2,CooltrainerMAI ; cooltrainerm
-	dbw 1,CooltrainerFAI ; cooltrainerf
-	dbw 2,BrunoAI ; bruno
-	dbw 5,BrockAI ; brock
-	dbw 1,MistyAI ; misty
-	dbw 1,LtSurgeAI ; surge
-	dbw 1,ErikaAI ; erika
-	dbw 2,KogaAI ; koga
-	dbw 2,BlaineAI ; blaine
-	dbw 1,SabrinaAI ; sabrina
-	dbw 3,GenericAI
-	dbw 1,Rival2AI ; rival2
-	dbw 1,Rival3AI ; rival3
-	dbw 2,LoreleiAI ; lorelei
-	dbw 3,GenericAI
-	dbw 2,AgathaAI ; agatha
-	dbw 1,LanceAI ; lance
 
 JugglerAI:
 	cp $40

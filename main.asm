@@ -2,12 +2,6 @@
 INCLUDE "macros/rom.asm"
 INCLUDE "constants/constants.asm"
 
-NPC_SPRITES_1 EQU $4
-NPC_SPRITES_2 EQU $5
-
-GFX EQU $4
-
-SECTION "CustomGFX", ROMX, BANK[$3D]
 INCLUDE "gfx.asm"
 
 INCLUDE "classes/pokemon.asm"
@@ -155,7 +149,7 @@ INCLUDE "engine/pathfinding.asm"
 INCLUDE "engine/hp_bar.asm"
 INCLUDE "engine/hidden_object_functions3.asm"
 
-SECTION "NPC Sprites 1", ROMX, BANK[NPC_SPRITES_1]
+SECTION "NPC Sprites 1", ROMX, BANK[$4]
 
 OakAideSprite:         INCBIN "gfx/sprites/oak_aide.2bpp"
 RockerSprite:          INCBIN "gfx/sprites/rocker.2bpp"
@@ -186,7 +180,7 @@ OldAmberSprite:        INCBIN "gfx/sprites/old_amber.2bpp"
 LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
 
 
-SECTION "Graphics", ROMX, BANK[GFX]
+SECTION "Graphics", ROMX, BANK[$4]
 ABTiles:                        INCBIN "gfx/AB.2bpp"
 HpBarAndStatusGraphics:         INCBIN "gfx/hp_bar_and_status.2bpp"
 HpBarAndStatusGraphicsEnd:
@@ -251,7 +245,7 @@ INCLUDE "engine/items/inventory.asm"
 INCLUDE "engine/inventory/pokemart.asm"
 
 
-SECTION "NPC Sprites 2", ROMX, BANK[NPC_SPRITES_2]
+SECTION "NPC Sprites 2", ROMX, BANK[$5]
 
 RedCyclingSprite:     INCBIN "gfx/sprites/cycling.2bpp"
 RedSprite:            INCBIN "gfx/sprites/red.2bpp"
