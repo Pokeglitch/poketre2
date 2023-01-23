@@ -185,7 +185,7 @@ LoadPCEImageToVRAM:
 LoadPCEDataIntoBuffer:
     ld c, SpriteAllocate
     ld de, wBuffer
-	call GetInstanceProperties
+	call GetInstanceProperties_Far
 
     ld hl, wBuffer
     ld c, [hl]

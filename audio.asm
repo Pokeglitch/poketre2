@@ -375,8 +375,7 @@ PlayBattleMusic::
 	sub 201
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
-	ld [wWhichProperty], a
-	call GetInstanceProperty ; property in l
+	call GetInstanceProperty_Far ; property in l
 	
 	ld a, l
 	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask

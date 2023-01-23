@@ -1,9 +1,33 @@
-ReadTrainer:
-; don't change any moves in a link battle
+CopyIntoTrainerName:
+	ld de, wTrainerName
+	ld bc, 13
+	jp CopyData
+
+LoadTrainer:
+	; Only load the name if Link Battle
+	ld hl, wLinkEnemyTrainerName
 	ld a, [wLinkState]
 	and a
-	ret nz
+	jr nz, CopyIntoTrainerName
 
+	ld a, [wTrainerClass]
+	ld [wWhichInstance], a
+	ld a, TrainerPropertyTraitsOffset
+	call GetInstancePropertyPointer
+
+	bit TrainerPropertyTraitsFlagRivalIndex, [hl]
+	jr nz, .loadRivalName ; load rival name if its the Rival
+
+	; not rival, so load name from table	
+	ld de, wTrainerName
+	call GetInstanceName ; instance was already set earlier
+	jr .loadParty
+
+.loadRivalName
+	ld hl, wRivalName
+	call CopyIntoTrainerName
+
+.loadParty
 	; Initialize the enemy party
 	ld hl, wEnemyPartyCount
 	xor a
@@ -14,10 +38,8 @@ ReadTrainer:
 ; get the pointer to trainer data for this class
 	ld a, [wCurOpponent]
 	sub 201 ; convert value from pokemon to trainer
-	call PrepareTrainerClassData
 	ld a, TrainerPropertyPartiesOffset
-	ld [wWhichProperty], a
-	call GetInstanceProperty
+	call GetInstanceProperty ; instance were already set earlier
 	
 	; hl = pointer to parties
 	ld a, [wTrainerNo]
@@ -94,6 +116,19 @@ ReadTrainer:
 	jr .checkForSpecialMove
 
 .storeTrainerMoney
+	; load the base money
+	ld a, [wTrainerClass]
+	ld [wWhichInstance], a
+	ld a, TrainerPropertyMoneyOffset
+	call GetInstanceProperty ; high byte is in l
+
+	ld de, wTrainerBaseMoney
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+
 ; clear wAmountMoneyWon addresses
 	xor a
 	ld de, wAmountMoneyWon

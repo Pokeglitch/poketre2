@@ -17,12 +17,11 @@ AIEnemyTrainerChooseMoves:
 	ld b, $0
 	add hl, bc    ; advance pointer to forbidden move
 	ld [hl], $50  ; forbid (highly discourage) disabled move
-.noMoveDisabled
 
+.noMoveDisabled
 	ld a, [wTrainerClass]
-	call PrepareTrainerClassData
+	ld [wWhichInstance], a
 	ld a, TrainerPropertyMoveSelectionOffset
-	ld [wWhichProperty], a
 	call GetInstanceProperty
 	ld a, l
 	and a
@@ -252,10 +251,6 @@ ReadMove:
 	pop hl
 	ret
 
-INCLUDE "engine/battle/bank_e_misc.asm"
-
-INCLUDE "engine/battle/read_trainer_party.asm"
-
 TrainerAI:
 	and a ; initilize carry flag to 0
 	ld a, [wIsInBattle]
@@ -266,11 +261,10 @@ TrainerAI:
 	ret z
 
 	ld a, [wTrainerClass]
-	call PrepareTrainerClassData
-	ld a, TrainerPropertyAIUsesOffset
-	ld [wWhichProperty], a
+	ld [wWhichInstance], a
     ld c, 3
     ld de, wBuffer
+	ld a, TrainerPropertyAIUsesOffset
 	call GetInstanceProperties
 
     ld hl, wBuffer
@@ -412,12 +406,7 @@ LanceAI:
 	ret nc
 	jp AIUseHyperPotion
 
-GenericAI:
-	and a ; clear carry
-	ret
-
 ; end of individual trainer AI routines
-
 DecrementAICount:
 	ld hl, wAICount
 	dec [hl]

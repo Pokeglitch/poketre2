@@ -1546,7 +1546,7 @@ GetMonName::
 	call PreparePokemonClassData
 
 	ld de, wcd6d
-	call GetInstanceName
+	call GetInstanceName_Far
 
 	pop hl
 	pop af
@@ -2192,8 +2192,7 @@ PlayTrainerMusic::
 	sub 201
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
-	ld [wWhichProperty], a
-	call GetInstanceProperty
+	call GetInstanceProperty_Far
 
 	ld a, l
 	and TrainerPropertyTraitsFlagRivalMask | TrainerPropertyTraitsFlagBossMask

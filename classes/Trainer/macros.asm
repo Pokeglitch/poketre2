@@ -42,3 +42,29 @@ Party: MACRO
 
     db PartyDataTerminator
 ENDM
+
+Trainer: MACRO
+	ConvertName \1
+	Prop Name, String, {NAME_STRING}
+	Prop Front, Sprite
+	Prop Money, BCD2, \2
+	Prop Parties, Pointer, {NAME_VALUE}Parties
+	Prop Traits, Flags, Gender, \3, Morality, \4, Boss, \5, Rival, \6
+
+	; Default AI Values
+	REDEF AI_ROUTINE EQUS "0"
+	
+	IF \7 != 0
+		REDEF AI_ROUTINE EQUS "{NAME_VALUE}AI"
+	ENDC
+	
+	Prop AIUses, Byte, \7
+	Prop AIRoutine, Pointer, AI_ROUTINE
+	Prop MoveSelection, Flags, Ailment, \8, SideEffects, \9, TypeAdvantage, \<10>
+
+	PUSHS
+	SECTION "{NAME_VALUE} Parties", ROMX, BANK[TrainerClass]
+		{NAME_VALUE}Parties:
+			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
+	POPS
+ENDM

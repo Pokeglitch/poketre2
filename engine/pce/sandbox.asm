@@ -419,7 +419,7 @@ UpdatePCESandboxInstanceName:
     push af
 
     ld de, wBuffer
-	call GetInstanceName
+	call GetInstanceName_Far
 
     pop af
 	ld [wWhichProperty], a

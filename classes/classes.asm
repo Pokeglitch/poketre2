@@ -1,22 +1,16 @@
-InstanceAccessor: MACRO
-    GetInstance\1:
-        ld a, [H_LOADEDROMBANK]
-        push af ;store the previous bank
-        ld a, [wWhichClass]
-        call SetNewBank
-        call GetInstance\1_SameBank
-        pop af
-        jp SetNewBank
-
-    GetInstance\1_SameBank:
-ENDM
-
 ; copy into de
-; GetInstanceName:
-    InstanceAccessor Name
+GetInstanceName_Far:
+    ld a, [H_LOADEDROMBANK]
+    push af ;store the previous bank
+    ld a, [wWhichClass]
+    call SetNewBank
+    call GetInstanceName
+    pop af
+    jp SetNewBank
+
+GetInstanceName:
     push de
     xor a ; PropertyNameOffset is always the first property
-    ld [wWhichProperty], a
     call GetInstancePropertyPointer
     ld a, [hli]
     ld h, [hl]
@@ -33,11 +27,22 @@ ENDM
     ret
 
 ; copy c bytes into de
-; GetInstanceProperties:
-    InstanceAccessor Properties
+GetInstanceProperties_Far:
+    ld a, [H_LOADEDROMBANK]
+    push af ;store the previous bank
+    ld a, [wWhichClass]
+    call SetNewBank
+    call GetInstanceProperties_Common
+    pop af
+    jp SetNewBank
+
+GetInstanceProperties:
+	ld [wWhichProperty], a
+
+GetInstanceProperties_Common:
     push bc
     push de
-    call GetInstancePropertyPointer
+    call GetInstancePropertyPointer_Common
     pop de
     pop bc
 
@@ -51,8 +56,22 @@ ENDM
 
 ; returns 2 bytes at property value into HL
 ; high byte is in l
-; GetInstanceProperty:
-    InstanceAccessor Property
+GetInstanceProperty_Far:
+    ld [wWhichProperty], a
+    ld a, [H_LOADEDROMBANK]
+    push af ;store the previous bank
+    ld a, [wWhichClass]
+    call SetNewBank
+    
+    call GetInstancePropertyPointer_Common
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+
+    pop af
+    jp SetNewBank
+
+GetInstanceProperty:
     call GetInstancePropertyPointer
     ld a, [hli]
     ld h, [hl]
@@ -60,6 +79,9 @@ ENDM
     ret
 
 GetInstancePropertyPointer:
+    ld [wWhichProperty], a
+
+GetInstancePropertyPointer_Common:
     ld hl, ClassInstanceTableAddress ; all tables start at $4000
     ld a, [hli] ; a = class entry size
     push af
