@@ -1073,7 +1073,7 @@ _EnemyMonFaintedText::
 
 _MoneyForWinningText::
 	text "<PLAYER> got $"
-	numtext wAmountMoneyWon, 7, 3 ; 7 digits, 3 bytes
+	numtext wAmountMoneyWon, 5, 2 ; 5 digits, 2 bytes
 	next "for winning!"
 	prompt
 

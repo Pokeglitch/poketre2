@@ -122,35 +122,25 @@ LoadTrainer:
 	ld a, TrainerPropertyMoneyOffset
 	call GetInstanceProperty ; high byte is in l
 
-	ld de, wTrainerBaseMoney
-	ld a, l
-	ld [de], a
-	inc de
-	ld a, h
-	ld [de], a
+	ld d, 0
+	ld e, l
+	ld hl, 0
 
-; clear wAmountMoneyWon addresses
-	xor a
-	ld de, wAmountMoneyWon
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
 	ld a, [wCurEnemyLVL]
-	ld b, a
 
-.LastLoop
-; update wAmountMoneyWon addresses (money to win) based on last enemy's level
-	ld hl, wTrainerBaseMoney + 1
-	ld c, 2 ; wTrainerBaseMoney is a 2-byte number
-	push bc
-	push de
-	call AddBytes
-	pop de
-	pop bc
-	dec b
-	jr nz, .LastLoop ; repeat wCurEnemyLVL times
+.calcMoneyLoop
+	add hl, de
+	dec a
+	jr nz, .calcMoneyLoop
+
+	ld d, h
+	ld e, l
+
+	ld hl, wAmountMoneyWon
+	ld a, d
+	ld [hli], a
+	ld a, e
+	ld [hl], a
 	ret
 
 AddMonToEnemyParty:

@@ -47,7 +47,7 @@ Trainer: MACRO
 	ConvertName \1
 	Prop Name, String, {NAME_STRING}
 	Prop Front, Sprite
-	Prop Money, BCD2, \2
+	Prop Money, Byte, \2
 	Prop Parties, Pointer, {NAME_VALUE}Parties
 	Prop Traits, Flags, Gender, \3, Morality, \4, Boss, \5, Rival, \6
 

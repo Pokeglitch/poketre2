@@ -1614,10 +1614,7 @@ wLearnMoveMonName:: ; d036
 ; The name of the mon that is learning a move.
 	ds 16
 
-wTrainerBaseMoney:: ; d046
-; 2-byte BCD number
-; money received after battle = base money × level of highest-level enemy mon
-	ds 2
+	ds 2 ; unused
 
 wMissableObjectCounter:: ; d048
 	ds 1
@@ -1779,7 +1776,7 @@ wEscapedFromBattle::
 	ds 1
 
 wAmountMoneyWon:: ; d079
-; 3-byte BCD number
+; 2-byte BCD number
 
 wObjectToHide:: ; d079
 	ds 1

@@ -1031,8 +1031,8 @@ TrainerBattleVictory:
 	ld hl, MoneyForWinningText
 	call PrintText
 	ld de, wPlayerMoney + 2
-	ld hl, wAmountMoneyWon + 2
-	ld c, 3
+	ld hl, wAmountMoneyWon + 1
+	ld c, 2
 	jp AddBytes
 
 MoneyForWinningText:
