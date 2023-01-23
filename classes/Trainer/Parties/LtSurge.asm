@@ -1,1 +1,1 @@
-db $FF,21,VOLTORB,18,PIKACHU,24,RAICHU,0
+    Party 21, Voltorb, 18, Pikachu, 24, Raichu, 2, THUNDERBOLT

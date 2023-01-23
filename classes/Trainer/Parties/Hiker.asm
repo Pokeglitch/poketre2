@@ -1,21 +1,21 @@
 ; Mt. Moon 1F
-db 10,GEODUDE,GEODUDE,ONIX,0
+	Party 10, Geodude, Geodude, Onix
 ; Route 25
-db 15,MACHOP,GEODUDE,0
-db 13,GEODUDE,GEODUDE,MACHOP,GEODUDE,0
-db 17,ONIX,0
+	Party 15, Machop, Geodude
+	Party 13, Geodude, Geodude, Machop, Geodude
+	Party 17, Onix
 ; Route 9
-db 21,GEODUDE,ONIX,0
-db 20,GEODUDE,MACHOP,GEODUDE,0
+	Party 21, Geodude, Onix
+	Party 20, Geodude, Machop, Geodude
 ; Route 10
-db 21,GEODUDE,ONIX,0
-db 19,ONIX,GRAVELER,0
+	Party 21, Geodude, Onix
+	Party 19, Onix, Graveler
 ; Rock Tunnel B1F
-db 21,GEODUDE,GEODUDE,GRAVELER,0
-db 25,GEODUDE,0
+	Party 21, Geodude, Geodude, Graveler
+	Party 25, Geodude
 ; Route 9/Rock Tunnel B1F
-db 20,MACHOP,ONIX,0
+	Party 20, Machop, Onix
 ; Rock Tunnel 1F
-db 19,GEODUDE,MACHOP,GEODUDE,GEODUDE,0
-db 20,ONIX,ONIX,GEODUDE,0
-db 21,GEODUDE,GRAVELER,0
+	Party 19, Geodude, Machop, Geodude, Geodude
+	Party 20, Onix, Onix, Geodude
+	Party 21, Geodude, Graveler

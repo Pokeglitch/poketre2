@@ -1,27 +1,27 @@
 ; Route 3
-db 9,PIDGEY,PIDGEY,0
-db 10,RATTATA,NIDORAN_M,0
-db 14,JIGGLYPUFF,0
+	Party 9, Pidgey, Pidgey
+	Party 10, Rattata, NidoranM
+	Party 14, Jigglypuff
 ; Route 4
-db 31,PARAS,PARAS,PARASECT,0
+	Party 31, Paras, Paras, Parasect
 ; Mt. Moon 1F
-db 11,ODDISH,BELLSPROUT,0
-db 14,CLEFAIRY,0
+	Party 11, Oddish, Bellsprout
+	Party 14, Clefairy
 ; Route 24
-db 16,PIDGEY,NIDORAN_F,0
-db 14,PIDGEY,NIDORAN_F,0
+	Party 16, Pidgey, NidoranF
+	Party 14, Pidgey, NidoranF
 ; Route 25
-db 15,NIDORAN_M,NIDORAN_F,0
-db 13,ODDISH,PIDGEY,ODDISH,0
+	Party 15, NidoranM, NidoranF
+	Party 13, Oddish, Pidgey, Oddish
 ; SS Anne 1F Rooms
-db 18,PIDGEY,NIDORAN_F,0
+	Party 18, Pidgey, NidoranF
 ; SS Anne 2F Rooms
-db 18,RATTATA,PIKACHU,0
+	Party 18, Rattata, Pikachu
 ; Route 8
-db 23,NIDORAN_F,NIDORINA,0
-db 24,MEOWTH,MEOWTH,MEOWTH,0
-db 19,PIDGEY,RATTATA,NIDORAN_M,MEOWTH,PIKACHU,0
-db 22,CLEFAIRY,CLEFAIRY,0
+	Party 23, NidoranF, Nidorina
+	Party 24, Meowth, Meowth, Meowth
+	Party 19, Pidgey, Rattata, NidoranM, Meowth, Pikachu
+	Party 22, Clefairy, Clefairy
 ; Celadon Gym
-db 23,BELLSPROUT,WEEPINBELL,0
-db 23,ODDISH,GLOOM,0
+	Party 23, Bellsprout, Weepinbell
+	Party 23, Oddish, Gloom

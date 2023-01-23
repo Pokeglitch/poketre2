@@ -1,20 +1,20 @@
 ; Route 3
-db 11,RATTATA,EKANS,0
-db 14,SPEAROW,0
+	Party 11, Rattata, Ekans
+	Party 14, Spearow
 ; Mt. Moon 1F
-db 10,RATTATA,RATTATA,ZUBAT,0
+	Party 10, Rattata, Rattata, Zubat
 ; Route 24
-db 14,RATTATA,EKANS,ZUBAT,0
+	Party 14, Rattata, Ekans, Zubat
 ; Route 25
-db 15,RATTATA,SPEAROW,0
-db 17,SLOWPOKE,0
-db 14,EKANS,SANDSHREW,0
+	Party 15, Rattata, Spearow
+	Party 17, Slowpoke
+	Party 14, Ekans, Sandshrew
 ; SS Anne 1F Rooms
-db 21,NIDORAN_M,0
+	Party 21, NidoranM
 ; Route 11
-db 21,EKANS,0
-db 19,SANDSHREW,ZUBAT,0
-db 17,RATTATA,RATTATA,RATICATE,0
-db 18,NIDORAN_M,NIDORINO,0
+	Party 21, Ekans
+	Party 19, Sandshrew, Zubat
+	Party 17, Rattata, Rattata, Raticate
+	Party 18, NidoranM, Nidorino
 ; Unused
-db 17,SPEAROW,RATTATA,RATTATA,SPEAROW,0
+	Party 17, Spearow, Rattata, Rattata, Spearow

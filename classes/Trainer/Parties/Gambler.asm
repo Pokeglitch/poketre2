@@ -1,11 +1,11 @@
 ; Route 11
-db 18,POLIWAG,HORSEA,0
-db 18,BELLSPROUT,ODDISH,0
-db 18,VOLTORB,MAGNEMITE,0
-db 18,GROWLITHE,VULPIX,0
+	Party 18, Poliwag, Horsea
+	Party 18, Bellsprout, Oddish
+	Party 18, Voltorb, Magnemite
+	Party 18, Growlithe, Vulpix
 ; Route 8
-db 22,POLIWAG,POLIWAG,POLIWHIRL,0
+	Party 22, Poliwag, Poliwag, Poliwhirl
 ; Unused
-db 22,ONIX,GEODUDE,GRAVELER,0
+	Party 22, Onix, Geodude, Graveler
 ; Route 8
-db 24,GROWLITHE,VULPIX,0
+	Party 24, Growlithe, Vulpix

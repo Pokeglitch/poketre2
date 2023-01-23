@@ -1,1 +1,1 @@
-db $FF,29,VICTREEBEL,24,TANGELA,29,VILEPLUME,0
+    Party 29, Victreebel, 24, Tangela, 29, Vileplume, 2, MEGA_DRAIN

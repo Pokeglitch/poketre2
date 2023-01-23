@@ -1,21 +1,21 @@
 ; Viridian Forest
-db 6,WEEDLE,CATERPIE,0
-db 7,WEEDLE,KAKUNA,WEEDLE,0
-db 9,WEEDLE,0
+	Party 6, Weedle, Caterpie
+	Party 7, Weedle, Kakuna, Weedle
+	Party 9, Weedle
 ; Route 3
-db 10,CATERPIE,WEEDLE,CATERPIE,0
-db 9,WEEDLE,KAKUNA,CATERPIE,METAPOD,0
-db 11,CATERPIE,METAPOD,0
+	Party 10, Caterpie, Weedle, Caterpie
+	Party 9, Weedle, Kakuna, Caterpie, Metapod
+	Party 11, Caterpie, Metapod
 ; Mt. Moon 1F
-db 11,WEEDLE,KAKUNA,0
-db 10,CATERPIE,METAPOD,CATERPIE,0
+	Party 11, Weedle, Kakuna
+	Party 10, Caterpie, Metapod, Caterpie
 ; Route 24
-db 14,CATERPIE,WEEDLE,0
+	Party 14, Caterpie, Weedle
 ; Route 6
-db 16,WEEDLE,CATERPIE,WEEDLE,0
-db 20,BUTTERFREE,0
+	Party 16, Weedle, Caterpie, Weedle
+	Party 20, Butterfree
 ; Unused
-db 18,METAPOD,CATERPIE,VENONAT,0
+	Party 18, Metapod, Caterpie, Venonat
 ; Route 9
-db 19,BEEDRILL,BEEDRILL,0
-db 20,CATERPIE,WEEDLE,VENONAT,0
+	Party 19, Beedrill, Beedrill
+	Party 20, Caterpie, Weedle, Venonat

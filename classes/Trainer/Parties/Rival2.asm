@@ -1,16 +1,19 @@
 ; SS Anne 2F
-db $FF,19,PIDGEOTTO,16,RATICATE,18,KADABRA,20,WARTORTLE,0
-db $FF,19,PIDGEOTTO,16,RATICATE,18,KADABRA,20,IVYSAUR,0
-db $FF,19,PIDGEOTTO,16,RATICATE,18,KADABRA,20,CHARMELEON,0
+    Party 19, Pidgeotto, 16, Raticate, 18, Kadabra, 20, Wartortle
+    Party 19, Pidgeotto, 16, Raticate, 18, Kadabra, 20, Ivysaur
+    Party 19, Pidgeotto, 16, Raticate, 18, Kadabra, 20, Charmeleon
+
 ; Pokémon Tower 2F
-db $FF,25,PIDGEOTTO,23,GROWLITHE,22,EXEGGCUTE,20,KADABRA,25,WARTORTLE,0
-db $FF,25,PIDGEOTTO,23,GYARADOS,22,GROWLITHE,20,KADABRA,25,IVYSAUR,0
-db $FF,25,PIDGEOTTO,23,EXEGGCUTE,22,GYARADOS,20,KADABRA,25,CHARMELEON,0
+    Party 25, Pidgeotto, 23, Growlithe, 22, Exeggcute, 20, Kadabra, 25, Wartortle
+    Party 25, Pidgeotto, 23, Gyarados, 22, Growlithe, 20, Kadabra, 25, Ivysaur
+    Party 25, Pidgeotto, 23, Exeggcute, 22, Gyarados, 20, Kadabra, 25, Charmeleon
+
 ; Silph Co. 7F
-db $FF,37,PIDGEOT,38,GROWLITHE,35,EXEGGCUTE,35,ALAKAZAM,40,BLASTOISE,0
-db $FF,37,PIDGEOT,38,GYARADOS,35,GROWLITHE,35,ALAKAZAM,40,VENUSAUR,0
-db $FF,37,PIDGEOT,38,EXEGGCUTE,35,GYARADOS,35,ALAKAZAM,40,CHARIZARD,0
+    Party 37, Pidgeot, 38, Growlithe, 35, Exeggcute, 35, Alakazam, 40, Blastoise
+    Party 37, Pidgeot, 38, Gyarados, 35, Growlithe, 35, Alakazam, 40, Venusaur
+    Party 37, Pidgeot, 38, Exeggcute, 35, Gyarados, 35, Alakazam, 40, Charizard
+
 ; Route 22
-db $FF,47,PIDGEOT,45,RHYHORN,45,GROWLITHE,47,EXEGGCUTE,50,ALAKAZAM,53,BLASTOISE,0
-db $FF,47,PIDGEOT,45,RHYHORN,45,GYARADOS,47,GROWLITHE,50,ALAKAZAM,53,VENUSAUR,0
-db $FF,47,PIDGEOT,45,RHYHORN,45,EXEGGCUTE,47,GYARADOS,50,ALAKAZAM,53,CHARIZARD,0
+    Party 47, Pidgeot, 45, Rhyhorn, 45, Growlithe, 47, Exeggcute, 50, Alakazam, 53, Blastoise
+    Party 47, Pidgeot, 45, Rhyhorn, 45, Gyarados, 47, Growlithe, 50, Alakazam, 53, Venusaur
+    Party 47, Pidgeot, 45, Rhyhorn, 45, Exeggcute, 47, Gyarados, 50, Alakazam, 53, Charizard

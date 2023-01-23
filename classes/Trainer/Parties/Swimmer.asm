@@ -1,19 +1,19 @@
 ; Cerulean Gym
-db 16,HORSEA,SHELLDER,0
+	Party 16, Horsea, Shellder
 ; Route 19
-db 30,TENTACOOL,SHELLDER,0
-db 29,GOLDEEN,HORSEA,STARYU,0
-db 30,POLIWAG,POLIWHIRL,0
-db 27,HORSEA,TENTACOOL,TENTACOOL,GOLDEEN,0
-db 29,GOLDEEN,SHELLDER,SEAKING,0
-db 30,HORSEA,HORSEA,0
-db 27,TENTACOOL,TENTACOOL,STARYU,HORSEA,TENTACRUEL,0
+	Party 30, Tentacool, Shellder
+	Party 29, Goldeen, Horsea, Staryu
+	Party 30, Poliwag, Poliwhirl
+	Party 27, Horsea, Tentacool, Tentacool, Goldeen
+	Party 29, Goldeen, Shellder, Seaking
+	Party 30, Horsea, Horsea
+	Party 27, Tentacool, Tentacool, Staryu, Horsea, Tentacruel
 ; Route 20
-db 31,SHELLDER,CLOYSTER,0
-db 35,STARYU,0
-db 28,HORSEA,HORSEA,SEADRA,HORSEA,0
+	Party 31, Shellder, Cloyster
+	Party 35, Staryu
+	Party 28, Horsea, Horsea, Seadra, Horsea
 ; Route 21
-db 33,SEADRA,TENTACRUEL,0
-db 37,STARMIE,0
-db 33,STARYU,WARTORTLE,0
-db 32,POLIWHIRL,TENTACOOL,SEADRA,0
+	Party 33, Seadra, Tentacruel
+	Party 37, Starmie
+	Party 33, Staryu, Wartortle
+	Party 32, Poliwhirl, Tentacool, Seadra

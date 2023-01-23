@@ -1,16 +1,16 @@
 ; SS Anne 2F Rooms
-db 17,GOLDEEN,TENTACOOL,GOLDEEN,0
+	Party 17, Goldeen, Tentacool, Goldeen
 ; SS Anne B1F Rooms
-db 17,TENTACOOL,STARYU,SHELLDER,0
+	Party 17, Tentacool, Staryu, Shellder
 ; Route 12
-db 22,GOLDEEN,POLIWAG,GOLDEEN,0
-db 24,TENTACOOL,GOLDEEN,0
-db 27,GOLDEEN,0
-db 21,POLIWAG,SHELLDER,GOLDEEN,HORSEA,0
+	Party 22, Goldeen, Poliwag, Goldeen
+	Party 24, Tentacool, Goldeen
+	Party 27, Goldeen
+	Party 21, Poliwag, Shellder, Goldeen, Horsea
 ; Route 21
-db 28,SEAKING,GOLDEEN,SEAKING,SEAKING,0
-db 31,SHELLDER,CLOYSTER,0
-db 27,MAGIKARP,MAGIKARP,MAGIKARP,MAGIKARP,MAGIKARP,MAGIKARP,0
-db 33,SEAKING,GOLDEEN,0
+	Party 28, Seaking, Goldeen, Seaking, Seaking
+	Party 31, Shellder, Cloyster
+	Party 27, Magikarp, Magikarp, Magikarp, Magikarp, Magikarp, Magikarp
+	Party 33, Seaking, Goldeen
 ; Route 12
-db 24,MAGIKARP,MAGIKARP,0
+	Party 24, Magikarp, Magikarp

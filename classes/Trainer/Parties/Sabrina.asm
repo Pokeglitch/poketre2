@@ -1,1 +1,1 @@
-db $FF,38,KADABRA,37,MR_MIME,38,VENOMOTH,43,ALAKAZAM,0
+    Party 38, Kadabra, 37, MrMime, 38, Venomoth, 43, Alakazam, 2, PSYWAVE

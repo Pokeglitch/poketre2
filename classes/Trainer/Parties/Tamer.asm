@@ -1,10 +1,10 @@
 ; Fuchsia Gym
-db 34,SANDSLASH,ARBOK,0
-db 33,ARBOK,SANDSLASH,ARBOK,0
+	Party 34, Sandslash, Arbok
+	Party 33, Arbok, Sandslash, Arbok
 ; Viridian Gym
-db 43,RHYHORN,0
-db 39,ARBOK,TAUROS,0
+	Party 43, Rhyhorn
+	Party 39, Arbok, Tauros
 ; Victory Road 2F
-db 44,PERSIAN,GOLDUCK,0
+	Party 44, Persian, Golduck
 ; Unused
-db 42,RHYHORN,PRIMEAPE,ARBOK,TAUROS,0
+	Party 42, Rhyhorn, Primeape, Arbok, Tauros

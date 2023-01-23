@@ -1,1 +1,1 @@
-db $FF,37,KOFFING,39,MUK,37,KOFFING,43,WEEZING,0
+    Party 37, Koffing, 39, Muk, 37, Koffing, 43, Weezing, 2, TOXIC

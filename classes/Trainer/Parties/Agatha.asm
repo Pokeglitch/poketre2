@@ -1,1 +1,1 @@
-db $FF,56,GENGAR,56,GOLBAT,55,HAUNTER,58,ARBOK,60,GENGAR,0
+    Party 56, Gengar, 56, Golbat, 55, Haunter, 58, Arbok, 60, Gengar, 2, TOXIC

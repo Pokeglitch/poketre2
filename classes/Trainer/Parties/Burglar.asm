@@ -1,14 +1,14 @@
 ; Unused
-db 29,GROWLITHE,VULPIX,0
-db 33,GROWLITHE,0
-db 28,VULPIX,CHARMANDER,PONYTA,0
+	Party 29, Growlithe, Vulpix
+	Party 33, Growlithe
+	Party 28, Vulpix, Charmander, Ponyta
 ; Cinnabar Gym
-db 36,GROWLITHE,VULPIX,NINETALES,0
-db 41,PONYTA,0
-db 37,VULPIX,GROWLITHE,0
+	Party 36, Growlithe, Vulpix, Ninetales
+	Party 41, Ponyta
+	Party 37, Vulpix, Growlithe
 ; Mansion 2F
-db 34,CHARMANDER,CHARMELEON,0
+	Party 34, Charmander, Charmeleon
 ; Mansion 3F
-db 38,NINETALES,0
+	Party 38, Ninetales
 ; Mansion B1F
-db 34,GROWLITHE,PONYTA,0
+	Party 34, Growlithe, Ponyta

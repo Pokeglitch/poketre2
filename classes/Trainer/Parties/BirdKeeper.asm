@@ -1,24 +1,24 @@
 ; Route 13
-db 29,PIDGEY,PIDGEOTTO,0
-db 25,SPEAROW,PIDGEY,PIDGEY,SPEAROW,SPEAROW,0
-db 26,PIDGEY,PIDGEOTTO,SPEAROW,FEAROW,0
+	Party 29, Pidgey, Pidgeotto
+	Party 25, Spearow, Pidgey, Pidgey, Spearow, Spearow
+	Party 26, Pidgey, Pidgeotto, Spearow, Fearow
 ; Route 14
-db 33,FARFETCHD,0
-db 29,SPEAROW,FEAROW,0
+	Party 33, Farfetchd
+	Party 29, Spearow, Fearow
 ; Route 15
-db 26,PIDGEOTTO,FARFETCHD,DODUO,PIDGEY,0
-db 28,DODRIO,DODUO,DODUO,0
+	Party 26, Pidgeotto, Farfetchd, Doduo, Pidgey
+	Party 28, Dodrio, Doduo, Doduo
 ; Route 18
-db 29,SPEAROW,FEAROW,0
-db 34,DODRIO,0
-db 26,SPEAROW,SPEAROW,FEAROW,SPEAROW,0
+	Party 29, Spearow, Fearow
+	Party 34, Dodrio
+	Party 26, Spearow, Spearow, Fearow, Spearow
 ; Route 20
-db 30,FEAROW,FEAROW,PIDGEOTTO,0
+	Party 30, Fearow, Fearow, Pidgeotto
 ; Unused
-db 39,PIDGEOTTO,PIDGEOTTO,PIDGEY,PIDGEOTTO,0
-db 42,FARFETCHD,FEAROW,0
+	Party 39, Pidgeotto, Pidgeotto, Pidgey, Pidgeotto
+	Party 42, Farfetchd, Fearow
 ; Route 14
-db 28,PIDGEY,DODUO,PIDGEOTTO,0
-db 26,PIDGEY,SPEAROW,PIDGEY,FEAROW,0
-db 29,PIDGEOTTO,FEAROW,0
-db 28,SPEAROW,DODUO,FEAROW,0
+	Party 28, Pidgey, Doduo, Pidgeotto
+	Party 26, Pidgey, Spearow, Pidgey, Fearow
+	Party 29, Pidgeotto, Fearow
+	Party 28, Spearow, Doduo, Fearow

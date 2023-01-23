@@ -1,13 +1,13 @@
 ; Celadon Gym
-db 24,WEEPINBELL,GLOOM,IVYSAUR,0
+	Party 24, Weepinbell, Gloom, Ivysaur
 ; Victory Road 3F
-db 43,BELLSPROUT,WEEPINBELL,VICTREEBEL,0
-db 43,PARASECT,DEWGONG,CHANSEY,0
+	Party 43, Bellsprout, Weepinbell, Victreebel
+	Party 43, Parasect, Dewgong, Chansey
 ; Unused
-db 46,VILEPLUME,BUTTERFREE,0
+	Party 46, Vileplume, Butterfree
 ; Victory Road 1F
-db 44,PERSIAN,NINETALES,0
+	Party 44, Persian, Ninetales
 ; Unused
-db 45,IVYSAUR,VENUSAUR,0
-db 45,NIDORINA,NIDOQUEEN,0
-db 43,PERSIAN,NINETALES,RAICHU,0
+	Party 45, Ivysaur, Venusaur
+	Party 45, Nidorina, Nidoqueen
+	Party 43, Persian, Ninetales, Raichu

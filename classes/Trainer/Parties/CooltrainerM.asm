@@ -1,16 +1,16 @@
 ; Viridian Gym
-db 39,NIDORINO,NIDOKING,0
+	Party 39, Nidorino, Nidoking
 ; Victory Road 3F
-db 43,EXEGGUTOR,CLOYSTER,ARCANINE,0
-db 43,KINGLER,TENTACRUEL,BLASTOISE,0
+	Party 43, Exeggutor, Cloyster, Arcanine
+	Party 43, Kingler, Tentacruel, Blastoise
 ; Unused
-db 45,KINGLER,STARMIE,0
+	Party 45, Kingler, Starmie
 ; Victory Road 1F
-db 42,IVYSAUR,WARTORTLE,CHARMELEON,CHARIZARD,0
+	Party 42, Ivysaur, Wartortle, Charmeleon, Charizard
 ; Unused
-db 44,IVYSAUR,WARTORTLE,CHARMELEON,0
-db 49,NIDOKING,0
-db 44,KINGLER,CLOYSTER,0
+	Party 44, Ivysaur, Wartortle, Charmeleon
+	Party 49, Nidoking
+	Party 44, Kingler, Cloyster
 ; Viridian Gym
-db 39,SANDSLASH,DUGTRIO,0
-db 43,RHYHORN,0
+	Party 39, Sandslash, Dugtrio
+	Party 43, Rhyhorn

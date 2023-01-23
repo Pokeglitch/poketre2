@@ -1,21 +1,21 @@
 ; Route 13
-db 28,KOFFING,KOFFING,KOFFING,0
+	Party 28, Koffing, Koffing, Koffing
 ; Route 14
-db 29,KOFFING,GRIMER,0
+	Party 29, Koffing, Grimer
 ; Route 15
-db 25,KOFFING,KOFFING,WEEZING,KOFFING,GRIMER,0
-db 28,KOFFING,GRIMER,WEEZING,0
+	Party 25, Koffing, Koffing, Weezing, Koffing, Grimer
+	Party 28, Koffing, Grimer, Weezing
 ; Route 16
-db 29,GRIMER,KOFFING,0
-db 33,WEEZING,0
-db 26,GRIMER,GRIMER,GRIMER,GRIMER,0
+	Party 29, Grimer, Koffing
+	Party 33, Weezing
+	Party 26, Grimer, Grimer, Grimer, Grimer
 ; Route 17
-db 28,WEEZING,KOFFING,WEEZING,0
-db 33,MUK,0
-db 29,VOLTORB,VOLTORB,0
-db 29,WEEZING,MUK,0
-db 25,KOFFING,WEEZING,KOFFING,KOFFING,WEEZING,0
+	Party 28, Weezing, Koffing, Weezing
+	Party 33, Muk
+	Party 29, Voltorb, Voltorb
+	Party 29, Weezing, Muk
+	Party 25, Koffing, Weezing, Koffing, Koffing, Weezing
 ; Route 14
-db 26,KOFFING,KOFFING,GRIMER,KOFFING,0
-db 28,GRIMER,GRIMER,KOFFING,0
-db 29,KOFFING,MUK,0
+	Party 26, Koffing, Koffing, Grimer, Koffing
+	Party 28, Grimer, Grimer, Koffing
+	Party 29, Koffing, Muk

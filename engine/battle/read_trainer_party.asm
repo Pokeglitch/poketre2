@@ -1,21 +1,10 @@
-; if first byte != FF, then
-	; first byte is level (of all pokemon on this team)
-	; all the next bytes are pokemon species
-	; null-terminated
-; if first byte == FF, then
-	; first byte is FF (obviously)
-	; every next two bytes are a level and species
-	; null-terminated
-
 ReadTrainer:
 ; don't change any moves in a link battle
 	ld a, [wLinkState]
 	and a
 	ret nz
 
-; set [wEnemyPartyCount] to 0, [wEnemyPartyMons] to FF
-; XXX first is total enemy pokemon?
-; XXX second is species of first pokemon?
+	; Initialize the enemy party
 	ld hl, wEnemyPartyCount
 	xor a
 	ld [hli], a
@@ -33,121 +22,78 @@ ReadTrainer:
 	; hl = pointer to parties
 	ld a, [wTrainerNo]
 	ld b, a
-; At this point b contains the trainer number,
-; and hl points to the trainer class.
-; Our next task is to iterate through the trainers,
-; decrementing b each time, until we get to the right one.
-.outer
+
+	; find the proper trainer number
+.findTrainerParty
 	dec b
-	jr z, .IterateTrainer
-.inner
+	jr z, .partyFound
+.findEndOfParty
 	ld a, [hli]
 	and a
-	jr nz, .inner
-	jr .outer
+	jr nz, .findEndOfParty
+	jr .findTrainerParty
 
-; if the first byte of trainer data is FF,
-; - each pokemon has a specific level
-;      (as opposed to the whole team being of the same level)
-; - if [wLoneAttackNo] != 0, one pokemon on the team has a special move
-; else the first byte is the level of every pokemon on the team
-.IterateTrainer
+.partyFound
 	ld a, [hli]
-	cp $FF ; is the trainer special?
-	jr z, .SpecialTrainer ; if so, check for special moves
+	bit PartyDataSpecialFlagIndex, a ; is the trainer special?
+	jr nz, .specialTrainer ; if so, check for special moves
+
+; standard trainer
 	ld [wCurEnemyLVL], a
-.LoopTrainerData
+.addNextPokemon_Standard
 	ld a, [hli]
 	and a ; have we reached the end of the trainer data?
-	jr z, .FinishUp
-	ld [wcf91], a ; write species somewhere (XXX why?)
-	ld a, ENEMY_PARTY_DATA
-	ld [wMonDataLocation], a
-	push hl
-	call AddPartyMon
-	pop hl
-	jr .LoopTrainerData
-.SpecialTrainer
-; if this code is being run:
-; - each pokemon has a specific level
-;      (as opposed to the whole team being of the same level)
-; - if [wLoneAttackNo] != 0, one pokemon on the team has a special move
-	ld a, [hli]
-	and a ; have we reached the end of the trainer data?
-	jr z, .AddLoneMove
-	ld [wCurEnemyLVL], a
-	ld a, [hli]
-	ld [wcf91], a
-	ld a, ENEMY_PARTY_DATA
-	ld [wMonDataLocation], a
-	push hl
-	call AddPartyMon
-	pop hl
-	jr .SpecialTrainer
-.AddLoneMove
-; does the trainer have a single monster with a different move
-	ld a, [wLoneAttackNo] ; Brock is 01, Misty is 02, Erika is 04, etc
+	jr z, .storeTrainerMoney
+	
+	call AddMonToEnemyParty
+	jr .addNextPokemon_Standard
+
+.specialTrainer
+	xor PartyDataSpecialFlagMask ; unset the flag
+	ld de, wEnemyMon1Moves
+
+.addNextMon
 	and a
-	jr z, .AddTeamMove
-	dec a
-	add a
-	ld c, a
-	ld b, 0
-	ld hl, LoneMoves
-	add hl, bc
+	jr z, .storeTrainerMoney ; add the money if end of data reached
+	ld [wCurEnemyLVL], a
 	ld a, [hli]
-	ld d, [hl]
-	ld hl, wEnemyMon1Moves + 2
-	ld bc, wEnemyMon2 - wEnemyMon1
-	call AddNTimes
-	ld [hl], d
-	jr .FinishUp
-.AddTeamMove
-; check if our trainer's team has special moves
 
-; get trainer class number
-	ld a, [wCurOpponent]
-	sub 201
-	ld b, a
-	ld hl, TeamMoves
+	push de
+	call AddMonToEnemyParty
 
-; iterate through entries in TeamMoves, checking each for our trainer class
-.IterateTeamMoves
-	ld a, [hli]
-	cp b
-	jr z, .GiveTeamMoves ; is there a match?
-	inc hl ; if not, go to the next entry
-	inc a
-	jr nz, .IterateTeamMoves
+.checkForSpecialMove
+	ld a, [hli] ; load next value
+	bit PartyDataSpecialFlagIndex, a ; if the high bit is set, then this pokemon have a special move
+	jr nz, .storeSpecialMove
 
-; no matches found. is this trainer champion rival?
-	ld a, b
-	cp Rival3
-	jr z, .ChampionRival
-	jr .FinishUp ; nope
-.GiveTeamMoves
-	ld a, [hl]
-	ld [wEnemyMon5Moves + 2], a
-	jr .FinishUp
-.ChampionRival ; give moves to his team
+	; otherwise, update the pointer for the next mon's move and read next data set
+	pop de
+	push hl
+	ld hl, wEnemyMon2 - wEnemyMon1
+	add hl, de
+	ld d, h
+	ld e, l ;de = pointer to next pokemon's moves
+	pop hl
+	jr .addNextMon
 
-; pidgeot
-	ld a, SKY_ATTACK
-	ld [wEnemyMon1Moves + 2], a
+.storeSpecialMove
+	push de
 
-; starter
-	ld a, [wRivalStarter]
-	cp STARTER3
-	ld b, MEGA_DRAIN
-	jr z, .GiveStarterMove
-	cp STARTER1
-	ld b, FIRE_BLAST
-	jr z, .GiveStarterMove
-	ld b, BLIZZARD ; must be squirtle
-.GiveStarterMove
-	ld a, b
-	ld [wEnemyMon6Moves + 2], a
-.FinishUp
+	xor PartyDataSpecialFlagMask ; unset the flag
+	add e
+	ld e, a ; move the move index
+	jr nc, .dontIncD
+
+	inc d ; if carry, increase d
+.dontIncD
+
+	ld a, [hli] ; get the new Move ID
+	ld [de], a ; write to the move slot
+
+	pop de
+	jr .checkForSpecialMove
+
+.storeTrainerMoney
 ; clear wAmountMoneyWon addresses
 	xor a
 	ld de, wAmountMoneyWon
@@ -158,8 +104,9 @@ ReadTrainer:
 	ld [de], a
 	ld a, [wCurEnemyLVL]
 	ld b, a
+
 .LastLoop
-; update wAmountMoneyWon addresses (money to win) based on enemy's level
+; update wAmountMoneyWon addresses (money to win) based on last enemy's level
 	ld hl, wTrainerBaseMoney + 1
 	ld c, 2 ; wTrainerBaseMoney is a 2-byte number
 	push bc
@@ -169,4 +116,16 @@ ReadTrainer:
 	pop bc
 	dec b
 	jr nz, .LastLoop ; repeat wCurEnemyLVL times
+	ret
+
+AddMonToEnemyParty:
+	push hl
+	ld [wd11e], a
+	farcall PokedexToIndex
+	ld a, [wd11e]
+	ld [wcf91], a
+	ld a, ENEMY_PARTY_DATA
+	ld [wMonDataLocation], a
+	call AddPartyMon
+	pop hl
 	ret

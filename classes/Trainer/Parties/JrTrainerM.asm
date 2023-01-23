@@ -1,16 +1,16 @@
 ; Pewter Gym
-db 11,DIGLETT,SANDSHREW,0
+	Party 11, Diglett, Sandshrew
 ; Route 24/Route 25
-db 14,RATTATA,EKANS,0
+	Party 14, Rattata, Ekans
 ; Route 24
-db 18,MANKEY,0
+	Party 18, Mankey
 ; Route 6
-db 20,SQUIRTLE,0
-db 16,SPEAROW,RATICATE,0
+	Party 20, Squirtle
+	Party 16, Spearow, Raticate
 ; Unused
-db 18,DIGLETT,DIGLETT,SANDSHREW,0
+	Party 18, Diglett, Diglett, Sandshrew
 ; Route 9
-db 21,GROWLITHE,CHARMANDER,0
-db 19,RATTATA,DIGLETT,EKANS,SANDSHREW,0
+	Party 21, Growlithe, Charmander
+	Party 19, Rattata, Diglett, Ekans, Sandshrew
 ; Route 12
-db 29,NIDORAN_M,NIDORINO,0
+	Party 29, NidoranM, Nidorino

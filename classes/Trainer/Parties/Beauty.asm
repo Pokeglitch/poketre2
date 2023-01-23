@@ -1,22 +1,22 @@
 ; Celadon Gym
-db 21,ODDISH,BELLSPROUT,ODDISH,BELLSPROUT,0
-db 24,BELLSPROUT,BELLSPROUT,0
-db 26,EXEGGCUTE,0
+	Party 21, Oddish, Bellsprout, Oddish, Bellsprout
+	Party 24, Bellsprout, Bellsprout
+	Party 26, Exeggcute
 ; Route 13
-db 27,RATTATA,PIKACHU,RATTATA,0
-db 29,CLEFAIRY,MEOWTH,0
+	Party 27, Rattata, Pikachu, Rattata
+	Party 29, Clefairy, Meowth
 ; Route 20
-db 35,SEAKING,0
-db 30,SHELLDER,SHELLDER,CLOYSTER,0
-db 31,POLIWAG,SEAKING,0
+	Party 35, Seaking
+	Party 30, Shellder, Shellder, Cloyster
+	Party 31, Poliwag, Seaking
 ; Route 15
-db 29,PIDGEOTTO,WIGGLYTUFF,0
-db 29,BULBASAUR,IVYSAUR,0
+	Party 29, Pidgeotto, Wigglytuff
+	Party 29, Bulbasaur, Ivysaur
 ; Unused
-db 33,WEEPINBELL,BELLSPROUT,WEEPINBELL,0
+	Party 33, Weepinbell, Bellsprout, Weepinbell
 ; Route 19
-db 27,POLIWAG,GOLDEEN,SEAKING,GOLDEEN,POLIWAG,0
-db 30,GOLDEEN,SEAKING,0
-db 29,STARYU,STARYU,STARYU,0
+	Party 27, Poliwag, Goldeen, Seaking, Goldeen, Poliwag
+	Party 30, Goldeen, Seaking
+	Party 29, Staryu, Staryu, Staryu
 ; Route 20
-db 30,SEADRA,HORSEA,SEADRA,0
+	Party 30, Seadra, Horsea, Seadra

@@ -1,1 +1,1 @@
-db $FF,54,DEWGONG,53,CLOYSTER,54,SLOWBRO,56,JYNX,56,LAPRAS,0
+    Party 54, Dewgong, 53, Cloyster, 54, Slowbro, 56, Jynx, 56, Lapras, 2, BLIZZARD

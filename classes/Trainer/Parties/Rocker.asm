@@ -1,4 +1,4 @@
 ; Vermilion Gym
-db 20,VOLTORB,MAGNEMITE,VOLTORB,0
+	Party 20, Voltorb, Magnemite, Voltorb
 ; Route 12
-db 29,VOLTORB,ELECTRODE,0
+	Party 29, Voltorb, Electrode

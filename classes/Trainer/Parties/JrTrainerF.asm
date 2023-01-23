@@ -1,36 +1,36 @@
 ; Cerulean Gym
-db 19,GOLDEEN,0
+	Party 19, Goldeen
 ; Route 6
-db 16,RATTATA,PIKACHU,0
-db 16,PIDGEY,PIDGEY,PIDGEY,0
+	Party 16, Rattata, Pikachu
+	Party 16, Pidgey, Pidgey, Pidgey
 ; Unused
-db 22,BULBASAUR,0
+	Party 22, Bulbasaur
 ; Route 9
-db 18,ODDISH,BELLSPROUT,ODDISH,BELLSPROUT,0
-db 23,MEOWTH,0
+	Party 18, Oddish, Bellsprout, Oddish, Bellsprout
+	Party 23, Meowth
 ; Route 10
-db 20,PIKACHU,CLEFAIRY,0
-db 21,PIDGEY,PIDGEOTTO,0
+	Party 20, Pikachu, Clefairy
+	Party 21, Pidgey, Pidgeotto
 ; Rock Tunnel B1F
-db 21,JIGGLYPUFF,PIDGEY,MEOWTH,0
-db 22,ODDISH,BULBASAUR,0
+	Party 21, Jigglypuff, Pidgey, Meowth
+	Party 22, Oddish, Bulbasaur
 ; Celadon Gym
-db 24,BULBASAUR,IVYSAUR,0
+	Party 24, Bulbasaur, Ivysaur
 ; Route 13
-db 24,PIDGEY,MEOWTH,RATTATA,PIKACHU,MEOWTH,0
-db 30,POLIWAG,POLIWAG,0
-db 27,PIDGEY,MEOWTH,PIDGEY,PIDGEOTTO,0
-db 28,GOLDEEN,POLIWAG,HORSEA,0
+	Party 24, Pidgey, Meowth, Rattata, Pikachu, Meowth
+	Party 30, Poliwag, Poliwag
+	Party 27, Pidgey, Meowth, Pidgey, Pidgeotto
+	Party 28, Goldeen, Poliwag, Horsea
 ; Route 20
-db 31,GOLDEEN,SEAKING,0
+	Party 31, Goldeen, Seaking
 ; Rock Tunnel 1F
-db 22,BELLSPROUT,CLEFAIRY,0
-db 20,MEOWTH,ODDISH,PIDGEY,0
-db 19,PIDGEY,RATTATA,RATTATA,BELLSPROUT,0
+	Party 22, Bellsprout, Clefairy
+	Party 20, Meowth, Oddish, Pidgey
+	Party 19, Pidgey, Rattata, Rattata, Bellsprout
 ; Route 15
-db 28,GLOOM,ODDISH,ODDISH,0
-db 29,PIKACHU,RAICHU,0
-db 33,CLEFAIRY,0
-db 29,BELLSPROUT,ODDISH,TANGELA,0
+	Party 28, Gloom, Oddish, Oddish
+	Party 29, Pikachu, Raichu
+	Party 33, Clefairy
+	Party 29, Bellsprout, Oddish, Tangela
 ; Route 20
-db 30,TENTACOOL,HORSEA,SEEL,0
+	Party 30, Tentacool, Horsea, Seel

@@ -1,25 +1,25 @@
 ; Unused
-db 34,KOFFING,VOLTORB,0
+	Party 34, Koffing, Voltorb
 ; Silph Co. 2F
-db 26,GRIMER,WEEZING,KOFFING,WEEZING,0
-db 28,MAGNEMITE,VOLTORB,MAGNETON,0
+	Party 26, Grimer, Weezing, Koffing, Weezing
+	Party 28, Magnemite, Voltorb, Magneton
 ; Silph Co. 3F/Mansion 1F
-db 29,ELECTRODE,WEEZING,0
+	Party 29, Electrode, Weezing
 ; Silph Co. 4F
-db 33,ELECTRODE,0
+	Party 33, Electrode
 ; Silph Co. 5F
-db 26,MAGNETON,KOFFING,WEEZING,MAGNEMITE,0
+	Party 26, Magneton, Koffing, Weezing, Magnemite
 ; Silph Co. 6F
-db 25,VOLTORB,KOFFING,MAGNETON,MAGNEMITE,KOFFING,0
+	Party 25, Voltorb, Koffing, Magneton, Magnemite, Koffing
 ; Silph Co. 7F
-db 29,ELECTRODE,MUK,0
+	Party 29, Electrode, Muk
 ; Silph Co. 8F
-db 29,GRIMER,ELECTRODE,0
+	Party 29, Grimer, Electrode
 ; Silph Co. 9F
-db 28,VOLTORB,KOFFING,MAGNETON,0
+	Party 28, Voltorb, Koffing, Magneton
 ; Silph Co. 10F
-db 29,MAGNEMITE,KOFFING,0
+	Party 29, Magnemite, Koffing
 ; Mansion 3F
-db 33,MAGNEMITE,MAGNETON,VOLTORB,0
+	Party 33, Magnemite, Magneton, Voltorb
 ; Mansion B1F
-db 34,MAGNEMITE,ELECTRODE,0
+	Party 34, Magnemite, Electrode

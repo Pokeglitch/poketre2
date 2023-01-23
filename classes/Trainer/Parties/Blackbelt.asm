@@ -1,12 +1,12 @@
 ; Fighting Dojo
-db 37,HITMONLEE,HITMONCHAN,0
-db 31,MANKEY,MANKEY,PRIMEAPE,0
-db 32,MACHOP,MACHOKE,0
-db 36,PRIMEAPE,0
-db 31,MACHOP,MANKEY,PRIMEAPE,0
+	Party 37, Hitmonlee, Hitmonchan
+	Party 31, Mankey, Mankey, Primeape
+	Party 32, Machop, Machoke
+	Party 36, Primeape
+	Party 31, Machop, Mankey, Primeape
 ; Viridian Gym
-db 40,MACHOP,MACHOKE,0
-db 43,MACHOKE,0
-db 38,MACHOKE,MACHOP,MACHOKE,0
+	Party 40, Machop, Machoke
+	Party 43, Machoke
+	Party 38, Machoke, Machop, Machoke
 ; Victory Road 2F
-db 43,MACHOKE,MACHOP,MACHOKE,0
+	Party 43, Machoke, Machop, Machoke

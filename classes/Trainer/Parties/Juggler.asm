@@ -1,14 +1,14 @@
 ; Silph Co. 5F
-db 29,KADABRA,MR_MIME,0
+	Party 29, Kadabra, MrMime
 ; Victory Road 2F
-db 41,DROWZEE,HYPNO,KADABRA,KADABRA,0
+	Party 41, Drowzee, Hypno, Kadabra, Kadabra
 ; Fuchsia Gym
-db 31,DROWZEE,DROWZEE,KADABRA,DROWZEE,0
-db 34,DROWZEE,HYPNO,0
+	Party 31, Drowzee, Drowzee, Kadabra, Drowzee
+	Party 34, Drowzee, Hypno
 ; Victory Road 2F
-db 48,MR_MIME,0
+	Party 48, MrMime
 ; Unused
-db 33,HYPNO,0
+	Party 33, Hypno
 ; Fuchsia Gym
-db 38,HYPNO,0
-db 34,DROWZEE,KADABRA,0
+	Party 38, Hypno
+	Party 34, Drowzee, Kadabra

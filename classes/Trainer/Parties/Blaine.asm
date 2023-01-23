@@ -1,1 +1,1 @@
-db $FF,42,GROWLITHE,40,PONYTA,42,RAPIDASH,47,ARCANINE,0
+    Party 42, Growlithe, 40, Ponyta, 42, Rapidash, 47, Arcanine, 2, FIRE_BLAST

@@ -1661,8 +1661,6 @@ wDamageMultipliers:: ; d05b
 ; bit 7: STAB
 	ds 1
 
-wLoneAttackNo:: ; d05c
-; which entry in LoneAttacks to use
 wGymLeaderNo:: ; d05c
 ; it's actually the same thing as ^
 	ds 1

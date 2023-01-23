@@ -1,5 +1,5 @@
 ; Unused
-db 21,VOLTORB,MAGNEMITE,0
+	Party 21, Voltorb, Magnemite
 ; Route 11
-db 21,MAGNEMITE,0
-db 18,MAGNEMITE,MAGNEMITE,MAGNETON,0
+	Party 21, Magnemite
+	Party 18, Magnemite, Magnemite, Magneton

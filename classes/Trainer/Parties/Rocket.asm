@@ -1,61 +1,61 @@
 ; Mt. Moon B2F
-db 13,RATTATA,ZUBAT,0
-db 11,SANDSHREW,RATTATA,ZUBAT,0
-db 12,ZUBAT,EKANS,0
-db 16,RATICATE,0
+	Party 13, Rattata, Zubat
+	Party 11, Sandshrew, Rattata, Zubat
+	Party 12, Zubat, Ekans
+	Party 16, Raticate
 ; Cerulean City
-db 17,MACHOP,DROWZEE,0
+	Party 17, Machop, Drowzee
 ; Route 24
-db 15,EKANS,ZUBAT,0
+	Party 15, Ekans, Zubat
 ; Game Corner
-db 20,RATICATE,ZUBAT,0
+	Party 20, Raticate, Zubat
 ; Rocket Hideout B1F
-db 21,DROWZEE,MACHOP,0
-db 21,RATICATE,RATICATE,0
-db 20,GRIMER,KOFFING,KOFFING,0
-db 19,RATTATA,RATICATE,RATICATE,RATTATA,0
-db 22,GRIMER,KOFFING,0
+	Party 21, Drowzee, Machop
+	Party 21, Raticate, Raticate
+	Party 20, Grimer, Koffing, Koffing
+	Party 19, Rattata, Raticate, Raticate, Rattata
+	Party 22, Grimer, Koffing
 ; Rocket Hideout B2F
-db 17,ZUBAT,KOFFING,GRIMER,ZUBAT,RATICATE,0
+	Party 17, Zubat, Koffing, Grimer, Zubat, Raticate
 ; Rocket Hideout B3F
-db 20,RATTATA,RATICATE,DROWZEE,0
-db 21,MACHOP,MACHOP,0
+	Party 20, Rattata, Raticate, Drowzee
+	Party 21, Machop, Machop
 ; Rocket Hideout B4F
-db 23,SANDSHREW,EKANS,SANDSLASH,0
-db 23,EKANS,SANDSHREW,ARBOK,0
-db 21,KOFFING,ZUBAT,0
+	Party 23, Sandshrew, Ekans, Sandslash
+	Party 23, Ekans, Sandshrew, Arbok
+	Party 21, Koffing, Zubat
 ; Pokémon Tower 7F
-db 25,ZUBAT,ZUBAT,GOLBAT,0
-db 26,KOFFING,DROWZEE,0
-db 23,ZUBAT,RATTATA,RATICATE,ZUBAT,0
+	Party 25, Zubat, Zubat, Golbat
+	Party 26, Koffing, Drowzee
+	Party 23, Zubat, Rattata, Raticate, Zubat
 ; Unused
-db 26,DROWZEE,KOFFING,0
+	Party 26, Drowzee, Koffing
 ; Silph Co. 2F
-db 29,CUBONE,ZUBAT,0
-db 25,GOLBAT,ZUBAT,ZUBAT,RATICATE,ZUBAT,0
+	Party 29, Cubone, Zubat
+	Party 25, Golbat, Zubat, Zubat, Raticate, Zubat
 ; Silph Co. 3F
-db 28,RATICATE,HYPNO,RATICATE,0
+	Party 28, Raticate, Hypno, Raticate
 ; Silph Co. 4F
-db 29,MACHOP,DROWZEE,0
-db 28,EKANS,ZUBAT,CUBONE,0
+	Party 29, Machop, Drowzee
+	Party 28, Ekans, Zubat, Cubone
 ; Silph Co. 5F
-db 33,ARBOK,0
-db 33,HYPNO,0
+	Party 33, Arbok
+	Party 33, Hypno
 ; Silph Co. 6F
-db 29,MACHOP,MACHOKE,0
-db 28,ZUBAT,ZUBAT,GOLBAT,0
+	Party 29, Machop, Machoke
+	Party 28, Zubat, Zubat, Golbat
 ; Silph Co. 7F
-db 26,RATICATE,ARBOK,KOFFING,GOLBAT,0
-db 29,CUBONE,CUBONE,0
-db 29,SANDSHREW,SANDSLASH,0
+	Party 26, Raticate, Arbok, Koffing, Golbat
+	Party 29, Cubone, Cubone
+	Party 29, Sandshrew, Sandslash
 ; Silph Co. 8F
-db 26,RATICATE,ZUBAT,GOLBAT,RATTATA,0
-db 28,WEEZING,GOLBAT,KOFFING,0
+	Party 26, Raticate, Zubat, Golbat, Rattata
+	Party 28, Weezing, Golbat, Koffing
 ; Silph Co. 9F
-db 28,DROWZEE,GRIMER,MACHOP,0
-db 28,GOLBAT,DROWZEE,HYPNO,0
+	Party 28, Drowzee, Grimer, Machop
+	Party 28, Golbat, Drowzee, Hypno
 ; Silph Co. 10F
-db 33,MACHOKE,0
+	Party 33, Machoke
 ; Silph Co. 11F
-db 25,RATTATA,RATTATA,ZUBAT,RATTATA,EKANS,0
-db 32,CUBONE,DROWZEE,MAROWAK,0
+	Party 25, Rattata, Rattata, Zubat, Rattata, Ekans
+	Party 32, Cubone, Drowzee, Marowak

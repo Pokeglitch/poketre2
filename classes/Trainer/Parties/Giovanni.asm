@@ -1,6 +1,8 @@
-; Rocket Hideout B4F
-db $FF,25,ONIX,24,RHYHORN,29,KANGASKHAN,0
-; Silph Co. 11F
-db $FF,37,NIDORINO,35,KANGASKHAN,37,RHYHORN,41,NIDOQUEEN,0
-; Viridian Gym
-db $FF,45,RHYHORN,42,DUGTRIO,44,NIDOQUEEN,45,NIDOKING,50,RHYDON,0
+    ; Rocket Hideout B4F
+    Party 25, Onix, 24, Rhyhorn, 29, Kangaskhan
+
+    ; Silph Co. 11F
+    Party 37, Nidorino, 35, Kangaskhan, 37, Rhyhorn, 41, Nidoqueen
+
+    ; Viridian Gym
+    Party 45, Rhyhorn, 42, Dugtrio, 44, Nidoqueen, 45, Nidoking, 50, Rhydon, 2, FISSURE

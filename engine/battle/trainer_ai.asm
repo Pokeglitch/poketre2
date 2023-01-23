@@ -256,8 +256,6 @@ INCLUDE "engine/battle/bank_e_misc.asm"
 
 INCLUDE "engine/battle/read_trainer_party.asm"
 
-INCLUDE "data/trainer_moves.asm"
-
 TrainerAI:
 	and a ; initilize carry flag to 0
 	ld a, [wIsInBattle]

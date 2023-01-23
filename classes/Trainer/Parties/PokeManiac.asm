@@ -1,11 +1,11 @@
 ; Route 10
-db 30,RHYHORN,LICKITUNG,0
-db 20,CUBONE,SLOWPOKE,0
+	Party 30, Rhyhorn, Lickitung
+	Party 20, Cubone, Slowpoke
 ; Rock Tunnel B1F
-db 20,SLOWPOKE,SLOWPOKE,SLOWPOKE,0
-db 22,CHARMANDER,CUBONE,0
-db 25,SLOWPOKE,0
+	Party 20, Slowpoke, Slowpoke, Slowpoke
+	Party 22, Charmander, Cubone
+	Party 25, Slowpoke
 ; Victory Road 2F
-db 40,CHARMELEON,LAPRAS,LICKITUNG,0
+	Party 40, Charmeleon, Lapras, Lickitung
 ; Rock Tunnel 1F
-db 23,CUBONE,SLOWPOKE,0
+	Party 23, Cubone, Slowpoke

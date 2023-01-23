@@ -1,3 +1,3 @@
-db $FF,61,PIDGEOT,59,ALAKAZAM,61,RHYDON,61,ARCANINE,63,EXEGGUTOR,65,BLASTOISE,0
-db $FF,61,PIDGEOT,59,ALAKAZAM,61,RHYDON,61,GYARADOS,63,ARCANINE,65,VENUSAUR,0
-db $FF,61,PIDGEOT,59,ALAKAZAM,61,RHYDON,61,EXEGGUTOR,63,GYARADOS,65,CHARIZARD,0
+    Party 61, Pidgeot, 2, SKY_ATTACK, 59, Alakazam, 61, Rhydon, 61, Arcanine, 63, Exeggutor, 65, Blastoise, 2, BLIZZARD
+    Party 61, Pidgeot, 2, SKY_ATTACK, 59, Alakazam, 61, Rhydon, 61, Gyarados, 63, Arcanine, 65, Venusaur, 2, MEGA_DRAIN
+    Party 61, Pidgeot, 2, SKY_ATTACK, 59, Alakazam, 61, Rhydon, 61, Exeggutor, 63, Gyarados, 65, Charizard, 2, FIRE_BLAST

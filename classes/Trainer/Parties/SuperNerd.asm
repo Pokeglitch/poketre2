@@ -1,17 +1,17 @@
 ; Mt. Moon 1F
-db 11,MAGNEMITE,VOLTORB,0
+	Party 11, Magnemite, Voltorb
 ; Mt. Moon B2F
-db 12,GRIMER,VOLTORB,KOFFING,0
+	Party 12, Grimer, Voltorb, Koffing
 ; Route 8
-db 20,VOLTORB,KOFFING,VOLTORB,MAGNEMITE,0
-db 22,GRIMER,MUK,GRIMER,0
-db 26,KOFFING,0
+	Party 20, Voltorb, Koffing, Voltorb, Magnemite
+	Party 22, Grimer, Muk, Grimer
+	Party 26, Koffing
 ; Unused
-db 22,KOFFING,MAGNEMITE,WEEZING,0
-db 20,MAGNEMITE,MAGNEMITE,KOFFING,MAGNEMITE,0
-db 24,MAGNEMITE,VOLTORB,0
+	Party 22, Koffing, Magnemite, Weezing
+	Party 20, Magnemite, Magnemite, Koffing, Magnemite
+	Party 24, Magnemite, Voltorb
 ; Cinnabar Gym
-db 36,VULPIX,VULPIX,NINETALES,0
-db 34,PONYTA,CHARMANDER,VULPIX,GROWLITHE,0
-db 41,RAPIDASH,0
-db 37,GROWLITHE,VULPIX,0
+	Party 36, Vulpix, Vulpix, Ninetales
+	Party 34, Ponyta, Charmander, Vulpix, Growlithe
+	Party 41, Rapidash
+	Party 37, Growlithe, Vulpix

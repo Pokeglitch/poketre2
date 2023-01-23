@@ -1,9 +1,9 @@
 ; SS Anne 1F Rooms
-db 18,GROWLITHE,GROWLITHE,0
-db 19,NIDORAN_M,NIDORAN_F,0
+	Party 18, Growlithe, Growlithe
+	Party 19, NidoranM, NidoranF
 ; SS Anne 2F Rooms/Vermilion Gym
-db 23,PIKACHU,0
+	Party 23, Pikachu
 ; Unused
-db 48,PRIMEAPE,0
+	Party 48, Primeape
 ; SS Anne 2F Rooms
-db 17,GROWLITHE,PONYTA,0
+	Party 17, Growlithe, Ponyta

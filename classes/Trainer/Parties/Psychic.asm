@@ -1,5 +1,5 @@
 ; Saffron Gym
-db 31,KADABRA,SLOWPOKE,MR_MIME,KADABRA,0
-db 34,MR_MIME,KADABRA,0
-db 33,SLOWPOKE,SLOWPOKE,SLOWBRO,0
-db 38,SLOWBRO,0
+	Party 31, Kadabra, Slowpoke, MrMime, Kadabra
+	Party 34, MrMime, Kadabra
+	Party 33, Slowpoke, Slowpoke, Slowbro
+	Party 38, Slowbro

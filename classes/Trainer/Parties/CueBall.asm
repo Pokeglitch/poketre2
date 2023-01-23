@@ -1,12 +1,12 @@
 ; Route 16
-db 28,MACHOP,MANKEY,MACHOP,0
-db 29,MANKEY,MACHOP,0
-db 33,MACHOP,0
+	Party 28, Machop, Mankey, Machop
+	Party 29, Mankey, Machop
+	Party 33, Machop
 ; Route 17
-db 29,MANKEY,PRIMEAPE,0
-db 29,MACHOP,MACHOKE,0
-db 33,MACHOKE,0
-db 26,MANKEY,MANKEY,MACHOKE,MACHOP,0
-db 29,PRIMEAPE,MACHOKE,0
+	Party 29, Mankey, Primeape
+	Party 29, Machop, Machoke
+	Party 33, Machoke
+	Party 26, Mankey, Mankey, Machoke, Machop
+	Party 29, Primeape, Machoke
 ; Route 21
-db 31,TENTACOOL,TENTACOOL,TENTACRUEL,0
+	Party 31, Tentacool, Tentacool, Tentacruel

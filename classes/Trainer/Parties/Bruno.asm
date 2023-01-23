@@ -1,1 +1,1 @@
-db $FF,53,ONIX,55,HITMONCHAN,55,HITMONLEE,56,ONIX,58,MACHAMP,0
+    Party 53, Onix, 55, Hitmonchan, 55, Hitmonlee, 56, Onix, 58, Machamp, 2, FISSURE

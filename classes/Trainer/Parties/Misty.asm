@@ -1,1 +1,1 @@
-db $FF,18,STARYU,21,STARMIE,0
+    Party 18, Staryu, 21, Starmie, 2, BUBBLEBEAM

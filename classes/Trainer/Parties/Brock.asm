@@ -1,1 +1,1 @@
-db $FF,12,GEODUDE,14,ONIX,0
+    Party 12, Geodude, 14, Onix, 2, BIDE

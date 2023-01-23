@@ -1,37 +1,37 @@
 ; Unused
-db 22,GASTLY,0
-db 24,GASTLY,0
-db 23,GASTLY,GASTLY,0
-db 24,GASTLY,0
+	Party 22, Gastly
+	Party 24, Gastly
+	Party 23, Gastly, Gastly
+	Party 24, Gastly
 ; Pokémon Tower 3F
-db 23,GASTLY,0
-db 24,GASTLY,0
+	Party 23, Gastly
+	Party 24, Gastly
 ; Unused
-db 24,HAUNTER,0
+	Party 24, Haunter
 ; Pokémon Tower 3F
-db 22,GASTLY,0
+	Party 22, Gastly
 ; Pokémon Tower 4F
-db 24,GASTLY,0
-db 23,GASTLY,GASTLY,0
+	Party 24, Gastly
+	Party 23, Gastly, Gastly
 ; Unused
-db 24,GASTLY,0
+	Party 24, Gastly
 ; Pokémon Tower 4F
-db 22,GASTLY,0
+	Party 22, Gastly
 ; Unused
-db 24,GASTLY,0
+	Party 24, Gastly
 ; Pokémon Tower 5F
-db 23,HAUNTER,0
+	Party 23, Haunter
 ; Unused
-db 24,GASTLY,0
+	Party 24, Gastly
 ; Pokémon Tower 5F
-db 22,GASTLY,0
-db 24,GASTLY,0
-db 22,HAUNTER,0
+	Party 22, Gastly
+	Party 24, Gastly
+	Party 22, Haunter
 ; Pokémon Tower 6F
-db 22,GASTLY,GASTLY,GASTLY,0
-db 24,GASTLY,0
-db 24,GASTLY,0
+	Party 22, Gastly, Gastly, Gastly
+	Party 24, Gastly
+	Party 24, Gastly
 ; Saffron Gym
-db 34,GASTLY,HAUNTER,0
-db 38,HAUNTER,0
-db 33,GASTLY,GASTLY,HAUNTER,0
+	Party 34, Gastly, Haunter
+	Party 38, Haunter
+	Party 33, Gastly, Gastly, Haunter

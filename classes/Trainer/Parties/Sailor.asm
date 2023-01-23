@@ -1,11 +1,11 @@
 ; SS Anne Stern
-db 18,MACHOP,SHELLDER,0
-db 17,MACHOP,TENTACOOL,0
+	Party 18, Machop, Shellder
+	Party 17, Machop, Tentacool
 ; SS Anne B1F Rooms
-db 21,SHELLDER,0
-db 17,HORSEA,SHELLDER,TENTACOOL,0
-db 18,TENTACOOL,STARYU,0
-db 17,HORSEA,HORSEA,HORSEA,0
-db 20,MACHOP,0
+	Party 21, Shellder
+	Party 17, Horsea, Shellder, Tentacool
+	Party 18, Tentacool, Staryu
+	Party 17, Horsea, Horsea, Horsea
+	Party 20, Machop
 ; Vermilion Gym
-db 21,PIKACHU,PIKACHU,0
+	Party 21, Pikachu, Pikachu
