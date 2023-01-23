@@ -18,41 +18,30 @@ AIEnemyTrainerChooseMoves:
 	add hl, bc    ; advance pointer to forbidden move
 	ld [hl], $50  ; forbid (highly discourage) disabled move
 .noMoveDisabled
-	ld hl, TrainerClassMoveChoiceModifications
+
 	ld a, [wTrainerClass]
-	inc a
-	ld b, a
-.loopTrainerClasses
-	dec b
-	jr z, .readTrainerClassData
-.loopTrainerClassData
-	ld a, [hli]
+	call PrepareTrainerClassData
+	ld a, TrainerPropertyMoveSelectionOffset
+	ld [wWhichProperty], a
+	call GetInstanceProperty
+	ld a, l
 	and a
-	jr nz, .loopTrainerClassData
-	jr .loopTrainerClasses
-.readTrainerClassData
-	ld a, [hl]
-	and a
-	jp z, .useOriginalMoveSet
-	push hl
-.nextMoveChoiceModification
-	pop hl
-	ld a, [hli]
-	and a
-	jr z, .loopFindMinimumEntries
-	push hl
-	ld hl, AIMoveChoiceModificationFunctionPointers
-	dec a
-	add a
-	ld c, a
-	ld b, 0
-	add hl, bc    ; skip to pointer
-	ld a, [hli]   ; read pointer into hl
-	ld h, [hl]
-	ld l, a
-	ld de, .nextMoveChoiceModification  ; set return address
-	push de
-	jp hl         ; execute modification function
+	ld hl, wEnemyMonMoves
+	ret z ; if no modification, just use original moveset
+
+	push af
+	bit TrainerPropertyMoveSelectionFlagAilmentIndex, a
+	call nz, AIMoveSelection_CheckAilment
+	pop af
+
+	push af
+	bit TrainerPropertyMoveSelectionFlagSideEffectsIndex, a
+	call nz, AIMoveSeletion_FavorSideEffects
+	pop af
+
+	bit TrainerPropertyMoveSelectionFlagTypeAdvantageIndex, a
+	call nz, AIMoveSeletion_ConsiderTypeAdvantage
+
 .loopFindMinimumEntries ; all entries will be decremented sequentially until one of them is zero
 	ld hl, wBuffer  ; temp move selection array
 	ld de, wEnemyMonMoves  ; enemy moves
@@ -100,18 +89,9 @@ AIEnemyTrainerChooseMoves:
 	jr nz, .filterMinimalEntries
 	ld hl, wBuffer    ; use created temporary array as move set
 	ret
-.useOriginalMoveSet
-	ld hl, wEnemyMonMoves    ; use original move set
-	ret
-
-AIMoveChoiceModificationFunctionPointers:
-	dw AIMoveChoiceModification1
-	dw AIMoveChoiceModification2
-	dw AIMoveChoiceModification3
-	dw AIMoveChoiceModification4 ; unused, does nothing
 
 ; discourages moves that cause no damage but only a status ailment if player's mon already has one
-AIMoveChoiceModification1:
+AIMoveSelection_CheckAilment:
 	ld a, [wBattleMonStatus]
 	and a
 	ret z ; return if no status ailment on player's mon
@@ -156,7 +136,7 @@ StatusAilmentMoveEffects:
 ; slightly encourage moves with specific effects.
 ; in particular, stat-modifying moves and other move effects
 ; that fall in-between
-AIMoveChoiceModification2:
+AIMoveSeletion_FavorSideEffects:
 	ld a, [wAILayer2Encouragement]
 	cp $1
 	ret nz
@@ -189,7 +169,7 @@ AIMoveChoiceModification2:
 ; encourages moves that are effective against the player's mon (even if non-damaging).
 ; discourage damaging moves that are ineffective or not very effective against the player's mon,
 ; unless there's no damaging move that deals at least neutral damage
-AIMoveChoiceModification3:
+AIMoveSeletion_ConsiderTypeAdvantage:
 	ld hl, wBuffer - 1 ; temp move selection array (-1 byte offset)
 	ld de, wEnemyMonMoves ; enemy moves
 	ld b, NUM_MOVES + 1
@@ -256,8 +236,6 @@ AIMoveChoiceModification3:
 	jr z, .nextMove
 	inc [hl] ; slightly discourage this move
 	jr .nextMove
-AIMoveChoiceModification4:
-	ret
 
 ReadMove:
 	push hl
@@ -274,55 +252,6 @@ ReadMove:
 	pop hl
 	ret
 
-; move choice modification methods that are applied for each trainer class
-; 0 is sentinel value
-TrainerClassMoveChoiceModifications:
-	db 0      ; YOUNGSTER
-	db 1,0    ; BUG CATCHER
-	db 1,0    ; LASS
-	db 1,3,0  ; SAILOR
-	db 1,0    ; JR_TRAINER_M
-	db 1,0    ; JR_TRAINER_F
-	db 1,2,3,0; POKEMANIAC
-	db 1,2,0  ; SUPER_NERD
-	db 1,0    ; HIKER
-	db 1,0    ; BIKER
-	db 1,3,0  ; BURGLAR
-	db 1,0    ; ENGINEER
-	db 1,3,0  ; FISHER
-	db 1,3,0  ; SWIMMER
-	db 0      ; CUE_BALL
-	db 1,0    ; GAMBLER
-	db 1,3,0  ; BEAUTY
-	db 1,2,0  ; PSYCHIC
-	db 1,3,0  ; ROCKER
-	db 1,0    ; JUGGLER
-	db 1,0    ; TAMER
-	db 1,0    ; BIRD_KEEPER
-	db 1,0    ; BLACKBELT
-	db 1,0    ; RIVAL1
-	db 1,3,0  ; PROF_OAK
-	db 1,2,0  ; SCIENTIST
-	db 1,3,0  ; GIOVANNI
-	db 1,0    ; ROCKET
-	db 1,3,0  ; COOLTRAINER_M
-	db 1,3,0  ; COOLTRAINER_F
-	db 1,0    ; BRUNO
-	db 1,0    ; BROCK
-	db 1,3,0  ; MISTY
-	db 1,3,0  ; LT_SURGE
-	db 1,3,0  ; ERIKA
-	db 1,3,0  ; KOGA
-	db 1,3,0  ; BLAINE
-	db 1,3,0  ; SABRINA
-	db 1,2,0  ; GENTLEMAN
-	db 1,3,0  ; RIVAL2
-	db 1,3,0  ; RIVAL3
-	db 1,2,3,0; LORELEI
-	db 1,0    ; CHANNELER
-	db 1,0    ; AGATHA
-	db 1,3,0  ; LANCE
-
 INCLUDE "engine/battle/bank_e_misc.asm"
 
 INCLUDE "engine/battle/read_trainer_party.asm"
@@ -330,7 +259,7 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "data/trainer_moves.asm"
 
 TrainerAI:
-	and a
+	and a ; initilize carry flag to 0
 	ld a, [wIsInBattle]
 	dec a
 	ret z ; if not a trainer, we're done here
@@ -348,16 +277,17 @@ TrainerAI:
 
     ld hl, wBuffer
 	ld a, [wAICount]
-	and a
-	ret z ; if no AI uses left, we're done here
-	inc hl
-	inc a
-	jr nz, .getpointer
-	; initialize wAICount if it's -1
-	dec hl
-	ld a, [hli]
+	cp -1 ; if not initialized, then so do
+	jr nz, .checkCount
+
+	ld a, [hl]
 	ld [wAICount], a
-.getpointer
+
+.checkCount
+	and a
+	ret z ; exit if no uses left
+
+	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

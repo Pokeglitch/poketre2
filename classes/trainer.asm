@@ -7,16 +7,15 @@ Trainer: MACRO
 	Prop Traits, Flags, Gender, \3, Morality, \4, Boss, \5, Rival, \6
 
 	; Default AI Values
-	DEF AI_USES = 3
-	REDEF AI_ROUTINE EQUS "GenericAI"
+	REDEF AI_ROUTINE EQUS "0"
 	
 	IF \7 != 0
-		DEF AI_USES = \7
 		REDEF AI_ROUTINE EQUS "{NAME_VALUE}AI"
 	ENDC
 	
-	Prop AIUses, Byte, AI_USES
+	Prop AIUses, Byte, \7
 	Prop AIRoutine, Pointer, AI_ROUTINE
+	Prop MoveSelection, Flags, Ailment, \8, SideEffects, \9, TypeAdvantage, \<10>
 
 	PUSHS
 	SECTION "{NAME_VALUE} Parties", ROMX, BANK[$E]
@@ -27,6 +26,7 @@ ENDM
 
 	Class Trainer
 	
+	; Traits
 	Flag Gender, 	Male,		Female
 	Flag Morality, 	Good,		Evil
 	Flag Boss, 		No,			Yes
@@ -39,48 +39,53 @@ ENDM
 	DEF Elite4Champ	EQUS "Yes,	No"
 	DEF RivalChamp	EQUS "Yes,	Yes"
 
-	Entry Youngster,	15,		Male,		Good,	{Standard},		0
-	Entry Bug Catcher,	10,		Male,		Good,	{Standard},		0
-	Entry Lass,			15,		Female,		Good,	{Standard},		0
-	Entry Sailor,		30,		Male,		Good,	{Standard},		0
-	Entry Jr.Trainer♂,	20,		Male,		Good,	{Standard},		0
-	Entry Jr.Trainer♀,	20,		Female,		Good,	{Standard},		0
-	Entry PokéManiac,	50,		Male,		Good,	{Standard},		0
-	Entry Super Nerd,	25,		Male,		Good,	{Standard},		0
-	Entry Hiker,		35,		Male,		Good,	{Standard},		0
-	Entry Biker,		20,		Male,		Good,	{Standard},		0
-	Entry Burglar,		90,		Male,		Evil,	{Standard},		0
-	Entry Engineer,		50,		Male,		Good,	{Standard},		0
-	Entry Fisherman,	35,		Male,		Good,	{Standard},		0
-	Entry Swimmer,		5,		Male,		Good,	{Standard},		0
-	Entry Cue Ball,		25,		Male,		Evil,	{Standard},		0
-	Entry Gambler,		70,		Male,		Evil,	{Standard},		0
-	Entry Beauty,		70,		Female,		Good,	{Standard},		0
-	Entry Psychic,		10,		Male,		Good,	{Standard},		0
-	Entry Rocker,		25,		Male,		Evil,	{Standard},		0
-	Entry Juggler,		35,		Male,		Evil,	{Standard},		3
-	Entry Tamer,		40,		Male,		Evil,	{Standard},		0
-	Entry Bird Keeper,	25,		Male,		Good,	{Standard},		0
-	Entry Blackbelt,	25,		Male,		Good,	{Standard},		2
-	Entry Rival1,		35,		Male,		Good,	{Rival},		0
-	Entry Prof. Oak,	99,		Male,		Good,	{Standard},		0
-	Entry Scientist,	50,		Male,		Good,	{Standard},		0
-	Entry Giovanni,		99,		Male,		Evil,	{GymLeader},	1
-	Entry Rocket,		30,		Male,		Evil,	{Standard},		0
-	Entry Cooltrainer♂,	35,		Male,		Good,	{Standard},		2
-	Entry Cooltrainer♀,	35,		Female,		Good,	{Standard},		1
-	Entry Bruno,		99,		Male,		Good,	{Elite4},		2
-	Entry Brock,		99,		Male,		Good,	{GymLeader},	5
-	Entry Misty,		99,		Female,		Good,	{GymLeader},	1
-	Entry Lt. Surge,	99,		Male,		Good,	{GymLeader},	1
-	Entry Erika,		99,		Female,		Good,	{GymLeader},	1
-	Entry Koga,			99,		Male,		Good,	{GymLeader},	2
-	Entry Blaine,		99,		Male,		Good,	{GymLeader},	2
-	Entry Sabrina,		99,		Female,		Good,	{GymLeader},	1
-	Entry Gentleman,	70,		Male,		Good,	{Standard},		0
-	Entry Rival2,		65,		Male,		Good,	{Rival},		1
-	Entry Rival3,		99,		Male,		Good,	{RivalChamp},	1
-	Entry Lorelei,		99,		Female,		Good,	{Elite4},		2
-	Entry Channeler,	30,		Female,		Good,	{Standard},		0
-	Entry Agatha,		99,		Female,		Good,	{Elite4},		2
-	Entry Lance,		99,		Male,		Good,	{Elite4Champ},	1
+	; MoveSelection
+	Flag Ailment,		Ignore,		Check
+	Flag SideEffects,	Ignore,		Favor
+	Flag TypeAdvantage,	Ignore,		Consider
+
+	Entry Youngster,	15,		Male,		Good,	{Standard},		0,	Ignore,	Ignore,	Ignore
+	Entry Bug Catcher,	10,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Lass,			15,		Female,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Sailor,		30,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Jr.Trainer♂,	20,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Jr.Trainer♀,	20,		Female,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry PokéManiac,	50,		Male,		Good,	{Standard},		0,	Check,	Favor,	Consider
+	Entry Super Nerd,	25,		Male,		Good,	{Standard},		0,	Check,	Favor,	Ignore
+	Entry Hiker,		35,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Biker,		20,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Burglar,		90,		Male,		Evil,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Engineer,		50,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Fisherman,	35,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Swimmer,		5,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Cue Ball,		25,		Male,		Evil,	{Standard},		0,	Ignore,	Ignore,	Ignore
+	Entry Gambler,		70,		Male,		Evil,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Beauty,		70,		Female,		Good,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Psychic,		10,		Male,		Good,	{Standard},		0,	Check,	Favor,	Ignore
+	Entry Rocker,		25,		Male,		Evil,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Juggler,		35,		Male,		Evil,	{Standard},		3,	Check,	Ignore,	Ignore
+	Entry Tamer,		40,		Male,		Evil,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Bird Keeper,	25,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Blackbelt,	25,		Male,		Good,	{Standard},		2,	Check,	Ignore,	Ignore
+	Entry Rival1,		35,		Male,		Good,	{Rival},		0,	Check,	Ignore,	Ignore
+	Entry Prof. Oak,	99,		Male,		Good,	{Standard},		0,	Check,	Ignore,	Consider
+	Entry Scientist,	50,		Male,		Good,	{Standard},		0,	Check,	Favor,	Ignore
+	Entry Giovanni,		99,		Male,		Evil,	{GymLeader},	1,	Check,	Ignore,	Consider
+	Entry Rocket,		30,		Male,		Evil,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Cooltrainer♂,	35,		Male,		Good,	{Standard},		2,	Check,	Ignore,	Consider
+	Entry Cooltrainer♀,	35,		Female,		Good,	{Standard},		1,	Check,	Ignore,	Consider
+	Entry Bruno,		99,		Male,		Good,	{Elite4},		2,	Check,	Ignore,	Ignore
+	Entry Brock,		99,		Male,		Good,	{GymLeader},	5,	Check,	Ignore,	Ignore
+	Entry Misty,		99,		Female,		Good,	{GymLeader},	1,	Check,	Ignore,	Consider
+	Entry Lt. Surge,	99,		Male,		Good,	{GymLeader},	1,	Check,	Ignore,	Consider
+	Entry Erika,		99,		Female,		Good,	{GymLeader},	1,	Check,	Ignore,	Consider
+	Entry Koga,			99,		Male,		Good,	{GymLeader},	2,	Check,	Ignore,	Consider
+	Entry Blaine,		99,		Male,		Good,	{GymLeader},	2,	Check,	Ignore,	Consider
+	Entry Sabrina,		99,		Female,		Good,	{GymLeader},	1,	Check,	Ignore,	Consider
+	Entry Gentleman,	70,		Male,		Good,	{Standard},		0,	Check,	Favor,	Ignore
+	Entry Rival2,		65,		Male,		Good,	{Rival},		1,	Check,	Ignore,	Consider
+	Entry Rival3,		99,		Male,		Good,	{RivalChamp},	1,	Check,	Ignore,	Consider
+	Entry Lorelei,		99,		Female,		Good,	{Elite4},		2,	Check,	Favor,	Consider
+	Entry Channeler,	30,		Female,		Good,	{Standard},		0,	Check,	Ignore,	Ignore
+	Entry Agatha,		99,		Female,		Good,	{Elite4},		2,	Check,	Ignore,	Ignore
+	Entry Lance,		99,		Male,		Good,	{Elite4Champ},	1,	Check,	Ignore,	Consider
