@@ -1007,7 +1007,7 @@ TrainerBattleVictory:
 	jr nz, .gymleader
 	ld b, MUSIC_DEFEATED_TRAINER
 .gymleader
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	cp Rival3 ; final battle against rival
 	jr nz, .notrival
 	ld b, MUSIC_DEFEATED_GYM_LEADER
@@ -6741,6 +6741,7 @@ PlayMoveAnimation:
 	call Delay3
 	predef_jump MoveAnimation
 
+; If a battle type has not already been defined, then check for a wild encounter
 InitBattle:
 	ld a, [wCurOpponent]
 	and a
@@ -6765,6 +6766,10 @@ DetermineWildOpponent:
 	ret nz
 	callab TryDoWildEncounter
 	ret nz
+
+	; Wild Battle
+	
+
 InitBattleCommon:
 	ld a, [wMapPalOffset]
 	push af
@@ -6777,7 +6782,7 @@ InitBattleCommon:
 	sub 201
 	jp c, InitWildBattle
 	
-	ld [wTrainerClass], a
+	ld [wTrainerInstance], a
 	callab LoadTrainer
 	call DoBattleTransitionAndInitBattleVariables
 	call _LoadTrainerPic
@@ -6829,7 +6834,7 @@ InitWildBattle:
 	call LoadFrontSpriteByMonIndexToDE
 .spriteLoaded
 	xor a
-	ld [wTrainerClass], a
+	ld [wTrainerInstance], a
 	ld [hStartTileID], a
 	coord hl, 12, 0
 	predef CopyUncompressedPicToTilemap
@@ -6881,7 +6886,7 @@ _LoadTrainerPic:
 	and a
 	jr nz, .loadLinkBattlePic
 	
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	call PrepareTrainerClassData
 	jr .loadSprite
 

@@ -10,7 +10,7 @@ LoadTrainer:
 	and a
 	jr nz, CopyIntoTrainerName
 
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	ld [wWhichInstance], a
 	ld a, TrainerPropertyTraitsOffset
 	call GetInstancePropertyPointer
@@ -117,7 +117,7 @@ LoadTrainer:
 
 .storeTrainerMoney
 	; load the base money
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	ld [wWhichInstance], a
 	ld a, TrainerPropertyMoneyOffset
 	call GetInstanceProperty ; high byte is in l

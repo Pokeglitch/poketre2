@@ -19,7 +19,7 @@ AIEnemyTrainerChooseMoves:
 	ld [hl], $50  ; forbid (highly discourage) disabled move
 
 .noMoveDisabled
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	ld [wWhichInstance], a
 	ld a, TrainerPropertyMoveSelectionOffset
 	call GetInstanceProperty
@@ -260,7 +260,7 @@ TrainerAI:
 	cp LINK_STATE_BATTLING
 	ret z
 
-	ld a, [wTrainerClass]
+	ld a, [wTrainerInstance]
 	ld [wWhichInstance], a
     ld c, 3
     ld de, wBuffer

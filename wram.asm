@@ -1603,7 +1603,7 @@ wBattleMonNick:: ds NAME_LENGTH ; d009
 wBattleMon:: battle_struct wBattleMon ; d014
 
 
-wTrainerClass:: ; d031
+wTrainerInstance:: ; d031
 	ds 1
 
 	ds 4 ; unused
