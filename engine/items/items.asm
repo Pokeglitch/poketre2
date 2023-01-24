@@ -1930,6 +1930,7 @@ RodResponse:
 	ld [wCurEnemyLVL], a
 	ld a, c ; species
 	ld [wCurOpponent], a
+	SetBattleMode Pokemon
 
 .next
 	ld hl, wWalkBikeSurfState

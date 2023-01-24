@@ -142,26 +142,24 @@ PokemonTower2Text1:
 	ld hl, PokemonTower2Text_60632
 	ld de, PokemonTower2Text_60637
 	call SaveEndBattleTextPointers
-	ld a, Rival2 + 201
-	ld [wCurOpponent], a
 
 	; select which team to use during the encounter
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .NotSquirtle
-	ld a, $4
+	ld a, 4
 	jr .done
 .NotSquirtle
 	cp STARTER3
 	jr nz, .Charmander
-	ld a, $5
+	ld a, 5
 	jr .done
 .Charmander
-	ld a, $6
+	ld a, 6
 .done
-	ld [wTrainerNo], a
+	PrepareBattle Rival2, a
 
-	ld a, $1
+	ld a, 1
 	ld [wPokemonTower2CurScript], a
 	ld [wCurMapScript], a
 .asm_41852

@@ -173,7 +173,6 @@ CeladonGymText1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $4
 	ld [wGymLeaderNo], a
 	ld a, $3

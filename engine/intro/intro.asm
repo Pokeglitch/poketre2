@@ -49,8 +49,6 @@ EkansSpriteDims:
 	dwCoord 11, 9
 	
 PlayIntroBattle:
-	xor a
-	ld [wCurOpponent], a
 	call DrawIntroBattleBackground
 	call LoadIntroBattleGraphics
 	

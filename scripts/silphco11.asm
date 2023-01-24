@@ -266,7 +266,6 @@ SilphCo11Script4:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	xor a
 	ld [wJoyIgnore], a
 	ld a, $5

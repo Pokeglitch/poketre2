@@ -183,23 +183,21 @@ SilphCo7Script3:
 	ld hl, SilphCo7Text14
 	ld de, SilphCo7Text_51ecd
 	call SaveEndBattleTextPointers
-	ld a, Rival2 + 201
-	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .asm_51cb6
-	ld a, $7
+	ld a, 7
 	jr .asm_51cc0
 .asm_51cb6
 	cp STARTER3
 	jr nz, .asm_51cbe
-	ld a, $8
+	ld a, 8
 	jr .asm_51cc0
 .asm_51cbe
-	ld a, $9
+	ld a, 9
 .asm_51cc0
-	ld [wTrainerNo], a
-	ld a, $4
+	PrepareBattle Rival2, a
+	ld a, 4
 	jp SilphCo7Text_51c10
 
 SilphCo7Script4:

@@ -800,10 +800,7 @@ wEnemyMonUnmodifiedSpeed:: ; cd2a
 wEnemyMonUnmodifiedSpecial:: ; cd2c
 	ds 1
 
-wEngagedTrainerClass:: ; cd2d
 	ds 1
-wEngagedTrainerSet:: ; cd2e
-;	ds 1
 
 ; stat modifiers for the enemy's current pokemon
 ; value can range from 1 - 13 ($1 to $D)
@@ -1619,6 +1616,7 @@ wLearnMoveMonName:: ; d036
 wMissableObjectCounter:: ; d048
 	ds 1
 
+wBattleMode:: ;d049
 	ds 1
 
 wTrainerName:: ; d04a
@@ -1659,8 +1657,8 @@ wDamageMultipliers:: ; d05b
 	ds 1
 
 wGymLeaderNo:: ; d05c
-; it's actually the same thing as ^
 	ds 1
+
 wTrainerNo:: ; d05d
 ; which instance of [youngster, lass, etc] is this?
 	ds 1
@@ -2910,11 +2908,7 @@ wFossilMon:: ; d710
 ; mon that will result from the item
 	ds 1
 
-	ds 2
-
-wEnemyMonOrTrainerClass:: ; d713
-; trainer classes start at 200
-	ds 1
+	ds 3
 
 wPlayerJumpingYScreenCoordsIndex:: ; d714
 	ds 1

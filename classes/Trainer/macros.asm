@@ -1,7 +1,7 @@
 ; TODO - Define by macro ?
 PartyDataSpecialFlagIndex = 7
 PartyDataSpecialFlagMask = %10000000
-PartyDataTerminator = 0
+PartyDataTerminator = -1
 
 Party: MACRO
     DEF SPECIAL_MASK = 0

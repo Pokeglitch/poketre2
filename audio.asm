@@ -355,8 +355,6 @@ INCLUDE "audio/sfx/cry20_3.asm"
 INCLUDE "audio/sfx/cry21_3.asm"
 INCLUDE "audio/sfx/cry22_3.asm"
 
-
-
 SECTION "Audio Engine 1", ROMX, BANK[AUDIO_1]
 
 PlayBattleMusic::
@@ -368,11 +366,11 @@ PlayBattleMusic::
 	call PlaySound ; stop music
 	call DelayFrame
 
-	ld a, [wCurOpponent]
-	cp 201
-	jr c, .wildBattle
+	ld a, [wBattleMode]
+	dec a
+	jr z, .wildBattle
 	
-	sub 201
+	ld a, [wCurOpponent]
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
 	call GetInstanceProperty_Far ; property in l

@@ -61,7 +61,7 @@ OverworldLoopLessDelay::
 	ld a, [wd732]
 	and 1 << 4 | 1 << 3 ; fly warp or dungeon warp
 	jp nz, HandleFlyWarpOrDungeonWarp
-	ld a, [wCurOpponent]
+	ld a, [wBattleMode]
 	and a
 	jp nz, .newBattle
 	ld a, [wd730]
@@ -125,7 +125,7 @@ OverworldLoopLessDelay::
 .changeMap
 	jp EnterMap
 .checkForOpponent
-	ld a, [wCurOpponent]
+	ld a, [wBattleMode]
 	and a
 	jp nz, .newBattle
 	jp OverworldLoop

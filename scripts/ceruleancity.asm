@@ -134,24 +134,22 @@ CeruleanCityScript1:
 	ld hl, CeruleanCityText_1966d
 	ld de, CeruleanCityText_19672
 	call SaveEndBattleTextPointers
-	ld a, Rival1 + 201
-	ld [wCurOpponent], a
 
 	; select which team to use during the encounter
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .NotSquirtle
-	ld a, $7
+	ld a, 7
 	jr .done
 .NotSquirtle
 	cp STARTER3
 	jr nz, .Charmander
-	ld a, $8
+	ld a, 8
 	jr .done
 .Charmander
-	ld a, $9
+	ld a, 9
 .done
-	ld [wTrainerNo], a
+	PrepareBattle Rival1, a
 
 	xor a
 	ld [hJoyHeld], a
@@ -292,7 +290,6 @@ CeruleanCityText2:
 	ld a, [hSpriteIndexOrTextID]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $4
 	ld [wCeruleanCityCurScript], a
 	jp TextScriptEnd

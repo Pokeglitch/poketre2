@@ -97,24 +97,22 @@ SSAnne2Script1:
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	call Delay3
-	ld a, Rival2 + 201
-	ld [wCurOpponent], a
 
 	; select which team to use during the encounter
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .NotSquirtle
-	ld a, $1
+	ld a, 1
 	jr .done
 .NotSquirtle
 	cp STARTER3
 	jr nz, .Charmander
-	ld a, $2
+	ld a, 2
 	jr .done
 .Charmander
-	ld a, $3
+	ld a, 3
 .done
-	ld [wTrainerNo], a
+	PrepareBattle Rival2, a
 
 	call SSAnne2Script_61416
 	ld a, $2

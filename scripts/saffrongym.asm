@@ -174,7 +174,6 @@ SaffronGymText1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $6
 	ld [wGymLeaderNo], a
 	ld a, $3

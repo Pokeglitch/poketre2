@@ -145,7 +145,6 @@ FightingDojoText1:
 	ld a, [hSpriteIndexOrTextID]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $3
 	ld [wFightingDojoCurScript], a
 	ld [wCurMapScript], a

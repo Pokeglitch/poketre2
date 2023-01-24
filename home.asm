@@ -1967,7 +1967,6 @@ DisplayEnemyTrainerTextAndStartBattle::
 StartTrainerBattle::
 	xor a
 	ld [wJoyIgnore], a
-	call InitBattleEnemyParameters
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]
@@ -1994,9 +1993,9 @@ EndTrainerBattle::
 	ld c, a
 	ld b, FLAG_SET
 	call TrainerFlagAction   ; flag trainer as fought
-	ld a, [wEnemyMonOrTrainerClass]
-	cp 201
-	jr nc, .skipRemoveSprite    ; test if trainer was fought (in that case skip removing the corresponding sprite)
+	ld a, [wBattleMode]
+	dec a
+	jr nz, .skipRemoveSprite    ; test if trainer was fought (in that case skip removing the corresponding sprite)
 	ld hl, wMissableObjectList
 	ld de, $2
 	ld a, [wSpriteIndex]
@@ -2023,20 +2022,6 @@ ResetButtonPressedAndMapScript::
 ; calls TrainerWalkUpToPlayer
 TrainerWalkUpToPlayer_Bank0::
 	jpba TrainerWalkUpToPlayer
-
-; sets opponent type and mon set/lvl based on the engaging trainer data
-InitBattleEnemyParameters::
-	ld a, [wEngagedTrainerClass]
-	ld [wCurOpponent], a
-	ld [wEnemyMonOrTrainerClass], a
-	cp 201
-	ld a, [wEngagedTrainerSet]
-	jr c, .noTrainer
-	ld [wTrainerNo], a
-	ret
-.noTrainer
-	ld [wCurEnemyLVL], a
-	ret
 
 GetSpritePosition1::
 	ld hl, _GetSpritePosition1
@@ -2121,16 +2106,33 @@ SaveEndBattleTextPointers::
 ; [wSpriteIndex]: sprite ID of trainer who is engaged
 EngageMapTrainer::
 	ld hl, wMapSpriteExtraData
-	ld d, $0
+	ld d, 0
 	ld a, [wSpriteIndex]
 	dec a
 	add a
 	ld e, a
-	add hl, de     ; seek to engaged trainer data
+	add hl, de     ; jump to engaged trainer data
+
 	ld a, [hli]    ; load trainer class
-	ld [wEngagedTrainerClass], a
+	ld [wCurOpponent], a
+
 	ld a, [hl]     ; load trainer mon set
-	ld [wEngagedTrainerSet], a
+
+	bit ObjectDataTrainerFlagIndex, a		; represents if it is a pokemon or trainer
+	jr z, .wild
+	
+	xor ObjectDataTrainerFlagMask ; unset the flag
+	ld [wTrainerNo], a
+
+	ld a, BattleModeTrainer
+	jr .storeBattleMode
+
+.wild
+	ld [wCurEnemyLVL], a
+	ld a, BattleModePokemon
+
+.storeBattleMode
+	ld [wBattleMode], a
 	jp PlayTrainerMusic
 
 PrintEndBattleText::
@@ -2188,8 +2190,11 @@ CheckIfAlreadyEngaged::
 	ret
 
 PlayTrainerMusic::
-	ld a, [wEngagedTrainerClass]
-	sub 201
+	ld a, [wBattleMode]
+	dec a
+	jr z, .playMaleTrainerMusic ; TODO - add new music for wild encounters
+
+	ld a, [wCurOpponent]
 	call PrepareTrainerClassData
 	ld a, TrainerPropertyTraitsOffset
 	call GetInstanceProperty_Far
@@ -2214,6 +2219,7 @@ PlayTrainerMusic::
 	jr nz, .playFemaleTrainerMusic
 
 	; otherwise, play male
+.playMaleTrainerMusic
 	ld a, MUSIC_MEET_MALE_TRAINER
 	jr .PlaySound
 

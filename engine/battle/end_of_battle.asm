@@ -50,7 +50,7 @@ EndOfBattle:
 	ld [wIsInBattle], a
 	ld [wBattleType], a
 	ld [wMoveMissed], a
-	ld [wCurOpponent], a
+	ld [wBattleMode], a
 	ld [wForcePlayerToChooseMon], a
 	ld [wNumRunAttempts], a
 	ld [wEscapedFromBattle], a

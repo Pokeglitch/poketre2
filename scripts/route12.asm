@@ -29,10 +29,7 @@ Route12Script0:
 	ld a, $d
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
-	ld a, SNORLAX
-	ld [wCurOpponent], a
-	ld a, 30
-	ld [wCurEnemyLVL], a
+	PrepareBattle SNORLAX, 30
 	ld a, HS_ROUTE_12_SNORLAX
 	ld [wMissableObjectIndex], a
 	predef HideObject

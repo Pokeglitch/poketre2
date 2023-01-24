@@ -425,7 +425,6 @@ CeladonGameCornerText11:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	xor a
 	ld [hJoyHeld], a
 	ld [hJoyPressed], a

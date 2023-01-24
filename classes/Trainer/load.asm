@@ -36,8 +36,6 @@ LoadTrainer:
 	ld [hl], a
 
 ; get the pointer to trainer data for this class
-	ld a, [wCurOpponent]
-	sub 201 ; convert value from pokemon to trainer
 	ld a, TrainerPropertyPartiesOffset
 	call GetInstanceProperty ; instance were already set earlier
 	
@@ -51,7 +49,7 @@ LoadTrainer:
 	jr z, .partyFound
 .findEndOfParty
 	ld a, [hli]
-	and a
+	cp PartyDataTerminator
 	jr nz, .findEndOfParty
 	jr .findTrainerParty
 
@@ -64,7 +62,7 @@ LoadTrainer:
 	ld [wCurEnemyLVL], a
 .addNextPokemon_Standard
 	ld a, [hli]
-	and a ; have we reached the end of the trainer data?
+	cp PartyDataTerminator ; have we reached the end of the trainer data?
 	jr z, .storeTrainerMoney
 	
 	call AddMonToEnemyParty
@@ -75,21 +73,22 @@ LoadTrainer:
 	ld de, wEnemyMon1Moves
 
 .addNextMon
-	and a
-	jr z, .storeTrainerMoney ; add the money if end of data reached
 	ld [wCurEnemyLVL], a
 	ld a, [hli]
 
 	push de
 	call AddMonToEnemyParty
+	pop de
 
 .checkForSpecialMove
 	ld a, [hli] ; load next value
+	cp PartyDataTerminator
+	jr z, .storeTrainerMoney ; add the money if end of data reached
+	
 	bit PartyDataSpecialFlagIndex, a ; if the high bit is set, then this pokemon have a special move
 	jr nz, .storeSpecialMove
 
 	; otherwise, update the pointer for the next mon's move and read next data set
-	pop de
 	push hl
 	ld hl, wEnemyMon2 - wEnemyMon1
 	add hl, de
@@ -107,8 +106,8 @@ LoadTrainer:
 	jr nc, .dontIncD
 
 	inc d ; if carry, increase d
+	
 .dontIncD
-
 	ld a, [hli] ; get the new Move ID
 	ld [de], a ; write to the move slot
 

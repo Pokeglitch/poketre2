@@ -292,7 +292,6 @@ ViridianGymText1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $8
 	ld [wGymLeaderNo], a
 	ld a, $3

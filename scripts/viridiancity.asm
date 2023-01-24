@@ -77,6 +77,7 @@ ViridianCityScript1:
 	ld [wCurEnemyLVL], a
 	ld a, WEEDLE
 	ld [wCurOpponent], a
+	SetBattleMode Trainer
 	ld a, $2
 	ld [wViridianCityCurScript], a
 	ret

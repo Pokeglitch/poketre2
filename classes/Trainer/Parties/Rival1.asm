@@ -4,8 +4,8 @@
 
     ; Route 22
     Party 9, Pidgey, 8, Squirtle
-    Party 9,Pidgey, 8, Bulbasaur
-    Party 9,Pidgey, 8, Charmander
+    Party 9, Pidgey, 8, Bulbasaur
+    Party 9, Pidgey, 8, Charmander
 
     ; Cerulean City
     Party 18, Pidgeotto, 15, Abra, 15, Rattata, 17, Squirtle

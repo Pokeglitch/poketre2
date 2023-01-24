@@ -1220,8 +1220,10 @@ HandlePlayerBlackOut:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr z, .notRival1Battle
+	ld a, [wBattleMode]
+	cp BattleModeTrainer
+	jr nz, .notRival1Battle
 	ld a, [wCurOpponent]
-	sub 201
 	cp Rival1
 	jr nz, .notRival1Battle
 	coord hl, 0, 0  ; rival 1 battle
@@ -6741,9 +6743,9 @@ PlayMoveAnimation:
 	call Delay3
 	predef_jump MoveAnimation
 
-; If a battle type has not already been defined, then check for a wild encounter
+; If a battle mode isnt set, then check for a wild encounter
 InitBattle:
-	ld a, [wCurOpponent]
+	ld a, [wBattleMode]
 	and a
 	jr z, DetermineWildOpponent
 
@@ -6767,9 +6769,6 @@ DetermineWildOpponent:
 	callab TryDoWildEncounter
 	ret nz
 
-	; Wild Battle
-	
-
 InitBattleCommon:
 	ld a, [wMapPalOffset]
 	push af
@@ -6778,10 +6777,11 @@ InitBattleCommon:
 	push af
 	res 1, [hl]
 	callab InitBattleVariables
-	ld a, [wEnemyMonSpecies2]
-	sub 201
-	jp c, InitWildBattle
+	ld a, [wBattleMode]
+	dec a
+	jp z, InitWildBattle
 	
+	ld a, [wCurOpponent]
 	ld [wTrainerInstance], a
 	callab LoadTrainer
 	call DoBattleTransitionAndInitBattleVariables

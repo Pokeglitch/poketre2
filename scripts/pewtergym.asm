@@ -123,7 +123,6 @@ PewterGymText1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $1
 	ld [wGymLeaderNo], a
 	xor a

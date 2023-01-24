@@ -78,6 +78,9 @@ TryDoWildEncounter:
 	ld a, [hl]
 	ld [wcf91], a
 	ld [wEnemyMonSpecies2], a
+	ld [wCurOpponent], a
+	SetBattleMode Pokemon
+
 	ld a, [wRepelRemainingSteps]
 	and a
 	jr z, .willEncounter

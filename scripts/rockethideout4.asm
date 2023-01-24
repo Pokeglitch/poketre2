@@ -128,7 +128,6 @@ RocketHideout4Text1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	xor a
 	ld [hJoyHeld], a
 	ld a, $3

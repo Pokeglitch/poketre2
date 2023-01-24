@@ -89,6 +89,10 @@ LEFT  EQU $D2
 RIGHT EQU $D3
 NONE  EQU $FF
 
+; TODO - define these with a macro
+ObjectDataTrainerFlagIndex = 7
+ObjectDataTrainerFlagMask = %10000000
+
 ;\1 sprite id
 ;\2 x position
 ;\3 y position
@@ -106,16 +110,17 @@ object: MACRO
 	db \5
 	IF (_NARG > 7)
 		db TRAINER | \6
+		db \7
+		; TODO - the DEF check isnt necessary once using Pokemon table
 		IF DEF(\7Table)
 			IF STRCMP("{\7Table}","Trainer") == 0
-				db \7 + 201
+				db \8 | ObjectDataTrainerFlagMask; set flag to indicate trainer
 			ELSE
-				db \1
+				db \8
 			ENDC
 		ELSE
-			db \7
+			db \8
 		ENDC
-		db \8
 	ELSE
 		IF (_NARG > 6)
 			db ITEM | \6

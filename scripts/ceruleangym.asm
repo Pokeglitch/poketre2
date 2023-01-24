@@ -124,7 +124,6 @@ CeruleanGymText1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $2
 	ld [wGymLeaderNo], a
 	xor a

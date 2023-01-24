@@ -381,23 +381,22 @@ OaksLabScript11:
 	ret nz
 
 	; define which team rival uses, and fight it
-	ld a, Rival1 + 201
-	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .NotSquirtle
-	ld a, $1
+	ld a, 1
 	jr .done
 .NotSquirtle
 	cp STARTER3
 	jr nz, .Charmander
-	ld a, $2
+	ld a, 2
 	jr .done
 .Charmander
-	ld a, $3
+	ld a, 3
 .done
-	ld [wTrainerNo], a
-	ld a, $1
+	PrepareBattle Rival1, a
+
+	ld a, 1
 	ld [wSpriteIndex], a
 	call GetSpritePosition1
 	ld hl, OaksLabText_1d3be

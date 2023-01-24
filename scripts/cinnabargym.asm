@@ -188,7 +188,6 @@ CinnabarGymScript_758b7:
 	ld a, [hSpriteIndexOrTextID]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]

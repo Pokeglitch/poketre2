@@ -225,7 +225,6 @@ MtMoon3Text1:
 	ld a, [H_SPRITEINDEX]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	ld a, $3
 	ld [wMtMoon3CurScript], a
 	ld [wCurMapScript], a

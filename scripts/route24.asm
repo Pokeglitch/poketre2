@@ -165,7 +165,6 @@ Route24Text1:
 	ld a, [hSpriteIndexOrTextID]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
-	call InitBattleEnemyParameters
 	xor a
 	ld [hJoyHeld], a
 	ld a, $3

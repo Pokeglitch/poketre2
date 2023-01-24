@@ -32,7 +32,6 @@ Route22Script_50ed6:
 	jr .asm_50eda
 .asm_50ee1
 	ld a, [hl]
-	ld [wTrainerNo], a
 	ret
 
 Route22MoveRivalSprite:
@@ -117,7 +116,7 @@ Route22Script1:
 	ld a, SPRITE_FACING_RIGHT
 .asm_50f7a
 	ld [hSpriteFacingDirection], a
-	ld a, $1
+	ld a, 1
 	ld [H_SPRITEINDEX], a
 	call SetSpriteFacingDirectionAndDelay
 	xor a
@@ -131,19 +130,18 @@ Route22Script1:
 	ld hl, Route22RivalDefeatedText1
 	ld de, Route22Text_511bc
 	call SaveEndBattleTextPointers
-	ld a, Rival1 + 201
-	ld [wCurOpponent], a
 	ld hl, StarterMons_50faf
 	call Route22Script_50ed6
-	ld a, $2
+	PrepareBattle Rival1, a
+	ld a, 2
 	ld [wRoute22CurScript], a
 	ret
 
 StarterMons_50faf:
 ; starter the rival picked, rival trainer number
-	db STARTER2,$04
-	db STARTER3,$05
-	db STARTER1,$06
+	db STARTER2, 4
+	db STARTER3, 5
+	db STARTER1, 6
 
 Route22Script2:
 	ld a, [wIsInBattle]
@@ -278,7 +276,7 @@ Route22Script4:
 	call SetSpriteFacingDirectionAndDelay
 	xor a
 	ld [wJoyIgnore], a
-	ld a, $2
+	ld a, 2
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	ld hl, wd72d
@@ -287,18 +285,17 @@ Route22Script4:
 	ld hl, Route22RivalDefeatedText2
 	ld de, Route22Text_511d0
 	call SaveEndBattleTextPointers
-	ld a, Rival2 + 201
-	ld [wCurOpponent], a
 	ld hl, StarterMons_510d9
 	call Route22Script_50ed6
-	ld a, $5
+	PrepareBattle Rival2, a
+	ld a, 5
 	ld [wRoute22CurScript], a
 	ret
 
 StarterMons_510d9:
-	db STARTER2,$0a
-	db STARTER3,$0b
-	db STARTER1,$0c
+	db STARTER2, 10
+	db STARTER3, 11
+	db STARTER1, 12
 
 Route22Script5:
 	ld a, [wIsInBattle]

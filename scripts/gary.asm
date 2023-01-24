@@ -64,24 +64,22 @@ GaryScript2:
 	ld hl, GaryDefeatedText
 	ld de, GaryVictoryText
 	call SaveEndBattleTextPointers
-	ld a, Rival3 + 201
-	ld [wCurOpponent], a
 
 	; select which team to use during the encounter
 	ld a, [wRivalStarter]
 	cp STARTER2
 	jr nz, .NotStarter2
-	ld a, $1
+	ld a, 1
 	jr .saveTrainerId
 .NotStarter2
 	cp STARTER3
 	jr nz, .NotStarter3
-	ld a, $2
+	ld a, 2
 	jr .saveTrainerId
 .NotStarter3
-	ld a, $3
+	ld a, 3
 .saveTrainerId
-	ld [wTrainerNo], a
+	PrepareBattle Rival3, a
 
 	xor a
 	ld [hJoyHeld], a
