@@ -2995,7 +2995,9 @@ wd72e:: ; d72e
 ; bit 1: set in various places, but doesn't appear to have an effect
 ; bit 2: the player has healed pokemon at a pokemon center at least once
 ; bit 3: the player has a received a pokemon from Prof. Oak
-; bit 4: disable battles
+; bit 4: player is in zone where battles are disabled
+;        - purification zone
+;        - somewhere in MtMoon3
 ; bit 5: set when a battle ends and when the player blacks out in the overworld due to poison
 ; bit 6: using the link feature
 ; bit 7: set if scripted NPC movement has been initialised

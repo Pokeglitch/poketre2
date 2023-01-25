@@ -6743,11 +6743,11 @@ PlayMoveAnimation:
 	call Delay3
 	predef_jump MoveAnimation
 
-; If a battle mode isnt set, then check for a wild encounter
-InitBattle:
+; If a battle mode isn't set, then check for a wild encounter
+InitBattleOrTryWild:
 	ld a, [wBattleMode]
 	and a
-	jr z, DetermineWildOpponent
+	jr z, LookForWildEncounter
 
 InitOpponent:
 	ld a, [wCurOpponent]
@@ -6755,14 +6755,15 @@ InitOpponent:
 	ld [wEnemyMonSpecies2], a
 	jr InitBattleCommon
 
-DetermineWildOpponent:
+; if debug enabled, can skip wild battles by holding B
+LookForWildEncounter:
 	ld a, [wd732]
 	bit 1, a
-	jr z, .asm_3ef2f
+	jr z, .cantAvoidWithB
 	ld a, [hJoyHeld]
 	bit 1, a ; B button pressed?
 	ret nz
-.asm_3ef2f
+.cantAvoidWithB
 	ld a, [wNumberOfNoRandomBattleStepsLeft]
 	and a
 	ret nz
