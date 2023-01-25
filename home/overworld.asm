@@ -62,20 +62,19 @@ OverworldLoopLessDelay::
 	and 1 << 4 | 1 << 3 ; fly warp or dungeon warp
 	jp nz, HandleFlyWarpOrDungeonWarp
 	
-	; If a battle was triggered by the the user entering a trainers line of sight, then loop
-	; next map script will have the trainer walk towards player and begin battle
-	; TODO - simply call that here?
-	; Having this check here will remove the bug of the player being able to 
-	; press start before the trainer battle
-	; TODO - why is jump here instead of loop?
-	; - what is called in this loop that is required?
 	ld a, [wFlags_0xcd60]
 	bit 0, a
-	jr nz, .skipBattleCheck
+	jr nz, .checkIfTrainerTextFinished
 
 	; This will be set if the battle is triggered through a map script
 	ld a, [wBattleMode]
 	and a
+	jp nz, .newBattle
+	jr .skipBattleCheck
+
+.checkIfTrainerTextFinished
+	ld a, [wFlags_D733]
+	bit 4, a
 	jp nz, .newBattle
 
 .skipBattleCheck
