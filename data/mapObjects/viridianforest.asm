@@ -1,13 +1,13 @@
 	db 3 ; border block
 
-	MapWarp 1, 0, 2, VIRIDIAN_FOREST_EXIT
-	MapWarp 2, 0, 3, VIRIDIAN_FOREST_EXIT
-	MapWarp 15, 47, 1, VIRIDIAN_FOREST_ENTRANCE
-	MapWarp 16, 47, 1, VIRIDIAN_FOREST_ENTRANCE
-	MapWarp 17, 47, 1, VIRIDIAN_FOREST_ENTRANCE
-	MapWarp 18, 47, 1, VIRIDIAN_FOREST_ENTRANCE
+	Warp 1, 0, 2, VIRIDIAN_FOREST_EXIT
+	Warp 2, 0, 3, VIRIDIAN_FOREST_EXIT
+	Warp 15, 47, 1, VIRIDIAN_FOREST_ENTRANCE
+	Warp 16, 47, 1, VIRIDIAN_FOREST_ENTRANCE
+	Warp 17, 47, 1, VIRIDIAN_FOREST_ENTRANCE
+	Warp 18, 47, 1, VIRIDIAN_FOREST_ENTRANCE
 
-	MapSign 24, 40
+	Sign 24, 40
 		text "TRAINER TIPS"
 
 		para "If you want to"
@@ -15,12 +15,12 @@
 		cont "stay away from"
 		cont "grassy areas!"
 
-	MapSign 16, 32
+	Sign 16, 32
 		text "For poison, use"
 		next "ANTIDOTE! Get it"
 		cont "at POKéMON MARTs!"
 
-	MapSign 26, 17
+	Sign 26, 17
 		text "TRAINER TIPS"
 
 		para "Contact PROF.OAK"
@@ -28,7 +28,7 @@
 		cont "your POKéDEX"
 		cont "evaluated!"
 
-	MapSign 4, 24
+	Sign 4, 24
 		text "TRAINER TIPS"
 
 		para "No stealing of"
@@ -37,7 +37,7 @@
 		cont "Catch only wild"
 		cont "POKéMON!"
 
-	MapSign 18, 45
+	Sign 18, 45
 		text "TRAINER TIPS"
 
 		para "Weaken POKéMON"
@@ -47,19 +47,19 @@
 		para "When healthy,"
 		next "they may escape!"
 
-	MapSign 2, 1
+	Sign 2, 1
 		text "LEAVING"
 		next "VIRIDIAN FOREST"
 		cont "PEWTER CITY AHEAD"
 
-	MapNPC SPRITE_BUG_CATCHER, 16, 43, STAY, NONE
+	NPC SPRITE_BUG_CATCHER, 16, 43, STAY, NONE
 	 	text "I came here with"
 		next "some friends!"
 
 		para "They're out for"
 		next "POKéMON fights!"
 
-	MapTrainer SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, BugCatcher, 1, 4
+	Battle SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, BugCatcher, 1, 4
 		text "Hey! You have"
 		next "POKéMON! Come on!"
 		cont "Let's battle'em!"
@@ -70,12 +70,8 @@
 		text "No!"
 		next "CATERPIE can't"
 		cont "cut it!"
-	
-		text "No!"
-		next "CATERPIE can't"
-		cont "cut it!"
 		
-	MapTrainer SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, BugCatcher, 2, 4
+	Battle SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, BugCatcher, 2, 4
 		text "Yo! You can't jam"
 		next "out if you're a"
 		cont "POKéMON trainer!"
@@ -87,12 +83,8 @@
 		text "Huh?"
 		next "I ran out of"
 		cont "POKéMON!"
-		
-		text "Huh?"
-		next "I ran out of"
-		cont "POKéMON!"
 
-	MapTrainer SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, BugCatcher, 3, 1
+	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, BugCatcher, 3, 1
 		text "Hey, wait up!"
 		next "What's the hurry?"
 
@@ -107,16 +99,12 @@
 		text "I"
 		next "give! You're good"
 		cont "at this!"
-
-		text "I"
-		next "give! You're good"
-		cont "at this!"
 	
-	MapItem 25, 11, ANTIDOTE
-	MapItem 12, 29, POTION
-	MapItem 1, 31, POKE_BALL
+	Pickup 25, 11, ANTIDOTE
+	Pickup 12, 29, POTION
+	Pickup 1, 31, POKE_BALL
 	
-	MapNPC SPRITE_BUG_CATCHER, 27, 40, STAY, NONE
+	NPC SPRITE_BUG_CATCHER, 27, 40, STAY, NONE
 	 	text "I ran out of #"
 		next "BALLs to catch"
 		cont "POKéMON with!"
@@ -125,9 +113,9 @@
 		next "extras!"
 
 	; warp-to
-	MapWarpTo 1, 0
-	MapWarpTo 2, 0
-	MapWarpTo 15, 47
-	MapWarpTo 16, 47
-	MapWarpTo 17, 47
-	MapWarpTo 18, 47
+	WarpTo 1, 0
+	WarpTo 2, 0
+	WarpTo 15, 47
+	WarpTo 16, 47
+	WarpTo 17, 47
+	WarpTo 18, 47

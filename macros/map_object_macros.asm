@@ -32,12 +32,12 @@ MapData: MACRO
         SECTION FRAGMENT "\1 Objects", ROMX, BANK[CUR_BANK]
             \1Object:
                 INCLUDE "data/mapObjects/\1.asm"
+                ResetObjectText
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
 	        db TrainerHeaderTermiantor
     POPS
 
-    CloseObjectText
     ; Restore Text Macro
     REDEF text EQUS "db "
 ENDM
@@ -52,9 +52,21 @@ CloseObjectText: MACRO
     ENDC
 ENDM
 
-UpdateMapObject: MACRO
+ResetObjectText: MACRO
     CloseObjectText
+
+    ; If the previous object has three entries, then duplicate the last one
+    ; (Trainer Header Win Text)
+    IF OBJ_TEXT_COUNT == 3
+        SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
+            dw {POINTER_NAME}
+    ENDC
+
     DEF OBJ_TEXT_COUNT = 0
+ENDM
+
+UpdateMapObject: MACRO
+    ResetObjectText
 
     SECTION FRAGMENT "{MAP_NAME} Objects", ROMX, BANK[CUR_BANK]
         IF DEF({MAP_NAME}\1Count) == 0
@@ -90,7 +102,7 @@ MapCoord: MACRO
 	db \1 + 4
 ENDM
 
-MapNPC: MACRO
+NPC: MACRO
     UpdateMapObject Sprite
     REDEF text EQUS "MapText "
 
@@ -104,7 +116,7 @@ MapNPC: MACRO
     ENDC
 ENDM
 
-MapTrainer: MACRO
+Battle: MACRO
     UpdateMapObject Sprite
     REDEF text EQUS "TrainerText "
 
@@ -132,7 +144,7 @@ MapTrainer: MACRO
     DEF {MAP_NAME}TrainerCount = {MAP_NAME}TrainerCount + 1
 ENDM
 
-MapItem: MACRO
+Pickup: MACRO
     UpdateMapObject Sprite
     REDEF text EQUS "MapText "
 
@@ -155,7 +167,7 @@ ENDM
 ;\1 x position
 ;\2 y position
 ;\3 sign id
-MapSign: MACRO
+Sign: MACRO
     UpdateMapObject Sign
     REDEF text EQUS "MapText "
 
@@ -170,7 +182,7 @@ ENDM
 ;\2 y position
 ;\3 destination warp id
 ;\4 destination map (-1 = wLastMap)
-MapWarp: MACRO
+Warp: MACRO
     UpdateMapObject Warp
 
 	db \2
@@ -186,7 +198,7 @@ ENDM
 
 ;\1 x position
 ;\2 y position
-MapWarpTo: MACRO
+WarpTo: MACRO
     UpdateMapObject WarpTo, 0
     
 	EVENT_DISP {MAP_NAME}Width, \2, \1
