@@ -788,7 +788,7 @@ DisplayTextID::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = map text pointer
-	ld d, $00
+	ld d, 0
 	ld a, [hSpriteIndexOrTextID] ; text ID
 	ld [wSpriteIndex], a
 	and a
@@ -801,12 +801,12 @@ DisplayTextID::
 	jp z, DisplayPlayerBlackedOutText
 	cp TEXT_REPEL_WORE_OFF
 	jp z, DisplayRepelWoreOffText
-	ld a, [wNumSprites]
-	ld e, a
 	ld a, [hSpriteIndexOrTextID] ; sprite ID
-	cp e
+	bit MapSignFlagIndex, a
 	jr z, .spriteHandling
-	jr nc, .skipSpriteHandling
+	res MapSignFlagIndex, a ;reset the flag
+	jr .skipSpriteHandling
+	
 .spriteHandling
 ; get the text ID of the sprite
 	push hl
@@ -826,7 +826,36 @@ DisplayTextID::
 .noCarry
 	inc hl
 	ld a, [hl] ; a = text ID of the sprite
+
+	and TextTypeMask ; see if any flags are set
+	jr z, .notSpecial
+
+	swap a
+	srl a
+	cp TextTypeTrainer
+	jr z, .trainerSprite
+	
+.notSpecial
+	ld a, [hl]
 	pop hl
+	and ~TextTypeMask ; remove the flags
+	jr .skipSpriteHandling
+
+.trainerSprite
+	ld a, [hl]
+	pop hl
+	; look up the address of the text in the map's text entries
+	and ~TextTypeMask ; remove the flags
+	dec a
+	ld e, a
+	sla e
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = address of the header
+	call TalkToTrainer
+	jr .afterPrintText
+
 .skipSpriteHandling
 ; look up the address of the text in the map's text entries
 	dec a
@@ -863,6 +892,8 @@ DisplayTextID::
 
 .notSpecialCase
 	call PrintText ; display the text
+
+.afterPrintText
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
 	and a
 	jr nz, HoldTextDisplayOpen
@@ -1911,7 +1942,7 @@ TalkToTrainer::
 	call PrintText
 	ld a, $a
 	call ReadTrainerHeaderInfo     ; (?) does nothing apparently (maybe bug in ReadTrainerHeaderInfo)
-	push de
+	push hl
 	ld a, $8
 	call ReadTrainerHeaderInfo     ; read end battle text
 	pop de
@@ -2051,7 +2082,7 @@ CheckForEngagingTrainers::
 	ld a, [de]
 	ld [wSpriteIndex], a                     ; store trainer flag's bit
 	ld [wTrainerHeaderFlagBit], a
-	cp $ff
+	cp TrainerHeaderTermiantor
 	ret z
 	ld a, $2
 	call ReadTrainerHeaderInfo       ; read trainer flag's byte ptr
@@ -2081,7 +2112,7 @@ CheckForEngagingTrainers::
 	and a
 	ret nz        ; break if the trainer is engaging
 .continue
-	ld hl, $c
+	ld hl, TrainerHeaderSize
 	add hl, de
 	ld d, h
 	ld e, l

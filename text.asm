@@ -86,6 +86,14 @@ _FoundItemText::
 	text "!"
 	done
 
+_FoundItemsText::
+	text "<PLAYER> found "
+	numtext wItemQuantity, 3, 1 ; 3 digits, 1 byte
+	next ""
+	ramtext wcf4b
+	text "s!"
+	done
+
 _NoMoreRoomForItemText::
 	text "No more room for"
 	next "items!"
@@ -167,7 +175,6 @@ _OaksAideNoRoomText::
 	text "."
 	done
 
-INCLUDE "text/maps/viridian_forest.asm"
 INCLUDE "text/maps/mt_moon_1f.asm"
 INCLUDE "text/maps/mt_moon_b1f.asm"
 INCLUDE "text/maps/mt_moon_b2f.asm"

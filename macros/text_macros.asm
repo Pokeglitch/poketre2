@@ -4,12 +4,7 @@ textbox: MACRO
 	db \1
 ENDM
 
-text: MACRO
-	REPT _NARG
-	db \1
-	SHIFT
-	ENDR
-ENDM
+REDEF text EQUS "db "
 
 ramtext: MACRO
 	db RAM_TEXT

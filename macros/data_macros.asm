@@ -125,6 +125,7 @@ object: MACRO
 		IF (_NARG > 6)
 			db ITEM | \6
 			db \7
+			db 1
 		ELSE
 			db \6
 		ENDC

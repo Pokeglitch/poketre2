@@ -24,9 +24,10 @@ PickUpItem:
 	ld d, 0
 	ld e, a
 	add hl, de
-	ld a, [hl]
+	ld a, [hli]
 	ld b, a ; item
-	ld c, 1 ; quantity
+	ld a, [hl]
+	ld c, a ; quantity
 	call GiveItem
 	jr nc, .BagFull
 
@@ -35,7 +36,13 @@ PickUpItem:
 	predef HideObject
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+
 	ld hl, FoundItemText
+	ld a, [wItemQuantity]
+	dec a
+	jr z, .print
+	
+	ld hl, FoundItemsText
 	jr .print
 
 .BagFull
@@ -46,6 +53,11 @@ PickUpItem:
 
 FoundItemText:
 	fartext _FoundItemText
+	sfxtext SFX_GET_ITEM_1
+	done
+
+FoundItemsText:
+	fartext _FoundItemsText
 	sfxtext SFX_GET_ITEM_1
 	done
 

@@ -355,7 +355,7 @@ NestedStringsTable:
 	dbw PC_TEXT, PCText ; PC
 	dbw ROCKET_TEXT, RocketText ; ROCKET
 	dbw TM_TEXT, TMText ; TM
-	dbw TRAINER_TEXT, TrainerText ; TRAINER
+	dbw TRAINER_TEXT, TrainerString ; TRAINER
 	dbw DOTS_TEXT, DotsText ; 6 dots
 	dbw PKMN_TEXT, PKMNText ; PKMN
     db 00
@@ -372,7 +372,7 @@ RocketText::
 TMText::
 	str "TM"
 
-TrainerText::
+TrainerString::
 	str "TRAINER"
 
 DotsText::

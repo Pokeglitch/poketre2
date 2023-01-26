@@ -1135,6 +1135,7 @@ IsSpriteOrSignInFrontOfPlayer::
 	dec c
 	add hl, bc
 	ld a, [hl]
+	set MapSignFlagIndex, a ; set flag to indicate its a sign
 	ld [hSpriteIndexOrTextID], a ; store sign text ID
 	pop bc
 	pop hl
@@ -1206,7 +1207,7 @@ IsSpriteInFrontOfPlayer2::
 ; if there are sprites
 	ld hl, wSpriteStateData1 + $10
 	ld d, a
-	ld e, $01
+	ld e, 1
 .spriteLoop
 	push hl
 	ld a, [hli] ; image (0 if no sprite)
@@ -2217,12 +2218,12 @@ LoadMapHeader::
 	and a ; are there any sprites?
 	jp z, .finishUp ; if there are no sprites, skip the rest
 	ld b, a
-	ld c, $00
+	ld c, 0
 .loadSpriteLoop
 	ld a, [hli]
 	ld [de], a ; store picture ID at C1X0
 	inc d
-	ld a, $04
+	ld a, 4
 	add e
 	ld e, a
 	ld a, [hli]
@@ -2239,63 +2240,37 @@ LoadMapHeader::
 	ld [hLoadSpriteTemp2], a ; save text ID and flags byte
 	push bc
 	push hl
-	ld b, $00
+	ld b, 0
 	ld hl, wMapSpriteData
 	add hl, bc
 	ld a, [hLoadSpriteTemp1]
 	ld [hli], a ; store movement byte 2 in byte 0 of sprite entry
 	ld a, [hLoadSpriteTemp2]
-	ld [hl], a ; this appears pointless, since the value is overwritten immediately after
-	ld a, [hLoadSpriteTemp2]
+	ld [hl], a ; store text ID and flags in byte 1 of sprite entry
+	
+	pop hl
+
+	and TextTypeMask ; see if any flags are set
+	jr z, .nextSprite ; if no flags, then skip
+
+	ld a, [hli]
 	ld [hLoadSpriteTemp1], a
-	and $3f
-	ld [hl], a ; store text ID in byte 1 of sprite entry
-	pop hl
-	ld a, [hLoadSpriteTemp1]
-	bit 6, a
-	jr nz, .trainerSprite
-	bit 7, a
-	jr nz, .itemBallSprite
-	jr .regularSprite
-.trainerSprite
 	ld a, [hli]
-	ld [hLoadSpriteTemp1], a ; save trainer class
-	ld a, [hli]
-	ld [hLoadSpriteTemp2], a ; save trainer number (within class)
+	ld [hLoadSpriteTemp2], a
+
 	push hl
 	ld hl, wMapSpriteExtraData
 	add hl, bc
 	ld a, [hLoadSpriteTemp1]
-	ld [hli], a ; store trainer class in byte 0 of the entry
-	ld a, [hLoadSpriteTemp2]
-	ld [hl], a ; store trainer number in byte 1 of the entry
-	pop hl
-	jr .nextSprite
-.itemBallSprite
-	ld a, [hli]
-	ld [hLoadSpriteTemp1], a ; save item number
-	push hl
-	ld hl, wMapSpriteExtraData
-	add hl, bc
-	ld a, [hLoadSpriteTemp1]
-	ld [hli], a ; store item number in byte 0 of the entry
-	xor a
-	ld [hl], a ; zero byte 1, since it is not used
-	pop hl
-	jr .nextSprite
-.regularSprite
-	push hl
-	ld hl, wMapSpriteExtraData
-	add hl, bc
-; zero both bytes, since regular sprites don't use this extra space
-	xor a
 	ld [hli], a
+	ld a, [hLoadSpriteTemp2]
 	ld [hl], a
 	pop hl
+
 .nextSprite
 	pop bc
 	dec d
-	ld a, $0a
+	ld a, 10
 	add e
 	ld e, a
 	inc c
@@ -2314,7 +2289,7 @@ LoadMapHeader::
 	ld [wCurrentMapWidth2], a ; map width in 2x2 tile blocks
 	ld a, [wCurMap]
 	ld c, a
-	ld b, $00
+	ld b, 0
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(MapSongBanks)
@@ -2331,7 +2306,7 @@ LoadMapHeader::
 ; function to copy map connection data from ROM to WRAM
 ; Input: hl = source, de = destination
 CopyMapConnectionHeader::
-	ld c, $0b
+	ld c, 11
 .loop
 	ld a, [hli]
 	ld [de], a
