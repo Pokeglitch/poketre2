@@ -835,12 +835,20 @@ DisplayTextID::
 	cp TextTypeTrainer
 	jr z, .trainerSprite
 	
+	;cp TextTypeItem
+	jr z, .itemSprite
+
 .notSpecial
 	ld a, [hl]
 	pop hl
 	and ~TextTypeMask ; remove the flags
 	jr .skipSpriteHandling
 
+.itemSprite
+	pop hl
+	ld hl, PickUpItemText
+	jr .notSpecialCase
+	
 .trainerSprite
 	ld a, [hl]
 	pop hl

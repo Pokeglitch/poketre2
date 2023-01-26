@@ -153,7 +153,7 @@ Pickup: MACRO
 	db STAY
 	db NONE
 
-    AddTextPointer PickUpItemText, TextTypeItem
+    db TextTypeItem << TextTypeShift
     
     db \3
 

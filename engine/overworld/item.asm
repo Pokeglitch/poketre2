@@ -54,13 +54,13 @@ PickUpItem:
 FoundItemText:
 	fartext _FoundItemText
 	sfxtext SFX_GET_ITEM_1
-	done
+	prompt
 
 FoundItemsText:
 	fartext _FoundItemsText
 	sfxtext SFX_GET_ITEM_1
-	done
+	prompt
 
 NoMoreRoomForItemText:
 	fartext _NoMoreRoomForItemText
-	done
+	prompt
