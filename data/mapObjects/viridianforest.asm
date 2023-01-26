@@ -1,5 +1,3 @@
-	db 3 ; border block
-
 	Warp 1, 0, 2, VIRIDIAN_FOREST_EXIT
 	Warp 2, 0, 3, VIRIDIAN_FOREST_EXIT
 	Warp 15, 47, 1, VIRIDIAN_FOREST_ENTRANCE
@@ -59,7 +57,7 @@
 		para "They're out for"
 		next "POKéMON fights!"
 
-	Battle SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, BugCatcher, 1, 4
+	Battle SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, 4, BugCatcher, 1
 		text "Hey! You have"
 		next "POKéMON! Come on!"
 		cont "Let's battle'em!"
@@ -71,7 +69,7 @@
 		next "CATERPIE can't"
 		cont "cut it!"
 		
-	Battle SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, BugCatcher, 2, 4
+	Battle SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, 4, BugCatcher, 2
 		text "Yo! You can't jam"
 		next "out if you're a"
 		cont "POKéMON trainer!"
@@ -84,7 +82,7 @@
 		next "I ran out of"
 		cont "POKéMON!"
 
-	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, BugCatcher, 3, 1
+	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, 1, BugCatcher, 3
 		text "Hey, wait up!"
 		next "What's the hurry?"
 

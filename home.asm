@@ -835,7 +835,7 @@ DisplayTextID::
 	cp TextTypeTrainer
 	jr z, .trainerSprite
 	
-	;cp TextTypeItem
+	cp TextTypeItem
 	jr z, .itemSprite
 
 .notSpecial

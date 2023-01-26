@@ -1372,7 +1372,6 @@ INCLUDE "engine/hidden_object_functions17.asm"
 
 SECTION "bank18",ROMX,BANK[$18]
 
-ViridianForestBlocks:    INCBIN "maps/viridianforest.blk"
 UndergroundPathNSBlocks: INCBIN "maps/undergroundpathns.blk"
 UndergroundPathWEBlocks: INCBIN "maps/undergroundpathwe.blk"
 
@@ -1425,10 +1424,7 @@ CeladonMart1Blocks: INCBIN "maps/celadonmart1.blk"
 
 INCLUDE "engine/overworld/cinnabar_lab.asm"
 
-INCLUDE "data/mapHeaders/viridianforest.asm"
-INCLUDE "scripts/viridianforest.asm"
-
-	MapData ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH
+	MapData ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
 
 INCLUDE "data/mapHeaders/ssanne1.asm"
 INCLUDE "scripts/ssanne1.asm"

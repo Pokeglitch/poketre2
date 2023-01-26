@@ -51,7 +51,7 @@ MapHeaderPointers::
 	dw Route2House_h
 	dw Route2Gate_h
 	dw ViridianForestEntrance_h ;id=50
-	dw ViridianForest_h
+	dw ViridianForestHeader
 	dw Museum1F_h
 	dw Museum2F_h
 	dw PewterGym_h

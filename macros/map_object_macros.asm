@@ -8,10 +8,17 @@ TrainerHeaderTermiantor = -1
 TextTypeShift = 5
 TextTypeMask = %11100000
 
+; 1: Name
+; 2: Height
+; 3: Width
+; 4: Tileset
+; 5: Border Block
 MapData: MACRO
     REDEF MAP_NAME EQUS "\1"
     DEF \1Height = \2
     DEF \1Width = \3
+    DEF \1Tileset = \4
+    DEF \1Border = \5
 
     DEF CUR_BANK = BANK(@)
     DEF OBJ_TEXT_COUNT = 0
@@ -19,7 +26,19 @@ MapData: MACRO
     DEF \1TextCount = 0
     DEF \1TrainerCount = 0
     
+    INCLUDE "scripts/\1.asm"
+
     PUSHS
+        SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
+            \1Header:
+                db \1Tileset
+                db \1Height, \1Width
+                dw \1Blocks, \1TextPointers, \1Script
+                db \1ConnectionFlags
+
+            ; define after allocating so it uses final value
+            DEF \1ConnectionFlags = 0
+
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
             \1TrainerHeaders:
 
@@ -30,12 +49,20 @@ MapData: MACRO
             \1TextPointers:
 
         SECTION FRAGMENT "\1 Objects", ROMX, BANK[CUR_BANK]
-            \1Object:
+            \1Objects:
+                db \1Border
                 INCLUDE "data/mapObjects/\1.asm"
                 ResetObjectText
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
 	        db TrainerHeaderTermiantor
+
+        SECTION "\1 Blocks", ROMX, BANK[CUR_BANK]
+            \1Blocks:
+                INCBIN STRCAT("maps/", "\1", ".blk")
+
+        SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
+            dw \1Objects
     POPS
 
     ; Restore Text Macro
@@ -130,14 +157,14 @@ Battle: MACRO
 
     AddTextPointer {POINTER_NAME}, TextTypeTrainer
     
-	db \6
-	db \7 | ObjectDataTrainerFlagMask
+	db \7
+	db \8 | ObjectDataTrainerFlagMask
 
     PUSHS
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
             dbEventFlagBit EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_{d:TRAINER_INDEX}
-            db (\8 << 4) ; trainer's view range
+            db (\6 << 4) ; trainer's view range
             dwEventFlagAddress EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_{d:TRAINER_INDEX}
     POPS
     

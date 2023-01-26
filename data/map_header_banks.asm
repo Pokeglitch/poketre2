@@ -51,7 +51,7 @@ MapHeaderBanks:
 	db BANK(Route2House_h)
 	db BANK(Route2Gate_h)
 	db BANK(ViridianForestEntrance_h)
-	db BANK(ViridianForest_h)
+	db BANK(ViridianForestHeader)
 	db BANK(Museum1F_h)
 	db BANK(Museum2F_h)
 	db BANK(PewterGym_h)
