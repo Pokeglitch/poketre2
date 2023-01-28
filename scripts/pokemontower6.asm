@@ -1,6 +1,5 @@
 PokemonTower6Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, PokemonTower6TrainerHeader0
 	ld de, PokemonTower6ScriptPointers
 	ld a, [wPokemonTower6CurScript]
 	call ExecuteCurMapScriptInTable

@@ -1,6 +1,9 @@
 Museum2FScript:
 	jp EnableAutoTextBoxDrawing
 
+Museum2FTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Museum2FTextPointers:
 	dw Museum2FText1
 	dw Museum2FText2

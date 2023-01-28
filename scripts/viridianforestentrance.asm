@@ -1,6 +1,9 @@
 ViridianForestEntranceScript:
 	jp EnableAutoTextBoxDrawing
 
+ViridianForestEntranceTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianForestEntranceTextPointers:
 	dw ViridianForestEntranceText1
 	dw ViridianForestEntranceText2

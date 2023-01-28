@@ -19,6 +19,9 @@ BluesHouseScript0:
 BluesHouseScript1:
 	ret
 
+BluesHouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 BluesHouseTextPointers:
 	dw BluesHouseText1
 	dw BluesHouseText2

@@ -2,6 +2,9 @@ CeruleanPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+CeruleanPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeruleanPokecenterTextPointers:
 	dw CeruleanHealNurseText
 	dw CeruleanPokecenterText2

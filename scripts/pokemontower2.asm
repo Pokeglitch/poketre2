@@ -122,6 +122,9 @@ PokemonTower2Script2:
 	ld [wCurMapScript], a
 	ret
 
+PokemonTower2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 PokemonTower2TextPointers:
 	dw PokemonTower2Text1
 	dw PokemonTower2Text2

@@ -1,6 +1,9 @@
 LavenderTownScript:
 	jp EnableAutoTextBoxDrawing
 
+LavenderTownTrainerHeader0:
+	db TrainerHeaderTerminator
+
 LavenderTownTextPointers:
 	dw LavenderTownText1
 	dw LavenderTownText2

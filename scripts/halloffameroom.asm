@@ -101,6 +101,9 @@ HallofFameRoomScript1:
 	ld [wHallOfFameRoomCurScript], a
 	ret
 
+HallofFameRoomTrainerHeader0:
+	db TrainerHeaderTerminator
+
 HallofFameRoomTextPointers:
 	dw HallofFameRoomText1
 

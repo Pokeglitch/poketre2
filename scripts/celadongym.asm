@@ -4,7 +4,6 @@ CeladonGymScript:
 	res 6, [hl]
 	call nz, CeladonGymScript_48927
 	call EnableAutoTextBoxDrawing
-	ld hl, CeladonGymTrainerHeader0
 	ld de, CeladonGymScriptPointers
 	ld a, [wCeladonGymCurScript]
 	call ExecuteCurMapScriptInTable

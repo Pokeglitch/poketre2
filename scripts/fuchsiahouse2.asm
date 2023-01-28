@@ -1,6 +1,9 @@
 FuchsiaHouse2Script:
 	jp EnableAutoTextBoxDrawing
 
+FuchsiaHouse2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 FuchsiaHouse2TextPointers:
 	dw FuchsiaHouse2Text1
 	dw PickUpItemText

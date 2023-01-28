@@ -148,6 +148,9 @@ PalletTownScript5:
 PalletTownScript6:
 	ret
 
+PalletTownTrainerHeader0:
+	db TrainerHeaderTerminator
+
 PalletTownTextPointers:
 	dw PalletTownText1
 	dw PalletTownText2

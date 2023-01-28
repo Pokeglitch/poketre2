@@ -140,6 +140,9 @@ SeafoamIslands4Script3:
 	ld [wSeafoamIslands4CurScript], a
 	ret
 
+SeafoamIslands4TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SeafoamIslands4TextPointers:
 	dw BoulderText
 	dw BoulderText

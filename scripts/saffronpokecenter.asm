@@ -2,6 +2,9 @@ SaffronPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+SaffronPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SaffronPokecenterTextPointers:
 	dw SaffronHealNurseText
 	dw SaffronPokecenterText2

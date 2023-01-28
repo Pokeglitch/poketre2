@@ -4,6 +4,9 @@ PewterMartScript:
 	ld [wAutoTextBoxDrawingControl], a
 	ret
 
+PewterMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 PewterMartTextPointers:
 	dw PewterCashierText
 	dw PewterMartText2

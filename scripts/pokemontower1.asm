@@ -1,6 +1,9 @@
 PokemonTower1Script:
 	jp EnableAutoTextBoxDrawing
 
+PokemonTower1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 PokemonTower1TextPointers:
 	dw PokemonTower1Text1
 	dw PokemonTower1Text2

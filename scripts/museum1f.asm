@@ -31,6 +31,9 @@ Museum1FScript0:
 Museum1FScript1:
 	ret
 
+Museum1FTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Museum1FTextPointers:
 	dw Museum1FText1
 	dw Museum1FText2

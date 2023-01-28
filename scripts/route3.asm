@@ -1,6 +1,5 @@
 Route3Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route3TrainerHeader0
 	ld de, Route3ScriptPointers
 	ld a, [wRoute3CurScript]
 	call ExecuteCurMapScriptInTable

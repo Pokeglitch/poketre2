@@ -1,7 +1,6 @@
 FuchsiaGymScript:
 	call FuchsiaGymScript_75453
 	call EnableAutoTextBoxDrawing
-	ld hl, FuchsiaGymTrainerHeader0
 	ld de, FuchsiaGymScriptPointers
 	ld a, [wFuchsiaGymCurScript]
 	call ExecuteCurMapScriptInTable

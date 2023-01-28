@@ -1,6 +1,9 @@
 BikeShopScript:
 	jp EnableAutoTextBoxDrawing
 
+BikeShopTrainerHeader0:
+	db TrainerHeaderTerminator
+
 BikeShopTextPointers:
 	dw BikeShopText1
 	dw BikeShopText2

@@ -225,6 +225,9 @@ CeruleanCityScript3:
 	ld [wCeruleanCityCurScript], a
 	ret
 
+CeruleanCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeruleanCityTextPointers:
 	dw CeruleanCityText1
 	dw CeruleanCityText2

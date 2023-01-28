@@ -1,6 +1,9 @@
 SaffronHouse2Script:
 	jp EnableAutoTextBoxDrawing
 
+SaffronHouse2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SaffronHouse2TextPointers:
 	dw SaffronHouse2Text1
 

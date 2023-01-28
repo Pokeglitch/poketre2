@@ -2,6 +2,9 @@ CeladonDinerScript:
 	call EnableAutoTextBoxDrawing
 	ret
 
+CeladonDinerTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonDinerTextPointers:
 	dw CeladonDinerText1
 	dw CeladonDinerText2

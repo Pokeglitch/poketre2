@@ -170,6 +170,9 @@ CinnabarGymScript3_75857:
 
 	jp CinnabarGymScript_75792
 
+CinnabarGymTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CinnabarGymTextPointers:
 	dw CinnabarGymText1
 	dw CinnabarGymText2

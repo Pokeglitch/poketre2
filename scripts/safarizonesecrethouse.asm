@@ -1,6 +1,9 @@
 SafariZoneSecretHouseScript:
 	jp EnableAutoTextBoxDrawing
 
+SafariZoneSecretHouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SafariZoneSecretHouseTextPointers:
 	dw SafariZoneSecretHouseText1
 

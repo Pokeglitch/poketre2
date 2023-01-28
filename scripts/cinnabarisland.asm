@@ -50,6 +50,9 @@ CinnabarIslandScript1:
 	ld [wCinnabarIslandCurScript], a
 	ret
 
+CinnabarIslandTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CinnabarIslandTextPointers:
 	dw CinnabarIslandText1
 	dw CinnabarIslandText2

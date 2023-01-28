@@ -1,6 +1,9 @@
 Route2Script:
 	jp EnableAutoTextBoxDrawing
 
+Route2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route2TextPointers:
 	dw PickUpItemText
 	dw PickUpItemText

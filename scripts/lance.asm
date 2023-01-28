@@ -1,7 +1,6 @@
 LanceScript:
 	call LanceShowOrHideEntranceBlocks
 	call EnableAutoTextBoxDrawing
-	ld hl, LanceTrainerHeader0
 	ld de, LanceScriptPointers
 	ld a, [wLanceCurScript]
 	call ExecuteCurMapScriptInTable

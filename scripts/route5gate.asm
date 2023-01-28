@@ -60,6 +60,9 @@ Route5GateScript1:
 	ld [wRoute5GateCurScript], a
 	ret
 
+Route5GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route5GateTextPointers:
 	dw Route5GateText1
 	dw Route5GateText2

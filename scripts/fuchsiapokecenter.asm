@@ -2,6 +2,9 @@ FuchsiaPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+FuchsiaPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 FuchsiaPokecenterTextPointers:
 	dw FuchsiaHealNurseText
 	dw FuchsiaPokecenterText2

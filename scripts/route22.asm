@@ -374,6 +374,9 @@ Route22Script6:
 	ld [wRoute22CurScript], a
 	ret
 
+Route22TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route22TextPointers:
 	dw Route22Text1
 	dw Route22Text2

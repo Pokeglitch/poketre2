@@ -77,6 +77,9 @@ SilphCoElevatorScript_45827:
 	callba ShakeElevator
 	ret
 
+SilphCoElevatorTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SilphCoElevatorTextPointers:
 	dw SilphCoElevatorText1
 

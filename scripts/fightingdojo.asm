@@ -1,6 +1,5 @@
 FightingDojoScript:
 	call EnableAutoTextBoxDrawing
-	ld hl, FightingDojoTrainerHeader0
 	ld de, FightingDojoScriptPointers
 	ld a, [wFightingDojoCurScript]
 	call ExecuteCurMapScriptInTable

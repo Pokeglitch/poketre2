@@ -61,6 +61,9 @@ ViridianMartScript1:
 ViridianMartScript2:
 	ret
 
+ViridianMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianMartTextPointers:
 	dw ViridianMartText1
 	dw ViridianMartText2

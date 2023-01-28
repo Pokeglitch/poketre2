@@ -1,6 +1,9 @@
 VermilionMartScript:
 	jp EnableAutoTextBoxDrawing
 
+VermilionMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 VermilionMartTextPointers:
 	dw VermilionCashierText
 	dw VermilionMartText2

@@ -125,6 +125,9 @@ ViridianCityScript_190cf:
 	ld [wJoyIgnore], a
 	ret
 
+ViridianCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianCityTextPointers:
 	dw ViridianCityText1
 	dw ViridianCityText2

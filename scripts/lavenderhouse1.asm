@@ -2,6 +2,9 @@ LavenderHouse1Script:
 	call EnableAutoTextBoxDrawing
 	ret
 
+LavenderHouse1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 LavenderHouse1TextPointers:
 	dw LavenderHouse1Text1
 	dw LavenderHouse1Text2

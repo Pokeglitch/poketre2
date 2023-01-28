@@ -2,6 +2,9 @@ SafariZoneRestHouse4Script:
 	call EnableAutoTextBoxDrawing
 	ret
 
+SafariZoneRestHouse4TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SafariZoneRestHouse4TextPointers:
 	dw SafariZoneRestHouse4Text1
 	dw SafariZoneRestHouse4Text2

@@ -1,6 +1,9 @@
 ViridianHouseScript:
 	jp EnableAutoTextBoxDrawing
 
+ViridianHouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianHouseTextPointers:
 	dw ViridianHouseText1
 	dw ViridianHouseText2

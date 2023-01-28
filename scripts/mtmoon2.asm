@@ -2,6 +2,9 @@ MtMoon2Script:
 	call EnableAutoTextBoxDrawing
 	ret
 
+MtMoon2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 MtMoon2TextPointers:
 	dw MtMoonText1
 

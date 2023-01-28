@@ -1,7 +1,6 @@
 Mansion1Script:
 	call Mansion1Subscript1
 	call EnableAutoTextBoxDrawing
-	ld hl, Mansion1TrainerHeader0
 	ld de, Mansion1ScriptPointers
 	ld a, [wMansion1CurScript]
 	call ExecuteCurMapScriptInTable

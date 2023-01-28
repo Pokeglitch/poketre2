@@ -2,6 +2,9 @@ CinnabarPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+CinnabarPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CinnabarPokecenterTextPointers:
 	dw CinnabarHealNurseText
 	dw CinnabarPokecenterText2

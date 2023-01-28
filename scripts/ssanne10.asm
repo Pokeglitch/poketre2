@@ -1,6 +1,5 @@
 SSAnne10Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, SSAnne10TrainerHeader0
 	ld de, SSAnne10ScriptPointers
 	ld a, [wSSAnne10CurScript]
 	call ExecuteCurMapScriptInTable

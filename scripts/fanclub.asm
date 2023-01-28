@@ -11,6 +11,9 @@ FanClubBikeInBag:
 	ld b, BIKE_VOUCHER
 	jp IsItemInBag
 
+FanClubTrainerHeader0:
+	db TrainerHeaderTerminator
+
 FanClubTextPointers:
 	dw FanClubText1
 	dw FanClubText2

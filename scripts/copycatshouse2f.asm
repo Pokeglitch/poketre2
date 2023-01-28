@@ -1,6 +1,9 @@
 CopycatsHouse2FScript:
 	jp EnableAutoTextBoxDrawing
 
+CopycatsHouse2FTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CopycatsHouse2FTextPointers:
 	dw CopycatsHouse2FText1
 	dw CopycatsHouse2FText2

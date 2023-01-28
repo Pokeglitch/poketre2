@@ -1,7 +1,6 @@
 AgathaScript:
 	call AgathaShowOrHideExitBlock
 	call EnableAutoTextBoxDrawing
-	ld hl, AgathaTrainerHeader0
 	ld de, AgathaScriptPointers
 	ld a, [wAgathaCurScript]
 	call ExecuteCurMapScriptInTable

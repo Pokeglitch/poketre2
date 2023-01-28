@@ -82,6 +82,9 @@ Route18GateScript3:
 	ld [wRoute18GateCurScript], a
 	ret
 
+Route18GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route18GateTextPointers:
 	dw Route18GateText1
 	dw Route18GateText2

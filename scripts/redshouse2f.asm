@@ -20,5 +20,8 @@ RedsHouse2FScript0:
 RedsHouse2FScript1:
 	ret
 
+RedsHouse2FTrainerHeader0:
+	db TrainerHeaderTerminator
+
 RedsHouse2FTextPointers:
 	db "@"

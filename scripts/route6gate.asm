@@ -64,6 +64,9 @@ Route6GateScript_1e0a1:
 	ld [wOverrideSimulatedJoypadStatesMask], a
 	ret
 
+Route6GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route6GateTextPointers:
 	dw Route6GateText1
 	dw Route6GateText2

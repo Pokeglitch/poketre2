@@ -116,6 +116,9 @@ CeladonGameCornerScript2:
 	ld [wCeladonGameCornerCurScript], a
 	ret
 
+CeladonGameCornerTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonGameCornerTextPointers:
 	dw CeladonGameCornerText1
 	dw CeladonGameCornerText2

@@ -1,6 +1,9 @@
 Route7Script:
 	jp EnableAutoTextBoxDrawing
 
+Route7TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route7TextPointers:
 	dw Route7Text1
 

@@ -1,6 +1,9 @@
 LavenderMartScript:
 	jp EnableAutoTextBoxDrawing
 
+LavenderMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 LavenderMartTextPointers:
 	dw LavenderCashierText
 	dw LavenderMartText2

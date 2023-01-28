@@ -2,6 +2,9 @@ LavenderPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+LavenderPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 LavenderPokecenterTextPointers:
 	dw LavenderHealNurseText
 	dw LavenderPokecenterText2

@@ -1,6 +1,9 @@
 ViridianForestExitScript:
 	jp EnableAutoTextBoxDrawing
 
+ViridianForestExitTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianForestExitTextPointers:
 	dw ViridianForestExitText1
 	dw ViridianForestExitText2

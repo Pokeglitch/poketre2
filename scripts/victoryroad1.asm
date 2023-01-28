@@ -4,7 +4,6 @@ VictoryRoad1Script:
 	res 5, [hl]
 	call nz, .next
 	call EnableAutoTextBoxDrawing
-	ld hl, VictoryRoad1TrainerHeader0
 	ld de, VictoryRoad1ScriptPointers
 	ld a, [wVictoryRoad1CurScript]
 	call ExecuteCurMapScriptInTable

@@ -1,6 +1,9 @@
 CeladonMansion1Script:
 	jp EnableAutoTextBoxDrawing
 
+CeladonMansion1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonMansion1TextPointers:
 	dw CeladonMansion1Text1
 	dw CeladonMansion1Text2

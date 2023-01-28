@@ -1,6 +1,9 @@
 CeladonMansion3Script:
 	jp EnableAutoTextBoxDrawing
 
+CeladonMansion3TrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonMansion3TextPointers:
 	dw ProgrammerText
 	dw GraphicArtistText

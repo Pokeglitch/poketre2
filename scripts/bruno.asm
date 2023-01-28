@@ -1,7 +1,6 @@
 BrunoScript:
 	call BrunoShowOrHideExitBlock
 	call EnableAutoTextBoxDrawing
-	ld hl, BrunoTrainerHeader0
 	ld de, BrunoScriptPointers
 	ld a, [wBrunoCurScript]
 	call ExecuteCurMapScriptInTable

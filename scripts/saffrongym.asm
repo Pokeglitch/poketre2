@@ -4,7 +4,6 @@ SaffronGymScript:
 	res 6, [hl]
 	call nz, .extra
 	call EnableAutoTextBoxDrawing
-	ld hl, SaffronGymTrainerHeader0
 	ld de, SaffronGymScriptPointers
 	ld a, [wSaffronGymCurScript]
 	call ExecuteCurMapScriptInTable

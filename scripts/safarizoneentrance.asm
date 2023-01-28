@@ -132,6 +132,9 @@ SafariZoneEntranceScript_752b4:
 
 SAFARI_ZONE_TICKET_PRICE EQU 500
 
+SafariZoneEntranceTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SafariZoneEntranceTextPointers:
 	dw .SafariZoneEntranceText1
 	dw .SafariZoneEntranceText2

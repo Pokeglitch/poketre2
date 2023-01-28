@@ -4,7 +4,6 @@ CeruleanGymScript:
 	res 6, [hl]
 	call nz, CeruleanGymScript_5c6d0
 	call EnableAutoTextBoxDrawing
-	ld hl, CeruleanGymTrainerHeader0
 	ld de, CeruleanGymScriptPointers
 	ld a, [wCeruleanGymCurScript]
 	call ExecuteCurMapScriptInTable

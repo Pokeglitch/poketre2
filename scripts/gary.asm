@@ -237,6 +237,9 @@ GaryScript_760c8:
 	ld [wJoyIgnore], a
 	ret
 
+GaryTrainerHeader0:
+	db TrainerHeaderTerminator
+
 GaryTextPointers:
 	dw GaryText1
 	dw GaryText2

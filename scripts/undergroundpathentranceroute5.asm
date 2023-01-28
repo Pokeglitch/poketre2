@@ -6,6 +6,9 @@ UndergroundPathEntranceRoute5Script:
 UndergroundPathEntranceRoute5_5d6af:
 	db "@"
 
+UndergroundPathEntranceRoute5TrainerHeader0:
+	db TrainerHeaderTerminator
+
 UndergroundPathEntranceRoute5TextPointers:
 	dw UndergroundPathEntranceRoute5Text1
 

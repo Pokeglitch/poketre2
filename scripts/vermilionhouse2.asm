@@ -1,6 +1,9 @@
 VermilionHouse2Script:
 	jp EnableAutoTextBoxDrawing
 
+VermilionHouse2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 VermilionHouse2TextPointers:
 	dw VermilionHouse2Text1
 

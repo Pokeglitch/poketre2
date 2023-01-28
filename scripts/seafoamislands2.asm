@@ -41,6 +41,9 @@ Seafoam2HolesCoords:
 	db $06,$17
 	db $ff
 
+SeafoamIslands2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SeafoamIslands2TextPointers:
 	dw BoulderText
 	dw BoulderText

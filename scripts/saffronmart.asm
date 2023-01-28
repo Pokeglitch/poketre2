@@ -1,6 +1,9 @@
 SaffronMartScript:
 	jp EnableAutoTextBoxDrawing
 
+SaffronMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SaffronMartTextPointers:
 	dw SaffronCashierText
 	dw SaffronMartText2

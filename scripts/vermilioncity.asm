@@ -113,6 +113,9 @@ VermilionCityScript1:
 	ld [wVermilionCityCurScript], a
 	ret
 
+VermilionCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 VermilionCityTextPointers:
 	dw VermilionCityText1
 	dw VermilionCityText2

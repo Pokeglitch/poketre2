@@ -1,6 +1,9 @@
 FuchsiaHouse3Script:
 	jp EnableAutoTextBoxDrawing
 
+FuchsiaHouse3TrainerHeader0:
+	db TrainerHeaderTerminator
+
 FuchsiaHouse3TextPointers:
 	dw FuchsiaHouse3Text1
 

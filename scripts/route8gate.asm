@@ -64,6 +64,9 @@ Route8GateScript1:
 	ld [wRoute8GateCurScript], a
 	ret
 
+Route8GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route8GateTextPointers:
 	dw Route8GateText1
 	dw Route8GateText2

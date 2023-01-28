@@ -1,6 +1,9 @@
 Route16GateUpstairsScript:
 	jp DisableAutoTextBoxDrawing
 
+Route16GateUpstairsTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route16GateUpstairsTextPointers:
 	dw Route16GateUpstairsText1
 	dw Route16GateUpstairsText2

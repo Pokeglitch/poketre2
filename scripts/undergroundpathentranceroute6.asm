@@ -3,6 +3,9 @@ UndergroundPathEntranceRoute6Script:
 	ld [wLastMap], a
 	jp EnableAutoTextBoxDrawing
 
+UndergroundPathEntranceRoute6TrainerHeader0:
+	db TrainerHeaderTerminator
+
 UndergroundPathEntranceRoute6TextPointers:
 	dw UndergroundPathEntranceRoute6Text1
 

@@ -14,6 +14,9 @@ IndigoPlateauLobbyScript:
 	ResetEventRange ELITE4_EVENTS_START, EVENT_LANCES_ROOM_LOCK_DOOR
 	ret
 
+IndigoPlateauLobbyTrainerHeader0:
+	db TrainerHeaderTerminator
+
 IndigoPlateauLobbyTextPointers:
 	dw IndigoHealNurseText
 	dw IndigoPlateauLobbyText2

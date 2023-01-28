@@ -86,6 +86,9 @@ Route16GateScript_49755:
 	ld b, BICYCLE
 	jp IsItemInBag
 
+Route16GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route16GateTextPointers:
 	dw Route16GateText1
 	dw Route16GateText2

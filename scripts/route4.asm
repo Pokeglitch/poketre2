@@ -1,6 +1,5 @@
 Route4Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route4TrainerHeader0
 	ld de, Route4ScriptPointers
 	ld a, [wRoute4CurScript]
 	call ExecuteCurMapScriptInTable

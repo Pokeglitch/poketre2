@@ -1,6 +1,5 @@
 Route19Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route19TrainerHeader0
 	ld de, Route19ScriptPointers
 	ld a, [wRoute19CurScript]
 	call ExecuteCurMapScriptInTable

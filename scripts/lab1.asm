@@ -2,6 +2,9 @@ Lab1Script:
 	call EnableAutoTextBoxDrawing
 	ret
 
+Lab1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Lab1TextPointers:
 	dw Lab1Text1
 	dw Lab1Text2

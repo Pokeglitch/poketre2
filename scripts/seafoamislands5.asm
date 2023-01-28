@@ -130,6 +130,9 @@ SeaFoamIslands5Script_46872:
 	ld [wWalkBikeSurfStateCopy], a
 	jp ForceBikeOrSurf
 
+SeafoamIslands5TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SeafoamIslands5TextPointers:
 	dw BoulderText
 	dw BoulderText

@@ -1,6 +1,9 @@
 ColosseumScript:
 	jp TradeCenterScript
 
+ColosseumTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ColosseumTextPointers:
 	dw ColosseumText1
 

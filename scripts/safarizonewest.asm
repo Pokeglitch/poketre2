@@ -1,6 +1,9 @@
 SafariZoneWestScript:
 	jp EnableAutoTextBoxDrawing
 
+SafariZoneWestTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SafariZoneWestTextPointers:
 	dw PickUpItemText
 	dw PickUpItemText

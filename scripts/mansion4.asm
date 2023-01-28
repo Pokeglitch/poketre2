@@ -1,7 +1,6 @@
 Mansion4Script:
 	call Mansion4Script_523cf
 	call EnableAutoTextBoxDrawing
-	ld hl, Mansion4TrainerHeader0
 	ld de, Mansion4ScriptPointers
 	ld a, [wMansion4CurScript]
 	call ExecuteCurMapScriptInTable

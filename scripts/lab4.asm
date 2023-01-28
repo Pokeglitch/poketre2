@@ -1,6 +1,9 @@
 Lab4Script:
 	jp EnableAutoTextBoxDrawing
 
+Lab4TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Lab4TextPointers:
 	dw Lab4Text1
 	dw Lab4Text2

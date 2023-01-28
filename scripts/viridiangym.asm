@@ -3,7 +3,6 @@ ViridianGymScript:
 	ld de, Gym8LeaderName
 	call LoadGymLeaderAndCityName
 	call EnableAutoTextBoxDrawing
-	ld hl, ViridianGymTrainerHeader0
 	ld de, ViridianGymScriptPointers
 	ld a, [wViridianGymCurScript]
 	call ExecuteCurMapScriptInTable

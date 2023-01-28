@@ -67,6 +67,9 @@ Route7GateScript1:
 	ld [wCurMapScript], a
 	ret
 
+Route7GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route7GateTextPointers:
 	dw Route7GateText1
 	dw Route7GateText2

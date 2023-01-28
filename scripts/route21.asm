@@ -1,6 +1,5 @@
 Route21Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route21TrainerHeader0
 	ld de, Route21ScriptPointers
 	ld a, [wRoute21CurScript]
 	call ExecuteCurMapScriptInTable

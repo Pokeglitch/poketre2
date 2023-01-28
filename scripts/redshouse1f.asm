@@ -1,6 +1,9 @@
 RedsHouse1FScript:
 	jp EnableAutoTextBoxDrawing
 
+RedsHouse1FTrainerHeader0:
+	db TrainerHeaderTerminator
+
 RedsHouse1FTextPointers:
 	dw RedsHouse1FText1
 	dw RedsHouse1FText2

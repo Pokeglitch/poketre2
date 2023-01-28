@@ -2,6 +2,9 @@ CeladonHouseScript:
 	call EnableAutoTextBoxDrawing
 	ret
 
+CeladonHouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonHouseTextPointers:
 	dw CeladonHouseText1
 	dw CeladonHouseText2

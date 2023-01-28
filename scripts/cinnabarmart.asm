@@ -1,6 +1,9 @@
 CinnabarMartScript:
 	jp EnableAutoTextBoxDrawing
 
+CinnabarMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CinnabarMartTextPointers:
 	dw CinnabarCashierText
 	dw CinnabarMartText2

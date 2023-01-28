@@ -2,6 +2,9 @@ RockTunnelPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+RockTunnelPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 RockTunnelPokecenterTextPointers:
 	dw RockTunnelHealNurseText
 	dw RockTunnelPokecenterText2

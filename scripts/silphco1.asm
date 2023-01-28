@@ -8,6 +8,9 @@ SilphCo1Script:
 	ld [wMissableObjectIndex], a
 	predef_jump ShowObject
 
+SilphCo1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SilphCo1TextPointers:
 	dw SilphCo1Text1
 

@@ -1,6 +1,5 @@
 MtMoon1Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, MtMoon1TrainerHeader0
 	ld de, MtMoon1ScriptPointers
 	ld a, [wMtMoon1CurScript]
 	call ExecuteCurMapScriptInTable

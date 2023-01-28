@@ -115,6 +115,9 @@ BillsHouseScript5:
 	ld [wBillsHouseCurScript], a
 	ret
 
+BillsHouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 BillsHouseTextPointers:
 	dw BillsHouseText1
 	dw BillsHouseText2

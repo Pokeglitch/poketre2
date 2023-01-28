@@ -1,6 +1,9 @@
 SchoolScript:
 	jp EnableAutoTextBoxDrawing
 
+SchoolTrainerHeader0:
+	db TrainerHeaderTerminator
+
 SchoolTextPointers:
 	dw SchoolText1
 	dw SchoolText2

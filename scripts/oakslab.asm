@@ -705,6 +705,9 @@ OaksLabScript_1d076:
 	ld [wMapTextPtr+1], a
 	ret
 
+OaksLabTrainerHeader0:
+	db TrainerHeaderTerminator
+
 OaksLabTextPointers:
 	dw OaksLabText1
 	dw OaksLabText2

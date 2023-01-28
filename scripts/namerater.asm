@@ -37,6 +37,9 @@ NameRaterScript_1da20:
 	scf
 	ret
 
+NameRaterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 NameRaterTextPointers:
 	dw NameRaterText1
 

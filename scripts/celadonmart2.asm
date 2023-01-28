@@ -1,6 +1,9 @@
 CeladonMart2Script:
 	jp EnableAutoTextBoxDrawing
 
+CeladonMart2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonMart2TextPointers:
 	dw CeladonMart2Clerk1Text
 	dw CeladonMart2Clerk2Text

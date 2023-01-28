@@ -3,6 +3,9 @@ UndergroundPathEntranceRoute7CopyScript:
 	ld [wLastMap], a
 	ret
 
+UndergroundPathEntranceRoute7CopyTrainerHeader0:
+	db TrainerHeaderTerminator
+
 UndergroundPathEntranceRoute7CopyTextPointers:
 	dw UGPathRoute7EntranceUnusedText_5d773
 	dw UGPathRoute7EntranceUnusedText_5d77d

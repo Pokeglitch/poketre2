@@ -176,6 +176,9 @@ SSAnne2Script3:
 	ld [wSSAnne2CurScript], a
 	ret
 
+SSAnne2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SSAnne2TextPointers:
 	dw SSAnne2Text1
 	dw SSAnne2Text2

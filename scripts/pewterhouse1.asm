@@ -1,6 +1,9 @@
 PewterHouse1Script:
 	jp EnableAutoTextBoxDrawing
 
+PewterHouse1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 PewterHouse1TextPointers:
 	dw PewterHouse1Text1
 	dw PewterHouse1Text2

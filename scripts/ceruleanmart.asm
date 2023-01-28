@@ -1,6 +1,9 @@
 CeruleanMartScript:
 	jp EnableAutoTextBoxDrawing
 
+CeruleanMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeruleanMartTextPointers:
 	dw CeruleanCashierText
 	dw CeruleanMartText2

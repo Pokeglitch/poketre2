@@ -1,6 +1,9 @@
 CeladonHotelScript:
 	jp EnableAutoTextBoxDrawing
 
+CeladonHotelTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonHotelTextPointers:
 	dw CeladonHotelText1
 	dw CeladonHotelText2

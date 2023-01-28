@@ -9,6 +9,9 @@ SSAnne7Script_6189b:
 	set 5, [hl]
 	ret
 
+SSAnne7TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SSAnne7TextPointers:
 	dw SSAnne7Text1
 	dw SSAnne7Text2

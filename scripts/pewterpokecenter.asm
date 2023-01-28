@@ -2,6 +2,9 @@ PewterPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+PewterPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 PewterPokecenterTextPointers:
 	dw PewterHealNurseText
 	dw PewterPokecenterText2

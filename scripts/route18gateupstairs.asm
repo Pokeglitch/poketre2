@@ -1,6 +1,9 @@
 Route18GateUpstairsScript:
 	jp DisableAutoTextBoxDrawing
 
+Route18GateUpstairsTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route18GateUpstairsTextPointers:
 	dw Route18GateUpstairsText1
 	dw Route18GateUpstairsText2

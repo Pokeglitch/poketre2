@@ -1,6 +1,9 @@
 Route12HouseScript:
 	jp EnableAutoTextBoxDrawing
 
+Route12HouseTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route12HouseTextPointers:
 	dw Route12HouseText1
 

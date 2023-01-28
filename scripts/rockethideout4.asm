@@ -1,7 +1,6 @@
 RocketHideout4Script:
 	call RocketHideout4Script_45473
 	call EnableAutoTextBoxDrawing
-	ld hl, RocketHideout4TrainerHeader0
 	ld de, RocketHideout4ScriptPointers
 	ld a, [wRocketHideout4CurScript]
 	call ExecuteCurMapScriptInTable

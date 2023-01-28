@@ -1,6 +1,9 @@
 CeladonPrizeRoomScript:
 	jp EnableAutoTextBoxDrawing
 
+CeladonPrizeRoomTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonPrizeRoomTextPointers:
 	dw CeladonPrizeRoomText1
 	dw CeladonPrizeRoomText2

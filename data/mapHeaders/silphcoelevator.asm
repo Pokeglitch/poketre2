@@ -1,6 +1,6 @@
 SilphCoElevator_h:
 	db LOBBY ; tileset
 	db SILPH_CO_ELEVATOR_HEIGHT, SILPH_CO_ELEVATOR_WIDTH ; dimensions (y, x)
-	dw SilphCoElevatorBlocks, SilphCoElevatorTextPointers, SilphCoElevatorScript ; blocks, texts, scripts
+	dw SilphCoElevatorBlocks, SilphCoElevatorTextPointers, SilphCoElevatorScript, SilphCoElevatorTrainerHeader0 ; blocks, texts, scripts
 	db 0 ; connections
 	dw SilphCoElevatorObject ; objects

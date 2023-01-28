@@ -1,6 +1,5 @@
 Route24Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route24TrainerHeader0
 	ld de, Route24ScriptPointers
 	ld a, [wRoute24CurScript]
 	call ExecuteCurMapScriptInTable

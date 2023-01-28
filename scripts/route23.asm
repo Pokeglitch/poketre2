@@ -131,6 +131,9 @@ Route23Script2:
 	ld [wRoute23CurScript], a
 	ret
 
+Route23TrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route23TextPointers:
 	dw Route23Text1
 	dw Route23Text2

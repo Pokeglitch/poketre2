@@ -1,7 +1,6 @@
 SilphCo5Script:
 	call SilphCo5Script_19f4d
 	call EnableAutoTextBoxDrawing
-	ld hl, SilphCo5TrainerHeader0
 	ld de, SilphCo5ScriptPointers
 	ld a, [wSilphCo5CurScript]
 	call ExecuteCurMapScriptInTable

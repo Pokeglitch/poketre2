@@ -9,7 +9,6 @@ VermilionGymScript:
 	res 6, [hl]
 	call nz, VermilionGymScript_5ca6d
 	call EnableAutoTextBoxDrawing
-	ld hl, VermilionGymTrainerHeader0
 	ld de, VermilionGymScriptPointers
 	ld a, [wVermilionGymCurScript]
 	call ExecuteCurMapScriptInTable

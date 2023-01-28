@@ -1,6 +1,9 @@
 SafariZoneRestHouse1Script:
 	jp EnableAutoTextBoxDrawing
 
+SafariZoneRestHouse1TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SafariZoneRestHouse1TextPointers:
 	dw SafariZoneRestHouse1Text1
 	dw SafariZoneRestHouse1Text2

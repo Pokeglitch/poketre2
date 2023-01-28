@@ -2,6 +2,9 @@ SSAnne6Script:
 	call EnableAutoTextBoxDrawing
 	ret
 
+SSAnne6TrainerHeader0:
+	db TrainerHeaderTerminator
+
 SSAnne6TextPointers:
 	dw SSAnne6Text1
 	dw SSAnne6Text2

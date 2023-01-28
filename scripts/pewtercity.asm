@@ -176,6 +176,9 @@ PewterCityScript6:
 	ld [wPewterCityCurScript], a
 	ret
 
+PewterCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 PewterCityTextPointers:
 	dw PewterCityText1
 	dw PewterCityText2

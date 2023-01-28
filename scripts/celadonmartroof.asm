@@ -205,6 +205,9 @@ CeladonMartRoofScript_PrintDrinksInBag:
 	pop hl
 	jr .loop
 
+CeladonMartRoofTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonMartRoofTextPointers:
 	dw CeladonMartRoofText1
 	dw CeladonMartRoofText2

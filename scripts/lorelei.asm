@@ -1,7 +1,6 @@
 LoreleiScript:
 	call LoreleiShowOrHideExitBlock
 	call EnableAutoTextBoxDrawing
-	ld hl, LoreleiTrainerHeader0
 	ld de, LoreleiScriptPointers
 	ld a, [wLoreleiCurScript]
 	call ExecuteCurMapScriptInTable

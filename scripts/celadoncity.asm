@@ -4,6 +4,9 @@ CeladonCityScript:
 	ResetEvent EVENT_67F
 	ret
 
+CeladonCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonCityTextPointers:
 	dw CeladonCityText1
 	dw CeladonCityText2

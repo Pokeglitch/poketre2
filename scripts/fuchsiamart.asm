@@ -1,6 +1,9 @@
 FuchsiaMartScript:
 	jp EnableAutoTextBoxDrawing
 
+FuchsiaMartTrainerHeader0:
+	db TrainerHeaderTerminator
+
 FuchsiaMartTextPointers:
 	dw FuchsiaCashierText
 	dw FuchsiaMartText2

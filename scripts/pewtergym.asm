@@ -4,7 +4,6 @@ PewterGymScript:
 	res 6, [hl]
 	call nz, PewterGymScript_5c3a4
 	call EnableAutoTextBoxDrawing
-	ld hl, PewterGymTrainerHeader0
 	ld de, PewterGymScriptPointers
 	ld a, [wPewterGymCurScript]
 	call ExecuteCurMapScriptInTable

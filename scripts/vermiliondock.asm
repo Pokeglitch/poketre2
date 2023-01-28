@@ -207,6 +207,9 @@ VermilionDock_EraseSSAnne:
 	call DelayFrames
 	ret
 
+VermilionDockTrainerHeader0:
+	db TrainerHeaderTerminator
+
 VermilionDockTextPointers:
 	dw VermilionDockText1
 

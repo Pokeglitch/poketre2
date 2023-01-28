@@ -4,6 +4,9 @@ DiglettsCaveEntranceRoute11Script:
 	ld [wLastMap], a
 	ret
 
+DiglettsCaveEntranceRoute11TrainerHeader0:
+	db TrainerHeaderTerminator
+
 DiglettsCaveEntranceRoute11TextPointers:
 	dw DiglettsCaveEntranceRoute11Text1
 

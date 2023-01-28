@@ -2,6 +2,9 @@ CeruleanHouseTrashedScript:
 	call EnableAutoTextBoxDrawing
 	ret
 
+CeruleanHouseTrashedTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeruleanHouseTrashedTextPointers:
 	dw CeruleanHouseTrashedText1
 	dw CeruleanHouseTrashedText2

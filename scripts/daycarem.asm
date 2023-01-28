@@ -1,6 +1,9 @@
 DayCareMScript:
 	jp EnableAutoTextBoxDrawing
 
+DayCareMTrainerHeader0:
+	db TrainerHeaderTerminator
+
 DayCareMTextPointers:
 	dw DayCareMText1
 

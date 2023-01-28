@@ -2,6 +2,9 @@ VermilionPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+VermilionPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 VermilionPokecenterTextPointers:
 	dw VermilionHealNurseText
 	dw VermilionPokecenterText2

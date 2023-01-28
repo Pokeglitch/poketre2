@@ -12,6 +12,9 @@ PowerPlantScript:
 	dw DisplayEnemyTrainerTextAndStartBattle
 	dw EndTrainerBattle
 
+PowerPlantTrainerHeader0:
+	db TrainerHeaderTerminator
+
 PowerPlantTextPointers:
 	dw Voltorb0Text
 	dw Voltorb1Text

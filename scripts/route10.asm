@@ -1,6 +1,5 @@
 Route10Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route10TrainerHeader0
 	ld de, Route10ScriptPointers
 	ld a, [wRoute10CurScript]
 	call ExecuteCurMapScriptInTable

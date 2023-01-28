@@ -61,6 +61,9 @@ RocketHideoutElevatorScript_4575f:
 	callba ShakeElevator
 	ret
 
+RocketHideoutElevatorTrainerHeader0:
+	db TrainerHeaderTerminator
+
 RocketHideoutElevatorTextPointers:
 	dw RocketHideoutElevatorText1
 

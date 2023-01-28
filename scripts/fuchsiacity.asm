@@ -1,6 +1,9 @@
 FuchsiaCityScript:
 	jp EnableAutoTextBoxDrawing
 
+FuchsiaCityTrainerHeader0:
+	db TrainerHeaderTerminator
+
 FuchsiaCityTextPointers:
 	dw FuchsiaCityText1
 	dw FuchsiaCityText2

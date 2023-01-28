@@ -12,6 +12,9 @@ UnknownDungeon3Script:
 	dw DisplayEnemyTrainerTextAndStartBattle
 	dw EndTrainerBattle
 
+UnknownDungeon3TrainerHeader0:
+	db TrainerHeaderTerminator
+
 UnknownDungeon3TextPointers:
 	dw MewtwoText
 	dw PickUpItemText

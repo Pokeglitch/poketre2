@@ -1,6 +1,5 @@
 Route13Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route13TrainerHeader0
 	ld de, Route13ScriptPointers
 	ld a, [wRoute13CurScript]
 	call ExecuteCurMapScriptInTable

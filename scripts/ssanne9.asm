@@ -3,7 +3,6 @@ SSAnne9Script:
 	ld [wAutoTextBoxDrawingControl], a
 	xor a
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld hl, SSAnne9TrainerHeader0
 	ld de, SSAnne9ScriptPointers
 	ld a, [wSSAnne9CurScript]
 	call ExecuteCurMapScriptInTable

@@ -30,6 +30,9 @@ TradeCenterScript:
 	ld [wSpriteStateData1 + $19], a
 	ret
 
+TradeCenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 TradeCenterTextPointers:
 	dw TradeCenterText1
 

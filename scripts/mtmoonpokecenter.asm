@@ -2,6 +2,9 @@ MtMoonPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+MtMoonPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 MtMoonPokecenterTextPointers:
 	dw MtMoonHealNurseText
 	dw MtMoonPokecenterText2

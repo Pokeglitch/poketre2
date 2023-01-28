@@ -2,6 +2,9 @@ ViridianPokeCenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+ViridianPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 ViridianPokecenterTextPointers:
 	dw ViridianHealNurseText
 	dw ViridianPokeCenterText2

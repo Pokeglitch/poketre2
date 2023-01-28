@@ -1,6 +1,5 @@
 Route6Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, Route6TrainerHeader0
 	ld de, Route6ScriptPointers
 	ld a, [wRoute6CurScript]
 	call ExecuteCurMapScriptInTable

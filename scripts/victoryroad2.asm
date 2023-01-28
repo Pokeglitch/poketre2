@@ -8,7 +8,6 @@ VictoryRoad2Script:
 	res 5, [hl]
 	call nz, VictoryRoad2Script_517c9
 	call EnableAutoTextBoxDrawing
-	ld hl, VictoryRoad2TrainerHeader0
 	ld de, VictoryRoad2ScriptPointers
 	ld a, [wVictoryRoad2CurScript]
 	call ExecuteCurMapScriptInTable

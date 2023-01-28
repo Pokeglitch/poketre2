@@ -1,7 +1,6 @@
 SilphCo7Script:
 	call SilphCo7Script_51b77
 	call EnableAutoTextBoxDrawing
-	ld hl, SilphCo7TrainerHeader0
 	ld de, SilphCo7ScriptPointers
 	ld a, [wSilphCo7CurScript]
 	call ExecuteCurMapScriptInTable

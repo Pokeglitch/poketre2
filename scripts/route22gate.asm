@@ -53,6 +53,9 @@ Route22GateScript1:
 Route22GateScript2:
 	ret
 
+Route22GateTrainerHeader0:
+	db TrainerHeaderTerminator
+
 Route22GateTextPointers:
 	dw Route22GateText1
 

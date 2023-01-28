@@ -62,6 +62,9 @@ CeladonMartElevatorWarpMapsEnd:
 CeladonMartElevatorScript_48654:
 	jpba ShakeElevator
 
+CeladonMartElevatorTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonMartElevatorTextPointers:
 	dw CeladonMartElevatorText1
 

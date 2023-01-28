@@ -5,6 +5,9 @@ CeruleanHouse2Script:
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ret
 
+CeruleanHouse2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeruleanHouse2TextPointers:
 	dw CeruleanHouse2Text1
 

@@ -3,6 +3,9 @@ DiglettsCaveRoute2Script:
 	ld [wLastMap], a
 	jp EnableAutoTextBoxDrawing
 
+DiglettsCaveRoute2TrainerHeader0:
+	db TrainerHeaderTerminator
+
 DiglettsCaveRoute2TextPointers:
 	dw DiglettsCaveRoute2Text1
 

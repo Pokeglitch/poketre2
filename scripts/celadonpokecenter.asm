@@ -2,6 +2,9 @@ CeladonPokecenterScript:
 	call Serial_TryEstablishingExternallyClockedConnection
 	jp EnableAutoTextBoxDrawing
 
+CeladonPokecenterTrainerHeader0:
+	db TrainerHeaderTerminator
+
 CeladonPokecenterTextPointers:
 	dw CeladonHealNurseText
 	dw CeladonPokecenterText2
