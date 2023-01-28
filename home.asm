@@ -1889,7 +1889,7 @@ LoadGymLeaderAndCityName::
 ReadTrainerHeaderInfo::
 	push de
 	push af
-	ld d, $0
+	ld d, 0
 	ld e, a
 	ld hl, wTrainerHeaderPtr
 	ld a, [hli]
@@ -1898,24 +1898,11 @@ ReadTrainerHeaderInfo::
 	add hl, de
 	pop af
 	and a
-	jr nz, .nonZeroOffset
-	ld a, [hl]
+	jr nz, .readPointer
+	inc hl
+	ld a, [hld]
+	and TrainerHeaderPropertyFlagIndexMask ; keep the bit flags
 	ld [wTrainerHeaderFlagBit], a  ; store flag's bit
-	jr .done
-.nonZeroOffset
-	cp $2
-	jr z, .readPointer ; read flag's byte ptr
-	cp $4
-	jr z, .readPointer ; read before battle text
-	cp $6
-	jr z, .readPointer ; read after battle text
-	cp $8
-	jr z, .readPointer ; read end battle text
-	cp $a
-	jr nz, .done
-	ld a, [hli]        ; read end battle text (2) but override the result afterwards (XXX why, bug?)
-	ld d, [hl]
-	ld e, a
 	jr .done
 .readPointer
 	ld a, [hli]
@@ -1932,7 +1919,7 @@ TalkToTrainer::
 	call StoreTrainerHeaderPointer
 	xor a
 	call ReadTrainerHeaderInfo     ; read flag's bit
-	ld a, $2
+	ld a, TrainerHeaderPropertyFlagAddressOffset
 	call ReadTrainerHeaderInfo     ; read flag's byte ptr
 	ld a, [wTrainerHeaderFlagBit]
 	ld c, a
@@ -1941,18 +1928,18 @@ TalkToTrainer::
 	ld a, c
 	and a
 	jr z, .trainerNotYetFought     ; test trainer's flag
-	ld a, $6
+	ld a, TrainerHeaderPropertyAfterBattleTextOffset
 	call ReadTrainerHeaderInfo     ; print after battle text
 	jp PrintText
 .trainerNotYetFought
-	ld a, $4
+	ld a, TrainerHeaderPropertyBeforeBattleTextOffset
 	call ReadTrainerHeaderInfo     ; print before battle text
 	call PrintText
-	ld a, $a
-	call ReadTrainerHeaderInfo     ; (?) does nothing apparently (maybe bug in ReadTrainerHeaderInfo)
+	ld a, TrainerHeaderPropertyLoseBattleTextOffset
+	call ReadTrainerHeaderInfo    ; read end battle lose text
 	push hl
-	ld a, $8
-	call ReadTrainerHeaderInfo     ; read end battle text
+	ld a, TrainerHeaderPropertyWinBattleTextOffset
+	call ReadTrainerHeaderInfo     ; read end battle win text
 	pop de
 	call SaveEndBattleTextPointers
 	ld hl, wFlags_D733
@@ -1995,7 +1982,7 @@ CheckFightingMapTrainers::
 ; display the before battle text after the enemy trainer has walked up to the player's sprite
 DisplayEnemyTrainerTextAndStartBattle::
 	ld a, [wd730]
-	and $1
+	and %00000001
 	ret nz ; return if the enemy trainer hasn't finished walking to the player's sprite
 	ld [wJoyIgnore], a
 	ld a, [wSpriteIndex]
@@ -2024,9 +2011,9 @@ EndTrainerBattle::
 	ld hl, wFlags_0xcd60
 	res 0, [hl]                  ; player is no longer engaged by any trainer
 	ld a, [wIsInBattle]
-	cp $ff
+	cp -1
 	jp z, ResetButtonPressedAndMapScript
-	ld a, $2
+	ld a, TrainerHeaderPropertyFlagAddressOffset
 	call ReadTrainerHeaderInfo
 	ld a, [wTrainerHeaderFlagBit]
 	ld c, a
@@ -2036,7 +2023,7 @@ EndTrainerBattle::
 	dec a
 	jr nz, .skipRemoveSprite    ; test if trainer was fought (in that case skip removing the corresponding sprite)
 	ld hl, wMissableObjectList
-	ld de, $2
+	ld de, 2
 	ld a, [wSpriteIndex]
 	call IsInArray              ; search for sprite ID
 	inc hl
@@ -2088,11 +2075,15 @@ CheckForEngagingTrainers::
 .trainerLoop
 	call StoreTrainerHeaderPointer   ; set trainer header pointer to current trainer
 	ld a, [de]
-	ld [wSpriteIndex], a                     ; store trainer flag's bit
-	ld [wTrainerHeaderFlagBit], a
-	cp TrainerHeaderTermiantor
+	ld [wSpriteIndex], a                     ; store trainer's sprite index
+	cp TrainerHeaderTerminator
 	ret z
-	ld a, $2
+	inc de
+	ld a, [de]
+	dec de
+	and TrainerHeaderPropertyFlagIndexMask ; keep the flag bit
+	ld [wTrainerHeaderFlagBit], a
+	ld a, TrainerHeaderPropertyFlagAddressOffset
 	call ReadTrainerHeaderInfo       ; read trainer flag's byte ptr
 	ld b, FLAG_TEST
 	ld a, [wTrainerHeaderFlagBit]
@@ -2108,6 +2099,7 @@ CheckForEngagingTrainers::
 	call ReadTrainerHeaderInfo       ; get trainer header pointer
 	inc hl
 	ld a, [hl]                       ; read trainer engage distance
+	and ~TrainerHeaderPropertyFlagIndexMask ; remove the flag bits
 	pop hl
 	ld [wTrainerEngageDistance], a
 	ld a, [wSpriteIndex]

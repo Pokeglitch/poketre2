@@ -3078,6 +3078,10 @@ wSecondLockTrashCanIndex:: ; d743
 	ds 1
 
 	ds 2
+
+; todo - programatically define size of trainer battle flags
+; based on number of trainer battles
+wTrainerBattleFlags::
 wEventFlags:: ; d747
 	ds 320
 

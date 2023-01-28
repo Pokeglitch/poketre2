@@ -1,12 +1,22 @@
 MapSignFlagIndex = 7
+
+; todo - struct macro
+TrainerHeaderPropertyFlagIndexMask = %00000111
+TrainerHeaderPropertyFlagAddressOffset = 2
+TrainerHeaderPropertyBeforeBattleTextOffset = 4
+TrainerHeaderPropertyAfterBattleTextOffset = 6
+TrainerHeaderPropertyWinBattleTextOffset = 8
+TrainerHeaderPropertyLoseBattleTextOffset = 10
 TrainerHeaderSize = 12
-TrainerHeaderTermiantor = -1
+TrainerHeaderTerminator = -1
 
     Array TextType, None, Item, Trainer
 
 ; TODO - define by macro
 TextTypeShift = 5
 TextTypeMask = %11100000
+
+TotalTrainerBattleCount = 0
 
 ; 1: Name
 ; 2: Height
@@ -24,7 +34,7 @@ MapData: MACRO
     DEF OBJ_TEXT_COUNT = 0
 
     DEF \1TextCount = 0
-    DEF \1TrainerCount = 0
+    DEF \1BattleCount = 0
     
     INCLUDE "scripts/\1.asm"
 
@@ -55,7 +65,7 @@ MapData: MACRO
                 ResetObjectText
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
-	        db TrainerHeaderTermiantor
+	        db TrainerHeaderTerminator
 
         SECTION "\1 Blocks", ROMX, BANK[CUR_BANK]
             \1Blocks:
@@ -147,8 +157,8 @@ Battle: MACRO
     UpdateMapObject Sprite
     REDEF text EQUS "TrainerText "
 
-    DEF TRAINER_INDEX = {MAP_NAME}TrainerCount
-    REDEF POINTER_NAME EQUS "{MAP_NAME}TrainerHeader{d:TRAINER_INDEX}"
+    DEF MAP_BATTLE_INDEX = {MAP_NAME}BattleCount
+    REDEF POINTER_NAME EQUS "{MAP_NAME}TrainerHeader{d:MAP_BATTLE_INDEX}"
 
 	db \1
 	MapCoord \2, \3
@@ -163,12 +173,13 @@ Battle: MACRO
     PUSHS
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            dbEventFlagBit EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_{d:TRAINER_INDEX}
-            db (\6 << 4) ; trainer's view range
-            dwEventFlagAddress EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_{d:TRAINER_INDEX}
+            db {MAP_NAME}SpriteCount ; trainer's sprite index
+            db (\6 << 4) | (TotalTrainerBattleCount % 8) ; trainer's view range and battle index
+            dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
     POPS
     
-    DEF {MAP_NAME}TrainerCount = {MAP_NAME}TrainerCount + 1
+    DEF {MAP_NAME}BattleCount = {MAP_NAME}BattleCount + 1
+    DEF TotalTrainerBattleCount = TotalTrainerBattleCount + 1
 ENDM
 
 Pickup: MACRO
@@ -254,7 +265,7 @@ ENDM
 TrainerText: MACRO
     CloseObjectText
 
-    REDEF POINTER_NAME EQUS "{MAP_NAME}Trainer{d:TRAINER_INDEX}Text{d:OBJ_TEXT_COUNT}"
+    REDEF POINTER_NAME EQUS "{MAP_NAME}Trainer{d:MAP_BATTLE_INDEX}Text{d:OBJ_TEXT_COUNT}"
     
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         dw {POINTER_NAME}
