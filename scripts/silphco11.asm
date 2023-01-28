@@ -280,18 +280,18 @@ SilphCo11TextPointers:
 	dw SilphCo11Text6
 
 SilphCo11TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_11F_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_11F_TRAINER_0
+	dw 0 ; former event flag address
 	dw SilphCo11BattleText1 ; TextBeforeBattle
 	dw SilphCo11AfterBattleText1 ; TextAfterBattle
 	dw SilphCo11EndBattleText1 ; TextEndBattle
 	dw SilphCo11EndBattleText1 ; TextEndBattle
 
 SilphCo11TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_11F_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_11F_TRAINER_1
+	dw 0 ; former event flag address
 	dw SilphCo11BattleText2 ; TextBeforeBattle
 	dw SilphCo11AfterBattleText2 ; TextAfterBattle
 	dw SilphCo11EndBattleText2 ; TextEndBattle

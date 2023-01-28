@@ -91,36 +91,36 @@ FightingDojoTextPointers:
 	dw FightingDojoText8
 
 FightingDojoTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_FIGHTING_DOJO_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FIGHTING_DOJO_TRAINER_0
+	dw 0 ; former event flag address
 	dw FightingDojoBattleText1 ; TextBeforeBattle
 	dw FightingDojoAfterBattleText1 ; TextAfterBattle
 	dw FightingDojoEndBattleText1 ; TextEndBattle
 	dw FightingDojoEndBattleText1 ; TextEndBattle
 
 FightingDojoTrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_FIGHTING_DOJO_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FIGHTING_DOJO_TRAINER_1
+	dw 0 ; former event flag address
 	dw FightingDojoBattleText2 ; TextBeforeBattle
 	dw FightingDojoAfterBattleText2 ; TextAfterBattle
 	dw FightingDojoEndBattleText2 ; TextEndBattle
 	dw FightingDojoEndBattleText2 ; TextEndBattle
 
 FightingDojoTrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_FIGHTING_DOJO_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FIGHTING_DOJO_TRAINER_2
+	dw 0 ; former event flag address
 	dw FightingDojoBattleText3 ; TextBeforeBattle
 	dw FightingDojoAfterBattleText3 ; TextAfterBattle
 	dw FightingDojoEndBattleText3 ; TextEndBattle
 	dw FightingDojoEndBattleText3 ; TextEndBattle
 
 FightingDojoTrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_FIGHTING_DOJO_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FIGHTING_DOJO_TRAINER_3
+	dw 0 ; former event flag address
 	dw FightingDojoBattleText4 ; TextBeforeBattle
 	dw FightingDojoAfterBattleText4 ; TextAfterBattle
 	dw FightingDojoEndBattleText4 ; TextEndBattle

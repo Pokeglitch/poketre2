@@ -185,72 +185,72 @@ ViridianGymTextPointers:
 	dw ViridianGymText14
 
 ViridianGymTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText1 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText1 ; TextAfterBattle
 	dw ViridianGymEndBattleText1 ; TextEndBattle
 	dw ViridianGymEndBattleText1 ; TextEndBattle
 
 ViridianGymTrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_1
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText2 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText2 ; TextAfterBattle
 	dw ViridianGymEndBattleText2 ; TextEndBattle
 	dw ViridianGymEndBattleText2 ; TextEndBattle
 
 ViridianGymTrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_2
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText3 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText3 ; TextAfterBattle
 	dw ViridianGymEndBattleText3 ; TextEndBattle
 	dw ViridianGymEndBattleText3 ; TextEndBattle
 
 ViridianGymTrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_3
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText4 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText4 ; TextAfterBattle
 	dw ViridianGymEndBattleText4 ; TextEndBattle
 	dw ViridianGymEndBattleText4 ; TextEndBattle
 
 ViridianGymTrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_4
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText5 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText5 ; TextAfterBattle
 	dw ViridianGymEndBattleText5 ; TextEndBattle
 	dw ViridianGymEndBattleText5 ; TextEndBattle
 
 ViridianGymTrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_5
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText6 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText6 ; TextAfterBattle
 	dw ViridianGymEndBattleText6 ; TextEndBattle
 	dw ViridianGymEndBattleText6 ; TextEndBattle
 
 ViridianGymTrainerHeader6:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_6, 1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_6, 1
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText7 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText7 ; TextAfterBattle
 	dw ViridianGymEndBattleText7 ; TextEndBattle
 	dw ViridianGymEndBattleText7 ; TextEndBattle
 
 ViridianGymTrainerHeader7:
-	dbEventFlagBit EVENT_BEAT_VIRIDIAN_GYM_TRAINER_7, 1
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VIRIDIAN_GYM_TRAINER_7, 1
+	dw 0 ; former event flag address
 	dw ViridianGymBattleText8 ; TextBeforeBattle
 	dw ViridianGymAfterBattleText8 ; TextAfterBattle
 	dw ViridianGymEndBattleText8 ; TextEndBattle

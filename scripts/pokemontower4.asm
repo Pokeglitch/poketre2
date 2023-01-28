@@ -21,27 +21,27 @@ PokemonTower4TextPointers:
 	dw PickUpItemText
 
 PokemonTower4TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_4_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_4_TRAINER_0
+	dw 0 ; former event flag address
 	dw PokemonTower4BattleText1 ; TextBeforeBattle
 	dw PokemonTower4AfterBattleText1 ; TextAfterBattle
 	dw PokemonTower4EndBattleText1 ; TextEndBattle
 	dw PokemonTower4EndBattleText1 ; TextEndBattle
 
 PokemonTower4TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_4_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_4_TRAINER_1
+	dw 0 ; former event flag address
 	dw PokemonTower4BattleText2 ; TextBeforeBattle
 	dw PokemonTower4AfterBattleText2 ; TextAfterBattle
 	dw PokemonTower4EndBattleText2 ; TextEndBattle
 	dw PokemonTower4EndBattleText2 ; TextEndBattle
 
 PokemonTower4TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_4_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_4_TRAINER_2
+	dw 0 ; former event flag address
 	dw PokemonTower4BattleText3 ; TextBeforeBattle
 	dw PokemonTower4AfterBattleText3 ; TextAfterBattle
 	dw PokemonTower4EndBattleText3 ; TextEndBattle

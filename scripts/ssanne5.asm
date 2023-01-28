@@ -20,18 +20,18 @@ SSAnne5TextPointers:
 	dw SSAnne5Text5
 
 SSAnne5TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_5_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_5_TRAINER_0
+	dw 0 ; former event flag address
 	dw SSAnne5BattleText1 ; TextBeforeBattle
 	dw SSAnne5AfterBattleText1 ; TextAfterBattle
 	dw SSAnne5EndBattleText1 ; TextEndBattle
 	dw SSAnne5EndBattleText1 ; TextEndBattle
 
 SSAnne5TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_5_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_5_TRAINER_1
+	dw 0 ; former event flag address
 	dw SSAnne5BattleText2 ; TextBeforeBattle
 	dw SSAnne5AfterBattleText2 ; TextAfterBattle
 	dw SSAnne5EndBattleText2 ; TextEndBattle

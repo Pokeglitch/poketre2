@@ -29,63 +29,63 @@ MtMoon1TextPointers:
 	dw MtMoon1Text14
 
 MtMoon1TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_0
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText2 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText2 ; TextAfterBattle
 	dw MtMoon1EndBattleText2 ; TextEndBattle
 	dw MtMoon1EndBattleText2 ; TextEndBattle
 
 MtMoon1TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_1
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText3 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText3 ; TextAfterBattle
 	dw MtMoon1EndBattleText3 ; TextEndBattle
 	dw MtMoon1EndBattleText3 ; TextEndBattle
 
 MtMoon1TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_2
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText4 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText4 ; TextAfterBattle
 	dw MtMoon1EndBattleText4 ; TextEndBattle
 	dw MtMoon1EndBattleText4 ; TextEndBattle
 
 MtMoon1TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_3
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText5 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText5 ; TextAfterBattle
 	dw MtMoon1EndBattleText5 ; TextEndBattle
 	dw MtMoon1EndBattleText5 ; TextEndBattle
 
 MtMoon1TrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_4
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText6 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText6 ; TextAfterBattle
 	dw MtMoon1EndBattleText6 ; TextEndBattle
 	dw MtMoon1EndBattleText6 ; TextEndBattle
 
 MtMoon1TrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_5
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText7 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText7 ; TextAfterBattle
 	dw MtMoon1EndBattleText7 ; TextEndBattle
 	dw MtMoon1EndBattleText7 ; TextEndBattle
 
 MtMoon1TrainerHeader6:
-	dbEventFlagBit EVENT_BEAT_MT_MOON_1_TRAINER_6
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MT_MOON_1_TRAINER_6
+	dw 0 ; former event flag address
 	dw MtMoon1BattleText8 ; TextBeforeBattle
 	dw MtMoon1AfterBattleText8 ; TextAfterBattle
 	dw MtMoon1EndBattleText8 ; TextEndBattle

@@ -101,27 +101,27 @@ PokemonTower6TextPointers:
 	dw PokemonTower6Text7
 
 PokemonTower6TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_6_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_6_TRAINER_0
+	dw 0 ; former event flag address
 	dw PokemonTower6BattleText1 ; TextBeforeBattle
 	dw PokemonTower6AfterBattleText1 ; TextAfterBattle
 	dw PokemonTower6EndBattleText1 ; TextEndBattle
 	dw PokemonTower6EndBattleText1 ; TextEndBattle
 
 PokemonTower6TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_6_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_6_TRAINER_1
+	dw 0 ; former event flag address
 	dw PokemonTower6BattleText2 ; TextBeforeBattle
 	dw PokemonTower6AfterBattleText2 ; TextAfterBattle
 	dw PokemonTower6EndBattleText2 ; TextEndBattle
 	dw PokemonTower6EndBattleText2 ; TextEndBattle
 
 PokemonTower6TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_POKEMONTOWER_6_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_POKEMONTOWER_6_TRAINER_2
+	dw 0 ; former event flag address
 	dw PokemonTower6BattleText3 ; TextBeforeBattle
 	dw PokemonTower6AfterBattleText3 ; TextAfterBattle
 	dw PokemonTower6EndBattleText3 ; TextEndBattle

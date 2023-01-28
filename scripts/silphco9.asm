@@ -130,27 +130,27 @@ SilphCo9TextPointers:
 	dw SilphCo9Text4
 
 SilphCo9TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_9F_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_9F_TRAINER_0
+	dw 0 ; former event flag address
 	dw SilphCo9BattleText1 ; TextBeforeBattle
 	dw SilphCo9AfterBattleText1 ; TextAfterBattle
 	dw SilphCo9EndBattleText1 ; TextEndBattle
 	dw SilphCo9EndBattleText1 ; TextEndBattle
 
 SilphCo9TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_9F_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_9F_TRAINER_1
+	dw 0 ; former event flag address
 	dw SilphCo9BattleText2 ; TextBeforeBattle
 	dw SilphCo9AfterBattleText2 ; TextAfterBattle
 	dw SilphCo9EndBattleText2 ; TextEndBattle
 	dw SilphCo9EndBattleText2 ; TextEndBattle
 
 SilphCo9TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_9F_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_9F_TRAINER_2
+	dw 0 ; former event flag address
 	dw SilphCo9BattleText3 ; TextBeforeBattle
 	dw SilphCo9AfterBattleText3 ; TextAfterBattle
 	dw SilphCo9EndBattleText3 ; TextEndBattle

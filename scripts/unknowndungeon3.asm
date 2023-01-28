@@ -18,9 +18,9 @@ UnknownDungeon3TextPointers:
 	dw PickUpItemText
 
 MewtwoTrainerHeader:
-	dbEventFlagBit EVENT_BEAT_MEWTWO
+	db 0 ; former event flag bit index
 	db ($0 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MEWTWO
+	dw 0 ; former event flag address
 	dw MewtwoBattleText ; TextBeforeBattle
 	dw MewtwoBattleText ; TextAfterBattle
 	dw MewtwoBattleText ; TextEndBattle

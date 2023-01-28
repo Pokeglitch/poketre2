@@ -84,54 +84,54 @@ VictoryRoad2TextPointers:
 	dw BoulderText
 
 VictoryRoad2TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_2_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_2_TRAINER_0
+	dw 0 ; former event flag address
 	dw VictoryRoad2BattleText1 ; TextBeforeBattle
 	dw VictoryRoad2AfterBattleText1 ; TextAfterBattle
 	dw VictoryRoad2EndBattleText1 ; TextEndBattle
 	dw VictoryRoad2EndBattleText1 ; TextEndBattle
 
 VictoryRoad2TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_2_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_2_TRAINER_1
+	dw 0 ; former event flag address
 	dw VictoryRoad2BattleText2 ; TextBeforeBattle
 	dw VictoryRoad2AfterBattleText2 ; TextAfterBattle
 	dw VictoryRoad2EndBattleText2 ; TextEndBattle
 	dw VictoryRoad2EndBattleText2 ; TextEndBattle
 
 VictoryRoad2TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_2_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_2_TRAINER_2
+	dw 0 ; former event flag address
 	dw VictoryRoad2BattleText3 ; TextBeforeBattle
 	dw VictoryRoad2AfterBattleText3 ; TextAfterBattle
 	dw VictoryRoad2EndBattleText3 ; TextEndBattle
 	dw VictoryRoad2EndBattleText3 ; TextEndBattle
 
 VictoryRoad2TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_2_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($1 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_2_TRAINER_3
+	dw 0 ; former event flag address
 	dw VictoryRoad2BattleText4 ; TextBeforeBattle
 	dw VictoryRoad2AfterBattleText4 ; TextAfterBattle
 	dw VictoryRoad2EndBattleText4 ; TextEndBattle
 	dw VictoryRoad2EndBattleText4 ; TextEndBattle
 
 VictoryRoad2TrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_2_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_2_TRAINER_4
+	dw 0 ; former event flag address
 	dw VictoryRoad2BattleText5 ; TextBeforeBattle
 	dw VictoryRoad2AfterBattleText5 ; TextAfterBattle
 	dw VictoryRoad2EndBattleText5 ; TextEndBattle
 	dw VictoryRoad2EndBattleText5 ; TextEndBattle
 
 MoltresTrainerHeader:
-	dbEventFlagBit EVENT_BEAT_MOLTRES
+	db 0 ; former event flag bit index
 	db ($0 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_MOLTRES
+	dw 0 ; former event flag address
 	dw MoltresBattleText ; TextBeforeBattle
 	dw MoltresBattleText ; TextAfterBattle
 	dw MoltresBattleText ; TextEndBattle

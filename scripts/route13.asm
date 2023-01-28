@@ -28,90 +28,90 @@ Route13TextPointers:
 	dw Route13Text13
 
 Route13TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_0
+	dw 0 ; former event flag address
 	dw Route13BattleText2 ; TextBeforeBattle
 	dw Route13AfterBattleText2 ; TextAfterBattle
 	dw Route13EndBattleText2 ; TextEndBattle
 	dw Route13EndBattleText2 ; TextEndBattle
 
 Route13TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_1
+	dw 0 ; former event flag address
 	dw Route13BattleText3 ; TextBeforeBattle
 	dw Route13AfterBattleText3 ; TextAfterBattle
 	dw Route13EndBattleText3 ; TextEndBattle
 	dw Route13EndBattleText3 ; TextEndBattle
 
 Route13TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_2
+	dw 0 ; former event flag address
 	dw Route13BattleText4 ; TextBeforeBattle
 	dw Route13AfterBattleText4 ; TextAfterBattle
 	dw Route13EndBattleText4 ; TextEndBattle
 	dw Route13EndBattleText4 ; TextEndBattle
 
 Route13TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_3
+	dw 0 ; former event flag address
 	dw Route13BattleText5 ; TextBeforeBattle
 	dw Route13AfterBattleText5 ; TextAfterBattle
 	dw Route13EndBattleText5 ; TextEndBattle
 	dw Route13EndBattleText5 ; TextEndBattle
 
 Route13TrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_4
+	dw 0 ; former event flag address
 	dw Route13BattleText6 ; TextBeforeBattle
 	dw Route13AfterBattleText6 ; TextAfterBattle
 	dw Route13EndBattleText6 ; TextEndBattle
 	dw Route13EndBattleText6 ; TextEndBattle
 
 Route13TrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_5
+	dw 0 ; former event flag address
 	dw Route13BattleText7 ; TextBeforeBattle
 	dw Route13AfterBattleText7 ; TextAfterBattle
 	dw Route13EndBattleText7 ; TextEndBattle
 	dw Route13EndBattleText7 ; TextEndBattle
 
 Route13TrainerHeader6:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_6
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_6
+	dw 0 ; former event flag address
 	dw Route13BattleText8 ; TextBeforeBattle
 	dw Route13AfterBattleText8 ; TextAfterBattle
 	dw Route13EndBattleText8 ; TextEndBattle
 	dw Route13EndBattleText8 ; TextEndBattle
 
 Route13TrainerHeader7:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_7, 1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_7, 1
+	dw 0 ; former event flag address
 	dw Route13BattleText9 ; TextBeforeBattle
 	dw Route13AfterBattleText9 ; TextAfterBattle
 	dw Route13EndBattleText9 ; TextEndBattle
 	dw Route13EndBattleText9 ; TextEndBattle
 
 Route13TrainerHeader8:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_8, 1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_8, 1
+	dw 0 ; former event flag address
 	dw Route13BattleText10 ; TextBeforeBattle
 	dw Route13AfterBattleText10 ; TextAfterBattle
 	dw Route13EndBattleText10 ; TextEndBattle
 	dw Route13EndBattleText10 ; TextEndBattle
 
 Route13TrainerHeader9:
-	dbEventFlagBit EVENT_BEAT_ROUTE_13_TRAINER_9, 1
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_13_TRAINER_9, 1
+	dw 0 ; former event flag address
 	dw Route13BattleText11 ; TextBeforeBattle
 	dw Route13AfterBattleText11 ; TextAfterBattle
 	dw Route13EndBattleText11 ; TextEndBattle

@@ -85,63 +85,63 @@ SaffronGymTextPointers:
 	dw SaffronGymText12
 
 SaffronGymTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_0
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText1 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText1 ; TextAfterBattle
 	dw SaffronGymEndBattleText1 ; TextEndBattle
 	dw SaffronGymEndBattleText1 ; TextEndBattle
 
 SaffronGymTrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_1
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText2 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText2 ; TextAfterBattle
 	dw SaffronGymEndBattleText2 ; TextEndBattle
 	dw SaffronGymEndBattleText2 ; TextEndBattle
 
 SaffronGymTrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_2
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText3 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText3 ; TextAfterBattle
 	dw SaffronGymEndBattleText3 ; TextEndBattle
 	dw SaffronGymEndBattleText3 ; TextEndBattle
 
 SaffronGymTrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_3
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText4 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText4 ; TextAfterBattle
 	dw SaffronGymEndBattleText4 ; TextEndBattle
 	dw SaffronGymEndBattleText4 ; TextEndBattle
 
 SaffronGymTrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_4
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText5 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText5 ; TextAfterBattle
 	dw SaffronGymEndBattleText5 ; TextEndBattle
 	dw SaffronGymEndBattleText5 ; TextEndBattle
 
 SaffronGymTrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_5
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText6 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText6 ; TextAfterBattle
 	dw SaffronGymEndBattleText6 ; TextEndBattle
 	dw SaffronGymEndBattleText6 ; TextEndBattle
 
 SaffronGymTrainerHeader6:
-	dbEventFlagBit EVENT_BEAT_SAFFRON_GYM_TRAINER_6, 1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SAFFRON_GYM_TRAINER_6, 1
+	dw 0 ; former event flag address
 	dw SaffronGymBattleText7 ; TextBeforeBattle
 	dw SaffronGymAfterBattleText7 ; TextAfterBattle
 	dw SaffronGymEndBattleText7 ; TextEndBattle

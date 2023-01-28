@@ -84,54 +84,54 @@ FuchsiaGymTextPointers:
 	dw FuchsiaGymText11
 
 FuchsiaGymTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_0
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText1 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText1 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText1 ; TextEndBattle
 	dw FuchsiaGymEndBattleText1 ; TextEndBattle
 
 FuchsiaGymTrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_1
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText2 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText2 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText2 ; TextEndBattle
 	dw FuchsiaGymEndBattleText2 ; TextEndBattle
 
 FuchsiaGymTrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_2
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText3 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText3 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText3 ; TextEndBattle
 	dw FuchsiaGymEndBattleText3 ; TextEndBattle
 
 FuchsiaGymTrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_3
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText4 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText4 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText4 ; TextEndBattle
 	dw FuchsiaGymEndBattleText4 ; TextEndBattle
 
 FuchsiaGymTrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_4
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText5 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText5 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText5 ; TextEndBattle
 	dw FuchsiaGymEndBattleText5 ; TextEndBattle
 
 FuchsiaGymTrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_FUCHSIA_GYM_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_FUCHSIA_GYM_TRAINER_5
+	dw 0 ; former event flag address
 	dw FuchsiaGymBattleText6 ; TextBeforeBattle
 	dw FuchsiaGymAfterBattleText6 ; TextAfterBattle
 	dw FuchsiaGymEndBattleText6 ; TextEndBattle

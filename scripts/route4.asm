@@ -21,9 +21,9 @@ Route4TextPointers:
 	dw Route4Text6
 
 Route4TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_ROUTE_4_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_4_TRAINER_0
+	dw 0 ; former event flag address
 	dw Route4BattleText1 ; TextBeforeBattle
 	dw Route4AfterBattleText1 ; TextAfterBattle
 	dw Route4EndBattleText1 ; TextEndBattle

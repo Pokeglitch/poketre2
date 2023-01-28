@@ -20,27 +20,27 @@ Route18TextPointers:
 	dw Route18Text5
 
 Route18TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_ROUTE_18_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_18_TRAINER_0
+	dw 0 ; former event flag address
 	dw Route18BattleText1 ; TextBeforeBattle
 	dw Route18AfterBattleText1 ; TextAfterBattle
 	dw Route18EndBattleText1 ; TextEndBattle
 	dw Route18EndBattleText1 ; TextEndBattle
 
 Route18TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_ROUTE_18_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_18_TRAINER_1
+	dw 0 ; former event flag address
 	dw Route18BattleText2 ; TextBeforeBattle
 	dw Route18AfterBattleText2 ; TextAfterBattle
 	dw Route18EndBattleText2 ; TextEndBattle
 	dw Route18EndBattleText2 ; TextEndBattle
 
 Route18TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_ROUTE_18_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_18_TRAINER_2
+	dw 0 ; former event flag address
 	dw Route18BattleText3 ; TextBeforeBattle
 	dw Route18AfterBattleText3 ; TextAfterBattle
 	dw Route18EndBattleText3 ; TextEndBattle

@@ -1,3 +1,6 @@
+; todo - delete after all map objects are updated
+DEF EVENT_BEAT_TRAINER_TEMP = 0
+
 const_value = 0
 
 	const EVENT_FOLLOWED_OAK_INTO_LAB                ; 000, (D747, bit 0)

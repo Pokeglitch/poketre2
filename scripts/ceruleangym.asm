@@ -80,18 +80,18 @@ CeruleanGymTextPointers:
 	dw CeruleanGymText7
 
 CeruleanGymTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_CERULEAN_GYM_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_CERULEAN_GYM_TRAINER_0
+	dw 0 ; former event flag address
 	dw CeruleanGymBattleText1 ; TextBeforeBattle
 	dw CeruleanGymAfterBattleText1 ; TextAfterBattle
 	dw CeruleanGymEndBattleText1 ; TextEndBattle
 	dw CeruleanGymEndBattleText1 ; TextEndBattle
 
 CeruleanGymTrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_CERULEAN_GYM_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_CERULEAN_GYM_TRAINER_1
+	dw 0 ; former event flag address
 	dw CeruleanGymBattleText2 ; TextBeforeBattle
 	dw CeruleanGymAfterBattleText2 ; TextAfterBattle
 	dw CeruleanGymEndBattleText2 ; TextEndBattle

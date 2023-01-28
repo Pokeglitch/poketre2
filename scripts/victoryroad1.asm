@@ -47,18 +47,18 @@ VictoryRoad1TextPointers:
 	dw BoulderText
 
 VictoryRoad1TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_1_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_1_TRAINER_0
+	dw 0 ; former event flag address
 	dw VictoryRoad1BattleText1 ; TextBeforeBattle
 	dw VictoryRoad1AfterBattleText1 ; TextAfterBattle
 	dw VictoryRoad1EndBattleText1 ; TextEndBattle
 	dw VictoryRoad1EndBattleText1 ; TextEndBattle
 
 VictoryRoad1TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_VICTORY_ROAD_1_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_VICTORY_ROAD_1_TRAINER_1
+	dw 0 ; former event flag address
 	dw VictoryRoad1BattleText2 ; TextBeforeBattle
 	dw VictoryRoad1AfterBattleText2 ; TextAfterBattle
 	dw VictoryRoad1EndBattleText2 ; TextEndBattle

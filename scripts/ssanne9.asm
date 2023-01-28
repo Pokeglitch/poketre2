@@ -31,36 +31,36 @@ SSAnne9TextPointers:
 	dw SSAnne9Text13
 
 SSAnne9TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_9_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_9_TRAINER_0
+	dw 0 ; former event flag address
 	dw SSAnne9BattleText1 ; TextBeforeBattle
 	dw SSAnne9AfterBattleText1 ; TextAfterBattle
 	dw SSAnne9EndBattleText1 ; TextEndBattle
 	dw SSAnne9EndBattleText1 ; TextEndBattle
 
 SSAnne9TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_9_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_9_TRAINER_1
+	dw 0 ; former event flag address
 	dw SSAnne9BattleText2 ; TextBeforeBattle
 	dw SSAnne9AfterBattleText2 ; TextAfterBattle
 	dw SSAnne9EndBattleText2 ; TextEndBattle
 	dw SSAnne9EndBattleText2 ; TextEndBattle
 
 SSAnne9TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_9_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_9_TRAINER_2
+	dw 0 ; former event flag address
 	dw SSAnne9BattleText3 ; TextBeforeBattle
 	dw SSAnne9AfterBattleText3 ; TextAfterBattle
 	dw SSAnne9EndBattleText3 ; TextEndBattle
 	dw SSAnne9EndBattleText3 ; TextEndBattle
 
 SSAnne9TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_SS_ANNE_9_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SS_ANNE_9_TRAINER_3
+	dw 0 ; former event flag address
 	dw SSAnne9BattleText4 ; TextBeforeBattle
 	dw SSAnne9AfterBattleText4 ; TextAfterBattle
 	dw SSAnne9EndBattleText4 ; TextEndBattle

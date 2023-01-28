@@ -45,45 +45,45 @@ RocketHideout1TextPointers:
 	dw PickUpItemText
 
 RocketHideout1TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_0
+	dw 0 ; former event flag address
 	dw RocketHideout1BattleText2 ; TextBeforeBattle
 	dw RocketHideout1AfterBattleTxt2 ; TextAfterBattle
 	dw RocketHideout1EndBattleText2 ; TextEndBattle
 	dw RocketHideout1EndBattleText2 ; TextEndBattle
 
 RocketHideout1TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_1
+	dw 0 ; former event flag address
 	dw RocketHideout1BattleText3 ; TextBeforeBattle
 	dw RocketHideout1AfterBattleTxt3 ; TextAfterBattle
 	dw RocketHideout1EndBattleText3 ; TextEndBattle
 	dw RocketHideout1EndBattleText3 ; TextEndBattle
 
 RocketHideout1TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_2
+	dw 0 ; former event flag address
 	dw RocketHideout1BattleText4 ; TextBeforeBattle
 	dw RocketHideout1AfterBattleTxt4 ; TextAfterBattle
 	dw RocketHideout1EndBattleText4 ; TextEndBattle
 	dw RocketHideout1EndBattleText4 ; TextEndBattle
 
 RocketHideout1TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_3
+	dw 0 ; former event flag address
 	dw RocketHideout1BattleText5 ; TextBeforeBattle
 	dw RocketHideout1AfterBattleTxt5 ; TextAfterBattle
 	dw RocketHideout1EndBattleText5 ; TextEndBattle
 	dw RocketHideout1EndBattleText5 ; TextEndBattle
 
 RocketHideout1TrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_4
+	dw 0 ; former event flag address
 	dw RocketHideout1BattleText6 ; TextBeforeBattle
 	dw RocketHideout1AfterBattleTxt6 ; TextAfterBattle
 	dw RocketHideout1EndBattleText6 ; TextEndBattle

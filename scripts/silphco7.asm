@@ -278,36 +278,36 @@ SilphCo7TextPointers:
 	dw SilphCo7Text15
 
 SilphCo7TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_7F_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_7F_TRAINER_0
+	dw 0 ; former event flag address
 	dw SilphCo7BattleText1 ; TextBeforeBattle
 	dw SilphCo7AfterBattleText1 ; TextAfterBattle
 	dw SilphCo7EndBattleText1 ; TextEndBattle
 	dw SilphCo7EndBattleText1 ; TextEndBattle
 
 SilphCo7TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_7F_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_7F_TRAINER_1
+	dw 0 ; former event flag address
 	dw SilphCo7BattleText2 ; TextBeforeBattle
 	dw SilphCo7AfterBattleText2 ; TextAfterBattle
 	dw SilphCo7EndBattleText2 ; TextEndBattle
 	dw SilphCo7EndBattleText2 ; TextEndBattle
 
 SilphCo7TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_7F_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_7F_TRAINER_2
+	dw 0 ; former event flag address
 	dw SilphCo7BattleText3 ; TextBeforeBattle
 	dw SilphCo7AfterBattleText3 ; TextAfterBattle
 	dw SilphCo7EndBattleText3 ; TextEndBattle
 	dw SilphCo7EndBattleText3 ; TextEndBattle
 
 SilphCo7TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_7F_TRAINER_3, 1
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_7F_TRAINER_3, 1
+	dw 0 ; former event flag address
 	dw SilphCo7BattleText4 ; TextBeforeBattle
 	dw SilphCo7AfterBattleText4 ; TextAfterBattle
 	dw SilphCo7EndBattleText4 ; TextEndBattle

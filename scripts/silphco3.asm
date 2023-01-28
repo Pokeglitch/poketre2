@@ -62,18 +62,18 @@ SilphCo3TextPointers:
 	dw PickUpItemText
 
 SilphCo3TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_3F_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_3F_TRAINER_0
+	dw 0 ; former event flag address
 	dw SilphCo3BattleText1 ; TextBeforeBattle
 	dw SilphCo3AfterBattleText1 ; TextAfterBattle
 	dw SilphCo3EndBattleText1 ; TextEndBattle
 	dw SilphCo3EndBattleText1 ; TextEndBattle
 
 SilphCo3TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_SILPH_CO_3F_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_SILPH_CO_3F_TRAINER_1
+	dw 0 ; former event flag address
 	dw SilphCo3BattleText2 ; TextBeforeBattle
 	dw SilphCo3AfterBattleText2 ; TextAfterBattle
 	dw SilphCo3EndBattleText2 ; TextEndBattle

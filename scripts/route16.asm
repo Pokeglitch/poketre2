@@ -72,54 +72,54 @@ Route16TextPointers:
 	dw Route16Text11
 
 Route16TrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($3 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_0
+	dw 0 ; former event flag address
 	dw Route16BattleText1 ; TextBeforeBattle
 	dw Route16AfterBattleText1 ; TextAfterBattle
 	dw Route16EndBattleText1 ; TextEndBattle
 	dw Route16EndBattleText1 ; TextEndBattle
 
 Route16TrainerHeader1:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_1
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_1
+	dw 0 ; former event flag address
 	dw Route16BattleText2 ; TextBeforeBattle
 	dw Route16AfterBattleText2 ; TextAfterBattle
 	dw Route16EndBattleText2 ; TextEndBattle
 	dw Route16EndBattleText2 ; TextEndBattle
 
 Route16TrainerHeader2:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_2
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_2
+	dw 0 ; former event flag address
 	dw Route16BattleText3 ; TextBeforeBattle
 	dw Route16AfterBattleText3 ; TextAfterBattle
 	dw Route16EndBattleText3 ; TextEndBattle
 	dw Route16EndBattleText3 ; TextEndBattle
 
 Route16TrainerHeader3:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_3
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_3
+	dw 0 ; former event flag address
 	dw Route16BattleText4 ; TextBeforeBattle
 	dw Route16AfterBattleText4 ; TextAfterBattle
 	dw Route16EndBattleText4 ; TextEndBattle
 	dw Route16EndBattleText4 ; TextEndBattle
 
 Route16TrainerHeader4:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_4
+	db 0 ; former event flag bit index
 	db ($2 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_4
+	dw 0 ; former event flag address
 	dw Route16BattleText5 ; TextBeforeBattle
 	dw Route16AfterBattleText5 ; TextAfterBattle
 	dw Route16EndBattleText5 ; TextEndBattle
 	dw Route16EndBattleText5 ; TextEndBattle
 
 Route16TrainerHeader5:
-	dbEventFlagBit EVENT_BEAT_ROUTE_16_TRAINER_5
+	db 0 ; former event flag bit index
 	db ($4 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_ROUTE_16_TRAINER_5
+	dw 0 ; former event flag address
 	dw Route16BattleText6 ; TextBeforeBattle
 	dw Route16AfterBattleText6 ; TextAfterBattle
 	dw Route16EndBattleText6 ; TextEndBattle

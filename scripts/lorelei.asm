@@ -120,9 +120,9 @@ LoreleiTextPointers:
 	dw LoreleiDontRunAwayText
 
 LoreleiTrainerHeader0:
-	dbEventFlagBit EVENT_BEAT_LORELEIS_ROOM_TRAINER_0
+	db 0 ; former event flag bit index
 	db ($0 << 4) ; trainer's view range
-	dwEventFlagAddress EVENT_BEAT_LORELEIS_ROOM_TRAINER_0
+	dw 0 ; former event flag address
 	dw LoreleiBeforeBattleText ; TextBeforeBattle
 	dw LoreleiAfterBattleText ; TextAfterBattle
 	dw LoreleiEndBattleText ; TextEndBattle
