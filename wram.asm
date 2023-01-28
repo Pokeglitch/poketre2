@@ -2387,14 +2387,17 @@ wMapTextPtr:: ; d36c
 wMapScriptPtr:: ; d36e
 	ds 2
 
-wMapConnections:: ; d370
+wMapTrainerHeadersPtr::
+	ds 2
+
+wMapConnections::
 ; connection byte
 	ds 1
 
-wMapConn1Ptr:: ; d371
+wMapConn1Ptr::
 	ds 1
 
-wNorthConnectionStripSrc:: ; d372
+wNorthConnectionStripSrc::
 	ds 2
 
 wNorthConnectionStripDest:: ; d374
@@ -2496,8 +2499,6 @@ wSpriteSetID:: ; d3a8
 	ds 1
 
 wObjectDataPointerTemp:: ; d3a9
-	ds 2
-
 	ds 2
 
 wMapBackgroundTile:: ; d3ad

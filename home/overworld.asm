@@ -2083,9 +2083,9 @@ LoadMapHeader::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = base of map header
-; copy the first 10 bytes (the fixed area) of the map data to D367-D370
+; copy the first 12 bytes (the fixed area) of the map data to D367-D372
 	ld de, wCurMapTileset
-	ld c, $0a
+	ld c, 12 ; todo - constant
 .copyFixedHeaderLoop
 	ld a, [hli]
 	ld [de], a

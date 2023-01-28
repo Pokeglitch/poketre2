@@ -1851,12 +1851,7 @@ StoreTrainerHeaderPointer::
 ; executes the current map script from the function pointer array provided in hl.
 ; a: map script index to execute (unless overridden by [wd733] bit 4)
 ExecuteCurMapScriptInTable::
-	push af
 	push de
-	call StoreTrainerHeaderPointer
-	pop hl
-	pop af
-	push hl
 	ld hl, wFlags_D733
 	bit 4, [hl]
 	res 4, [hl]
@@ -1881,7 +1876,8 @@ LoadGymLeaderAndCityName::
 
 ; reads specific information from trainer header (pointed to at wTrainerHeaderPtr)
 ; a: offset in header data
-;    0 -> flag's bit (into wTrainerHeaderFlagBit)
+;    0 -> flag's mask
+;	 1 -> look range / sprite index
 ;    2 -> flag's byte ptr (into hl)
 ;    4 -> before battle text (into hl)
 ;    6 -> after battle text (into hl)
@@ -1897,12 +1893,9 @@ ReadTrainerHeaderInfo::
 	ld h, a
 	add hl, de
 	pop af
-	and a
-	jr nz, .readPointer
-	inc hl
-	ld a, [hld]
-	and TrainerHeaderPropertyFlagIndexMask ; keep the bit flags
-	ld [wTrainerHeaderFlagBit], a  ; store flag's bit
+	cp TrainerHeaderPropertyFlagAddressOffset  ; everything before this is not a pointer
+	jr nc, .readPointer
+	ld a, [hl]
 	jr .done
 .readPointer
 	ld a, [hli]
@@ -1917,17 +1910,17 @@ TrainerFlagAction::
 
 TalkToTrainer::
 	call StoreTrainerHeaderPointer
-	xor a
-	call ReadTrainerHeaderInfo     ; read flag's bit
-	ld a, TrainerHeaderPropertyFlagAddressOffset
-	call ReadTrainerHeaderInfo     ; read flag's byte ptr
-	ld a, [wTrainerHeaderFlagBit]
-	ld c, a
-	ld b, FLAG_TEST
-	call TrainerFlagAction      ; read trainer's flag
-	ld a, c
-	and a
-	jr z, .trainerNotYetFought     ; test trainer's flag
+	ld a, [hli] ; get the mask
+	ld d, a ; store into d
+
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = flag address
+	ld a, d ; a = mask again
+	and [hl]						;test the flag
+	jr z, .trainerNotYetFought     ; battle if unset
+
 	ld a, TrainerHeaderPropertyAfterBattleTextOffset
 	call ReadTrainerHeaderInfo     ; print after battle text
 	jp PrintText
@@ -1955,17 +1948,69 @@ TalkToTrainer::
 
 ; checks if any trainers are seeing the player and wanting to fight
 CheckFightingMapTrainers::
-	call CheckForEngagingTrainers
-	ld a, [wSpriteIndex]
-	cp $ff
-	jr nz, .trainerEngaging
+	ld a, [wMapTrainerHeadersPtr]
+	ld l, a
+	ld a, [wMapTrainerHeadersPtr + 1]
+	ld h, a
+	call StoreTrainerHeaderPointer
+
 	xor a
+	call ReadTrainerHeaderInfo       ; get trainer header address
+	ld d, h                          ; store trainer header address in de
+	ld e, l
+
+.trainerLoop
+	call StoreTrainerHeaderPointer   ; set trainer header pointer to current trainer
+	ld a, [de]
+	cp TrainerHeaderTerminator
+	ret z ; exit if so
+
+	push de
+	push af ; store the flag mask
+
+	inc de
+	ld a, [de] ; get the trainer view distance and sprite id
+	ld l, a ; store into l
+
+	and %00001111 ; keep the sprite id ; todo - constant
 	ld [wSpriteIndex], a
-	ld [wTrainerHeaderFlagBit], a
-	ret
+	swap a
+	ld [wTrainerSpriteOffset], a
+
+	ld a, l ; recover the original byte
+	and %11110000 ; keep the engage distance ; todo - constant
+	ld [wTrainerEngageDistance], a
+
+	inc de
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a ; hl = flag address
+
+	pop af ; recover the flag mask
+	and [hl] ; see if the bit is set
+	jr nz, .continue ; check next trainer if so
+
+	predef TrainerEngage
+
+	ld a, [wTrainerSpriteOffset]
+	and a
+	jr nz, .trainerEngaging        ; exit if trainer engaged
+
+.continue
+	pop de
+	ld hl, TrainerHeaderSize
+	add hl, de
+	ld d, h
+	ld e, l
+	jr .trainerLoop
+
 .trainerEngaging
+	pop de
 	ld hl, wFlags_D733
 	set 3, [hl]
+	ld a, [wSpriteIndex]
 	ld [wEmotionBubbleSpriteIndex], a
 	xor a ; EXCLAMATION_BUBBLE
 	ld [wWhichEmotionBubble], a
@@ -2013,15 +2058,24 @@ EndTrainerBattle::
 	ld a, [wIsInBattle]
 	cp -1
 	jp z, ResetButtonPressedAndMapScript
-	ld a, TrainerHeaderPropertyFlagAddressOffset
-	call ReadTrainerHeaderInfo
-	ld a, [wTrainerHeaderFlagBit]
-	ld c, a
-	ld b, FLAG_SET
-	call TrainerFlagAction   ; flag trainer as fought
+
+	xor a
+	call ReadTrainerHeaderInfo ; get the flag mask into a
+	ld d, a ; store into d
+
+	inc hl
+	inc hl
+
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = flag address
+
+	ld a, [hl]
+	or d ; set the flag
+	ld [hl], a ; update the address
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .skipRemoveSprite    ; test if trainer was fought (in that case skip removing the corresponding sprite)
+	jr nz, .skipRemoveSprite    ; test if trainer or pokemon was fought (if trainer, skip removing the corresponding sprite)
 	ld hl, wMissableObjectList
 	ld de, 2
 	ld a, [wSpriteIndex]
@@ -2066,57 +2120,6 @@ SetSpritePosition2::
 SpritePositionBankswitch::
 	ld b, BANK(_GetSpritePosition1) ; BANK(_GetSpritePosition2), BANK(_SetSpritePosition1), BANK(_SetSpritePosition2)
 	jp Bankswitch ; indirect jump to one of the four functions
-
-CheckForEngagingTrainers::
-	xor a
-	call ReadTrainerHeaderInfo       ; read trainer flag's bit (unused)
-	ld d, h                          ; store trainer header address in de
-	ld e, l
-.trainerLoop
-	call StoreTrainerHeaderPointer   ; set trainer header pointer to current trainer
-	ld a, [de]
-	ld [wSpriteIndex], a                     ; store trainer's sprite index
-	cp TrainerHeaderTerminator
-	ret z
-	inc de
-	ld a, [de]
-	dec de
-	and TrainerHeaderPropertyFlagIndexMask ; keep the flag bit
-	ld [wTrainerHeaderFlagBit], a
-	ld a, TrainerHeaderPropertyFlagAddressOffset
-	call ReadTrainerHeaderInfo       ; read trainer flag's byte ptr
-	ld b, FLAG_TEST
-	ld a, [wTrainerHeaderFlagBit]
-	ld c, a
-	call TrainerFlagAction        ; read trainer flag
-	ld a, c
-	and a ; has the trainer already been defeated?
-	jr nz, .continue
-	push hl
-	push de
-	push hl
-	xor a
-	call ReadTrainerHeaderInfo       ; get trainer header pointer
-	inc hl
-	ld a, [hl]                       ; read trainer engage distance
-	and ~TrainerHeaderPropertyFlagIndexMask ; remove the flag bits
-	pop hl
-	ld [wTrainerEngageDistance], a
-	ld a, [wSpriteIndex]
-	swap a
-	ld [wTrainerSpriteOffset], a
-	predef TrainerEngage
-	pop de
-	pop hl
-	ld a, [wTrainerSpriteOffset]
-	and a
-	ret nz        ; break if the trainer is engaging
-.continue
-	ld hl, TrainerHeaderSize
-	add hl, de
-	ld d, h
-	ld e, l
-	jr .trainerLoop
 
 ; hl = text if the player wins
 ; de = text if the player loses

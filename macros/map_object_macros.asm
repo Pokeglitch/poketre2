@@ -43,7 +43,7 @@ MapData: MACRO
             \1Header:
                 db \1Tileset
                 db \1Height, \1Width
-                dw \1Blocks, \1TextPointers, \1Script
+                dw \1Blocks, \1TextPointers, \1Script, \1TrainerHeaders
                 db \1ConnectionFlags
 
             ; define after allocating so it uses final value
@@ -94,6 +94,7 @@ ResetObjectText: MACRO
 
     ; If the previous object has three entries, then duplicate the last one
     ; (Trainer Header Win Text)
+    ; TODO - instead, point to a text that wil randomly display a relevant message
     IF OBJ_TEXT_COUNT == 3
         SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
             dw {POINTER_NAME}
@@ -173,8 +174,8 @@ Battle: MACRO
     PUSHS
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            db {MAP_NAME}SpriteCount ; trainer's sprite index
-            db (\6 << 4) | (TotalTrainerBattleCount % 8) ; trainer's view range and battle index
+            db 1 << (TotalTrainerBattleCount % 8) ; the mask for this trainer
+            db (\6 << 4) | {MAP_NAME}SpriteCount; trainer's view range and sprite index
             dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
     POPS
     

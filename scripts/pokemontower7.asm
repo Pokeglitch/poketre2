@@ -56,7 +56,6 @@ PokemonTower7Script3:
 	xor a
 	ld [wJoyIgnore], a
 	ld [wSpriteIndex], a
-	ld [wTrainerHeaderFlagBit], a
 	ld [wUnusedDA38], a
 	ld a, $0
 	ld [wPokemonTower7CurScript], a
