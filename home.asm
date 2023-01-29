@@ -2017,9 +2017,7 @@ CheckFightingMapTrainers::
 	ld [hJoyHeld], a
 	farcall TrainerWalkUpToPlayer
 
-	; save the player stopped direction and stop moving
-	ld a, [wPlayerMovingDirection]
-	ld [wPlayerLastStopDirection], a
+	; stop moving
 	xor a
 	ld [wPlayerMovingDirection], a 
 
@@ -3522,9 +3520,8 @@ HandleMenuInput_::
 	xor a
 	ld [wMenuWrappingEnabled], a ; disable menu wrapping
 	ret
+
 .keyPressed
-	xor a
-	ld [wCheckFor180DegreeTurn], a
 	ld a, [hJoy5]
 	ld b, a
 	bit 6, a ; pressed Up key?

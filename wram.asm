@@ -518,17 +518,14 @@ wMenuWrappingEnabled:: ; cc4a
 ; set to 0 if you can't go past the top or bottom of the menu
 	ds 1
 
-wCheckFor180DegreeTurn:: ; cc4b
-; whether to check for 180-degree turn (0 = don't, 1 = do)
-	ds 1
-
-	ds 1
+	ds 2 ; unused
 
 wMissableObjectIndex:: ; cc4d
 	ds 1
 
 wPredefID:: ; cc4e
 	ds 1
+
 wPredefRegisters:: ; cc4f
 	ds 6
 
@@ -2571,9 +2568,7 @@ wPlayerMovingDirection:: ; d528
 ; map scripts write to this in order to change the player's facing direction
 	ds 1
 
-wPlayerLastStopDirection:: ; d529
-; the direction in which the player was moving before the player last stopped
-	ds 1
+	ds 1 ; unused
 
 wPlayerDirection:: ; d52a
 ; if the player is moving, the current direction

@@ -82,42 +82,45 @@ OverworldLoopLessDelay::
 	jr .checkIfStartIsPressed
 .notSimulating
 	ld a, [hJoyPressed]
+
 .checkIfStartIsPressed
 	bit 3, a ; start button
 	jr z, .startButtonNotPressed
+
 ; if START is pressed
 	xor a
 	ld [hSpriteIndexOrTextID], a ; start menu text ID
 	jp .displayDialogue
+
 .startButtonNotPressed
 	bit 0, a ; A button
 	jp z, .checkIfDownButtonIsPressed
+
 ; if A is pressed
 	ld a, [wd730]
-	bit 2, a
-	jp nz, .noDirectionButtonsPressed
+	bit 2, a ; are we ignoring button presses? (IgnoreInputForHalfSecond)
+	jp nz, .noButtonsPressed
+
 	call IsPlayerCharacterBeingControlledByGame
 	jr nz, .checkForOpponent
+
 	call CheckForHiddenObjectOrBookshelfOrCardKeyDoor
 	ld a, [$ffeb]
 	and a
 	jp z, OverworldLoop ; jump if a hidden object or bookshelf was found, but not if a card key door was found
+	
 	call IsSpriteOrSignInFrontOfPlayer
 	ld a, [hSpriteIndexOrTextID]
 	and a
 	jp z, OverworldLoop
+
 .displayDialogue
 	predef GetTileAndCoordsInFrontOfPlayer
 	call UpdateSprites
 
-	; TODO - when will these be triggered?
-	ld a, [wFlags_0xcd60]
-	bit 2, a
-	jr nz, .checkForOpponent
-	bit 0, a
-	jr nz, .checkForOpponent
 	aCoord 8, 9
 	ld [wTilePlayerStandingOn], a ; unused?
+
 	call DisplayTextID ; display either the start menu or the NPC/sign text
 	ld a, [wEnteringCableClub]
 	and a
@@ -134,6 +137,7 @@ OverworldLoopLessDelay::
 	ld a, 0
 	ld [wEnteringCableClub], a
 	jr z, .changeMap
+
 ; XXX can this code be reached?
 	predef LoadSAV
 	ld a, [wCurMap]
@@ -143,25 +147,18 @@ OverworldLoopLessDelay::
 	call SwitchToMapRomBank ; switch to the ROM bank of the current map
 	ld hl, wCurMapTileset
 	set 7, [hl]
+
 .changeMap
 	jp EnterMap
 
 .checkForOpponent
 	ld a, [wBattleMode]
 	and a
-	jp nz, .newBattle
+	jp nz, .tryNewBattle
 	jp OverworldLoop
-.noDirectionButtonsPressed
-	ld hl, wFlags_0xcd60
-	res 2, [hl]
+
+.noButtonsPressed
 	call UpdateSprites
-	ld a, 1
-	ld [wCheckFor180DegreeTurn], a
-	ld a, [wPlayerMovingDirection] ; the direction that was pressed last time
-	and a
-	jp z, OverworldLoop
-; if a direction was pressed last time
-	ld [wPlayerLastStopDirection], a ; save the last direction
 	xor a
 	ld [wPlayerMovingDirection], a ; zero the direction
 	jp OverworldLoop
@@ -193,74 +190,13 @@ OverworldLoopLessDelay::
 
 .checkIfRightButtonIsPressed
 	bit 4, a ; right button
-	jr z, .noDirectionButtonsPressed
+	jr z, .noButtonsPressed
 	ld a, 1
 	ld [wSpriteStateData1 + 5], a ; delta X
 
-
 .handleDirectionButtonPress
 	ld [wPlayerDirection], a ; new direction
-	ld a, [wd730]
-	bit 7, a ; are we simulating button presses?
-	jr nz, .noDirectionChange ; ignore direction changes if we are
-	ld a, [wCheckFor180DegreeTurn]
-	and a
-	jr z, .noDirectionChange
-	ld a, [wPlayerDirection] ; new direction
-	ld b, a
-	ld a, [wPlayerLastStopDirection] ; old direction
-	cp b
-	jr z, .noDirectionChange
-; Check whether the player did a 180-degree turn.
-; It appears that this code was supposed to show the player rotate by having
-; the player's sprite face an intermediate direction before facing the opposite
-; direction (instead of doing an instantaneous about-face), but the intermediate
-; direction is only set for a short period of time. It is unlikely for it to
-; ever be visible because DelayFrame is called at the start of OverworldLoop and
-; normally not enough cycles would be executed between then and the time the
-; direction is set for V-blank to occur while the direction is still set.
-	swap a ; put old direction in upper half
-	or b ; put new direction in lower half
-	cp (PLAYER_DIR_DOWN << 4) | PLAYER_DIR_UP ; change dir from down to up
-	jr nz, .notDownToUp
-	ld a, PLAYER_DIR_LEFT
-	ld [wPlayerMovingDirection], a
-	jr .holdIntermediateDirectionLoop
-.notDownToUp
-	cp (PLAYER_DIR_UP << 4) | PLAYER_DIR_DOWN ; change dir from up to down
-	jr nz, .notUpToDown
-	ld a, PLAYER_DIR_RIGHT
-	ld [wPlayerMovingDirection], a
-	jr .holdIntermediateDirectionLoop
-.notUpToDown
-	cp (PLAYER_DIR_RIGHT << 4) | PLAYER_DIR_LEFT ; change dir from right to left
-	jr nz, .notRightToLeft
-	ld a, PLAYER_DIR_DOWN
-	ld [wPlayerMovingDirection], a
-	jr .holdIntermediateDirectionLoop
-.notRightToLeft
-	cp (PLAYER_DIR_LEFT << 4) | PLAYER_DIR_RIGHT ; change dir from left to right
-	jr nz, .holdIntermediateDirectionLoop
-	ld a, PLAYER_DIR_UP
-	ld [wPlayerMovingDirection], a
-.holdIntermediateDirectionLoop
-	ld hl, wFlags_0xcd60
-	set 2, [hl]
-	ld hl, wCheckFor180DegreeTurn
-	dec [hl]
-	jr nz, .holdIntermediateDirectionLoop
-	ld a, [wPlayerDirection]
-	ld [wPlayerMovingDirection], a
-
-	; If the player just changed directions, look for a battle
-	; In this scenario, it should only be a Wild battle
-	call TryNewBattle
-	jp c, .battleOccurred
-	jp OverworldLoop
-
-.noDirectionChange
-	ld a, [wPlayerDirection] ; current direction
-	ld [wPlayerMovingDirection], a ; save direction
+	ld [wPlayerMovingDirection], a ; moving direction
 	call UpdateSprites
 	ld a, [wWalkBikeSurfState]
 	cp $02 ; surfing
@@ -345,11 +281,12 @@ OverworldLoopLessDelay::
 	jp nz, HandleBlackOut ; if all pokemon fainted
 
 	; check for wild battle
-.newBattle
+.tryNewBattle
 	call TryNewBattle
 	ld hl, wd736
 	res 2, [hl] ; standing on warp flag
 	jp nc, CheckWarpsNoCollision ; check for warps if there was no battle
+
 .battleOccurred
 	ld hl, wd72d
 	res 6, [hl]
