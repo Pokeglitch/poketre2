@@ -2408,7 +2408,6 @@ _PokemartAnythingElseText::
 	gototext PokemartBuySellMenu
 
 _PokemonFaintedText::
-	text
 	ramtext wcd6d
 	str " fainted!"
 	done
