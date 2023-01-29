@@ -6749,7 +6749,7 @@ InitBattleOrTryWild:
 	and a
 	jr z, LookForWildEncounter
 
-InitOpponent:
+EnterBattle:
 	ld a, [wCurOpponent]
 	ld [wcf91], a
 	ld [wEnemyMonSpecies2], a

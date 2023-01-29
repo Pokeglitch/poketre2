@@ -1905,9 +1905,6 @@ ReadTrainerHeaderInfo::
 	pop de
 	ret
 
-TrainerFlagAction::
-	predef_jump FlagActionPredef
-
 TalkToTrainer::
 	call StoreTrainerHeaderPointer
 	ld a, [hli] ; get the mask
@@ -1940,11 +1937,9 @@ TalkToTrainer::
 	ld hl, wFlags_0xcd60
 	bit 0, [hl]                    ; test if player is already engaging the trainer (because the trainer saw the player)
 	ret nz
-; if the player talked to the trainer of his own volition
-	call EngageMapTrainer
-	ld hl, wCurMapScript
-	inc [hl]      ; increment map script index before StartTrainerBattle increments it again (next script function is usually EndTrainerBattle)
-	jp StartTrainerBattle
+
+	; if the player talked to the trainer of his own volition
+	jp EngageMapTrainer
 
 ; checks if any trainers are seeing the player and wanting to fight
 CheckFightingMapTrainers::
@@ -2008,6 +2003,7 @@ CheckFightingMapTrainers::
 
 .trainerEngaging
 	pop de
+	pop hl ; remove the return to the overworld
 	ld hl, wFlags_D733
 	set 3, [hl]
 	ld a, [wSpriteIndex]
@@ -2019,23 +2015,24 @@ CheckFightingMapTrainers::
 	ld [wJoyIgnore], a
 	xor a
 	ld [hJoyHeld], a
-	call TrainerWalkUpToPlayer_Bank0
-	ld hl, wCurMapScript
-	inc [hl]      ; increment map script index (next script function is usually DisplayEnemyTrainerTextAndStartBattle)
-	ret
+	farcall TrainerWalkUpToPlayer
+
+	; save the player stopped direction and stop moving
+	ld a, [wPlayerMovingDirection]
+	ld [wPlayerLastStopDirection], a
+	xor a
+	ld [wPlayerMovingDirection], a 
 
 ; display the before battle text after the enemy trainer has walked up to the player's sprite
 DisplayEnemyTrainerTextAndStartBattle::
-	ld a, [wd730]
-	and %00000001
-	ret nz ; return if the enemy trainer hasn't finished walking to the player's sprite
-	ld [wJoyIgnore], a
+	call WaitForTrainerSprite
+	ld [wJoyIgnore], a ; a will be 0
 	ld a, [wSpriteIndex]
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
 	; fall through
 
-StartTrainerBattle::
+StartOverworldBattle::
 	xor a
 	ld [wJoyIgnore], a
 	ld hl, wd72d
@@ -2043,9 +2040,10 @@ StartTrainerBattle::
 	set 7, [hl]
 	ld hl, wd72e
 	set 1, [hl]
-	ld hl, wCurMapScript
-	inc [hl]        ; increment map script index (next script function is usually EndTrainerBattle)
-	ret
+
+	farcall EnterBattle
+	call EndTrainerBattle
+	jp OverworldLoopLessDelay.battleOccurred
 
 EndTrainerBattle::
 	ld hl, wCurrentMapScriptFlags
@@ -2099,9 +2097,14 @@ ResetButtonPressedAndMapScript::
 	ld [wCurMapScript], a               ; reset battle status
 	ret
 
-; calls TrainerWalkUpToPlayer
-TrainerWalkUpToPlayer_Bank0::
-	jpba TrainerWalkUpToPlayer
+WaitForTrainerSprite:
+.checkFinished
+	ld a, [wd730]
+	and %00000001
+	ret z
+	call UpdateSprites
+	call DelayFrame
+	jr .checkFinished
 
 GetSpritePosition1::
 	ld hl, _GetSpritePosition1
@@ -2210,17 +2213,6 @@ TrainerEndBattleText::
 	fartext _TrainerNameText
 	asmtext
 	call GetSavedEndBattleTextPointer
-	ret
-
-; only engage withe trainer if the player is not already
-; engaged with another trainer
-; XXX unused?
-CheckIfAlreadyEngaged::
-	ld a, [wFlags_0xcd60]
-	bit 0, a
-	ret nz
-	call EngageMapTrainer
-	xor a
 	ret
 
 PlayTrainerMusic::

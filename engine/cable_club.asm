@@ -279,7 +279,7 @@ CableClub_DoBattleOrTradeAgain:
 	call Delay3
 	ld hl, wOptions
 	res 7, [hl]
-	predef InitOpponent
+	predef EnterBattle
 	predef HealParty
 	jp ReturnToCableClubRoom
 .trading

@@ -49,6 +49,14 @@ OverworldLoopLessDelay::
 	ld a, [wWalkCounter]
 	and a
 	jp nz, .moveAhead ; if the player sprite has not yet completed the walking animation
+
+	xor a
+	ld [wSpriteStateData1 + 3], a
+	ld [wSpriteStateData1 + 5], a
+	call TryPushingBoulder
+	call RunNPCMovementScript
+	call RunMapScript
+	call CheckFightingMapTrainers
 	call JoypadOverworld ; get joypad state (which is possibly simulated)
 	callba SafariZoneCheck
 	ld a, [wSafariZoneGameOver]
@@ -62,22 +70,11 @@ OverworldLoopLessDelay::
 	and 1 << 4 | 1 << 3 ; fly warp or dungeon warp
 	jp nz, HandleFlyWarpOrDungeonWarp
 	
-	ld a, [wFlags_0xcd60]
-	bit 0, a
-	jr nz, .checkIfTrainerTextFinished
-
 	; This will be set if the battle is triggered through a map script
 	ld a, [wBattleMode]
 	and a
-	jp nz, .newBattle
-	jr .skipBattleCheck
-
-.checkIfTrainerTextFinished
-	ld a, [wFlags_D733]
-	bit 4, a
-	jp nz, .newBattle
-
-.skipBattleCheck
+	jp nz, StartOverworldBattle
+	
 	ld a, [wd730]
 	bit 7, a ; are we simulating button presses?
 	jr z, .notSimulating
@@ -112,7 +109,8 @@ OverworldLoopLessDelay::
 .displayDialogue
 	predef GetTileAndCoordsInFrontOfPlayer
 	call UpdateSprites
-	; when will these be triggered?
+
+	; TODO - when will these be triggered?
 	ld a, [wFlags_0xcd60]
 	bit 2, a
 	jr nz, .checkForOpponent
@@ -123,8 +121,15 @@ OverworldLoopLessDelay::
 	call DisplayTextID ; display either the start menu or the NPC/sign text
 	ld a, [wEnteringCableClub]
 	and a
+	jr nz, .enteringCableClub
+	
 	; check if a battle was triggered by talking to the sprite
-	jr z, .checkForOpponent
+	ld a, [wBattleMode]
+	and a
+	jp nz, StartOverworldBattle
+	jp OverworldLoop
+
+.enteringCableClub
 	dec a
 	ld a, 0
 	ld [wEnteringCableClub], a
@@ -140,6 +145,7 @@ OverworldLoopLessDelay::
 	set 7, [hl]
 .changeMap
 	jp EnterMap
+
 .checkForOpponent
 	ld a, [wBattleMode]
 	and a
@@ -245,6 +251,7 @@ OverworldLoopLessDelay::
 	jr nz, .holdIntermediateDirectionLoop
 	ld a, [wPlayerDirection]
 	ld [wPlayerMovingDirection], a
+
 	; If the player just changed directions, look for a battle
 	; In this scenario, it should only be a Wild battle
 	call TryNewBattle
@@ -336,6 +343,8 @@ OverworldLoopLessDelay::
 	ld a, [wOutOfBattleBlackout]
 	and a
 	jp nz, HandleBlackOut ; if all pokemon fainted
+
+	; check for wild battle
 .newBattle
 	call TryNewBattle
 	ld hl, wd736
@@ -1869,10 +1878,6 @@ DrawTileBlock::
 
 ; function to update joypad state and simulate button presses
 JoypadOverworld::
-	xor a
-	ld [wSpriteStateData1 + 3], a
-	ld [wSpriteStateData1 + 5], a
-	call RunMapScript
 	call Joypad
 	ld a, [wFlags_D733]
 	bit 3, a ; check if a trainer wants a challenge
@@ -1997,12 +2002,11 @@ CollisionCheckOnWater::
 	jr nz, .noCollision ; keep surfing if it's not the boarding platform tile
 	jr .stopSurfing ; if it is the boarding platform tile, stop surfing
 
-; function to run the current map's script
-RunMapScript::
+TryPushingBoulder:
 	push hl
 	push de
 	push bc
-	callba TryPushingBoulder
+	callba _TryPushingBoulder
 	ld a, [wFlags_0xcd60]
 	bit 1, a ; play boulder dust animation
 	jr z, .afterBoulderEffect
@@ -2011,18 +2015,17 @@ RunMapScript::
 	pop bc
 	pop de
 	pop hl
-	call RunNPCMovementScript
+	ret
+
+; function to run the current map's script
+RunMapScript::
 	ld a, [wCurMap] ; current map number
 	call SwitchToMapRomBank ; change to the ROM bank the map's data is in
 	ld hl, wMapScriptPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .return
-	push de
 	jp hl ; jump to script
-.return
-	ret
 
 LoadWalkingPlayerSpriteGraphics::
 	ld de, RedSprite

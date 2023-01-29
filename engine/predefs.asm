@@ -96,7 +96,7 @@ PredefPointers::
 	add_predef ShowPokedexMenu
 	add_predef EvolutionAfterBattle
 	add_predef SaveSAVtoSRAM0
-	add_predef InitOpponent
+	add_predef EnterBattle
 	add_predef CableClub_Run
 	add_predef DrawBadges
 	add_predef ExternalClockTradeAnim

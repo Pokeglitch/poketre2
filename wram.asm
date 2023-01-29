@@ -2723,8 +2723,9 @@ wCeruleanCityCurScript:: ; d60f
 	ds 7
 wSSAnne5CurScript:: ; d617
 	ds 1
-wViridianForestCurScript:: ; d618
-	ds 1
+
+	ds 1 ; unused
+
 wMuseum1fCurScript:: ; d619
 	ds 1
 wRoute13CurScript:: ; d61a
