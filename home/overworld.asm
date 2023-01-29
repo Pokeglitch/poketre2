@@ -101,8 +101,9 @@ OverworldLoopLessDelay::
 	bit 2, a ; are we ignoring button presses? (IgnoreInputForHalfSecond)
 	jp nz, .noButtonsPressed
 
+	; ignore if player is being controlled by game
 	call IsPlayerCharacterBeingControlledByGame
-	jr nz, .checkForOpponent
+	jr nz, OverworldLoop
 
 	call CheckForHiddenObjectOrBookshelfOrCardKeyDoor
 	ld a, [$ffeb]
@@ -119,7 +120,7 @@ OverworldLoopLessDelay::
 	call UpdateSprites
 
 	aCoord 8, 9
-	ld [wTilePlayerStandingOn], a ; unused?
+	ld [wTilePlayerStandingOn], a ; TODO - is this actually used?
 
 	call DisplayTextID ; display either the start menu or the NPC/sign text
 	ld a, [wEnteringCableClub]
@@ -150,12 +151,6 @@ OverworldLoopLessDelay::
 
 .changeMap
 	jp EnterMap
-
-.checkForOpponent
-	ld a, [wBattleMode]
-	and a
-	jp nz, .tryNewBattle
-	jp OverworldLoop
 
 .noButtonsPressed
 	call UpdateSprites
@@ -280,14 +275,28 @@ OverworldLoopLessDelay::
 	and a
 	jp nz, HandleBlackOut ; if all pokemon fainted
 
-	; check for wild battle
-.tryNewBattle
-	call TryNewBattle
+	; reset the standing on a warp flag
 	ld hl, wd736
 	res 2, [hl] ; standing on warp flag
-	jp nc, CheckWarpsNoCollision ; check for warps if there was no battle
 
-.battleOccurred
+	ld a, [wd72d] ; no battle if standing on a dungeon warp
+	bit 4, a
+	jr nz, .noBattle
+
+	call IsPlayerCharacterBeingControlledByGame
+	jr nz, .noBattle ; no battle if the player character is under the game's control
+	
+	ld a, [wd72e]
+	bit 4, a
+	jr nz, .noBattle ; no battle if the player is in a safe zone
+	
+	farcall LookForWildEncounter
+	jr c, ReturnToOverworldAfterBattle	; if there was a battle, then return to the overworld
+
+.noBattle
+	jp CheckWarpsNoCollision ; check for warps if there was no battle
+
+ReturnToOverworldAfterBattle::
 	ld hl, wd72d
 	res 6, [hl]
 	ld hl, wFlags_D733
@@ -318,24 +327,8 @@ OverworldLoopLessDelay::
 .allPokemonFainted
 	ld a, $ff
 	ld [wIsInBattle], a
-	call RunMapScript
+	call RunMapScript ; todo - why is run map script called here? to reset flags?
 	jp HandleBlackOut
-
-; function to determine if there will be a battle and execute it (either a trainer battle or wild battle)
-; sets carry if a battle occurred and unsets carry if not
-TryNewBattle::
-	ld a, [wd72d] ; no battle if standing on a dungeon warp
-	bit 4, a
-	jr nz, .noBattle
-	call IsPlayerCharacterBeingControlledByGame
-	jr nz, .noBattle ; no battle if the player character is under the game's control
-	ld a, [wd72e]
-	bit 4, a
-	jr nz, .noBattle ; no battle if the player is in a safe zone
-	jpba InitBattleOrTryWild
-.noBattle
-	and a
-	ret
 
 ; function to make bikes twice as fast as walking
 DoBikeSpeedup::

@@ -6743,12 +6743,6 @@ PlayMoveAnimation:
 	call Delay3
 	predef_jump MoveAnimation
 
-; If a battle mode isn't set, then check for a wild encounter
-InitBattleOrTryWild:
-	ld a, [wBattleMode]
-	and a
-	jr z, LookForWildEncounter
-
 EnterBattle:
 	ld a, [wCurOpponent]
 	ld [wcf91], a

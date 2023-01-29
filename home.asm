@@ -2041,7 +2041,7 @@ StartOverworldBattle::
 
 	farcall EnterBattle
 	call EndTrainerBattle
-	jp OverworldLoopLessDelay.battleOccurred
+	jp ReturnToOverworldAfterBattle
 
 EndTrainerBattle::
 	ld hl, wCurrentMapScriptFlags
