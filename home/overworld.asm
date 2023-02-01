@@ -1,10 +1,11 @@
-HandleMidJump::
-; Handle the player jumping down
-; a ledge in the overworld.
-	jpba _HandleMidJump
+SpecialEnterMapFromOverworldLoop:
+	call PrepareEnterMap ; bank is already set before jumping here
 
-EnterMap::
-; Load a new map.
+EnterMapFromOverworldLoop:
+	pop af	; remove the return to the cycle that called it
+	; fall through
+
+EnterMap:
 	ld a, $ff
 	ld [wJoyIgnore], a
 	call LoadMapData
@@ -37,49 +38,46 @@ EnterMap::
 	set 6, [hl]
 	xor a
 	ld [wJoyIgnore], a
+	ret
+
+OverworldCycle::
+	call LoadGBPal ; todo - is this necessary here?
+
+	call WaitForPlayerStepToFinish
+	call TryPushingBoulder ; todo - this doesnt have to happen in overworld
+	call RunNPCMovementScript ; todo - remove once the pewter scripts are continuous
+	call RunMapScript
+	call CheckFightingMapTrainers
+	call ReadJoypadOrSimulate ; get joypad state (which is possibly simulated)
+	call HandleTriggeredWarps
+
+	; This will be set if the battle is triggered through a map script
+	; todo - can be removed, and the map script can immediately call StartOverworldBattle
+	ld a, [wBattleMode]
+	and a
+	call nz, StartOverworldBattle
+
+	call HandleKeypressOverworld
+	ret
+
+; reset the stack and bein the overworld loop
+ExitToOverworldLoop:
+	ld sp, wStack
 
 OverworldLoop::
 	call DelayFrame
-OverworldLoopLessDelay::
 	call DelayFrame
-	call LoadGBPal
-	ld a, [wd736]
-	bit 6, a ; jumping down a ledge?
-	call nz, HandleMidJump
-	ld a, [wWalkCounter]
-	and a
-	jp nz, .moveAhead ; if the player sprite has not yet completed the walking animation
-
-	xor a
-	ld [wSpriteStateData1 + 3], a
-	ld [wSpriteStateData1 + 5], a
-	call TryPushingBoulder
-	call RunNPCMovementScript
-	call RunMapScript
-	call CheckFightingMapTrainers
-	call JoypadOverworld ; get joypad state (which is possibly simulated)
-	callba SafariZoneCheck
-	ld a, [wSafariZoneGameOver]
-	and a
-	jp nz, WarpFound2
-	ld hl, wd72d
-	bit 3, [hl]
-	res 3, [hl]
-	jp nz, WarpFound2
-	ld a, [wd732]
-	and 1 << 4 | 1 << 3 ; fly warp or dungeon warp
-	jp nz, HandleFlyWarpOrDungeonWarp
+	call OverworldCycle
+	jr OverworldLoop
 	
-	; This will be set if the battle is triggered through a map script
-	ld a, [wBattleMode]
-	and a
-	jp nz, StartOverworldBattle
-	
+HandleKeypressOverworld:
 	ld a, [wd730]
 	bit 7, a ; are we simulating button presses?
 	jr z, .notSimulating
+
 	ld a, [hJoyHeld]
 	jr .checkIfStartIsPressed
+
 .notSimulating
 	ld a, [hJoyPressed]
 
@@ -94,7 +92,7 @@ OverworldLoopLessDelay::
 
 .startButtonNotPressed
 	bit 0, a ; A button
-	jp z, .checkIfDownButtonIsPressed
+	jp z, .handleDirectionButton
 
 ; if A is pressed
 	ld a, [wd730]
@@ -103,17 +101,17 @@ OverworldLoopLessDelay::
 
 	; ignore if player is being controlled by game
 	call IsPlayerCharacterBeingControlledByGame
-	jr nz, OverworldLoop
+	ret nz
 
 	call CheckForHiddenObjectOrBookshelfOrCardKeyDoor
 	ld a, [$ffeb]
 	and a
-	jp z, OverworldLoop ; jump if a hidden object or bookshelf was found, but not if a card key door was found
+	ret z ; return if a hidden object or bookshelf was found, but not if a card key door was found
 	
 	call IsSpriteOrSignInFrontOfPlayer
 	ld a, [hSpriteIndexOrTextID]
 	and a
-	jp z, OverworldLoop
+	ret z
 
 .displayDialogue
 	predef GetTileAndCoordsInFrontOfPlayer
@@ -125,156 +123,97 @@ OverworldLoopLessDelay::
 	call DisplayTextID ; display either the start menu or the NPC/sign text
 	ld a, [wEnteringCableClub]
 	and a
-	jr nz, .enteringCableClub
+	jr z, .notEnteringCableClub
 	
-	; check if a battle was triggered by talking to the sprite
+	dec a
+	ld [wEnteringCableClub], a
+	jp EnterMapFromOverworldLoop
+
+.notEnteringCableClub
+	; check if a battle was triggered by talking to a sprite
 	ld a, [wBattleMode]
 	and a
-	jp nz, StartOverworldBattle
-	jp OverworldLoop
-
-.enteringCableClub
-	dec a
-	ld a, 0
-	ld [wEnteringCableClub], a
-	jr z, .changeMap
-
-; XXX can this code be reached?
-	predef LoadSAV
-	ld a, [wCurMap]
-	ld [wDestinationMap], a
-	call SpecialWarpIn
-	ld a, [wCurMap]
-	call SwitchToMapRomBank ; switch to the ROM bank of the current map
-	ld hl, wCurMapTileset
-	set 7, [hl]
-
-.changeMap
-	jp EnterMap
+	ret z
+	jp StartOverworldBattle
 
 .noButtonsPressed
 	call UpdateSprites
 	xor a
 	ld [wPlayerMovingDirection], a ; zero the direction
-	jp OverworldLoop
+	ret
 
-.checkIfDownButtonIsPressed
+.handleDirectionButton
 	ld a, [hJoyHeld] ; current joypad state
-	bit 7, a ; down button
-	jr z, .checkIfUpButtonIsPressed
-	ld a, 1
-	ld [wSpriteStateData1 + 3], a ; delta Y
-	ld a, PLAYER_DIR_DOWN
-	jr .handleDirectionButtonPress
-
-.checkIfUpButtonIsPressed
-	bit 6, a ; up button
-	jr z, .checkIfLeftButtonIsPressed
-	ld a, -1
-	ld [wSpriteStateData1 + 3], a ; delta Y
-	ld a, PLAYER_DIR_UP
-	jr .handleDirectionButtonPress
-
-.checkIfLeftButtonIsPressed
-	bit 5, a ; left button
-	jr z, .checkIfRightButtonIsPressed
-	ld a, -1
-	ld [wSpriteStateData1 + 5], a ; delta X
-	ld a, PLAYER_DIR_LEFT
-	jr .handleDirectionButtonPress
-
-.checkIfRightButtonIsPressed
-	bit 4, a ; right button
+	and MASK_DPAD
 	jr z, .noButtonsPressed
-	ld a, 1
-	ld [wSpriteStateData1 + 5], a ; delta X
-
-.handleDirectionButtonPress
-	ld [wPlayerDirection], a ; new direction
-	ld [wPlayerMovingDirection], a ; moving direction
-	call UpdateSprites
+	call HandleDirectionButtonPlayerMovement
 	ld a, [wWalkBikeSurfState]
 	cp $02 ; surfing
 	jr z, .surfing
+
 ; not surfing
 	call CollisionCheckOnLand
 	jr nc, .noCollision
+
 ; collision occurred
 	push hl
 	ld hl, wd736
 	bit 2, [hl] ; standing on warp flag
 	pop hl
-	jp z, OverworldLoop
+	ret z
+
 ; collision occurred while standing on a warp
 	push hl
 	call ExtraWarpCheck ; sets carry if there is a potential to warp
 	pop hl
-	jp c, CheckWarpsCollision
-	jp OverworldLoop
+	ret nc
+	jp CheckWarpsCollision
 
 .surfing
 	call CollisionCheckOnWater
-	jp c, OverworldLoop
+	ret c
 
 .noCollision
-	ld a, $08
+	ld a, 8
 	ld [wWalkCounter], a
-	jr .moveAhead2
+	call MovePlayerSprite
+	ret
 
-.moveAhead
-	ld a, [wd736]
-	bit 7, a
-	jr z, .noSpinning
-	callba LoadSpinnerArrowTiles
-.noSpinning
-	call UpdateSprites
-
-.moveAhead2
-	ld hl, wFlags_0xcd60
-	res 2, [hl]
-	ld a, [wWalkBikeSurfState]
-	dec a ; riding a bike?
-	jr nz, .normalPlayerSpriteAdvancement
-	ld a, [wd736]
-	bit 6, a ; jumping a ledge?
-	jr nz, .normalPlayerSpriteAdvancement
-	call DoBikeSpeedup
-.normalPlayerSpriteAdvancement
-	call AdvancePlayerSprite
-	ld a, [wWalkCounter]
-	and a
-	jp nz, CheckMapConnections ; it seems like this check will never succeed (the other place where CheckMapConnections is run works)
-; walking animation finished
+HandleStepOccurred:
 	ld a, [wd730]
 	bit 7, a
-	jr nz, .doneStepCounting ; if button presses are being simulated, don't count steps
+	jr nz, .afterStepCounting ; if button presses are being simulated, don't count steps
+
 ; step counting
 	ld hl, wStepCounter
 	dec [hl]
 	ld a, [wd72c]
 	bit 0, a
-	jr z, .doneStepCounting
+	jr z, .afterStepCounting
 	ld hl, wNumberOfNoRandomBattleStepsLeft
 	dec [hl]
-	jr nz, .doneStepCounting
+	jr nz, .afterStepCounting
 	ld hl, wd72c
 	res 0, [hl] ; indicate that the player has stepped thrice since the last battle
-.doneStepCounting
+
+.afterStepCounting
 	CheckEvent EVENT_IN_SAFARI_ZONE
-	jr z, .notSafariZone
+	jr z, .afterSafariZone
+
 	callba SafariZoneCheckSteps
 	ld a, [wSafariZoneGameOver]
 	and a
 	jp nz, WarpFound2
-.notSafariZone
-	ld a, [wIsInBattle]
-	and a
-	jp nz, CheckWarpsNoCollision
+
+.afterSafariZone
 	predef ApplyOutOfBattlePoisonDamage ; also increment daycare mon exp
 	ld a, [wOutOfBattleBlackout]
 	and a
-	jp nz, HandleBlackOut ; if all pokemon fainted
+	jr z, .noBlackout
+	
+	jp HandleBlackOut ; if all pokemon fainted
 
+.noBlackout
 	; reset the standing on a warp flag
 	ld hl, wd736
 	res 2, [hl] ; standing on warp flag
@@ -291,10 +230,54 @@ OverworldLoopLessDelay::
 	jr nz, .noBattle ; no battle if the player is in a safe zone
 	
 	farcall LookForWildEncounter
-	jr c, ReturnToOverworldAfterBattle	; if there was a battle, then return to the overworld
+	jp c, ReturnToOverworldAfterBattle	; if there was a battle, then return to the overworld
 
 .noBattle
 	jp CheckWarpsNoCollision ; check for warps if there was no battle
+
+HandleDirectionButtonPlayerMovement:
+	ld a, [hJoyHeld] ; current joypad state
+	bit 7, a ; down button
+	jr z, .checkIfUpButtonIsPressed
+	ld a, 1
+	ld [wSpriteStateData1 + 3], a ; delta Y
+	ld a, PLAYER_DIR_DOWN
+	jr .storeFacingDirection
+
+.checkIfUpButtonIsPressed
+	bit 6, a ; up button
+	jr z, .checkIfLeftButtonIsPressed
+	ld a, -1
+	ld [wSpriteStateData1 + 3], a ; delta Y
+	ld a, PLAYER_DIR_UP
+	jr .storeFacingDirection
+
+.checkIfLeftButtonIsPressed
+	bit 5, a ; left button
+	jr z, .checkIfRightButtonIsPressed
+	ld a, -1
+	ld [wSpriteStateData1 + 5], a ; delta X
+	ld a, PLAYER_DIR_LEFT
+	jr .storeFacingDirection
+
+.checkIfRightButtonIsPressed
+	bit 4, a ; right button
+	jr z, .noButtonsPressed
+	ld a, 1
+	ld [wSpriteStateData1 + 5], a ; delta X
+	ld a, PLAYER_DIR_RIGHT
+	jr .storeFacingDirection
+
+.noButtonsPressed
+	xor a
+	jr .storeMovingDirection
+
+.storeFacingDirection
+	ld [wPlayerDirection], a ; new direction
+
+.storeMovingDirection
+	ld [wPlayerMovingDirection], a ; moving direction
+	jp UpdateSprites
 
 ReturnToOverworldAfterBattle::
 	ld hl, wd72d
@@ -323,7 +306,8 @@ ReturnToOverworldAfterBattle::
 .noFaintCheck
 	ld c, 10
 	call DelayFrames
-	jp EnterMap
+	jp EnterMapFromOverworldLoop
+
 .allPokemonFainted
 	ld a, $ff
 	ld [wIsInBattle], a
@@ -349,6 +333,7 @@ CheckWarpsNoCollision::
 	ld a, [wNumberOfWarps]
 	and a
 	jp z, CheckMapConnections
+
 	ld a, [wNumberOfWarps]
 	ld b, 0
 	ld c, a
@@ -357,13 +342,16 @@ CheckWarpsNoCollision::
 	ld a, [wXCoord]
 	ld e, a
 	ld hl, wWarpEntries
-CheckWarpsNoCollisionLoop::
+
+.loop
 	ld a, [hli] ; check if the warp's Y position matches
 	cp d
-	jr nz, CheckWarpsNoCollisionRetry1
+	jr nz, .retry1
+
 	ld a, [hli] ; check if the warp's X position matches
 	cp e
-	jr nz, CheckWarpsNoCollisionRetry2
+	jr nz, .retry2
+
 ; if a match was found
 	push hl
 	push bc
@@ -372,17 +360,20 @@ CheckWarpsNoCollisionLoop::
 	callba IsPlayerStandingOnDoorTileOrWarpTile
 	pop bc
 	pop hl
-	jr c, WarpFound1 ; jump if standing on door or warp
+	jr c, .warpFound ; jump if standing on door or warp
+
 	push hl
 	push bc
 	call ExtraWarpCheck
 	pop bc
 	pop hl
-	jr nc, CheckWarpsNoCollisionRetry2
+	jr nc, .retry2
+
 ; if the extra check passed
 	ld a, [wFlags_D733]
 	bit 2, a
-	jr nz, WarpFound1
+	jr nz, .warpFound
+
 	push de
 	push bc
 	call Joypad
@@ -390,118 +381,23 @@ CheckWarpsNoCollisionLoop::
 	pop de
 	ld a, [hJoyHeld]
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT
-	jr z, CheckWarpsNoCollisionRetry2 ; if directional buttons aren't being pressed, do not pass through the warp
-	jr WarpFound1
+	jr z, .retry2 ; if directional buttons aren't being pressed, do not pass through the warp
+	
+.warpFound
+	jp WarpFound1
 
-; check if the player has stepped onto a warp after having collided
-CheckWarpsCollision::
-	ld a, [wNumberOfWarps]
-	ld c, a
-	ld hl, wWarpEntries
-.loop
-	ld a, [hli] ; Y coordinate of warp
-	ld b, a
-	ld a, [wYCoord]
-	cp b
-	jr nz, .retry1
-	ld a, [hli] ; X coordinate of warp
-	ld b, a
-	ld a, [wXCoord]
-	cp b
-	jr nz, .retry2
-	ld a, [hli]
-	ld [wDestinationWarpID], a
-	ld a, [hl]
-	ld [hWarpDestinationMap], a
-	jr WarpFound2
 .retry1
 	inc hl
+
 .retry2
 	inc hl
 	inc hl
-	dec c
-	jr nz, .loop
-	jp OverworldLoop
-
-CheckWarpsNoCollisionRetry1::
-	inc hl
-CheckWarpsNoCollisionRetry2::
-	inc hl
-	inc hl
-	jp ContinueCheckWarpsNoCollisionLoop
-
-WarpFound1::
-	ld a, [hli]
-	ld [wDestinationWarpID], a
-	ld a, [hli]
-	ld [hWarpDestinationMap], a
-
-WarpFound2::
-	ld a, [wNumberOfWarps]
-	sub c
-	ld [wWarpedFromWhichWarp], a ; save ID of used warp
-	ld a, [wCurMap]
-	ld [wWarpedFromWhichMap], a
-	call CheckIfInOutsideMap
-	jr nz, .indoorMaps
-; this is for handling "outside" maps that can't have the 0xFF destination map
-	ld a, [wCurMap]
-	ld [wLastMap], a
-	ld a, [wCurMapWidth]
-	ld [wUnusedD366], a ; not read
-	ld a, [hWarpDestinationMap]
-	ld [wCurMap], a
-	cp ROCK_TUNNEL_1
-	jr nz, .notRockTunnel
-	ld a, $06
-	ld [wMapPalOffset], a
-	call GBFadeOutToBlack
-.notRockTunnel
-	call PlayMapChangeSound
-	jr .done
-
-; for maps that can have the 0xFF destination map, which means to return to the outside map
-; not all these maps are necessarily indoors, though
-.indoorMaps
-	ld a, [hWarpDestinationMap] ; destination map
-	cp $ff
-	jr z, .goBackOutside
-; if not going back to the previous map
-	ld [wCurMap], a
-	callba IsPlayerStandingOnWarpPadOrHole
-	ld a, [wStandingOnWarpPadOrHole]
-	dec a ; is the player on a warp pad?
-	jr nz, .notWarpPad
-; if the player is on a warp pad
-	ld hl, wd732
-	set 3, [hl]
-	call LeaveMapAnim
-	jr .skipMapChangeSound
-.notWarpPad
-	call PlayMapChangeSound
-.skipMapChangeSound
-	ld hl, wd736
-	res 0, [hl]
-	res 1, [hl]
-	jr .done
-.goBackOutside
-	ld a, [wLastMap]
-	ld [wCurMap], a
-	call PlayMapChangeSound
-	xor a
-	ld [wMapPalOffset], a
-.done
-	ld hl, wd736
-	set 0, [hl] ; have the player's sprite step out from the door (if there is one)
-	call IgnoreInputForHalfSecond
-	jp EnterMap
-
-ContinueCheckWarpsNoCollisionLoop::
 	inc b ; increment warp number
 	dec c ; decrement number of warps
-	jp nz, CheckWarpsNoCollisionLoop
+	jp nz, .loop
+	; fall through
 
-; if no matching warp was found
+; if no matching warp was found:
 CheckMapConnections::
 .checkWestMap
 	ld a, [wXCoord]
@@ -607,7 +503,8 @@ CheckMapConnections::
 	ld b, a
 	ld a, [wCurrentMapHeight2]
 	cp b
-	jr nz, .didNotEnterConnectedMap
+	ret nz
+
 	ld a, [wMapConn2Ptr]
 	ld [wCurMap], a
 	ld a, [wSouthConnectedMapYAlignment] ; new Y coordinate upon entering south map
@@ -634,14 +531,113 @@ CheckMapConnections::
 	call PlayDefaultMusicFadeOutCurrent
 	ld b, SET_PAL_OVERWORLD
 	call RunPaletteCommand
+
 ; Since the sprite set shouldn't change, this will just update VRAM slots at
 ; $C2XE without loading any tile patterns.
 	callba InitMapSprites
-	call LoadTileBlockMap
-	jp OverworldLoopLessDelay
+	jp LoadTileBlockMap
 
-.didNotEnterConnectedMap
-	jp OverworldLoop
+; check if the player has stepped onto a warp after having collided
+CheckWarpsCollision::
+	ld a, [wNumberOfWarps]
+	ld c, a
+	ld hl, wWarpEntries
+
+.loop
+	ld a, [hli] ; Y coordinate of warp
+	ld b, a
+	ld a, [wYCoord]
+	cp b
+	jr nz, .retry1
+
+	ld a, [hli] ; X coordinate of warp
+	ld b, a
+	ld a, [wXCoord]
+	cp b
+	jr nz, .retry2
+
+	ld a, [hli]
+	ld [wDestinationWarpID], a
+	ld a, [hl]
+	ld [hWarpDestinationMap], a
+	jr WarpFound2
+
+.retry1
+	inc hl
+
+.retry2
+	inc hl
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
+
+WarpFound1::
+	ld a, [hli]
+	ld [wDestinationWarpID], a
+	ld a, [hli]
+	ld [hWarpDestinationMap], a
+	; fall though
+
+WarpFound2::
+	ld a, [wNumberOfWarps]
+	sub c
+	ld [wWarpedFromWhichWarp], a ; save ID of used warp
+	ld a, [wCurMap]
+	ld [wWarpedFromWhichMap], a
+	call CheckIfInOutsideMap
+	jr nz, .indoorMaps
+; this is for handling "outside" maps that can't have the 0xFF destination map
+	ld a, [wCurMap]
+	ld [wLastMap], a
+	ld a, [wCurMapWidth]
+	ld [wUnusedD366], a ; not read
+	ld a, [hWarpDestinationMap]
+	ld [wCurMap], a
+	cp ROCK_TUNNEL_1
+	jr nz, .notRockTunnel
+	ld a, $06
+	ld [wMapPalOffset], a
+	call GBFadeOutToBlack
+.notRockTunnel
+	call PlayMapChangeSound
+	jr .done
+
+; for maps that can have the 0xFF destination map, which means to return to the outside map
+; not all these maps are necessarily indoors, though
+.indoorMaps
+	ld a, [hWarpDestinationMap] ; destination map
+	cp $ff
+	jr z, .goBackOutside
+; if not going back to the previous map
+	ld [wCurMap], a
+	callba IsPlayerStandingOnWarpPadOrHole
+	ld a, [wStandingOnWarpPadOrHole]
+	dec a ; is the player on a warp pad?
+	jr nz, .notWarpPad
+; if the player is on a warp pad
+	ld hl, wd732
+	set 3, [hl]
+	call LeaveMapAnim
+	jr .skipMapChangeSound
+.notWarpPad
+	call PlayMapChangeSound
+.skipMapChangeSound
+	ld hl, wd736
+	res 0, [hl]
+	res 1, [hl]
+	jr .done
+.goBackOutside
+	ld a, [wLastMap]
+	ld [wCurMap], a
+	call PlayMapChangeSound
+	xor a
+	ld [wMapPalOffset], a
+.done
+	ld hl, wd736
+	set 0, [hl] ; have the player's sprite step out from the door (if there is one)
+	call IgnoreInputForHalfSecond
+	jp EnterMapFromOverworldLoop
 
 ; function to play a sound when changing maps
 PlayMapChangeSound::
@@ -710,10 +706,9 @@ MapEntryAfterBattle::
 	jp z, GBFadeInFromWhite
 	jp LoadGBPal
 
-HandleBlackOut::
 ; For when all the player's pokemon faint.
 ; Does not print the "blacked out" message.
-
+HandleBlackOut::
 	call GBFadeOutToBlack
 	ld a, $08
 	call StopMusic
@@ -724,7 +719,7 @@ HandleBlackOut::
 	call ResetStatusAndHalveMoneyOnBlackout
 	call SpecialWarpIn
 	call PlayDefaultMusicFadeOutCurrent
-	jp SpecialEnterMap
+	jp SpecialEnterMapFromOverworldLoop
 
 StopMusic::
 	ld [wAudioFadeOutControl], a
@@ -737,7 +732,22 @@ StopMusic::
 	jr nz, .wait
 	jp StopAllSounds
 
-HandleFlyWarpOrDungeonWarp::
+HandleTriggeredWarps:
+	callba SafariZoneCheck
+	ld a, [wSafariZoneGameOver]
+	and a
+	jp nz, WarpFound2
+
+	ld hl, wd72d
+	bit 3, [hl]
+	res 3, [hl]
+	jp nz, WarpFound2
+
+	ld a, [wd732]
+	and 1 << 4 | 1 << 3
+	ret z
+
+	; fly or dungeon warp
 	call UpdateSprites
 	call Delay3
 	xor a
@@ -752,7 +762,7 @@ HandleFlyWarpOrDungeonWarp::
 	ld a, Bank(SpecialWarpIn)
 	call SetNewBank
 	call SpecialWarpIn
-	jp SpecialEnterMap
+	jp SpecialEnterMapFromOverworldLoop
 
 LeaveMapAnim::
 	jpba _LeaveMapAnim
@@ -1425,6 +1435,18 @@ LoadCurrentMapView::
 	jr nz, .rowLoop2
 	jp HomeBankswitchReturn
 
+MovePlayerSprite:
+	ld hl, wFlags_0xcd60
+	res 2, [hl]
+	ld a, [wWalkBikeSurfState]
+	dec a ; riding a bike?
+	jr nz, AdvancePlayerSprite
+	ld a, [wd736]
+	bit 6, a ; jumping a ledge?
+	jr nz, AdvancePlayerSprite
+	call DoBikeSpeedup
+	; fall through
+
 AdvancePlayerSprite::
 	ld a, [wSpriteStateData1 + 3] ; delta Y
 	ld b, a
@@ -1432,7 +1454,7 @@ AdvancePlayerSprite::
 	ld c, a
 	ld hl, wWalkCounter ; walking animation counter
 	dec [hl]
-	jr nz, .afterUpdateMapCoords
+	jr nz, .dontUpdateMapCoords
 ; if it's the end of the animation, update the player's map coordinates
 	ld a, [wYCoord]
 	add b
@@ -1440,10 +1462,12 @@ AdvancePlayerSprite::
 	ld a, [wXCoord]
 	add c
 	ld [wXCoord], a
-.afterUpdateMapCoords
+
+.dontUpdateMapCoords
 	ld a, [wWalkCounter] ; walking animation counter
-	cp $07
+	cp 7
 	jp nz, .scrollBackgroundAndSprites
+
 ; if this is the first iteration of the animation
 	ld a, c
 	cp $01
@@ -1807,23 +1831,26 @@ DrawTileBlock::
 	ret
 
 ; function to update joypad state and simulate button presses
-JoypadOverworld::
+ReadJoypadOrSimulate::
 	call Joypad
 	ld a, [wFlags_D733]
 	bit 3, a ; check if a trainer wants a challenge
-	jr nz, .notForcedDownwards
+	jr nz, .checkSimulating
 	ld a, [wCurMap]
 	cp ROUTE_17 ; Cycling Road
-	jr nz, .notForcedDownwards
+	jr nz, .checkSimulating
 	ld a, [hJoyHeld]
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | B_BUTTON | A_BUTTON
-	jr nz, .notForcedDownwards
+	jr nz, .checkSimulating
 	ld a, D_DOWN
 	ld [hJoyHeld], a ; on the cycling road, if there isn't a trainer and the player isn't pressing buttons, simulate a down press
-.notForcedDownwards
+	; fall through
+
+.checkSimulating
 	ld a, [wd730]
 	bit 7, a
 	ret z
+
 ; if simulating button presses
 	ld a, [hJoyHeld]
 	ld b, a

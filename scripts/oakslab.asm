@@ -1,5 +1,5 @@
 OaksLabScript:
-	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS_2
+	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	call nz, OaksLabScript_1d076
 	ld a, $1
 	ld [wAutoTextBoxDrawingControl], a
@@ -109,7 +109,6 @@ OaksLabScript4:
 	and a
 	ret nz
 	SetEvent EVENT_FOLLOWED_OAK_INTO_LAB
-	SetEvent EVENT_FOLLOWED_OAK_INTO_LAB_2
 	ld a, $1
 	ld [H_SPRITEINDEX], a
 	ld a, SPRITE_FACING_UP
@@ -637,11 +636,8 @@ OaksLabScript17:
 	ld a, HS_ROUTE_22_RIVAL_1
 	ld [wMissableObjectIndex], a
 	predef ShowObject
-	ld a, $5
-	ld [wPalletTownCurScript], a
 	xor a
 	ld [wJoyIgnore], a
-
 	ld a, $12
 	ld [wOaksLabCurScript], a
 	ret
@@ -752,7 +748,7 @@ OaksLabTextPointers2:
 
 OaksLabText1:
 	asmtext
-	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB_2
+	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
 	jr nz, .asm_1d0de
 	ld hl, OaksLabGaryText1
 	call PrintText

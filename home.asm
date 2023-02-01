@@ -801,6 +801,10 @@ DisplayTextID::
 	jp z, DisplayPlayerBlackedOutText
 	cp TEXT_REPEL_WORE_OFF
 	jp z, DisplayRepelWoreOffText
+
+	; todo - this doesnt work with hidden item...
+	; can they just all be declared signs?
+
 	ld a, [hSpriteIndexOrTextID] ; sprite ID
 	bit MapSignFlagIndex, a
 	jr z, .spriteHandling
@@ -1831,6 +1835,7 @@ RunNPCMovementScript::
 	dw PalletMovementScriptPointerTable
 	dw PewterMuseumGuyMovementScriptPointerTable
 	dw PewterGymGuyMovementScriptPointerTable
+
 .playerStepOutFromDoor
 	jpba PlayerStepOutFromDoor
 
@@ -2003,7 +2008,6 @@ CheckFightingMapTrainers::
 
 .trainerEngaging
 	pop de
-	pop hl ; remove the return to the overworld
 	ld hl, wFlags_D733
 	set 3, [hl]
 	ld a, [wSpriteIndex]
@@ -2016,10 +2020,6 @@ CheckFightingMapTrainers::
 	xor a
 	ld [hJoyHeld], a
 	farcall TrainerWalkUpToPlayer
-
-	; stop moving
-	xor a
-	ld [wPlayerMovingDirection], a 
 
 ; display the before battle text after the enemy trainer has walked up to the player's sprite
 DisplayEnemyTrainerTextAndStartBattle::
@@ -2095,7 +2095,85 @@ ResetButtonPressedAndMapScript::
 	ld [wCurMapScript], a               ; reset battle status
 	ret
 
+; returns z if no step occurred
+WaitForPlayerStepToFinish:
+	ld a, [wWalkCounter]
+	and a
+	push af ; store whether or not a step happened
+
+.loop
+	ld a, [wd736]
+	bit 6, a ; jumping down a ledge?
+	jr z, .notJumping
+	farcall HandleMidJump
+
+.notJumping
+	ld a, [wWalkCounter]
+	and a
+	jr z, .playerDoneWalking
+
+	ld a, [wd736]
+	bit 7, a
+	jr z, .noSpinning
+	farcall LoadSpinnerArrowTiles
+
+.noSpinning
+	call UpdateSprites
+	call MovePlayerSprite
+
+	call DelayFrame
+	call DelayFrame
+	jr .loop
+
+.playerDoneWalking
+	; stop sprite movement
+	xor a
+	ld [wSpriteStateData1 + 3], a
+	ld [wSpriteStateData1 + 5], a
+
+	pop af ; recover the flag about whether a step occurred or not
+	ret z ; return if no step occurred
+	
+	jp HandleStepOccurred
+
+NPCMovementCycle:
+	call WaitForPlayerStepToFinish
+	call RunNPCMovementScript
+	call ReadJoypadOrSimulate
+	call HandleDirectionButtonPlayerMovement
+	call HandleTriggeredWarps
+	
+	ld a, [wPlayerMovingDirection]
+	and a
+	ret z
+	
+	ld a, 8
+	ld [wWalkCounter], a
+	jp MovePlayerSprite
+
+; If this causes the user to change maps
+; it will return directly to the overworld loop
+WaitForNPCMovementScript:
+	ld a, [wCurMap]
+	push af ; store the current map
+
+.loop
+	call NPCMovementCycle
+	call DelayFrame
+	ld a, [wNPCMovementScriptPointerTableNum]
+	and a ; is the movement script over?
+	jr nz, .loop
+
+	pop af; recover the map
+	ld hl, wCurMap
+	cp [hl] 
+	ret z ; return if the map didnt change
+
+	jp ExitToOverworldLoop
+
 WaitForTrainerSprite:
+	xor a
+	ld [wPlayerMovingDirection], a ; stop walking
 .checkFinished
 	ld a, [wd730]
 	and %00000001

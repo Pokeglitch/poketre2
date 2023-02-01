@@ -502,7 +502,7 @@ RedFishingTiles:
 	db 3, BANK(RedFishingRodTiles)
 	dw vNPCSprites2 + $7d0
 
-_HandleMidJump:
+HandleMidJump:
 	ld a, [wPlayerJumpingYScreenCoordsIndex]
 	ld c, a
 	inc a

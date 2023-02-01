@@ -148,7 +148,7 @@ LinkMenu:
 	inc a ; LINK_STATE_IN_CABLE_CLUB
 	ld [wLinkState], a
 	ld [wEnteringCableClub], a
-	jp SpecialEnterMap
+	jp PrepareEnterMap
 .choseCancel
 	xor a
 	ld [wMenuJoypadPollCount], a

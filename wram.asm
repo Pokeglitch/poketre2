@@ -2659,9 +2659,9 @@ wGameProgressFlags:: ; d5f0
 
 wOaksLabCurScript:: ; d5f0
 	ds 1
-wPalletTownCurScript:: ; d5f1
-	ds 1
-	ds 1
+
+	ds 2
+	
 wBluesHouseCurScript:: ; d5f3
 	ds 1
 wViridianCityCurScript:: ; d5f4

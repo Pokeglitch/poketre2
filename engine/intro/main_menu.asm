@@ -64,8 +64,6 @@ MainMenu:
 	ld bc, TitleScreenMenuBoxBottomTilesEnd - TitleScreenMenuBoxBottomTiles
 	call CopyData
 	
-	push hl
-	
 	ld c, 5
 	call DelayFrames ; takes 3 frames to redraw the screen
 	
@@ -125,8 +123,6 @@ MainMenu:
 	jr nz, .down_pressed
 	
 	; otherwise, a/start
-	push bc
-	
 	ld a, c
 	and a
 	jr z, .continue_selected
@@ -592,6 +588,11 @@ StartNewGame:
 
 ; enter map after using a special warp or loading the game from the main menu
 SpecialEnterMap:
+	call PrepareEnterMap
+	call EnterMap
+	jp OverworldLoop
+
+PrepareEnterMap:
 	xor a
 	ld [hJoyPressed], a
 	ld [hJoyHeld], a
@@ -601,11 +602,7 @@ SpecialEnterMap:
 	set 0, [hl] ; count play time
 	call ResetPlayerSpriteData
 	ld c, 20
-	call DelayFrames
-	ld a, [wEnteringCableClub]
-	and a
-	ret nz
-	jp EnterMap
+	jp DelayFrames
 
 DisplayOptionMenu:	
 	call ClearScreen

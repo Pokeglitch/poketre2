@@ -1,28 +1,33 @@
 PalletTownScript:
-	CheckEvent EVENT_GOT_POKEBALLS_FROM_OAK
-	jr z, .next
-	SetEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
-.next
 	call EnableAutoTextBoxDrawing
-	ld hl, PalletTownScriptPointers
-	ld a, [wPalletTownCurScript]
-	jp CallFunctionInTable
 
-PalletTownScriptPointers:
-	dw PalletTownScript0
-	dw PalletTownScript1
-	dw PalletTownScript2
-	dw PalletTownScript3
-	dw PalletTownScript4
-	dw PalletTownScript5
-	dw PalletTownScript6
+	CheckEvent EVENT_OAK_APPEARED_IN_PALLET
+	jr z, CheckOakAppear
 
-PalletTownScript0:
-	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
-	ret nz
+	CheckEvent EVENT_DAISY_WALKING
+	jr nz, .next
+	CheckBothEventsSet EVENT_GOT_TOWN_MAP, EVENT_ENTERED_BLUES_HOUSE, 1
+	jr nz, .next
+	SetEvent EVENT_DAISY_WALKING
+	ld a, HS_DAISY_SITTING
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_DAISY_WALKING
+	ld [wMissableObjectIndex], a
+	predef_jump ShowObject
+
+.next
+	CheckEvent EVENT_GOT_POKEBALLS_FROM_OAK
+	ret z
+	SetEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
+	ret
+
+CheckOakAppear:
 	ld a, [wYCoord]
 	cp 1 ; is player near north exit?
 	ret nz
+
+	SetEvent EVENT_OAK_APPEARED_IN_PALLET
 	xor a
 	ld [hJoyHeld], a
 	ld a, PLAYER_DIR_DOWN
@@ -35,14 +40,7 @@ PalletTownScript0:
 	call PlayMusic
 	ld a, $FC
 	ld [wJoyIgnore], a
-	SetEvent EVENT_OAK_APPEARED_IN_PALLET
 
-	; trigger the next script
-	ld a, 1
-	ld [wPalletTownCurScript], a
-	ret
-
-PalletTownScript1:
 	xor a
 	ld [wcf0d], a
 	ld a, 1
@@ -54,12 +52,6 @@ PalletTownScript1:
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 
-	; trigger the next script
-	ld a, 2
-	ld [wPalletTownCurScript], a
-	ret
-
-PalletTownScript2:
 	ld a, 1
 	ld [H_SPRITEINDEX], a
 	ld a, SPRITE_FACING_UP
@@ -84,15 +76,8 @@ PalletTownScript2:
 	ld a, $FF
 	ld [wJoyIgnore], a
 
-	; trigger the next script
-	ld a, 3
-	ld [wPalletTownCurScript], a
-	ret
+	call WaitForTrainerSprite
 
-PalletTownScript3:
-	ld a, [wd730]
-	bit 0, a
-	ret nz
 	xor a ; ld a, SPRITE_FACING_DOWN
 	ld [wSpriteStateData1 + 9], a
 	ld a, 1
@@ -102,6 +87,7 @@ PalletTownScript3:
 	ld a, 1
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
+
 ; set up movement script that causes the player to follow Oak to his lab
 	ld a, $FF
 	ld [wJoyIgnore], a
@@ -114,39 +100,7 @@ PalletTownScript3:
 	ld a, [H_LOADEDROMBANK]
 	ld [wNPCMovementScriptBank], a
 
-	; trigger the next script
-	ld a, 4
-	ld [wPalletTownCurScript], a
-	ret
-
-PalletTownScript4:
-	ld a, [wNPCMovementScriptPointerTableNum]
-	and a ; is the movement script over?
-	ret nz
-
-	; trigger the next script
-	ld a, 5
-	ld [wPalletTownCurScript], a
-	ret
-
-PalletTownScript5:
-	CheckEvent EVENT_DAISY_WALKING
-	jr nz, .next
-	CheckBothEventsSet EVENT_GOT_TOWN_MAP, EVENT_ENTERED_BLUES_HOUSE, 1
-	jr nz, .next
-	SetEvent EVENT_DAISY_WALKING
-	ld a, HS_DAISY_SITTING
-	ld [wMissableObjectIndex], a
-	predef HideObject
-	ld a, HS_DAISY_WALKING
-	ld [wMissableObjectIndex], a
-	predef_jump ShowObject
-.next
-	CheckEvent EVENT_GOT_POKEBALLS_FROM_OAK
-	ret z
-	SetEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS_2
-PalletTownScript6:
-	ret
+	jp WaitForNPCMovementScript
 
 PalletTownTrainerHeader0:
 	db TrainerHeaderTerminator
