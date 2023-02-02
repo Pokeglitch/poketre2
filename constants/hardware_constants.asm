@@ -1,3 +1,9 @@
+	Bits Button, A, B, Start, Select, Up, Down, Left, Right
+
+
+
+
+
 ; From http://nocash.emubase.de/pandocs.htm.
 
 GBC EQU $11

@@ -1,6 +1,5 @@
-; TODO - Define by macro ?
-PartyDataSpecialFlagIndex = 7
-PartyDataSpecialFlagMask = %10000000
+    Bits PartyData, 7, Special
+
 PartyDataTerminator = -1
 
 Party: MACRO
@@ -12,7 +11,7 @@ Party: MACRO
         IsNumber {ARG3}
 
         IF IS_NUMBER == 1
-            DEF SPECIAL_MASK = PartyDataSpecialFlagMask
+            DEF SPECIAL_MASK = SpecialPartyDataBitMask
         ENDC
     ENDC
 
@@ -21,7 +20,7 @@ Party: MACRO
 
     IF SPECIAL_MASK != 0
         REPT _NARG/2
-            DEF SPECIAL_MASK = PartyDataSpecialFlagMask
+            DEF SPECIAL_MASK = SpecialPartyDataBitMask
 
             ; TODO - this DEF check is unncessary once the Move Table is added
             IF DEF(\2Table)

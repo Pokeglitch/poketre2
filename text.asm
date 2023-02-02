@@ -2693,7 +2693,6 @@ _BoxIsFullText::
 	next "a POKéMON CENTER!"
 	done
 
-INCLUDE "text/maps/pallet_town.asm"
 INCLUDE "text/maps/viridian_city.asm"
 INCLUDE "text/maps/pewter_city.asm"
 INCLUDE "text/maps/cerulean_city.asm"

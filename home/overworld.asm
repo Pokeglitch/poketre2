@@ -1076,7 +1076,7 @@ IsSpriteOrSignInFrontOfPlayer::
 	dec c
 	add hl, bc
 	ld a, [hl]
-	set MapSignFlagIndex, a ; set flag to indicate its a sign
+	set SignMapObjectBitIndex, a ; set flag to indicate its a sign
 	ld [hSpriteIndexOrTextID], a ; store sign text ID
 	pop bc
 	pop hl

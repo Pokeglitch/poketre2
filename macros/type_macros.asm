@@ -88,3 +88,23 @@ Array: MACRO
 	ENDR
 
 ENDM
+
+; creates BitIndex and BitMask
+; can skip bits if number
+Bits: MACRO
+    DEF BIT_INDEX = 0
+    REDEF BIT_TYPE EQUS "\1"
+    SHIFT
+
+    REPT _NARG
+        IsNumber \1
+        IF IS_NUMBER
+            DEF BIT_INDEX += \1
+        ELSE
+            DEF \1{BIT_TYPE}BitIndex = BIT_INDEX
+            DEF \1{BIT_TYPE}BitMask = 1 << BIT_INDEX
+            DEF BIT_INDEX += 1
+        ENDC
+        SHIFT
+    ENDR
+ENDM

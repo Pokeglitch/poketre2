@@ -146,25 +146,39 @@ OakWalksUpText:
 	done
 
 PalletTownText2: ; girl
-	fartext _PalletTownText2
+	text "I'm raising"
+	next "POKéMON too!"
+
+	para "When they get"
+	next "strong, they can"
+	cont "protect me!"
 	done
 
 PalletTownText3: ; fat man
-	fartext _PalletTownText3
+	text "Technology is"
+	next "incredible!"
+
+	para "You can now store"
+	next "and recall items"
+	cont "and POKéMON as"
+	cont "data via PC!"
 	done
 
 PalletTownText4: ; sign by lab
-	fartext _PalletTownText4
+	text "OAK POKéMON"
+	next "RESEARCH LAB"
 	done
 
 PalletTownText5: ; sign by fence
-	fartext _PalletTownText5
+	text "PALLET TOWN"
+	next "Shades of your"
+	cont "journey await!"
 	done
 
 PalletTownText6: ; sign by Red’s house
-	fartext _PalletTownText6
+	text "<PLAYER>'s house "
 	done
 
 PalletTownText7: ; sign by Blue’s house
-	fartext _PalletTownText7
+	text "<RIVAL>'s house "
 	done

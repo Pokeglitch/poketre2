@@ -1,5 +1,4 @@
-MapSignFlagIndex = 7
-MapSignFlagMask = %10000000
+    Bits MapObject, 7, Sign
 
 ; todo - struct macro
 TrainerHeaderPropertyFlagIndexMask = %00000111
@@ -170,7 +169,7 @@ Battle: MACRO
     AddTextPointer {POINTER_NAME}, TextTypeTrainer
     
 	db \7
-	db \8 | ObjectDataTrainerFlagMask
+	db \8 | TrainerObjectDataBitMask
 
     PUSHS
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]

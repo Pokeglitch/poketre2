@@ -1,5 +1,5 @@
-INCLUDE "macros/data_macros.asm"
 INCLUDE "macros/type_macros.asm"
+INCLUDE "macros/data_macros.asm"
 
 Class: MACRO
     Table \1
