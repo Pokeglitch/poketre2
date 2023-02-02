@@ -769,6 +769,14 @@ FadeOutAudio::
 	ld [wNewSoundID], a
 	jp PlaySound
 
+DisplayTextInTextbox:
+	ld a, [H_LOADEDROMBANK]
+	push af
+	push hl
+	callba DisplayTextIDInit ; initialization
+	pop hl
+	jp PrintTextInTextbox
+
 ; this function is used to display sign messages, sprite dialog, etc.
 ; INPUT: [hSpriteIndexOrTextID] = sprite ID or text ID
 DisplayTextID::
@@ -851,7 +859,7 @@ DisplayTextID::
 .itemSprite
 	pop hl
 	ld hl, PickUpItemText
-	jr .notSpecialCase
+	jr PrintTextInTextbox
 	
 .trainerSprite
 	ld a, [hl]
@@ -866,7 +874,7 @@ DisplayTextID::
 	ld h, [hl]
 	ld l, a ; hl = address of the header
 	call TalkToTrainer
-	jr .afterPrintText
+	jr AfterPrintTextInTextbox
 
 .skipSpriteHandling
 ; look up the address of the text in the map's text entries
@@ -898,14 +906,14 @@ DisplayTextID::
 	cp $f7   ; prize menu
 	jp z, FuncTX_GameCornerPrizeMenu
 	cp $f6   ; cable connection NPC in Pokemon Center
-	jr nz, .notSpecialCase
+	jr nz, PrintTextInTextbox
 	callab CableClubNPC
 	jr AfterDisplayingTextID
 
-.notSpecialCase
+PrintTextInTextbox::
 	call PrintText ; display the text
 
-.afterPrintText
+AfterPrintTextInTextbox:
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
 	and a
 	jr nz, HoldTextDisplayOpen
@@ -2170,6 +2178,32 @@ WaitForNPCMovementScript:
 	ret z ; return if the map didnt change
 
 	jp ExitToOverworldLoop
+
+ScriptedPlayerMovementCycle:
+	call ReadJoypadOrSimulate
+	call HandleKeypressOverworld
+	call HandleTriggeredWarps
+	call WaitForPlayerStepToFinish
+	ret
+
+WaitForScriptedPlayerMovement:
+	ld a, [wCurMap]
+	push af ; store the current map
+
+.loop
+	call ScriptedPlayerMovementCycle
+	call DelayFrame
+	ld a, [wSimulatedJoypadStatesIndex]
+	and a ; is the movement script over?
+	jr nz, .loop
+
+	pop af; recover the map
+	ld hl, wCurMap
+	cp [hl] 
+	ret z ; return if the map didnt change
+
+	jp ExitToOverworldLoop
+
 
 WaitForTrainerSprite:
 	xor a
@@ -4089,6 +4123,16 @@ endm
 	ld [hl], "$"
 	inc hl
 	ret
+
+RunIndexedMapScript::
+	add a
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
 
 
 CallFunctionInTable::

@@ -1,21 +1,4 @@
-_OakAppearsText::
-	text "OAK: Hey! Wait!"
-	next "Don't go out!"
-	done
-
 _OakWalksUpText::
-	text "OAK: It's unsafe!"
-	next "Wild POKéMON live"
-	cont "in tall grass!"
-
-	para "You need your own"
-	next "POKéMON for your"
-	cont "protection."
-	cont "I know!"
-
-	para "Here, come with"
-	next "me!"
-	done
 
 _PalletTownText2::
 	text "I'm raising"

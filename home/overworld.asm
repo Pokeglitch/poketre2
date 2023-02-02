@@ -42,7 +42,6 @@ EnterMap:
 
 OverworldCycle::
 	call LoadGBPal ; todo - is this necessary here?
-
 	call WaitForPlayerStepToFinish
 	call TryPushingBoulder ; todo - this doesnt have to happen in overworld
 	call RunNPCMovementScript ; todo - remove once the pewter scripts are continuous
@@ -50,13 +49,6 @@ OverworldCycle::
 	call CheckFightingMapTrainers
 	call ReadJoypadOrSimulate ; get joypad state (which is possibly simulated)
 	call HandleTriggeredWarps
-
-	; This will be set if the battle is triggered through a map script
-	; todo - can be removed, and the map script can immediately call StartOverworldBattle
-	ld a, [wBattleMode]
-	and a
-	call nz, StartOverworldBattle
-
 	call HandleKeypressOverworld
 	ret
 

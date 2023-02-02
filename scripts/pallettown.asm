@@ -41,11 +41,9 @@ CheckOakAppear:
 	ld a, $FC
 	ld [wJoyIgnore], a
 
-	xor a
-	ld [wcf0d], a
-	ld a, 1
-	ld [hSpriteIndexOrTextID], a
-	call DisplayTextID
+	ld hl, OakAppearsText
+	call DisplayTextInTextbox
+
 	ld a, $FF
 	ld [wJoyIgnore], a
 	ld a, HS_PALLET_TOWN_OAK
@@ -80,13 +78,15 @@ CheckOakAppear:
 
 	xor a ; ld a, SPRITE_FACING_DOWN
 	ld [wSpriteStateData1 + 9], a
-	ld a, 1
-	ld [wcf0d], a
+	
 	ld a, $FC
 	ld [wJoyIgnore], a
-	ld a, 1
-	ld [hSpriteIndexOrTextID], a
-	call DisplayTextID
+
+	xor a
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+
+	ld hl, OakWalksUpText
+	call DisplayTextInTextbox
 
 ; set up movement script that causes the player to follow Oak to his lab
 	ld a, $FF
@@ -106,7 +106,7 @@ PalletTownTrainerHeader0:
 	db TrainerHeaderTerminator
 
 PalletTownTextPointers:
-	dw PalletTownText1
+	dw 0
 	dw PalletTownText2
 	dw PalletTownText3
 	dw PalletTownText4
@@ -114,23 +114,10 @@ PalletTownTextPointers:
 	dw PalletTownText6
 	dw PalletTownText7
 
-PalletTownText1:
-	asmtext
-	ld a, [wcf0d]
-	and a
-	jr nz, .next
-	ld a, 1
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld hl, OakAppearsText
-	jr .done
-.next
-	ld hl, OakWalksUpText
-.done
-	call PrintText
-	jp TextScriptEnd
-
 OakAppearsText:
-	fartext _OakAppearsText
+	text "OAK: Hey! Wait!"
+	next "Don't go out!"
+
 	asmtext
 	ld c, 10
 	call DelayFrames
@@ -140,10 +127,22 @@ OakAppearsText:
 	predef EmotionBubble
 	ld a, PLAYER_DIR_DOWN
 	ld [wPlayerMovingDirection], a
+	ld a, 1
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	jp TextScriptEnd
 
 OakWalksUpText:
-	fartext _OakWalksUpText
+	text "OAK: It's unsafe!"
+	next "Wild POKéMON live"
+	cont "in tall grass!"
+
+	para "You need your own"
+	next "POKéMON for your"
+	cont "protection."
+	cont "I know!"
+
+	para "Here, come with"
+	next "me!"
 	done
 
 PalletTownText2: ; girl

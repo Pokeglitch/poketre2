@@ -1,4 +1,5 @@
 MapSignFlagIndex = 7
+MapSignFlagMask = %10000000
 
 ; todo - struct macro
 TrainerHeaderPropertyFlagIndexMask = %00000111
