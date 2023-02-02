@@ -23,9 +23,7 @@ PalletTownScript:
 	ret
 
 CheckOakAppear:
-	ld a, [wYCoord]
-	cp 1 ; is player near north exit?
-	ret nz
+	Require wYCoord, 1
 
 	SetEvent EVENT_OAK_APPEARED_IN_PALLET
 	xor a
@@ -38,14 +36,14 @@ CheckOakAppear:
 	ld c, a
 	ld a, MUSIC_MEET_PROF_OAK ; “oak appears” music
 	call PlayMusic
-	ld a, $FC
-	ld [wJoyIgnore], a
+
+	PermitButtons A, B
 
 	ld hl, OakAppearsText
 	call DisplayTextInTextbox
 
-	ld a, $FF
-	ld [wJoyIgnore], a
+	IgnoreButtons All
+
 	ld a, HS_PALLET_TOWN_OAK
 	ld [wMissableObjectIndex], a
 	predef ShowObject
@@ -71,16 +69,13 @@ CheckOakAppear:
 	ld a, 1 ; oak
 	ld [H_SPRITEINDEX], a
 	call MoveSprite
-	ld a, $FF
-	ld [wJoyIgnore], a
-
+	
 	call WaitForTrainerSprite
 
 	xor a ; ld a, SPRITE_FACING_DOWN
 	ld [wSpriteStateData1 + 9], a
 	
-	ld a, $FC
-	ld [wJoyIgnore], a
+	PermitButtons A, B
 
 	xor a
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -89,8 +84,7 @@ CheckOakAppear:
 	call DisplayTextInTextbox
 
 ; set up movement script that causes the player to follow Oak to his lab
-	ld a, $FF
-	ld [wJoyIgnore], a
+	IgnoreButtons All
 	ld a, 1
 	ld [wSpriteIndex], a
 	xor a

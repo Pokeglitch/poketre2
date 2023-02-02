@@ -30,6 +30,7 @@ StartsWithDigit: MACRO
     ENDC
 ENDM
 
+; todo - this wont work if \1 is an expression or symbol...
 IsNumber: MACRO
     DEF IS_NUMBER = 0
     StartsWithDigit \1, 0
@@ -47,6 +48,24 @@ IsNumber: MACRO
     StartsWithDigit \1, &
     StartsWithDigit \1, %
     StartsWithDigit \1, `
+ENDM
+
+CheckIfRegister: MACRO
+    IF STRCMP("\1", "\2") == 0
+        DEF IS_REGISTER = 1
+    ENDC
+ENDM
+
+IsRegister: MACRO
+    DEF IS_REGISTER = 0
+    CheckIfRegister \1, a
+    CheckIfRegister \1, b
+    CheckIfRegister \1, c
+    CheckIfRegister \1, d
+    CheckIfRegister \1, e
+    CheckIfRegister \1, h
+    CheckIfRegister \1, l
+    CheckIfRegister \1, [hl]
 ENDM
 
 ; makes a virtual list starting at 0 (or, optionally different value)
@@ -93,6 +112,7 @@ ENDM
 ; can skip bits if number
 Bits: MACRO
     DEF BIT_INDEX = 0
+    DEF ALL_MASK_VALUE = 0
     REDEF BIT_TYPE EQUS "\1"
     SHIFT
 
@@ -103,8 +123,28 @@ Bits: MACRO
         ELSE
             DEF \1{BIT_TYPE}BitIndex = BIT_INDEX
             DEF \1{BIT_TYPE}BitMask = 1 << BIT_INDEX
+            DEF ALL_MASK_VALUE += \1{BIT_TYPE}BitMask
             DEF BIT_INDEX += 1
         ENDC
         SHIFT
     ENDR
+
+    DEF All{BIT_TYPE}BitMask = ALL_MASK_VALUE
+    DEF None{BIT_TYPE}BitMask = %11111111 ^ ALL_MASK_VALUE
+ENDM
+
+; 1: name
+; 2: type
+Mask: MACRO
+    DEF MASK_VALUE = 0
+    REDEF MASK_NAME EQUS "\1"
+    REDEF BIT_TYPE EQUS "\2"
+    SHIFT 2
+
+    REPT _NARG
+        DEF MASK_VALUE += \1{BIT_TYPE}BitMask
+        SHIFT
+    ENDR
+
+    DEF {MASK_NAME}{BIT_TYPE}BitMask = MASK_VALUE
 ENDM

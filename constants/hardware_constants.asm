@@ -1,8 +1,5 @@
-	Bits Button, A, B, Start, Select, Up, Down, Left, Right
-
-
-
-
+	Bits Button, A, B, Select, Start, Right, Left, Up, Down
+	Mask DPad, Button, Right, Left, Up, Down
 
 ; From http://nocash.emubase.de/pandocs.htm.
 
