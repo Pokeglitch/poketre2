@@ -38,10 +38,7 @@ CheckOakAppear:
 	call PlayMusic
 
 	PermitButtons A, B
-
-	ld hl, OakAppearsText
-	call DisplayTextInTextbox
-
+	DisplayText OakAppearsText
 	IgnoreButtons All
 
 	ld a, HS_PALLET_TOWN_OAK

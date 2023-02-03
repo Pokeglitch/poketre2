@@ -35,10 +35,13 @@ MapData: MACRO
 
     DEF \1TextCount = 0
     DEF \1BattleCount = 0
-    
-    INCLUDE "scripts/\1.asm"
 
     PUSHS
+        SetContext MapScript
+        SECTION FRAGMENT "\1 Script", ROMX, BANK[CUR_BANK]
+            INCLUDE "scripts/\1.asm"
+        CloseContext
+
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             \1Header:
                 db \1Tileset
@@ -58,11 +61,13 @@ MapData: MACRO
         SECTION FRAGMENT "\1 Text Pointers", ROMX, BANK[CUR_BANK]
             \1TextPointers:
 
+        SetContext MapObjects
         SECTION FRAGMENT "\1 Objects", ROMX, BANK[CUR_BANK]
             \1Objects:
                 db \1Border
                 INCLUDE "data/mapObjects/\1.asm"
                 ResetObjectText
+        CloseContext
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
 	        db TrainerHeaderTerminator
@@ -154,7 +159,7 @@ NPC: MACRO
     ENDC
 ENDM
 
-Battle: MACRO
+MapObjects_Battle: MACRO
     UpdateMapObject Sprite
     REDEF text EQUS "TrainerText "
 
@@ -277,3 +282,4 @@ TrainerText: MACRO
         SHIFT
     ENDR
 ENDM
+

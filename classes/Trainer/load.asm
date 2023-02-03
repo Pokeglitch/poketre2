@@ -4,7 +4,7 @@ CopyIntoTrainerName:
 	jp CopyData
 
 LoadTrainer:
-	; Only load the name if Link Battle
+	; just load the name if Link Battle
 	ld hl, wLinkEnemyTrainerName
 	ld a, [wLinkState]
 	and a
@@ -41,17 +41,35 @@ LoadTrainer:
 	
 	; hl = pointer to parties
 	ld a, [wTrainerNo]
-	ld b, a
+	add a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = party address
 
-	; find the proper trainer number
-.findTrainerParty
-	dec b
+	ld a, [hli] ; load the properties
+	cp -1
+	jr nz, .partyFound
+
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a ; bc = ptr compare against
+	ld a, [bc]
+	ld b, a ; b = value to compare against
+
+.checkCase
+	ld a, [hli]
+	cp b
 	jr z, .partyFound
-.findEndOfParty
+
+.nextPartyLoop
 	ld a, [hli]
 	cp PartyDataTerminator
-	jr nz, .findEndOfParty
-	jr .findTrainerParty
+	jr z, .checkCase
+	jr .nextPartyLoop
 
 .partyFound
 	ld a, [hli]
@@ -85,7 +103,7 @@ LoadTrainer:
 	cp PartyDataTerminator
 	jr z, .storeTrainerMoney ; add the money if end of data reached
 	
-	bit SpecialPartyDataBitIndex, a ; if the high bit is set, then this pokemon have a special move
+	bit SpecialPartyDataBitIndex, a ; if the high bit is set, then this pokemon has a special move
 	jr nz, .storeSpecialMove
 
 	; otherwise, update the pointer for the next mon's move and read next data set

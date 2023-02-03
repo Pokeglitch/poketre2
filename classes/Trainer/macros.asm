@@ -1,8 +1,42 @@
     Bits PartyData, 7, Special
 
+Party_Battle: MACRO
+    DEF PARTY_INDEX = {NAME_VALUE}PartyCount
+    REDEF PARTY_NAME EQUS "{NAME_VALUE}Party{d:PARTY_INDEX}"
+
+	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
+        ; add pointer to party
+        dw {PARTY_NAME}
+
+    ; add party data
+    SECTION FRAGMENT "{NAME_VALUE} Parties", ROMX, BANK[TrainerClass]
+        {PARTY_NAME}:
+            db {PARTY_NAME}Properties
+
+        ; define after allocating to use final value
+        DEF {PARTY_NAME}Properties = 0
+
+    DEF {NAME_VALUE}PartyCount += 1
+ENDM
+
+Party_switch: MACRO
+    ; todo - need to set a flag instead
+    DEF {PARTY_NAME}Properties = -1
+    
+    dw \1
+ENDM
+
+Party_case: MACRO
+    db \1
+ENDM
+
+Party_end: MACRO
+    PopContext
+ENDM
+
 PartyDataTerminator = -1
 
-Party: MACRO
+Party2: MACRO
     DEF SPECIAL_MASK = 0
     
     ; If there is a third argument, and it is a number, then it is special
@@ -42,6 +76,59 @@ Party: MACRO
     db PartyDataTerminator
 ENDM
 
+Party: MACRO
+    DEF PARTY_INDEX = {NAME_VALUE}PartyCount
+    REDEF PARTY_POINTER EQUS "{NAME_VALUE}Party{d:PARTY_INDEX}"
+
+	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
+        ; add pointer to party
+        dw {PARTY_POINTER}
+
+    ; add party data
+    SECTION FRAGMENT "{NAME_VALUE} Parties", ROMX, BANK[TrainerClass]
+        {PARTY_POINTER}:
+            db 0 ; TODO - empty property byte for now
+            DEF SPECIAL_MASK = 0
+            
+            ; If there is a third argument, and it is a number, then it is special
+            IF _NARG > 2
+                REDEF ARG3 EQUS "\3"
+                IsNumber {ARG3}
+
+                IF IS_NUMBER == 1
+                    DEF SPECIAL_MASK = SpecialPartyDataBitMask
+                ENDC
+            ENDC
+
+            db SPECIAL_MASK | \1, \2
+            SHIFT 2
+
+            IF SPECIAL_MASK != 0
+                REPT _NARG/2
+                    DEF SPECIAL_MASK = SpecialPartyDataBitMask
+
+                    ; TODO - this DEF check is unncessary once the Move Table is added
+                    IF DEF(\2Table)
+                        IF STRCMP("{\2Table}","Pokemon") == 0
+                            DEF SPECIAL_MASK = 0
+                        ENDC
+                    ENDC
+                    
+                    db SPECIAL_MASK | \1, \2
+                    SHIFT 2
+                ENDR
+            ELSE
+                REPT _NARG
+                    db \1
+                    SHIFT
+                ENDR
+            ENDC
+
+            db PartyDataTerminator
+
+    DEF {NAME_VALUE}PartyCount += 1
+ENDM
+
 Trainer: MACRO
 	ConvertName \1
 	Prop Name, String, {NAME_STRING}
@@ -61,9 +148,12 @@ Trainer: MACRO
 	Prop AIRoutine, Pointer, AI_ROUTINE
 	Prop MoveSelection, Flags, Ailment, \8, SideEffects, \9, TypeAdvantage, \<10>
 
-	PUSHS
-	SECTION "{NAME_VALUE} Parties", ROMX, BANK[TrainerClass]
+    ; Initialize the party count
+    DEF {NAME_VALUE}PartyCount = 0
+
+    PushContext Party
+	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
 		{NAME_VALUE}Parties:
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
-	POPS
+    PopContext
 ENDM

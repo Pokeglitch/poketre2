@@ -1,3 +1,7 @@
+DEF CUR_BANK = BANK(@)
+	SetContext MapScript
+SECTION FRAGMENT "Oaks Lab Script", ROMX, BANK[CUR_BANK]
+
 OaksLabScript:
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 	call nz, OaksLab_ChangeTextPointers
@@ -339,29 +343,9 @@ OaksLabScript10:
 	call WaitForTrainerSprite
 
 OaksLabScript11:
-
-	; define which team rival uses, and fight it
-	ld a, [wRivalStarter]
-	cp STARTER2
-	jr nz, .NotSquirtle
-	ld a, 1
-	jr .done
-.NotSquirtle
-	cp STARTER3
-	jr nz, .Charmander
-	ld a, 2
-	jr .done
-.Charmander
-	ld a, 3
-.done
-	PrepareBattle Rival1, a
-
 	ld a, 1
 	ld [wSpriteIndex], a
 	call GetSpritePosition1
-	ld hl, OaksLabText_1d3be
-	ld de, OaksLabText_1d3c3
-	call SaveEndBattleTextPointers
 	ld hl, wd72d
 	set 6, [hl]
 	set 7, [hl]
@@ -372,8 +356,23 @@ OaksLabScript11:
 
 	ld a, $c
 	ld [wOaksLabCurScript], a
-	jp StartOverworldBattle
 
+	Battle Rival1, OaksLabText_1d3c3
+		Text "WHAT?"
+		next "Unbelievable!"
+		cont "I picked the"
+		cont "wrong POKéMON!"
+		Prompt
+
+		Text "<RIVAL>: Yeah! Am"
+		next "I great or what?"
+		Prompt
+
+		switch wRivalStarter
+			case STARTER1, 5, Charmander
+			case STARTER2, 5, Squirtle
+			case STARTER3, 5, Bulbasaur
+		end
 
 RivalExitMovement:
 	db $E0 ; change sprite facing direction
@@ -1125,14 +1124,6 @@ OaksLabText15:
 	next "you on!"
 	done
 
-OaksLabText_1d3be:
-	fartext _OaksLabText_1d3be
-	done
-
-OaksLabText_1d3c3:
-	fartext _OaksLabText_1d3c3
-	done
-
 OaksLabText16:
 	text "<RIVAL>: Okay!"
 	next "I'll make my"
@@ -1228,3 +1219,7 @@ OaksLabText10:
 	text "I study POKéMON as"
 	next "PROF.OAK's AIDE."
 	done
+
+
+
+	CloseContext

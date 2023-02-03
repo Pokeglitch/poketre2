@@ -67,3 +67,8 @@ Require: MACRO
     cp \1
     ret nz
 ENDM
+
+DisplayText: MACRO
+    ld hl, \1
+    call DisplayTextInTextbox
+ENDM

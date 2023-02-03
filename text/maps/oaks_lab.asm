@@ -161,18 +161,6 @@ _OaksLabText_1d340::
 	cont "in high regard!"
 	done
 
-_OaksLabText_1d3be::
-	text "WHAT?"
-	next "Unbelievable!"
-	cont "I picked the"
-	cont "wrong POKéMON!"
-	prompt
-
-_OaksLabText_1d3c3::
-	text "<RIVAL>: Yeah! Am"
-	next "I great or what?"
-	prompt
-
 _OaksLabText_441cc::
 	text "POKéDEX comp-"
 	next "letion is:"
