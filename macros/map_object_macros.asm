@@ -79,17 +79,14 @@ MapData: MACRO
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             dw \1Objects
     POPS
-
-    ; Restore Text Macro
-    REDEF text EQUS "db "
 ENDM
 
 CloseObjectText: MACRO
     IF OBJ_TEXT_COUNT > 0
         IF OBJ_TEXT_COUNT > 2
-            prompt
+            Default_prompt
         ELSE
-            done
+            Default_done
         ENDC
     ENDC
 ENDM
@@ -147,7 +144,7 @@ ENDM
 
 NPC: MACRO
     UpdateMapObject Sprite
-    REDEF text EQUS "MapText "
+    REDEF MapObjectText EQUS "MapText"
 
 	db \1
 	MapCoord \2, \3
@@ -161,7 +158,7 @@ ENDM
 
 MapObjects_Battle: MACRO
     UpdateMapObject Sprite
-    REDEF text EQUS "TrainerText "
+    REDEF MapObjectText EQUS "TrainerText"
 
     DEF MAP_BATTLE_INDEX = {MAP_NAME}BattleCount
     REDEF POINTER_NAME EQUS "{MAP_NAME}TrainerHeader{d:MAP_BATTLE_INDEX}"
@@ -190,7 +187,7 @@ ENDM
 
 Pickup: MACRO
     UpdateMapObject Sprite
-    REDEF text EQUS "MapText "
+    REDEF MapObjectText EQUS "MapText"
 
 	db SPRITE_BALL
 	MapCoord \1, \2
@@ -213,7 +210,7 @@ ENDM
 ;\3 sign id
 Sign: MACRO
     UpdateMapObject Sign
-    REDEF text EQUS "MapText "
+    REDEF MapObjectText EQUS "MapText"
 
     db \2
     db \1
@@ -255,17 +252,17 @@ AddText: MACRO
         {POINTER_NAME}:
 ENDM
 
+MapObjects_text: MACRO
+    MapObjectText
+    AddText
+    ForwardTo Default_text
+ENDM
+
 MapText: MACRO
     REDEF POINTER_NAME EQUS "{MAP_NAME}Text{d:{MAP_NAME}TextCount}"
 
     ; Place the Pointer to the table
     AddTextPointer {POINTER_NAME}
-
-    AddText
-    REPT _NARG
-        db \1
-        SHIFT
-    ENDR
 ENDM
 
 TrainerText: MACRO
@@ -275,11 +272,5 @@ TrainerText: MACRO
     
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         dw {POINTER_NAME}
-
-    AddText
-    REPT _NARG
-        db \1
-        SHIFT
-    ENDR
 ENDM
 

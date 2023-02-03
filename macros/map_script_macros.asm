@@ -2,16 +2,13 @@
 MapScript_Battle: MACRO
 	ConvertName \1
 
-    PushContext MapScriptBattle
+    PushContext MapScriptBattle, MapScript_Battle_Finish
     Party_Battle
 ENDM
 
-; TODO - make this a callback for when the context gets closed...
 MapScript_Battle_Finish: MACRO
-    PopContext ; return to the map script context
-
     IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
-        PRINT "\naaa\n"
+        ;todo - error
     ENDC
 
     PrepareBattle {NAME_VALUE}, {PARTY_INDEX}
@@ -27,44 +24,37 @@ MapScript_Battle_Finish: MACRO
 	jp StartOverworldBattle
 ENDM
 
-MapScriptBattle_Text: MACRO
-    PushContext MapScriptBattleText
-    SECTION FRAGMENT "\1 Texts", ROMX, BANK[CUR_BANK]
+MapScript_text: MACRO
+    REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
+
+    PushContext Text, MapScript_Text_Finish
+    SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
+        {PTR_NAME}:
+            ForwardTo Default_text
+    
+    DEF {MAP_NAME}TextCount = {MAP_NAME}TextCount + 1
+ENDM
+
+MapScript_Text_Finish: MACRO
+    ld hl, PTR_NAME
+	call DisplayTextInTextbox
+ENDM
+
+MapScriptBattle_text: MACRO
+    PushContext Text
+    SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
             {NAME_VALUE}{d:PARTY_INDEX}WinText:
         ELSE
             {NAME_VALUE}{d:PARTY_INDEX}LoseText:
         ENDC
     
-        REPT _NARG
-            db \1   
-            SHIFT
-        ENDR
-ENDM
-
-MapScriptBattleText_Done: MACRO
-    done
-    PopContext
-ENDM
-
-MapScriptBattleText_Prompt: MACRO
-    prompt
-    PopContext
+        ForwardTo Default_text
 ENDM
 
 MapScriptBattle_Team: MACRO
-    ; Accumulate the args to send to macro
-    REDEF ARGS_STR EQUS ""
-    REPT _NARG
-        IF STRCMP("{ARGS_STR}", "") != 0
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-        ENDC
-        
-        REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-        SHIFT
-    ENDR
-    Party2 {ARGS_STR}
-    MapScript_Battle_Finish
+    ForwardTo Party2
+    CloseContext ; return to the map script context
 ENDM
 
 MapScriptBattle_switch: MACRO
@@ -72,43 +62,24 @@ MapScriptBattle_switch: MACRO
     Party_switch \1
 ENDM
 
+; team can optionally be combined with the case
 MapScriptBattleSwitch_case: MACRO
     Party_case \1
     IF _NARG == 1
         SetContext MapScriptBattleSwitchCase
     ELSE
         SHIFT
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        Party2 {ARGS_STR}
+        ForwardTo Party2
     ENDC
 ENDM
 
 MapScriptBattleSwitchCase_Team: MACRO
-    ; Accumulate the args to send to macro
-    REDEF ARGS_STR EQUS ""
-    REPT _NARG
-        IF STRCMP("{ARGS_STR}", "") != 0
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-        ENDC
-        
-        REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-        SHIFT
-    ENDR
-    Party2 {ARGS_STR}
+    ForwardTo Party2
     CloseContext ; close out of the Case context
 ENDM
 
 MapScriptBattleSwitch_end: MACRO
-    CloseContext ; close out of the Switch context
-    MapScript_Battle_Finish
+    CloseContext 2 ; close out of the Switch and battle context
 ENDM
 
 MapScript_switch: MACRO

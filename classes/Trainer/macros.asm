@@ -31,7 +31,7 @@ Party_case: MACRO
 ENDM
 
 Party_end: MACRO
-    PopContext
+    CloseContext
 ENDM
 
 PartyDataTerminator = -1
@@ -155,5 +155,5 @@ Trainer: MACRO
 	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
 		{NAME_VALUE}Parties:
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
-    PopContext
+    CloseContext
 ENDM

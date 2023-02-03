@@ -1,155 +1,105 @@
 Context EQUS "Default"
-ContextSize = 0
+ContextCallback EQUS ""
+ContextPushed = 0
+ContextCount = 0
 
 PushContext: MACRO
-    SetContext \1
+    IF _NARG == 1
+        SetContext \1
+    ELSE
+        SetContext \1, \2
+    ENDC
+
+    ; set the current context as pushed
+    DEF ContextPushed = 1
     PUSHS
 ENDM
 
 SetContext: MACRO
-    REDEF Context{d:ContextSize} EQUS "{Context}"
+    ; store the previous context pushed and update
+    DEF ContextPushed{d:ContextCount} = ContextPushed
+    DEF ContextPushed = 0
+
+    ; store the previous context and update
+    REDEF Context{d:ContextCount} EQUS "{Context}"
     REDEF Context EQUS "\1"
-    DEF ContextSize += 1
+
+    ; store the previous callback and update
+    REDEF ContextCallback{d:ContextCount} EQUS "{ContextCallback}"
+    IF _NARG == 2
+        REDEF ContextCallback EQUS "\2"
+    ELSE
+        REDEF ContextCallback EQUS ""
+    ENDC
+
+    ; increase the context count
+    DEF ContextCount += 1
 ENDM
 
 CloseContext: MACRO
-    IF ContextSize
-        DEF ContextSize -= 1
-        REDEF Context EQUS "{Context{d:ContextSize}}"
+    IF _NARG == 1
+        DEF CLOSE_COUNT = \1
+    ELSE
+        DEF CLOSE_COUNT = 1
     ENDC
-ENDM
+    
+    REPT CLOSE_COUNT
+        IF ContextCount
+            DEF ContextCount -= 1
 
-PopContext: MACRO
-    IF ContextSize
-        CloseContext
-        POPS
-    ENDC
-ENDM
-
-Battle: MACRO
-    IF DEF({Context}_Battle)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
+            ; if the context was pushed, then pop
+            IF ContextPushed
+                POPS
             ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_Battle {ARGS_STR}
-    ENDC
+
+            ; run the callback macro if exists
+            IF STRCMP("{ContextCallback}", "")
+                {ContextCallback}
+            ENDC
+
+            ; restore the previous context pushed
+            DEF ContextPushed = ContextPushed{d:ContextCount}
+            REDEF Context EQUS "{Context{d:ContextCount}}"
+            REDEF ContextCallback EQUS "{ContextCallback{d:ContextCount}}"
+        ENDC
+    ENDR
 ENDM
 
-Team: MACRO
-    IF DEF({Context}_Team)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_Team {ARGS_STR}
-    ENDC
+DEF AccumulateArgs EQUS "\n\
+REDEF ARGS_STR EQUS \"\"\n\
+REPT _NARG\n\
+    IF STRCMP(\"\{ARGS_STR\}\", \"\") != 0\n\
+        REDEF ARGS_STR EQUS STRCAT(\"\{ARGS_STR\}\",\", \")\n\
+    ENDC\n\
+    REDEF ARGS_STR EQUS STRCAT(\"\{ARGS_STR\}\",\"\\1\")\n\
+    SHIFT\n\
+ENDR"
+
+DefineContextMacro: MACRO
+REDEF CONTEXT_MACRO_STR EQUS "\1: MACRO\n\
+IF DEF(\{Context\}_\1)\n\
+    AccumulateArgs\n\
+    \{Context\}_\1 \{ARGS_STR\}\n\
+ELSE\n\
+    fail \"\1 is not defined in context: \{Context\}\"\n\
+ENDC\nENDM"
+{CONTEXT_MACRO_STR}
 ENDM
 
-switch: MACRO
-    IF DEF({Context}_switch)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_switch {ARGS_STR}
-    ENDC
+ForwardToMacro: MACRO
+    \1 {ARGS_STR}
 ENDM
 
-case: MACRO
-    IF DEF({Context}_case)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_case {ARGS_STR}
-    ENDC
-ENDM
+REDEF ForwardTo EQUS "\n\
+    AccumulateArgs\n\
+    ForwardToMacro "
 
-end: MACRO
-    IF DEF({Context}_end)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_end {ARGS_STR}
-    ENDC
-ENDM
-
-Text: MACRO
-    IF DEF({Context}_Text)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_Text {ARGS_STR}
-    ENDC
-ENDM
-
-Done: MACRO
-    IF DEF({Context}_Done)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_Done {ARGS_STR}
-    ENDC
-ENDM
-
-Prompt: MACRO
-    IF DEF({Context}_Prompt)
-        ; Accumulate the args to send to macro
-        REDEF ARGS_STR EQUS ""
-        REPT _NARG
-            IF STRCMP("{ARGS_STR}", "") != 0
-                REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", ", ")
-            ENDC
-            
-            REDEF ARGS_STR EQUS STRCAT("{ARGS_STR}", "\1")
-            SHIFT
-        ENDR
-        {Context}_Prompt {ARGS_STR}
-    ENDC
-ENDM
+    DefineContextMacro Battle
+    DefineContextMacro Team
+    DefineContextMacro switch
+    DefineContextMacro case
+    DefineContextMacro end
+    DefineContextMacro text
+    DefineContextMacro done
+    DefineContextMacro prompt
+    DefineContextMacro exit

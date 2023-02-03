@@ -1,10 +1,11 @@
 DEF CUR_BANK = BANK(@)
+	ConvertName Oaks Lab
+	DEF OaksLabTextCount = 0
+REDEF MAP_NAME EQUS "{NAME_VALUE}"
 	SetContext MapScript
 SECTION FRAGMENT "Oaks Lab Script", ROMX, BANK[CUR_BANK]
 
 OaksLabScript:
-	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
-	call nz, OaksLab_ChangeTextPointers
 	ld a, $1
 	ld [wAutoTextBoxDrawingControl], a
 	xor a
@@ -108,20 +109,50 @@ OaksLabScript5:
 	ld a, $fc
 	ld [wJoyIgnore], a
 
-	ld hl, OaksLabText17
-	call DisplayTextInTextbox
+	text "<RIVAL>: Gramps!"
+	next "I'm fed up with"
+	cont "waiting!"
+	done
 	call Delay3
 	
-	ld hl, OaksLabText18
-	call DisplayTextInTextbox
+	text "OAK: <RIVAL>?"
+	next "Let me think..."
+
+	para "Oh, that's right,"
+	next "I told you to"
+	cont "come! Just wait!"
+
+	para "Here, <PLAYER>!"
+
+	para "There are 3"
+	next "POKéMON here!"
+
+	para "Haha!"
+
+	para "They are inside"
+	next "the POKé BALLs."
+
+	para "When I was young,"
+	next "I was a serious"
+	cont "POKéMON trainer!"
+
+	para "In my old age, I"
+	next "have only 3 left,"
+	cont "but you can have"
+	cont "one! Choose!"
+	done
 	call Delay3
 
-	ld hl, OaksLabText19
-	call DisplayTextInTextbox
+	text "<RIVAL>: Hey!"
+	next "Gramps! What"
+	cont "about me?"
+	done
 	call Delay3
 
-	ld hl, OaksLabText20
-	call DisplayTextInTextbox
+	text "OAK: Be patient!"
+	next "<RIVAL>, you can"
+	cont "have one too!"
+	done
 
 	SetEvent EVENT_OAK_ASKED_TO_CHOOSE_MON
 	xor a
@@ -147,8 +178,9 @@ OaksLabScript6:
 	call SetSpriteFacingDirectionAndDelay
 	call UpdateSprites
 	
-	ld hl, OaksLabText12
-	call DisplayTextInTextbox
+	text "OAK: Hey! Don't go"
+	next "away yet!"
+	done
 
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
@@ -266,8 +298,9 @@ OaksLabScript9:
 	ld [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
 	
-	ld hl, OaksLabText13
-	call DisplayTextInTextbox
+	text "<RIVAL>: I'll take"
+	next "this one, then!"
+	done
 
 	ld a, [wRivalStarterBallSpriteIndex]
 	cp $2
@@ -296,8 +329,11 @@ OaksLabScript9:
 	ld [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
 	
-	ld hl, OaksLabText14
-	call DisplayTextInTextbox
+	text "<RIVAL> received"
+	next "a "
+	ramtext wcd6d
+	more "!"
+	done
 
 	SetEvent EVENT_GOT_STARTER
 	xor a
@@ -322,8 +358,14 @@ OaksLabScript10:
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
 	
-	ld hl, OaksLabText15
-	call DisplayTextInTextbox
+	text "<RIVAL>: Wait"
+	next "<PLAYER>!"
+	cont "Let's check out"
+	cont "our POKéMON!"
+
+	para "Come on, I'll take"
+	next "you on!"
+	done
 
 	ld a, $1
 	ld [hNPCPlayerRelativePosPerspective], a
@@ -357,16 +399,16 @@ OaksLabScript11:
 	ld a, $c
 	ld [wOaksLabCurScript], a
 
-	Battle Rival1, OaksLabText_1d3c3
-		Text "WHAT?"
+	Battle Rival1
+		text "WHAT?"
 		next "Unbelievable!"
 		cont "I picked the"
 		cont "wrong POKéMON!"
-		Prompt
+		prompt
 
-		Text "<RIVAL>: Yeah! Am"
+		text "<RIVAL>: Yeah! Am"
 		next "I great or what?"
-		Prompt
+		prompt
 
 		switch wRivalStarter
 			case STARTER1, 5, Charmander
@@ -404,8 +446,14 @@ OaksLabScript13:
 	ld c, 20
 	call DelayFrames
 	
-	ld hl, OaksLabText16
-	call DisplayTextInTextbox
+	text "<RIVAL>: Okay!"
+	next "I'll make my"
+	cont "POKéMON fight to"
+	cont "toughen it up!"
+
+	para "<PLAYER>! Gramps!"
+	next "Smell you later!"
+	done
 	
 	callba Music_RivalAlternateStart
 	ld a, $1
@@ -423,8 +471,8 @@ OaksLabScript13:
 .next
 	ld [wNPCMovementDirections], a
 
-	;call WaitForTrainerSprite
-
+	call WaitForTrainerSprite
+	; TODO - want to have player face rival as he walks away...
 OaksLabScript14:
 	;ld a, [wd730]
 	;bit 0, a
@@ -472,8 +520,8 @@ OaksLabScript15:
 	call PlaySound
 	callba Music_RivalAlternateStart
 
-	ld hl, OaksLabText21
-	call DisplayTextInTextbox
+	text "<RIVAL>: Gramps!"
+	done
 
 	call OaksLabScript_1d02b
 	ld a, HS_OAKS_LAB_RIVAL
@@ -518,24 +566,43 @@ OaksLabScript16:
 	ld [wJoyIgnore], a
 	call OaksLabScript_1cefd
 	
-	ld hl, OaksLabText22
-	call DisplayTextInTextbox
+	text "<RIVAL>: What did"
+	next "you call me for?"
+	done
 	call DelayFrame
 
 	call OaksLabScript_1cefd
 
-	ld hl, OaksLabText23
-	call DisplayTextInTextbox
+	text "OAK: Oh right! I"
+	next "have a request"
+	cont "of you two."
+	done
 	call DelayFrame
 
 	call OaksLabScript_1cefd
 
-	ld hl, OaksLabText24
-	call DisplayTextInTextbox
+	text "On the desk there"
+	next "is my invention,"
+	cont "POKéDEX!"
+
+	para "It automatically"
+	next "records data on"
+	cont "POKéMON you've"
+	cont "seen or caught!"
+
+	para "It's a hi-tech"
+	next "encyclopedia!"
+	done
 	call DelayFrame
 
-	ld hl, OaksLabText25
-	call DisplayTextInTextbox
+	text "OAK: <PLAYER> and"
+	next "<RIVAL>! Take"
+	cont "these with you!"
+
+	para "<PLAYER> got"
+	next "POKéDEX from OAK!"
+	sfxtext SFX_GET_KEY_ITEM
+	done
 	call Delay3
 
 	ld a, HS_POKEDEX_1
@@ -546,8 +613,27 @@ OaksLabScript16:
 	predef HideObject
 	call OaksLabScript_1cefd
 
-	ld hl, OaksLabText26
-	call DisplayTextInTextbox
+	text "To make a complete"
+	next "guide on all the"
+	cont "POKéMON in the"
+	cont "world..."
+
+	para "That was my dream!"
+
+	para "But, I'm too old!"
+	next "I can't do it!"
+
+	para "So, I want you two"
+	next "to fulfill my"
+	cont "dream for me!"
+
+	para "Get moving, you"
+	next "two!"
+
+	para "This is a great"
+	next "undertaking in"
+	cont "POKéMON history!"
+	done
 
 	ld a, $1
 	ld [H_SPRITEINDEX], a
@@ -556,8 +642,22 @@ OaksLabScript16:
 	call SetSpriteFacingDirectionAndDelay
 	call Delay3
 
-	ld hl, OaksLabText27
-	call DisplayTextInTextbox
+	text "<RIVAL>: Alright"
+	next "Gramps! Leave it"
+	cont "all to me!"
+
+	para "<PLAYER>, I hate to"
+	next "say it, but I"
+	cont "don't need you!"
+
+	para "I know! I'll"
+	next "borrow a TOWN MAP"
+	cont "from my sis!"
+
+	para "I'll tell her not"
+	next "to lend you one,"
+	cont "<PLAYER>! Hahaha!"
+	done
 
 	SetEvent EVENT_GOT_POKEDEX
 	SetEvent EVENT_OAK_GOT_PARCEL
@@ -658,14 +758,6 @@ OaksLabScript_1d02b:
 	call SetSpritePosition1
 	ret
 
-OaksLab_ChangeTextPointers:
-	ld hl, OaksLabTextPointers2
-	ld a, l
-	ld [wMapTextPtr], a
-	ld a, h
-	ld [wMapTextPtr+1], a
-	ret
-
 OaksLabTrainerHeader0:
 	db TrainerHeaderTerminator
 
@@ -681,35 +773,9 @@ OaksLabTextPointers:
 	dw OaksLabText9
 	dw OaksLabText10
 	dw OaksLabText11
-	dw OaksLabText12
-	dw OaksLabText13
-	dw OaksLabText14
-	dw OaksLabText15
-	dw OaksLabText16
-	dw OaksLabText17
-	dw OaksLabText18
-	dw OaksLabText19
-	dw OaksLabText20
-	dw OaksLabText21
-	dw OaksLabText22
-	dw OaksLabText23
-	dw OaksLabText24
-	dw OaksLabText25
-	dw OaksLabText26
-	dw OaksLabText27
 
-OaksLabTextPointers2:
-	dw OaksLabText1
-	dw OaksLabText2
-	dw OaksLabText3
-	dw OaksLabText4
-	dw OaksLabText5
-	dw OaksLabText6
-	dw OaksLabText7
-	dw OaksLabText8
-	dw OaksLabText9
-	dw OaksLabText10
-	dw OaksLabText11
+	
+	CloseContext
 
 OaksLabText1:
 	asmtext
@@ -1051,175 +1117,8 @@ OaksLabText_1d340:
 	fartext _OaksLabText_1d340
 	done
 
-OaksLabText17:
-	text "<RIVAL>: Gramps!"
-	next "I'm fed up with"
-	cont "waiting!"
-	done
-
-OaksLabText18:
-	text "OAK: <RIVAL>?"
-	next "Let me think..."
-
-	para "Oh, that's right,"
-	next "I told you to"
-	cont "come! Just wait!"
-
-	para "Here, <PLAYER>!"
-
-	para "There are 3"
-	next "POKéMON here!"
-
-	para "Haha!"
-
-	para "They are inside"
-	next "the POKé BALLs."
-
-	para "When I was young,"
-	next "I was a serious"
-	cont "POKéMON trainer!"
-
-	para "In my old age, I"
-	next "have only 3 left,"
-	cont "but you can have"
-	cont "one! Choose!"
-	done
-
-OaksLabText19:
-	text "<RIVAL>: Hey!"
-	next "Gramps! What"
-	cont "about me?"
-	done
-
-OaksLabText20:
-	text "OAK: Be patient!"
-	next "<RIVAL>, you can"
-	cont "have one too!"
-	done
-
-OaksLabText12:
-	text "OAK: Hey! Don't go"
-	next "away yet!"
-	done
-
-OaksLabText13:
-	text "<RIVAL>: I'll take"
-	next "this one, then!"
-	done
-
-OaksLabText14:
-	text "<RIVAL> received"
-	next "a "
-	ramtext wcd6d
-	text "!"
-	done
-
-OaksLabText15:
-	text "<RIVAL>: Wait"
-	next "<PLAYER>!"
-	cont "Let's check out"
-	cont "our POKéMON!"
-
-	para "Come on, I'll take"
-	next "you on!"
-	done
-
-OaksLabText16:
-	text "<RIVAL>: Okay!"
-	next "I'll make my"
-	cont "POKéMON fight to"
-	cont "toughen it up!"
-
-	para "<PLAYER>! Gramps!"
-	next "Smell you later!"
-	done
-
-OaksLabText21:
-	text "<RIVAL>: Gramps!"
-	done
-
-OaksLabText22:
-	text "<RIVAL>: What did"
-	next "you call me for?"
-	done
-
-OaksLabText23:
-	text "OAK: Oh right! I"
-	next "have a request"
-	cont "of you two."
-	done
-
-OaksLabText24:
-	text "On the desk there"
-	next "is my invention,"
-	cont "POKéDEX!"
-
-	para "It automatically"
-	next "records data on"
-	cont "POKéMON you've"
-	cont "seen or caught!"
-
-	para "It's a hi-tech"
-	next "encyclopedia!"
-	done
-
-OaksLabText25:
-	text "OAK: <PLAYER> and"
-	next "<RIVAL>! Take"
-	cont "these with you!"
-
-	para "<PLAYER> got"
-	next "POKéDEX from OAK!"
-	sfxtext SFX_GET_KEY_ITEM
-	done
-
-OaksLabText26:
-	text "To make a complete"
-	next "guide on all the"
-	cont "POKéMON in the"
-	cont "world..."
-
-	para "That was my dream!"
-
-	para "But, I'm too old!"
-	next "I can't do it!"
-
-	para "So, I want you two"
-	next "to fulfill my"
-	cont "dream for me!"
-
-	para "Get moving, you"
-	next "two!"
-
-	para "This is a great"
-	next "undertaking in"
-	cont "POKéMON history!"
-	done
-
-OaksLabText27:
-	text "<RIVAL>: Alright"
-	next "Gramps! Leave it"
-	cont "all to me!"
-
-	para "<PLAYER>, I hate to"
-	next "say it, but I"
-	cont "don't need you!"
-
-	para "I know! I'll"
-	next "borrow a TOWN MAP"
-	cont "from my sis!"
-
-	para "I'll tell her not"
-	next "to lend you one,"
-	cont "<PLAYER>! Hahaha!"
-	done
-
 OaksLabText11:
 OaksLabText10:
 	text "I study POKéMON as"
 	next "PROF.OAK's AIDE."
 	done
-
-
-
-	CloseContext

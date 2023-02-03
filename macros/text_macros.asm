@@ -4,7 +4,19 @@ textbox: MACRO
 	db \1
 ENDM
 
-REDEF text EQUS "db "
+Default_text: MACRO
+	REPT _NARG
+		db \1   
+		SHIFT
+	ENDR
+ENDM
+
+more: MACRO
+	REPT _NARG
+		db \1   
+		SHIFT
+	ENDR
+ENDM
 
 ramtext: MACRO
 	db RAM_TEXT
@@ -70,12 +82,12 @@ autopara: MACRO
 ENDM
 
 ; End a string
-done: MACRO
+Default_done: MACRO
 	db TEXT_END
 ENDM
 
 ; Prompt the player to end a text box (initiating some other event).
-prompt: MACRO
+Default_prompt: MACRO
 	db TEXT_PROMPT
 ENDM
 
@@ -85,7 +97,7 @@ wait: MACRO
 ENDM
 
 ; Exit without waiting for keypress
-exit: MACRO
+Default_exit: MACRO
 	db TEXT_EXIT
 ENDM
 
@@ -158,3 +170,18 @@ TX_MART: MACRO
 ENDM
 
 TX_POKECENTER_NURSE        EQUS "db $ff"
+
+Text_done: MACRO
+    ForwardTo Default_done
+    CloseContext
+ENDM
+
+Text_prompt: MACRO
+    ForwardTo Default_prompt
+    CloseContext
+ENDM
+
+Text_exit: MACRO
+    ForwardTo Default_exit
+    CloseContext
+ENDM
