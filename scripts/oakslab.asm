@@ -23,17 +23,6 @@ OaksLabScriptPointers:
 	dw OaksLabScript5
 	dw OaksLabScript6
 	dw OaksLabScript7
-	dw OaksLabScript8
-	dw OaksLabScript9
-	dw OaksLabScript10
-	dw OaksLabScript11
-	dw OaksLabScript12
-	dw OaksLabScript13
-	dw OaksLabScript14
-	dw OaksLabScript15
-	dw OaksLabScript16
-	dw OaksLabScript17
-	dw OaksLabScript18
 
 OakEntryMovement:
 	db NPC_MOVEMENT_UP
@@ -55,15 +44,12 @@ OaksLabScript0:
 	ld hl, wd72e
 	res 4, [hl]
 
-OaksLabScript1:
 	ld a, $8
 	ld [H_SPRITEINDEX], a
 	ld de, OakEntryMovement
 	call MoveSprite
 
-OaksLabScript2:
-
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 
 	ld a, HS_OAKS_LAB_OAK_2
 	ld [wMissableObjectIndex], a
@@ -72,8 +58,7 @@ OaksLabScript2:
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 
-OaksLabScript3:
-	call Delay3
+	Delay 3
 	ld hl, wSimulatedJoypadStatesEnd
 	ld de, PlayerEntryMovementRLE
 	call DecodeRLEList
@@ -91,7 +76,6 @@ OaksLabScript3:
 	ld [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
 
-OaksLabScript4:
 	call WaitForScriptedPlayerMovement
 	
 	SetEvent EVENT_FOLLOWED_OAK_INTO_LAB
@@ -105,15 +89,15 @@ OaksLabScript4:
 	res 1, [hl]
 	call PlayDefaultMusic
 
-OaksLabScript5:
-	ld a, $fc
+	xor a
 	ld [wJoyIgnore], a
 
 	text "<RIVAL>: Gramps!"
 	next "I'm fed up with"
 	cont "waiting!"
 	done
-	call Delay3
+	
+	Delay 3
 	
 	text "OAK: <RIVAL>?"
 	next "Let me think..."
@@ -141,13 +125,15 @@ OaksLabScript5:
 	cont "but you can have"
 	cont "one! Choose!"
 	done
-	call Delay3
+	
+	Delay 3
 
 	text "<RIVAL>: Hey!"
 	next "Gramps! What"
 	cont "about me?"
 	done
-	call Delay3
+	
+	Delay 3
 
 	text "OAK: Be patient!"
 	next "<RIVAL>, you can"
@@ -155,18 +141,16 @@ OaksLabScript5:
 	done
 
 	SetEvent EVENT_OAK_ASKED_TO_CHOOSE_MON
-	xor a
-	ld [wJoyIgnore], a
 
-	ld a, $6
+	ld a, 1
 	ld [wOaksLabCurScript], a
 	ret
 
-OaksLabScript6:
+OaksLabScript1:
 	ld a, [wYCoord]
-	cp $6
+	cp 6
 	ret nz
-	ld a, $5
+	ld a, 5
 	ld [H_SPRITEINDEX], a
 	xor a ; SPRITE_FACING_DOWN
 	ld [hSpriteFacingDirection], a
@@ -187,13 +171,10 @@ OaksLabScript6:
 	ld a, D_UP
 	ld [wSimulatedJoypadStatesEnd], a
 	call StartSimulatingJoypadStates
-	ld a, PLAYER_DIR_UP
-	ld [wPlayerMovingDirection], a
 
 	jp WaitForScriptedPlayerMovement
 
-OaksLabScript7:
-OaksLabScript8:
+OaksLabScript2:
 	ld a, [wPlayerStarter]
 	cp STARTER1
 	jr z, .Charmander
@@ -287,9 +268,8 @@ OaksLabScript8:
 	ld [H_SPRITEINDEX], a
 	call MoveSprite
 
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 
-OaksLabScript9:
 	ld a, $fc
 	ld [wJoyIgnore], a
 	ld a, $1
@@ -317,7 +297,9 @@ OaksLabScript9:
 .asm_1cd32
 	ld [wMissableObjectIndex], a
 	predef HideObject
-	call Delay3
+
+	Delay 3
+	
 	ld a, [wRivalStarterTemp]
 	ld [wRivalStarter], a
 	ld [wcf91], a
@@ -339,11 +321,11 @@ OaksLabScript9:
 	xor a
 	ld [wJoyIgnore], a
 
-	ld a, $a
+	ld a, 3
 	ld [wOaksLabCurScript], a
 	ret
 
-OaksLabScript10:
+OaksLabScript3:
 	ld a, [wYCoord]
 	cp $6
 	ret nz
@@ -382,9 +364,8 @@ OaksLabScript10:
 	ld [H_SPRITEINDEX], a
 	call MoveSprite
 
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 
-OaksLabScript11:
 	ld a, 1
 	ld [wSpriteIndex], a
 	call GetSpritePosition1
@@ -396,7 +377,7 @@ OaksLabScript11:
 	ld a, PLAYER_DIR_UP
 	ld [wPlayerMovingDirection], a
 
-	ld a, $c
+	ld a, 4
 	ld [wOaksLabCurScript], a
 
 	Battle Rival1
@@ -425,7 +406,7 @@ RivalExitMovement:
 	db NPC_MOVEMENT_DOWN
 	db $FF
 
-OaksLabScript12:
+OaksLabScript4:
 	ld a, $f0
 	ld [wJoyIgnore], a
 	ld a, PLAYER_DIR_UP
@@ -442,9 +423,7 @@ OaksLabScript12:
 	predef HealParty
 	SetEvent EVENT_BATTLED_RIVAL_IN_OAKS_LAB
 
-OaksLabScript13:
-	ld c, 20
-	call DelayFrames
+	Delay 20
 	
 	text "<RIVAL>: Okay!"
 	next "I'll make my"
@@ -471,9 +450,9 @@ OaksLabScript13:
 .next
 	ld [wNPCMovementDirections], a
 
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 	; TODO - want to have player face rival as he walks away...
-OaksLabScript14:
+
 	;ld a, [wd730]
 	;bit 0, a
 	;jr nz, .asm_1ce8c
@@ -484,7 +463,7 @@ OaksLabScript14:
 	xor a
 	ld [wJoyIgnore], a
 	call PlayDefaultMusic ; reset to map music
-	ld a, $12
+	ld a, -1
 	ld [wOaksLabCurScript], a
 	jr .done
 	
@@ -511,7 +490,7 @@ OaksLabScript14:
 .done
 	ret
 
-OaksLabScript15:
+OaksLabScript5:
 	xor a
 	ld [hJoyHeld], a
 	call EnableAutoTextBoxDrawing
@@ -540,7 +519,7 @@ OaksLabScript15:
 	ld de, wNPCMovementDirections2
 	call MoveSprite
 
-	ld a, $10
+	ld a, 6
 	ld [wOaksLabCurScript], a
 	ret
 
@@ -556,7 +535,7 @@ OaksLabScript_1cefd:
 	ld [hSpriteFacingDirection], a
 	jp SetSpriteFacingDirectionAndDelay
 
-OaksLabScript16:
+OaksLabScript6:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
@@ -569,7 +548,8 @@ OaksLabScript16:
 	text "<RIVAL>: What did"
 	next "you call me for?"
 	done
-	call DelayFrame
+
+	Delay
 
 	call OaksLabScript_1cefd
 
@@ -577,7 +557,8 @@ OaksLabScript16:
 	next "have a request"
 	cont "of you two."
 	done
-	call DelayFrame
+
+	Delay
 
 	call OaksLabScript_1cefd
 
@@ -593,7 +574,8 @@ OaksLabScript16:
 	para "It's a hi-tech"
 	next "encyclopedia!"
 	done
-	call DelayFrame
+
+	Delay
 
 	text "OAK: <PLAYER> and"
 	next "<RIVAL>! Take"
@@ -603,7 +585,8 @@ OaksLabScript16:
 	next "POKéDEX from OAK!"
 	sfxtext SFX_GET_KEY_ITEM
 	done
-	call Delay3
+	
+	Delay 3
 
 	ld a, HS_POKEDEX_1
 	ld [wMissableObjectIndex], a
@@ -640,7 +623,8 @@ OaksLabScript16:
 	ld a, SPRITE_FACING_RIGHT
 	ld [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
-	call Delay3
+
+	Delay 3
 
 	text "<RIVAL>: Alright"
 	next "Gramps! Leave it"
@@ -683,11 +667,11 @@ OaksLabScript16:
 	ld de, wNPCMovementDirections2
 	call MoveSprite
 
-	ld a, $11
+	ld a, 7
 	ld [wOaksLabCurScript], a
 	ret
 
-OaksLabScript17:
+OaksLabScript7:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
@@ -703,11 +687,8 @@ OaksLabScript17:
 	predef ShowObject
 	xor a
 	ld [wJoyIgnore], a
-	ld a, $12
+	ld a, -1
 	ld [wOaksLabCurScript], a
-	ret
-
-OaksLabScript18:
 	ret
 
 OaksLabScript_RemoveParcel:
@@ -881,8 +862,9 @@ OaksLabScript_1d157:
 	predef StarterDex
 	ld hl, wd730
 	res 6, [hl]
-	ld c, 10
-	call DelayFrames
+	
+	Delay 10
+
 	ld a, [wSpriteIndex]
 	cp $2
 	jr z, OaksLabLookAtCharmander
@@ -956,7 +938,7 @@ OaksLabYesNoText:
 	set 3, [hl]
 	ld a, $fc
 	ld [wJoyIgnore], a
-	ld a, $8
+	ld a, 2
 	ld [wOaksLabCurScript], a
 	jp TextScriptEnd
 
@@ -984,7 +966,6 @@ OaksLabLastMonText:
 	fartext _OaksLabLastMonText
 	done
 
-OaksLabText32:
 OaksLabText5:
 	asmtext
 	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
@@ -1035,7 +1016,7 @@ OaksLabText5:
 	ld hl, OaksLabDeliverParcelText
 	call PrintText
 	call OaksLabScript_RemoveParcel
-	ld a, $f
+	ld a, 5
 	ld [wOaksLabCurScript], a
 	jr .asm_1d2ed
 .asm_1d2c8

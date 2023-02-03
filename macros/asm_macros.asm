@@ -1,3 +1,19 @@
+Delay: MACRO
+	IF _NARG == 0
+		call DelayFrame
+	ELSE
+		IF \1 == 1
+			call DelayFrame
+		ELSE
+			IF \1 == 3
+				call Delay3
+			ELSE
+				ld c, \1
+				call DelayFrames
+			ENDC
+		ENDC
+	ENDC
+ENDM
 
 lb: MACRO ; r, hi, lo (bytes)
 	ld \1, (\2) << 8 + ((\3) & $ff)

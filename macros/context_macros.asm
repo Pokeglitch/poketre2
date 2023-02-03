@@ -100,6 +100,7 @@ REDEF ForwardTo EQUS "\n\
     DefineContextMacro case
     DefineContextMacro end
     DefineContextMacro text
+    DefineContextMacro asmdone
     DefineContextMacro done
     DefineContextMacro prompt
     DefineContextMacro exit

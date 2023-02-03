@@ -81,6 +81,10 @@ autopara: MACRO
 	ENDR
 ENDM
 
+Default_asmdone: MACRO
+	jp TextScriptEnd
+ENDM
+
 ; End a string
 Default_done: MACRO
 	db TEXT_END
@@ -173,6 +177,11 @@ TX_POKECENTER_NURSE        EQUS "db $ff"
 
 Text_done: MACRO
     ForwardTo Default_done
+    CloseContext
+ENDM
+
+Text_asmdone: MACRO
+    ForwardTo Default_asmdone
     CloseContext
 ENDM
 

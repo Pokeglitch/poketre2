@@ -67,7 +67,7 @@ CheckOakAppear:
 	ld [H_SPRITEINDEX], a
 	call MoveSprite
 	
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 
 	xor a ; ld a, SPRITE_FACING_DOWN
 	ld [wSpriteStateData1 + 9], a
@@ -91,7 +91,7 @@ CheckOakAppear:
 	ld a, [H_LOADEDROMBANK]
 	ld [wNPCMovementScriptBank], a
 
-	jp WaitForNPCMovementScript
+	jp WaitForPlayerFollowNPCScript
 
 PalletTownTrainerHeader0:
 	db TrainerHeaderTerminator
@@ -120,7 +120,7 @@ OakAppearsText:
 	ld [wPlayerMovingDirection], a
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	jp TextScriptEnd
+	asmdone
 
 OakWalksUpText:
 	text "OAK: It's unsafe!"

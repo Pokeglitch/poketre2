@@ -2031,7 +2031,7 @@ CheckFightingMapTrainers::
 
 ; display the before battle text after the enemy trainer has walked up to the player's sprite
 DisplayEnemyTrainerTextAndStartBattle::
-	call WaitForTrainerSprite
+	call WaitForNPCMovement
 	ld [wJoyIgnore], a ; a will be 0
 	ld a, [wSpriteIndex]
 	ld [hSpriteIndexOrTextID], a
@@ -2161,7 +2161,7 @@ NPCMovementCycle:
 
 ; If this causes the user to change maps
 ; it will return directly to the overworld loop
-WaitForNPCMovementScript:
+WaitForPlayerFollowNPCScript:
 	ld a, [wCurMap]
 	push af ; store the current map
 
@@ -2205,7 +2205,7 @@ WaitForScriptedPlayerMovement:
 	jp ExitToOverworldLoop
 
 
-WaitForTrainerSprite:
+WaitForNPCMovement:
 	xor a
 	ld [wPlayerMovingDirection], a ; stop walking
 .checkFinished
@@ -4125,6 +4125,8 @@ endm
 	ret
 
 RunIndexedMapScript::
+	cp -1
+	ret z
 	add a
 	ld d, 0
 	ld e, a
