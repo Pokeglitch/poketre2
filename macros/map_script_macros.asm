@@ -1,12 +1,21 @@
+REDEF MAP_SCRIPT_MACROS EQUS ""
+DefineMapScriptMacros: MACRO
+    AccumulateArgs
+    REDEF MAP_SCRIPT_MACROS EQUS "{ARGS_STR}"
+ENDM
+    DefineMapScriptMacros text, Delay
+    DefineDefaultMacros MapScript, Delay
+
+
 ; 1 = trainer instance
 MapScript_Battle: MACRO
 	ConvertName \1
 
-    PushContext MapScriptBattle, MapScript_Battle_Finish
+    PushContext MapScriptBattle
     Party_Battle
 ENDM
 
-MapScript_Battle_Finish: MACRO
+MapScript_MapScriptBattle_Finish: MACRO
     IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
         ;todo - error
     ENDC
@@ -27,7 +36,7 @@ ENDM
 MapScript_text: MACRO
     REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
 
-    PushContext Text, MapScript_Text_Finish
+    InitTextContext done, {MAP_SCRIPT_MACROS}
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {PTR_NAME}:
             ForwardTo Default_text
@@ -41,7 +50,7 @@ MapScript_Text_Finish: MACRO
 ENDM
 
 MapScriptBattle_text: MACRO
-    PushContext Text
+    InitTextContext prompt, text, Team, switch
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
             {NAME_VALUE}{d:PARTY_INDEX}WinText:

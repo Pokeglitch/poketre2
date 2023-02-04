@@ -1,4 +1,4 @@
-Delay: MACRO
+Default_Delay: MACRO
 	IF _NARG == 0
 		call DelayFrame
 	ELSE

@@ -1,5 +1,4 @@
 Context EQUS "Default"
-ContextCallback EQUS ""
 ContextPushed = 0
 ContextCount = 0
 
@@ -24,18 +23,12 @@ SetContext: MACRO
     REDEF Context{d:ContextCount} EQUS "{Context}"
     REDEF Context EQUS "\1"
 
-    ; store the previous callback and update
-    REDEF ContextCallback{d:ContextCount} EQUS "{ContextCallback}"
-    IF _NARG == 2
-        REDEF ContextCallback EQUS "\2"
-    ELSE
-        REDEF ContextCallback EQUS ""
-    ENDC
-
     ; increase the context count
     DEF ContextCount += 1
 ENDM
 
+; will auto callback if:
+; {NewContext}_{ClosedContext}_Finish is defined
 CloseContext: MACRO
     IF _NARG == 1
         DEF CLOSE_COUNT = \1
@@ -52,15 +45,15 @@ CloseContext: MACRO
                 POPS
             ENDC
 
-            ; run the callback macro if exists
-            IF STRCMP("{ContextCallback}", "")
-                {ContextCallback}
+            ; if a callback is defined, then run it\
+            REDEF CALLBACK EQUS "{Context{d:ContextCount}}_{Context}_Finish"
+            IF DEF({CALLBACK})
+                {CALLBACK}
             ENDC
 
             ; restore the previous context pushed
             DEF ContextPushed = ContextPushed{d:ContextCount}
             REDEF Context EQUS "{Context{d:ContextCount}}"
-            REDEF ContextCallback EQUS "{ContextCallback{d:ContextCount}}"
         ENDC
     ENDR
 ENDM
@@ -94,13 +87,21 @@ REDEF ForwardTo EQUS "\n\
     AccumulateArgs\n\
     ForwardToMacro "
 
-    DefineContextMacro Battle
-    DefineContextMacro Team
-    DefineContextMacro switch
-    DefineContextMacro case
-    DefineContextMacro end
-    DefineContextMacro text
-    DefineContextMacro asmdone
-    DefineContextMacro done
-    DefineContextMacro prompt
-    DefineContextMacro exit
+DefineDefaultMacros: MACRO
+    DEF CONTEXT_NAME EQUS "\1"
+    SHIFT
+    REPT _NARG
+        DEF {CONTEXT_NAME}_\1 EQUS "Default_\1"
+    ENDR
+ENDM
+
+DefineContextMacros: MACRO
+    REPT _NARG
+        DefineContextMacro \1
+        SHIFT
+    ENDR
+ENDM
+    DefineContextMacros Battle, Team
+    DefineContextMacros switch, case, end
+    DefineContextMacros text, asmtext, asmdone, done, prompt, exit
+    DefineContextMacros Delay

@@ -4,13 +4,6 @@ textbox: MACRO
 	db \1
 ENDM
 
-Default_text: MACRO
-	REPT _NARG
-		db \1   
-		SHIFT
-	ENDR
-ENDM
-
 more: MACRO
 	REPT _NARG
 		db \1   
@@ -28,7 +21,7 @@ neartext: MACRO
 	dw \1
 ENDM
 
-asmtext: MACRO
+Default_asmtext: MACRO
 	db TEXT_ASM
 ENDM
 
@@ -175,22 +168,81 @@ ENDM
 
 TX_POKECENTER_NURSE        EQUS "db $ff"
 
+Default_text: MACRO
+	REPT _NARG
+		db \1   
+		SHIFT
+	ENDR
+ENDM
+
+REDEF TEXT_AUTO_CLOSE EQUS ""
+SetTextAutoClose: MACRO
+	REDEF TEXT_AUTO_CLOSE EQUS "\1"
+ENDM
+
+Text_asmtext: MACRO
+	SetTextAutoClose asmdone
+	Default_asmtext
+ENDM
+
 Text_done: MACRO
-    ForwardTo Default_done
-    CloseContext
+    Default_done
+    CloseTextContext
 ENDM
 
 Text_asmdone: MACRO
-    ForwardTo Default_asmdone
-    CloseContext
+    Default_asmdone
+    CloseTextContext
 ENDM
 
 Text_prompt: MACRO
-    ForwardTo Default_prompt
-    CloseContext
+    Default_prompt
+    CloseTextContext
 ENDM
 
 Text_exit: MACRO
-    ForwardTo Default_exit
-    CloseContext
+    Default_exit
+	CloseTextContext
+ENDM
+
+CloseTextContext: MACRO
+	PurgeTempTextMacros {TEMP_TEXT_CLOSE_MACROS}
+	CloseContext
+ENDM
+
+; 1 - the auto close macro
+; 2+ - other macros which will auto close
+REDEF TEMP_TEXT_CLOSE_MACROS EQUS ""
+InitTextContext: MACRO
+	PushContext Text
+	SetTextAutoClose \1
+	SHIFT
+
+	ForwardTo DefineTempTextMacros
+ENDM
+
+DefineTempTextMacros: MACRO
+	; args str was defined before this gets called
+	REDEF TEMP_TEXT_CLOSE_MACROS EQUS "{ARGS_STR}"
+
+	REPT _NARG
+		REDEF Text_\1 EQUS "TempTextClose \1, "
+		SHIFT
+	ENDR
+ENDM
+
+PurgeTempTextMacros: MACRO
+	REDEF TEMP_TEXT_CLOSE_MACROS EQUS ""
+
+	REPT _NARG
+		PURGE Text_\1
+		SHIFT
+	ENDR
+ENDM
+
+TempTextClose: MACRO
+	REDEF MACRO_NAME EQUS "\1"
+	SHIFT
+	{TEXT_AUTO_CLOSE}
+	ForwardTo {MACRO_NAME}
 ENDM

@@ -95,7 +95,6 @@ OaksLabScript0:
 	text "<RIVAL>: Gramps!"
 	next "I'm fed up with"
 	cont "waiting!"
-	done
 	
 	Delay 3
 	
@@ -124,14 +123,12 @@ OaksLabScript0:
 	next "have only 3 left,"
 	cont "but you can have"
 	cont "one! Choose!"
-	done
 	
 	Delay 3
 
 	text "<RIVAL>: Hey!"
 	next "Gramps! What"
 	cont "about me?"
-	done
 	
 	Delay 3
 
@@ -385,11 +382,9 @@ OaksLabScript3:
 		next "Unbelievable!"
 		cont "I picked the"
 		cont "wrong POKéMON!"
-		prompt
 
 		text "<RIVAL>: Yeah! Am"
 		next "I great or what?"
-		prompt
 
 		switch wRivalStarter
 			case STARTER1, 5, Charmander
@@ -547,7 +542,6 @@ OaksLabScript6:
 	
 	text "<RIVAL>: What did"
 	next "you call me for?"
-	done
 
 	Delay
 
@@ -556,7 +550,6 @@ OaksLabScript6:
 	text "OAK: Oh right! I"
 	next "have a request"
 	cont "of you two."
-	done
 
 	Delay
 
@@ -573,7 +566,6 @@ OaksLabScript6:
 
 	para "It's a hi-tech"
 	next "encyclopedia!"
-	done
 
 	Delay
 
@@ -584,7 +576,6 @@ OaksLabScript6:
 	para "<PLAYER> got"
 	next "POKéDEX from OAK!"
 	sfxtext SFX_GET_KEY_ITEM
-	done
 	
 	Delay 3
 
