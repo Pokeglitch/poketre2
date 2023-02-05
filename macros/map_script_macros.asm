@@ -45,8 +45,7 @@ MapScript_text: MACRO
 ENDM
 
 MapScript_Text_Finish: MACRO
-    ld hl, PTR_NAME
-	call DisplayTextInTextbox
+    DisplayText PTR_NAME
 ENDM
 
 MapScriptBattle_text: MACRO

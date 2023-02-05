@@ -1,3 +1,4 @@
+INCLUDE "macros/context_macros.asm"
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/data_macros.asm"
 
@@ -13,7 +14,7 @@ Table: MACRO
     DEF {TABLE_NAME}EntryCount = 0
 ENDM
 
-Flag: MACRO
+Default_Flag: MACRO
     DEF {TABLE_NAME}\1\2 = 0
     DEF {TABLE_NAME}\1\3 = 1
 ENDM

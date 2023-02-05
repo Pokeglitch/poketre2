@@ -1,4 +1,16 @@
-    Bits PartyData, 7, Special
+    ByteStruct PartyData
+        Index -o, Level, 100
+        Index MoveIndex, 3
+        Flag Special
+
+    ByteStruct PartyDefinition
+        Array Condition, Standard, RAMValue, RoutineValue, RoutineDefinition
+        Flag Levels, Explicit, Scaled
+        Flag Type, Flag, Value
+        Array -o, ValueMethod, Equal, GreaterThanEqual, GreaterThan, LessThanEqual, LessThan
+        Array -o, FlagMethod, z, nz, c, nz
+        Index FlagIndex, 7
+        done
 
 Party_Battle: MACRO
     DEF PARTY_INDEX = {NAME_VALUE}PartyCount
@@ -45,7 +57,7 @@ Party2: MACRO
         IsNumber {ARG3}
 
         IF IS_NUMBER == 1
-            DEF SPECIAL_MASK = SpecialPartyDataBitMask
+            DEF SPECIAL_MASK = PartyDataSpecialBitMask
         ENDC
     ENDC
 
@@ -54,7 +66,7 @@ Party2: MACRO
 
     IF SPECIAL_MASK != 0
         REPT _NARG/2
-            DEF SPECIAL_MASK = SpecialPartyDataBitMask
+            DEF SPECIAL_MASK = PartyDataSpecialBitMask
 
             ; TODO - this DEF check is unncessary once the Move Table is added
             IF DEF(\2Table)
@@ -96,7 +108,7 @@ Party: MACRO
                 IsNumber {ARG3}
 
                 IF IS_NUMBER == 1
-                    DEF SPECIAL_MASK = SpecialPartyDataBitMask
+                    DEF SPECIAL_MASK = PartyDataSpecialBitMask
                 ENDC
             ENDC
 
@@ -105,7 +117,7 @@ Party: MACRO
 
             IF SPECIAL_MASK != 0
                 REPT _NARG/2
-                    DEF SPECIAL_MASK = SpecialPartyDataBitMask
+                    DEF SPECIAL_MASK = PartyDataSpecialBitMask
 
                     ; TODO - this DEF check is unncessary once the Move Table is added
                     IF DEF(\2Table)

@@ -73,7 +73,7 @@ LoadTrainer:
 
 .partyFound
 	ld a, [hli]
-	bit SpecialPartyDataBitIndex, a ; is the trainer special?
+	bit PartyDataSpecialBitIndex, a ; is the trainer special?
 	jr nz, .specialTrainer ; if so, check for special moves
 
 ; standard trainer
@@ -87,7 +87,7 @@ LoadTrainer:
 	jr .addNextPokemon_Standard
 
 .specialTrainer
-	xor SpecialPartyDataBitMask ; unset the flag
+	res PartyDataSpecialBitIndex, a ; unset the flag
 	ld de, wEnemyMon1Moves
 
 .addNextMon
@@ -103,7 +103,7 @@ LoadTrainer:
 	cp PartyDataTerminator
 	jr z, .storeTrainerMoney ; add the money if end of data reached
 	
-	bit SpecialPartyDataBitIndex, a ; if the high bit is set, then this pokemon has a special move
+	bit PartyDataSpecialBitIndex, a ; if the high bit is set, then this pokemon has a special move
 	jr nz, .storeSpecialMove
 
 	; otherwise, update the pointer for the next mon's move and read next data set
@@ -118,9 +118,9 @@ LoadTrainer:
 .storeSpecialMove
 	push de
 
-	xor SpecialPartyDataBitMask ; unset the flag
+	res PartyDataSpecialBitIndex, a ; unset the flag
 	add e
-	ld e, a ; move the move index
+	ld e, a ; shift the move index
 	jr nc, .dontIncD
 
 	inc d ; if carry, increase d

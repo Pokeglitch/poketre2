@@ -1,4 +1,15 @@
-    Bits MapObject, 7, Sign
+    ByteStruct MapObject
+        Index TextIndex, 127    
+        Flag Sign
+        
+    ByteStruct ObjectData
+        Index -o, Level, 100
+        Index PartyIndex, 127
+        Flag Trainer
+
+    ByteStruct MapText
+        Index Index, 31
+        Array Type, 3, Standard, Item, Trainer
 
 ; todo - struct macro
 TrainerHeaderPropertyFlagIndexMask = %00000111
@@ -9,12 +20,6 @@ TrainerHeaderPropertyWinBattleTextOffset = 8
 TrainerHeaderPropertyLoseBattleTextOffset = 10
 TrainerHeaderSize = 12
 TrainerHeaderTerminator = -1
-
-    Array TextType, None, Item, Trainer
-
-; TODO - define by macro
-TextTypeShift = 5
-TextTypeMask = %11100000
 
 TotalTrainerBattleCount = 0
 
@@ -131,7 +136,7 @@ AddTextPointer: MACRO
     DEF {MAP_NAME}TextCount = {MAP_NAME}TextCount + 1
 
     IF _NARG == 2
-        db {MAP_NAME}TextCount | \2 << TextTypeShift
+        db {MAP_NAME}TextCount | \2
     ELSE
         db {MAP_NAME}TextCount
     ENDC
@@ -168,10 +173,10 @@ MapObjects_Battle: MACRO
 	db \4
 	db \5
 
-    AddTextPointer {POINTER_NAME}, TextTypeTrainer
+    AddTextPointer {POINTER_NAME}, MapTextTypeTrainer
     
 	db \7
-	db \8 | TrainerObjectDataBitMask
+	db \8 | ObjectDataTrainerBitMask
 
     PUSHS
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
@@ -194,7 +199,7 @@ Pickup: MACRO
 	db STAY
 	db NONE
 
-    db TextTypeItem << TextTypeShift
+    db MapTextTypeItem
     
     db \3
 

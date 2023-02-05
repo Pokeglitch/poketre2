@@ -1,5 +1,6 @@
-	Bits Button, A, B, Select, Start, Right, Left, Up, Down
-	Mask DPad, Button, Right, Left, Up, Down
+	ByteStruct Button
+		Flags Choice, A, B, Select, Start
+		Flags DPad, Right, Left, Up, Down
 
 ; From http://nocash.emubase.de/pandocs.htm.
 

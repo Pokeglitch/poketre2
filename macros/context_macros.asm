@@ -105,3 +105,4 @@ ENDM
     DefineContextMacros switch, case, end
     DefineContextMacros text, asmtext, asmdone, done, prompt, exit
     DefineContextMacros Delay
+    DefineContextMacros Array, Flag, Flags, Index, Skip

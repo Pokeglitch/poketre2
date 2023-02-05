@@ -1,7 +1,7 @@
 IgnoreButtons: MACRO
     DEF MASK_VALUE = 0
     REPT _NARG
-        DEF MASK_VALUE += \1ButtonBitMask
+        DEF MASK_VALUE += Button\1BitMask
         SHIFT
     ENDR
 
@@ -11,7 +11,7 @@ ENDM
 PermitButtons: MACRO
     DEF MASK_VALUE = 0
     REPT _NARG
-        DEF MASK_VALUE += \1ButtonBitMask
+        DEF MASK_VALUE += Button\1BitMask
         SHIFT
     ENDR
 

@@ -1,3 +1,16 @@
+INCLUDE "macros/byte_struct.asm"
+
+; 1 = how many bits to set
+; 2 = how many bits to shift
+BitMask: MACRO
+    DEF BIT_MASK = 0
+    REPT \1
+        DEF BIT_MASK = (BIT_MASK << 1) | 1
+    ENDR
+
+    DEF BIT_MASK = BIT_MASK << \2
+ENDM
+
 CleanChar: MACRO
     IF _NARG == 3
         REDEF \1 EQUS STRRPL("{\1}", \2, \3)
@@ -69,15 +82,15 @@ IsRegister: MACRO
 ENDM
 
 ; makes a virtual list starting at 0 (or, optionally different value)
-Array: MACRO
+Default_Array: MACRO
 	REDEF ARRAY_NAME EQUS "\1"
 	SHIFT
 
 	IsNumber \1
 	IF IS_NUMBER
-        ; If the array has already  been defined, print the message
+        ; If the array has already been defined, fail
         IF DEF({ARRAY_NAME}Size) == 1
-            PRINT "Warning: Array {ARRAY_NAME} has already been defined. Not changing starting index"
+            FAIL "Array {ARRAY_NAME} has already been defined. Not changing starting index"
         ELSE
             DEF {ARRAY_NAME}FirstIndex = \1
             DEF {ARRAY_NAME}LastIndex = \1 - 1
@@ -105,46 +118,34 @@ Array: MACRO
         DEF ARRAY_INDEX = ARRAY_INDEX + 1
 		SHIFT
 	ENDR
-
 ENDM
 
-; creates BitIndex and BitMask
-; can skip bits if number
-Bits: MACRO
-    DEF BIT_INDEX = 0
-    DEF ALL_MASK_VALUE = 0
-    REDEF BIT_TYPE EQUS "\1"
-    SHIFT
+CheckOverload: MACRO
+    DEF OVERLOAD = 0
+    IF STRCMP("\1","-o") == 0
+        DEF OVERLOAD = 1
+        DEF ORIGINAL_VALUE = \2
+        REDEF VALUE_NAME EQUS "\2"
+    ENDC
+ENDM
 
-    REPT _NARG
-        IsNumber \1
-        IF IS_NUMBER
-            DEF BIT_INDEX += \1
-        ELSE
-            DEF \1{BIT_TYPE}BitIndex = BIT_INDEX
-            DEF \1{BIT_TYPE}BitMask = 1 << BIT_INDEX
-            DEF ALL_MASK_VALUE += \1{BIT_TYPE}BitMask
-            DEF BIT_INDEX += 1
+ResetOverload: MACRO
+    DEF OVERLOAD = 0
+    DEF OVERLOAD_END_VALUE = 0
+ENDM
+
+RestoreOverload: MACRO
+    IF OVERLOAD
+        ; store the end value for when overload is finished
+        IF {VALUE_NAME} > OVERLOAD_END_VALUE
+            DEF OVERLOAD_END_VALUE = {VALUE_NAME}
         ENDC
-        SHIFT
-    ENDR
-
-    DEF All{BIT_TYPE}BitMask = ALL_MASK_VALUE
-    DEF None{BIT_TYPE}BitMask = %11111111 ^ ALL_MASK_VALUE
-ENDM
-
-; 1: name
-; 2: type
-Mask: MACRO
-    DEF MASK_VALUE = 0
-    REDEF MASK_NAME EQUS "\1"
-    REDEF BIT_TYPE EQUS "\2"
-    SHIFT 2
-
-    REPT _NARG
-        DEF MASK_VALUE += \1{BIT_TYPE}BitMask
-        SHIFT
-    ENDR
-
-    DEF {MASK_NAME}{BIT_TYPE}BitMask = MASK_VALUE
+        DEF {VALUE_NAME} = ORIGINAL_VALUE
+    ELSE
+        IF OVERLOAD_END_VALUE
+            IF {VALUE_NAME} < OVERLOAD_END_VALUE
+                DEF {VALUE_NAME} = OVERLOAD_END_VALUE
+            ENDC
+        ENDC
+    ENDC
 ENDM

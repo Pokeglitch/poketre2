@@ -814,9 +814,9 @@ DisplayTextID::
 	; can they just all be declared signs?
 
 	ld a, [hSpriteIndexOrTextID] ; sprite ID
-	bit SignMapObjectBitIndex, a
+	bit MapObjectSignBitIndex, a
 	jr z, .spriteHandling
-	res SignMapObjectBitIndex, a ;reset the flag
+	res MapObjectSignBitIndex, a ;reset the flag
 	jr .skipSpriteHandling
 	
 .spriteHandling
@@ -839,21 +839,19 @@ DisplayTextID::
 	inc hl
 	ld a, [hl] ; a = text ID of the sprite
 
-	and TextTypeMask ; see if any flags are set
+	and MapTextTypeBitMask ; see if any flags are set
 	jr z, .notSpecial
 
-	swap a
-	srl a
-	cp TextTypeTrainer
+	cp MapTextTypeTrainer
 	jr z, .trainerSprite
 	
-	cp TextTypeItem
+	cp MapTextTypeItem
 	jr z, .itemSprite
 
 .notSpecial
 	ld a, [hl]
 	pop hl
-	and ~TextTypeMask ; remove the flags
+	and MapTextIndexBitMask ; remove the flags
 	jr .skipSpriteHandling
 
 .itemSprite
@@ -865,7 +863,7 @@ DisplayTextID::
 	ld a, [hl]
 	pop hl
 	; look up the address of the text in the map's text entries
-	and ~TextTypeMask ; remove the flags
+	and MapTextIndexBitMask ; remove the flags
 	dec a
 	ld e, a
 	sla e
@@ -2265,10 +2263,10 @@ EngageMapTrainer::
 
 	ld a, [hl]     ; load trainer mon set
 
-	bit TrainerObjectDataBitIndex, a		; represents if it is a pokemon or trainer
+	bit ObjectDataTrainerBitIndex, a		; represents if it is a pokemon or trainer
 	jr z, .wild
 	
-	xor TrainerObjectDataBitMask ; unset the flag
+	res ObjectDataTrainerBitIndex, a ; unset the flag
 	ld [wTrainerNo], a
 
 	ld a, BattleModeTrainer

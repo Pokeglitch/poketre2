@@ -89,9 +89,6 @@ LEFT  EQU $D2
 RIGHT EQU $D3
 NONE  EQU $FF
 
-
-	Bits ObjectData, 7, Trainer
-
 ;\1 sprite id
 ;\2 x position
 ;\3 y position
@@ -113,7 +110,7 @@ object: MACRO
 		; TODO - the DEF check isnt necessary once using Pokemon table
 		IF DEF(\7Table)
 			IF STRCMP("{\7Table}","Trainer") == 0
-				db \8 | TrainerObjectDataBitMask; set flag to indicate trainer
+				db \8 | ObjectDataTrainerBitMask; set flag to indicate trainer
 			ELSE
 				db \8
 			ENDC
