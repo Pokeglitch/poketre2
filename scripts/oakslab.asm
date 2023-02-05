@@ -386,7 +386,7 @@ OaksLabScript3:
 		text "<RIVAL>: Yeah! Am"
 		next "I great or what?"
 
-		switch wRivalStarter
+		Team switch, wRivalStarter
 			case STARTER1, 5, Charmander
 			case STARTER2, 5, Squirtle
 			case STARTER3, 5, Bulbasaur

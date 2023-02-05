@@ -45,15 +45,17 @@ CloseContext: MACRO
                 POPS
             ENDC
 
-            ; if a callback is defined, then run it\
+            ; Store the potential callback macro name
             REDEF CALLBACK EQUS "{Context{d:ContextCount}}_{Context}_Finish"
-            IF DEF({CALLBACK})
-                {CALLBACK}
-            ENDC
 
             ; restore the previous context pushed
             DEF ContextPushed = ContextPushed{d:ContextCount}
             REDEF Context EQUS "{Context{d:ContextCount}}"
+
+            ; if the callback exists, execute it
+            IF DEF({CALLBACK})
+                {CALLBACK}
+            ENDC
         ENDC
     ENDR
 ENDM

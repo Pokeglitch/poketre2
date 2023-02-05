@@ -12,43 +12,9 @@
         Index FlagIndex, 7
         done
 
-Party_Battle: MACRO
-    DEF PARTY_INDEX = {NAME_VALUE}PartyCount
-    REDEF PARTY_NAME EQUS "{NAME_VALUE}Party{d:PARTY_INDEX}"
-
-	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
-        ; add pointer to party
-        dw {PARTY_NAME}
-
-    ; add party data
-    SECTION FRAGMENT "{NAME_VALUE} Parties", ROMX, BANK[TrainerClass]
-        {PARTY_NAME}:
-            db {PARTY_NAME}Properties
-
-        ; define after allocating to use final value
-        DEF {PARTY_NAME}Properties = 0
-
-    DEF {NAME_VALUE}PartyCount += 1
-ENDM
-
-Party_switch: MACRO
-    ; todo - need to set a flag instead
-    DEF {PARTY_NAME}Properties = -1
-    
-    dw \1
-ENDM
-
-Party_case: MACRO
-    db \1
-ENDM
-
-Party_end: MACRO
-    CloseContext
-ENDM
-
 PartyDataTerminator = -1
 
-Party2: MACRO
+ParseTeamData: MACRO
     DEF SPECIAL_MASK = 0
     
     ; If there is a third argument, and it is a number, then it is special
@@ -86,6 +52,7 @@ Party2: MACRO
     ENDC
 
     db PartyDataTerminator
+    CloseParty
 ENDM
 
 Party: MACRO
@@ -167,5 +134,110 @@ Trainer: MACRO
 	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
 		{NAME_VALUE}Parties:
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
+    CloseContext
+ENDM
+
+REDEF PartyName EQUS ""
+DEF PartyNameCount = 0
+InitializeTeam: MACRO
+    ; store the previous Party Name and update with unique name
+    REDEF PartyName{d:PartyNameCount} EQUS "{PartyName}"
+    REDEF PartyName EQUS "Party_\@"
+
+    ; increase the Party Name count
+    DEF PartyNameCount += 1
+
+    ; write the pointer to the party
+    dw {PartyName}
+
+    ; enter the team context
+    PushContext Team
+
+    ; initialize the party data
+    SECTION "{PartyName} Party", ROMX, BANK[TrainerClass]
+    {PartyName}:
+        db {PartyName}Properties
+
+    ; define properties after allocating so it will use final value
+    DEF {PartyName}Properties = 0
+    
+    ; handle the arguments
+    IF _NARG
+        ; if the first argument is a number, then its a party definition
+        IsNumber \1
+        IF IS_NUMBER
+            ForwardTo ParseTeamData
+        ; otherwise, assume it is a macro and execute it
+        ELSE            
+            REDEF MACRO_NAME EQUS "\1"
+            SHIFT
+            ForwardTo {MACRO_NAME}
+        ENDC
+    ENDC
+ENDM
+
+CloseParty: MACRO
+    ; decrease the Party Name count
+    DEF PartyNameCount -= 1
+    ; restore the previous Party Name
+    REDEF PartyName EQUS "{PartyName{d:PartyNameCount}}"
+
+    CloseContext ; close the team context
+ENDM
+
+; 1 = Trainer
+InitializeBattle: MACRO
+	ConvertName \1
+    REDEF BATTLE_TRAINER_NAME EQUS "{NAME_VALUE}"
+
+    DEF BATTLE_PARTY_INDEX = {BATTLE_TRAINER_NAME}PartyCount
+    DEF {BATTLE_TRAINER_NAME}PartyCount += 1
+
+    REDEF BATTLE_TEAM_NAME EQUS "{BATTLE_TRAINER_NAME}Team{d:PARTY_INDEX}"
+ENDM
+
+Team_switch: MACRO
+    ; todo - need to set a flag instead
+    DEF {PartyName}Properties = -1
+    
+    dw \1
+
+    SetContext TeamSwitchValue
+ENDM
+
+; When a team switch value is finished, also close the party
+Team_TeamSwitchValue_Finish: MACRO
+    CloseParty
+ENDM
+
+TeamSwitchValue_end: MACRO
+    CloseContext ; close the switch context
+ENDM
+
+TeamSwitchValue_case: MACRO
+    db \1 ; write the value to compare against
+
+    SetContext TeamSwitchValueCase
+
+    ; if more than 1 arg, then the team is also defined
+    IF _NARG > 1
+        SHIFT
+        ForwardTo Team
+    ENDC
+ENDM
+
+; Implicitly open the Team context
+TeamSwitchValueCase_switch: MACRO
+    Team
+    ForwardTo switch
+ENDM
+
+; Initialize the team
+TeamSwitchValueCase_Team: MACRO
+    ForwardTo InitializeTeam
+ENDM
+
+; When a team finishes, also close the case context
+TeamSwitchValueCase_Team_Finish: MACRO
     CloseContext
 ENDM

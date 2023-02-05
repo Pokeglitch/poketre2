@@ -6,33 +6,6 @@ ENDM
     DefineMapScriptMacros text, Delay
     DefineDefaultMacros MapScript, Delay
 
-
-; 1 = trainer instance
-MapScript_Battle: MACRO
-	ConvertName \1
-
-    PushContext MapScriptBattle
-    Party_Battle
-ENDM
-
-MapScript_MapScriptBattle_Finish: MACRO
-    IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
-        ;todo - error
-    ENDC
-
-    PrepareBattle {NAME_VALUE}, {PARTY_INDEX}
-	ld hl, {NAME_VALUE}{d:PARTY_INDEX}WinText
-
-    IF DEF({NAME_VALUE}{d:PARTY_INDEX}LoseText)
-	    ld de, {NAME_VALUE}{d:PARTY_INDEX}LoseText
-    ELSE
-        ld de, {NAME_VALUE}{d:PARTY_INDEX}WinText
-    ENDC
-
-	call SaveEndBattleTextPointers
-	jp StartOverworldBattle
-ENDM
-
 MapScript_text: MACRO
     REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
 
@@ -48,47 +21,54 @@ MapScript_Text_Finish: MACRO
     DisplayText PTR_NAME
 ENDM
 
+; 1 = trainer instance
+MapScript_Battle: MACRO
+    PushContext MapScriptBattle
+    InitializeBattle \1
+ENDM
+
+MapScript_MapScriptBattle_Finish: MACRO
+    IF DEF({BATTLE_TEAM_NAME}WinText) == 0
+        ;todo - error
+    ENDC
+
+    PrepareBattle {BATTLE_TRAINER_NAME}, {BATTLE_PARTY_INDEX}
+	ld hl, {BATTLE_TEAM_NAME}WinText
+
+    IF DEF({BATTLE_TEAM_NAME}LoseText)
+	    ld de, {BATTLE_TEAM_NAME}LoseText
+    ELSE
+        ld de, {BATTLE_TEAM_NAME}WinText
+    ENDC
+
+	call SaveEndBattleTextPointers
+	jp StartOverworldBattle
+ENDM
+
 MapScriptBattle_text: MACRO
-    InitTextContext prompt, text, Team, switch
+    InitTextContext prompt, text, Team
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
-        IF DEF({NAME_VALUE}{d:PARTY_INDEX}WinText) == 0
-            {NAME_VALUE}{d:PARTY_INDEX}WinText:
+        IF DEF({BATTLE_TEAM_NAME}WinText) == 0
+            {BATTLE_TEAM_NAME}WinText:
         ELSE
-            {NAME_VALUE}{d:PARTY_INDEX}LoseText:
+            {BATTLE_TEAM_NAME}LoseText:
         ENDC
     
         ForwardTo Default_text
 ENDM
 
+; store the pointer to the trainer table
 MapScriptBattle_Team: MACRO
-    ForwardTo Party2
-    CloseContext ; return to the map script context
+	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
+    ForwardTo InitializeTeam
 ENDM
 
-MapScriptBattle_switch: MACRO
-    SetContext MapScriptBattleSwitch
-    Party_switch \1
+; When returning to battle from the team, close the battle context
+MapScriptBattle_Team_Finish: MACRO
+    CloseContext
 ENDM
 
-; team can optionally be combined with the case
-MapScriptBattleSwitch_case: MACRO
-    Party_case \1
-    IF _NARG == 1
-        SetContext MapScriptBattleSwitchCase
-    ELSE
-        SHIFT
-        ForwardTo Party2
-    ENDC
-ENDM
 
-MapScriptBattleSwitchCase_Team: MACRO
-    ForwardTo Party2
-    CloseContext ; close out of the Case context
-ENDM
-
-MapScriptBattleSwitch_end: MACRO
-    CloseContext 2 ; close out of the Switch and battle context
-ENDM
 
 MapScript_switch: MACRO
 ENDM

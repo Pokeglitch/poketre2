@@ -49,9 +49,10 @@ LoadTrainer:
 	ld h, [hl]
 	ld l, a ; hl = party address
 
+.readPartyProperties
 	ld a, [hli] ; load the properties
-	cp -1
-	jr nz, .partyFound
+	and a ; if there are no properties, then continue
+	jr z, .partyFound
 
 	ld a, [hli]
 	ld c, a
@@ -63,13 +64,19 @@ LoadTrainer:
 .checkCase
 	ld a, [hli]
 	cp b
-	jr z, .partyFound
+	jr z, .caseFound
+	
+	; skip the pointer
+	inc hl
+	inc hl
+	jr .checkCase
 
-.nextPartyLoop
+.caseFound
+	; get the pointer
 	ld a, [hli]
-	cp PartyDataTerminator
-	jr z, .checkCase
-	jr .nextPartyLoop
+	ld h, [hl]
+	ld l, a ; hl = pointer to party
+	jr .readPartyProperties
 
 .partyFound
 	ld a, [hli]
