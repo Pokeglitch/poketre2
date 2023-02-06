@@ -154,12 +154,11 @@ InitializeTeam: MACRO
     PushContext Team
 
     ; initialize the party data
+    DEF {PartyName}Condition = PartyDefinitionConditionStandard
+
     SECTION "{PartyName} Party", ROMX, BANK[TrainerClass]
     {PartyName}:
         db {PartyName}Properties
-
-    ; define properties after allocating so it will use final value
-    DEF {PartyName}Properties = 0
     
     ; handle the arguments
     IF _NARG
@@ -177,6 +176,10 @@ InitializeTeam: MACRO
 ENDM
 
 CloseParty: MACRO
+    ; Build the properties byte
+    ; todo - macro?
+    DEF {PartyName}Properties = {PartyName}Condition
+
     ; decrease the Party Name count
     DEF PartyNameCount -= 1
     ; restore the previous Party Name
@@ -196,28 +199,65 @@ InitializeBattle: MACRO
     REDEF BATTLE_TEAM_NAME EQUS "{BATTLE_TRAINER_NAME}Team{d:PARTY_INDEX}"
 ENDM
 
-Team_switch: MACRO
-    ; todo - need to set a flag instead
-    DEF {PartyName}Properties = -1
-    
-    dw \1
+Team_asm: MACRO
+    DEF {PartyName}Condition = PartyDefinitionConditionRoutineDefinition
 
-    SetContext TeamSwitchValue
+    db BANK({PartyName}Routine)
+    dw {PartyName}Routine
+
+    PushContext TeamASM
+    SECTION "{PartyName} Routine", ROMX, BANK[CUR_BANK]
+        {PartyName}Routine:
 ENDM
 
-; When a team switch value is finished, also close the party
-Team_TeamSwitchValue_Finish: MACRO
+; close the team asm context
+TeamASM_end: MACRO
+    CloseContext
+ENDM
+
+; close the team context
+Team_TeamASM_Finish: MACRO
     CloseParty
 ENDM
 
-TeamSwitchValue_end: MACRO
+Team_switch: MACRO
+    SetContext TeamSwitch
+
+    ; If an argument was provided, then it is a ram value
+    IF _NARG
+        DEF {PartyName}Condition = PartyDefinitionConditionRAMValue
+        dw \1
+    ; Otherwise, it is a routine
+    ELSE
+        DEF {PartyName}Condition = PartyDefinitionConditionRoutineValue
+
+        db BANK({PartyName}SwitchRoutine)
+        dw {PartyName}SwitchRoutine
+
+        PushContext TeamSwitchRoutine
+        SECTION "{PartyName} Switch Routine", ROMX, BANK[CUR_BANK]
+            {PartyName}SwitchRoutine:
+    ENDC
+ENDM
+
+TeamSwitchRoutine_case: MACRO
+    CloseContext
+    ForwardTo case
+ENDM
+
+; When a team switch value is finished, also close the party
+Team_TeamSwitch_Finish: MACRO
+    CloseParty
+ENDM
+
+TeamSwitch_end: MACRO
     CloseContext ; close the switch context
 ENDM
 
-TeamSwitchValue_case: MACRO
+TeamSwitch_case: MACRO
     db \1 ; write the value to compare against
 
-    SetContext TeamSwitchValueCase
+    SetContext TeamSwitchCase
 
     ; if more than 1 arg, then the team is also defined
     IF _NARG > 1
@@ -227,17 +267,17 @@ TeamSwitchValue_case: MACRO
 ENDM
 
 ; Implicitly open the Team context
-TeamSwitchValueCase_switch: MACRO
+TeamSwitchCase_switch: MACRO
     Team
     ForwardTo switch
 ENDM
 
 ; Initialize the team
-TeamSwitchValueCase_Team: MACRO
+TeamSwitchCase_Team: MACRO
     ForwardTo InitializeTeam
 ENDM
 
 ; When a team finishes, also close the case context
-TeamSwitchValueCase_Team_Finish: MACRO
+TeamSwitchCase_Team_Finish: MACRO
     CloseContext
 ENDM

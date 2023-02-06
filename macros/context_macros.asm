@@ -105,7 +105,7 @@ DefineContextMacros: MACRO
 ENDM
     DefineContextMacros Team
     DefineContextMacros Warp, Sign, NPC, Battle, Pickup, WarpTo
-    DefineContextMacros switch, case, end
+    DefineContextMacros switch, case, end, asm
     DefineContextMacros text, asmtext, asmdone, done, prompt, exit
     DefineContextMacros Delay
     DefineContextMacros Array, Flag, Flags, Index, Skip

@@ -2654,8 +2654,11 @@ Bankswitch::
 	jp hl
 .Return
 	pop bc
+	ld c, a ;store the return value into c
 	ld a, b
-	jp SetNewBank
+	call SetNewBank
+	ld a, c ;restore the return value
+	ret
 
 HealCancelTextboxOption:
 	farjump HealCancelTextboxOption_

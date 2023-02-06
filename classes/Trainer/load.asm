@@ -54,18 +54,40 @@ LoadTrainer:
 	and a ; if there are no properties, then continue
 	jr z, .partyFound
 
+	and PartyDefinitionConditionBitMask
+	cp PartyDefinitionConditionRAMValue
+	jr z, .ramValue
+
+	cp PartyDefinitionConditionRoutineValue
+	jr z, .routineValue
+
+	call ExecuteTeamRoutine
+	jr .partyFound ; skip party properties
+	
+.routineValue
+	push hl
+	call ExecuteTeamRoutine
+	pop hl
+	inc hl
+	inc hl
+	inc hl ; move past the bank/address data
+	jr .comparisonValueFound
+
+.ramValue
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a ; bc = ptr compare against
 	ld a, [bc]
+
+.comparisonValueFound
 	ld b, a ; b = value to compare against
 
 .checkCase
 	ld a, [hli]
 	cp b
 	jr z, .caseFound
-	
+
 	; skip the pointer
 	inc hl
 	inc hl
@@ -166,6 +188,14 @@ LoadTrainer:
 	ld a, e
 	ld [hl], a
 	ret
+
+ExecuteTeamRoutine:
+	ld a, [hli]
+	ld b, a ; b = bank to routine
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = ptr to routine
+	jp Bankswitch
 
 AddMonToEnemyParty:
 	push hl

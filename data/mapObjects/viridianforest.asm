@@ -84,7 +84,17 @@
 		next "I ran out of"
 		cont "POKéMON!"
 
-		Team 7, Weedle, Kakuna, Weedle
+		;Team 7, Weedle, Kakuna, Weedle
+		Team asm
+			ld hl, wBuffer
+			ld a, 1
+			ld [hli], a
+			ld a, Mewtwo
+			ld [hli], a
+			ld [hl], -1
+			ld hl, wBuffer
+			ret
+		end
 
 	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, 1, BugCatcher
 		text "Hey, wait up!"

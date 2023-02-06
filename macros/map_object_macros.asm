@@ -163,7 +163,7 @@ MapObjects_Battle: MACRO
     DEF {MAP_NAME}BattleCount = {MAP_NAME}BattleCount + 1
     DEF TotalTrainerBattleCount = TotalTrainerBattleCount + 1
 
-    DEF OBJ_TEXT_COUNT = 0
+    DEF BATTLE_TEXT_COUNT = 0
 ENDM
 
 MapObjects_Pickup: MACRO
@@ -244,14 +244,14 @@ MapObjectsText_Text_Finish: MACRO
 ENDM
 
 MapObjectsBattle_text: MACRO
-    REDEF POINTER_NAME EQUS "{MAP_NAME}Trainer{d:MAP_BATTLE_INDEX}Text{d:OBJ_TEXT_COUNT}"
+    REDEF POINTER_NAME EQUS "{MAP_NAME}Trainer{d:MAP_BATTLE_INDEX}Text{d:BATTLE_TEXT_COUNT}"
     
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         dw {POINTER_NAME}
 
-    DEF OBJ_TEXT_COUNT = OBJ_TEXT_COUNT + 1
+    DEF BATTLE_TEXT_COUNT += 1
 
-    IF OBJ_TEXT_COUNT <= 2
+    IF BATTLE_TEXT_COUNT <= 2
         InitTextContext done, text, Team
     ELSE
         InitTextContext prompt, text, Team
@@ -275,7 +275,7 @@ MapObjects_MapObjectsBattle_Finish: MACRO
     ; If the only three text entries, then duplicate the last one
     ; (Trainer Header Win Text)
     ; TODO - instead, point to a text that will randomly display a relevant message
-    IF OBJ_TEXT_COUNT == 3
+    IF BATTLE_TEXT_COUNT == 3
         SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
             dw {POINTER_NAME}
     ENDC
