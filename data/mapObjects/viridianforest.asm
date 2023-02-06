@@ -57,7 +57,7 @@
 		para "They're out for"
 		next "POKéMON fights!"
 
-	Battle SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, 4, BugCatcher, 1
+	Battle SPRITE_BUG_CATCHER, 30, 33, STAY, LEFT, 4, BugCatcher
 		text "Hey! You have"
 		next "POKéMON! Come on!"
 		cont "Let's battle'em!"
@@ -68,8 +68,10 @@
 		text "No!"
 		next "CATERPIE can't"
 		cont "cut it!"
+
+		Team 6, Weedle, Caterpie
 		
-	Battle SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, 4, BugCatcher, 2
+	Battle SPRITE_BUG_CATCHER, 30, 19, STAY, LEFT, 4, BugCatcher
 		text "Yo! You can't jam"
 		next "out if you're a"
 		cont "POKéMON trainer!"
@@ -82,7 +84,9 @@
 		next "I ran out of"
 		cont "POKéMON!"
 
-	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, 1, BugCatcher, 3
+		Team 7, Weedle, Kakuna, Weedle
+
+	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, 1, BugCatcher
 		text "Hey, wait up!"
 		next "What's the hurry?"
 
@@ -97,6 +101,8 @@
 		text "I"
 		next "give! You're good"
 		cont "at this!"
+
+		Team 9, Weedle
 	
 	Pickup 25, 11, ANTIDOTE
 	Pickup 12, 29, POTION

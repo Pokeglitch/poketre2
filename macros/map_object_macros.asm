@@ -36,7 +36,6 @@ MapData: MACRO
     DEF \1Border = \5
 
     DEF CUR_BANK = BANK(@)
-    DEF OBJ_TEXT_COUNT = 0
 
     DEF \1TextCount = 0
     DEF \1BattleCount = 0
@@ -71,7 +70,6 @@ MapData: MACRO
             \1Objects:
                 db \1Border
                 INCLUDE "data/mapObjects/\1.asm"
-                ResetObjectText
         CloseContext
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
@@ -86,33 +84,7 @@ MapData: MACRO
     POPS
 ENDM
 
-CloseObjectText: MACRO
-    IF OBJ_TEXT_COUNT > 0
-        IF OBJ_TEXT_COUNT > 2
-            Default_prompt
-        ELSE
-            Default_done
-        ENDC
-    ENDC
-ENDM
-
-ResetObjectText: MACRO
-    CloseObjectText
-
-    ; If the previous object has three entries, then duplicate the last one
-    ; (Trainer Header Win Text)
-    ; TODO - instead, point to a text that wil randomly display a relevant message
-    IF OBJ_TEXT_COUNT == 3
-        SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
-            dw {POINTER_NAME}
-    ENDC
-
-    DEF OBJ_TEXT_COUNT = 0
-ENDM
-
-UpdateMapObject: MACRO
-    ResetObjectText
-
+UpdateMapObjectCount: MACRO
     SECTION FRAGMENT "{MAP_NAME} Objects", ROMX, BANK[CUR_BANK]
         IF DEF({MAP_NAME}\1Count) == 0
             {MAP_NAME}\1s:
@@ -147,9 +119,8 @@ MapCoord: MACRO
 	db \1 + 4
 ENDM
 
-NPC: MACRO
-    UpdateMapObject Sprite
-    REDEF MapObjectText EQUS "MapText"
+MapObjects_NPC: MACRO
+    UpdateMapObjectCount Sprite
 
 	db \1
 	MapCoord \2, \3
@@ -158,12 +129,14 @@ NPC: MACRO
     
     IF _NARG == 6
         AddTextPointer \6
+    ELSE
+        SetContext MapObjectsText
     ENDC
 ENDM
 
+; todo - need to distinguish between pokemon and trainer
 MapObjects_Battle: MACRO
-    UpdateMapObject Sprite
-    REDEF MapObjectText EQUS "TrainerText"
+    UpdateMapObjectCount Sprite
 
     DEF MAP_BATTLE_INDEX = {MAP_NAME}BattleCount
     REDEF POINTER_NAME EQUS "{MAP_NAME}TrainerHeader{d:MAP_BATTLE_INDEX}"
@@ -175,24 +148,26 @@ MapObjects_Battle: MACRO
 
     AddTextPointer {POINTER_NAME}, MapTextTypeTrainer
     
+    InitializeBattle \7
+    
 	db \7
-	db \8 | ObjectDataTrainerBitMask
+	db {BATTLE_PARTY_INDEX} | ObjectDataTrainerBitMask
 
-    PUSHS
+    PushContext MapObjectsBattle
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
             db 1 << (TotalTrainerBattleCount % 8) ; the mask for this trainer
             db (\6 << 4) | {MAP_NAME}SpriteCount; trainer's view range and sprite index
             dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
-    POPS
     
     DEF {MAP_NAME}BattleCount = {MAP_NAME}BattleCount + 1
     DEF TotalTrainerBattleCount = TotalTrainerBattleCount + 1
+
+    DEF OBJ_TEXT_COUNT = 0
 ENDM
 
-Pickup: MACRO
-    UpdateMapObject Sprite
-    REDEF MapObjectText EQUS "MapText"
+MapObjects_Pickup: MACRO
+    UpdateMapObjectCount Sprite
 
 	db SPRITE_BALL
 	MapCoord \1, \2
@@ -213,14 +188,15 @@ ENDM
 ;\1 x position
 ;\2 y position
 ;\3 sign id
-Sign: MACRO
-    UpdateMapObject Sign
-    REDEF MapObjectText EQUS "MapText"
+MapObjects_Sign: MACRO
+    UpdateMapObjectCount Sign
 
     db \2
     db \1
     IF _NARG == 3
         AddTextPointer \3
+    ELSE
+        SetContext MapObjectsText
     ENDC
 ENDM
 
@@ -228,8 +204,8 @@ ENDM
 ;\2 y position
 ;\3 destination warp id
 ;\4 destination map (-1 = wLastMap)
-Warp: MACRO
-    UpdateMapObject Warp
+MapObjects_Warp: MACRO
+    UpdateMapObjectCount Warp
 
 	db \2
     db \1
@@ -244,38 +220,63 @@ ENDM
 
 ;\1 x position
 ;\2 y position
-WarpTo: MACRO
-    UpdateMapObject WarpTo, 0
+MapObjects_WarpTo: MACRO
+    UpdateMapObjectCount WarpTo, 0
     
 	EVENT_DISP {MAP_NAME}Width, \2, \1
 ENDM
 
-AddText: MACRO
-    DEF OBJ_TEXT_COUNT = OBJ_TEXT_COUNT + 1
-
-    SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
-        {POINTER_NAME}:
-ENDM
-
-MapObjects_text: MACRO
-    MapObjectText
-    AddText
-    ForwardTo Default_text
-ENDM
-
-MapText: MACRO
+MapObjectsText_text: MACRO
     REDEF POINTER_NAME EQUS "{MAP_NAME}Text{d:{MAP_NAME}TextCount}"
 
     ; Place the Pointer to the table
     AddTextPointer {POINTER_NAME}
+
+    InitTextContext done, Sign, NPC, Battle, Pickup, WarpTo
+    SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
+        {POINTER_NAME}:
+            ForwardTo Default_text
 ENDM
 
-TrainerText: MACRO
-    CloseObjectText
+; Close the map objects text context
+MapObjectsText_Text_Finish: MACRO
+    CloseContext
+ENDM
 
+MapObjectsBattle_text: MACRO
     REDEF POINTER_NAME EQUS "{MAP_NAME}Trainer{d:MAP_BATTLE_INDEX}Text{d:OBJ_TEXT_COUNT}"
     
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         dw {POINTER_NAME}
+
+    DEF OBJ_TEXT_COUNT = OBJ_TEXT_COUNT + 1
+
+    IF OBJ_TEXT_COUNT <= 2
+        InitTextContext done, text, Team
+    ELSE
+        InitTextContext prompt, text, Team
+    ENDC
+    SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
+        {POINTER_NAME}:
+            ForwardTo Default_text
 ENDM
 
+MapObjectsBattle_Team: MACRO
+	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
+    ForwardTo InitializeTeam
+ENDM
+
+; Close the map objects battle context
+MapObjectsBattle_Team_Finish: MACRO
+    CloseContext ; close the map objects battle context
+ENDM
+
+MapObjects_MapObjectsBattle_Finish: MACRO
+    ; If the only three text entries, then duplicate the last one
+    ; (Trainer Header Win Text)
+    ; TODO - instead, point to a text that will randomly display a relevant message
+    IF OBJ_TEXT_COUNT == 3
+        SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
+            dw {POINTER_NAME}
+    ENDC
+ENDM

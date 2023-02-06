@@ -103,7 +103,8 @@ DefineContextMacros: MACRO
         SHIFT
     ENDR
 ENDM
-    DefineContextMacros Battle, Team
+    DefineContextMacros Team
+    DefineContextMacros Warp, Sign, NPC, Battle, Pickup, WarpTo
     DefineContextMacros switch, case, end
     DefineContextMacros text, asmtext, asmdone, done, prompt, exit
     DefineContextMacros Delay
