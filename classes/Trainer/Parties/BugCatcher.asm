@@ -1,7 +1,7 @@
 ; Viridian Forest
-	Party 6, Weedle, Caterpie
-	Party 7, Weedle, Kakuna, Weedle
-	Party 9, Weedle
+;	Party 6, Weedle, Caterpie
+;	Party 7, Weedle, Kakuna, Weedle
+;	Party 9, Weedle
 ; Route 3
 	Party 10, Caterpie, Weedle, Caterpie
 	Party 9, Weedle, Kakuna, Caterpie, Metapod
