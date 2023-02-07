@@ -8,7 +8,7 @@
 ; 6 - Row Spacing
 ; Repeating:
 ; - Key Names
-Menu: MACRO
+MACRO Menu
     REDEF SCREEN EQUS "\1"
     DEF ROW = \2
     DEF KEY_COL = \3
@@ -47,7 +47,7 @@ PCE_SANDBOX_SPRITE_COL = 12
 PCE_SANDBOX_SPRITE_ROW = 6
 PCE_SANDBOX_SPRITE_DIMENSION = 7
 
-SandboxType: MACRO
+MACRO SandboxType
     IF _NARG == 3
         ConvertName \2
         REDEF NAME_STRING EQUS "\"\1\""

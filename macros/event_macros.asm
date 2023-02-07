@@ -1,6 +1,6 @@
 ;\1 = event index
 ;\2 = return result in carry instead of zero flag
-CheckEvent: MACRO
+MACRO CheckEvent
 event_byte = ((\1) / 8)
 	ld a, [wEventFlags + event_byte]
 
@@ -18,7 +18,7 @@ event_byte = ((\1) / 8)
 	ENDM
 
 ;\1 = event index
-CheckEventReuseA: MACRO
+MACRO CheckEventReuseA
 	IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
 		ld a, [wEventFlags + event_byte]
@@ -29,7 +29,7 @@ event_byte = ((\1) / 8)
 
 ;\1 = event index
 ;\2 = event index of the last event used before the branch
-CheckEventAfterBranchReuseA: MACRO
+MACRO CheckEventAfterBranchReuseA
 event_byte = ((\2) / 8)
 	IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
@@ -42,7 +42,7 @@ event_byte = ((\1) / 8)
 ;\1 = reg
 ;\2 = event index
 ;\3 = event index this event is relative to (optional, this is needed when there is a fixed flag address)
-EventFlagBit: MACRO
+MACRO EventFlagBit
 	IF _NARG > 2
 		ld \1, ((\3) % 8) + ((\2) - (\3))
 	ELSE
@@ -52,20 +52,20 @@ EventFlagBit: MACRO
 
 ;\1 = reg
 ;\2 = event index
-EventFlagAddress: MACRO
+MACRO EventFlagAddress
 event_byte = ((\2) / 8)
 	ld \1, wEventFlags + event_byte
 	ENDM
 
 ;\1 = event index
-CheckEventHL: MACRO
+MACRO CheckEventHL
 event_byte = ((\1) / 8)
 	ld hl, wEventFlags + event_byte
 	bit (\1) % 8, [hl]
 	ENDM
 
 ;\1 = event index
-CheckEventReuseHL: MACRO
+MACRO CheckEventReuseHL
 IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
 		ld hl, wEventFlags + event_byte
@@ -76,14 +76,14 @@ event_byte = ((\1) / 8)
 
 ; dangerous, only use when HL is guaranteed to be the desired value
 ;\1 = event index
-CheckEventForceReuseHL: MACRO
+MACRO CheckEventForceReuseHL
 event_byte = ((\1) / 8)
 	bit (\1) % 8, [hl]
 	ENDM
 
 ;\1 = event index
 ;\2 = event index of the last event used before the branch
-CheckEventAfterBranchReuseHL: MACRO
+MACRO CheckEventAfterBranchReuseHL
 event_byte = ((\2) / 8)
 IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
@@ -94,7 +94,7 @@ event_byte = ((\1) / 8)
 	ENDM
 
 ;\1 = event index
-CheckAndSetEvent: MACRO
+MACRO CheckAndSetEvent
 event_byte = ((\1) / 8)
 	ld hl, wEventFlags + event_byte
 	bit (\1) % 8, [hl]
@@ -102,7 +102,7 @@ event_byte = ((\1) / 8)
 	ENDM
 
 ;\1 = event index
-CheckAndResetEvent: MACRO
+MACRO CheckAndResetEvent
 event_byte = ((\1) / 8)
 	ld hl, wEventFlags + event_byte
 	bit (\1) % 8, [hl]
@@ -110,7 +110,7 @@ event_byte = ((\1) / 8)
 	ENDM
 
 ;\1 = event index
-CheckAndSetEventA: MACRO
+MACRO CheckAndSetEventA
 	ld a, [wEventFlags + ((\1) / 8)]
 	bit (\1) % 8, a
 	set (\1) % 8, a
@@ -118,7 +118,7 @@ CheckAndSetEventA: MACRO
 	ENDM
 
 ;\1 = event index
-CheckAndResetEventA: MACRO
+MACRO CheckAndResetEventA
 	ld a, [wEventFlags + ((\1) / 8)]
 	bit (\1) % 8, a
 	res (\1) % 8, a
@@ -126,14 +126,14 @@ CheckAndResetEventA: MACRO
 	ENDM
 
 ;\1 = event index
-SetEvent: MACRO
+MACRO SetEvent
 event_byte = ((\1) / 8)
 	ld hl, wEventFlags + event_byte
 	set (\1) % 8, [hl]
 	ENDM
 
 ;\1 = event index
-SetEventReuseHL: MACRO
+MACRO SetEventReuseHL
 	IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
 		ld hl, wEventFlags + event_byte
@@ -144,7 +144,7 @@ event_byte = ((\1) / 8)
 
 ;\1 = event index
 ;\2 = event index of the last event used before the branch
-SetEventAfterBranchReuseHL: MACRO
+MACRO SetEventAfterBranchReuseHL
 event_byte = ((\2) / 8)
 IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
@@ -156,7 +156,7 @@ event_byte = ((\1) / 8)
 
 ; dangerous, only use when HL is guaranteed to be the desired value
 ;\1 = event index
-SetEventForceReuseHL: MACRO
+MACRO SetEventForceReuseHL
 event_byte = ((\1) / 8)
 	set (\1) % 8, [hl]
 	ENDM
@@ -164,7 +164,7 @@ event_byte = ((\1) / 8)
 ;\1 = event index
 ;\2 = event index
 ;\3, \4, ... = additional (optional) event indices
-SetEvents: MACRO
+MACRO SetEvents
 	SetEvent \1
 	rept (_NARG + -1)
 	SetEventReuseHL \2
@@ -173,14 +173,14 @@ SetEvents: MACRO
 	ENDM
 
 ;\1 = event index
-ResetEvent: MACRO
+MACRO ResetEvent
 event_byte = ((\1) / 8)
 	ld hl, wEventFlags + event_byte
 	res (\1) % 8, [hl]
 	ENDM
 
 ;\1 = event index
-ResetEventReuseHL: MACRO
+MACRO ResetEventReuseHL
 	IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
 		ld hl, wEventFlags + event_byte
@@ -191,7 +191,7 @@ event_byte = ((\1) / 8)
 
 ;\1 = event index
 ;\2 = event index of the last event used before the branch
-ResetEventAfterBranchReuseHL: MACRO
+MACRO ResetEventAfterBranchReuseHL
 event_byte = ((\2) / 8)
 IF event_byte != ((\1) / 8)
 event_byte = ((\1) / 8)
@@ -203,7 +203,7 @@ event_byte = ((\1) / 8)
 
 ; dangerous, only use when HL is guaranteed to be the desired value
 ;\1 = event index
-ResetEventForceReuseHL: MACRO
+MACRO ResetEventForceReuseHL
 event_byte = ((\1) / 8)
 	res (\1) % 8, [hl]
 	ENDM
@@ -211,7 +211,7 @@ event_byte = ((\1) / 8)
 ;\1 = event index
 ;\2 = event index
 ;\3 = event index (optional)
-ResetEvents: MACRO
+MACRO ResetEvents
 	ResetEvent \1
 	rept (_NARG + -1)
 	ResetEventReuseHL \2
@@ -221,7 +221,7 @@ ResetEvents: MACRO
 
 ;\1 = start
 ;\2 = end
-SetEventRange: MACRO
+MACRO SetEventRange
 event_start_byte = ((\1) / 8)
 event_end_byte = ((\2) / 8)
 
@@ -282,7 +282,7 @@ event_fill_count = event_fill_count + 1
 ;\1 = start
 ;\2 = end
 ;\3 = assume a is 0 if present
-ResetEventRange: MACRO
+MACRO ResetEventRange
 event_start_byte = ((\1) / 8)
 event_end_byte = ((\2) / 8)
 
@@ -350,7 +350,7 @@ event_fill_count = event_fill_count + 1
 ;\1 = event index 1
 ;\2 = event index 2
 ;\3 = try to reuse a (optional)
-CheckBothEventsSet: MACRO
+MACRO CheckBothEventsSet
 	IF ((\1) / 8) == ((\2) / 8)
 		IF (_NARG < 3) || (((\1) / 8) != event_byte)
 event_byte = ((\1) / 8)
@@ -385,7 +385,7 @@ event_byte = ((\1) / 8)
 ; returns the complement of whether either event is set in Z flag
 ;\1 = event index 1
 ;\2 = event index 2
-CheckEitherEventSet: MACRO
+MACRO CheckEitherEventSet
 	IF ((\1) / 8) == ((\2) / 8)
 		ld a, [wEventFlags + ((\1) / 8)]
 		and (1 << ((\1) % 8)) | (1 << ((\2) % 8))
@@ -414,7 +414,7 @@ CheckEitherEventSet: MACRO
 ; for handling fixed event bits when events are inserted/removed
 ;\1 = event index
 ;\2 = fixed flag bit
-AdjustEventBit: MACRO
+MACRO AdjustEventBit
 	IF ((\1) % 8) != (\2)
 		add ((\1) % 8) - (\2)
 	ENDC

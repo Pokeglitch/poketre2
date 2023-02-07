@@ -1,36 +1,36 @@
 ; Define the textbox before writing the text
-textbox: MACRO
+MACRO textbox
 	db TEXTBOX_DEF
 	db \1
 ENDM
 
-more: MACRO
+MACRO more
 	REPT _NARG
 		db \1   
 		SHIFT
 	ENDR
 ENDM
 
-ramtext: MACRO
+MACRO ramtext
 	db RAM_TEXT
 	dw \1
 ENDM
 
-neartext: MACRO
+MACRO neartext
 	db NEAR_TEXT
 	dw \1
 ENDM
 
-Default_asmtext: MACRO
+MACRO Default_asmtext
 	db TEXT_ASM
 ENDM
 
-delaytext: MACRO
+MACRO delaytext
 	db DELAY_TEXT
 ENDM
 
 ; Scroll to the next line.
-cont: MACRO
+MACRO cont
 	db CONTINUE_TEXT
 	REPT _NARG
 	db \1
@@ -39,7 +39,7 @@ cont: MACRO
 ENDM
 
 ; Scroll without user interaction
-autocont: MACRO
+MACRO autocont
 	db AUTO_CONTINUE_TEXT
 	REPT _NARG
 	db \1
@@ -48,7 +48,7 @@ autocont: MACRO
 ENDM
 
 ; Move a line down.
-next: MACRO
+MACRO next
 	db NEXT_TEXT_LINE
 	REPT _NARG
 	db \1
@@ -57,7 +57,7 @@ next: MACRO
 ENDM
 
 ; Start a new paragraph.
-para: MACRO
+MACRO para
 	db PARAGRAPH
 	REPT _NARG
 	db \1
@@ -66,7 +66,7 @@ para: MACRO
 ENDM
 
 ; Start a new paragraph without user interaction
-autopara: MACRO
+MACRO autopara
 	db AUTO_PARAGRAPH
 	REPT _NARG
 	db \1
@@ -74,31 +74,31 @@ autopara: MACRO
 	ENDR
 ENDM
 
-Default_asmdone: MACRO
+MACRO Default_asmdone
 	jp TextScriptEnd
 ENDM
 
 ; End a string
-Default_done: MACRO
+MACRO Default_done
 	db TEXT_END
 ENDM
 
 ; Prompt the player to end a text box (initiating some other event).
-Default_prompt: MACRO
+MACRO Default_prompt
 	db TEXT_PROMPT
 ENDM
 
 ; Just wait for a keypress before continuing
-wait: MACRO
+MACRO wait
 	db TEXT_WAIT
 ENDM
 
 ; Exit without waiting for keypress
-Default_exit: MACRO
+MACRO Default_exit
 	db TEXT_EXIT
 ENDM
 
-str: MACRO
+MACRO str
 	REPT _NARG
 	db \1
 	SHIFT
@@ -109,29 +109,29 @@ ENDM
 ; 1 - address
 ; 2 - num digits
 ; 3 - num bytes & flags
-numtext: MACRO
+MACRO numtext
 	db NUM_TEXT
 	dw \1
 	db (\2 << 3) | \3
 ENDM
 
-bcdtext: MACRO
+MACRO bcdtext
 	db BCD_TEXT
 	dw \1
 	db \2
 ENDM
 
-crytext: MACRO
+MACRO crytext
 	db CRY_TEXT
 	db \1
 ENDM
 
-sfxtext: MACRO
+MACRO sfxtext
 	db SFX_TEXT
 	db \1
 ENDM
 
-two_opt: MACRO
+MACRO two_opt
 	db TWO_OPTION_TEXT
 	dw \1
 	dw \2
@@ -139,13 +139,13 @@ two_opt: MACRO
 	dw \4
 ENDM
 
-fartext: MACRO
+MACRO fartext
 	db FAR_TEXT
 	dw \1
 	db BANK(\1)
 ENDM
 
-gototext: MACRO
+MACRO gototext
 	db GOTO_TEXT
 	dw \1
 ENDM
@@ -157,7 +157,7 @@ TX_POKECENTER_PC           EQUS "db $f9"
 TX_PLAYERS_PC              EQUS "db $fc"
 TX_BILLS_PC                EQUS "db $fd"
 
-TX_MART: MACRO
+MACRO TX_MART
 	db $FE, _NARG
 	REPT _NARG
 	db \1
@@ -168,7 +168,7 @@ ENDM
 
 TX_POKECENTER_NURSE        EQUS "db $ff"
 
-Default_text: MACRO
+MACRO Default_text
 	REPT _NARG
 		db \1   
 		SHIFT
@@ -176,36 +176,36 @@ Default_text: MACRO
 ENDM
 
 REDEF TEXT_AUTO_CLOSE EQUS ""
-SetTextAutoClose: MACRO
+MACRO SetTextAutoClose
 	REDEF TEXT_AUTO_CLOSE EQUS "\1"
 ENDM
 
-Text_asmtext: MACRO
+MACRO Text_asmtext
 	SetTextAutoClose asmdone
 	Default_asmtext
 ENDM
 
-Text_done: MACRO
+MACRO Text_done
     Default_done
     CloseTextContext
 ENDM
 
-Text_asmdone: MACRO
+MACRO Text_asmdone
     Default_asmdone
     CloseTextContext
 ENDM
 
-Text_prompt: MACRO
+MACRO Text_prompt
     Default_prompt
     CloseTextContext
 ENDM
 
-Text_exit: MACRO
+MACRO Text_exit
     Default_exit
 	CloseTextContext
 ENDM
 
-CloseTextContext: MACRO
+MACRO CloseTextContext
 	PurgeTempTextMacros {TEMP_TEXT_CLOSE_MACROS}
 	CloseContext
 ENDM
@@ -213,7 +213,7 @@ ENDM
 ; 1 - the auto close macro
 ; 2+ - other macros which will auto close
 REDEF TEMP_TEXT_CLOSE_MACROS EQUS ""
-InitTextContext: MACRO
+MACRO InitTextContext
 	PushContext Text
 	SetTextAutoClose \1
 	SHIFT
@@ -221,7 +221,7 @@ InitTextContext: MACRO
 	ForwardTo DefineTempTextMacros
 ENDM
 
-DefineTempTextMacros: MACRO
+MACRO DefineTempTextMacros
 	; args str was defined before this gets called
 	REDEF TEMP_TEXT_CLOSE_MACROS EQUS "{ARGS_STR}"
 
@@ -231,7 +231,7 @@ DefineTempTextMacros: MACRO
 	ENDR
 ENDM
 
-PurgeTempTextMacros: MACRO
+MACRO PurgeTempTextMacros
 	REDEF TEMP_TEXT_CLOSE_MACROS EQUS ""
 
 	REPT _NARG
@@ -240,7 +240,7 @@ PurgeTempTextMacros: MACRO
 	ENDR
 ENDM
 
-TempTextClose: MACRO
+MACRO TempTextClose
 	REDEF MACRO_NAME EQUS "\1"
 	SHIFT
 	{TEXT_AUTO_CLOSE}

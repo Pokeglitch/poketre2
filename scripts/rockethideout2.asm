@@ -363,7 +363,7 @@ LoadSpinnerArrowTiles:
 	jr nz, .asm_45006
 	ret
 
-spinner: MACRO
+MACRO spinner
 ; \1: source
 ; \2: offset (BANK() chokes on literals)
 ; \3: length

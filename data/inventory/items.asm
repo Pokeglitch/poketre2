@@ -1,4 +1,4 @@
-item: MACRO
+MACRO item
     dw \1Description
 	; price
 	IF \2 % 100

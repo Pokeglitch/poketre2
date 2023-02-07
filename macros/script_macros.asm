@@ -1,4 +1,4 @@
-IgnoreButtons: MACRO
+MACRO IgnoreButtons
     DEF MASK_VALUE = 0
     REPT _NARG
         DEF MASK_VALUE += Button\1BitMask
@@ -8,7 +8,7 @@ IgnoreButtons: MACRO
     StoreIntoRegister wJoyIgnore, {MASK_VALUE}
 ENDM
 
-PermitButtons: MACRO
+MACRO PermitButtons
     DEF MASK_VALUE = 0
     REPT _NARG
         DEF MASK_VALUE += Button\1BitMask
@@ -21,7 +21,7 @@ PermitButtons: MACRO
 ENDM
 
 ; todo - what if \1 is an expression or a symbol?
-LoadIntoA: MACRO
+MACRO LoadIntoA
     IsRegister \1
     IF IS_REGISTER
         IF STRCMP("\1","a") != 0
@@ -41,7 +41,7 @@ LoadIntoA: MACRO
     ENDC
 ENDM
 
-LoadAIntoRegister: MACRO
+MACRO LoadAIntoRegister
     IsRegister \1
     IF IS_REGISTER
         IF STRCMP("\1","a") != 0
@@ -52,13 +52,13 @@ LoadAIntoRegister: MACRO
     ENDC
 ENDM
 
-StoreIntoRegister: MACRO
+MACRO StoreIntoRegister
     LoadIntoA \2
     LoadAIntoRegister \1
 ENDM
 
 ; todo - handle multiple requirements?
-Require: MACRO
+MACRO Require
     IF _NARG > 1
         LoadIntoA \1
         SHIFT
@@ -68,7 +68,7 @@ Require: MACRO
     ret nz
 ENDM
 
-DisplayText: MACRO
+MACRO DisplayText
     ld hl, \1
     call DisplayTextInTextbox
 ENDM

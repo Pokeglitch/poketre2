@@ -2,7 +2,7 @@ INCLUDE "macros/byte_struct.asm"
 
 ; 1 = how many bits to set
 ; 2 = how many bits to shift
-BitMask: MACRO
+MACRO BitMask
     DEF BIT_MASK = 0
     REPT \1
         DEF BIT_MASK = (BIT_MASK << 1) | 1
@@ -11,7 +11,7 @@ BitMask: MACRO
     DEF BIT_MASK = BIT_MASK << \2
 ENDM
 
-CleanChar: MACRO
+MACRO CleanChar
     IF _NARG == 3
         REDEF \1 EQUS STRRPL("{\1}", \2, \3)
     ELSE
@@ -19,7 +19,7 @@ CleanChar: MACRO
     ENDC
 ENDM
 
-MakeIdentifier: MACRO
+MACRO MakeIdentifier
     ; normalize characters
     CleanChar \1, "♀", "F"
     CleanChar \1, "♂", "M"
@@ -31,20 +31,20 @@ MakeIdentifier: MACRO
 ENDM
 
 ; Get the name as a string and as an identifier safe value
-ConvertName: MACRO
+MACRO ConvertName
     REDEF NAME_VALUE EQUS "\1"
     REDEF NAME_STRING EQUS "\"\1\""
     MakeIdentifier NAME_VALUE
 ENDM
 
-StartsWithDigit: MACRO
+MACRO StartsWithDigit
     IF STRIN("\1","\2") == 1
         DEF IS_NUMBER = 1
     ENDC
 ENDM
 
 ; todo - this wont work if \1 is an expression or symbol...
-IsNumber: MACRO
+MACRO IsNumber
     DEF IS_NUMBER = 0
     StartsWithDigit \1, 0
     StartsWithDigit \1, 1
@@ -63,13 +63,13 @@ IsNumber: MACRO
     StartsWithDigit \1, `
 ENDM
 
-CheckIfRegister: MACRO
+MACRO CheckIfRegister
     IF STRCMP("\1", "\2") == 0
         DEF IS_REGISTER = 1
     ENDC
 ENDM
 
-IsRegister: MACRO
+MACRO IsRegister
     DEF IS_REGISTER = 0
     CheckIfRegister \1, a
     CheckIfRegister \1, b
@@ -82,7 +82,7 @@ IsRegister: MACRO
 ENDM
 
 ; makes a virtual list starting at 0 (or, optionally different value)
-Default_Array: MACRO
+MACRO Default_Array
 	REDEF ARRAY_NAME EQUS "\1"
 	SHIFT
 
@@ -120,7 +120,7 @@ Default_Array: MACRO
 	ENDR
 ENDM
 
-CheckOverload: MACRO
+MACRO CheckOverload
     DEF OVERLOAD = 0
     IF STRCMP("\1","-o") == 0
         DEF OVERLOAD = 1
@@ -129,12 +129,12 @@ CheckOverload: MACRO
     ENDC
 ENDM
 
-ResetOverload: MACRO
+MACRO ResetOverload
     DEF OVERLOAD = 0
     DEF OVERLOAD_END_VALUE = 0
 ENDM
 
-RestoreOverload: MACRO
+MACRO RestoreOverload
     IF OVERLOAD
         ; store the end value for when overload is finished
         IF {VALUE_NAME} > OVERLOAD_END_VALUE

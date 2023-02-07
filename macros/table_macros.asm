@@ -1,6 +1,6 @@
 DEF ClassInstanceTableAddress = $4000
 DEF CLASS_BANK = $30
-Class: MACRO
+MACRO Class
     DEF \1Class = CLASS_BANK
     DEF CLASS_BANK = CLASS_BANK + 1
     
@@ -12,7 +12,7 @@ ENDM
 
 REDEF TABLE_NAME EQUS ""
 ; 1 - Table Name
-Table: MACRO
+MACRO Table
     ; Store the Table Name so the Entry macro can reference it
     REDEF TABLE_NAME EQUS "\1"
 
@@ -31,12 +31,12 @@ Table: MACRO
     {TABLE_NAME}Table:
 ENDM
 
-Default_Flag: MACRO
+MACRO Default_Flag
     DEF {TABLE_NAME}\1\2 = 0
     DEF {TABLE_NAME}\1\3 = 1
 ENDM
 
-Entry: MACRO
+MACRO Entry
     REDEF ENTRY_NAME EQUS "\1"
     MakeIdentifier ENTRY_NAME
 
@@ -73,7 +73,7 @@ ENDM
 ; 1 - Key
 ; 2 - Type
 ; 3+? - Values
-Prop: MACRO
+MACRO Prop
     ; If this is the first time an entry is being defined, then update the table values
     IF {TABLE_NAME}EntryCount == 0
         DEF PROPERTY_INDEX = {TABLE_NAME}PropertyCount
@@ -168,7 +168,7 @@ PointerAllocate EQU WordAllocate
 StringAllocate EQU PointerAllocate
 SpriteAllocate EQU WordAllocate + ByteAllocate + PointerAllocate
 
-StringDefine: MACRO
+MACRO StringDefine
     ; Define the value to an identifier
     DEF \1\2\3 EQUS \4
 
@@ -184,21 +184,21 @@ StringDefine: MACRO
     POPS
 ENDM
 
-ByteDefine: MACRO
+MACRO ByteDefine
     ; Define the value to an identifier
     DEF \1\2\3 = \4
 
     db \4
 ENDM
 
-WordDefine: MACRO
+MACRO WordDefine
     ; Define the value to an identifier
     DEF \1\2\3 = \4
 
     dw \4
 ENDM
 
-FlagsDefine: MACRO
+MACRO FlagsDefine
     DEF FLAGS_BYTE = 0
 
     FOR FLAG_INDEX, (_NARG-3)/2
@@ -222,7 +222,7 @@ FlagsDefine: MACRO
     db FLAGS_BYTE
 ENDM
 
-PointerDefine: MACRO
+MACRO PointerDefine
     ; Define the value to an identifier
     DEF \1\2\3 EQUS "\4"
 
@@ -230,7 +230,7 @@ PointerDefine: MACRO
 ENDM
 
 ; TODO - what to define to idenfitier?
-SpriteDefine: MACRO
+MACRO SpriteDefine
     dw \1\2\3End - \1\2\3
     dbw BANK(\1\2\3), \1\2\3
 
@@ -242,7 +242,7 @@ SpriteDefine: MACRO
     POPS
 ENDM
 
-BCD3Define: MACRO
+MACRO BCD3Define
     ; Define the value to an identifier
     DEF \1\2\3 = \4
 
@@ -251,7 +251,7 @@ BCD3Define: MACRO
 	dn ((\4) / 10) % 10, (\4) % 10
 ENDM
 
-BCD2Define: MACRO
+MACRO BCD2Define
     ; Define the value to an identifier
     DEF \1\2\3 = \4
 

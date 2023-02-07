@@ -3955,7 +3955,7 @@ PrintNumber::
 	cp 6
 	jr z, .hundred_thousands
 
-print_digit: macro
+MACRO print_digit
 
 if (\1) / $10000
 	ld a, \1 / $10000 % $100

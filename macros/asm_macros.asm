@@ -1,4 +1,4 @@
-Default_Delay: MACRO
+MACRO Default_Delay
 	IF _NARG == 0
 		call DelayFrame
 	ELSE
@@ -15,11 +15,11 @@ Default_Delay: MACRO
 	ENDC
 ENDM
 
-lb: MACRO ; r, hi, lo (bytes)
+MACRO lb ; r, hi, lo (bytes)
 	ld \1, (\2) << 8 + ((\3) & $ff)
 ENDM
 
-homejump: MACRO
+MACRO homejump
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(\1)
@@ -32,31 +32,31 @@ farcall EQUS "callba"
 
 farjump EQUS "jpba"
 
-callba: MACRO
+MACRO callba
 	ld b, BANK(\1)
 	ld hl, \1
 	call Bankswitch
 ENDM
 
-callab: MACRO
+MACRO callab
 	ld hl, \1
 	ld b, BANK(\1)
 	call Bankswitch
 ENDM
 
-jpba: MACRO
+MACRO jpba
 	ld b, BANK(\1)
 	ld hl, \1
 	jp Bankswitch
 ENDM
 
-jpab: MACRO
+MACRO jpab
 	ld hl, \1
 	ld b, BANK(\1)
 	jp Bankswitch
 ENDM
 
-validateCoords: MACRO
+MACRO validateCoords
 	IF \1 >= SCREEN_WIDTH
 		fail "x coord out of range"
 	ENDC
@@ -69,7 +69,7 @@ ENDM
 ;\2 = X
 ;\3 = Y
 ;\4 = which tilemap (optional)
-coord: MACRO
+MACRO coord
 	validateCoords \2, \3
 	IF _NARG >= 4
 		ld \1, \4 + SCREEN_WIDTH * \3 + \2
@@ -81,7 +81,7 @@ ENDM
 ;\1 = X
 ;\2 = Y
 ;\3 = which tilemap (optional)
-aCoord: MACRO
+MACRO aCoord
 	validateCoords \1, \2
 	IF _NARG >= 3
 		ld a, [\3 + SCREEN_WIDTH * \2 + \1]
@@ -93,7 +93,7 @@ ENDM
 ;\1 = X
 ;\2 = Y
 ;\3 = which tilemap (optional)
-Coorda: MACRO
+MACRO Coorda
 	validateCoords \1, \2
 	IF _NARG >= 3
 		ld [\3 + SCREEN_WIDTH * \2 + \1], a
@@ -105,7 +105,7 @@ ENDM
 ;\1 = X
 ;\2 = Y
 ;\3 = which tilemap (optional)
-dwCoord: MACRO
+MACRO dwCoord
 	validateCoords \1, \2
 	IF _NARG >= 3
 		dw \3 + SCREEN_WIDTH * \2 + \1
@@ -118,90 +118,90 @@ ENDM
 ;\2 = X
 ;\3 = Y
 ;\4 = map width
-overworldMapCoord: MACRO
+MACRO overworldMapCoord
 	ld \1, wOverworldMap + ((\2) + 3) + (((\3) + 3) * ((\4) + (3 * 2)))
 ENDM
 
 ; macro for two nibbles
-dn: MACRO
+MACRO dn
 	db (\1 << 4 | \2)
 ENDM
 
 ; macro for putting a byte then a word
-dbw: MACRO
+MACRO dbw
 	db \1
 	dw \2
 ENDM
 
-dba: MACRO
+MACRO dba
 	dbw BANK(\1), \1
 ENDM
 
-dwb: MACRO
+MACRO dwb
 	dw \1
 	db \2
 ENDM
 
-dab: MACRO
+MACRO dab
 	dwb \1, BANK(\1)
 ENDM
 
-dbbw: MACRO
+MACRO dbbw
 	db \1, \2
 	dw \3
 ENDM
 
 ; Predef macro.
-predef_const: MACRO
+MACRO predef_const
 	const \1PredefID
 ENDM
 
-add_predef: MACRO
+MACRO add_predef
 \1Predef::
 	db BANK(\1)
 	dw \1
 ENDM
 
-predef_id: MACRO
+MACRO predef_id
 	ld a, (\1Predef - PredefPointers) / 3
 ENDM
 
-predef: MACRO
+MACRO predef
 	predef_id \1
 	call Predef
 ENDM
 
-predef_jump: MACRO
+MACRO predef_jump
 	predef_id \1
 	jp Predef
 ENDM
 
-tx_pre_const: MACRO
+MACRO tx_pre_const
 	const \1_id
 ENDM
 
-add_tx_pre: MACRO
+MACRO add_tx_pre
 \1_id:: dw \1
 ENDM
 
-db_tx_pre: MACRO
+MACRO db_tx_pre
 	db (\1_id - TextPredefs) / 2 + 1
 ENDM
 
-tx_pre_id: MACRO
+MACRO tx_pre_id
 	ld a, (\1_id - TextPredefs) / 2 + 1
 ENDM
 
-tx_pre: MACRO
+MACRO tx_pre
 	tx_pre_id \1
 	call PrintPredefTextID
 ENDM
 
-tx_pre_jump: MACRO
+MACRO tx_pre_jump
 	tx_pre_id \1
 	jp PrintPredefTextID
 ENDM
 
-ldPal: MACRO
+MACRO ldPal
 	ld \1, \2 << 6 | \3 << 4 | \4 << 2 | \5
 ENDM

@@ -28,7 +28,7 @@ LoadPCEPalette:
     jr nz, .copyPaletteLoop
     ret
 
-PCEPalette: MACRO
+MACRO PCEPalette
     Prop Color0, Byte, PCEPixel\2
     Prop Color1, Byte, PCEPixel\3
     Prop Color2, Byte, PCEPixel\4

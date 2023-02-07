@@ -1,4 +1,4 @@
-ReadNextCounter: MACRO
+MACRO ReadNextCounter
     ld a, [hImageBit]
     ld h, a ; h = current bit index
     ld a, [hImageByte] ; a = current byte (has already been shifted)
@@ -42,7 +42,7 @@ ENDM
 
 ; read c bits into de
 ; h = bits remaining in this byte
-ReadBits: MACRO
+MACRO ReadBits
     ld de, 0 ; de = value of bits
 
 .readNextBitLoop_ReadBits_\1
@@ -71,7 +71,7 @@ ENDM
 ; h = number of bits remaining
 ; a = byte to read bits from
 ; hImageAddress = pointer to current byte
-MoveToNextByte: MACRO
+MACRO MoveToNextByte
     ; move to next byte
     ld hl, hImageAddress+1
     inc [hl]
@@ -89,7 +89,7 @@ MoveToNextByte: MACRO
     ld h, 8 ; reset bit counter
 ENDM
 
-SubtractAndCompareColor: MACRO
+MACRO SubtractAndCompareColor
     SubtractColor \1, b, c
 
     ; only for the first comparison, check for end of image
@@ -105,29 +105,29 @@ SubtractAndCompareColor: MACRO
     sbc d
 ENDM
 
-InsertPreviousAndUpdateColor: MACRO
+MACRO InsertPreviousAndUpdateColor
     ShiftColor \1, Previous, d, e
     UpdateCountTilColor \2, b, c
 ENDM
 
-ShiftColor: MACRO
+MACRO ShiftColor
     ld a, [hColor\2]
     ld [hColor\1], a
     UpdateCountTilColor \1, \3, \4
 ENDM
 
-UpdateCountTilColor: MACRO
+MACRO UpdateCountTilColor
     ld a, \2
     ld [hCountTilColor\1], a
     ld a, \3
     ld [hCountTilColor\1+1], a
 ENDM
 
-SubtractAndUpdateColor: MACRO
+MACRO SubtractAndUpdateColor
     SubtractColor \1, [hCountTilColor\1], [hCountTilColor\1+1]
 ENDM
 
-SubtractColor: MACRO
+MACRO SubtractColor
     ld a, [hCountTilColor\1+1]
     sub l
     ld \3, a
@@ -137,7 +137,7 @@ SubtractColor: MACRO
     ld \2, a
 ENDM
 
-ReadHeaderColor: MACRO
+MACRO ReadHeaderColor
     ld a, [hli]
     add c
     ld e, a
@@ -148,7 +148,7 @@ ReadHeaderColor: MACRO
     ld [hColor\1], a
 ENDM
 
-ReadHeaderCounter: MACRO
+MACRO ReadHeaderCounter
     ReadNextCounter \1 ; de = counter
     ld a, d
     ld [hCountTilColor\1], a
@@ -323,7 +323,7 @@ CounterOffsetTable:
 	dw %0111111111111111
 	dw %1111111111111111
 
-FillPixelsMacro: MACRO
+MACRO FillPixelsMacro
     ld a, [hImageDestinationBit]
     
     ld hl, SetBitsLookupTable
@@ -415,7 +415,7 @@ FillPixelsMacro: MACRO
 ENDM
 
 ; a and b should equal the mask
-ApplyPixelMask: MACRO
+MACRO ApplyPixelMask
     pop hl
     IF \1 == 0
         cpl
@@ -518,7 +518,7 @@ SetBitsLookupTable:
     db %01111111
     db %11111111
 
-PCEPixel: MACRO
+MACRO PCEPixel
     Prop Fill, Pointer, Fill\1Pixels
 ENDM
 

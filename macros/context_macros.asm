@@ -2,7 +2,7 @@ Context EQUS "Default"
 ContextPushed = 0
 ContextCount = 0
 
-PushContext: MACRO
+MACRO PushContext
     IF _NARG == 1
         SetContext \1
     ELSE
@@ -14,7 +14,7 @@ PushContext: MACRO
     PUSHS
 ENDM
 
-SetContext: MACRO
+MACRO SetContext
     ; store the previous context pushed and update
     DEF ContextPushed{d:ContextCount} = ContextPushed
     DEF ContextPushed = 0
@@ -29,7 +29,7 @@ ENDM
 
 ; will auto callback if:
 ; {NewContext}_{ClosedContext}_Finish is defined
-CloseContext: MACRO
+MACRO CloseContext
     IF _NARG == 1
         DEF CLOSE_COUNT = \1
     ELSE
@@ -70,8 +70,8 @@ REPT _NARG\n\
     SHIFT\n\
 ENDR"
 
-DefineContextMacro: MACRO
-REDEF CONTEXT_MACRO_STR EQUS "\1: MACRO\n\
+MACRO DefineContextMacro
+REDEF CONTEXT_MACRO_STR EQUS "macro \1\n\
 IF DEF(\{Context\}_\1)\n\
     AccumulateArgs\n\
     \{Context\}_\1 \{ARGS_STR\}\n\
@@ -81,7 +81,7 @@ ENDC\nENDM"
 {CONTEXT_MACRO_STR}
 ENDM
 
-ForwardToMacro: MACRO
+MACRO ForwardToMacro
     \1 {ARGS_STR}
 ENDM
 
@@ -89,7 +89,7 @@ REDEF ForwardTo EQUS "\n\
     AccumulateArgs\n\
     ForwardToMacro "
 
-DefineDefaultMacros: MACRO
+MACRO DefineDefaultMacros
     DEF CONTEXT_NAME EQUS "\1"
     SHIFT
     REPT _NARG
@@ -97,7 +97,7 @@ DefineDefaultMacros: MACRO
     ENDR
 ENDM
 
-DefineContextMacros: MACRO
+MACRO DefineContextMacros
     REPT _NARG
         DefineContextMacro \1
         SHIFT

@@ -1,4 +1,4 @@
-Other: MACRO
+MACRO Other
     ConvertName \1
     Prop Name, String, {NAME_STRING}
     Prop Sprites, Sprite

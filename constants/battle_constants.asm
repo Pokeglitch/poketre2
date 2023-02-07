@@ -1,11 +1,11 @@
     Array BattleMode, None, Pokemon, Trainer
 
-SetBattleMode: MACRO
+MACRO SetBattleMode
     ld a, BattleMode\1
     ld [wBattleMode], a
 ENDM
 
-PrepareBattle: MACRO
+MACRO PrepareBattle
     DEF BATTLE_MODE = BattleModePokemon
     REDEF BYTE_2_DESTINATION EQUS "wCurEnemyLVL"
     DEF STORE_BYTE_2 = 1

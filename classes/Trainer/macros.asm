@@ -8,13 +8,13 @@
         Flag Levels, Explicit, Scaled
         Flag Type, Flag, Value
         Array -o, ValueMethod, Equal, GreaterThanEqual, GreaterThan, LessThanEqual, LessThan
-        Array -o, FlagMethod, z, nz, c, nz
+        Array -o, FlagMethod, z, c, zc
         Index FlagIndex, 7
         done
 
 PartyDataTerminator = -1
 
-ParseTeamData: MACRO
+MACRO ParseTeamData
     DEF SPECIAL_MASK = 0
     
     ; If there is a third argument, and it is a number, then it is special
@@ -55,7 +55,7 @@ ParseTeamData: MACRO
     CloseParty
 ENDM
 
-Party: MACRO
+MACRO Party
     DEF PARTY_INDEX = {NAME_VALUE}PartyCount
     REDEF PARTY_POINTER EQUS "{NAME_VALUE}Party{d:PARTY_INDEX}"
 
@@ -108,7 +108,7 @@ Party: MACRO
     DEF {NAME_VALUE}PartyCount += 1
 ENDM
 
-Trainer: MACRO
+MACRO Trainer
 	ConvertName \1
 	Prop Name, String, {NAME_STRING}
 	Prop Front, Sprite
@@ -139,7 +139,7 @@ ENDM
 
 REDEF PartyName EQUS ""
 DEF PartyNameCount = 0
-InitializeTeam: MACRO
+MACRO InitializeTeam
     ; store the previous Party Name and update with unique name
     REDEF PartyName{d:PartyNameCount} EQUS "{PartyName}"
     REDEF PartyName EQUS "Party_\@"
@@ -154,7 +154,7 @@ InitializeTeam: MACRO
     PushContext Team
 
     ; initialize the party data
-    DEF {PartyName}Condition = PartyDefinitionConditionStandard
+    SetTeamCondition Standard
 
     SECTION "{PartyName} Party", ROMX, BANK[TrainerClass]
     {PartyName}:
@@ -175,9 +175,9 @@ InitializeTeam: MACRO
     ENDC
 ENDM
 
-CloseParty: MACRO
+MACRO CloseParty
     ; Build the properties byte
-    ; todo - macro?
+    ; todo - macro based on ByteStruct definition?
     DEF {PartyName}Properties = {PartyName}Condition
 
     ; decrease the Party Name count
@@ -189,7 +189,7 @@ CloseParty: MACRO
 ENDM
 
 ; 1 = Trainer
-InitializeBattle: MACRO
+MACRO InitializeBattle
 	ConvertName \1
     REDEF BATTLE_TRAINER_NAME EQUS "{NAME_VALUE}"
 
@@ -199,11 +199,20 @@ InitializeBattle: MACRO
     REDEF BATTLE_TEAM_NAME EQUS "{BATTLE_TRAINER_NAME}Team{d:PARTY_INDEX}"
 ENDM
 
-Team_asm: MACRO
-    DEF {PartyName}Condition = PartyDefinitionConditionRoutineDefinition
+MACRO SetTeamCondition
+    SetTeamProperty Condition, \1
+ENDM
 
-    db BANK({PartyName}Routine)
-    dw {PartyName}Routine
+; 1 = Property Name
+; 2 = Property Value
+MACRO SetTeamProperty
+    DEF {PartyName}\1 = PartyDefinition\1\2
+ENDM
+
+MACRO Team_asm
+    SetTeamCondition RoutineDefinition
+
+    dba {PartyName}Routine
 
     PushContext TeamASM
     SECTION "{PartyName} Routine", ROMX, BANK[CUR_BANK]
@@ -211,28 +220,27 @@ Team_asm: MACRO
 ENDM
 
 ; close the team asm context
-TeamASM_end: MACRO
+MACRO TeamASM_end
     CloseContext
 ENDM
 
 ; close the team context
-Team_TeamASM_Finish: MACRO
+MACRO Team_TeamASM_Finish
     CloseParty
 ENDM
 
-Team_switch: MACRO
+MACRO Team_switch
     SetContext TeamSwitch
 
     ; If an argument was provided, then it is a ram value
     IF _NARG
-        DEF {PartyName}Condition = PartyDefinitionConditionRAMValue
+        SetTeamCondition RAMValue
         dw \1
     ; Otherwise, it is a routine
     ELSE
-        DEF {PartyName}Condition = PartyDefinitionConditionRoutineValue
+        SetTeamCondition RoutineValue
 
-        db BANK({PartyName}SwitchRoutine)
-        dw {PartyName}SwitchRoutine
+        dba {PartyName}SwitchRoutine
 
         PushContext TeamSwitchRoutine
         SECTION "{PartyName} Switch Routine", ROMX, BANK[CUR_BANK]
@@ -240,21 +248,21 @@ Team_switch: MACRO
     ENDC
 ENDM
 
-TeamSwitchRoutine_case: MACRO
+MACRO TeamSwitchRoutine_case
     CloseContext
     ForwardTo case
 ENDM
 
 ; When a team switch value is finished, also close the party
-Team_TeamSwitch_Finish: MACRO
+MACRO Team_TeamSwitch_Finish
     CloseParty
 ENDM
 
-TeamSwitch_end: MACRO
+MACRO TeamSwitch_end
     CloseContext ; close the switch context
 ENDM
 
-TeamSwitch_case: MACRO
+MACRO TeamSwitch_case
     db \1 ; write the value to compare against
 
     SetContext TeamSwitchCase
@@ -267,17 +275,17 @@ TeamSwitch_case: MACRO
 ENDM
 
 ; Implicitly open the Team context
-TeamSwitchCase_switch: MACRO
+MACRO TeamSwitchCase_switch
     Team
     ForwardTo switch
 ENDM
 
 ; Initialize the team
-TeamSwitchCase_Team: MACRO
+MACRO TeamSwitchCase_Team
     ForwardTo InitializeTeam
 ENDM
 
 ; When a team finishes, also close the case context
-TeamSwitchCase_Team_Finish: MACRO
+MACRO TeamSwitchCase_Team_Finish
     CloseContext
 ENDM

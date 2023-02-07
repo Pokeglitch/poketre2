@@ -1,3 +1,5 @@
+include "macros/Macros/macros.asm"
+
 INCLUDE "macros/context_macros.asm"
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/asm_macros.asm"

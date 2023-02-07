@@ -1,12 +1,12 @@
 REDEF MAP_SCRIPT_MACROS EQUS ""
-DefineMapScriptMacros: MACRO
+MACRO DefineMapScriptMacros
     AccumulateArgs
     REDEF MAP_SCRIPT_MACROS EQUS "{ARGS_STR}"
 ENDM
     DefineMapScriptMacros text, Delay
     DefineDefaultMacros MapScript, Delay
 
-MapScript_text: MACRO
+MACRO MapScript_text
     REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
 
     InitTextContext done, {MAP_SCRIPT_MACROS}
@@ -17,17 +17,17 @@ MapScript_text: MACRO
     DEF {MAP_NAME}TextCount = {MAP_NAME}TextCount + 1
 ENDM
 
-MapScript_Text_Finish: MACRO
+MACRO MapScript_Text_Finish
     DisplayText PTR_NAME
 ENDM
 
 ; 1 = trainer instance
-MapScript_Battle: MACRO
+MACRO MapScript_Battle
     PushContext MapScriptBattle
     InitializeBattle \1
 ENDM
 
-MapScript_MapScriptBattle_Finish: MACRO
+MACRO MapScript_MapScriptBattle_Finish
     IF DEF({BATTLE_TEAM_NAME}WinText) == 0
         ;todo - error
     ENDC
@@ -45,7 +45,7 @@ MapScript_MapScriptBattle_Finish: MACRO
 	jp StartOverworldBattle
 ENDM
 
-MapScriptBattle_text: MACRO
+MACRO MapScriptBattle_text
     InitTextContext prompt, text, Team
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         IF DEF({BATTLE_TEAM_NAME}WinText) == 0
@@ -58,23 +58,23 @@ MapScriptBattle_text: MACRO
 ENDM
 
 ; store the pointer to the trainer table
-MapScriptBattle_Team: MACRO
+MACRO MapScriptBattle_Team
 	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
     ForwardTo InitializeTeam
 ENDM
 
 ; When returning to battle from the team, close the battle context
-MapScriptBattle_Team_Finish: MACRO
+MACRO MapScriptBattle_Team_Finish
     CloseContext
 ENDM
 
 
 
-MapScript_switch: MACRO
+MACRO MapScript_switch
 ENDM
 
-MapScript_case: MACRO
+MACRO MapScript_case
 ENDM
 
-MapScript_end: MACRO
+MACRO MapScript_end
 ENDM

@@ -1,4 +1,4 @@
-pocket: MACRO
+MACRO pocket
 	dw Inventory\1PocketGFX
     dw w\1PocketPosition
     dw \1PocketItems

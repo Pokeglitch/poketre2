@@ -1,4 +1,4 @@
-ByteStruct: MACRO
+MACRO ByteStruct
     SetContext ByteStruct
     ResetOverload
     REDEF BYTE_STRUCT_NAME EQUS "\1"
@@ -13,7 +13,7 @@ DEF InitByteStructElement EQUS "\n\
     ENDC"
 
 ; auto exit when exceeding 1 byte
-UpdateByteStructShift: MACRO
+MACRO UpdateByteStructShift
     RestoreOverload
     IF BYTE_STRUCT_SHIFT == 8
         done
@@ -24,18 +24,18 @@ UpdateByteStructShift: MACRO
     ENDC
 ENDM
 
-ByteStruct_done: MACRO
+MACRO ByteStruct_done
     DEF {BYTE_STRUCT_NAME}NoneBitMask = %11111111 ^ {BYTE_STRUCT_NAME}AllBitMask
     CloseContext
 ENDM
 
-ByteStruct_Skip: MACRO
+MACRO ByteStruct_Skip
     InitByteStructElement
     DEF BYTE_STRUCT_SHIFT += \1
     UpdateByteStructShift
 ENDM
 
-ByteStruct_Index: MACRO
+MACRO ByteStruct_Index
     InitByteStructElement
 
 	REDEF INDEX_NAME EQUS "{BYTE_STRUCT_NAME}\1"
@@ -52,7 +52,7 @@ ByteStruct_Index: MACRO
 ENDM
 
 ; optional number to explicitly define bit length, otherwise will calc on own
-ByteStruct_Array: MACRO
+MACRO ByteStruct_Array
     InitByteStructElement
 
 	REDEF ARRAY_NAME EQUS "{BYTE_STRUCT_NAME}\1"
@@ -96,7 +96,7 @@ ByteStruct_Array: MACRO
     UpdateByteStructShift
 ENDM
 
-ByteStruct_Flag: MACRO
+MACRO ByteStruct_Flag
     InitByteStructElement
 
     REDEF FLAG_NAME EQUS "\1"
@@ -133,7 +133,7 @@ ByteStruct_Flag: MACRO
     UpdateByteStructShift
 ENDM
 
-ByteStruct_Flags: MACRO
+MACRO ByteStruct_Flags
     DEF ALL_MASK_VALUE = 0
     REDEF FLAGS_GROUP_NAME EQUS "\1"
     SHIFT

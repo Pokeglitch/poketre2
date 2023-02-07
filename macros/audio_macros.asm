@@ -1,5 +1,5 @@
 
-StopAllMusic: MACRO
+MACRO StopAllMusic
 	ld a, $ff
 	call PlaySound
 ENDM
@@ -13,7 +13,7 @@ Ch5    EQU 5
 Ch6    EQU 6
 Ch7    EQU 7
 
-audio: MACRO
+MACRO audio
 	db (_NARG - 2) << 6 | \2
 	dw \1_\2
 	IF _NARG > 2
@@ -31,7 +31,7 @@ audio: MACRO
 ENDM
 
 ;format: length [0, 7], pitch change [-7, 7]
-pitchenvelope: MACRO
+MACRO pitchenvelope
 	db $10
 	IF \2 > 0
 		db (\1 << 4) | \2
@@ -41,7 +41,7 @@ pitchenvelope: MACRO
 ENDM
 
 ;format: length [0, 15], volume [0, 15], volume change [-7, 7], pitch
-squarenote: MACRO
+MACRO squarenote
 	db $20 | \1
 	IF \3 < 0
 		db (\2 << 4) | (%1000 | (\3 * -1))
@@ -52,7 +52,7 @@ squarenote: MACRO
 ENDM
 
 ;format: length [0, 15], volume [0, 15], volume change [-7, 7], pitch
-noisenote: MACRO
+MACRO noisenote
 	db $20 | \1
 	IF \3 < 0
 		db (\2 << 4) | (%1000 | (\3 * -1))
@@ -63,229 +63,229 @@ noisenote: MACRO
 ENDM
 
 ;format: pitch length (in 16ths)
-C_: MACRO
+MACRO C_
 	db $00 | (\1 - 1)
 ENDM
 
-C#: MACRO
+MACRO C#
 	db $10 | (\1 - 1)
 ENDM
 
-D_: MACRO
+MACRO D_
 	db $20 | (\1 - 1)
 ENDM
 
-D#: MACRO
+MACRO D#
 	db $30 | (\1 - 1)
 ENDM
 
-E_: MACRO
+MACRO E_
 	db $40 | (\1 - 1)
 ENDM
 
-F_: MACRO
+MACRO F_
 	db $50 | (\1 - 1)
 ENDM
 
-F#: MACRO
+MACRO F#
 	db $60 | (\1 - 1)
 ENDM
 
-G_: MACRO
+MACRO G_
 	db $70 | (\1 - 1)
 ENDM
 
-G#: MACRO
+MACRO G#
 	db $80 | (\1 - 1)
 ENDM
 
-A_: MACRO
+MACRO A_
 	db $90 | (\1 - 1)
 ENDM
 
-A#: MACRO
+MACRO A#
 	db $A0 | (\1 - 1)
 ENDM
 
-B_: MACRO
+MACRO B_
 	db $B0 | (\1 - 1)
 ENDM
 
 ;format: instrument length (in 16ths)
-snare1: MACRO
+MACRO snare1
 	db $B0 | (\1 - 1)
 	db $01
 ENDM
 
-snare2: MACRO
+MACRO snare2
 	db $B0 | (\1 - 1)
 	db $02
 ENDM
 
-snare3: MACRO
+MACRO snare3
 	db $B0 | (\1 - 1)
 	db $03
 ENDM
 
-snare4: MACRO
+MACRO snare4
 	db $B0 | (\1 - 1)
 	db $04
 ENDM
 
-snare5: MACRO
+MACRO snare5
 	db $B0 | (\1 - 1)
 	db $05
 ENDM
 
-triangle1: MACRO
+MACRO triangle1
 	db $B0 | (\1 - 1)
 	db $06
 ENDM
 
-triangle2: MACRO
+MACRO triangle2
 	db $B0 | (\1 - 1)
 	db $07
 ENDM
 
-snare6: MACRO
+MACRO snare6
 	db $B0 | (\1 - 1)
 	db $08
 ENDM
 
-snare7: MACRO
+MACRO snare7
 	db $B0 | (\1 - 1)
 	db $09
 ENDM
 
-snare8: MACRO
+MACRO snare8
 	db $B0 | (\1 - 1)
 	db $0A
 ENDM
 
-snare9: MACRO
+MACRO snare9
 	db $B0 | (\1 - 1)
 	db $0B
 ENDM
 
-cymbal1: MACRO
+MACRO cymbal1
 	db $B0 | (\1 - 1)
 	db $0C
 ENDM
 
-cymbal2: MACRO
+MACRO cymbal2
 	db $B0 | (\1 - 1)
 	db $0D
 ENDM
 
-cymbal3: MACRO
+MACRO cymbal3
 	db $B0 | (\1 - 1)
 	db $0E
 ENDM
 
-mutedsnare1: MACRO
+MACRO mutedsnare1
 	db $B0 | (\1 - 1)
 	db $0F
 ENDM
 
-triangle3: MACRO
+MACRO triangle3
 	db $B0 | (\1 - 1)
 	db $10
 ENDM
 
-mutedsnare2: MACRO
+MACRO mutedsnare2
 	db $B0 | (\1 - 1)
 	db $11
 ENDM
 
-mutedsnare3: MACRO
+MACRO mutedsnare3
 	db $B0 | (\1 - 1)
 	db $12
 ENDM
 
-mutedsnare4: MACRO
+MACRO mutedsnare4
 	db $B0 | (\1 - 1)
 	db $13
 ENDM
 
 ;format: rest length (in 16ths)
-rest: MACRO
+MACRO rest
 	db $C0 | (\1 - 1)
 ENDM
 
 ; format: notetype speed, volume, fade
-notetype: MACRO
+MACRO notetype
 	db $D0 | \1
 	db (\2 << 4) | \3
 ENDM
 
-dspeed: MACRO
+MACRO dspeed
 	db $D0 | \1
 ENDM
 
-octave: MACRO
+MACRO octave
 	db $E8 - \1
 ENDM
 
-toggleperfectpitch: MACRO
+MACRO toggleperfectpitch
 	db $E8
 ENDM
 
 ;format: vibrato delay, rate, depth
-vibrato: MACRO
+MACRO vibrato
 	db $EA
 	db \1
 	db (\2 << 4) | \3
 ENDM
 
-pitchbend: MACRO
+MACRO pitchbend
 	db $EB
 	db \1
 	db \2
 ENDM
 
-duty: MACRO
+MACRO duty
 	db $EC
 	db \1
 ENDM
 
-tempo: MACRO
+MACRO tempo
 	db $ED
 	db \1 / $100
 	db \1 % $100
 ENDM
 
-stereopanning: MACRO
+MACRO stereopanning
 	db $EE
 	db \1
 ENDM
 
-volume: MACRO
+MACRO volume
 	db $F0
 	db (\1 << 4) | \2
 ENDM
 
-executemusic: MACRO
+MACRO executemusic
 	db $F8
 ENDM
 
-dutycycle: MACRO
+MACRO dutycycle
 	db $FC
 	db \1
 ENDM
 
 ;format: callchannel address
-callchannel: MACRO
+MACRO callchannel
 	db $FD
 	dw \1
 ENDM
 
 ;format: loopchannel count, address
-loopchannel: MACRO
+MACRO loopchannel
 	db $FE
 	db \1
 	dw \2
 ENDM
 
-endchannel: MACRO
+MACRO endchannel
 	db $FF
 ENDM

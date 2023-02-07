@@ -1,4 +1,4 @@
-Pokemon: MACRO
+MACRO Pokemon
     ConvertName \1
     Prop Name, String, {NAME_STRING}
     Prop Front, Sprite

@@ -4,7 +4,7 @@ DEF TILE_ID = 0
 ; 1 - Tile ID to load into
 ; 2 - Number of Tiles to load
 ; 3 - Start address of tiles
-load_vram: MACRO
+MACRO load_vram
     ld hl, vTiles + (\1 * BYTES_PER_TILE)
     lb bc, BANK(\3), \2
     ld de, \3
@@ -14,7 +14,7 @@ ENDM
 ; Arguments
 ; 1 - Screen Name
 ; 2 - File Name
-define_tile_ids: MACRO
+MACRO define_tile_ids
     REDEF \1\2Tile EQU TILE_ID
 
     FOR TILE_INDEX, 0, \2Size
@@ -35,7 +35,7 @@ ENDM
 ;
 ; If the arguments are arranged in order they have been written to the ROM
 ; It will combine loading for those that are next to each other
-load_tiles: MACRO
+MACRO load_tiles
     ; Update the TILE_ID if first argument is positive
     IF \1 > -1
         DEF TILE_ID = \1
@@ -108,7 +108,7 @@ load_tiles: MACRO
 ENDM
 
 DEF PREVIOUS_TILE EQUS ""
-ResetPreviousTile: MACRO
+MACRO ResetPreviousTile
     REDEF PREVIOUS_TILE EQUS ""
 ENDM
 
@@ -117,7 +117,7 @@ ENDM
 ; - Repeating:
 ; - 1 - File Name
 ; - 2 - File Size (in Tiles) | Optional
-IncludeTiles: MACRO
+MACRO IncludeTiles
     REDEF DIR EQUS "\1"
     SHIFT
 
