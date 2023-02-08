@@ -235,7 +235,7 @@ MACRO MapObjectsText_text
     InitTextContext done, Sign, NPC, Battle, Pickup, WarpTo
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            ForwardTo Default_text
+            Default_text \#
 ENDM
 
 ; Close the map objects text context
@@ -258,12 +258,12 @@ MACRO MapObjectsBattle_text
     ENDC
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            ForwardTo Default_text
+            Default_text \#
 ENDM
 
 MACRO MapObjectsBattle_Team
 	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
-    ForwardTo InitializeTeam
+        InitializeTeam \#
 ENDM
 
 ; Close the map objects battle context

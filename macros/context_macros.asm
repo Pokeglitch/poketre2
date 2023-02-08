@@ -60,34 +60,20 @@ MACRO CloseContext
     ENDR
 ENDM
 
-DEF AccumulateArgs EQUS "\n\
-REDEF ARGS_STR EQUS \"\"\n\
-REPT _NARG\n\
-    IF STRCMP(\"\{ARGS_STR\}\", \"\") != 0\n\
-        REDEF ARGS_STR EQUS STRCAT(\"\{ARGS_STR\}\",\", \")\n\
-    ENDC\n\
-    REDEF ARGS_STR EQUS STRCAT(\"\{ARGS_STR\}\",\"\\1\")\n\
-    SHIFT\n\
-ENDR"
+MACRO ExecuteContextMacro
+    REDEF EXECUTE_MACRO_NAME EQUS "\1"
+    SHIFT
+
+    IF DEF({Context}_{EXECUTE_MACRO_NAME})
+        {Context}_{EXECUTE_MACRO_NAME} \#
+    ELSE
+        fail "{EXECUTE_MACRO_NAME} is not defined in context: {Context}"
+    ENDC
+ENDM
 
 MACRO DefineContextMacro
-REDEF CONTEXT_MACRO_STR EQUS "macro \1\n\
-IF DEF(\{Context\}_\1)\n\
-    AccumulateArgs\n\
-    \{Context\}_\1 \{ARGS_STR\}\n\
-ELSE\n\
-    fail \"\1 is not defined in context: \{Context\}\"\n\
-ENDC\nENDM"
-{CONTEXT_MACRO_STR}
+    DEF \1 EQUS "ExecuteContextMacro \1, "
 ENDM
-
-MACRO ForwardToMacro
-    \1 {ARGS_STR}
-ENDM
-
-REDEF ForwardTo EQUS "\n\
-    AccumulateArgs\n\
-    ForwardToMacro "
 
 MACRO DefineDefaultMacros
     DEF CONTEXT_NAME EQUS "\1"

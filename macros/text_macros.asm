@@ -218,12 +218,7 @@ MACRO InitTextContext
 	SetTextAutoClose \1
 	SHIFT
 
-	ForwardTo DefineTempTextMacros
-ENDM
-
-MACRO DefineTempTextMacros
-	; args str was defined before this gets called
-	REDEF TEMP_TEXT_CLOSE_MACROS EQUS "{ARGS_STR}"
+	REDEF TEMP_TEXT_CLOSE_MACROS EQUS "\#"
 
 	REPT _NARG
 		REDEF Text_\1 EQUS "TempTextClose \1, "
@@ -244,5 +239,5 @@ MACRO TempTextClose
 	REDEF MACRO_NAME EQUS "\1"
 	SHIFT
 	{TEXT_AUTO_CLOSE}
-	ForwardTo {MACRO_NAME}
+	{MACRO_NAME} \#
 ENDM

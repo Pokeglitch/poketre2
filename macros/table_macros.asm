@@ -50,21 +50,10 @@ MACRO Entry
         DEF {ENTRY_NAME}Table EQUS "{TABLE_NAME}"
     ENDC
 
-    ; Accumulate the arguments to forwards to the macro
-    REDEF ENTRY_ARGUMENTS EQUS ""
-    REPT _NARG
-        IF STRCMP("{ENTRY_ARGUMENTS}", "") == 0
-            REDEF ENTRY_ARGUMENTS EQUS " \1"
-        ELSE
-            REDEF ENTRY_ARGUMENTS EQUS STRCAT("{ENTRY_ARGUMENTS}", ", \1")
-        ENDC
-        SHIFT
-    ENDR
-
     ; Create the entry label
     {TABLE_NAME}{ENTRY_NAME}Entry:
         ; Call the Macro
-        TABLE_NAME {ENTRY_ARGUMENTS}
+        TABLE_NAME \#
 
     ; Increase the table entry count
     DEF {TABLE_NAME}EntryCount += 1
@@ -74,12 +63,14 @@ ENDM
 ; 2 - Type
 ; 3+? - Values
 MACRO Prop
+    REDEF PROPERTY_KEY EQUS "\1"
+    REDEF PROPERTY_TYPE EQUS "\2"
+
     ; If this is the first time an entry is being defined, then update the table values
     IF {TABLE_NAME}EntryCount == 0
         DEF PROPERTY_INDEX = {TABLE_NAME}PropertyCount
         REDEF PROPERTY_BY_INDEX EQUS "{TABLE_NAME}Property{d:PROPERTY_INDEX}"
 
-        REDEF PROPERTY_KEY EQUS "\1"
         REDEF PROPERTY_BY_KEY EQUS "{TABLE_NAME}Property\1"
 
         ; Map the Property Key to the Property by Index
@@ -149,14 +140,9 @@ MACRO Prop
         DEF {TABLE_NAME}PropertyCount += 1
     ENDC
 
-    ; Accumulate the args to send to the definition macro
-    REDEF PROP_ARGS_STR EQUS "{TABLE_NAME}, {ENTRY_NAME}, \1"
-    FOR I, 3, _NARG+1
-        REDEF PROP_ARGS_STR EQUS STRCAT("{PROP_ARGS_STR}", ", \<{d:I}>")
-    ENDR
-
+    SHIFT 2
     ; Place the value
-    \2Define {PROP_ARGS_STR}
+    {PROPERTY_TYPE}Define {TABLE_NAME}, {ENTRY_NAME}, {PROPERTY_KEY}, \#
 ENDM
 
 ByteAllocate EQU 1

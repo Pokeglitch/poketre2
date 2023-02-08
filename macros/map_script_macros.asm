@@ -1,18 +1,17 @@
 REDEF MAP_SCRIPT_MACROS EQUS ""
 MACRO DefineMapScriptMacros
-    AccumulateArgs
-    REDEF MAP_SCRIPT_MACROS EQUS "{ARGS_STR}"
+    REDEF MAP_SCRIPT_MACROS EQUS "\#"
 ENDM
     DefineMapScriptMacros text, Delay
     DefineDefaultMacros MapScript, Delay
 
 MACRO MapScript_text
     REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
-
     InitTextContext done, {MAP_SCRIPT_MACROS}
+    
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {PTR_NAME}:
-            ForwardTo Default_text
+            Default_text \#
     
     DEF {MAP_NAME}TextCount = {MAP_NAME}TextCount + 1
 ENDM
@@ -54,13 +53,13 @@ MACRO MapScriptBattle_text
             {BATTLE_TEAM_NAME}LoseText:
         ENDC
     
-        ForwardTo Default_text
+        Default_text \#
 ENDM
 
 ; store the pointer to the trainer table
 MACRO MapScriptBattle_Team
 	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
-    ForwardTo InitializeTeam
+        InitializeTeam \#
 ENDM
 
 ; When returning to battle from the team, close the battle context

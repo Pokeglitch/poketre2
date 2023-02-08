@@ -165,12 +165,12 @@ MACRO InitializeTeam
         ; if the first argument is a number, then its a party definition
         IsNumber \1
         IF IS_NUMBER
-            ForwardTo ParseTeamData
+            ParseTeamData \#
         ; otherwise, assume it is a macro and execute it
         ELSE            
             REDEF MACRO_NAME EQUS "\1"
             SHIFT
-            ForwardTo {MACRO_NAME}
+            {MACRO_NAME} \#
         ENDC
     ENDC
 ENDM
@@ -250,7 +250,7 @@ ENDM
 
 MACRO TeamSwitchRoutine_case
     CloseContext
-    ForwardTo case
+    case \#
 ENDM
 
 ; When a team switch value is finished, also close the party
@@ -270,19 +270,19 @@ MACRO TeamSwitch_case
     ; if more than 1 arg, then the team is also defined
     IF _NARG > 1
         SHIFT
-        ForwardTo Team
+        Team \#
     ENDC
 ENDM
 
 ; Implicitly open the Team context
 MACRO TeamSwitchCase_switch
     Team
-    ForwardTo switch
+    switch \#
 ENDM
 
 ; Initialize the team
 MACRO TeamSwitchCase_Team
-    ForwardTo InitializeTeam
+    InitializeTeam \#
 ENDM
 
 ; When a team finishes, also close the case context
