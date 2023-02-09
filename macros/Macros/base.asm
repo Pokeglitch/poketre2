@@ -10,7 +10,7 @@ endm
 ; \1  - Directory name
 ; \2+ - File name
 macro incDir
-    for i, 1, _NARG
-        include "\1/\2.asm"
+    for i, 2, _NARG+1
+        include "\1/\<i>.asm"
     endr
 endm
