@@ -1,9 +1,17 @@
+; to send each argument to the given macro
+macro foreach
+    for i, 2, _NARG+1
+        \1 \<i>
+    endr
+endm
+
 ; Print given arguments on own line
 macro msg
-    rept _NARG
-        print "\1\n"
-        shift
-    endr
+    foreach _msg, \#
+endm
+
+macro _msg
+    print "\1\n"
 endm
 
 ; Include given files in given directory

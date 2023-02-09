@@ -5,10 +5,7 @@ MACRO textbox
 ENDM
 
 MACRO more
-	REPT _NARG
-		db \1   
-		SHIFT
-	ENDR
+	foreach db, \#
 ENDM
 
 MACRO ramtext
@@ -48,11 +45,11 @@ MACRO autocont
 ENDM
 
 ; Move a line down.
-MACRO next
+MACRO Default_next
 	db NEXT_TEXT_LINE
 	REPT _NARG
-	db \1
-	SHIFT
+		db \1
+		SHIFT
 	ENDR
 ENDM
 
@@ -60,8 +57,8 @@ ENDM
 MACRO para
 	db PARAGRAPH
 	REPT _NARG
-	db \1
-	SHIFT
+		db \1
+		SHIFT
 	ENDR
 ENDM
 
@@ -69,8 +66,8 @@ ENDM
 MACRO autopara
 	db AUTO_PARAGRAPH
 	REPT _NARG
-	db \1
-	SHIFT
+		db \1
+		SHIFT
 	ENDR
 ENDM
 
@@ -100,8 +97,8 @@ ENDM
 
 MACRO str
 	REPT _NARG
-	db \1
-	SHIFT
+		db \1
+		SHIFT
 	ENDR
 	db TEXT_END
 ENDM
@@ -160,8 +157,8 @@ TX_BILLS_PC                EQUS "db $fd"
 MACRO TX_MART
 	db $FE, _NARG
 	REPT _NARG
-	db \1
-	SHIFT
+		db \1
+		SHIFT
 	ENDR
 	db $FF
 ENDM
@@ -169,10 +166,7 @@ ENDM
 TX_POKECENTER_NURSE        EQUS "db $ff"
 
 MACRO Default_text
-	REPT _NARG
-		db \1   
-		SHIFT
-	ENDR
+	foreach db, \#
 ENDM
 
 REDEF TEXT_AUTO_CLOSE EQUS ""
@@ -241,3 +235,5 @@ MACRO TempTextClose
 	{TEXT_AUTO_CLOSE}
 	{MACRO_NAME} \#
 ENDM
+
+	DefineDefaultMacros Text, next

@@ -1,15 +1,22 @@
     ByteStruct MapObject
-        Index TextIndex, 127    
+        Index TextIndex, %01111111
         Flag Sign
+    end
         
     ByteStruct ObjectData
-        Index -o, Level, 100
-        Index PartyIndex, 127
+        overload
+            Index Level, 100
+        next
+            Index PartyIndex, %01111111
+        end
+
         Flag Trainer
+    end
 
     ByteStruct MapText
-        Index Index, 31
+        Index Index, %00011111
         Array Type, 3, Standard, Item, Trainer
+    end
 
 ; todo - struct macro
 TrainerHeaderPropertyFlagIndexMask = %00000111

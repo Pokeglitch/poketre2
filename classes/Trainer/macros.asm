@@ -1,16 +1,24 @@
     ByteStruct PartyData
-        Index -o, Level, 100
-        Index MoveIndex, 3
+        overload
+            Index Level, 100
+        next
+            Index MoveIndex, 3
+        end
         Flag Special
+    end
 
     ByteStruct PartyDefinition
         Array Condition, Standard, RAMValue, RoutineValue, RoutineDefinition
         Flag Levels, Explicit, Scaled
         Flag Type, Flag, Value
-        Array -o, ValueMethod, Equal, GreaterThanEqual, GreaterThan, LessThanEqual, LessThan
-        Array -o, FlagMethod, z, c, zc
-        Index FlagIndex, 7
-        done
+        overload
+            Array ValueMethod, Equal, GreaterThanEqual, GreaterThan, LessThanEqual, LessThan
+        next
+            Array FlagMethod, z, c, zc
+        next
+            Index FlagIndex, 7
+        end
+    end
 
 PartyDataTerminator = -1
 

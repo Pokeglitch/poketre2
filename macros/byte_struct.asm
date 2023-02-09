@@ -1,43 +1,23 @@
 MACRO ByteStruct
     SetContext ByteStruct
-    ResetOverload
     REDEF BYTE_STRUCT_NAME EQUS "\1"
     DEF BYTE_STRUCT_SHIFT = 0
     DEF {BYTE_STRUCT_NAME}AllBitMask = 0
 ENDM
 
-DEF InitByteStructElement EQUS "\n\
-    CheckOverload \\1, BYTE_STRUCT_SHIFT\n\
-    IF OVERLOAD\n\
-        SHIFT\n\
-    ENDC"
+macro ByteStruct_overload
+    NewOverload BYTE_STRUCT_SHIFT, Index, Array, Flag, Flags
+endm
 
-; auto exit when exceeding 1 byte
-MACRO UpdateByteStructShift
-    RestoreOverload
-    IF BYTE_STRUCT_SHIFT == 8
-        done
-    ELSE
-        IF BYTE_STRUCT_SHIFT > 8
-            FAIL "Byte Struct exceeded 8 bits"
-        ENDC
+MACRO ByteStruct_end
+    IF BYTE_STRUCT_SHIFT > 8
+        FAIL "Byte Struct exceeded 8 bits"
     ENDC
-ENDM
-
-MACRO ByteStruct_done
     DEF {BYTE_STRUCT_NAME}NoneBitMask = %11111111 ^ {BYTE_STRUCT_NAME}AllBitMask
     CloseContext
 ENDM
 
-MACRO ByteStruct_Skip
-    InitByteStructElement
-    DEF BYTE_STRUCT_SHIFT += \1
-    UpdateByteStructShift
-ENDM
-
 MACRO ByteStruct_Index
-    InitByteStructElement
-
 	REDEF INDEX_NAME EQUS "{BYTE_STRUCT_NAME}\1"
 
     DEF {INDEX_NAME}Max = \2
@@ -47,14 +27,10 @@ MACRO ByteStruct_Index
     BitMask {INDEX_NAME}BitSize, BYTE_STRUCT_SHIFT
     DEF {INDEX_NAME}BitMask = BIT_MASK
     DEF BYTE_STRUCT_SHIFT += {INDEX_NAME}BitSize
-
-    UpdateByteStructShift
 ENDM
 
 ; optional number to explicitly define bit length, otherwise will calc on own
 MACRO ByteStruct_Array
-    InitByteStructElement
-
 	REDEF ARRAY_NAME EQUS "{BYTE_STRUCT_NAME}\1"
 	SHIFT
 
@@ -92,13 +68,9 @@ MACRO ByteStruct_Array
     BitMask {ARRAY_NAME}BitSize, BYTE_STRUCT_SHIFT
     DEF {ARRAY_NAME}BitMask = BIT_MASK
     DEF BYTE_STRUCT_SHIFT += {ARRAY_NAME}BitSize
-
-    UpdateByteStructShift
 ENDM
 
 MACRO ByteStruct_Flag
-    InitByteStructElement
-
     REDEF FLAG_NAME EQUS "\1"
     SHIFT
 
@@ -130,7 +102,6 @@ MACRO ByteStruct_Flag
     DEF BYTE_STRUCT_SHIFT += 1
     
     DEF {BYTE_STRUCT_NAME}AllBitMask |= {BYTE_STRUCT_NAME}{FLAG_NAME}BitMask
-    UpdateByteStructShift
 ENDM
 
 MACRO ByteStruct_Flags
@@ -139,8 +110,11 @@ MACRO ByteStruct_Flags
     SHIFT
     REPT _NARG
         DEF ALL_MASK_VALUE += 1 << BYTE_STRUCT_SHIFT
-        Flag -o, {FLAGS_GROUP_NAME}\1
-        Flag \1
+        overload
+            Flag {FLAGS_GROUP_NAME}\1
+        next
+            Flag \1
+        end
         SHIFT
     ENDR
     DEF {BYTE_STRUCT_NAME}{FLAGS_GROUP_NAME}BitMask = ALL_MASK_VALUE

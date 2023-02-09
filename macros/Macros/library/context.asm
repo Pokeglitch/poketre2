@@ -1,52 +1,70 @@
+; Note: when context is closed, will auto callback if
+; {NewContext}_{ClosedContext}_Finish is defined
+
 macro Define_Context
     redef \1Name equs "\2"
     def \1Pushed = \3
+    redef \1ParentMacros equs ""
 endm
 
 macro PushContext
-    Push_Context \1, 1
     pushs
+    Push_Context \1, 1
+    shift
+    DefineParentMacros \#
 endm
 
 macro SetContext
     Push_Context \1, 0
+    shift
+    DefineParentMacros \#
 endm
 
-; will auto callback if:
-; {NewContext}_{ClosedContext}_Finish is defined
+macro DefineParentMacros
+    redef {Context}ParentMacros equs "\#"
+    foreach _DefineParentMacros, \#
+endm
+
+macro _DefineParentMacros
+    def {{Context}Name}_\1 equs "{{{Context}_Parent}Name}_\1"
+endm
+
+macro PurgeParentMacro
+    purge {{Context}Name}_\1
+endm
+
 macro CloseContext
-    if _NARG == 1
-        def CLOSE_COUNT = \1
-    else
-        def CLOSE_COUNT = 1
+    ; if the context was pushed, then pop
+    if {Context}Pushed
+        pops
     endc
 
-    rept CLOSE_COUNT
-        ; if the context was pushed, then pop
-        if {Context}Pushed
-            pops
-        endc
+    ; purge any parent macros
+    foreach PurgeParentMacro, {{Context}ParentMacros}
 
-        ; Store the potential callback macro name
-        redef CALLBACK equs "{{{Context}_Parent}Name}_{{Context}Name}_Finish"
+    ; Store the potential callback macro name
+    redef CONTEXT_CALLBACK equs "{{{Context}_Parent}Name}_{{Context}Name}_Finish"
 
-        Pop_Context
+    Pop_Context
 
-        ; if the callback exists, execute it
-        if def({CALLBACK})
-            {CALLBACK}
-        endc
-    endr
+    ; Redefine any parent macros
+    DefineParentMacros {{Context}ParentMacros}
+
+    ; if the callback exists, execute it
+    if def({CONTEXT_CALLBACK})
+        {CONTEXT_CALLBACK}
+    endc
 endm
 
+; To set the given macro names in this context to call it's default macro
 macro DefineDefaultMacros
-    def CONTEXT_NAME equs "\1"
+    redef CONTEXT_NAME equs "\1"
     shift
+    foreach _DefineDefaultMacros, \#
+endm
 
-    rept _NARG
-        def {CONTEXT_NAME}_\1 equs "{DEFAULT_CONTEXT_NAME}_\1"
-        shift
-    endr
+macro _DefineDefaultMacros
+    def {CONTEXT_NAME}_\1 equs "{DEFAULT_CONTEXT_NAME}_\1"
 endm
 
 macro ExecuteContextMacro
@@ -60,15 +78,12 @@ macro ExecuteContextMacro
     endc
 endm
 
-macro DefineContextMacro
-    def \1 equs "ExecuteContextMacro \1, "
+macro DefineContextMacros
+    foreach DefineContextMacro, \#
 endm
 
-macro DefineContextMacros
-    rept _NARG
-        DefineContextMacro \1
-        shift
-    endr
+macro DefineContextMacro
+    def \1 equs "ExecuteContextMacro \1, "
 endm
 
     def DEFAULT_CONTEXT_NAME equs "Default"
@@ -76,7 +91,10 @@ endm
 
     DefineContextMacros Team
     DefineContextMacros Warp, Sign, NPC, Battle, Pickup, WarpTo
-    DefineContextMacros switch, case, end, asm
-    DefineContextMacros text, asmtext, asmdone, done, prompt, exit
     DefineContextMacros Delay
-    DefineContextMacros Array, Flag, Flags, Index, Skip
+    DefineContextMacros Array, Flag, Flags, Index
+
+    DefineContextMacros text, asmtext, asmdone, done, prompt, exit
+    DefineContextMacros switch, case, asm
+    DefineContextMacros overload, skip
+    DefineContextMacros next, end

@@ -1,6 +1,7 @@
 	ByteStruct Button
 		Flags Choice, A, B, Select, Start
 		Flags DPad, Right, Left, Up, Down
+	end
 
 ; From http://nocash.emubase.de/pandocs.htm.
 
