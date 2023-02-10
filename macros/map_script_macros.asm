@@ -11,7 +11,7 @@ MACRO MapScript_text
     
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {PTR_NAME}:
-            Default_text \#
+            foreach db, \#
     
     DEF {MAP_NAME}TextCount = {MAP_NAME}TextCount + 1
 ENDM
@@ -53,7 +53,7 @@ MACRO MapScriptBattle_text
             {BATTLE_TEAM_NAME}LoseText:
         ENDC
     
-        Default_text \#
+        foreach db, \#
 ENDM
 
 ; store the pointer to the trainer table

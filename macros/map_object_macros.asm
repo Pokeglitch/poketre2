@@ -242,7 +242,7 @@ MACRO MapObjectsText_text
     InitTextContext done, Sign, NPC, Battle, Pickup, WarpTo
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            Default_text \#
+            foreach db, \#
 ENDM
 
 ; Close the map objects text context
@@ -265,7 +265,7 @@ MACRO MapObjectsBattle_text
     ENDC
     SECTION FRAGMENT "{MAP_NAME} Texts", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
-            Default_text \#
+            foreach db, \#
 ENDM
 
 MACRO MapObjectsBattle_Team

@@ -15,7 +15,7 @@ MACRO Table
     DEF {TABLE_NAME}EntryCount = 0
 ENDM
 
-MACRO Default_Flag
+MACRO _Flag
     DEF {TABLE_NAME}\1\2 = 0
     DEF {TABLE_NAME}\1\3 = 1
 ENDM

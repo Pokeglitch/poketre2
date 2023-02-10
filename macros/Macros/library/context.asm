@@ -7,8 +7,7 @@ macro Define_Context
     redef {Context}#PassthroughMacros equs ""
 endm
 
-def DEFAULT_CONTEXT_NAME equs "Default"
-    Stack Context, {DEFAULT_CONTEXT_NAME}, 0
+    Stack Context, , 0
 
 
 
@@ -72,7 +71,7 @@ macro DefineDefaultMacros
 endm
 
 macro _DefineDefaultMacros
-    def {CONTEXT_NAME}_\1 equs "{DEFAULT_CONTEXT_NAME}_\1"
+    def {CONTEXT_NAME}_\1 equs "_\1"
 endm
 
 macro ExecuteContextMacro

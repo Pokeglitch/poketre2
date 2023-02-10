@@ -82,7 +82,7 @@ MACRO IsRegister
 ENDM
 
 ; makes a virtual list starting at 0 (or, optionally different value)
-MACRO Default_Array
+MACRO _Array
 	REDEF ARRAY_NAME EQUS "\1"
 	SHIFT
 

@@ -18,7 +18,7 @@ MACRO neartext
 	dw \1
 ENDM
 
-MACRO Default_asmtext
+MACRO _asmtext
 	db TEXT_ASM
 ENDM
 
@@ -45,7 +45,7 @@ MACRO autocont
 ENDM
 
 ; Move a line down.
-MACRO Default_next
+MACRO _next
 	db NEXT_TEXT_LINE
 	REPT _NARG
 		db \1
@@ -71,17 +71,17 @@ MACRO autopara
 	ENDR
 ENDM
 
-MACRO Default_asmdone
+MACRO _asmdone
 	jp TextScriptEnd
 ENDM
 
 ; End a string
-MACRO Default_done
+MACRO _done
 	db TEXT_END
 ENDM
 
 ; Prompt the player to end a text box (initiating some other event).
-MACRO Default_prompt
+MACRO _prompt
 	db TEXT_PROMPT
 ENDM
 
@@ -91,7 +91,7 @@ MACRO wait
 ENDM
 
 ; Exit without waiting for keypress
-MACRO Default_exit_text
+MACRO _exit_text
 	db TEXT_EXIT
 ENDM
 
@@ -165,7 +165,7 @@ ENDM
 
 TX_POKECENTER_NURSE        EQUS "db $ff"
 
-MACRO Default_text
+MACRO _text
 	foreach db, \#
 ENDM
 
@@ -176,26 +176,26 @@ ENDM
 
 MACRO Text_asmtext
 	SetTextAutoClose asmdone
-	Default_asmtext
+	_asmtext
 ENDM
 
 MACRO Text_done
-    Default_done
+    _done
     CloseTextContext
 ENDM
 
 MACRO Text_asmdone
-    Default_asmdone
+    _asmdone
     CloseTextContext
 ENDM
 
 MACRO Text_prompt
-    Default_prompt
+    _prompt
     CloseTextContext
 ENDM
 
 MACRO Text_exit_text
-    Default_exit_text
+    _exit_text
 	CloseTextContext
 ENDM
 
