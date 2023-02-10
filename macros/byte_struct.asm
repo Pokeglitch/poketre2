@@ -9,7 +9,7 @@ macro ByteStruct_overload
     NewOverload BYTE_STRUCT_SHIFT, Index, Array, Flag, Flags
 endm
 
-MACRO ByteStruct_end
+MACRO ByteStruct_EndDefinition
     IF BYTE_STRUCT_SHIFT > 8
         FAIL "Byte Struct exceeded 8 bits"
     ENDC

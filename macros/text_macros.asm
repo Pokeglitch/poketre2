@@ -91,7 +91,7 @@ MACRO wait
 ENDM
 
 ; Exit without waiting for keypress
-MACRO Default_exit
+MACRO Default_exit_text
 	db TEXT_EXIT
 ENDM
 
@@ -194,8 +194,8 @@ MACRO Text_prompt
     CloseTextContext
 ENDM
 
-MACRO Text_exit
-    Default_exit
+MACRO Text_exit_text
+    Default_exit_text
 	CloseTextContext
 ENDM
 

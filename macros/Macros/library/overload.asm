@@ -1,3 +1,6 @@
+
+    Stack Overload
+
 macro Define_Overload
     def \1StartIndex = {\2}
     def \1EndIndex = {\2}
@@ -20,7 +23,7 @@ macro Overload_next
     def {{Overload}Name} = {Overload}StartIndex
 endm
 
-macro Overload_end
+macro Overload_EndDefinition
     if {{Overload}Name} < {Overload}EndIndex
         def {{Overload}Name} = {Overload}EndIndex
     endc
@@ -34,5 +37,3 @@ macro NewOverload
     shift
     SetContext Overload, \#
 endm
-
-    Stack Overload
