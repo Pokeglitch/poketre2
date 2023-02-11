@@ -5,8 +5,11 @@ MACRO ByteStruct
     DEF {BYTE_STRUCT_NAME}AllBitMask = 0
 ENDM
 
+redef ByteStruct#LocalMacros equs "Index, Array, Flag, Flags"
+
 macro ByteStruct_overload
-    NewOverload BYTE_STRUCT_SHIFT, Index, Array, Flag, Flags
+    redef _self equs "{self}"
+    enter Overload, BYTE_STRUCT_SHIFT
 endm
 
 MACRO ByteStruct_EndDefinition

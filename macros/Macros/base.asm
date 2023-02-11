@@ -1,3 +1,6 @@
+def false equs "0"
+def true equs "1"
+
 /*  To send each argument to the given macro individually
     \1  - Macro Name
     \2+ - Argument(s) to pass to macro individually    */
@@ -10,23 +13,22 @@ endm
 /*  To print given argument(s) on own line
     \1+ - Arguments to print    */
 macro msg
-    if _NARG > 1
-        foreach msg, \#
-    else
+    if _NARG == 1
         print "\1\n"
+    else
+        foreach msg, \#
     endc
 endm
-
 
 /*  To purge the given arguments if they exist
     \1+ - Arguments to purge    */
 macro try_purge
-    if _NARG > 1
-        foreach try_purge, \#
-    else
+    if _NARG == 1
         if def(\1)
             purge \1
         endc
+    else
+        foreach try_purge, \#
     endc
 endm
 
@@ -41,11 +43,94 @@ macro try_exec
     endc
 endm
 
-/*  To mark this given string macro as already used
-    \1 - String name    */
+/*  To mark this given string macro(s) as already used
+    \1+ - Symbol(s) of string(s)    */
 macro single_use
-    redef \1 equs "fail \"\1 has aready been called\"\n"
+    if _NARG == 1
+        redef \1 equs "fail \"\1 has aready been called\"\n"
+    else
+        foreach single_use, \#
+    endc
 endm
+
+/*  To create a unique ID and forward it (and other arguments) to given macro
+    \1   - Macro to forward it to
+    \2+? - Optional arguments to forward it to    */
+macro unique
+    redef MACRO_NAME equs "\1"
+    shift
+    {MACRO_NAME} \@, \#
+endm
+
+/*  To assign a value to the given symbol
+    \1 - Symbol
+    \2 - Value    */
+macro assign_value
+    if strin("\2","\"") == 1
+        def \1 equs "\2"
+    else
+        def \1 = \2
+    endc
+endm
+
+macro assign_type
+    try_assign \1, \2, Number, String
+endm
+
+macro assign_match
+    check_match \#
+    def \1 = MATCH_FOUND
+endm
+
+macro check_match
+    def MATCH_FOUND = 0
+    redef SYMBOL equs "\1"
+    redef VALUE equs "\2"
+    shift 2
+
+    for i, 1, _NARG+1
+        if MATCH_FOUND == 0 && strcmp("{VALUE}", "\<i>") == 0
+            def MATCH_FOUND = 1
+        endc
+    endr
+endm
+
+/*
+    \1  - Symbol to assign to
+    \2  - Value to assign
+    \3+ - Valid values
+*/
+macro try_assign
+    check_match \#
+    shift 2
+    if MATCH_FOUND
+        assign_value {SYMBOL}, "{VALUE}"
+    else
+        fail "\n{SYMBOL} value is not valid.\n\tExpected one of: \#\n\tReceived: {VALUE}\n"
+    endc
+endm
+
+/*
+    \1  - Type
+    \2+ - Strings to compare to
+*/
+macro match_strings
+    def STRING_MATCH = 0
+    def MACRO_NAME equs "match_string \1,"
+    shift
+    foreach MACRO_NAME, \#
+endm
+
+/*
+    \1, \2 - Strings to compare
+*/
+macro match_string
+    if strcmp("\1", "\2") == 0
+        def STRING_MATCH = 1
+    endc
+endm
+
+
 
 
 /*  To keep track of current directory path for simpler including */

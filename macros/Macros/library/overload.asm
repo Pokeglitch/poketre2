@@ -1,39 +1,32 @@
+Scope Overload
+    init
+        def {self}StartIndex = {\1}
+        def {self}EndIndex = {\1}
+        def {self}Name equs "\1"
+        def {self}#isPassthrough = true
+    endm
 
-    Stack Overload
+    local overload
+    func
+        enter Overload, {{self}Name}
+    endm
 
-macro Define_Overload
-    def \1StartIndex = {\2}
-    def \1EndIndex = {\2}
-    def \1Name equs "\2"
-endm
+    local skip
+    func
+        def {{self}Name} += \1
+    endm
 
-macro Overload_overload
-    Push_Overload {{Overload}Name}
-    SetContext Overload
-endm
+    local next
+    func
+        if {{self}Name} > {self}EndIndex
+            def {self}EndIndex = {{self}Name}
+        endc
+        def {{self}Name} = {self}StartIndex
+    endm
 
-macro Overload_skip
-    DEF {{Overload}Name} += \1
-endm
-
-macro Overload_next
-    if {{Overload}Name} > {Overload}EndIndex
-        def {Overload}EndIndex = {{Overload}Name}
-    endc
-    def {{Overload}Name} = {Overload}StartIndex
-endm
-
-macro Overload_EndDefinition
-    if {{Overload}Name} < {Overload}EndIndex
-        def {{Overload}Name} = {Overload}EndIndex
-    endc
-
-    Pop_Overload
-    CloseContext
-endm
-
-macro NewOverload
-    Push_Overload \1
-    shift
-    SetContext Overload, \#
-endm
+    final
+        if {{self}Name} < {self}EndIndex
+            def {{self}Name} = {self}EndIndex
+        endc
+    endm
+end
