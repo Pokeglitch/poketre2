@@ -1,5 +1,49 @@
 def false equs "0"
 def true equs "1"
+def _narg equs "_NARG"
+
+macro req_single_chars
+    def macro\@ equs "req_single_char \1, \2,"
+    shift 2
+    foreach macro\@, \#
+endm
+
+/*  To require a single instance of the given char
+    \1 - Symbol of String
+    \2 - Symbol of fail message
+    \3 - Char    */
+macro req_single_char
+    if strin("{\1}","\3") != strrin("{\1}","\3")
+        fail "Invalid syntax - multiple \3\n\t{\2}"
+    elif strin("{\1}","\3") == 0
+        fail "Invalid syntax - missing \3\n\t{\2}"
+    endc
+endm
+
+/*
+TODO - confirm the string format is valid if using = & ()?
+*/
+macro var
+    if strin("\1","=")
+        redef \@ equs strrpl("\1","=",",")
+        redef \@ equs strrpl("{\@}","(",",")
+        redef \@ equs strrpl("{\@}"," ","")
+        shift
+        redef \@ equs "{\@},\#"
+        redef \@ equs strrpl("{\@}",")","")
+        var {\@}
+    else
+        redef RETURN_VALUE equs "\1"
+        redef MACRO_NAME equs "\2"
+        shift 2
+        {MACRO_NAME} \#
+        purge RETURN_VALUE
+    endc
+endm
+
+macro return
+    assign_value {RETURN_VALUE}, \1
+endm
 
 /*  To send each argument to the given macro individually
     \1  - Macro Name
@@ -67,14 +111,25 @@ endm
     \2 - Value    */
 macro assign_value
     if strin("\2","\"") == 1
-        def \1 equs "\2"
+        def \1 equs \2
     else
         def \1 = \2
     endc
 endm
 
-macro assign_type
-    try_assign \1, \2, Number, String
+macro ListToString
+    redef LIST_STRING equs ""
+    for i, \1#_Count
+        AddToString LIST_STRING, {\1#_{d:i}}
+    endr
+endm
+
+macro AddToString
+    if strlen("{\1}")
+        redef \1 equs "{\1}, \2"
+    else
+        redef \1 equs "\2"
+    endc
 endm
 
 macro assign_match
@@ -96,6 +151,7 @@ macro check_match
 endm
 
 /*
+NOTE: This assumes values are symbols, not numbers
     \1  - Symbol to assign to
     \2  - Value to assign
     \3+ - Valid values

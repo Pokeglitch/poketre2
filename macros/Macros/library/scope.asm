@@ -1,11 +1,29 @@
 /*
 TODO:
+    
+    when/unless/then
+
+    give List a "@Contains" method
+
+    macro for "if" to run a macro immediately?
+    _if macro_name
+    -> how to make sure return value works?
+    --> create a return macro...
+    1. Store symbol name in RETURN_SYMBOL
+    2. return macro will update the value of symbol stored in RETURN_SYMBOL
+        3. reset RETURN_SYMBOL to generic: RETURN_VALUE
+
+    then...
+    - then equs "if _IF_RETURN_VALUE"
+    -also elseif
+
     add macro to build a fail message
     CheckReservedName can utilize check_match
 
-    type should use prop, method. not Property, Method
-
     Add comments to all type, scope macros
+
+    Use #, @ where appropriate in context/type/scope members
+    -----
 
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
     - also 'kill' macros
@@ -31,13 +49,14 @@ macro CheckReservedName
     endc
 endm
 
+; TODO - need store default macros as #LocalMacros...
 macro TryAssignPassthroughMacros
     foreach TryAssignPassthroughMacro, {{{{Context}#Parent}#Name}#LocalMacros}
 endm
 
 macro TryAssignPassthroughMacro
     if def({{Context}#Name}_\1) == 0
-        {self}#PassthroughMacros@Add \1
+        {self}#PassthroughMacros@push \1
         def {{Context}#Name}_\1 equs "{{{Context}#Parent}#Name}_\1"
     endc
 endm
@@ -50,7 +69,7 @@ macro enter
     SetContext \1
     
     ; Assign addition properties to the Context
-    ListString {Context}#PassthroughMacros
+    List {Context}#PassthroughMacros
     redef {Context}#isPassthrough = false
 
     shift
@@ -72,7 +91,7 @@ macro _ScopeDefinition
     PushContext ScopeDefinition
     
     ; Initialize the list of Local Macros
-    ListString \1#LocalMacros
+    List \1#LocalMacros
 
     redef SCOPE_NAME equs "\1"
     
@@ -91,7 +110,7 @@ macro ScopeDefinition_local
     redef SCOPE_MACRO_NAME equs "\1"
     CheckReservedName SCOPE_MACRO_NAME
 
-    {SCOPE_NAME}#LocalMacros@Add {SCOPE_MACRO_NAME}
+    {SCOPE_NAME}#LocalMacros@push {SCOPE_MACRO_NAME}
 
     TryDefineContextMacro \1
 endm

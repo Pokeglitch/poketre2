@@ -1,8 +1,21 @@
     include "macros/Macros/stack.asm"
     include "macros/Macros/base.asm"
-    incDir macros/Macros/library, context, types, scope, overload
+    incDir macros/Macros/library, context, types, scope, return, overload
 
 
+
+
+    List Cards
+    Cards@push Ace, King, Queen, Jack
+    msg {Cards#2}
+    Cards@pop -3, 2
+    msg "{Cards#Size}: {Cards}"
+
+    Cards@insert -1, Joker, Harry
+    msg "{Cards#Size}: {Cards}"
+    
+    Cards@set 4, Joe
+    msg "{Cards#Size}: {Cards}"
 
 
 Scope Person

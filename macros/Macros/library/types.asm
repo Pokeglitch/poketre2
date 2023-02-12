@@ -1,29 +1,46 @@
 def Type equs "\tTypeDefinition"
+def Type#_Count = 0
+
+macro assign_type
+    ListToString Type
+    try_assign \1, \2, {LIST_STRING}
+endm
+
+macro add_to_list
+    if _narg == 2
+        def \1#_{d:\1#_Count} equs "\2"
+        def \1#_Count += 1
+    else
+        redef MACRO_NAME equs "add_to_list \1,"
+        shift
+        foreach MACRO_NAME, \#
+    endc
+endm
 
     TryDefineContextMacro TypeDefinition
 macro _TypeDefinition
     ; Push context so cant write to ROM
     PushContext TypeDefinition
 
-    redef TYPE_NAME equs "\1"
-
+    ; Initialize the attributes of this Type
     def \1#Property#_Count = 0
     def \1#Method#_Count = 0
-
     assign_type \1#Type, \2
-    assign_match \1#isString, \2, String
 
+    add_to_list Type, \1
+
+    redef TYPE_NAME equs "\1"
     def func equs "macro \{METHOD_NAME}"
 endm
 
-    TryDefineContextMacro Property
-macro TypeDefinition_Property
-    unique AssignMember, Property, \1, \2
+    TryDefineContextMacro prop
+macro TypeDefinition_prop
+    unique AssignMember, Property, \2, \1
 endm
 
-    TryDefineContextMacro Method
-macro TypeDefinition_Method
-    def METHOD_NAME equs "{TYPE_NAME}@\1"
+    TryDefineContextMacro method
+macro TypeDefinition_method
+    redef METHOD_NAME equs "{TYPE_NAME}@\1"
     unique AssignMember, Method, \1, {METHOD_NAME}
 endm
 
@@ -50,25 +67,21 @@ endm
 
     TryDefineContextMacro EndDefinition
 macro TypeDefinition_EndDefinition
+
+    TryDefineContextMacro {TYPE_NAME}
     ; define the macro to create a new instance
-    def {TYPE_NAME} equs "InstantiateType {TYPE_NAME},"
+    def Global_{TYPE_NAME} equs "InstantiateType {TYPE_NAME},"
+    def TypeDefinition_{TYPE_NAME} equs "prop {TYPE_NAME},"
+
     CloseContext
     try_purge func
 endm
 
 macro InstantiateType
-    if \1#isString
-        if _NARG == 3
-            def \2 equs "\3"
-        else
-            def \2 equs ""
-        endc
+    if _narg == 3
+        Global_{\1#Type} \2, \3
     else
-        if _NARG == 3
-            def \2 = \3
-        else
-            def \2 = 0
-        endc
+        Global_{\1#Type} \2
     endc
 
     def \2#_Class equs "\1"
@@ -79,7 +92,7 @@ endm
 macro InitializeProperties
     for i, \1#Property#_Count
         redef MEMBER equs "{\1#Property#{d:i}}"
-        assign_value \2#{{MEMBER}#Name}, {{MEMBER}#Value}
+        {{MEMBER}#Value} \2#{{MEMBER}#Name}
     endr
 endm
 
@@ -90,34 +103,188 @@ macro InitializeMethods
     endr
 endm
 
-/*
-    \1 - Type Name
-    \2 - Instance Name
-    \3 - Member Type
-    \4 - Divider    */
-macro InitializeMembers
-    for i, \1#\3#_Count
-        redef MEMBER equs "{\1#\3#{d:i}}"
-        assign_value \2\4{{MEMBER}#Name}, {{MEMBER}#Value}
-    endr
+
+
+
+
+    TryDefineContextMacro String
+macro Global_String
+    if _narg == 2
+        redef \1 equs "\2"
+    else
+        redef \1 equs ""
+    endc
 endm
+    add_to_list Type, String
 
-Type ListString, String
-    Property Size, 0
+    TryDefineContextMacro Number
+macro Global_Number
+    if _narg == 2
+        def \1 = \2
+    else
+        def \1 = 0
+    endc
+endm
+    add_to_list Type, Number
 
-    Method Add
+Type Int, Number
+    method inc
     func
-        if _NARG > 2
-            redef METHOD_NAME equs "\1@Add"
+        def \1 += 1
+    endm
+
+    method dec
+    func
+        def \1 -= 1
+    endm
+
+    method reset
+    func
+        def \1 = 0
+    endm
+
+    method set
+    func
+        def \1 = \2
+    endm
+
+    method add
+    func
+        def \1 += \2
+    endm
+
+    method sub
+    func
+        def \1 -= \2
+    endm
+end
+
+/*
+TODO:
+    - if directly changing elements, the string value will not match...
+    - need to add 'set' macro
+*/
+Type List, String
+    Int Size
+    
+    method _in_range
+    func
+        def index\@ = \2
+        if def(\1#{d:index\@}) == 0
+            fail "Index out of range: \1#{d:index\@}"
+        endc
+    endm
+
+    method _to_index
+    func
+        if \2 < 0
+            return \1#Size + \2
+        else
+            return \2
+        endc
+    endm
+
+    method set
+    func
+        var index = \1@_to_index(\2)
+
+        if index == \1#Size
+            \1#Size@inc
+        else
+            \1@_in_range index
+        endc
+
+        redef \1#{d:index} equs "\3"
+        \1@_compile
+    endm
+
+    method insert
+    func
+        var start = \1@_to_index(\2)
+
+        if start != \1#Size
+            \1@_in_range start
+        endc
+
+        def amount = _narg-2
+
+        ; shift the elements after the insertion index upwards
+        for i, \1#Size-1, start-1, -1
+            def index = i+amount
+            redef \1#{d:index} equs "{\1#{d:i}}"
+        endr
+
+        ; add the new elements
+        for i, 3, _narg+1
+            msg \t{start}: \<i>
+            redef \1#{d:start} equs "\<i>"
+            def start += 1
+        endr
+
+        ; Update the size and recompile
+        \1#Size@add amount
+        \1@_compile
+    endm
+
+    method push
+    func
+        if _narg > 2
+            redef method\@ equs "\1@push"
             shift
-            foreach {METHOD_NAME}, \#
+            foreach method\@, \#
         else
             if \1#Size
                 redef \1 equs "{\1}, \2"
             else
                 redef \1 equs "\2"
             endc
-            def \1#Size += 1
+
+            redef \1#{d:\1#Size} equs "\2"
+            \1#Size@inc
         endc
+    endm
+
+    /*
+        - if no arguments, will pop last element
+        - if 1 argument, will pop element at that index (can go negative)
+        - if 2 arguments, 2nd argument is amount of elements to pop
+    */
+    method pop
+    func
+        def amount = 1
+
+        if _narg > 1
+            var start = \1@_to_index(\2)
+
+            if _narg == 3
+                def amount = \3
+            endc
+        else
+            var start = \1@_to_index(-1)
+        endc
+
+        for i, start, start+amount
+            \1@_in_range {i}
+            purge \1#{d:i}
+        endr
+        \1@_compile
+    endm
+
+    method reset
+    func
+        redef \1 equs ""
+        \1#Size@reset
+    endm
+
+    method _compile
+    func
+        def size = \1#Size
+        \1@reset
+
+        for i, size
+            if def(\1#{d:i})
+                \1@push {\1#{d:i}}
+            endc
+        endr
     endm
 end

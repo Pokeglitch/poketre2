@@ -100,6 +100,8 @@ macro ExecuteContextMacro
 
     if def({{Context}#Name}_{EXECUTE_MACRO_NAME})
         {{Context}#Name}_{EXECUTE_MACRO_NAME} \#
+    elif def(Global_{EXECUTE_MACRO_NAME})
+        Global_{EXECUTE_MACRO_NAME} \#
     else
         fail "{EXECUTE_MACRO_NAME} is not defined in context: {{Context}#Name}"
     endc
