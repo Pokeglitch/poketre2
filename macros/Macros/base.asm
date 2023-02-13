@@ -20,31 +20,6 @@ macro req_single_char
     endc
 endm
 
-/*
-TODO - confirm the string format is valid if using = & ()?
-*/
-macro var
-    if strin("\1","=")
-        redef \@ equs strrpl("\1","=",",")
-        redef \@ equs strrpl("{\@}","(",",")
-        redef \@ equs strrpl("{\@}"," ","")
-        shift
-        redef \@ equs "{\@},\#"
-        redef \@ equs strrpl("{\@}",")","")
-        var {\@}
-    else
-        redef RETURN_VALUE equs "\1"
-        redef MACRO_NAME equs "\2"
-        shift 2
-        {MACRO_NAME} \#
-        purge RETURN_VALUE
-    endc
-endm
-
-macro return
-    assign_value {RETURN_VALUE}, \1
-endm
-
 /*  To send each argument to the given macro individually
     \1  - Macro Name
     \2+ - Argument(s) to pass to macro individually    */

@@ -1,25 +1,14 @@
 /*
-TODO:
-    - 1: Handle passthrough for all Default level macros
-    - 2: use var, return instead of var2, return2
-    - 3; add way to return the output of a macro (ret_var? jump? forward?)
-
-*/
-
-
-/*
     \1  - if output is string or not
-    \2+ - original arguments
+    \2  - fail message
+    \3+ - original arguments
 */
 macro var_common
     def \@#isString = \1
     shift
 
-    if \@#isString
-        redef \@#message equs "vars \#"
-    else
-        redef \@#message equs "var \#"
-    endc
+    redef \@#message equs "\2"
+    shift
 
     if _narg == 0
         fail "Invalid syntax - missing definition\n\t{\@#message}"
@@ -72,11 +61,11 @@ macro var_common
 endm
 
 macro vars
-    var_common true, \#
+    var_common true, "vars \#", \#
 endm
 
-macro var2
-    var_common false, \#
+macro var
+    var_common false, "var \#", \#
 endm
 
 /*
@@ -86,6 +75,7 @@ endm
 Scope Return
     init
         ;def {self}#isPassthrough = true
+        def {self}#ReturnUsed = false
         def {self}#Symbol equs "\1"
         def {self}#isString = \2
         if \2
@@ -95,14 +85,25 @@ Scope Return
         endc
     endm
 
-    local return2
+    local return
     func
-        if {self}#isString
-            ; can return multiple values if string
-            redef {self}#Value equs "\#"
-        else
-            def {self}#Value = \1
+        if {self}#ReturnUsed
+            fail "Already designated a return value"
         endc
+
+        if _narg
+            ; if there is only 1 argument,
+            ; and there is a ( that isnt at the beginning, then its macro call
+            if _narg == 1 && strin("\1","(") > 1
+                var_common {self}#isString, "return \#", {self}#Value=\#
+            elif {self}#isString
+                ; can return multiple values if string
+                redef {self}#Value equs "\#"
+            else
+                def {self}#Value = \1
+            endc
+        endc
+        def {self}#ReturnUsed = true
     endm
 
     final
@@ -113,22 +114,3 @@ Scope Return
         endc
     endm
 end
-
-macro test
-    return2 _\1_
-endm
-
-macro mult
-    if \2-1
-        var2 x = mult(\1, \2-1)
-        return2 \1+x
-    else
-        return2 \1
-    endc
-endm
-    
-    vars joe = test(curly)
-    msg {joe}
-
-    var2 product = mult(5, 4)
-    msg {d:product}

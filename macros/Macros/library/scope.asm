@@ -2,20 +2,9 @@
 TODO:
     
     when/unless/then
+        -elsewhen, elseunless
 
     give List a "@Contains" method
-
-    macro for "if" to run a macro immediately?
-    _if macro_name
-    -> how to make sure return value works?
-    --> create a return macro...
-    1. Store symbol name in RETURN_SYMBOL
-    2. return macro will update the value of symbol stored in RETURN_SYMBOL
-        3. reset RETURN_SYMBOL to generic: RETURN_VALUE
-
-    then...
-    - then equs "if _IF_RETURN_VALUE"
-    -also elseif
 
     add macro to build a fail message
     CheckReservedName can utilize check_match
@@ -23,10 +12,17 @@ TODO:
     Add comments to all type, scope macros
 
     Use #, @ where appropriate in context/type/scope members
-    -----
 
+    Utilize \@ for local macros & returning multiple values
+    
+    def {self} before running a local method?
+    - or, pass it as first argument?
+
+    Handle isPassthrough when parent is the default context
+    - i.e. need #LocalMacros list for default...
+    -----
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
-    - also 'kill' macros
+    - also remove concept of 'kill' macros
     Regex: ^[ \t]+_
 
     Can remove the concept of PushContext if the Scope Init/Final will push/pop itself
@@ -34,13 +30,15 @@ TODO:
     Can extend a scope?
     - can reassign all local, init, and final macros...
 
-    Use # instead of _ to define scoped macros
-
     - Scopes always pass through, Types dont?
     -- OR: isPassthrough should be able to be changed during runtime?
     --- always define passthroughs as a macro that will:
     ---- run parent if isPassthrough is 1
     ---- fail if isPassthrough is 0
+
+    Attach #RegisterSize = 6/18 to all registers
+    - i.e. a#RegisterSize
+    - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 */
 
 macro CheckReservedName
