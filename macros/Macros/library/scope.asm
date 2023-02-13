@@ -1,11 +1,5 @@
 /*
 TODO:
-    
-    when/unless/then
-        -elsewhen, elseunless
-
-    give List a "@Contains" method
-
     add macro to build a fail message
     CheckReservedName can utilize check_match
 
@@ -20,6 +14,7 @@ TODO:
 
     Handle isPassthrough when parent is the default context
     - i.e. need #LocalMacros list for default...
+    - fix Return context
     -----
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
     - also remove concept of 'kill' macros

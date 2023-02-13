@@ -160,12 +160,13 @@ Type Int, Number
 end
 
 /*
-TODO:
-    - if directly changing elements, the string value will not match...
-    - need to add 'set' macro
+NOTE:if directly changing elements, the string value will not match
+    - Use the 'set' macro
+
+TODO - add @contains method
 */
 Type List, String
-    Int Size
+    Int size
     
     method _in_range
     func
@@ -178,7 +179,7 @@ Type List, String
     method _to_index
     func
         if \2 < 0
-            return \1#Size + \2
+            return \1#size + \2
         else
             return \2
         endc
@@ -188,8 +189,8 @@ Type List, String
     func
         var index = \1@_to_index(\2)
 
-        if index == \1#Size
-            \1#Size@inc
+        if index == \1#size
+            \1#size@inc
         else
             \1@_in_range index
         endc
@@ -202,14 +203,14 @@ Type List, String
     func
         var start = \1@_to_index(\2)
 
-        if start != \1#Size
+        if start != \1#size
             \1@_in_range start
         endc
 
         def amount = _narg-2
 
         ; shift the elements after the insertion index upwards
-        for i, \1#Size-1, start-1, -1
+        for i, \1#size-1, start-1, -1
             def index = i+amount
             redef \1#{d:index} equs "{\1#{d:i}}"
         endr
@@ -222,7 +223,7 @@ Type List, String
         endr
 
         ; Update the size and recompile
-        \1#Size@add amount
+        \1#size@add amount
         \1@_compile
     endm
 
@@ -233,14 +234,14 @@ Type List, String
             shift
             foreach method\@, \#
         else
-            if \1#Size
+            if \1#size
                 redef \1 equs "{\1}, \2"
             else
                 redef \1 equs "\2"
             endc
 
-            redef \1#{d:\1#Size} equs "\2"
-            \1#Size@inc
+            redef \1#{d:\1#size} equs "\2"
+            \1#size@inc
         endc
     endm
 
@@ -273,12 +274,12 @@ Type List, String
     method reset
     func
         redef \1 equs ""
-        \1#Size@reset
+        \1#size@reset
     endm
 
     method _compile
     func
-        def size = \1#Size
+        def size = \1#size
         \1@reset
 
         for i, size

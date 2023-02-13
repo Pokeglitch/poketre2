@@ -1,3 +1,18 @@
+def unless equs "\tUnlessDefinition"
+def when equs "\tWhenDefinition"
+def then equs "\tThenDefinition"
+
+macro WhenDefinition
+    var_common false, "when \#", \@=\#
+    msg \@ {\@}
+    redef ThenDefinition equs "\tsingle_use then\nif {\@}"
+endm
+
+macro UnlessDefinition
+    var_common false, "unless \#", \@=\#  
+    redef ThenDefinition equs "\tsingle_use then\nif ({\@}) == 0"
+endm
+
 /*
     \1  - if output is string or not
     \2  - fail message
@@ -7,7 +22,7 @@ macro var_common
     def \@#isString = \1
     shift
 
-    redef \@#message equs "\2"
+    redef \@#message equs "\1"
     shift
 
     if _narg == 0
@@ -35,7 +50,7 @@ macro var_common
     elif \@#equal_index == 1
         fail "Invalid syntax - missing assignment symbol\n\t{\@#message}"
     elif \@#equal_index != strrin("{\@#outside}", "=")
-        fail "Invalid syntax - multiple =\n\t{\@#message}"
+        fail "Invalid syntax - too many =\n\t{\@#message}"
     elif \@#equal_index == strlen("{\@#outside}")
         fail "Invalid syntax - missing macro name\n\t{\@#message}"
     endc
