@@ -1,7 +1,16 @@
 /*
 TODO:
+    Convert all manual Contexts definitions to Structure
+
+    - update 'self' same way we update 'super'
+    -- also have self and super work for Scope methods?
+--------------
+    Remove "Global_" names
+
+    Give String Type functions like equals, contains, startswith, etc
+
     add macro to build a fail message
-    CheckReservedName can utilize check_match
+    CheckReservedName can utilize List@contains
 
     Add comments to all type, scope macros
 
@@ -36,48 +45,39 @@ TODO:
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 */
 
-macro CheckReservedName
-    if strcmp("{\1}","end") == 0
-        redef \1 equs "EndDefinition"
-    endc
-endm
-
-; TODO - need store default macros as #LocalMacros...
-macro TryAssignPassthroughMacros
-    foreach TryAssignPassthroughMacro, {{{{Context}#Parent}#Name}#LocalMacros}
-endm
-
-macro TryAssignPassthroughMacro
-    if def({{Context}#Name}_\1) == 0
-        {self}#PassthroughMacros@push \1
-        def {{Context}#Name}_\1 equs "{{{Context}#Parent}#Name}_\1"
-    endc
-endm
-
 def Scope equs "\tScopeDefinition"
 def self equs "\{Context}"
+
+macro define_local_macros
+    ; Assign the local macros
+    foreach 1, define_local_macro, \1, {\1#LocalMacros}
+endm
+
+macro define_local_macro
+    redef \1_\2 equs "\1@\2 {{Context}#ID},"
+endm
 
 ; To enter the context and initialize if needed
 macro enter
     SetContext \1
     
-    ; Assign addition properties to the Context
-    List {Context}#PassthroughMacros
-    redef {Context}#isPassthrough = false
+    define_local_macros \1
 
     shift
-    try_exec Scope_{{Context}#Name}@Init, \#
-    if {{Context}#isPassthrough}
-        TryAssignPassthroughMacros
-    endc
+    try_exec Scope_{{Context}#Name}@Init, {Context}, \#
 endm
 
 macro CloseScope
-    try_exec Scope_{\1#Name}@Exit
+    def \@#ClosedScope equs "{Context}"
+    try_exec Scope_{\1#Name}@Exit, {Context}
     CloseContext
-    try_exec {{Context}#Name}_from_Scope_{\1#Name}
+    
+    define_local_macros {\1#Name}
+
+    try_exec {{Context}#Name}_from_{\1#Name}, {Context}, {\@#ClosedScope}
 endm
 
+    ; TODO - SCOPE_NAME can be a symbol attached to the current ScopeDefinition scope
     TryDefineContextMacro ScopeDefinition
 macro _ScopeDefinition
     ; Push context so cant write to ROM
@@ -91,11 +91,8 @@ macro _ScopeDefinition
     ; define the end macro
     def \1_EndDefinition equs "CloseScope \{self}"
 
-    def init equs "single_use init\nmacro Scope_\{SCOPE_NAME}@Init"
-    ; todo - can prefix with Scope (or, a unique identifier that all contexts contain)
-    ; only when no longer explicitly defining local context macros
-    def func equs "macro \{SCOPE_NAME}_\{SCOPE_MACRO_NAME}"
-    def final equs "single_use final\nmacro Scope_\{SCOPE_NAME}@Exit"
+    redef init equs "single_use init\nmacro Scope_\{SCOPE_NAME}@Init"
+    redef final equs "single_use final\nmacro Scope_\{SCOPE_NAME}@Exit"
 endm
 
     TryDefineContextMacro local
@@ -105,12 +102,14 @@ macro ScopeDefinition_local
 
     {SCOPE_NAME}#LocalMacros@push {SCOPE_MACRO_NAME}
 
+    redef func equs "single_use func\nmacro \{SCOPE_NAME}@\{SCOPE_MACRO_NAME}"
+
     TryDefineContextMacro \1
 endm
 
     TryDefineContextMacro from
 macro ScopeDefinition_from
-    redef SCOPE_MACRO_NAME equs "from_Scope_\1"
+    redef SCOPE_MACRO_NAME equs "from_\1"
 endm
 
     TryDefineContextMacro EndDefinition
@@ -122,9 +121,4 @@ endm
     TryDefineContextMacro default
 macro ScopeDefinition_default
     DefineDefaultMacros {SCOPE_NAME}, \#
-endm
-
-    TryDefineContextMacro kill
-macro ScopeDefinition_kill
-    DefineExitMacros {SCOPE_NAME}, \#
 endm

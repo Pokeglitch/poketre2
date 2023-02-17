@@ -1,20 +1,8 @@
 def Type equs "\tTypeDefinition"
-def Type#_Count = 0
+def Types equs "" ; list of all types
 
 macro assign_type
-    ListToString Type
-    try_assign \1, \2, {LIST_STRING}
-endm
-
-macro add_to_list
-    if _narg == 2
-        def \1#_{d:\1#_Count} equs "\2"
-        def \1#_Count += 1
-    else
-        redef MACRO_NAME equs "add_to_list \1,"
-        shift
-        foreach MACRO_NAME, \#
-    endc
+    try_assign \1, \2, {Types}
 endm
 
     TryDefineContextMacro TypeDefinition
@@ -27,7 +15,7 @@ macro _TypeDefinition
     def \1#Method#_Count = 0
     assign_type \1#Type, \2
 
-    add_to_list Type, \1
+    add_to_list Types, \1
 
     redef TYPE_NAME equs "\1"
     def func equs "macro \{METHOD_NAME}"
@@ -35,34 +23,33 @@ endm
 
     TryDefineContextMacro prop
 macro TypeDefinition_prop
-    unique AssignMember, Property, \2, \1
+    AssignMember Property, \2, \1
 endm
 
     TryDefineContextMacro method
 macro TypeDefinition_method
     redef METHOD_NAME equs "{TYPE_NAME}@\1"
-    unique AssignMember, Method, \1, {METHOD_NAME}
+    AssignMember Method, \1, {METHOD_NAME}
 endm
 
 /*
-    \1 - Unique ID
-    \2 - Member Type
-    \3 - Member Name
-    \4 - Member Value    */
+    \1 - Member Type
+    \2 - Member Name
+    \3 - Member Value    */
     TryDefineContextMacro AssignMember
 macro TypeDefinition_AssignMember
-    def \1#Class equs "{TYPE_NAME}"
-    def \1#Type equs "\2"
-    def \1#Name equs "\3"
-    def \1#Index = {{TYPE_NAME}#\2#_Count}
-    def \1#Value equs "\4"
+    def \@#Class equs "{TYPE_NAME}"
+    def \@#Type equs "\1"
+    def \@#Name equs "\2"
+    def \@#Index = {{TYPE_NAME}#\1#_Count}
+    def \@#Value equs "\3"
 
     ; Map the ID to the name and index
-    def {TYPE_NAME}#\2#\3 equs "\1"
-    def {TYPE_NAME}#\2#{d:{TYPE_NAME}#\2#_Count} equs "\1"
+    def {TYPE_NAME}#\1#\2 equs "\@"
+    def {TYPE_NAME}#\1#{d:{TYPE_NAME}#\1#_Count} equs "\@"
 
     ; Increase the Member Count
-    def {TYPE_NAME}#\2#_Count += 1
+    def {TYPE_NAME}#\1#_Count += 1
 endm
 
     TryDefineContextMacro EndDefinition
@@ -84,7 +71,8 @@ macro InstantiateType
         Global_{\1#Type} \2
     endc
 
-    def \2#_Class equs "\1"
+    redef \2#_Class equs "\1"
+
     InitializeProperties \1, \2
     InitializeMethods \1, \2
 endm
@@ -99,13 +87,49 @@ endm
 macro InitializeMethods
     for i, \1#Method#_Count
         redef MEMBER equs "{\1#Method#{d:i}}"
-        def \2@{{MEMBER}#Name} equs "{{MEMBER}#Value} \2,"
+
+        redef \2@{{MEMBER}#Name} equs "ExecuteTypeMethod \1, {{\1#Method#{d:i}}#Name}, \2,"
     endr
 endm
 
+macro Super@init
+    def \1#macro equs \2
+endm
+    __Stack Super, ""
 
+macro find_super
+    if def(\1#Type)
+        ; if the parent type had the macro, set that as the super
+        if def({\1#Type}@\2)
+            Super@push "ExecuteTypeMethod \{\1#Type}, \2, \3,"
+            redef super equs "{{Super}#macro}"
+        ;otherwise, check the next parent
+        else
+            find_super {\1#Type}, \2, \3
+        endc
+    else
+        Super@push ""
+        try_purge super ; todo - fail message
+    endc
+endm
 
+macro ExecuteTypeMethod
+    find_super \1, \2, \3
 
+    def \@#macro equs "\1@\2"
+    shift 2
+    {\@#macro} \#
+
+    Super@pop
+
+    if strcmp("{{Super}#macro}", "")
+        redef super equs "{{Super}#macro}"
+    else
+        try_purge super ; todo - fail message
+        ; is this necessary if the #macro is already a fail message?
+        ; - need to make sure a fail message is pushed initially
+    endc
+endm
 
     TryDefineContextMacro String
 macro Global_String
@@ -115,7 +139,7 @@ macro Global_String
         redef \1 equs ""
     endc
 endm
-    add_to_list Type, String
+    add_to_list Types, String
 
     TryDefineContextMacro Number
 macro Global_Number
@@ -125,7 +149,7 @@ macro Global_Number
         def \1 = 0
     endc
 endm
-    add_to_list Type, Number
+    add_to_list Types, Number
 
 Type Int, Number
     method inc
@@ -163,7 +187,9 @@ end
 NOTE:if directly changing elements, the string value will not match
     - Use the 'set' macro
 
-TODO - add @contains method
+TODO
+    - utilize add_to_list
+    - add @contains method
 */
 Type List, String
     Int size
@@ -183,6 +209,13 @@ Type List, String
         else
             return \2
         endc
+    endm
+
+    method get
+    func
+        var index = \1@_to_index(\2)
+        \1@_in_range index
+        return {\1#{d:index}}
     endm
 
     method set
@@ -217,7 +250,6 @@ Type List, String
 
         ; add the new elements
         for i, 3, _narg+1
-            msg \t{start}: \<i>
             redef \1#{d:start} equs "\<i>"
             def start += 1
         endr
@@ -234,13 +266,19 @@ Type List, String
             shift
             foreach method\@, \#
         else
-            if \1#size
-                redef \1 equs "{\1}, \2"
+            if _narg > 1
+                if \1#size
+                    redef \1 equs "{\1}, \2"
+                else
+                    redef \1 equs "\2"
+                endc
+                redef \1#{d:\1#size} equs "\2"
             else
-                redef \1 equs "\2"
+                if \1#size
+                    redef \1 equs "{\1},"
+                endc
+                redef \1#{d:\1#size} equs ""
             endc
-
-            redef \1#{d:\1#size} equs "\2"
             \1#size@inc
         endc
     endm
@@ -264,11 +302,16 @@ Type List, String
             var start = \1@_to_index(-1)
         endc
 
+        List temp#PoppedList
+
         for i, start, start+amount
             \1@_in_range {i}
+            temp#PoppedList@push {\1#{d:i}}
             purge \1#{d:i}
         endr
         \1@_compile
+
+        return {temp#PoppedList}
     endm
 
     method reset
@@ -289,3 +332,42 @@ Type List, String
         endr
     endm
 end
+
+Type Stack, String
+    List history
+
+    method push
+    func
+        \1#history@push {\1}
+        redef \1 equs \2
+    endm
+
+    method pop
+    func
+        vars \1 = \1#history@pop()
+    endm
+end
+
+Type Path, Stack
+    method push
+    func
+        if \1#history#size
+            super "\1/\2"
+        else
+            super "\2"
+        endc
+    endm
+
+    method import
+    func
+        \1@push \2
+
+        for i, 3, _narg+1
+            include "{\1}/\<i>.asm"
+        endr
+
+        Directory@pop
+    endm
+end
+
+    Path Directory

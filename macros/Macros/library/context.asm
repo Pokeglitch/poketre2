@@ -1,14 +1,29 @@
 ; Note: when context is closed, will auto callback if
 ; {NewContext}_{ClosedContext}_Finish is defined
 
+/*
+TODO - remove concept of default macros, global macros
+*/
+
 def end equs "\tEndDefinition"
 
-macro Define_Context
-    redef {Context}#Name equs "\2"
-    def {Context}#isPushed = \3
+macro Context@init
+    def \1#Name equs "\2"
+    def \1#isPushed = \3
+    def \1#isPassthrough = true
+    def \1#SingleUses equs ""
 endm
 
-    Stack Context, , 0
+macro Context@SingleUse
+    if _narg > 2
+        foreach 1, Context@SingleUse, \#
+    else
+        add_to_list {Context}#SingleUses, \2
+        redef \2 equs "single_use \2\nmacro \1@\2"
+    endc
+endm
+
+    __Stack Context, , 0
 
 
 
@@ -17,69 +32,31 @@ endm
 
 macro PushContext
     pushs
-    Push_Context \1, 1
+    Context@push \1, 1
 endm
 
 macro SetContext
-    Push_Context \1, 0
-endm
-
-macro DefinePassthroughMacros
-    redef {Context}#PassthroughMacros equs "\#"
-    foreach DefinePassthroughMacro, \#
-endm
-
-macro DefinePassthroughMacro
-    def {{Context}#Name}_\1 equs "{{{Context}#Parent}#Name}_\1"
-endm
-
-macro PurgeParentMacro
-    purge {{Context}#Name}_\1
+    Context@push \1, 0
 endm
 
 macro CloseContext
+    ; purge the single uses
+    try_purge {{Context}#SingleUses}
+
     ; if the context was pushed, then pop
     if {Context}#isPushed
         pops
     endc
 
-    ; purge any parent macros
-    if def({Context}#PassthroughMacros)
-        foreach PurgeParentMacro, {{Context}#PassthroughMacros}
-    endc
-
     ; Store the potential callback macro name
     redef CONTEXT_CALLBACK equs "{{{Context}#Parent}#Name}_{{Context}#Name}_Finish"
 
-    Pop_Context
-
-    ; Redefine any parent macros
-    if def({Context}#PassthroughMacros)
-        DefinePassthroughMacros {{Context}#PassthroughMacros}
-    endc
+    Context@pop
 
     ; if the callback exists, execute it
     if def({CONTEXT_CALLBACK})
         {CONTEXT_CALLBACK}
     endc
-endm
-
-macro DefineExitMacros
-    redef CONTEXT_NAME equs "\1"
-    shift
-    foreach DefineExitMacro, \#
-endm
-
-macro DefineExitMacro
-    def {CONTEXT_NAME}_\1 equs "RunDefaultAndExit _\1, "
-    TryDefineContextMacro \1
-endm
-
-macro RunDefaultAndExit
-    redef MACRO_NAME equs "\1"
-    shift
-    {MACRO_NAME} \#
-    end
 endm
 
 ; To set the given macro names in this context to call it's default macro
@@ -95,15 +72,24 @@ macro DefineDefaultMacro
 endm
 
 macro ExecuteContextMacro
-    redef EXECUTE_MACRO_NAME equs "\1"
-    shift
+    find_context_macro {Context}, \#
+endm
 
-    if def({{Context}#Name}_{EXECUTE_MACRO_NAME})
-        {{Context}#Name}_{EXECUTE_MACRO_NAME} \#
-    elif def(Global_{EXECUTE_MACRO_NAME})
-        Global_{EXECUTE_MACRO_NAME} \#
+macro find_context_macro
+    if def({\1#Name}_\2)
+        def \@#macro equs "{\1#Name}_\2"
+        shift 2
+        {\@#macro} \#
+    elif \1#isPassthrough && {\1#Index} > 1
+        def \@#parent equs "{\1#Parent}"
+        shift
+        find_context_macro {\@#parent}, \#
+    elif def(Global_\2)
+        def \@#macro equs "Global_\2"
+        shift 2
+        {\@#macro} \#
     else
-        fail "{EXECUTE_MACRO_NAME} is not defined in context: {{Context}#Name}"
+        fail "\2 is not defined in current context"
     endc
 endm
 

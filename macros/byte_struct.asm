@@ -1,11 +1,37 @@
+Struct ByteStruct2
+    init
+        def \1#isPassthrough = false
+        def \1#Symbol equs "\2"
+        def \1#Shift = 0
+        def \1#AllBitMask = 0
+    endm
+
+    local overload
+    func
+        enter Overload, \1#Shift
+    endm
+
+    final
+        if \1#Shift > 8
+            fail "Byte Struct exceeded 8 bits"
+        endc
+        def {\1#Symbol}#AllBitMask = \1#AllBitMask
+        def {\1#Symbol}#NoneBitMask = %11111111 ^ \1#AllBitMask
+    endm
+end
+
+    ByteStruct2 Larry
+        overload
+        end
+    end
+    ;msg {Larry#AllBitMask}
+
 MACRO ByteStruct
     SetContext ByteStruct
     REDEF BYTE_STRUCT_NAME EQUS "\1"
     DEF BYTE_STRUCT_SHIFT = 0
     DEF {BYTE_STRUCT_NAME}AllBitMask = 0
 ENDM
-
-redef ByteStruct#LocalMacros equs "Index, Array, Flag, Flags"
 
 macro ByteStruct_overload
     redef _self equs "{self}"

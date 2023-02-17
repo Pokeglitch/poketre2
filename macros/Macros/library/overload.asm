@@ -1,32 +1,31 @@
 Scope Overload
     init
-        def {self}StartIndex = {\1}
-        def {self}EndIndex = {\1}
-        def {self}Name equs "\1"
-        def {self}#isPassthrough = true
+        def \1StartIndex = {\2}
+        def \1EndIndex = {\2}
+        def \1Name equs "\2"
     endm
 
     local overload
     func
-        enter Overload, {{self}Name}
+        enter Overload, {\1Name}
     endm
 
     local skip
     func
-        def {{self}Name} += \1
+        def {\1Name} += \2
     endm
 
     local next
     func
-        if {{self}Name} > {self}EndIndex
-            def {self}EndIndex = {{self}Name}
+        if {\1Name} > \1EndIndex
+            def \1EndIndex = {\1Name}
         endc
-        def {{self}Name} = {self}StartIndex
+        def {\1Name} = \1StartIndex
     endm
 
     final
-        if {{self}Name} < {self}EndIndex
-            def {{self}Name} = {self}EndIndex
+        if {\1Name} < \1EndIndex
+            def {\1Name} = \1EndIndex
         endc
     endm
 end

@@ -39,72 +39,47 @@
 
     \1 - Stack Name
     \2+? - Optional arguments to initialize    */
-macro Stack
-    ; Store the stack name
-    redef STACK_NAME equs "\1"
-    shift
+macro __Stack
+    def \1#size = 0
+    def \1@push equs "__PushStack \1,"
+    def \1@pop equs "__PopStack \1,"
+    
+    def Push_\1 equs "__PushStack \1,"
+    def Pop_\1 equs "__PopStack \1,"
 
-    ; Give the Stack a Unique ID
-    redef STACK_ID equs "\@"
+    def \1#0 equs ""
+    def \1 equs "\{\1#\{d:\1#size}}"
 
-    ; Bi-directionally Map the ID and the Name
-    def Stack_NameToID_{STACK_NAME} equs "{STACK_ID}"
-    def Stack_IDToName_{STACK_ID} equs "{STACK_NAME}"
-
-    ; Initialize the Stack Index
-    def Stack_{STACK_ID}#Index = 0
-    ; map a unique id to the index
-    def Stack_{STACK_ID}_{d:Stack_{STACK_ID}#Index} equs "\@"
-    ; map the index to the id
-    def {Stack_{STACK_ID}_{d:Stack_{STACK_ID}#Index}}#Index = 0
-
-    ; define the Push and Pop Macros
-    def Push_{STACK_NAME} equs "PushStack {STACK_ID},"
-    def Pop_{STACK_NAME} equs "PopStack {STACK_ID},"
-
-    ; define the accessor for the Current Instance
-    def {STACK_NAME} equs "\{Stack_{STACK_ID}_\{d:Stack_{STACK_ID}#Index\}\}"
-
-    ; initialize if arguments were provided
-    if _NARG
-        Push_{STACK_NAME} \#
+    ; initialize if provided arguments
+    if _narg > 1
+        def \@#name equs "\1"
+        shift
+        {\@#name}@push \#
     endc
 endm
 
-/*  To create a new Instance and add it to the Stack
-    \1 - Stack ID    */
-macro PushStack
-    redef STACK_ID equs "\1"
+macro __PushStack
+    def temp#prev_size = \1#size
+
+    ; increase the size
+    def \1#size += 1
+    ; create a unique id for the new stack
+    redef \1#{d:\1#size} equs "\@"
+
+    ; map the parent and index
+    redef \@#Parent equs "{\1#{d:temp#prev_size}}"
+    redef \@#Index = \1#size
+    redef \@#ID equs "\@"
+
+    redef temp#name equs "\1"
     shift
-
-    ; Increase the Stack Index
-    def Stack_{STACK_ID}#Index += 1
-
-    redef STACK_INDEX = Stack_{STACK_ID}#Index
-
-    ; Map a new Instance ID to the Stack Index
-    redef Stack_{STACK_ID}_{d:STACK_INDEX} equs "\@"
-
-    ; map the index to the instance
-    def {Stack_{STACK_ID}_{d:Stack_{STACK_ID}#Index}}#Index = STACK_INDEX
-
-    ; define the Parent for this Instance
-    def PARENT_STACK_INDEX = STACK_INDEX - 1
-    def {Stack_{STACK_ID}_{d:STACK_INDEX}}#Parent equs "{Stack_{STACK_ID}_{d:PARENT_STACK_INDEX}}"
-
-    ; Initialize Base Instance with the new ID
-    Define_{Stack_IDToName_{STACK_ID}} {Stack_{STACK_ID}_{d:STACK_INDEX}}, \#
+    {temp#name}@init \@, \#
 endm
 
-/*  To shift to the Parent Instance in the Stack
-    \1 - Stack ID    */
-macro PopStack
-    redef STACK_ID equs "\1"
-    
-    if Stack_{STACK_ID}#Index > 0
-        ; Decrease the Stack Index
-        def Stack_{STACK_ID}#Index -= 1
+macro __PopStack
+    if \1#size
+        def \1#size -= 1
     else
-        fail "Cannot Pop {Stack_IDToName_{STACK_ID}}. Stack is empty"
+        fail "\1 is empty"
     endc
 endm

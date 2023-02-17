@@ -4,7 +4,6 @@ def then equs "\tThenDefinition"
 
 macro WhenDefinition
     var_common false, "when \#", \@=\#
-    msg \@ {\@}
     redef ThenDefinition equs "\tsingle_use then\nif {\@}"
 endm
 
@@ -89,43 +88,63 @@ endm
 */
 Scope Return
     init
-        ;def {self}#isPassthrough = true
-        def {self}#ReturnUsed = false
-        def {self}#Symbol equs "\1"
-        def {self}#isString = \2
-        if \2
-            redef {self}#Value equs ""
+        def \1#ReturnUsed = false
+        def \1#Symbol equs "\2"
+        def \1#isString = \3
+        if \3
+            redef \1#Value equs ""
         else
-            def {self}#Value = 0
+            def \1#Value = 0
         endc
     endm
 
     local return
     func
-        if {self}#ReturnUsed
+        if \1#ReturnUsed
             fail "Already designated a return value"
         endc
 
-        if _narg
+        def \1#ReturnUsed = true
+
+        if _narg > 1
+            def \@#self equs "\1"
+
             ; if there is only 1 argument,
             ; and there is a ( that isnt at the beginning, then its macro call
-            if _narg == 1 && strin("\1","(") > 1
-                var_common {self}#isString, "return \#", {self}#Value=\#
-            elif {self}#isString
+            if _narg == 2 && strin("\2","(") > 1
+                shift
+                var_common {\@#self}#isString, "return \#", {\@#self}#Value=\#
+            elif \1#isString
+                shift
                 ; can return multiple values if string
-                redef {self}#Value equs "\#"
+                redef {\@#self}#Value equs "\#"
             else
-                def {self}#Value = \1
+                def \1#Value = \2
             endc
         endc
-        def {self}#ReturnUsed = true
     endm
 
     final
-        if {self}#isString
-            redef {{self}#Symbol} equs "{{self}#Value}"
+        if \1#isString
+            redef {\1#Symbol} equs "{\1#Value}"
         else
-            def {{self}#Symbol} = {self}#Value
+            def {\1#Symbol} = \1#Value
         endc
     endm
 end
+
+Scope TestScope
+    local testicles
+    func
+        return \2+5
+    endm
+end
+
+macro return_test
+    enter TestScope
+        return testicles(\1*2)
+    end
+endm
+
+    var test222 = return_test(10)
+    msg {test222}
