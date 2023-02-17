@@ -1,4 +1,4 @@
-    ByteStruct PartyData
+    ByteStruct3 PartyData
         overload
             Index Level, 100
         next
@@ -7,7 +7,7 @@
         Flag Special
     end
 
-    ByteStruct PartyDefinition
+    ByteStruct3 PartyDefinition
         Array Condition, Standard, RAMValue, RoutineValue, RoutineDefinition
         Flag Levels, Explicit, Scaled
         Flag Type, Flag, Value
@@ -31,7 +31,7 @@ MACRO ParseTeamData
         IsNumber {ARG3}
 
         IF IS_NUMBER == 1
-            DEF SPECIAL_MASK = PartyDataSpecialBitMask
+            DEF SPECIAL_MASK = PartyData#Special#BitMask
         ENDC
     ENDC
 
@@ -40,7 +40,7 @@ MACRO ParseTeamData
 
     IF SPECIAL_MASK != 0
         REPT _NARG/2
-            DEF SPECIAL_MASK = PartyDataSpecialBitMask
+            DEF SPECIAL_MASK = PartyData#Special#BitMask
 
             ; TODO - this DEF check is unncessary once the Move Table is added
             IF DEF(\2Table)
@@ -83,7 +83,7 @@ MACRO Party
                 IsNumber {ARG3}
 
                 IF IS_NUMBER == 1
-                    DEF SPECIAL_MASK = PartyDataSpecialBitMask
+                    DEF SPECIAL_MASK = PartyData#Special#BitMask
                 ENDC
             ENDC
 
@@ -92,7 +92,7 @@ MACRO Party
 
             IF SPECIAL_MASK != 0
                 REPT _NARG/2
-                    DEF SPECIAL_MASK = PartyDataSpecialBitMask
+                    DEF SPECIAL_MASK = PartyData#Special#BitMask
 
                     ; TODO - this DEF check is unncessary once the Move Table is added
                     IF DEF(\2Table)
@@ -214,7 +214,7 @@ ENDM
 ; 1 = Property Name
 ; 2 = Property Value
 MACRO SetTeamProperty
-    DEF {PartyName}\1 = PartyDefinition\1\2
+    DEF {PartyName}\1 = PartyDefinition#\1#\2
 ENDM
 
 MACRO Team_asm

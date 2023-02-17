@@ -1,7 +1,13 @@
 MACRO IgnoreButtons
     DEF MASK_VALUE = 0
     REPT _NARG
-        DEF MASK_VALUE += Button\1BitMask
+        if strcmp("\1","All") == 0
+            DEF MASK_VALUE += Button#Flags#All#BitMask
+        elif strcmp("\1","None") == 0
+            DEF MASK_VALUE += Button#Flags#None#BitMask
+        else
+            DEF MASK_VALUE += Button#\1#BitMask
+        endc
         SHIFT
     ENDR
 
@@ -11,7 +17,13 @@ ENDM
 MACRO PermitButtons
     DEF MASK_VALUE = 0
     REPT _NARG
-        DEF MASK_VALUE += Button\1BitMask
+        if strcmp("\1","All") == 0
+            DEF MASK_VALUE += Button#Flags#All#BitMask
+        elif strcmp("\1","None") == 0
+            DEF MASK_VALUE += Button#Flags#None#BitMask
+        else
+            DEF MASK_VALUE += Button#\1#BitMask
+        endc
         SHIFT
     ENDR
 

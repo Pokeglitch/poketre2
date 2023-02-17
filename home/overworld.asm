@@ -1076,7 +1076,7 @@ IsSpriteOrSignInFrontOfPlayer::
 	dec c
 	add hl, bc
 	ld a, [hl]
-	set MapObjectSignBitIndex, a ; set flag to indicate its a sign
+	set MapObject#Sign#BitIndex, a ; set flag to indicate its a sign
 	ld [hSpriteIndexOrTextID], a ; store sign text ID
 	pop bc
 	pop hl
@@ -2202,7 +2202,7 @@ LoadMapHeader::
 	
 	pop hl
 
-	and MapTextTypeBitMask ; see if any flags are set
+	and MapText#Type#BitMask ; see if any flags are set
 	jr z, .nextSprite ; if no flags, then skip
 
 	ld a, [hli]

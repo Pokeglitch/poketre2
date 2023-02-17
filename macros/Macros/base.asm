@@ -2,6 +2,22 @@ def false equs "0"
 def true equs "1"
 def _narg equs "_NARG"
 
+macro assert_all
+	if _narg == 2
+		assert \1 == \2
+	else
+		foreach 1, assert_all, \#
+	endc
+endm
+
+macro assert_all_s
+	if _narg == 2
+		assert strcmp("{\1}","{\2}") == 0
+	else
+		foreach 1, assert_all_s, \#
+	endc
+endm
+
 macro CheckReservedName
     if strcmp("\1","end") == 0
         redef \1 equs "EndDefinition"

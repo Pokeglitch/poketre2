@@ -54,11 +54,11 @@ LoadTrainer:
 	and a ; if there are no properties, then continue
 	jr z, .partyFound
 
-	and PartyDefinitionConditionBitMask
-	cp PartyDefinitionConditionRAMValue
+	and PartyDefinition#Condition#BitMask
+	cp PartyDefinition#Condition#RAMValue
 	jr z, .ramValue
 
-	cp PartyDefinitionConditionRoutineValue
+	cp PartyDefinition#Condition#RoutineValue
 	jr z, .routineValue
 
 	call ExecuteTeamRoutine
@@ -102,7 +102,7 @@ LoadTrainer:
 
 .partyFound
 	ld a, [hli]
-	bit PartyDataSpecialBitIndex, a ; is the trainer special?
+	bit PartyData#Special#BitIndex, a ; is the trainer special?
 	jr nz, .specialTrainer ; if so, check for special moves
 
 ; standard trainer
@@ -116,7 +116,7 @@ LoadTrainer:
 	jr .addNextPokemon_Standard
 
 .specialTrainer
-	res PartyDataSpecialBitIndex, a ; unset the flag
+	res PartyData#Special#BitIndex, a ; unset the flag
 	ld de, wEnemyMon1Moves
 
 .addNextMon
@@ -132,7 +132,7 @@ LoadTrainer:
 	cp PartyDataTerminator
 	jr z, .storeTrainerMoney ; add the money if end of data reached
 	
-	bit PartyDataSpecialBitIndex, a ; if the high bit is set, then this pokemon has a special move
+	bit PartyData#Special#BitIndex, a ; if the high bit is set, then this pokemon has a special move
 	jr nz, .storeSpecialMove
 
 	; otherwise, update the pointer for the next mon's move and read next data set
@@ -147,7 +147,7 @@ LoadTrainer:
 .storeSpecialMove
 	push de
 
-	res PartyDataSpecialBitIndex, a ; unset the flag
+	res PartyData#Special#BitIndex, a ; unset the flag
 	add e
 	ld e, a ; shift the move index
 	jr nc, .dontIncD

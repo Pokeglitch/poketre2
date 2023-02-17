@@ -110,7 +110,7 @@ MACRO object
 		; TODO - the DEF check isnt necessary once using Pokemon table
 		IF DEF(\7Table)
 			IF STRCMP("{\7Table}","Trainer") == 0
-				db \8 | ObjectDataTrainerBitMask; set flag to indicate trainer
+				db \8 | ObjectData#Trainer#BitMask; set flag to indicate trainer
 			ELSE
 				db \8
 			ENDC

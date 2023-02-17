@@ -814,9 +814,9 @@ DisplayTextID::
 	; can they just all be declared signs?
 
 	ld a, [hSpriteIndexOrTextID] ; sprite ID
-	bit MapObjectSignBitIndex, a
+	bit MapObject#Sign#BitIndex, a
 	jr z, .spriteHandling
-	res MapObjectSignBitIndex, a ;reset the flag
+	res MapObject#Sign#BitIndex, a ;reset the flag
 	jr .skipSpriteHandling
 	
 .spriteHandling
@@ -839,19 +839,19 @@ DisplayTextID::
 	inc hl
 	ld a, [hl] ; a = text ID of the sprite
 
-	and MapTextTypeBitMask ; see if any flags are set
+	and MapText#Type#BitMask ; see if any flags are set
 	jr z, .notSpecial
 
-	cp MapTextTypeTrainer
+	cp MapText#Type#Trainer
 	jr z, .trainerSprite
 	
-	cp MapTextTypeItem
+	cp MapText#Type#Item
 	jr z, .itemSprite
 
 .notSpecial
 	ld a, [hl]
 	pop hl
-	and MapTextIndexBitMask ; remove the flags
+	and MapText#Index#BitMask ; remove the flags
 	jr .skipSpriteHandling
 
 .itemSprite
@@ -863,7 +863,7 @@ DisplayTextID::
 	ld a, [hl]
 	pop hl
 	; look up the address of the text in the map's text entries
-	and MapTextIndexBitMask ; remove the flags
+	and MapText#Index#BitMask ; remove the flags
 	dec a
 	ld e, a
 	sla e
@@ -2263,10 +2263,10 @@ EngageMapTrainer::
 
 	ld a, [hl]     ; load trainer mon set
 
-	bit ObjectDataTrainerBitIndex, a		; represents if it is a pokemon or trainer
+	bit ObjectData#Trainer#BitIndex, a		; represents if it is a pokemon or trainer
 	jr z, .wild
 	
-	res ObjectDataTrainerBitIndex, a ; unset the flag
+	res ObjectData#Trainer#BitIndex, a ; unset the flag
 	ld [wTrainerNo], a
 
 	ld a, BattleModeTrainer

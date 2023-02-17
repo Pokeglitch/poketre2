@@ -6,16 +6,14 @@
     add way to add custom methods
     - assign to the instance definition before open/initializing
 
-    Allow passthrough for the DefinitionInstance@TryExec calls?
-        - need to restore previous value after
 */
 def Definition equs "\tDefinitionType@Define"
 
 macro DefinitionInstance@DefineMethods
-    if _narg == 1
-        foreach 1, DefinitionInstance@DefineMethods, \1, {\1#Routines}
+    if _narg == 2
+        foreach 2, DefinitionInstance@DefineMethods, \#, {\2#Routines}
     else
-        redef \1_\2 equs "DefinitionInstance@method \1@\2,"
+        redef \2_\3 equs "DefinitionInstance@method \2@\3, \1,"
     endc
 endm
 
@@ -114,9 +112,6 @@ macro DefinitionInstance@end
 
     ; define the Instance Name 'end' to close the Definition of this Type & Instance
     def \2_EndDefinition equs "DefinitionInstance@close \1, \2,"
-
-    ; define the Instance Name methods
-    DefinitionInstance@DefineMethods \2
 endm
 
 macro DefinitionInstance@TryExec
@@ -143,6 +138,9 @@ macro DefinitionInstance@open
     SetContext \2
 
     ; TODO - assign custom definition macros
+    
+    ; define the Instance Name methods to include the corresponding context
+    DefinitionInstance@DefineMethods {Context}, \2
 
     ; Run the Definition Type open macro
     try_exec Definition#\1@open, \2, {Context}
@@ -155,17 +153,17 @@ endm
     To run the definition method
 */
 macro DefinitionInstance@method
-    def \@#passthrough = {Context}#isPassthrough
+    def \@#passthrough = \2#isPassthrough
 
     ; enable passthrough
-    def {Context}#isPassthrough = true
+    def \2#isPassthrough = true
 
     def \@#macro equs "\1"
     shift
-    {\@#macro} {Context}, \#
+    {\@#macro} \#
     
     ; restore original passthrough value
-    def {Context}#isPassthrough = \@#passthrough
+    def \1#isPassthrough = \@#passthrough
 endm
 
 /*
@@ -184,11 +182,6 @@ macro DefinitionInstance@close
     CloseContext
 endm
 
-    TryDefineContextMacro test123
-macro _test123
-    msg TEST123
-endm
-
 Definition Struct2    
     init
         msg STRUCT INIT | "\#"
@@ -204,6 +197,7 @@ Definition Struct2
 
     open
         msg STRUCT OPEN | "\#"
+        msg {Context} | \2
         def {Context}#isPassthrough = false
     endm
 

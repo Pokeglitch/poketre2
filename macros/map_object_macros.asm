@@ -1,9 +1,9 @@
-    ByteStruct MapObject
+    ByteStruct3 MapObject
         Index TextIndex, %01111111
         Flag Sign
     end
-        
-    ByteStruct ObjectData
+
+    ByteStruct3 ObjectData
         overload
             Index Level, 100
         next
@@ -13,7 +13,7 @@
         Flag Trainer
     end
 
-    ByteStruct MapText
+    ByteStruct3 MapText
         Index Index, %00011111
         Array Type, 3, Standard, Item, Trainer
     end
@@ -153,12 +153,12 @@ MACRO MapObjects_Battle
 	db \4
 	db \5
 
-    AddTextPointer {POINTER_NAME}, MapTextTypeTrainer
+    AddTextPointer {POINTER_NAME}, MapText#Type#Trainer
     
     InitializeBattle \7
     
 	db \7
-	db {BATTLE_PARTY_INDEX} | ObjectDataTrainerBitMask
+	db {BATTLE_PARTY_INDEX} | ObjectData#Trainer#BitMask
 
     PushContext MapObjectsBattle
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
@@ -181,7 +181,7 @@ MACRO MapObjects_Pickup
 	db STAY
 	db NONE
 
-    db MapTextTypeItem
+    db MapText#Type#Item
     
     db \3
 
