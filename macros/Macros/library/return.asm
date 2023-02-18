@@ -1,9 +1,9 @@
 def is equs "\tIsDefinition"
 
+; works with 'return'
 macro IsDefinition
     var_common false, "is \#", \@=\#
-    def so = ({\@})
-    def not = ({\@}) == 0
+    result {\@}
 endm
 
 

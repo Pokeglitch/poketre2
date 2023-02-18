@@ -1,6 +1,7 @@
 /*
-    can assign names to arguments using the 'method' function definition macro?
-    - can use same "context" that super uses and make them context arguments
+    TODO-
+    -can assign names to arguments using the 'method' function definition macro?
+        -can use same "context" that super uses and make them context arguments
 */
 def Definition equs "\tDefinitionType@Define"
 
@@ -78,8 +79,8 @@ macro DefinitionInstance@Define
     redef \1_EndDefinition equs "DefinitionInstance@end \1, \2,"
 
     ; Initialize the list of members
-    def \2#Methods equs ""
-    def \2#Properties equs ""
+    List \2#Methods
+    List \2#Properties
     
     ; Define the single use macro names
     Context@SingleUses \2, init, exit
@@ -100,7 +101,7 @@ macro DefinitionInstance@property
     CheckReservedName \4
 
     ; Add the property ID to the list of properties
-    add_to_list \2#Properties, \@
+    \2#Properties@push \@
 
     ; Map the property information to a unique identifier
     def \@#macro equs "\3"
@@ -130,7 +131,7 @@ macro DefinitionInstance@method#define
     CheckReservedName \3
 
     ; Add the method to the list of methods
-    add_to_list \2#Methods, \3
+    \2#Methods@push \3
 
     Context@SingleUse func, \2@\3
 endm

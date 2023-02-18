@@ -1,41 +1,3 @@
-def false equs "0"
-def true equs "1"
-def _narg equs "_NARG"
-
-macro String@startswith
-    if strin("\1","\2") == 1
-        return true
-    else
-        return false
-    endc
-endm
-
-macro String@startswith#any
-    return any(String@startswith, \#)
-endm
-
-/*
-    \1 - comparison macro
-    \2 - value for comparison
-    \3+ - values to compare to
-*/
-macro any
-    is \1(\2, \3)
-    if so
-        return true
-    elif _narg > 3
-        redef \@#args equs "\1, \2"
-        shift 3
-        return any({\@#args}, \#)
-    else
-        return false
-    endc
-endm
-
-macro Number@test
-    return String@startswith#any(\1, 0,1,2,3,4,5,6,7,8,9,-,$,&,%,`)
-endm
-
 macro assert_all
 	if _narg == 2
 		assert \1 == \2
@@ -52,42 +14,11 @@ macro assert_all_s
 	endc
 endm
 
+; TODO - need to make a full list of reserved names, and list of remapped names
+; then, if name is in list, use remap
 macro CheckReservedName
     if strcmp("\1","end") == 0
         redef \1 equs "EndDefinition"
-    endc
-endm
-
-MACRO StartsWithDigit2
-    IF STRIN("\1","\2") == 1
-        DEF IS_NUMBER = 1
-    ENDC
-ENDM
-
-MACRO IsNumber2
-    DEF IS_NUMBER = 0
-    StartsWithDigit2 \1, 0
-    StartsWithDigit2 \1, 1
-    StartsWithDigit2 \1, 2
-    StartsWithDigit2 \1, 3
-    StartsWithDigit2 \1, 4
-    StartsWithDigit2 \1, 5
-    StartsWithDigit2 \1, 6
-    StartsWithDigit2 \1, 7
-    StartsWithDigit2 \1, 8
-    StartsWithDigit2 \1, 9
-    StartsWithDigit2 \1, -
-    StartsWithDigit2 \1, $
-    StartsWithDigit2 \1, &
-    StartsWithDigit2 \1, %
-    StartsWithDigit2 \1, `
-ENDM
-
-macro append_to_string
-    if strlen("{\1}")
-        redef \1 equs "{\1}, \2"
-    else
-        redef \1 equs "\2"
     endc
 endm
 
@@ -103,18 +34,18 @@ otherwise:
     \1  - Macro Name
     \2+ - Argument(s) to pass to macro individually    */
 macro foreach
-    IsNumber2 \1
-    if IS_NUMBER
+    is#Number \1
+    if so
         if \1 < 0
             fail "foreach argument amount must be positive: \1"
         endc
 
-        redef arguments equs ""
+        List temp#arguments
         for i, 3, 3+\1
-            append_to_string arguments, \<i>
+            temp#arguments@push \<i>
         endr
 
-        redef \@#macro equs "\2 {arguments},"
+        redef \@#macro equs "\2 {temp#arguments},"
         shift 2+\1
         foreach \@#macro, \#
     else
@@ -200,13 +131,5 @@ macro try_assign
         assign_value {SYMBOL}, "{VALUE}"
     else
         fail "\n{SYMBOL} value is not valid.\n\tExpected one of: \#\n\tReceived: {VALUE}\n"
-    endc
-endm
-
-macro add_to_list
-    if _narg == 2
-        append_to_string \1, \2
-    else
-        foreach 1, add_to_list, \#
     endc
 endm

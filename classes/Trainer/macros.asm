@@ -28,9 +28,9 @@ MACRO ParseTeamData
     ; If there is a third argument, and it is a number, then it is special
     IF _NARG > 2
         REDEF ARG3 EQUS "\3"
-        IsNumber {ARG3}
+        is#Number {ARG3}
 
-        IF IS_NUMBER == 1
+        IF so
             DEF SPECIAL_MASK = PartyData#Special#BitMask
         ENDC
     ENDC
@@ -80,9 +80,9 @@ MACRO Party
             ; If there is a third argument, and it is a number, then it is special
             IF _NARG > 2
                 REDEF ARG3 EQUS "\3"
-                IsNumber {ARG3}
+                is#Number {ARG3}
 
-                IF IS_NUMBER == 1
+                IF so
                     DEF SPECIAL_MASK = PartyData#Special#BitMask
                 ENDC
             ENDC
@@ -171,8 +171,8 @@ MACRO InitializeTeam
     ; handle the arguments
     IF _NARG
         ; if the first argument is a number, then its a party definition
-        IsNumber \1
-        IF IS_NUMBER
+        is#Number \1
+        IF so
             ParseTeamData \#
         ; otherwise, assume it is a macro and execute it
         ELSE            

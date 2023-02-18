@@ -7,7 +7,7 @@ Definition Struct
     endm
 
     method
-        TryDefineContextMacro \2
+        DefineContextMacro \2
         continue {\1#Name}_\2
     endm
 

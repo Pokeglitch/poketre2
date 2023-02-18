@@ -1,11 +1,11 @@
 def Type equs "\tTypeDefinition"
-def Types equs "" ; list of all types
+List Types ; list of all types
 
 macro assign_type
     try_assign \1, \2, {Types}
 endm
 
-    TryDefineContextMacro TypeDefinition
+    DefineContextMacro TypeDefinition
 macro _TypeDefinition
     ; Push context so cant write to ROM
     PushContext TypeDefinition
@@ -15,7 +15,7 @@ macro _TypeDefinition
     def \1#Method#_Count = 0
     assign_type \1#Type, \2
 
-    add_to_list Types, \1
+    Types@push \1
 
     redef TYPE_NAME equs "\1"
     def func equs "macro \{METHOD_NAME}"
@@ -24,7 +24,7 @@ macro _TypeDefinition
     redef method equs "TypeDefinition_method"
 endm
 
-    TryDefineContextMacro prop
+    DefineContextMacro prop
 macro TypeDefinition_prop
     AssignMember Property, \2, \1
 endm
@@ -38,7 +38,7 @@ endm
     \1 - Member Type
     \2 - Member Name
     \3 - Member Value    */
-    TryDefineContextMacro AssignMember
+    DefineContextMacro AssignMember
 macro TypeDefinition_AssignMember
     def \@#Class equs "{TYPE_NAME}"
     def \@#Type equs "\1"
@@ -54,10 +54,10 @@ macro TypeDefinition_AssignMember
     def {TYPE_NAME}#\1#_Count += 1
 endm
 
-    TryDefineContextMacro EndDefinition
+    DefineContextMacro EndDefinition
 macro TypeDefinition_EndDefinition
 
-    TryDefineContextMacro {TYPE_NAME}
+    DefineContextMacro {TYPE_NAME}
     ; define the macro to create a new instance
     def Global_{TYPE_NAME} equs "InstantiateType {TYPE_NAME},"
     def TypeDefinition_{TYPE_NAME} equs "prop {TYPE_NAME},"
@@ -133,7 +133,7 @@ macro ExecuteTypeMethod
     endc
 endm
 
-    TryDefineContextMacro String
+    DefineContextMacro String
 macro Global_String
     if _narg == 2
         redef \1 equs "\2"
@@ -141,9 +141,9 @@ macro Global_String
         redef \1 equs ""
     endc
 endm
-    add_to_list Types, String
+    Types@push String
 
-    TryDefineContextMacro Number
+    DefineContextMacro Number
 macro Global_Number
     if _narg == 2
         def \1 = \2
@@ -151,7 +151,7 @@ macro Global_Number
         def \1 = 0
     endc
 endm
-    add_to_list Types, Number
+    Types@push, Number
 
 Type Int, Number
     method inc
@@ -190,10 +190,10 @@ NOTE:if directly changing elements, the string value will not match
     - Use the 'set' macro
 
 TODO
-    - utilize add_to_list
+    - utilize List@push
     - add @contains method
 */
-Type List, String
+Type Array, String
     Int size
     
     method _in_range
@@ -304,7 +304,7 @@ Type List, String
             var start = \1@_to_index(-1)
         endc
 
-        List temp#PoppedList
+        Array temp#PoppedList
 
         for i, start, start+amount
             \1@_in_range {i}
@@ -336,7 +336,7 @@ Type List, String
 end
 
 Type Stack, String
-    List history
+    Array history
 
     method push
     func

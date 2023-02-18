@@ -10,7 +10,7 @@ TODO:
     Give String Type functions like equals, contains, startswith, etc
 
     add macro to build a fail message
-    CheckReservedName can utilize List@contains
+    CheckReservedName can utilize Array@contains
 
     Add comments to all type, scope macros
 
@@ -78,13 +78,13 @@ macro CloseScope
 endm
 
     ; TODO - SCOPE_NAME can be a symbol attached to the current ScopeDefinition scope
-    TryDefineContextMacro ScopeDefinition
+    DefineContextMacro ScopeDefinition
 macro _ScopeDefinition
     ; Push context so cant write to ROM
     PushContext ScopeDefinition
     
-    ; Initialize the list of Local Macros
-    List \1#LocalMacros
+    ; Initialize the array of Local Macros
+    Array \1#LocalMacros
 
     redef SCOPE_NAME equs "\1"
     
@@ -95,7 +95,7 @@ macro _ScopeDefinition
     redef final equs "single_use final\nmacro Scope_\{SCOPE_NAME}@Exit"
 endm
 
-    TryDefineContextMacro local
+    DefineContextMacro local
 macro ScopeDefinition_local
     redef SCOPE_MACRO_NAME equs "\1"
     CheckReservedName SCOPE_MACRO_NAME
@@ -104,21 +104,21 @@ macro ScopeDefinition_local
 
     redef func equs "single_use func\nmacro \{SCOPE_NAME}@\{SCOPE_MACRO_NAME}"
 
-    TryDefineContextMacro \1
+    DefineContextMacro \1
 endm
 
-    TryDefineContextMacro from
+    DefineContextMacro from
 macro ScopeDefinition_from
     redef SCOPE_MACRO_NAME equs "from_\1"
 endm
 
-    TryDefineContextMacro EndDefinition
+    DefineContextMacro EndDefinition
 macro ScopeDefinition_EndDefinition
     CloseContext
     try_purge func, init, final
 endm
 
-    TryDefineContextMacro default
+    DefineContextMacro default
 macro ScopeDefinition_default
     DefineDefaultMacros {SCOPE_NAME}, \#
 endm

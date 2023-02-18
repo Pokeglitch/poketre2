@@ -6,12 +6,13 @@ TODO - remove concept of default macros, global macros
 */
 
 def end equs "\tEndDefinition"
+List Context#Macros
 
 macro Context@init
     def \1#Name equs "\2"
     def \1#isPushed = \3
     def \1#isPassthrough = true
-    def \1#SingleUses equs ""
+    List \1#SingleUses
 endm
 
 macro Context@SingleUses
@@ -23,7 +24,7 @@ macro Context@SingleUses
 endm
 
 macro Context@SingleUse
-    add_to_list {Context}#SingleUses, \1
+    {Context}#SingleUses@push \1
     redef \1 equs "single_use \1\nmacro \2"
 endm
 
@@ -72,7 +73,7 @@ endm
 
 macro DefineDefaultMacro
     def {CONTEXT_NAME}_\1 equs "_\1"
-    TryDefineContextMacro \1
+    DefineContextMacro \1
 endm
 
 macro ExecuteContextMacro
@@ -97,25 +98,27 @@ macro find_context_macro
     endc
 endm
 
-macro DefineContextMacros
-    foreach DefineContextMacro, \#
-endm
-
 macro DefineContextMacro
-    def \1 equs "ExecuteContextMacro \1, "
-endm
-
-macro TryDefineContextMacro
-    if def(\1) == 0
-        DefineContextMacro \1
+    if _narg > 1
+        foreach DefineContextMacro, \#
+    else
+        if def(\1) == 0
+            Context#Macros@push \1
+            def \1 equs "ExecuteContextMacro \1, "
+        else
+            Context#Macros@contains \1
+            if Context#Macros@contains#result == 0
+                fail "Cannot set \1 as a Context Macro because is already defined"
+            endc
+        endc
     endc
 endm
 
-    DefineContextMacros Team
-    DefineContextMacros Warp, Sign, NPC, Battle, Pickup, WarpTo
-    DefineContextMacros Delay
-    DefineContextMacros Array, Flag, Flags, Index
+    DefineContextMacro Team
+    DefineContextMacro Warp, Sign, NPC, Battle, Pickup, WarpTo
+    DefineContextMacro Delay
+    DefineContextMacro Array, Flag, Flags, Index
 
-    DefineContextMacros text, asmtext, asmdone, done, prompt, exit_text
-    DefineContextMacros switch, case, asm
-    DefineContextMacros overload, skip, next
+    DefineContextMacro text, asmtext, asmdone, done, prompt, exit_text
+    DefineContextMacro switch, case, asm
+    DefineContextMacro overload, skip, next

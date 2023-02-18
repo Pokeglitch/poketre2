@@ -40,8 +40,8 @@ MACRO LoadIntoA
             ld a, \1
         ENDC
     ELSE
-        IsNumber \1
-        IF IS_NUMBER
+        is#Number \1
+        IF so
             IF \1 == 0
                 xor a
             ELSE

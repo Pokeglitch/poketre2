@@ -135,8 +135,8 @@ MACRO IncludeTiles
                 SHIFT
 
                 IF _NARG > 0
-                    IsNumber \1
-                    IF IS_NUMBER
+                    is#Number \1
+                    IF so
                         DEF SIZE = \1
                         SHIFT
                     ELSE

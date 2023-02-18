@@ -26,7 +26,7 @@ Struct ByteStruct
     func
         def \@#start = 3
 
-        is Number@test(\3)
+        is#Number \3
         if so
             def \1#\2#BitSize = \3
             def \@#start += 1
@@ -64,7 +64,7 @@ Struct ByteStruct
         def \@#z_index = 3
 
         if _narg > 2
-            is Number@test(\3)
+            is#Number \3
             if so
                 \1#BitSize@add \3
                 def \@#z_index += 1
