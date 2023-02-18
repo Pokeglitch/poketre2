@@ -1,26 +1,8 @@
 /*
-    have method be a string macro, not a context macro
-    - then, rename routine here back to method
-
-    Dont use List, use same technique that TypeDefinition uses
-    add way to add custom methods
-    - assign to the instance definition before open/initializing
-
-    TODO - apply handle before init and exit
-    - dont forward the Type Name
-    - DO forward the Instance Name
-    -- shouldnt have to be assigned to #Symbol....
-        - also forward to Type Open and Close
+    can assign names to arguments using the 'method' function definition macro?
+    - can use same "context" that super uses and make them context arguments
 */
 def Definition equs "\tDefinitionType@Define"
-
-macro DefinitionInstance@DefineMethods
-    if _narg == 3
-        foreach 3, DefinitionInstance@DefineMethods, \#, {\3#Routines}
-    else
-        redef \3_\4 equs "DefinitionInstance@method \#,"
-    endc
-endm
 
 /*
     \1 - Definition Type Name
@@ -33,7 +15,7 @@ macro DefinitionType@Define
     def {Context}#isPassthrough = false
 
     ; Define the single use macro names
-    Context@SingleUse \1, routine, init, exit, open, close, handle
+    Context@SingleUses \1, init, exit, open, method, property, handle, close
 
     ; update the DefinitionType End to include the Definition Type Name
     redef Definition_EndDefinition equs "DefinitionType@end \1,"
@@ -45,7 +27,7 @@ endm
 macro DefinitionType@end
     ; assign the Type Name to define a Definition Instance of that Type
     def \1 equs "\tDefinitionInstance@Define \1,"
-    
+
     CloseContext
 endm
 
@@ -64,6 +46,19 @@ macro DefinitionType@TryExec
     def {Context}#isPassthrough = false
 endm
 
+macro DefinitionInstance@continue
+    if def(\1)
+        redef continue equs "single_use continue\n\t\2"
+        def \@#macro equs "\1"
+    else
+        def \@#macro equs "\2"
+    endc
+
+    shift 2
+    \@#macro \#
+    try_purge continue
+endm
+
 
 /*  To create a new instance of a definition type
     \1 - Definition Type
@@ -74,36 +69,114 @@ macro DefinitionInstance@Define
     PushContext \1
 
     ; update the method macro to include the name of the instance
-    redef \1_method equs "DefinitionInstance@routine \1, \2,"
+    redef method equs "DefinitionInstance@method#define \1, \2,"
+
+    ; update the property macro to include the name of the instance
+    redef property equs "DefinitionInstance@property \1, \2,"
 
     ; update the end macro to include the name of the instance
     redef \1_EndDefinition equs "DefinitionInstance@end \1, \2,"
 
-    ; Initialize the list of methods
-    ; TODO - use technique that TypeDefinition uses
-    List \2#Routines
+    ; Initialize the list of members
+    def \2#Methods equs ""
+    def \2#Properties equs ""
     
     ; Define the single use macro names
-    Context@SingleUse \2, init, exit
+    Context@SingleUses \2, init, exit
     
     ; Run the Definition Type init macro
     DefinitionType@TryExec init, \#
 endm
 
+/*
+    Define a property for this definition instance
+    \1 - Type Name
+    \2 - Instance Name
+    \3 - Property Initialization Method
+    \4 - Property Name
+    \5+? - Arguments to forward to Initialization Method
+*/
+macro DefinitionInstance@property
+    CheckReservedName \4
+
+    ; Add the property ID to the list of properties
+    add_to_list \2#Properties, \@
+
+    ; Map the property information to a unique identifier
+    def \@#macro equs "\3"
+    def \@#name equs "\4"
+    shift 4
+    def \@#args equs "\#"
+endm
+
+macro DefinitionInstance@property#assign
+    if def(\2@property)
+        if _narg == 3
+            foreach 3, DefinitionInstance@property#assign, \#, {\3#Properties}
+        else
+            def \@#continue equs "DefinitionInstance@property#assign#final \4,"
+            DefinitionInstance@continue \2@property, \@#continue, \1, {\4#name}
+        endc
+    endc
+endm
+
+macro DefinitionInstance@property#assign#final
+    \1#macro \2, {\1#args}
+endm
+
+
 ; define a method for this definition instance
-macro DefinitionInstance@routine
+macro DefinitionInstance@method#define
     CheckReservedName \3
 
     ; Add the method to the list of methods
-    \2#Routines@push \3
+    add_to_list \2#Methods, \3
 
-    TryDefineContextMacro \3
+    Context@SingleUse func, \2@\3
+endm
 
-    ; todo - use Context@SingleUse
-    redef func equs "single_use func\nmacro \2@\3"
-    
-    ; Run the Definition Type method macro
-    DefinitionType@TryExec routine, \#
+macro DefinitionInstance@method#assign
+    if def(\2@method)
+        if _narg == 3
+            foreach 3, DefinitionInstance@method#assign, \#, {\3#Methods}
+        else
+            def \@#args equs "\#"
+            def \@#continue equs "DefinitionInstance@method#assign#final \@#args,"
+            DefinitionInstance@continue \2@method, \@#continue, \1, \4
+        endc
+    endc
+endm
+
+macro DefinitionInstance@method#assign#final
+    redef \2 equs "DefinitionInstance@method#execute {\1},"
+endm
+
+/*
+    To run the definition method
+        \1 - Context
+        \2 - Type Name
+        \3 - Instance Name
+        \4 - Method Name
+        \5+? - Arguments to forward to Method
+*/
+macro DefinitionInstance@method#execute
+    def \@#passthrough_symbol equs "\1#isPassthrough"
+    def \@#passthrough_value = \1#isPassthrough
+
+    ; enable passthrough
+    def \1#isPassthrough = true
+
+    def \@#macro equs "try_exec \3@\4,"
+
+    if def(\2@handle)
+        DefinitionInstance@continue \2@handle, \@#macro, \#
+    else
+        shift 4
+        \@#macro \#
+    endc
+
+    ; restore original passthrough value
+    def {\@#passthrough_symbol} = \@#passthrough_value
 endm
 
 macro DefinitionInstance@end
@@ -129,46 +202,19 @@ macro DefinitionInstance@open
     ; open the context
     SetContext \2
 
-    ; TODO - assign custom definition macros
-    
-    ; define the Instance Name methods to include the corresponding context
-    DefinitionInstance@DefineMethods {Context}, \1, \2
-
-    ; Run the Definition Type open macro    
-    if def(\1@open)
-        \1@open {Context}, \#
-    else
-        ; Run the Definition Instance init macro
-        DefinitionInstance@method {Context}, \#
-    endc
+    ; Run the Definition Type open macro and/or the Instance init method
+    DefinitionInstance@continue \1@open, DefinitionInstance@open#init, {Context}, \#
 endm
 
-/*
-    To run the definition method
-        \1 - Context
-        \2 - Type Name
-        \3 - Instance Name
-        \4 - Method Name
-        \5+? - Arguments to forward to Method
-*/
-macro DefinitionInstance@method
-    def \@#passthrough_symbol equs "\1#isPassthrough"
-    def \@#passthrough_value = \1#isPassthrough
+macro DefinitionInstance@open#init
+    ; define the Instance Name methods to include the corresponding context
+    DefinitionInstance@method#assign \1, \2, \3
+    
+    ; Initialize the Instance properties
+    DefinitionInstance@property#assign \1, \2, \3
 
-    ; enable passthrough
-    def \1#isPassthrough = true
-
-    if def(\2@handle)
-        ; Run the Definition Type open macro
-        \2@handle \#
-    else
-        def \@#macro equs "\3@\4"
-        shift 4
-        try_exec {\@#macro}, \#
-    endc
-
-    ; restore original passthrough value
-    def {\@#passthrough_symbol} = \@#passthrough_value
+    ; Run the Definition Instance init macro
+    DefinitionInstance@method#execute \#
 endm
 
 /*
@@ -179,13 +225,8 @@ endm
     \5+ - Arguments to pass to Definition Instance Close Macro
 */
 macro DefinitionInstance@close
-    ; Run the Definition Type close macro 
-    if def(\1@close)
-        \1@close \#
-    else
-        ; Run the Definition Instance exit macro
-        DefinitionInstance@method \#
-    endc
+    ; Run the Definition Type close macro and/or the Instance exit macro
+    DefinitionInstance@continue \2@close, DefinitionInstance@method#execute, \#
 
     ; close the context
     CloseContext

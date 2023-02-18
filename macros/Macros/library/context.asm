@@ -14,13 +14,17 @@ macro Context@init
     def \1#SingleUses equs ""
 endm
 
-macro Context@SingleUse
+macro Context@SingleUses
     if _narg > 2
-        foreach 1, Context@SingleUse, \#
+        foreach 1, Context@SingleUses, \#
     else
-        add_to_list {Context}#SingleUses, \2
-        redef \2 equs "single_use \2\nmacro \1@\2"
+        Context@SingleUse \2, \1@\2
     endc
+endm
+
+macro Context@SingleUse
+    add_to_list {Context}#SingleUses, \1
+    redef \1 equs "single_use \1\nmacro \2"
 endm
 
     __Stack Context, , 0

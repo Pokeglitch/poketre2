@@ -1,8 +1,6 @@
 Struct ByteStruct
-    init
-        Int \1#BitSize
-        def \1#Flags#All#BitMask = 0
-    endm
+    property Int, BitSize
+    property Number, Flags#All#BitMask
 
     method overload
     func

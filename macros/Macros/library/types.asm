@@ -19,6 +19,9 @@ macro _TypeDefinition
 
     redef TYPE_NAME equs "\1"
     def func equs "macro \{METHOD_NAME}"
+
+    ; define method
+    redef method equs "TypeDefinition_method"
 endm
 
     TryDefineContextMacro prop
@@ -26,7 +29,6 @@ macro TypeDefinition_prop
     AssignMember Property, \2, \1
 endm
 
-    TryDefineContextMacro method
 macro TypeDefinition_method
     redef METHOD_NAME equs "{TYPE_NAME}@\1"
     AssignMember Method, \1, {METHOD_NAME}
