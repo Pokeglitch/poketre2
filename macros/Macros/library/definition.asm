@@ -18,7 +18,7 @@ macro DefinitionInstance@DefineMethods
     if _narg == 3
         foreach 3, DefinitionInstance@DefineMethods, \#, {\3#Routines}
     else
-        redef \3_\4 equs "DefinitionInstance@method \4, \3, \2, \1,"
+        redef \3_\4 equs "DefinitionInstance@method \#,"
     endc
 endm
 
@@ -33,7 +33,7 @@ macro DefinitionType@Define
     def {Context}#isPassthrough = false
 
     ; Define the single use macro names
-    Context@SingleUse Definition#\1, routine, init, exit, open, close, handle
+    Context@SingleUse \1, routine, init, exit, open, close, handle
 
     ; update the DefinitionType End to include the Definition Type Name
     redef Definition_EndDefinition equs "DefinitionType@end \1,"
@@ -57,7 +57,7 @@ endm
 macro DefinitionType@TryExec
     def {Context}#isPassthrough = true
 
-    def \@#macro equs "Definition#\2@\1"
+    def \@#macro equs "\2@\1"
     shift 2
     try_exec {\@#macro}, \#
 
@@ -113,30 +113,17 @@ macro DefinitionInstance@end
     CloseContext
 
     ; define the Instance Name to open a Definition of this Type & Instance
-    def \2 equs "DefinitionInstance@open \1, \2,"
+    def \2 equs "DefinitionInstance@open \1, \2, init,"
 
     ; define the Instance Name 'end' to close the Definition of this Type & Instance
-    def \2_EndDefinition equs "DefinitionInstance@close \1, \2,"
-endm
-
-macro DefinitionInstance@TryExec
-    def \@#passthrough = {Context}#isPassthrough
-
-    ; enable passthrough
-    def {Context}#isPassthrough = true
-
-    def \@#macro equs "\3@\1"
-    shift 3
-    try_exec {\@#macro}, {Context}, \#
-    
-    ; restore original passthrough value
-    def {Context}#isPassthrough = \@#passthrough
+    def \2_EndDefinition equs "DefinitionInstance@close \{Context}, \1, \2, exit,"
 endm
 
 /*
     \1 - Definition Type
     \2 - Definition Instance Name
-    \3+ - Arguments to pass to Definition Instance Init Macro
+    \3 - Instance Method Name (init)
+    \4+ - Arguments to pass to Definition Instance Init Macro
 */
 macro DefinitionInstance@open
     ; open the context
@@ -147,50 +134,58 @@ macro DefinitionInstance@open
     ; define the Instance Name methods to include the corresponding context
     DefinitionInstance@DefineMethods {Context}, \1, \2
 
-    ; Run the Definition Type open macro
-    try_exec Definition#\1@open, \2, {Context}
-    
-    ; Run the Definition Instance init macro
-    DefinitionInstance@TryExec init, \#
+    ; Run the Definition Type open macro    
+    if def(\1@open)
+        \1@open {Context}, \#
+    else
+        ; Run the Definition Instance init macro
+        DefinitionInstance@method {Context}, \#
+    endc
 endm
 
 /*
     To run the definition method
-    \1 - Routine Name
-    \2 - Instance Name
-    \3 - Type Name
-    \4 - Context
+        \1 - Context
+        \2 - Type Name
+        \3 - Instance Name
+        \4 - Method Name
+        \5+? - Arguments to forward to Method
 */
 macro DefinitionInstance@method
-    def \@#passthrough = \4#isPassthrough
+    def \@#passthrough_symbol equs "\1#isPassthrough"
+    def \@#passthrough_value = \1#isPassthrough
 
     ; enable passthrough
-    def \4#isPassthrough = true
+    def \1#isPassthrough = true
 
-    if def(Definition#\3@handle)
+    if def(\2@handle)
         ; Run the Definition Type open macro
-        try_exec Definition#\3@handle, \#
+        \2@handle \#
     else
-        def \@#macro equs "\2@\1"
-        shift 3
-        {\@#macro} \#
+        def \@#macro equs "\3@\4"
+        shift 4
+        try_exec {\@#macro}, \#
     endc
-    
+
     ; restore original passthrough value
-    def \1#isPassthrough = \@#passthrough
+    def {\@#passthrough_symbol} = \@#passthrough_value
 endm
 
 /*
-    \1 - Definition Type
-    \2 - Definition Instance Name
-    \3+ - Arguments to pass to Definition Instance Close Macro
+    \1 - Context
+    \2 - Definition Type
+    \3 - Definition Instance Name
+    \4 - Instance Method Name (exit)
+    \5+ - Arguments to pass to Definition Instance Close Macro
 */
 macro DefinitionInstance@close
-    ; Run the Definition Instance exit macro
-    DefinitionInstance@TryExec exit, \#
-    
-    ; Run the Definition Type close macro
-    try_exec Definition#\1@close, \2, {Context}
+    ; Run the Definition Type close macro 
+    if def(\1@close)
+        \1@close \#
+    else
+        ; Run the Definition Instance exit macro
+        DefinitionInstance@method \#
+    endc
 
     ; close the context
     CloseContext

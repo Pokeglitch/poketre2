@@ -1,18 +1,22 @@
 Definition Struct
     exit
+        ; todo - not necessary when using Context@SingleUse
         try_purge func, init, final
     endm
 
     open
-        def \2#isPassthrough = false
+        def \1#Symbol equs "\5"
+        def \1#isPassthrough = false
+
+        def \@#macro equs "\3@\4"
+        shift 4
+        try_exec {\@#macro}, \#
     endm
 
     handle
-        def \@#macro equs "\2@\1"
-        def \@#instance equs "\2"
-        def \@#context equs "\4"
-        
+        def \@#context equs "\1"
+        def \@#macro equs "\3@\4"
         shift 4
-        \@#macro {{\@#context}#Symbol}, \#
+        try_exec {\@#macro}, {{\@#context}#Symbol}, \#
     endm
 end
