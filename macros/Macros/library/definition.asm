@@ -6,14 +6,19 @@
     add way to add custom methods
     - assign to the instance definition before open/initializing
 
+    TODO - apply handle before init and exit
+    - dont forward the Type Name
+    - DO forward the Instance Name
+    -- shouldnt have to be assigned to #Symbol....
+        - also forward to Type Open and Close
 */
 def Definition equs "\tDefinitionType@Define"
 
 macro DefinitionInstance@DefineMethods
-    if _narg == 2
-        foreach 2, DefinitionInstance@DefineMethods, \#, {\2#Routines}
+    if _narg == 3
+        foreach 3, DefinitionInstance@DefineMethods, \#, {\3#Routines}
     else
-        redef \2_\3 equs "DefinitionInstance@method \2@\3, \1,"
+        redef \3_\4 equs "DefinitionInstance@method \4, \3, \2, \1,"
     endc
 endm
 
@@ -28,7 +33,7 @@ macro DefinitionType@Define
     def {Context}#isPassthrough = false
 
     ; Define the single use macro names
-    Context@SingleUse Definition#\1, routine, init, exit, open, close
+    Context@SingleUse Definition#\1, routine, init, exit, open, close, handle
 
     ; update the DefinitionType End to include the Definition Type Name
     redef Definition_EndDefinition equs "DefinitionType@end \1,"
@@ -140,7 +145,7 @@ macro DefinitionInstance@open
     ; TODO - assign custom definition macros
     
     ; define the Instance Name methods to include the corresponding context
-    DefinitionInstance@DefineMethods {Context}, \2
+    DefinitionInstance@DefineMethods {Context}, \1, \2
 
     ; Run the Definition Type open macro
     try_exec Definition#\1@open, \2, {Context}
@@ -151,16 +156,25 @@ endm
 
 /*
     To run the definition method
+    \1 - Routine Name
+    \2 - Instance Name
+    \3 - Type Name
+    \4 - Context
 */
 macro DefinitionInstance@method
-    def \@#passthrough = \2#isPassthrough
+    def \@#passthrough = \4#isPassthrough
 
     ; enable passthrough
-    def \2#isPassthrough = true
+    def \4#isPassthrough = true
 
-    def \@#macro equs "\1"
-    shift
-    {\@#macro} \#
+    if def(Definition#\3@handle)
+        ; Run the Definition Type open macro
+        try_exec Definition#\3@handle, \#
+    else
+        def \@#macro equs "\2@\1"
+        shift 3
+        {\@#macro} \#
+    endc
     
     ; restore original passthrough value
     def \1#isPassthrough = \@#passthrough
@@ -181,52 +195,3 @@ macro DefinitionInstance@close
     ; close the context
     CloseContext
 endm
-
-Definition Struct2    
-    init
-        msg STRUCT INIT | "\#"
-    endm
-
-    routine
-        msg STRUCT ROUTINE | "\#"
-    endm
-
-    exit
-        msg STRUCT EXIT | "\#"
-    endm
-
-    open
-        msg STRUCT OPEN | "\#"
-        msg {Context} | \2
-        def {Context}#isPassthrough = false
-    endm
-
-    close
-        msg STRUCT CLOSE | "\#"
-    endm
-end
-
-Struct2 Hank
-    init
-        msg HANK INIT |"\#"
-    endm
-
-    method joe
-    func
-        msg HANK JOE | "\#"
-    endm
-
-    method fred
-    func
-        msg HANK FRED | "\#"
-    endm
-
-    exit
-        msg HANK EXIT | "\#"
-    endm
-end
-
-    Hank
-        joe a, b, c
-        fred 1, 2, 3
-    end

@@ -1,4 +1,4 @@
-    ByteStruct3 PartyData
+    ByteStruct PartyData
         overload
             Index Level, 100
         next
@@ -7,7 +7,7 @@
         Flag Special
     end
 
-    ByteStruct3 PartyDefinition
+    ByteStruct PartyDefinition
         Array Condition, Standard, RAMValue, RoutineValue, RoutineDefinition
         Flag Levels, Explicit, Scaled
         Flag Type, Flag, Value

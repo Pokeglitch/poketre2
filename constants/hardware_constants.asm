@@ -1,4 +1,4 @@
-	ByteStruct3 Button
+	ByteStruct Button
 		Flags Choice, A, B, Select, Start
 		Flags DPad, Right, Left, Up, Down
 	end

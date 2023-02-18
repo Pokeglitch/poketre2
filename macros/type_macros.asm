@@ -2,14 +2,14 @@ INCLUDE "macros/byte_struct.asm"
 
 ; 1 = how many bits to set
 ; 2 = how many bits to shift
-MACRO BitMask
-    DEF BIT_MASK = 0
-    REPT \1
-        DEF BIT_MASK = (BIT_MASK << 1) | 1
-    ENDR
+macro BitMask
+    def temp#bitmask = 0
+    rept \1
+        def temp#bitmask = (temp#bitmask << 1) | 1
+    endr
 
-    DEF BIT_MASK = BIT_MASK << \2
-ENDM
+    return temp#bitmask << \2
+endm
 
 MACRO CleanChar
     IF _NARG == 3

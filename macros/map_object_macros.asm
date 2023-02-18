@@ -1,9 +1,9 @@
-    ByteStruct3 MapObject
+    ByteStruct MapObject
         Index TextIndex, %01111111
         Flag Sign
     end
 
-    ByteStruct3 ObjectData
+    ByteStruct ObjectData
         overload
             Index Level, 100
         next
@@ -13,7 +13,7 @@
         Flag Trainer
     end
 
-    ByteStruct3 MapText
+    ByteStruct MapText
         Index Index, %00011111
         Array Type, 3, Standard, Item, Trainer
     end

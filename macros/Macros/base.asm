@@ -2,6 +2,40 @@ def false equs "0"
 def true equs "1"
 def _narg equs "_NARG"
 
+macro String@startswith
+    if strin("\1","\2") == 1
+        return true
+    else
+        return false
+    endc
+endm
+
+macro String@startswith#any
+    return any(String@startswith, \#)
+endm
+
+/*
+    \1 - comparison macro
+    \2 - value for comparison
+    \3+ - values to compare to
+*/
+macro any
+    is \1(\2, \3)
+    if so
+        return true
+    elif _narg > 3
+        redef \@#args equs "\1, \2"
+        shift 3
+        return any({\@#args}, \#)
+    else
+        return false
+    endc
+endm
+
+macro Number@test
+    return String@startswith#any(\1, 0,1,2,3,4,5,6,7,8,9,-,$,&,%,`)
+endm
+
 macro assert_all
 	if _narg == 2
 		assert \1 == \2

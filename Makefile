@@ -28,7 +28,7 @@ endif
 # Note, this will rebuild all objects when a .pce or .2bpp is required to be built, not simply main.o
 %.o: dep = $(shell tools/scan_includes $(@D)/$*.asm) $(shell ls pce/*/*.png | sed "s|.png|.pce|g") $(shell ls tiles/*/*.png | sed "s|.png|.2bpp|g")
 $(objs): %.o: %.asm $$(dep)
-	rgbasm -l -h -o $@ $*.asm
+	rgbasm -l -h -r 128 -o $@ $*.asm
 
 opts  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON TRE2"
 

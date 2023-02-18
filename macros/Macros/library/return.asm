@@ -1,16 +1,11 @@
-def unless equs "\tUnlessDefinition"
-def when equs "\tWhenDefinition"
-def then equs "\tThenDefinition"
+def is equs "\tIsDefinition"
 
-macro WhenDefinition
-    var_common false, "when \#", \@=\#
-    redef ThenDefinition equs "\tsingle_use then\nif {\@}"
+macro IsDefinition
+    var_common false, "is \#", \@=\#
+    def so = ({\@})
+    def not = ({\@}) == 0
 endm
 
-macro UnlessDefinition
-    var_common false, "unless \#", \@=\#  
-    redef ThenDefinition equs "\tsingle_use then\nif ({\@}) == 0"
-endm
 
 /*
     \1  - if output is string or not
@@ -132,19 +127,3 @@ Scope Return
         endc
     endm
 end
-
-Scope TestScope
-    local testicles
-    func
-        return \2+5
-    endm
-end
-
-macro return_test
-    enter TestScope
-        return testicles(\1*2)
-    end
-endm
-
-    var test222 = return_test(10)
-    msg {test222}
