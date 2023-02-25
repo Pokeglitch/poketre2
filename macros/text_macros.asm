@@ -28,47 +28,27 @@ ENDM
 
 ; Scroll to the next line.
 MACRO cont
-	db CONTINUE_TEXT
-	REPT _NARG
-	db \1
-	SHIFT
-	ENDR
+	foreach db, CONTINUE_TEXT, \#
 ENDM
 
 ; Scroll without user interaction
 MACRO autocont
-	db AUTO_CONTINUE_TEXT
-	REPT _NARG
-	db \1
-	SHIFT
-	ENDR
+	foreach db, AUTO_CONTINUE_TEXT, \#
 ENDM
 
 ; Move a line down.
 MACRO _next
-	db NEXT_TEXT_LINE
-	REPT _NARG
-		db \1
-		SHIFT
-	ENDR
+	foreach db, NEXT_TEXT_LINE, \#
 ENDM
 
 ; Start a new paragraph.
 MACRO para
-	db PARAGRAPH
-	REPT _NARG
-		db \1
-		SHIFT
-	ENDR
+	foreach db, PARAGRAPH, \#
 ENDM
 
 ; Start a new paragraph without user interaction
 MACRO autopara
-	db AUTO_PARAGRAPH
-	REPT _NARG
-		db \1
-		SHIFT
-	ENDR
+	foreach db, AUTO_PARAGRAPH, \#
 ENDM
 
 MACRO _asmdone
@@ -96,11 +76,7 @@ MACRO _exit_text
 ENDM
 
 MACRO str
-	REPT _NARG
-		db \1
-		SHIFT
-	ENDR
-	db TEXT_END
+	foreach db, \#, TEXT_END
 ENDM
 
 ; 1 - address
@@ -201,14 +177,14 @@ ENDM
 
 MACRO CloseTextContext
 	PurgeTempTextMacros {TEMP_TEXT_CLOSE_MACROS}
-	CloseContext
+	Context@Close
 ENDM
 
 ; 1 - the auto close macro
 ; 2+ - other macros which will auto close
 REDEF TEMP_TEXT_CLOSE_MACROS EQUS ""
 MACRO InitTextContext
-	PushContext Text
+	Context@Push Text
 	SetTextAutoClose \1
 	SHIFT
 
@@ -235,5 +211,3 @@ MACRO TempTextClose
 	{TEXT_AUTO_CLOSE}
 	{MACRO_NAME} \#
 ENDM
-
-	DefineDefaultMacros Text, next

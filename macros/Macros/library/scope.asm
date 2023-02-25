@@ -29,7 +29,8 @@ TODO:
     - also remove concept of 'kill' macros
     Regex: ^[ \t]+_
 
-    Can remove the concept of PushContext if the Scope Init/Final will push/pop itself
+    Can remove the concept of Context@Push if the Scope Init/Final will push/pop itself
+    - (if it is only used in Scopes...)
 
     Can extend a scope?
     - can reassign all local, init, and final macros...
@@ -59,7 +60,7 @@ endm
 
 ; To enter the context and initialize if needed
 macro enter
-    SetContext \1
+    Context@Set \1
     
     define_local_macros \1
 
@@ -70,7 +71,7 @@ endm
 macro CloseScope
     def \@#ClosedScope equs "{Context}"
     try_exec Scope_{\1#Name}@Exit, {Context}
-    CloseContext
+    Context@Close
     
     define_local_macros {\1#Name}
 
@@ -81,7 +82,7 @@ endm
     DefineContextMacro ScopeDefinition
 macro _ScopeDefinition
     ; Push context so cant write to ROM
-    PushContext ScopeDefinition
+    Context@Push ScopeDefinition
     
     ; Initialize the array of Local Macros
     Array \1#LocalMacros
@@ -114,11 +115,7 @@ endm
 
     DefineContextMacro EndDefinition
 macro ScopeDefinition_EndDefinition
-    CloseContext
+    Context@Close
     try_purge func, init, final
 endm
 
-    DefineContextMacro default
-macro ScopeDefinition_default
-    DefineDefaultMacros {SCOPE_NAME}, \#
-endm

@@ -1,18 +1,4 @@
-macro assert_all
-	if _narg == 2
-		assert \1 == \2
-	else
-		foreach 1, assert_all, \#
-	endc
-endm
 
-macro assert_all_s
-	if _narg == 2
-		assert strcmp("{\1}","{\2}") == 0
-	else
-		foreach 1, assert_all_s, \#
-	endc
-endm
 
 ; TODO - need to make a full list of reserved names, and list of remapped names
 ; then, if name is in list, use remap
@@ -52,16 +38,6 @@ macro foreach
         for i, 2, _narg+1
             \1 \<i>
         endr
-    endc
-endm
-
-/*  To print given argument(s) on own line
-    \1+ - Arguments to print    */
-macro msg
-    if _narg == 1
-        print "\1\n"
-    else
-        foreach msg, \#
     endc
 endm
 

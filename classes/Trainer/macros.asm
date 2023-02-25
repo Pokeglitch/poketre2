@@ -138,11 +138,11 @@ MACRO Trainer
     ; Initialize the party count
     DEF {NAME_VALUE}PartyCount = 0
 
-    PushContext Party
+    Context@Push Party
 	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
 		{NAME_VALUE}Parties:
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
-    CloseContext
+    Context@Close
 ENDM
 
 REDEF PartyName EQUS ""
@@ -159,7 +159,7 @@ MACRO InitializeTeam
     dw {PartyName}
 
     ; enter the team context
-    PushContext Team
+    Context@Push Team
 
     ; initialize the party data
     SetTeamCondition Standard
@@ -193,7 +193,7 @@ MACRO CloseParty
     ; restore the previous Party Name
     REDEF PartyName EQUS "{PartyName{d:PartyNameCount}}"
 
-    CloseContext ; close the team context
+    Context@Close ; close the team context
 ENDM
 
 ; 1 = Trainer
@@ -222,14 +222,14 @@ MACRO Team_asm
 
     dba {PartyName}Routine
 
-    PushContext TeamASM
+    Context@Push TeamASM
     SECTION "{PartyName} Routine", ROMX, BANK[CUR_BANK]
         {PartyName}Routine:
 ENDM
 
 ; close the team asm context
 MACRO TeamASM_EndDefinition
-    CloseContext
+    Context@Close
 ENDM
 
 ; close the team context
@@ -238,7 +238,7 @@ MACRO Team_TeamASM_Finish
 ENDM
 
 MACRO Team_switch
-    SetContext TeamSwitch
+    Context@Set TeamSwitch
 
     ; If an argument was provided, then it is a ram value
     IF _NARG
@@ -250,14 +250,14 @@ MACRO Team_switch
 
         dba {PartyName}SwitchRoutine
 
-        PushContext TeamSwitchRoutine
+        Context@Push TeamSwitchRoutine
         SECTION "{PartyName} Switch Routine", ROMX, BANK[CUR_BANK]
             {PartyName}SwitchRoutine:
     ENDC
 ENDM
 
 MACRO TeamSwitchRoutine_case
-    CloseContext
+    Context@Close
     case \#
 ENDM
 
@@ -267,13 +267,13 @@ MACRO Team_TeamSwitch_Finish
 ENDM
 
 MACRO TeamSwitch_EndDefinition
-    CloseContext ; close the switch context
+    Context@Close ; close the switch context
 ENDM
 
 MACRO TeamSwitch_case
     db \1 ; write the value to compare against
 
-    SetContext TeamSwitchCase
+    Context@Set TeamSwitchCase
 
     ; if more than 1 arg, then the team is also defined
     IF _NARG > 1
@@ -295,5 +295,5 @@ ENDM
 
 ; When a team finishes, also close the case context
 MACRO TeamSwitchCase_Team_Finish
-    CloseContext
+    Context@Close
 ENDM

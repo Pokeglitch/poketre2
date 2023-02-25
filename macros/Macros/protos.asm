@@ -1,74 +1,34 @@
+; Basic implementation of data types to be used by methods before "Types" get defined
+
 def false equs "0"
 def true equs "1"
 def _narg equs "_NARG"
 
-
-def List equs "\tListDefinition"
-
-macro ListDefinition
-    redef \1 equs ""
-    redef \1@push equs "List@push \1,"
-    redef \1@contains equs "List@contains \1,"
-endm
-
-macro List@push
-    if _narg == 2
-        if strlen("{\1}")
-            redef \1 equs "{\1}, \2"
-        else
-            redef \1 equs "\2"
-        endc
-    else
-        foreach 1, List@push, \#
+/*  To generate a unique id and assign to global 'id' symbol, and optionally, the provided argument
+    \1? - Symbol to assign to    */
+macro uuid
+    redef id equs "\@"
+    if _narg
+        redef \1 equs "\@"
     endc
 endm
 
-macro List@contains
-    List@_contains \1@contains#result, \2, {\1}
+; To mimic the functionality of "return" before it gets defined
+macro result
+    def so = \1
+    def not = !(so)
 endm
 
-macro List@_contains
-    def \1 = 0
-    for i, 3, _narg+1
-        if strcmp("\2","\<{d:i}>") == 0
-            def \1 = 1
-        endc
-    endr
-endm
+include "macros/Macros/protos/list.asm"
+include "macros/Macros/protos/chars.asm"
+include "macros/Macros/protos/stack.asm"
 
-def Chars equs "\tCharsDefinition"
-
-macro CharsDefinition
-    def \1@startOf equs "Chars@startOf \1,"
-
-    def \@#name equs "\1"
-    shift
-    def {\@#name} equs "\#"
-endm
-
-macro Chars@startOf
-    Chars@_atIndex 1, \1@startOf#result, \2, {\1}
-endm
-
-macro Chars@_atIndex
-    def \2 = 0
-    for i, 4, _narg+1
-        if strin("\3","\<{d:i}>") == \1
-            def \2 = 1
-            break
-        endc
-    endr
-endm
 
 Chars Number#start_chars, 0,1,2,3,4,5,6,7,8,9,-,+,$,&,%,`
 
+/*  To check if the given value is a number
+    \1 - Value to check    */
 macro is#Number
     Number#start_chars@startOf \1
     result Number#start_chars@startOf#result
-endm
-
-; to mimic the functionality of return before it gets defined
-macro result
-    def so = \1
-    def not = !(so) 
 endm

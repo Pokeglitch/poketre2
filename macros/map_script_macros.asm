@@ -3,7 +3,6 @@ MACRO DefineMapScriptMacros
     REDEF MAP_SCRIPT_MACROS EQUS "\#"
 ENDM
     DefineMapScriptMacros text, Delay
-    DefineDefaultMacros MapScript, Delay
 
 MACRO MapScript_text
     REDEF PTR_NAME EQUS "{MAP_NAME}ScriptText{d:{MAP_NAME}TextCount}"
@@ -22,7 +21,7 @@ ENDM
 
 ; 1 = trainer instance
 MACRO MapScript_Battle
-    PushContext MapScriptBattle
+    Context@Push MapScriptBattle
     InitializeBattle \1
 ENDM
 
@@ -64,7 +63,7 @@ ENDM
 
 ; When returning to battle from the team, close the battle context
 MACRO MapScriptBattle_Team_Finish
-    CloseContext
+    Context@Close
 ENDM
 
 

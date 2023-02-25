@@ -2,7 +2,7 @@ DEF CUR_BANK = BANK(@)
 	ConvertName Oaks Lab
 	DEF OaksLabTextCount = 0
 REDEF MAP_NAME EQUS "{NAME_VALUE}"
-	SetContext MapScript
+	Context@Set MapScript
 SECTION FRAGMENT "Oaks Lab Script", ROMX, BANK[CUR_BANK]
 
 OaksLabScript:
@@ -747,7 +747,7 @@ OaksLabTextPointers:
 	dw OaksLabText11
 
 	
-	CloseContext
+	Context@Close
 
 OaksLabText1:
 	asmtext

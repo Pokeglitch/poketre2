@@ -1,11 +1,22 @@
-; Note: when context is closed, will auto callback if
-; {NewContext}_{ClosedContext}_Finish is defined
-
 /*
-TODO - remove concept of default macros, global macros
+TODO - remove concept of global macros
 */
 
+/*  A context is a way to have certain macros behave in a particular manner
+    When a "context macro" is called, it will execute the macro that belongs to the current context
+    If there is no macro in the current context, it will check the parent, and so on
+    - Optionally, the context can be restricted to fail if the macro is not defined in the current context, rather than check the parent
+
+    Note: when context is closed, will auto callback if following macro is defined:
+    - {NewContext}_{ClosedContext}_Finish
+
+    Context@Push will push the current section, and then change to the next context
+    Context@Set will simply change context without pushing the section
+    Context@Close will close the current section, and (if pushed) will pop the section
+*/
 def end equs "\tEndDefinition"
+
+; Initialize the list of context macros
 List Context#Macros
 
 macro Context@init
@@ -28,23 +39,16 @@ macro Context@SingleUse
     redef \1 equs "single_use \1\nmacro \2"
 endm
 
-    __Stack Context, , 0
-
-
-
-
-
-
-macro PushContext
+macro Context@Push
     pushs
-    Context@push \1, 1
+    Context@push \1, true
 endm
 
-macro SetContext
-    Context@push \1, 0
+macro Context@Set
+    Context@push \1, false
 endm
 
-macro CloseContext
+macro Context@Close
     ; purge the single uses
     try_purge {{Context}#SingleUses}
 
@@ -54,27 +58,17 @@ macro CloseContext
     endc
 
     ; Store the potential callback macro name
-    redef CONTEXT_CALLBACK equs "{{{Context}#Parent}#Name}_{{Context}#Name}_Finish"
+    redef \@#callback equs "{{{Context}#Parent}#Name}_{{Context}#Name}_Finish"
 
     Context@pop
 
     ; if the callback exists, execute it
-    if def({CONTEXT_CALLBACK})
-        {CONTEXT_CALLBACK}
+    if def({\@#callback})
+        {\@#callback}
     endc
 endm
 
-; To set the given macro names in this context to call it's default macro
-macro DefineDefaultMacros
-    redef CONTEXT_NAME equs "\1"
-    shift
-    foreach DefineDefaultMacro, \#
-endm
-
-macro DefineDefaultMacro
-    def {CONTEXT_NAME}_\1 equs "_\1"
-    DefineContextMacro \1
-endm
+    __Stack Context, , 0
 
 macro ExecuteContextMacro
     find_context_macro {Context}, \#
@@ -107,7 +101,7 @@ macro DefineContextMacro
             def \1 equs "ExecuteContextMacro \1, "
         else
             Context#Macros@contains \1
-            if Context#Macros@contains#result == 0
+            if not
                 fail "Cannot set \1 as a Context Macro because is already defined"
             endc
         endc

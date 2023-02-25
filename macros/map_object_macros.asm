@@ -48,10 +48,10 @@ MACRO MapData
     DEF \1BattleCount = 0
 
     PUSHS
-        SetContext MapScript
+        Context@Set MapScript
         SECTION FRAGMENT "\1 Script", ROMX, BANK[CUR_BANK]
             INCLUDE "scripts/\1.asm"
-        CloseContext
+        Context@Close
 
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             \1Header:
@@ -72,12 +72,12 @@ MACRO MapData
         SECTION FRAGMENT "\1 Text Pointers", ROMX, BANK[CUR_BANK]
             \1TextPointers:
 
-        SetContext MapObjects
+        Context@Set MapObjects
         SECTION FRAGMENT "\1 Objects", ROMX, BANK[CUR_BANK]
             \1Objects:
                 db \1Border
                 INCLUDE "data/mapObjects/\1.asm"
-        CloseContext
+        Context@Close
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
 	        db TrainerHeaderTerminator
@@ -137,7 +137,7 @@ MACRO MapObjects_NPC
     IF _NARG == 6
         AddTextPointer \6
     ELSE
-        SetContext MapObjectsText
+        Context@Set MapObjectsText
     ENDC
 ENDM
 
@@ -160,7 +160,7 @@ MACRO MapObjects_Battle
 	db \7
 	db {BATTLE_PARTY_INDEX} | ObjectData#Trainer#BitMask
 
-    PushContext MapObjectsBattle
+    Context@Push MapObjectsBattle
     SECTION FRAGMENT "{MAP_NAME} Trainer Headers", ROMX, BANK[CUR_BANK]
         {POINTER_NAME}:
             db 1 << (TotalTrainerBattleCount % 8) ; the mask for this trainer
@@ -203,7 +203,7 @@ MACRO MapObjects_Sign
     IF _NARG == 3
         AddTextPointer \3
     ELSE
-        SetContext MapObjectsText
+        Context@Set MapObjectsText
     ENDC
 ENDM
 
@@ -247,7 +247,7 @@ ENDM
 
 ; Close the map objects text context
 MACRO MapObjectsText_Text_Finish
-    CloseContext
+    Context@Close
 ENDM
 
 MACRO MapObjectsBattle_text
@@ -275,7 +275,7 @@ ENDM
 
 ; Close the map objects battle context
 MACRO MapObjectsBattle_Team_Finish
-    CloseContext ; close the map objects battle context
+    Context@Close ; close the map objects battle context
 ENDM
 
 MACRO MapObjects_MapObjectsBattle_Finish

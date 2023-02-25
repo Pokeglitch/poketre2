@@ -8,7 +8,7 @@ endm
     DefineContextMacro TypeDefinition
 macro _TypeDefinition
     ; Push context so cant write to ROM
-    PushContext TypeDefinition
+    Context@Push TypeDefinition
 
     ; Initialize the attributes of this Type
     def \1#Property#_Count = 0
@@ -62,7 +62,7 @@ macro TypeDefinition_EndDefinition
     def Global_{TYPE_NAME} equs "InstantiateType {TYPE_NAME},"
     def TypeDefinition_{TYPE_NAME} equs "prop {TYPE_NAME},"
 
-    CloseContext
+    Context@Close
     try_purge func
 endm
 

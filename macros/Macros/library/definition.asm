@@ -10,7 +10,7 @@ def Definition equs "\tDefinitionType@Define"
 */
 macro DefinitionType@Define
     ; Push context so cant write to ROM
-    PushContext Definition
+    Context@Push Definition
 
     ; Disable passthrough
     def {Context}#isPassthrough = false
@@ -29,7 +29,7 @@ macro DefinitionType@end
     ; assign the Type Name to define a Definition Instance of that Type
     def \1 equs "\tDefinitionInstance@Define \1,"
 
-    CloseContext
+    Context@Close
 endm
 
 /*
@@ -67,7 +67,7 @@ endm
     \3+ - Arguments to pass to Definition Type Init Macro
 */
 macro DefinitionInstance@Define
-    PushContext \1
+    Context@Push \1
 
     ; update the method macro to include the name of the instance
     redef method equs "DefinitionInstance@method#define \1, \2,"
@@ -184,7 +184,7 @@ macro DefinitionInstance@end
     ; Run the Definition Type exit macro
     DefinitionType@TryExec exit, \#
 
-    CloseContext
+    Context@Close
 
     ; define the Instance Name to open a Definition of this Type & Instance
     def \2 equs "DefinitionInstance@open \1, \2, init,"
@@ -201,7 +201,7 @@ endm
 */
 macro DefinitionInstance@open
     ; open the context
-    SetContext \2
+    Context@Set \2
 
     ; Run the Definition Type open macro and/or the Instance init method
     DefinitionInstance@continue \1@open, DefinitionInstance@open#init, {Context}, \#
@@ -230,5 +230,5 @@ macro DefinitionInstance@close
     DefinitionInstance@continue \2@close, DefinitionInstance@method#execute, \#
 
     ; close the context
-    CloseContext
+    Context@Close
 endm
