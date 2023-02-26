@@ -9,10 +9,7 @@ TODO:
 --------------
     Rename "is" to "does" (for contains, etc)
 
-    Remove "Global_" names and all concept of global macros
-
     - can all protos be base types?
-    Give String proto functions like equals, contains, startswith, etc
 
     add macro to build a fail message
     CheckReservedName can utilize Array@contains
@@ -64,7 +61,7 @@ TODO:
 def end equs "\tEndDefinition"
 
 ; Initialize the list of context macros
-    Vector Context#Macros
+    List Context#Macros
 
 macro Context@init
     def \1#Name equs "\2"
@@ -104,14 +101,14 @@ macro Context@Close
         pops
     endc
 
-    ; Store the potential callback macro name
-    redef \@#callback equs "{{{Context}#Parent}#Name}_{{Context}#Name}_Finish"
+    ; store the closed context name
+    def \@#closed_name equs "{{Context}#Name}"
 
     Context@pop
 
     ; if the callback exists, execute it
-    if def({\@#callback})
-        {\@#callback}
+    if def({{Context}#Name}_{\@#closed_name}_Finish)
+        {{Context}#Name}_{\@#closed_name}_Finish
     endc
 
     ; if a generic re-enter callback exists, execute it
@@ -121,27 +118,26 @@ macro Context@Close
 endm
 
     __Stack Context, , 0
+    ; disable passthrough for the base context
+    def {Context}#isPassthrough = false
 
+/*
+TODO:
+    instead of checking if the definition exists:
+        see if the method exists in Context's list methods?
+*/
 macro ExecuteContextMacro
-    find_context_macro {Context}, \#
-endm
-
-macro find_context_macro
-    if def({\1#Name}_\2)
-        def \@#macro equs "{\1#Name}_\2"
-        shift 2
-        {\@#macro} \#
-    elif \1#isPassthrough && {\1#Index} > 1
-        def \@#parent equs "{\1#Parent}"
-        shift
-        find_context_macro {\@#parent}, \#
-    elif def(Global_\2)
-        def \@#macro equs "Global_\2"
-        shift 2
-        {\@#macro} \#
-    else
-        fail "\2 is not defined in current context"
-    endc
+    ; Traverse the context stack to find the macro
+    for context_i, Context#_size, 0, -1
+        if def({{Context#{d:context_i}}#Name}_\1)
+            def \@#macro equs "{{Context#{d:context_i}}#Name}_\1"
+            shift
+            \@#macro \#
+            break
+        elif !({Context#{d:context_i}}#isPassthrough)
+            fail "\1 is not defined in the current context"
+        endc
+    endr
 endm
 
 macro DefineContextMacro

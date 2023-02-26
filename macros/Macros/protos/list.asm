@@ -1,10 +1,16 @@
 ;   A List is a string of comma separated values
-def List equs "\tListDefinition"
+def List equs "\tList#Definition"
 
-macro ListDefinition
+macro List#Definition
     String \1
-    redef \1@push equs "List@push \1,"
-    redef \1@contains equs "List@contains \{\1},"
+    Number \1#_size
+
+    redef \1@push equs "\tList@push \1,"
+    redef \1@contains equs "\tList@contains \1,"
+
+    for i, 2, _narg+1
+        \1@push \<{d:i}>
+    endr
 endm
 
 /*  To add the given values to the end of the given List
@@ -12,23 +18,24 @@ endm
     \2+ - Values to add    */
 macro List@push
     if _narg == 2
-        if strlen("{\1}")
-            redef \1 equs "{\1},\2"
-        else
-            redef \1 equs "\2"
+        if \1#_len
+            \1@add ","
         endc
+
+        \1@add "\2"
+
+        redef \1#{d:\1#_size} equs "\2"
+
+        \1#_size@inc
     else
         foreach 1, List@push, \#
     endc
 endm
 
-/*  To see if the given value exists in the given list
-    \1+ - List elements
-    \_NARG - Value to search for    */
 macro List@contains
     result false
-    for i, 1, _narg
-        if strcmp("\<{d:_NARG}>","\<{d:i}>") == 0
+    for i, \1#_size
+        if strcmp("{\1#{d:i}}","\2") == 0
             result true
             break
         endc

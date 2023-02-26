@@ -16,47 +16,44 @@
     \1 - Stack Symbol
     \2+? - Optional arguments to initialize    */
 macro __Stack
-    def \1#size = 0
+    Number \1#_size
     def \1@push equs "__Stack@push \1,"
     def \1@pop equs "__Stack@pop \1,"
-    
-    ; Initialize the base value to be empty
-    def \1#0 equs ""
 
     ; Initialize the symbol
-    def \1 equs "\{\1#\{d:\1#size}}"
+    def \1 equs "\{\1#\{d:\1#_size}}"
 
     ; initialize if provided arguments
     if _narg > 1
-        def \@#symbol equs "\1"
+        def \@#macro equs "\1@push"
         shift
-        {\@#symbol}@push \#
+        \@#macro \#
     endc
 endm
 
 macro __Stack@push
-    ; Store the current element as the parent
-    def \@#parent equs "{\1#{d:\1#size}}"
+    ; generate a new uuid
+    uuid
+
+    ; map the parent to the id
+    if \1#_size
+        def {id}#_parent equs "{\1#{d:\1#_size}}"
+    endc
 
     ; increase the size
-    def \1#size += 1
+    \1#_size@inc
 
-    ; create a unique id for the new stack element
-    uuid \1#{d:\1#size}
+    ; store id at the end of the stack
+    redef \1#{d:\1#_size} equs "{id}"
 
-    ; map the parent, index, and ID
-    def {id}#Parent equs "{\@#parent}"
-    def {id}#Index = \1#size
-    def {id}#ID equs "{id}"
-
-    def \@#symbol equs "\1"
+    def \@#macro equs "\1@init"
     shift
-    {\@#symbol}@init {id}, \#
+    \@#macro {id}, \#
 endm
 
 macro __Stack@pop
-    if \1#size
-        def \1#size -= 1
+    if \1#_size
+        \1#_size@dec
     else
         fail "\1 is empty"
     endc

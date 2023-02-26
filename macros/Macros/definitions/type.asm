@@ -1,5 +1,5 @@
-    Vector Types
-    Types@push Number, String
+    List Types
+    Types@push Number, String, List
 
 Definition Type
     init
