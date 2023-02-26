@@ -1,4 +1,8 @@
 Definition Struct
+    exit
+        DefineContextMacro {\1#Methods}
+    endm
+
     open
         def \1#Symbol equs "\5"
         def \1#isPassthrough = false
@@ -7,7 +11,6 @@ Definition Struct
     endm
 
     method
-        DefineContextMacro \2
         continue {\1#Name}_\2
     endm
 

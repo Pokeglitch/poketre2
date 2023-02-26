@@ -3,4 +3,8 @@
     include "macros/Macros/base.asm"
     include "macros/Macros/library/context.asm"
     include "macros/Macros/library/types.asm"
-    Directory@import macros/Macros/library, definition, scope, structure, return, overload
+    include "macros/Macros/library/definition.asm"
+    include "macros/Macros/library/structure.asm"
+    include "macros/Macros/library/return.asm"
+    ;Directory@import macros/Macros/library, structure, return
+    include "macros/Macros/definitions/scope.asm"

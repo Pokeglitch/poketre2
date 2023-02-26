@@ -13,7 +13,7 @@ endm
 macro List@push
     if _narg == 2
         if strlen("{\1}")
-            redef \1 equs "{\1}, \2"
+            redef \1 equs "{\1},\2"
         else
             redef \1 equs "\2"
         endc

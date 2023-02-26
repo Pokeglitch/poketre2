@@ -1,5 +1,3 @@
-
-
 ; TODO - need to make a full list of reserved names, and list of remapped names
 ; then, if name is in list, use remap
 macro CheckReservedName

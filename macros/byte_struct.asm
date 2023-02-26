@@ -4,7 +4,7 @@ Struct ByteStruct
 
     method overload
     func
-        enter Overload, \1#BitSize
+        Overload \1#BitSize
     endm
 
     /*

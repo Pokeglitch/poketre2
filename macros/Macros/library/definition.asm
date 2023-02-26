@@ -125,7 +125,6 @@ macro DefinitionInstance@property#assign#final
     \1#macro \2, {\1#args}
 endm
 
-
 ; define a method for this definition instance
 macro DefinitionInstance@method#define
     CheckReservedName \3
@@ -190,7 +189,7 @@ macro DefinitionInstance@end
     def \2 equs "DefinitionInstance@open \1, \2, init,"
 
     ; define the Instance Name 'end' to close the Definition of this Type & Instance
-    def \2_EndDefinition equs "DefinitionInstance@close \{Context}, \1, \2, exit,"
+    def \2_EndDefinition equs "DefinitionInstance@close \1, \2, exit,"
 endm
 
 /*
@@ -207,10 +206,20 @@ macro DefinitionInstance@open
     DefinitionInstance@continue \1@open, DefinitionInstance@open#init, {Context}, \#
 endm
 
+/*  Define the Instance Name methods to hardcode the corresponding context
+    This is necessary for passthroughs to make sure it assigned values to proper context
+    This also gets called when re-entering, in case a nested context had overwritten this
+
+    \1 - Context
+    \2 - Definition Type
+    \3 - Definition Instance    */
 macro DefinitionInstance@open#init
+    ;define the callback for re-entering this context
+    def \1@ReEnter equs "DefinitionInstance@method#assign \1, \2, \3"
+
     ; define the Instance Name methods to include the corresponding context
     DefinitionInstance@method#assign \1, \2, \3
-    
+
     ; Initialize the Instance properties
     DefinitionInstance@property#assign \1, \2, \3
 
@@ -219,15 +228,14 @@ macro DefinitionInstance@open#init
 endm
 
 /*
-    \1 - Context
-    \2 - Definition Type
-    \3 - Definition Instance Name
-    \4 - Instance Method Name (exit)
-    \5+ - Arguments to pass to Definition Instance Close Macro
+    \1 - Definition Type
+    \2 - Definition Instance Name
+    \3 - Instance Method Name (exit)
+    \4+ - Arguments to pass to Definition Instance Close Macro
 */
 macro DefinitionInstance@close
     ; Run the Definition Type close macro and/or the Instance exit macro
-    DefinitionInstance@continue \2@close, DefinitionInstance@method#execute, \#
+    DefinitionInstance@continue \1@close, DefinitionInstance@method#execute, {Context}, \#
 
     ; close the context
     Context@Close

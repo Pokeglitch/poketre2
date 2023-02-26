@@ -64,7 +64,7 @@ macro var_common
     ; remove the end )
     redef \@#inside equs strsub("{\@#inside}", 1, \@#string_length-1)
 
-    enter Return, {\@#symbol}, \@#isString
+    Return {\@#symbol}, \@#isString
         {\@#macro} {\@#inside}
     end
 endm
@@ -76,54 +76,3 @@ endm
 macro var
     var_common false, "var \#", \#
 endm
-
-/*
-    \1 - Symbol to store return value to
-    \2 - if value is string or not
-*/
-Scope Return
-    init
-        def \1#ReturnUsed = false
-        def \1#Symbol equs "\2"
-        def \1#isString = \3
-        if \3
-            redef \1#Value equs ""
-        else
-            def \1#Value = 0
-        endc
-    endm
-
-    local return
-    func
-        if \1#ReturnUsed
-            fail "Already designated a return value"
-        endc
-
-        def \1#ReturnUsed = true
-
-        if _narg > 1
-            def \@#self equs "\1"
-
-            ; if there is only 1 argument,
-            ; and there is a ( that isnt at the beginning, then its macro call
-            if _narg == 2 && strin("\2","(") > 1
-                shift
-                var_common {\@#self}#isString, "return \#", {\@#self}#Value=\#
-            elif \1#isString
-                shift
-                ; can return multiple values if string
-                redef {\@#self}#Value equs "\#"
-            else
-                def \1#Value = \2
-            endc
-        endc
-    endm
-
-    final
-        if \1#isString
-            redef {\1#Symbol} equs "{\1#Value}"
-        else
-            def {\1#Symbol} = \1#Value
-        endc
-    endm
-end

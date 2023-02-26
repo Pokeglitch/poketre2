@@ -1,6 +1,50 @@
 /*
-TODO - remove concept of global macros
+TODO:
+    Convert all manual Contexts definitions to Structure
+
+    - update 'self' same way we update 'super'
+    -- also have self and super work for Scope methods?
+--------------
+    Rename "is" to "does" (for contains, etc)
+
+    Remove "Global_" names and all concept of global macros
+
+    Give String Type functions like equals, contains, startswith, etc
+
+    add macro to build a fail message
+    CheckReservedName can utilize Array@contains
+
+    Add comments to all type, scope macros
+
+    Use #, @ where appropriate in context/type/scope members
+
+    Utilize \@ for local macros & returning multiple values
+
+    Handle isPassthrough when parent is the default context
+    - i.e. need #LocalMacros list for default...
+    - fix Return context
+    -----
+    - Can remove the concept of default macros once Text becomes a scope in all scenarios
+    - also remove concept of 'kill' macros
+    Regex: ^[ \t]+_
+
+    Can remove the concept of Context@Push if the Scope Init/Final will push/pop itself
+    - (if it is only used in Scopes...)
+
+    Can extend a scope?
+    - can reassign all local, init, and final macros...
+
+    - Scopes always pass through, Types dont?
+    -- OR: isPassthrough should be able to be changed during runtime?
+    --- always define passthroughs as a macro that will:
+    ---- run parent if isPassthrough is 1
+    ---- fail if isPassthrough is 0
+
+    Attach #RegisterSize = 6/18 to all registers
+    - i.e. a#RegisterSize
+    - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 */
+
 
 /*  A context is a way to have certain macros behave in a particular manner
     When a "context macro" is called, it will execute the macro that belongs to the current context
@@ -17,7 +61,7 @@ TODO - remove concept of global macros
 def end equs "\tEndDefinition"
 
 ; Initialize the list of context macros
-List Context#Macros
+    Vector Context#Macros
 
 macro Context@init
     def \1#Name equs "\2"
@@ -66,6 +110,11 @@ macro Context@Close
     if def({\@#callback})
         {\@#callback}
     endc
+
+    ; if a generic re-enter callback exists, execute it
+    if def({Context}@ReEnter)
+        {{Context}@ReEnter}
+    endc
 endm
 
     __Stack Context, , 0
@@ -96,6 +145,7 @@ macro DefineContextMacro
     if _narg > 1
         foreach DefineContextMacro, \#
     else
+        ; if not defined, add it to the list of context macros
         if def(\1) == 0
             Context#Macros@push \1
             def \1 equs "ExecuteContextMacro \1, "
@@ -111,8 +161,6 @@ endm
     DefineContextMacro Team
     DefineContextMacro Warp, Sign, NPC, Battle, Pickup, WarpTo
     DefineContextMacro Delay
-    DefineContextMacro Array, Flag, Flags, Index
 
     DefineContextMacro text, asmtext, asmdone, done, prompt, exit_text
     DefineContextMacro switch, case, asm
-    DefineContextMacro overload, skip, next

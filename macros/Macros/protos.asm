@@ -22,7 +22,7 @@ endm
 include "macros/Macros/protos/list.asm"
 include "macros/Macros/protos/chars.asm"
 include "macros/Macros/protos/stack.asm"
-
+include "macros/Macros/protos/vector.asm"
 
 Chars Number#start_chars, 0,1,2,3,4,5,6,7,8,9,-,+,$,&,%,`
 
