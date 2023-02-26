@@ -2,7 +2,7 @@
 def List equs "\tListDefinition"
 
 macro ListDefinition
-    redef \1 equs ""
+    String \1
     redef \1@push equs "List@push \1,"
     redef \1@contains equs "List@contains \{\1},"
 endm

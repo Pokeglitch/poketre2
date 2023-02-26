@@ -9,8 +9,12 @@ macro Vector
 endm
 
 macro Vector@push
-    def \1#{d:\1#size} equs "\2"
-    def \1#size += 1
+    if _narg == 2
+        def \1#{d:\1#size} equs "\2"
+        def \1#size += 1
+    else
+        foreach 1, Vector@push, \#
+    endc
 endm
 
 macro Vector@contains

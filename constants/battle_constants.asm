@@ -1,4 +1,4 @@
-    Array BattleMode, None, Pokemon, Trainer
+    ArrayStruct BattleMode, None, Pokemon, Trainer
 
 MACRO SetBattleMode
     ld a, BattleMode\1

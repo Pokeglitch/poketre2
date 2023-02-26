@@ -1,9 +1,8 @@
 /*
-TODO - add 'from' to handle when returning from another context
+TODO - add 'from_x' to exec when returning from context_x
 */
 Definition Scope
     exit
-        ;msg b | "{\1#Methods}"
         DefineContextMacro {\1#Methods}
     endm
 

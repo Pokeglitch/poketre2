@@ -1,15 +1,18 @@
 /*
 TODO:
-    Convert all manual Contexts definitions to Structure
-
-    - update 'self' same way we update 'super'
+    - Use self/Super scope in Type handle method
     -- also have self and super work for Scope methods?
+
+    Make ArrayStruct a Struct\
+
+    Convert all manual Contexts definitions to Struct/Scope
 --------------
     Rename "is" to "does" (for contains, etc)
 
     Remove "Global_" names and all concept of global macros
 
-    Give String Type functions like equals, contains, startswith, etc
+    - can all protos be base types?
+    Give String proto functions like equals, contains, startswith, etc
 
     add macro to build a fail message
     CheckReservedName can utilize Array@contains
@@ -158,6 +161,7 @@ macro DefineContextMacro
     endc
 endm
 
+    DefineContextMacro EndDefinition
     DefineContextMacro Team
     DefineContextMacro Warp, Sign, NPC, Battle, Pickup, WarpTo
     DefineContextMacro Delay

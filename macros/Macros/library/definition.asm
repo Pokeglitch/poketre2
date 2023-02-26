@@ -1,3 +1,40 @@
+/*  A Definition creates a new Context Type
+    Then, this Context Type can be used to create new Context Instances
+    Finally, a Context Instance can entered/exited throughout the source
+
+    The following macros can be are utilized by a Definition:
+        - (any can also be skipped)
+
+    init: run when a new Instance of this Type is initialized
+        \1   - Instance Name
+        \2+? - Additional arguments 
+
+    exit: run when a new Instance of this Type is exited
+        \1 - Instance Name
+        \2+? - Additional arguments
+
+    open: run when an Instance is opened
+        \1 - Context
+        \2 - Type Name
+        \3 - Instance Name
+        \4 - Method Name (init)
+        \5+? - Additional arguments
+
+        To execute the Instance "init" method:
+        - continue \#
+
+    close: run when an Instance is closed
+        \1 - Context
+        \2 - Type Name
+        \3 - Instance Name
+        \4 - Method Name (init)
+        \5+? - Additional arguments
+
+        To execute the Instance "exit" method:
+        - continue \#
+*/
+
+
 /*
     TODO-
     -can assign names to arguments using the 'method' function definition macro?

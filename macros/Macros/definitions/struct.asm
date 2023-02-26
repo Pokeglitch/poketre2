@@ -7,7 +7,10 @@ Definition Struct
         def \1#Symbol equs "\5"
         def \1#isPassthrough = false
 
-        continue \#
+        ; remove Symbol from forward to Instance Init
+        def \@#args equs "\1, \2, \3, \4"
+        shift 5
+        continue {\@#args}, \#
     endm
 
     method
