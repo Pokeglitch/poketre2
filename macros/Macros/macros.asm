@@ -1,6 +1,7 @@
-    include "macros/Macros/debug.asm"
     include "macros/Macros/base.asm"
-    include "macros/Macros/protos.asm"
+    
+incdir types, number, string, list, stack
+
     include "macros/Macros/library/context.asm"
     include "macros/Macros/library/types.asm"
     include "macros/Macros/library/definition.asm"

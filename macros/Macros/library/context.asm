@@ -7,6 +7,10 @@ TODO:
 
     Convert all manual Contexts definitions to Struct/Scope
 --------------
+    "method" can also define named args
+    then, for func, first line after macro definition will assign the names to \@
+    - plus, 'rest' for any extra
+
     Rename "is" to "does" (for contains, etc)
 
     - can all protos be base types?
@@ -66,20 +70,20 @@ macro Context@init
     def \1#Name equs "\2"
     def \1#isPushed = \3
     def \1#isPassthrough = true
-    List \1#SingleUses
+    List \1#Disposables
 endm
 
-macro Context@SingleUses
+macro Context@Disposables
     if _narg > 2
-        foreach 1, Context@SingleUses, \#
+        foreach 1, Context@Disposables, \#
     else
-        Context@SingleUse \2, \1@\2
+        Context@Disposable \2, \1@\2
     endc
 endm
 
-macro Context@SingleUse
-    {Context}#SingleUses@push \1
-    redef \1 equs "single_use \1\nmacro \2"
+macro Context@Disposable
+    {Context}#Disposables@push \1
+    disposable \1, \2
 endm
 
 macro Context@Push
@@ -93,7 +97,7 @@ endm
 
 macro Context@Close
     ; purge the single uses
-    try_purge {{Context}#SingleUses}
+    try_purge {{Context}#Disposables}
 
     ; if the context was pushed, then pop
     if {Context}#isPushed

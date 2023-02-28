@@ -1,4 +1,4 @@
-Proto String
+Type String
     property Number, _len
 
     init

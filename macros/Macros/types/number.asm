@@ -1,4 +1,4 @@
-Proto Number
+Type Number
     init
         if _narg == 2
             \1@set \2

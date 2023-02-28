@@ -53,7 +53,7 @@ macro DefinitionType@Define
     def {Context}#isPassthrough = false
 
     ; Define the single use macro names
-    Context@SingleUses \1, init, exit, open, method, property, handle, close
+    Context@Disposables \1, init, exit, open, method, property, handle, close
 
     ; update the DefinitionType End to include the Definition Type Name
     redef Definition_End#Definition equs "DefinitionType@end \1,"
@@ -86,7 +86,7 @@ endm
 
 macro DefinitionInstance@continue
     if def(\1)
-        redef continue equs "single_use continue\n\t\2"
+        redef continue equs "\tdispose continue\n\t\2"
         def \@#macro equs "\1"
     else
         def \@#macro equs "\2"
@@ -120,7 +120,7 @@ macro DefinitionInstance@Define
     List \2#Properties
     
     ; Define the single use macro names
-    Context@SingleUses \2, init, exit
+    Context@Disposables \2, init, exit
     
     ; Run the Definition Type init macro
     DefinitionType@TryExec init, \#
@@ -169,7 +169,7 @@ macro DefinitionInstance@method#define
     ; Add the method to the list of methods
     \2#Methods@push \3
 
-    Context@SingleUse func, \2@\3
+    Context@Disposable func, \2@\3
 endm
 
 macro DefinitionInstance@method#assign

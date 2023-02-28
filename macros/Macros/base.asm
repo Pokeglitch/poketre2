@@ -78,27 +78,26 @@ macro try_exec
     endc
 endm
 
-/*  To mark this given string macro(s) as already used
-    \1+ - Symbol(s) of string(s)    */
-macro single_use
-    if _narg == 1
-        redef \1 equs "fail \"\1 has aready been called\"\n"
-    else
-        foreach single_use, \#
-    endc
-endm
-
 def define equs "\tdefine#Definition"
 macro define#Definition
     def \1 equs "\t\1#Definition"
-    redef func equs "\tsingle_use func\nmacro \1#Definition"
+    disposable func, \1#Definition
 endm
+
+def base_dir equs "macros/Macros"
 
 define incdir
 func
-    for i, 2, _narg+1
-        include "\1/\<{d:i}>.asm"
+    def \@#prev_base_dir equs "{base_dir}"
+
+    redef base_dir equs "{base_dir}/\1"
+
+    rept _narg
+        include "{base_dir}/\1.asm"
+        shift
     endr
+
+    redef base_dir equs "{\@#prev_base_dir}"
 endm
 
 macro append
@@ -109,4 +108,14 @@ macro append
             redef \1 equs "{\1},\<i>"
         endc
     endr
+endm
+
+/*  To print given argument(s) on own line
+    \1+ - Arguments to print    */
+    macro msg
+    if _narg == 1
+        print "\1\n"
+    else
+        foreach msg, \#
+    endc
 endm

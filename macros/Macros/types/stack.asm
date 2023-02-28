@@ -15,7 +15,7 @@
 
     \1 - Stack Symbol
     \2+? - Optional arguments to initialize    */
-Proto Stack
+Type Stack
     property Number, _size
 
     init
