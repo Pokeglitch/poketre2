@@ -1,5 +1,5 @@
 Struct ByteStruct
-    property Int, BitSize
+    property Number, BitSize
     property Number, Flags#All#BitMask
 
     method overload

@@ -74,5 +74,5 @@ ENDM
 MACRO MapScript_case
 ENDM
 
-MACRO MapScript_EndDefinition
+MACRO MapScript_End#Definition
 ENDM

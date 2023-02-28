@@ -1,7 +1,7 @@
 macro Super@init
     def \1#macro equs \2
 endm
-    __Stack Super, ""
+    Stack Super, ""
 
 macro find_super
     if def(\1#Type)

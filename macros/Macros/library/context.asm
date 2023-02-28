@@ -58,7 +58,6 @@ TODO:
     Context@Set will simply change context without pushing the section
     Context@Close will close the current section, and (if pushed) will pop the section
 */
-def end equs "\tEndDefinition"
 
 ; Initialize the list of context macros
     List Context#Macros
@@ -117,7 +116,7 @@ macro Context@Close
     endc
 endm
 
-    __Stack Context, , 0
+    Stack Context, , 0
     ; disable passthrough for the base context
     def {Context}#isPassthrough = false
 
@@ -157,7 +156,7 @@ macro DefineContextMacro
     endc
 endm
 
-    DefineContextMacro EndDefinition
+    DefineContextMacro End#Definition
     DefineContextMacro Team
     DefineContextMacro Warp, Sign, NPC, Battle, Pickup, WarpTo
     DefineContextMacro Delay

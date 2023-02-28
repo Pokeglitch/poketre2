@@ -15,46 +15,38 @@
 
     \1 - Stack Symbol
     \2+? - Optional arguments to initialize    */
-macro __Stack
-    Number \1#_size
-    def \1@push equs "__Stack@push \1,"
-    def \1@pop equs "__Stack@pop \1,"
+Proto Stack
+    property Number, _size
 
-    ; Initialize the symbol
-    def \1 equs "\{\1#\{d:\1#_size}}"
+    init
+        ; Initialize the symbol
+        def \1 equs "\{\1#\{d:\1#_size}}"
 
-    ; initialize if provided arguments
-    if _narg > 1
-        def \@#macro equs "\1@push"
+        ; initialize if provided arguments
+        if _narg > 1
+            Stack@push \#
+        endc
+    endm
+
+    method push
+    func
+        ; increase the size
+        \1#_size@inc
+
+        ; generate a new uuid
+        uuid \1#{d:\1#_size}
+
+        def \@#macro equs "\1@init"
         shift
-        \@#macro \#
-    endc
-endm
+        \@#macro {id}, \#
+    endm
 
-macro __Stack@push
-    ; generate a new uuid
-    uuid
-
-    ; map the parent to the id
-    if \1#_size
-        def {id}#_parent equs "{\1#{d:\1#_size}}"
-    endc
-
-    ; increase the size
-    \1#_size@inc
-
-    ; store id at the end of the stack
-    redef \1#{d:\1#_size} equs "{id}"
-
-    def \@#macro equs "\1@init"
-    shift
-    \@#macro {id}, \#
-endm
-
-macro __Stack@pop
-    if \1#_size
-        \1#_size@dec
-    else
-        fail "\1 is empty"
-    endc
-endm
+    method pop
+    func
+        if \1#_size
+            \1#_size@dec
+        else
+            fail "\1 is empty"
+        endc
+    endm
+end

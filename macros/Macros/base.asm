@@ -1,8 +1,25 @@
+def _narg equs "_NARG"
+def end equs "\tEnd#Definition"
+
+macro disposable
+    rept _narg/2
+        redef \1 equs "\tdispose \1\nmacro \2"
+        shift 2
+    endr
+endm
+
+macro dispose
+    rept _narg
+        redef \1 equs "fail \"\1 has aready been called\"\n"
+        shift
+    endr
+endm
+
 ; TODO - need to make a full list of reserved names, and list of remapped names
 ; then, if name is in list, use remap
 macro CheckReservedName
     if strcmp("\1","end") == 0
-        redef \1 equs "EndDefinition"
+        redef \1 equs "End#Definition"
     endc
 endm
 
@@ -42,13 +59,12 @@ endm
 /*  To purge the given arguments if they exist
     \1+ - Arguments to purge    */
 macro try_purge
-    if _narg == 1
+    rept _narg
         if def(\1)
             purge \1
         endc
-    else
-        foreach try_purge, \#
-    endc
+        shift
+    endr
 endm
 
 /*  To call the given macro with the given arguments if it exists
@@ -72,38 +88,25 @@ macro single_use
     endc
 endm
 
-/*  To assign a value to the given symbol
-    \1 - Symbol
-    \2 - Value    */
-macro assign_value
-    if strin("\2","\"") == 1
-        def \1 equs \2
-    else
-        def \1 = \2
-    endc
+def define equs "\tdefine#Definition"
+macro define#Definition
+    def \1 equs "\t\1#Definition"
+    redef func equs "\tsingle_use func\nmacro \1#Definition"
 endm
 
-/*
-NOTE: This assumes values are symbols, not numbers
-    \1  - Symbol to assign to
-    \2  - Value to assign
-    \3+ - Valid values
-*/
-macro try_assign
-    def MATCH_FOUND = 0
-    redef SYMBOL equs "\1"
-    redef VALUE equs "\2"
-    shift 2
+define incdir
+func
+    for i, 2, _narg+1
+        include "\1/\<{d:i}>.asm"
+    endr
+endm
 
-    for i, 1, _narg+1
-        if MATCH_FOUND == 0 && strcmp("{VALUE}", "\<i>") == 0
-            def MATCH_FOUND = 1
+macro append
+    for i, 2, _narg+1
+        if strlen("{\1}") == 0
+            redef \1 equs "\<i>"
+        else
+            redef \1 equs "{\1},\<i>"
         endc
     endr
-
-    if MATCH_FOUND
-        assign_value {SYMBOL}, "{VALUE}"
-    else
-        fail "\n{SYMBOL} value is not valid.\n\tExpected one of: \#\n\tReceived: {VALUE}\n"
-    endc
 endm

@@ -56,7 +56,7 @@ macro DefinitionType@Define
     Context@SingleUses \1, init, exit, open, method, property, handle, close
 
     ; update the DefinitionType End to include the Definition Type Name
-    redef Definition_EndDefinition equs "DefinitionType@end \1,"
+    redef Definition_End#Definition equs "DefinitionType@end \1,"
 endm
 
 /*
@@ -113,7 +113,7 @@ macro DefinitionInstance@Define
     redef property equs "DefinitionInstance@property \1, \2,"
 
     ; update the end macro to include the name of the instance
-    redef \1_EndDefinition equs "DefinitionInstance@end \1, \2,"
+    redef \1_End#Definition equs "DefinitionInstance@end \1, \2,"
 
     ; Initialize the list of members
     List \2#Methods
@@ -226,7 +226,7 @@ macro DefinitionInstance@end
     def \2 equs "DefinitionInstance@open \1, \2, init,"
 
     ; define the Instance Name 'end' to close the Definition of this Type & Instance
-    def \2_EndDefinition equs "DefinitionInstance@close \1, \2, exit,"
+    def \2_End#Definition equs "DefinitionInstance@close \1, \2, exit,"
 endm
 
 /*

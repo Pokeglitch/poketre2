@@ -228,7 +228,7 @@ MACRO Team_asm
 ENDM
 
 ; close the team asm context
-MACRO TeamASM_EndDefinition
+MACRO TeamASM_End#Definition
     Context@Close
 ENDM
 
@@ -266,7 +266,7 @@ MACRO Team_TeamSwitch_Finish
     CloseParty
 ENDM
 
-MACRO TeamSwitch_EndDefinition
+MACRO TeamSwitch_End#Definition
     Context@Close ; close the switch context
 ENDM
 
