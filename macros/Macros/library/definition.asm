@@ -150,7 +150,8 @@ endm
 macro DefinitionInstance@property#assign
     if def(\2@property)
         if _narg == 3
-            foreach 3, DefinitionInstance@property#assign, \#, {\3#Properties}
+            def \@#macro equs "DefinitionInstance@property#assign \#,"
+            foreach \@#macro, {\3#Properties}
         else
             def \@#continue equs "DefinitionInstance@property#assign#final \4,"
             DefinitionInstance@continue \2@property, \@#continue, \1, {\4#name}
@@ -175,7 +176,8 @@ endm
 macro DefinitionInstance@method#assign
     if def(\2@method)
         if _narg == 3
-            foreach 3, DefinitionInstance@method#assign, \#, {\3#Methods}
+            def \@#macro equs "DefinitionInstance@method#assign \#,"
+            foreach \@#macro, {\3#Methods}
         else
             def \@#args equs "\#"
             def \@#continue equs "DefinitionInstance@method#assign#final \@#args,"

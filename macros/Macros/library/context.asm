@@ -1,8 +1,5 @@
 /*
 TODO:
-    - Use self/Super scope in Type handle method
-    -- also have self and super work for Scope methods?
-
     Make ArrayStruct a Struct ?
         - rename to Array
 
@@ -77,11 +74,9 @@ macro Context@init
 endm
 
 macro Context@Disposables
-    if _narg > 2
-        foreach 1, Context@Disposables, \#
-    else
-        Context@Disposable \2, \1@\2
-    endc
+    for i, 2, _narg+1
+        Context@Disposable \<i>, \1@\<i>
+    endr
 endm
 
 macro Context@Disposable

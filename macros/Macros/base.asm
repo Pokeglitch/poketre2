@@ -64,25 +64,9 @@ otherwise:
     \1  - Macro Name
     \2+ - Argument(s) to pass to macro individually    */
 macro foreach
-    is#Number \1
-    if so
-        if \1 < 0
-            fail "foreach argument amount must be positive: \1"
-        endc
-
-        List temp#arguments
-        for i, 3, 3+\1
-            temp#arguments@push \<i>
-        endr
-
-        redef \@#macro equs "\2 {temp#arguments},"
-        shift 2+\1
-        foreach \@#macro, \#
-    else
-        for i, 2, _narg+1
-            \1 \<i>
-        endr
-    endc
+    for i, 2, _narg+1
+        \1 \<i>
+    endr
 endm
 
 /*  To purge the given arguments if they exist
@@ -119,7 +103,7 @@ endm
 
 /*  To print given argument(s) on own line
     \1+ - Arguments to print    */
-    macro msg
+macro msg
     if _narg == 1
         print "\1\n"
     else

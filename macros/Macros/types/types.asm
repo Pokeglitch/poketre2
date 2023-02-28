@@ -74,83 +74,25 @@ macro Type#AssignMethods
     endr
 endm
 
-
-macro Super@init
-    def \1#list equs "\2"
-    ; start at the end of the list
-    def \1#index = \2#_size-1
-endm
-
-macro Super@find
-    List \1, fail "super does not exit for this context"\n
-    Super@find#next \#
-endm
-
-macro Super@find#next
-    for i, 3, _narg+1
-        ; store the macro name, since 'i' will change from call to Super@find#next
-        def \@#macro equs "\<i>@\2"
-        ; check the parents
-        Super@find#next \1, \2, {\<i>#_Inherits}
-
-        ; if the macro name exists, add it to the list
-        if def({\@#macro})
-            \1@push {\@#macro}
-        endc
-    endr
-endm
-
-macro Super@handle
-    def \@#macro equs "{{Super}#list}#{d:{Super}#index}"
-    
-    ; update next super call to refer to the previous super
-    def {Super}#index -= 1
-
-    \@#macro \#
-    
-    ; return the super call index
-    def {Super}#index += 1
-endm
-
-def Type#_Super#Initialized = false
-def Type#_Super#Ready = false
-def super equs "fail \"super does not exit for this context\"\n"
+def super equs "fail \"super does not exist for this context\"\n"
+def self equs "fail \"self does not exist for this context\"\n"
 ; TODO - instead of these bools, redefine Type#ExecuteMethod??
 macro Type#ExecuteMethod
-
-    ; Initialize Super if it has not yet been initialized
-    if !Type#_Super#Initialized
-        def Type#_Super#Initialized = true
-        Stack Super
-        def Type#_Super#Ready = true
-    endc
-
+    def \@#prev_self equs "{self}"
     def \@#prev_super equs "{super}"
+    redef super equs "\tSuper@execute \3,"
 
-    if Type#_Super#Ready
-        def Type#_Super#Ready = false
-        ; if the supers for this method have not been defined, then do so
-        if !def(\1@\2#super)
-            Super@find \1@\2#super, \2, {\1#_Inherits}
-        endc
-        
-        Super@push \1@\2#super
-
-        redef super equs "\tSuper@handle \3,"
-
-        def Type#_Super#Ready = true
-    endc
+    Super@handle#before \1, \2
 
     def \@#macro equs "\1@\2"
     shift 2
+    redef self equs "\1"
     \@#macro \#
 
-    if Type#_Super#Ready
-        def Type#_Super#Ready = false
-        Super@pop
-        def Type#_Super#Ready = true
-    endc
+    Super@try Super@pop
+
     redef super equs "{\@#prev_super}"
+    redef self equs "{\@#prev_self}"
 endm
 
 macro Type#End
