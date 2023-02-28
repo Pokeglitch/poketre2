@@ -2,6 +2,9 @@
 def false equs "0"
 def true equs "1"
 
+def super equs "fail \"super does not exist for this context\"\n"
+def self equs "fail \"self does not exist for this context\"\n"
+
 /*  To generate a unique id and assign to global 'id' symbol, and optionally, the provided argument
     \1? - Symbol to assign to    */
 macro uuid
@@ -74,9 +77,6 @@ macro Type#AssignMethods
     endr
 endm
 
-def super equs "fail \"super does not exist for this context\"\n"
-def self equs "fail \"self does not exist for this context\"\n"
-; TODO - instead of these bools, redefine Type#ExecuteMethod??
 macro Type#ExecuteMethod
     def \@#prev_self equs "{self}"
     def \@#prev_super equs "{super}"

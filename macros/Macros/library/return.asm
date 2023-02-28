@@ -1,11 +1,9 @@
-def is equs "\tIsDefinition"
-
 ; works with 'return'
-macro IsDefinition
-    var_common false, "is \#", \@=\#
+define does
+func
+    var_common false, "does \#", \@=\#
     result {\@}
 endm
-
 
 /*
     \1  - if output is string or not

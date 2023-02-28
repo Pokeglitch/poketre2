@@ -48,10 +48,10 @@ MACRO MapData
     DEF \1BattleCount = 0
 
     PUSHS
-        Context@Set MapScript
+        MapScript \1
         SECTION FRAGMENT "\1 Script", ROMX, BANK[CUR_BANK]
             INCLUDE "scripts/\1.asm"
-        Context@Close
+        end
 
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             \1Header:

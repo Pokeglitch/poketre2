@@ -1,19 +1,17 @@
 /*
 TODO:
     Make ArrayStruct a Struct ?
-        - rename to Array
-
-    Macro to shift then exec
 
     Convert all manual Contexts definitions to Struct/Scope
+
+    Can Type and Definition share some common macros?
+
+    Definition Type should be renamed to Context...
+    - call context...what?
 --------------
     "method" can also define named args
     then, for func, first line after macro definition will assign the names to \@
     - plus, 'rest' for any extra
-
-    Rename "is" to "does" (for contains, etc)
-
-    - can all protos be base types?
 
     add macro to build a fail message
     CheckReservedName can utilize Array@contains
@@ -29,20 +27,13 @@ TODO:
     - fix Return context
     -----
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
-    - also remove concept of 'kill' macros
-    Regex: ^[ \t]+_
+    - can find with Regex: ^[ \t]+_
 
     Can remove the concept of Context@Push if the Scope Init/Final will push/pop itself
     - (if it is only used in Scopes...)
 
     Can extend a scope?
     - can reassign all local, init, and final macros...
-
-    - Scopes always pass through, Types dont?
-    -- OR: isPassthrough should be able to be changed during runtime?
-    --- always define passthroughs as a macro that will:
-    ---- run parent if isPassthrough is 1
-    ---- fail if isPassthrough is 0
 
     Attach #RegisterSize = 6/18 to all registers
     - i.e. a#RegisterSize
@@ -105,11 +96,20 @@ macro Context@Close
     ; store the closed context name
     def \@#closed_name equs "{{Context}#Name}"
 
+    def \@#closed_context equs "{Context#{d:Context#_size}}"
+
     Context@pop
 
     ; if the callback exists, execute it
     if def({{Context}#Name}_{\@#closed_name}_Finish)
         {{Context}#Name}_{\@#closed_name}_Finish
+    endc
+
+    ; if the callback exists, execute it
+    if strlen("{{Context}#Name}") > 0
+        if def({{Context}#Name}@from@{\@#closed_name})
+            {{Context}#Name}@from@{\@#closed_name} {Context}, {\@#closed_context}
+        endc
     endc
 
     ; if a generic re-enter callback exists, execute it
@@ -144,7 +144,7 @@ endm
 macro DefineContextMacro
     if _narg > 1
         foreach DefineContextMacro, \#
-    else
+    elif _narg == 1
         ; if not defined, add it to the list of context macros
         if def(\1) == 0
             Context#Macros@push \1

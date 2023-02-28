@@ -1,51 +1,45 @@
 /*  A Definition creates a new Context Type
-    Then, this Context Type can be used to create new Context Instances
-    Finally, a Context Instance can entered/exited throughout the source
+    Then, this Context Type can be used to create new Context Interfaces
+    Finally, a Context Interface can entered/exited throughout the source
 
     The following macros can be are utilized by a Definition:
         - (any can also be skipped)
 
-    init: run when a new Instance of this Type is initialized
-        \1   - Instance Name
+    init: run when a new Interface of this Type is initialized
+        \1   - Interface Name
         \2+? - Additional arguments 
 
-    exit: run when a new Instance of this Type is exited
-        \1 - Instance Name
+    exit: run when a new Interface of this Type is exited
+        \1 - Interface Name
         \2+? - Additional arguments
 
-    open: run when an Instance is opened
+    open: run when an Interface is opened
         \1 - Context
         \2 - Type Name
-        \3 - Instance Name
+        \3 - Interface Name
         \4 - Method Name (init)
         \5+? - Additional arguments
 
-        To execute the Instance "init" method:
+        To execute the Interface "init" method:
         - continue \#
 
-    close: run when an Instance is closed
+    close: run when an Interface is closed
         \1 - Context
         \2 - Type Name
-        \3 - Instance Name
+        \3 - Interface Name
         \4 - Method Name (init)
         \5+? - Additional arguments
 
-        To execute the Instance "exit" method:
+        To execute the Interface "exit" method:
         - continue \#
 */
 
-
-/*
-    TODO-
-    -can assign names to arguments using the 'method' function definition macro?
-        -can use same "context" that super uses and make them context arguments
-*/
-def Definition equs "\tDefinitionType@Define"
 
 /*
     \1 - Definition Type Name
 */
-macro DefinitionType@Define
+define Definition
+func
     ; Push context so cant write to ROM
     Context@Push Definition
 
@@ -63,8 +57,8 @@ endm
     \1 - Type Name
 */
 macro DefinitionType@end
-    ; assign the Type Name to define a Definition Instance of that Type
-    def \1 equs "\tDefinitionInstance@Define \1,"
+    ; assign the Type Name to define a Interface of that Type
+    def \1 equs "\tInterface@Define \1,"
 
     Context@Close
 endm
@@ -72,7 +66,7 @@ endm
 /*
     To try to execute a method assigned to the given Definition Type
     - Enables passthrough before calling
-        since this gets called inside the DefinitionInstance context
+        since this gets called inside the Interface context
 */
 macro DefinitionType@TryExec
     def {Context}#isPassthrough = true
@@ -84,7 +78,7 @@ macro DefinitionType@TryExec
     def {Context}#isPassthrough = false
 endm
 
-macro DefinitionInstance@continue
+macro Interface@continue
     if def(\1)
         redef continue equs "\tdispose continue\n\t\2"
         def \@#macro equs "\1"
@@ -98,22 +92,25 @@ macro DefinitionInstance@continue
 endm
 
 
-/*  To create a new instance of a definition type
+/*  To create a new Interface of a definition type
     \1 - Definition Type
-    \2 - Definition Instance Name
+    \2 - Interface Name
     \3+ - Arguments to pass to Definition Type Init Macro
 */
-macro DefinitionInstance@Define
+macro Interface@Define
     Context@Push \1
 
-    ; update the method macro to include the name of the instance
-    redef method equs "DefinitionInstance@method#define \1, \2,"
+    ; update the method macro to include the name of the Interface
+    redef method equs "Interface@method#define \1, \2,"
 
-    ; update the property macro to include the name of the instance
-    redef property equs "DefinitionInstance@property \1, \2,"
+    ; update the property macro to include the name of the Interface
+    redef property equs "Interface@property \1, \2,"
 
-    ; update the end macro to include the name of the instance
-    redef \1_End#Definition equs "DefinitionInstance@end \1, \2,"
+    ; update the from macro to include the name of the Interface
+    redef from equs "Interface@from \1, \2,"
+
+    ; update the end macro to include the name of the Interface
+    redef \1_End#Definition equs "Interface@end \1, \2,"
 
     ; Initialize the list of members
     List \2#Methods
@@ -126,15 +123,20 @@ macro DefinitionInstance@Define
     DefinitionType@TryExec init, \#
 endm
 
+
+macro Interface@from
+    Interface@method#define \1, \2, from@\3
+endm
+
 /*
-    Define a property for this definition instance
+    Define a property for this Interface
     \1 - Type Name
-    \2 - Instance Name
+    \2 - Interface Name
     \3 - Property Initialization Method
     \4 - Property Name
     \5+? - Arguments to forward to Initialization Method
 */
-macro DefinitionInstance@property
+macro Interface@property
     CheckReservedName \4
 
     ; Add the property ID to the list of properties
@@ -147,24 +149,24 @@ macro DefinitionInstance@property
     def \@#args equs "\#"
 endm
 
-macro DefinitionInstance@property#assign
+macro Interface@property#assign
     if def(\2@property)
         if _narg == 3
-            def \@#macro equs "DefinitionInstance@property#assign \#,"
+            def \@#macro equs "Interface@property#assign \#,"
             foreach \@#macro, {\3#Properties}
         else
-            def \@#continue equs "DefinitionInstance@property#assign#final \4,"
-            DefinitionInstance@continue \2@property, \@#continue, \1, {\4#name}
+            def \@#continue equs "Interface@property#assign#final \4,"
+            Interface@continue \2@property, \@#continue, \1, {\4#name}
         endc
     endc
 endm
 
-macro DefinitionInstance@property#assign#final
+macro Interface@property#assign#final
     \1#macro \2, {\1#args}
 endm
 
-; define a method for this definition instance
-macro DefinitionInstance@method#define
+; define a method for this Interface
+macro Interface@method#define
     CheckReservedName \3
 
     ; Add the method to the list of methods
@@ -173,32 +175,32 @@ macro DefinitionInstance@method#define
     Context@Disposable func, \2@\3
 endm
 
-macro DefinitionInstance@method#assign
+macro Interface@method#assign
     if def(\2@method)
         if _narg == 3
-            def \@#macro equs "DefinitionInstance@method#assign \#,"
+            def \@#macro equs "Interface@method#assign \#,"
             foreach \@#macro, {\3#Methods}
         else
             def \@#args equs "\#"
-            def \@#continue equs "DefinitionInstance@method#assign#final \@#args,"
-            DefinitionInstance@continue \2@method, \@#continue, \1, \4
+            def \@#continue equs "Interface@method#assign#final \@#args,"
+            Interface@continue \2@method, \@#continue, \1, \4
         endc
     endc
 endm
 
-macro DefinitionInstance@method#assign#final
-    redef \2 equs "DefinitionInstance@method#execute {\1},"
+macro Interface@method#assign#final
+    redef \2 equs "Interface@method#execute {\1},"
 endm
 
 /*
     To run the definition method
         \1 - Context
         \2 - Type Name
-        \3 - Instance Name
+        \3 - Interface Name
         \4 - Method Name
         \5+? - Arguments to forward to Method
 */
-macro DefinitionInstance@method#execute
+macro Interface@method#execute
     def \@#passthrough_symbol equs "\1#isPassthrough"
     def \@#passthrough_value = \1#isPassthrough
 
@@ -208,7 +210,7 @@ macro DefinitionInstance@method#execute
     def \@#macro equs "try_exec \3@\4,"
 
     if def(\2@handle)
-        DefinitionInstance@continue \2@handle, \@#macro, \#
+        Interface@continue \2@handle, \@#macro, \#
     else
         shift 4
         \@#macro \#
@@ -218,63 +220,63 @@ macro DefinitionInstance@method#execute
     def {\@#passthrough_symbol} = \@#passthrough_value
 endm
 
-macro DefinitionInstance@end
+macro Interface@end
     ; Run the Definition Type exit macro
     DefinitionType@TryExec exit, \#
 
     Context@Close
 
-    ; define the Instance Name to open a Definition of this Type & Instance
-    def \2 equs "DefinitionInstance@open \1, \2, init,"
+    ; define the Interface Name to open a Definition of this Type & Interface
+    def \2 equs "Interface@open \1, \2, init,"
 
-    ; define the Instance Name 'end' to close the Definition of this Type & Instance
-    def \2_End#Definition equs "DefinitionInstance@close \1, \2, exit,"
+    ; define the Interface Name 'end' to close the Definition of this Type & Interface
+    def \2_End#Definition equs "Interface@close \1, \2, exit,"
 endm
 
 /*
     \1 - Definition Type
-    \2 - Definition Instance Name
-    \3 - Instance Method Name (init)
-    \4+ - Arguments to pass to Definition Instance Init Macro
+    \2 - Interface Name
+    \3 - Interface Method Name (init)
+    \4+ - Arguments to pass to Interface Init Macro
 */
-macro DefinitionInstance@open
+macro Interface@open
     ; open the context
     Context@Set \2
 
-    ; Run the Definition Type open macro and/or the Instance init method
-    DefinitionInstance@continue \1@open, DefinitionInstance@open#init, {Context}, \#
+    ; Run the Definition Type open macro and/or the Interface init method
+    Interface@continue \1@open, Interface@open#init, {Context}, \#
 endm
 
-/*  Define the Instance Name methods to hardcode the corresponding context
+/*  Define the Interface Name methods to hardcode the corresponding context
     This is necessary for passthroughs to make sure it assigned values to proper context
     This also gets called when re-entering, in case a nested context had overwritten this
 
     \1 - Context
     \2 - Definition Type
-    \3 - Definition Instance    */
-macro DefinitionInstance@open#init
+    \3 - Interface    */
+macro Interface@open#init
     ;define the callback for re-entering this context
-    def \1@ReEnter equs "DefinitionInstance@method#assign \1, \2, \3"
+    def \1@ReEnter equs "Interface@method#assign \1, \2, \3"
 
-    ; define the Instance Name methods to include the corresponding context
-    DefinitionInstance@method#assign \1, \2, \3
+    ; define the Interface Name methods to include the corresponding context
+    Interface@method#assign \1, \2, \3
 
-    ; Initialize the Instance properties
-    DefinitionInstance@property#assign \1, \2, \3
+    ; Initialize the Interface properties
+    Interface@property#assign \1, \2, \3
 
-    ; Run the Definition Instance init macro
-    DefinitionInstance@method#execute \#
+    ; Run the Interface init macro
+    Interface@method#execute \#
 endm
 
 /*
     \1 - Definition Type
-    \2 - Definition Instance Name
-    \3 - Instance Method Name (exit)
-    \4+ - Arguments to pass to Definition Instance Close Macro
+    \2 - Interface Name
+    \3 - Interface Method Name (exit)
+    \4+ - Arguments to pass to Interface Close Macro
 */
-macro DefinitionInstance@close
-    ; Run the Definition Type close macro and/or the Instance exit macro
-    DefinitionInstance@continue \1@close, DefinitionInstance@method#execute, {Context}, \#
+macro Interface@close
+    ; Run the Definition Type close macro and/or the Interface exit macro
+    Interface@continue \1@close, Interface@method#execute, {Context}, \#
 
     ; close the context
     Context@Close
