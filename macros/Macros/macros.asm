@@ -3,7 +3,6 @@
 incdir types, number, string, list, stack
 
     include "macros/Macros/library/context.asm"
-    include "macros/Macros/library/types.asm"
     include "macros/Macros/library/definition.asm"
     include "macros/Macros/library/return.asm"
     include "macros/Macros/definitions/struct.asm"

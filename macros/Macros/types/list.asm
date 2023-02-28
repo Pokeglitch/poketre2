@@ -55,10 +55,9 @@ Type List, String
         \1@_compile
     endm
     
-    ; TODO - use super to reset the string value
     method reset
     func
-        redef \1 equs ""
+        super
         \1#_size@reset
     endm
 

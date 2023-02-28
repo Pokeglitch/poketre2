@@ -3,7 +3,10 @@ TODO:
     - Use self/Super scope in Type handle method
     -- also have self and super work for Scope methods?
 
-    Make ArrayStruct a Struct\
+    Make ArrayStruct a Struct ?
+        - rename to Array
+
+    Macro to shift then exec
 
     Convert all manual Contexts definitions to Struct/Scope
 --------------

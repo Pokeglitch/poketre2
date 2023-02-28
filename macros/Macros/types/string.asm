@@ -3,34 +3,40 @@ Type String
 
     init
         if _narg == 2
-            \1@set \2
+            \1@redef \2
         else
-            \1@set ""
+            \1@redef ""
         endc
 
         redef \1#Initial equs "{\1}"
     endm
 
-    method set
+    method _update
+    func
+        \1#_len@redef strlen("{\1}")
+    endm
+
+    method redef
     func
         redef \1 equs \2
-        \1#_len@set strlen("{\1}")
+        \1@_update
     endm
 
     method reset
     func
-        \1@set "{\1#Initial}"
+        \1@redef "{\1#Initial}"
     endm
 
     method append
     func
         append \#
+        \1@_update
     endm
 
     method add
     func
         if _narg == 2
-            \1@set strcat("{\1}", \2)
+            \1@redef strcat("{\1}", \2)
         else
             foreach, 1, String@add, \#
         endc

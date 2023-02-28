@@ -1,9 +1,9 @@
 Type Number
     init
         if _narg == 2
-            \1@set \2
+            \1@redef \2
         else
-            \1@set 0
+            \1@redef 0
         endc
 
         def \1#Initial = \1
@@ -24,7 +24,7 @@ Type Number
         def \1 = \1#Initial
     endm
 
-    method set
+    method redef
     func
         def \1 = \2
     endm
