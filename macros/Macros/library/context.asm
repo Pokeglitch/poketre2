@@ -7,7 +7,7 @@ TODO:
     Can Type and Definition share some common macros?
 
     Definition Type should be renamed to Context...
-    - call context...what?
+    - call context...what? ContextStack?
 
     Add way to follow 'from' with 'exit' in addition to init
     also, have multiple 'from' names in single line

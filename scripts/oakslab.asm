@@ -1,11 +1,3 @@
-DEF CUR_BANK = BANK(@)
-	ConvertName Oaks Lab
-	DEF OaksLabTextCount = 0
-	REDEF MAP_NAME EQUS "{NAME_VALUE}"
-
-	MapScript OaksLab
-SECTION FRAGMENT "Oaks Lab Script", ROMX, BANK[CUR_BANK]
-
 OaksLabScript:
 	ld a, $1
 	ld [wAutoTextBoxDrawingControl], a
@@ -387,26 +379,8 @@ OaksLabScript3:
 		text "<RIVAL>: Yeah! Am"
 		next "I great or what?"
 
-		/*
-		Team asm
-			ld hl, wBuffer
-			ld a, 1
-			ld [hli], a
-			ld a, Dratini
-			ld [hli], a
-			ld [hl], -1
-			ld hl, wBuffer
-		end
-		*/
-
-		Team switch
-			ld a, [wRivalStarter]
-		;Team switch, wRivalStarter
-			case STARTER1
-				switch wRivalStarter+1
-					case 0 , 1, Mewtwo
-					case 1 , 1, Gyarados
-				end
+		Team switch, wRivalStarter
+			case STARTER1, 5, Charmander
 			case STARTER2, 5, Squirtle
 			case STARTER3, 5, Bulbasaur
 		end
@@ -764,8 +738,6 @@ OaksLabTextPointers:
 	dw OaksLabText9
 	dw OaksLabText10
 	dw OaksLabText11
-
-end
 
 OaksLabText1:
 	asmtext

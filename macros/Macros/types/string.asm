@@ -72,6 +72,7 @@ end
     \4+ = arguments to compare with
         NOTE - Comparison arguments should not be strings (i.e. wrapped in ")
 */
+; TODO - make 'static' for String
 macro String@_compare
     result false
     for i, 4, _narg+1

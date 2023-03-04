@@ -47,11 +47,7 @@ MACRO MapData
     DEF \1TextCount = 0
     DEF \1BattleCount = 0
 
-        MapScript \1
-    PUSHS
-        SECTION FRAGMENT "\1 Script", ROMX, BANK[CUR_BANK]
-            INCLUDE "scripts/\1.asm"
-        end
+    MapDefinition \1
 
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             \1Header:
@@ -88,7 +84,7 @@ MACRO MapData
 
         SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
             dw \1Objects
-    POPS
+    end
 ENDM
 
 macro _MapSec

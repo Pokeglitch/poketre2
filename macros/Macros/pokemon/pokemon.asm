@@ -1,9 +1,10 @@
-Scope MapScript
-    property Number, TextCount
-
+Scope MapDefinition
     init
         def \1#Map equs "\2"
         def \1#Bank = BANK(@)
+        pushs
+        
+        MapScript \2
     endm
     
     ; Open a section in the same bank as this Map
@@ -12,6 +13,22 @@ Scope MapScript
         def \@#Bank = \1#Bank
         shift
         sec \#, \@#Bank
+    endm
+
+    exit
+        pops
+    endm
+end
+
+Scope MapScript
+    property Number, TextCount
+
+    init
+        def \1#Map equs "\2"
+        
+        MapSec frag, \2 Script
+            include "scripts/\2.asm"
+        end
     endm
 
     method text
@@ -36,6 +53,7 @@ Scope MapScript
     endm
 end
 
+; TODO - extend a generic 'TrainerBattle' scope
 Scope MapScriptBattle
     init
         pushs

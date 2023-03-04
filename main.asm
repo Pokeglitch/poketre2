@@ -414,7 +414,8 @@ INCLUDE "scripts/cinnabarisland.asm"
 INCLUDE "scripts/route1.asm"
 
 INCLUDE "data/mapHeaders/oakslab.asm"
-INCLUDE "scripts/oakslab.asm"
+MapDefinition OaksLab
+end
 INCLUDE "data/mapObjects/oakslab.asm"
 
 INCLUDE "data/mapHeaders/viridianmart.asm"
