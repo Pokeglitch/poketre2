@@ -70,12 +70,25 @@ Scope Return
         endc
     endm
 
+    method try_return
+    func
+        if !\1#ReturnUsed
+            shift
+            _return \#
+        endc
+    endm
+
     method return
     func
         if \1#ReturnUsed
             fail "Already designated a return value"
         endc
+        shift
+        _return \#
+    endm
 
+    method _return
+    func
         def \1#ReturnUsed = true
 
         if _narg > 1

@@ -154,7 +154,7 @@ macro DefineContextMacro
             def \1 equs "ExecuteContextMacro \1, "
         else
             Context#Macros@contains \1
-            if not
+            if not so
                 fail "Cannot set \1 as a Context Macro because is already defined"
             endc
         endc
@@ -162,8 +162,5 @@ macro DefineContextMacro
 endm
 
     DefineContextMacro End#Definition
-    DefineContextMacro Warp, Sign, NPC, Pickup, WarpTo
     DefineContextMacro Delay
-
     DefineContextMacro asmtext, asmdone, done, prompt, exit_text
-    DefineContextMacro switch, case, asm

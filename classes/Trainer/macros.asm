@@ -103,14 +103,3 @@ MACRO Trainer
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
     Context@Close
 ENDM
-
-; 1 = Trainer
-MACRO InitializeBattle
-	ConvertName \1
-    REDEF BATTLE_TRAINER_NAME EQUS "{NAME_VALUE}"
-
-    DEF BATTLE_PARTY_INDEX = {BATTLE_TRAINER_NAME}PartyCount
-    DEF {BATTLE_TRAINER_NAME}PartyCount += 1
-
-    REDEF BATTLE_TEAM_NAME EQUS "{BATTLE_TRAINER_NAME}Team{d:PARTY_INDEX}"
-ENDM

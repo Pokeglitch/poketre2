@@ -37,6 +37,12 @@ MACRO ConvertName
     MakeIdentifier NAME_VALUE
 ENDM
 
+macro Symbolize
+    def \@#Symbol equs "\1"
+    MakeIdentifier \@#Symbol
+    return {\@#Symbol}
+endm
+
 MACRO CheckIfRegister
     IF STRCMP("\1", "\2") == 0
         DEF IS_REGISTER = 1

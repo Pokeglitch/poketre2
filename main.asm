@@ -414,7 +414,7 @@ INCLUDE "scripts/cinnabarisland.asm"
 INCLUDE "scripts/route1.asm"
 
 INCLUDE "data/mapHeaders/oakslab.asm"
-MapDefinition OaksLab
+MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, DOJO, 3
 end
 INCLUDE "data/mapObjects/oakslab.asm"
 

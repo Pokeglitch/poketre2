@@ -131,6 +131,17 @@ Type List, String
         return {pop#list}
     endm
 
+    method index
+    func
+        for i, \1#_size
+            if strcmp("{\1#{d:i}}","\2") == 0
+                return i
+                break
+            endc
+        endr
+        try_return -1
+    endm
+
     method contains
     func
         result false

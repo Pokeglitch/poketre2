@@ -1,6 +1,7 @@
 ; Basic implementation of data types to be used by methods before "Types" get defined
 def false equs "0"
 def true equs "1"
+def not equs "!"
 
 def super equs "fail \"super does not exist for this context\"\n"
 def self equs "fail \"self does not exist for this context\"\n"
@@ -17,8 +18,7 @@ endm
 ; To define so/not to be used in an if statement
 ; NOTE: cannot be nested
 macro result
-    def so = \1
-    def not = !(so)
+    def so = (\1)
 endm
 
 define Type

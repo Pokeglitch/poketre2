@@ -1,5 +1,11 @@
 /*
 TODO:
+    Can use super in macros to call parent function, even if isPassthrough is false
+    - can define super xx to allow passthrough for explicit functions
+
+    Should PassThrough be allowed in the member methods themselves?
+    
+
     - Finalize CheckReservedName and apply where necessary...
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
 */
