@@ -81,3 +81,8 @@ macro String@_compare
         endc
     endr
 endm
+
+macro is#String
+    def \@#char equs strsub("\1",1, 1)
+    result strcmp("{\@#char}","\"") == 0
+endm

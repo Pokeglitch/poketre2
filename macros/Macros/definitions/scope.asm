@@ -1,5 +1,6 @@
 Definition Scope
     exit
+        DefineContextMacro {\1#Lambdas}
         DefineContextMacro {\1#Methods}
     endm
 
@@ -101,103 +102,5 @@ Scope Return
         else
             def {\1#Symbol} = \1#Value
         endc
-    endm
-end
-
-Scope MapScript
-    property Number, TextCount
-
-    init
-        def \1#Map equs "\2"
-        def \1#Bank = CUR_BANK
-    endm
-
-    method text
-    func
-        redef \1#TextPointer equs "{\1#Map}ScriptText{d:\1#TextCount}"
-        \1#TextCount@inc
-        InitTextContext done, text, Delay
-        
-        section fragment "{\1#Map} Texts", romx, bank[\1#Bank]
-            {\1#TextPointer}:
-                shift
-                foreach db, \#
-    endm
-
-    from Text
-    func
-        DisplayText \1#TextPointer
-    endm
-
-    method Battle
-    func
-        MapScriptBattle \#
-    endm
-
-    exit
-        def {\1#Map}TextCount = \1#TextCount
-    endm
-end
-
-
-Scope MapScriptBattle
-    init
-        pushs
-
-        def \1#Map equs "{\2#Map}"
-        def \1#Bank = \2#Bank
-        def \1#TeamName equs "\3Team{d:\3PartyCount}"
-
-        def \1#Trainer equs "\3"
-        def \1#Index = \3PartyCount
-
-        def \3PartyCount += 1
-    endm
-
-    method text
-    func
-        InitTextContext prompt, text, Team
-
-        section fragment "{\1#Map} Texts", romx, bank[\1#Bank]
-            if def({\1#TeamName}WinText) == 0
-                {\1#TeamName}WinText:
-            else
-                {\1#TeamName}LoseText:
-            endc
-            shift
-            foreach db, \#
-    endm
-
-    method Team
-    func
-        section fragment "{\1#Trainer} Party Pointers", romx, bank[TrainerClass]
-            shift
-            InitializeTeam \#
-    endm
-
-    ; auto exit when the team has finished
-    from Team
-    func
-        end
-    endm
-
-    exit
-        pops
-        
-        if def({\1#TeamName}WinText) == 0
-            ;todo - error
-        endc
-
-        PrepareBattle {\1#Trainer}, {\1#Index}
-        ld hl, {\1#TeamName}WinText
-
-        if def({\1#TeamName}LoseText)
-            ld de, {\1#TeamName}LoseText
-        else
-            ld de, {\1#TeamName}WinText
-        endc
-
-        call SaveEndBattleTextPointers
-        jp StartOverworldBattle
     endm
 end

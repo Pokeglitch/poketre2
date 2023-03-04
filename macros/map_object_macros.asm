@@ -47,8 +47,8 @@ MACRO MapData
     DEF \1TextCount = 0
     DEF \1BattleCount = 0
 
-    PUSHS
         MapScript \1
+    PUSHS
         SECTION FRAGMENT "\1 Script", ROMX, BANK[CUR_BANK]
             INCLUDE "scripts/\1.asm"
         end
@@ -90,6 +90,10 @@ MACRO MapData
             dw \1Objects
     POPS
 ENDM
+
+macro _MapSec
+    sec \#, CUR_BANK
+endm
 
 MACRO UpdateMapObjectCount
     SECTION FRAGMENT "{MAP_NAME} Objects", ROMX, BANK[CUR_BANK]
@@ -270,11 +274,11 @@ ENDM
 
 MACRO MapObjectsBattle_Team
 	SECTION FRAGMENT "{BATTLE_TRAINER_NAME} Party Pointers", ROMX, BANK[TrainerClass]
-        InitializeTeam \#
+        TrainerTeam \#
 ENDM
 
 ; Close the map objects battle context
-MACRO MapObjectsBattle_Team_Finish
+MACRO MapObjectsBattle_TrainerTeam_Finish
     Context@Close ; close the map objects battle context
 ENDM
 

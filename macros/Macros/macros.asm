@@ -6,3 +6,5 @@ incdir types, number, string, list, stack, super
     include "macros/Macros/library/return.asm"
     include "macros/Macros/definitions/struct.asm"
     include "macros/Macros/definitions/scope.asm"
+
+incdir pokemon

@@ -8,6 +8,9 @@ TODO:
 
     Definition Type should be renamed to Context...
     - call context...what?
+
+    Add way to follow 'from' with 'exit' in addition to init
+    also, have multiple 'from' names in single line
 --------------
     "method" can also define named args
     then, for func, first line after macro definition will assign the names to \@
@@ -100,6 +103,11 @@ macro Context@Close
 
     Context@pop
 
+    ; if a generic re-enter callback exists, execute it
+    if def({Context}@ReEnter)
+        {{Context}@ReEnter}
+    endc
+
     ; if the callback exists, execute it
     if def({{Context}#Name}_{\@#closed_name}_Finish)
         {{Context}#Name}_{\@#closed_name}_Finish
@@ -110,11 +118,6 @@ macro Context@Close
         if def({{Context}#Name}@from@{\@#closed_name})
             {{Context}#Name}@from@{\@#closed_name} {Context}, {\@#closed_context}
         endc
-    endc
-
-    ; if a generic re-enter callback exists, execute it
-    if def({Context}@ReEnter)
-        {{Context}@ReEnter}
     endc
 endm
 
@@ -159,9 +162,8 @@ macro DefineContextMacro
 endm
 
     DefineContextMacro End#Definition
-    DefineContextMacro Team
-    DefineContextMacro Warp, Sign, NPC, Battle, Pickup, WarpTo
+    DefineContextMacro Warp, Sign, NPC, Pickup, WarpTo
     DefineContextMacro Delay
 
-    DefineContextMacro text, asmtext, asmdone, done, prompt, exit_text
+    DefineContextMacro asmtext, asmdone, done, prompt, exit_text
     DefineContextMacro switch, case, asm

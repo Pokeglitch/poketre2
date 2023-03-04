@@ -14,7 +14,7 @@ endm
 
 macro dispose
     rept _narg
-        redef \1 equs "fail \"\1 has aready been called\"\n"
+        redef \1 equs "fail \"\1 is not available\"\n"
         shift
     endr
 endm
@@ -69,6 +69,14 @@ macro foreach
     endr
 endm
 
+macro sec
+    if strcmp("\1","frag") == 0
+        section fragment "\2", romx, bank[\3]
+    else
+        section "\1", romx, bank[\2]
+    endc
+endm
+
 /*  To purge the given arguments if they exist
     \1+ - Arguments to purge    */
 macro try_purge
@@ -85,10 +93,14 @@ endm
     \2+? - Optional arguments to pass to macro    */
 macro try_exec
     if def(\1)
-        redef \@#macro equs "\1"
-        shift
-        \@#macro \#
+        exec \#
     endc
+endm
+
+macro exec
+    redef \@#macro equs "\1"
+    shift
+    \@#macro \#
 endm
 
 macro append
@@ -96,7 +108,11 @@ macro append
         if strlen("{\1}") == 0
             redef \1 equs "\<i>"
         else
-            redef \1 equs "{\1},\<i>"
+            if strlen("{\1}") + strlen(",\<i>") <= $F5
+                redef \1 equs "{\1},\<i>"
+            else
+                msg Appending "\<i>" to \1 will exceed maximum string length
+            endc
         endc
     endr
 endm
