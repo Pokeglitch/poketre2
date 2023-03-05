@@ -4,7 +4,6 @@ def false equs "0"
 def true equs "1"
 def not equs "!"
 
-
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)
     \1 - Symbol to assign macro string to

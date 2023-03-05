@@ -13,7 +13,7 @@ Type2 List, String
             return \2
         endc
     endm
-
+    
     method _in_range
     func
         def \@#index = \2

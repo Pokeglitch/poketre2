@@ -1,12 +1,12 @@
 /*
 TODO:
-    Can Type and Definition share some common macros?
-
-    Definition Type should be renamed to Context
+    DefinitionType should be renamed to Context
     - rename Context to Trace
---------------
+
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
         - can find with Regex: ^[ \t]+_
+--------------
+    Move the parent/super to Definition itself, instead of only in Type?
 
     Add way to extend a definition
     - can reassign all method, init, exit, etc
@@ -126,4 +126,3 @@ macro DefineContextMacro
 endm
 
     DefineContextMacro End#Definition
-    DefineContextMacro Delay

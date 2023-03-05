@@ -1858,8 +1858,16 @@ AnimationMinimizeMon:
 	call Delay3
 	jp AnimationShowMonPic
 
+; 8x5 partial tile graphic
 MinimizedMonSprite:
-	INCBIN "gfx/minimized_mon_sprite.1bpp"
+	pusho
+		opt b.X ; . = 0, X = 1
+		db %...XX...
+		db %..XXXX..
+		db %.XXXXXX.
+		db %..XXXX..
+		db %..X..X..
+	popo
 MinimizedMonSpriteEnd:
 
 AnimationSlideMonDownAndHide:
