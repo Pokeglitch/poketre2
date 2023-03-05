@@ -1,4 +1,4 @@
-Type2 Number
+Type Number
     init
         if _narg == 2
             \1@redef \2

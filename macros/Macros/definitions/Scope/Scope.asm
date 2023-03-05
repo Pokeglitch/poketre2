@@ -1,4 +1,4 @@
-Definition Scope
+Context Scope
     exit
         DefineContextMacro {\1#Lambdas}
         DefineContextMacro {\1#Methods}

@@ -1,4 +1,4 @@
-Definition Struct
+Context Struct
     exit
         DefineContextMacro {\1#Lambdas}
         DefineContextMacro {\1#Methods}

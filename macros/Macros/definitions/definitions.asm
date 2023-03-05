@@ -14,11 +14,11 @@ TODO:
         - plus, 'rest' for any extra
 */
 
-/*  A Definition creates a new Context Type
-    Then, this Context Type can be used to create new Context Interfaces
-    Finally, a Context Interface can entered/exited throughout the source
+/*  A Context creates a new Trace Type
+    Then, this Context can be used to create new Interfaces
+    Finally, an Interface can entered/exited throughout the source
 
-    The following macros can be are utilized by a Definition:
+    The following macros can be are utilized by a Context:
         - (any can also be skipped)
 
     init: run when a new Interface of this Type is initialized
@@ -59,48 +59,48 @@ TODO:
 
 
 /*
-    \1 - Definition Type Name
+    \1 - Context Name
 */
-define Definition
+define Context
 func
     ; Push context so cant write to ROM
     pushs
-    Context@Open Definition
+    Trace@Open Context
 
     ; Disable UseSuper
-    def {Context}#UseSuper = false
+    def {Trace}#UseSuper = false
 
     ; Define the single use macro names
-    Context@Disposables \1, init, exit, open, method, property, handle, close
+    Trace@Disposables \1, init, exit, open, method, property, handle, close
 
-    ; update the DefinitionType End to include the Definition Type Name
-    redef Definition_End#Definition equs "DefinitionType@end \1,"
+    ; update the Context End to include the Context Name
+    redef Context_End#Definition equs "Context@end \1,"
 endm
 
 /*
     \1 - Type Name
 */
-macro DefinitionType@end
+macro Context@end
     ; assign the Type Name to define a Interface of that Type
     def \1 equs "\tInterface@Define \1,"
 
-    Context@Close
+    Trace@Close
     pops
 endm
 
 /*
-    To try to execute a method assigned to the given Definition Type
+    To try to execute a method assigned to the given Context
     - Enables UseSuper before calling
-        since this gets called inside the Interface context
+        since this gets called inside the Interface
 */
-macro DefinitionType@TryExec
-    def {Context}#UseSuper = true
+macro Context@TryExec
+    def {Trace}#UseSuper = true
 
     def \@#macro equs "\2@\1"
     shift 2
     try_exec {\@#macro}, \#
 
-    def {Context}#UseSuper = false
+    def {Trace}#UseSuper = false
 endm
 
 macro Interface@continue
@@ -117,7 +117,7 @@ macro Interface@continue
 endm
 
 macro Interface@func
-    Context@Disposable func, \3
+    Trace@Disposable func, \3
     redef func equs "\tInterface@SetMacros \1, \2\n{func}"
     dispose from, method, lambda, property, \1_End#Definition
 endm
@@ -139,15 +139,15 @@ macro Interface@SetMacros
     redef \1_End#Definition equs "Interface@end \1, \2,"
 endm
 
-/*  To create a new Interface of a definition type
-    \1 - Definition Type
+/*  To create a new Interface of a Context
+    \1 - Context
     \2 - Interface Name
-    \3+ - Arguments to pass to Definition Type Init Macro
+    \3+ - Arguments to pass to Context Init Macro
 */
 macro Interface@Define
     ; Push context so cant write to ROM
     pushs
-    Context@Open \1
+    Trace@Open \1
 
     Interface@SetMacros \1, \2
 
@@ -157,10 +157,10 @@ macro Interface@Define
     def \2#Properties equs ""
     
     ; Define the single use macro names
-    Context@Disposables \2, init, exit
+    Trace@Disposables \2, init, exit
     
-    ; Run the Definition Type init macro
-    DefinitionType@TryExec init, \#
+    ; Run the Context init macro
+    Context@TryExec init, \#
 endm
 
 /*
@@ -276,7 +276,7 @@ macro Interface@method#assign#final
 endm
 
 /*
-    To run the definition method
+    To run the Context method
         \1 - Context
         \2 - Type Name
         \3 - Interface Name
@@ -284,12 +284,6 @@ endm
         \5+? - Arguments to forward to Method
 */
 macro Interface@method#execute
-    def \@#UseSuper_symbol equs "\1#UseSuper"
-    def \@#UseSuper_value = \1#UseSuper
-
-    ; enable UseSuper
-    def \1#UseSuper = true
-
     def \@#macro equs "try_exec \3@\4,"
 
     if def(\2@handle)
@@ -298,37 +292,34 @@ macro Interface@method#execute
         shift 4
         \@#macro \#
     endc
-
-    ; restore original UseSuper value
-    def {\@#UseSuper_symbol} = \@#UseSuper_value
 endm
 
 macro Interface@end
-    ; Run the Definition Type exit macro
-    DefinitionType@TryExec exit, \#
+    ; Run the Context exit macro
+    Context@TryExec exit, \#
 
-    Context@Close
+    Trace@Close
     pops
 
-    ; define the Interface Name to open a Definition of this Type & Interface
+    ; define the Interface Name to open a Trace of this Context & Interface
     def \2 equs "\tInterface@open \1, \2, init,"
 
-    ; define the Interface Name 'end' to close the Definition of this Type & Interface
+    ; define the Interface Name 'end' to close the Trace of this Context & Interface
     def \2_End#Definition equs "\tInterface@close \1, \2, exit,"
 endm
 
 /*
-    \1 - Definition Type
+    \1 - Context
     \2 - Interface Name
     \3 - Interface Method Name (init)
     \4+ - Arguments to pass to Interface Init Macro
 */
 macro Interface@open
     ; open the context
-    Context@Open \2
+    Trace@Open \2
 
-    ; Run the Definition Type open macro and/or the Interface init method
-    Interface@continue \1@open, Interface@open#init, {Context}, \#
+    ; Run the Context open macro and/or the Interface init method
+    Interface@continue \1@open, Interface@open#init, {Trace}, \#
 endm
 
 /*  Define the Interface Name methods to hardcode the corresponding context
@@ -336,7 +327,7 @@ endm
     This also gets called when re-entering, in case a nested context had overwritten this
 
     \1 - Context
-    \2 - Definition Type
+    \2 - Context
     \3 - Interface    */
 macro Interface@open#init
     ;define the callback for re-entering this context
@@ -360,17 +351,17 @@ macro Interface@assign
 endm
 
 /*
-    \1 - Definition Type
+    \1 - Context
     \2 - Interface Name
     \3 - Interface Method Name (exit)
     \4+ - Arguments to pass to Interface Close Macro
 */
 macro Interface@close
-    ; Run the Definition Type close macro and/or the Interface exit macro
-    Interface@continue \1@close, Interface@method#execute, {Context}, \#
+    ; Run the Context close macro and/or the Interface exit macro
+    Interface@continue \1@close, Interface@method#execute, {Trace}, \#
 
     ; close the context
-    Context@Close
+    Trace@Close
 endm
 
 incdir Scope, Overload, Return

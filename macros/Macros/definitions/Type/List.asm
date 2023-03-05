@@ -1,5 +1,5 @@
 ;   A List is a string of comma separated values
-Type2 List, String
+Type List, String
     property Number, _size
     init
         List@push \#
@@ -13,7 +13,7 @@ Type2 List, String
             return \2
         endc
     endm
-    
+
     method _in_range
     func
         def \@#index = \2

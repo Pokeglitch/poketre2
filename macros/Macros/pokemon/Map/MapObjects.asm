@@ -1,12 +1,13 @@
 /*
 TODO:
-    - turn UseSuper off when Definition permits UseSuper within these methods
     - fail if macro other than text is called when text is expected
         - or, if trying to define section with index lower than current section
 */
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Scope MapObjects
+    property Number, CurrentSection
+
     init
         def \1#Map equs "\2"
         def \1#ExpectText = false
@@ -71,7 +72,19 @@ Scope MapObjects
 
     method UpdateCount
     func
+        ; if a text is expected, then fail
+        if \1#ExpectText
+            fail "Expected text, Received \2"
+        endc
+        
         var \@#index = MapObjects#Order@index(\2)
+
+        if \@#index < \1#CurrentSection
+            fail "Cannot place a \2 after a {MapObjects#Order#{d:\1#CurrentSection}}"
+        endc
+
+        def \1#CurrentSection = \@#index
+
         InitializeSections \@#index
         {\1#Map}#\2#Count@inc
     endm

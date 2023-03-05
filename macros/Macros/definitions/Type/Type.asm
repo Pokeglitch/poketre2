@@ -1,8 +1,3 @@
-/*
-TODO - 
-    - Auto assign #_Type property to all instances
-    - Auto assign #_Parent to all types
-*/
 def super equs "fail \"super does not exist for this context\"\n"
 def self equs "fail \"self does not exist for this context\"\n"
 
@@ -15,7 +10,7 @@ macro uuid
     endc
 endm
 
-Definition Type2
+Context Type
     init
         if _narg == 2
             def \1#Parent equs "\2"
@@ -29,11 +24,11 @@ Definition Type2
     exit
         ; assign the supers from the parent
         if def(\1#Parent)
-            Type2@AssignParentMethods \1, {\1#Parent}, {{\1#Parent}#Methods}
+            Type@AssignParentMethods \1, {\1#Parent}, {{\1#Parent}#Methods}
         endc
         
         ; assign any missing supers to fail
-        Type2@InitializeSupers \1, {\1#Methods}
+        Type@InitializeSupers \1, {\1#Methods}
     endm
 
     open
@@ -68,7 +63,7 @@ Definition Type2
     handle
         def \@#prev_self equs "{self}"
         def \@#prev_super equs "{super}"
-        redef super equs "Type2@Super \3, \4, {\1#Symbol},"
+        redef super equs "Type@Super \3, \4, {\1#Symbol},"
 
         def \@#continue equs "{continue}"
 
@@ -84,12 +79,12 @@ end
 /*  \1 - Type Name
     \2 - Method Name
     \3 - Instance symbol    */
-macro Type2@Super
+macro Type@Super
     def \@#prev_super equs "{super}"
 
     ; no need to handle case where no parent, because \@#macro will fail
     if def(\1#Parent)
-        redef super equs "Type2@Super {\1#Parent}, \2, \3,"
+        redef super equs "Type@Super {\1#Parent}, \2, \3,"
     endc
 
     def \@#macro equs "\1@\2#Super \3,"
@@ -101,7 +96,7 @@ endm
 
 /*  For all methods that dont have a super, assign the super to fail
     \1 - Type name    */
-macro Type2@InitializeSupers
+macro Type@InitializeSupers
     for i, 2, _narg+1
         if not def(\1@\<i>#Super)
             def \1@\<i>#Super equs "fail \"super does not exist for this context\"\n"
@@ -112,7 +107,7 @@ endm
 /*  \1 - Type name
     \2 - Parent type name
     \3 - Parent methods    */
-macro Type2@AssignParentMethods
+macro Type@AssignParentMethods
     for i, 3, _narg+1
         ; if not defined in this type, pull from parent
         if not def(\1@\<i>)

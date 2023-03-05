@@ -1,4 +1,4 @@
-Type2 String
+Type String
     property Number, _len
 
     init
