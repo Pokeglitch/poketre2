@@ -1,5 +1,9 @@
 def _narg equs "_NARG"
 def end equs "\tEnd#Definition"
+def false equs "0"
+def true equs "1"
+def not equs "!"
+
 
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)
@@ -108,13 +112,13 @@ macro append
         if strlen("{\1}") == 0
             redef \1 equs "\<i>"
         else
-            if strlen("{\1}") + strlen(",\<i>") <= $F5
-                redef \1 equs "{\1},\<i>"
-            else
-                ;msg Appending "\<i>" to \1 will exceed maximum string length
-            endc
+            redef \1 equs "{\1},\<i>"
         endc
     endr
+endm
+
+macro result
+    def so = (\1)
 endm
 
 /*  To print given argument(s) on own line

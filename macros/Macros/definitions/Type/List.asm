@@ -1,5 +1,5 @@
 ;   A List is a string of comma separated values
-Type List, String
+Type2 List, String
     property Number, _size
     init
         List@push \#

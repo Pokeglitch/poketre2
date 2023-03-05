@@ -121,7 +121,6 @@ macro Interface@func
     dispose from, method, lambda, property, \1_End#Definition
 endm
 
-
 macro Interface@SetMacros
     ; update the from macro to include the name of the Interface
     redef from equs "Interface@from \1, \2,"
@@ -152,10 +151,9 @@ macro Interface@Define
     Interface@SetMacros \1, \2
 
     ; Initialize the list of members
-    List \2#Froms
-    List \2#Lambdas
-    List \2#Methods
-    List \2#Properties
+    def \2#Lambdas equs ""
+    def \2#Methods equs ""
+    def \2#Properties equs ""
     
     ; Define the single use macro names
     Context@Disposables \2, init, exit
@@ -174,15 +172,15 @@ macro Interface@from
     if so
         redef temp@macro equs \<_NARG>
     else
-        redef temp@macro equs "\2@from#{d:\2#Froms#_size}"
+        redef temp@macro equs "\2@from#\1"
 
         Interface@func \1, \2, {temp@macro}
 
-        def \2@from@\<_NARG> equs "{temp@macro}"
+        def \2_from@\<_NARG> equs "{temp@macro}"
     endc
 
     for i, 3, _narg
-        def \2@from@\<i> equs "{temp@macro}"
+        def \2_from@\<i> equs "{temp@macro}"
     endr
 
 endm
@@ -191,7 +189,7 @@ macro Interface@lambda
     for i, 2, _narg
         def \1@\<i> equs \<_NARG>
         ; Add the lambda to the list of lambdas
-        \1#Lambdas@push \<i>
+        append \1#Lambdas, \<i>
     endr
 endm
 
@@ -224,7 +222,7 @@ macro Interface@property
     CheckReservedName \3
 
     ; Add the property ID to the list of properties
-    \1#Properties@push \@
+    append \1#Properties, \@
 
     ; Map the property information to a unique identifier
     def \@#macro equs "\2"
@@ -254,7 +252,7 @@ macro Interface@method#define
     CheckReservedName \3
 
     ; Add the method to the list of methods
-    \2#Methods@push \3
+    append \2#Methods, \3
 
     Interface@func \1, \2, \2@\3
 endm
