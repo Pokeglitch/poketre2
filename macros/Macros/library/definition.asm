@@ -4,7 +4,7 @@ TODO:
     - can define super xx to allow passthrough for explicit functions
 
     Should PassThrough be allowed in the member methods themselves?
-    
+
 
     - Finalize CheckReservedName and apply where necessary...
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
@@ -44,6 +44,12 @@ TODO:
 
         To execute the Interface "exit" method:
         - continue \#
+
+
+    Methods within an Interface
+
+    lambda: An equs macro
+        NOTE - must resolve to a macro
 */
 
 

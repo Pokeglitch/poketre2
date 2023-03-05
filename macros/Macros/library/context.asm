@@ -41,7 +41,8 @@ TODO:
     Attach #RegisterSize = 6/18 to all registers
     - i.e. a#RegisterSize
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
-*/
+
+    */
 
 
 /*  A context is a way to have certain macros behave in a particular manner
@@ -87,14 +88,15 @@ macro Context@Set
     Context@push \1, false
 endm
 
+macro Context@ExecuteCallback
+    {\1#Name}@from@{\2#Name} \1, \2
+endm
+
 macro Context@Close
     ; purge the single uses
     try_purge {{Context}#Disposables}
 
-    ; if the context was pushed, then pop
-    if {Context}#isPushed
-        pops
-    endc
+    def \@#doPops = {{Context}#isPushed}
 
     ; store the closed context name
     def \@#closed_name equs "{{Context}#Name}"
@@ -116,8 +118,13 @@ macro Context@Close
     ; if the callback exists, execute it
     if strlen("{{Context}#Name}") > 0
         if def({{Context}#Name}@from@{\@#closed_name})
-            {{Context}#Name}@from@{\@#closed_name} {Context}, {\@#closed_context}
+            Context@ExecuteCallback {Context}, {\@#closed_context}
         endc
+    endc
+
+    ; if the context was pushed, then pop
+    if \@#doPops
+        pops
     endc
 endm
 
@@ -163,4 +170,3 @@ endm
 
     DefineContextMacro End#Definition
     DefineContextMacro Delay
-    DefineContextMacro asmtext, asmdone, done, prompt, exit_text

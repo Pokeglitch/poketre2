@@ -97,9 +97,9 @@ MACRO Trainer
     ; Initialize the party count
     DEF {NAME_VALUE}PartyCount = 0
 
-    Context@Push Party
+    pushs
 	SECTION FRAGMENT "{NAME_VALUE} Party Pointers", ROMX, BANK[TrainerClass]
 		{NAME_VALUE}Parties:
 			INCLUDE "classes/Trainer/Parties/{NAME_VALUE}.asm"
-    Context@Close
+    pops
 ENDM

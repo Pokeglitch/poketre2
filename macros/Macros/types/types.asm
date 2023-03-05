@@ -1,3 +1,9 @@
+/*
+TODO - 
+    - Auto assign #_Type property to all instances
+    - Auto assign #_Parent to all types
+*/
+
 ; Basic implementation of data types to be used by methods before "Types" get defined
 def false equs "0"
 def true equs "1"

@@ -111,7 +111,7 @@ macro append
             if strlen("{\1}") + strlen(",\<i>") <= $F5
                 redef \1 equs "{\1},\<i>"
             else
-                msg Appending "\<i>" to \1 will exceed maximum string length
+                ;msg Appending "\<i>" to \1 will exceed maximum string length
             endc
         endc
     endr

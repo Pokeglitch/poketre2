@@ -880,7 +880,7 @@ OaksLabBulbasaurText:
 OaksLabYesNoText:
 	two_opt YesText, NoText, .yes, .no
 .no
-	exit_text
+	close
 .yes
 	asmtext
 	ld a, [wcf91]

@@ -7,4 +7,4 @@ incdir types, number, string, list, stack, super
     include "macros/Macros/definitions/struct.asm"
     include "macros/Macros/definitions/scope.asm"
 
-incdir pokemon, Team, MapObjects, MapScript
+incdir Pokemon, Team, Text

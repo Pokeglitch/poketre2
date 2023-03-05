@@ -1,8 +1,15 @@
+/*
+TODO:
+    - turn passthrough off when Definition permits passthrough within these methods
+    - fail if macro other than text is called when text is expected
+        - or, if trying to define section with index lower than current section
+*/
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Scope MapObjects
     init
         def \1#Map equs "\2"
+        def \1#ExpectText = false
 
         MapSec frag, \2 Objects
             \2#Objects:
@@ -13,6 +20,23 @@ Scope MapObjects
         InitializeSections MapObjects#Order#_size-1
 
         end
+    endm
+
+    method text
+    func
+        if \1#ExpectText
+            def \1#ExpectText = false
+            Text done, Sign, NPC, Battle, Pickup, WarpTo
+            shift
+            more \#
+        else
+            fail "text is not permitted here"
+        endc
+    endm
+
+    from Text
+    func
+        pops
     endm
 
 /*  \1 - X movement (X-blocks)
@@ -75,10 +99,11 @@ Scope MapObjects
     func
         AddTextPointer \@#Text
 
-        InitTextContext done, Sign, NPC, Battle, Pickup, WarpTo
-
+        pushs
         MapSec frag, {\1#Map} Texts
             \@#Text:
+            
+        def \1#ExpectText = true
     endm
 
 /*  \1 - x position
@@ -113,7 +138,7 @@ Scope MapObjects
     method Battle
     func
         UpdateCount Sprite
-        MapObjectsBattle2 \#
+        MapObjectsBattle \#
     endm
 
     method Pickup
@@ -150,12 +175,14 @@ Scope MapObjects
     \2 - y position    */
     method WarpTo
     func
-        UpdateCount WarpTo, 0
+        UpdateCount WarpTo
         EventDisp \2, \3
     endm
 end
 
-Scope MapObjectsBattle2
+; TODO - extend a generic 'TrainerBattle' scope
+;      - need to distinguish between pokemon and trainer  
+Scope MapObjectsBattle
     property List, Texts
 
     init
@@ -208,16 +235,22 @@ Scope MapObjectsBattle2
 
         ; First two texts finish with done (in overworld)
         if \1#Texts#_size <= 2
-            InitTextContext done, text, Team
+            Text done, Team
         ; Last two texts finish with prompt (in battle)
         else
-            InitTextContext prompt, text, Team
+            Text prompt, Team
         endc
 
+        pushs
         MapSec frag, {\1#Map} Texts
             \@#Text:
                 shift
-                foreach db, \#
+                more \#
+    endm
+
+    from Text
+    func
+        pops
     endm
 
     method Team
@@ -229,6 +262,7 @@ Scope MapObjectsBattle2
 
     from TrainerTeam, "end"
 
+    ; TODO - can use generic Win or Loss texts if not provided
     exit
         if \1#Texts#_size < 3
             fail "Battle Win/Lose Texts are missing"

@@ -14,12 +14,18 @@ Scope MapScript
         DisplayText \@#Text
 
         {\1#Map}#TextCount@inc
-        InitTextContext done, text, Delay
+        Text done, Delay
         
+        pushs
         MapSec frag, {\1#Map} Texts
             \@#Text:
                 shift
-                foreach db, \#
+                more \#
+    endm
+
+    from Text
+    func
+        pops
     endm
 
     lambda Battle, "MapScriptBattle"
@@ -40,8 +46,9 @@ Scope MapScriptBattle
 
     method text
     func
-        InitTextContext prompt, text, Team
-
+        Text prompt, Team
+        
+        pushs
         MapSec frag, \1#TeamName Texts
             ; First text is WinText, next is LoseText
             if def({\1#TeamName}WinText) == 0
@@ -50,7 +57,12 @@ Scope MapScriptBattle
                 {\1#TeamName}LoseText:
             endc
             shift
-            foreach db, \#
+            more \#
+    endm
+
+    from Text
+    func
+        pops
     endm
 
     method Team
