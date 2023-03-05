@@ -11,7 +11,7 @@ TODO:
     Attach #RegisterSize = 6/18 to all registers
     - i.e. a#RegisterSize
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
-    */
+*/
 
 
 /*  A context is a way to have certain macros behave in a particular manner

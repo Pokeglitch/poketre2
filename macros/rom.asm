@@ -1,4 +1,4 @@
-include "macros/Macros/macros.asm"
+include "macros/Macros/base.asm"
 
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/asm_macros.asm"

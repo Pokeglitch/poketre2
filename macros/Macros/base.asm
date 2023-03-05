@@ -28,24 +28,6 @@ macro define#Definition
     disposable func, \1#Definition
 endm
 
-def base_dir equs "macros/Macros"
-define incdir
-func
-    def \@#prev_base_dir equs "{base_dir}"
-
-    redef base_dir equs "{base_dir}/\1"
-
-    rept _narg
-        include "{base_dir}/\1.asm"
-        shift
-    endr
-
-    redef base_dir equs "{\@#prev_base_dir}"
-endm
-
-
-
-
 
 ; TODO - need to make a full list of reserved names, and list of remapped names
 ; then, if name is in list, use remap
@@ -129,3 +111,35 @@ macro msg
         foreach msg, \#
     endc
 endm
+
+
+
+
+
+
+def base_dir equs "macros/Macros"
+define incdir
+func
+    def \@#prev_base_dir equs "{base_dir}"
+
+    redef base_dir equs "{base_dir}/\1"
+
+    incasm \#
+
+    redef base_dir equs "{\@#prev_base_dir}"
+endm
+
+define incdirs
+func
+    foreach incdir, \#
+endm
+
+define incasm
+func
+    rept _narg
+        include "{base_dir}/\1.asm"
+        shift
+    endr
+endm
+
+incdirs Context, Pokemon

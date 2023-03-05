@@ -56,6 +56,7 @@ TODO:
         NOTE - must resolve to a macro
 */
 
+incasm Trace
 
 
 /*
