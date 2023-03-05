@@ -1,6 +1,6 @@
 /*
 TODO:
-    - turn passthrough off when Definition permits passthrough within these methods
+    - turn UseSuper off when Definition permits UseSuper within these methods
     - fail if macro other than text is called when text is expected
         - or, if trying to define section with index lower than current section
 */

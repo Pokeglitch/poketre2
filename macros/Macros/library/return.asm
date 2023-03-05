@@ -1,4 +1,4 @@
-; works with 'return'
+; to use if/so with macros that utilize 'return'
 define does
 func
     var_common false, "does \#", \@=\#

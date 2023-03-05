@@ -1,11 +1,12 @@
 Definition Struct
     exit
+        DefineContextMacro {\1#Lambdas}
         DefineContextMacro {\1#Methods}
     endm
 
     open
         def \1#Symbol equs "\5"
-        def \1#isPassthrough = false
+        def \1#UseSuper = false
 
         ; remove Symbol from forward to Instance Init
         def \@#args equs "\1, \2, \3, \4"

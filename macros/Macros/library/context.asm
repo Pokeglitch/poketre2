@@ -1,39 +1,16 @@
 /*
 TODO:
-    Make ArrayStruct a Struct ?
-
-    Convert all manual Contexts definitions to Struct/Scope
-
     Can Type and Definition share some common macros?
 
     Definition Type should be renamed to Context...
     - call context...what? ContextStack?
-
-    Add way to follow 'from' with 'exit' in addition to init
-    also, have multiple 'from' names in single line
 --------------
-    "method" can also define named args
-    then, for func, first line after macro definition will assign the names to \@
-    - plus, 'rest' for any extra
-
-    add macro to build a fail message
-    CheckReservedName can utilize Array@contains
-
-    Add comments to all type, scope macros
-
-    Use #, @ where appropriate in context/type/scope members
-
-    Utilize \@ for local macros & returning multiple values
-
-    Handle isPassthrough when parent is the default context
+    Handle UseSuper when parent is the default context
     - i.e. need #LocalMacros list for default...
     - fix Return context
     -----
     - Can remove the concept of default macros once Text becomes a scope in all scenarios
     - can find with Regex: ^[ \t]+_
-
-    Can remove the concept of Context@Push if the Scope Init/Final will push/pop itself
-    - (if it is only used in Scopes...)
 
     Can extend a scope?
     - can reassign all local, init, and final macros...
@@ -41,7 +18,6 @@ TODO:
     Attach #RegisterSize = 6/18 to all registers
     - i.e. a#RegisterSize
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
-
     */
 
 
@@ -49,13 +25,10 @@ TODO:
     When a "context macro" is called, it will execute the macro that belongs to the current context
     If there is no macro in the current context, it will check the parent, and so on
     - Optionally, the context can be restricted to fail if the macro is not defined in the current context, rather than check the parent
+        - This is based on the value of the #UseSuper property
 
-    Note: when context is closed, will auto callback if following macro is defined:
-    - {NewContext}_{ClosedContext}_Finish
-
-    Context@Push will push the current section, and then change to the next context
-    Context@Set will simply change context without pushing the section
-    Context@Close will close the current section, and (if pushed) will pop the section
+    Context@Open will change context
+    Context@Close will close the current context
 */
 
 ; Initialize the list of context macros
@@ -63,8 +36,7 @@ TODO:
 
 macro Context@init
     def \1#Name equs "\2"
-    def \1#isPushed = \3
-    def \1#isPassthrough = true
+    def \1#UseSuper = true
     List \1#Disposables
 endm
 
@@ -79,13 +51,8 @@ macro Context@Disposable
     disposable \1, \2
 endm
 
-macro Context@Push
-    pushs
-    Context@push \1, true
-endm
-
-macro Context@Set
-    Context@push \1, false
+macro Context@Open
+    Context@push \1
 endm
 
 macro Context@ExecuteCallback
@@ -95,8 +62,6 @@ endm
 macro Context@Close
     ; purge the single uses
     try_purge {{Context}#Disposables}
-
-    def \@#doPops = {{Context}#isPushed}
 
     ; store the closed context name
     def \@#closed_name equs "{{Context}#Name}"
@@ -111,32 +76,19 @@ macro Context@Close
     endc
 
     ; if the callback exists, execute it
-    if def({{Context}#Name}_{\@#closed_name}_Finish)
-        {{Context}#Name}_{\@#closed_name}_Finish
-    endc
-
-    ; if the callback exists, execute it
     if strlen("{{Context}#Name}") > 0
         if def({{Context}#Name}@from@{\@#closed_name})
             Context@ExecuteCallback {Context}, {\@#closed_context}
         endc
     endc
-
-    ; if the context was pushed, then pop
-    if \@#doPops
-        pops
-    endc
 endm
 
     Stack Context, , 0
-    ; disable passthrough for the base context
-    def {Context}#isPassthrough = false
+    ; disable UseSuper for the base context
+    def {Context}#UseSuper = false
 
-/*
-TODO:
-    instead of checking if the definition exists:
-        see if the method exists in Context's list methods?
-*/
+; To call the given macro based on the nearest macro in the context stack
+; or until "UseSuper" is false
 macro ExecuteContextMacro
     ; Traverse the context stack to find the macro
     for context_i, Context#_size, 0, -1
@@ -145,7 +97,7 @@ macro ExecuteContextMacro
             shift
             \@#macro \#
             break
-        elif !({Context#{d:context_i}}#isPassthrough)
+        elif !({Context#{d:context_i}}#UseSuper)
             fail "\1 is not defined in the current context"
         endc
     endr

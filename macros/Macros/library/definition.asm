@@ -1,13 +1,17 @@
 /*
 TODO:
-    Can use super in macros to call parent function, even if isPassthrough is false
-    - can define super xx to allow passthrough for explicit functions
+    Can use super in macros to call parent function, even if UseSuper is false
+    - can define super xx to allow UseSuper for explicit functions
 
-    Should PassThrough be allowed in the member methods themselves?
+    Should UseSuper be allowed in the member methods themselves?
 
 
-    - Finalize CheckReservedName and apply where necessary...
+    - Finalize CheckReservedName and apply where necessary
+        - can utilize Array@contains
+
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
+        - for 'func', first line after macro definition will assign the names to \@
+        - plus, 'rest' for any extra
 */
 
 /*  A Definition creates a new Context Type
@@ -59,10 +63,11 @@ TODO:
 define Definition
 func
     ; Push context so cant write to ROM
-    Context@Push Definition
+    pushs
+    Context@Open Definition
 
-    ; Disable passthrough
-    def {Context}#isPassthrough = false
+    ; Disable UseSuper
+    def {Context}#UseSuper = false
 
     ; Define the single use macro names
     Context@Disposables \1, init, exit, open, method, property, handle, close
@@ -79,21 +84,22 @@ macro DefinitionType@end
     def \1 equs "\tInterface@Define \1,"
 
     Context@Close
+    pops
 endm
 
 /*
     To try to execute a method assigned to the given Definition Type
-    - Enables passthrough before calling
+    - Enables UseSuper before calling
         since this gets called inside the Interface context
 */
 macro DefinitionType@TryExec
-    def {Context}#isPassthrough = true
+    def {Context}#UseSuper = true
 
     def \@#macro equs "\2@\1"
     shift 2
     try_exec {\@#macro}, \#
 
-    def {Context}#isPassthrough = false
+    def {Context}#UseSuper = false
 endm
 
 macro Interface@continue
@@ -139,7 +145,9 @@ endm
     \3+ - Arguments to pass to Definition Type Init Macro
 */
 macro Interface@Define
-    Context@Push \1
+    ; Push context so cant write to ROM
+    pushs
+    Context@Open \1
 
     Interface@SetMacros \1, \2
 
@@ -277,11 +285,11 @@ endm
         \5+? - Arguments to forward to Method
 */
 macro Interface@method#execute
-    def \@#passthrough_symbol equs "\1#isPassthrough"
-    def \@#passthrough_value = \1#isPassthrough
+    def \@#UseSuper_symbol equs "\1#UseSuper"
+    def \@#UseSuper_value = \1#UseSuper
 
-    ; enable passthrough
-    def \1#isPassthrough = true
+    ; enable UseSuper
+    def \1#UseSuper = true
 
     def \@#macro equs "try_exec \3@\4,"
 
@@ -292,8 +300,8 @@ macro Interface@method#execute
         \@#macro \#
     endc
 
-    ; restore original passthrough value
-    def {\@#passthrough_symbol} = \@#passthrough_value
+    ; restore original UseSuper value
+    def {\@#UseSuper_symbol} = \@#UseSuper_value
 endm
 
 macro Interface@end
@@ -301,6 +309,7 @@ macro Interface@end
     DefinitionType@TryExec exit, \#
 
     Context@Close
+    pops
 
     ; define the Interface Name to open a Definition of this Type & Interface
     def \2 equs "\tInterface@open \1, \2, init,"
@@ -317,14 +326,14 @@ endm
 */
 macro Interface@open
     ; open the context
-    Context@Set \2
+    Context@Open \2
 
     ; Run the Definition Type open macro and/or the Interface init method
     Interface@continue \1@open, Interface@open#init, {Context}, \#
 endm
 
 /*  Define the Interface Name methods to hardcode the corresponding context
-    This is necessary for passthroughs to make sure it assigned values to proper context
+    This is necessary for UseSupers to make sure it assigned values to proper context
     This also gets called when re-entering, in case a nested context had overwritten this
 
     \1 - Context
