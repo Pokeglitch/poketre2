@@ -1,5 +1,3 @@
-INCLUDE "macros/byte_struct.asm"
-
 ; 1 = how many bits to set
 ; 2 = how many bits to shift
 macro BitMask

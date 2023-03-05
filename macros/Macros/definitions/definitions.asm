@@ -57,6 +57,7 @@ TODO:
 */
 
 
+
 /*
     \1 - Definition Type Name
 */
@@ -371,3 +372,7 @@ macro Interface@close
     ; close the context
     Context@Close
 endm
+
+incdir Scope, Overload, Return
+incdir Struct, ByteStruct
+incdir Type, Number, String, List, Stack
