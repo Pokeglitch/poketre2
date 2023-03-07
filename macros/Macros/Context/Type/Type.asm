@@ -5,18 +5,10 @@ Context Type
         def \1#Symbol equs "\5"
         def \1#Type equs "\3"
 
-        ; initialize the parents will overwrite continue, so store
-        def \@#continue equs "{continue}"
-
-        ; Initialize the parent
-        if def(\3#Parent)
-            {\3#Parent} \5
-        endc
-
         ; remove Symbol from forward to Instance Init
         def \@#args equs "\1, \2, \3, \4"
         shift 5
-        \@#continue {\@#args}, \#
+        continue {\@#args}, \#
 
         ; auto close the context
         end

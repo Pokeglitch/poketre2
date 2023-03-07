@@ -2,6 +2,7 @@
 Type List, String
     property Number, _size
     init
+        super
         List@push \#
     endm
 

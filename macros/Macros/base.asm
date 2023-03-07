@@ -162,11 +162,20 @@ macro display_supers
     endr
 endm
 
-Scope Test1
+Scope Test0
+    init
+        msg Init Test0 | "\#"
+    endm
+    exit
+        msg Exit Test0
+    endm
+end
+Scope Test1, Test0
     method reset
     func
         msg Test1 | "\#"
     endm
+    lambda say, "msg "
 end
 Scope Test2, Test1
 end
@@ -189,19 +198,32 @@ Scope Test5, Test4
     endm
 end
 Scope Test6, Test5
+    method reset
+    func
+        super
+        msg Test6 | "\#"
+        super
+    endm
 end
 Scope Test7, Test6
+end
+Scope Test8, Test7
     init
-        msg Init Test7 | "\#"
+        super
+        msg Init Test8 | "\#"
+        super
     endm
+end
+Scope Test9, Test8
 end
 
 Scope TestX
 end
 
-    Test7 test
+    Test9 test
         TestX
             reset
+            say hi
         end
     end
 
@@ -227,6 +249,9 @@ Type Type3, Type2
     endm
 end
 Type Type4, Type3
+    init
+        msg Init Type4 | "\#"
+    endm
 end
 Type Type5, Type4
     method reset
@@ -237,12 +262,24 @@ Type Type5, Type4
     endm
 end
 Type Type6, Type5
-end
-Type Type7, Type6
-    init
-        msg Init Type7 | "\#"
+    method reset
+    func
+        super
+        msg Type6 | "\#"
+        super
     endm
 end
+Type Type7, Type6
+end
+Type Type8, Type7
+    init
+        super
+        msg Init Type8 | "\#"
+        super
+    endm
+end
+Type Type9, Type8
+end
 
-    Type7 test2
+    Type9 test2
     test2@reset
