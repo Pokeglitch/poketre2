@@ -4,6 +4,15 @@ def false equs "0"
 def true equs "1"
 def not equs "!"
 
+/*  To generate a unique id and assign to global 'id' symbol, and optionally, the provided argument
+    \1? - Symbol to assign to    */
+    macro uuid
+    redef id equs "\@"
+    if _narg == 1
+        redef \1 equs "\@"
+    endc
+endm
+
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)
     \1 - Symbol to assign macro string to
@@ -143,3 +152,97 @@ func
 endm
 
 incdirs Context, Pokemon
+
+
+
+macro display_supers
+    msg \1 Supers
+    for i, 2, _narg+1
+        msg \<i> | "{\1#Supers#\<i>}"
+    endr
+endm
+
+Scope Test1
+    method reset
+    func
+        msg Test1 | "\#"
+    endm
+end
+Scope Test2, Test1
+end
+Scope Test3, Test2
+    method reset
+    func
+        super
+        msg Test3 | "\#"
+        super
+    endm
+end
+Scope Test4, Test3
+end
+Scope Test5, Test4
+    method reset
+    func
+        super
+        msg Test5 | "\#"
+        super
+    endm
+end
+Scope Test6, Test5
+end
+Scope Test7, Test6
+    init
+        msg Init Test7 | "\#"
+    endm
+end
+
+Scope TestX
+end
+
+    Test7 test
+        TestX
+            reset
+        end
+    end
+
+
+
+
+
+
+Type Type1
+    method reset
+    func
+        msg Type1 | "\#"
+    endm
+end
+Type Type2, Type1
+end
+Type Type3, Type2
+    method reset
+    func
+        super
+        msg Type3 | "\#"
+        super
+    endm
+end
+Type Type4, Type3
+end
+Type Type5, Type4
+    method reset
+    func
+        super
+        msg Type5 | "\#"
+        super
+    endm
+end
+Type Type6, Type5
+end
+Type Type7, Type6
+    init
+        msg Init Type7 | "\#"
+    endm
+end
+
+    Type7 test2
+    test2@reset

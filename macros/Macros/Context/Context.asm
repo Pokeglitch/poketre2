@@ -1,10 +1,9 @@
 /*
 TODO:
-    Can use super in macros to call parent function, even if UseSuper is false
-    - can define super xx to allow UseSuper for explicit functions
-
-    Should UseSuper be allowed in the member methods themselves?
-
+    can define bypass xx to allow UseSuper for explicit functions
+    - super should refer to the parent definition
+    - bypass should refer to the parent trace
+        - so rename usesuper to bypass
 
     - Finalize CheckReservedName and apply where necessary
         - can utilize Array@contains
@@ -55,6 +54,7 @@ TODO:
     lambda: An equs macro
         NOTE - must resolve to a macro
 */
+def super equs "fail \"super does not exist for this context\"\n"
 
 incasm Trace
 
@@ -91,17 +91,11 @@ endm
 
 /*
     To try to execute a method assigned to the given Context
-    - Enables UseSuper before calling
-        since this gets called inside the Interface
 */
 macro Context@TryExec
-    def {Trace}#UseSuper = true
-
     def \@#macro equs "\2@\1"
     shift 2
     try_exec {\@#macro}, \#
-
-    def {Trace}#UseSuper = false
 endm
 
 macro Interface@continue
@@ -143,7 +137,7 @@ endm
 /*  To create a new Interface of a Context
     \1 - Context
     \2 - Interface Name
-    \3+ - Arguments to pass to Context Init Macro
+    \3? - Parent Interface to Inherit from
 */
 macro Interface@Define
     ; Push context so cant write to ROM
@@ -156,10 +150,16 @@ macro Interface@Define
     def \2#Lambdas equs ""
     def \2#Methods equs ""
     def \2#Properties equs ""
+    def \2#AllMacros equs ""
     
     ; Define the single use macro names
     Trace@Disposables \2, init, exit
     
+    ; Define the parent if provided
+    if _narg == 3
+        def \2#Parent equs "\3"
+    endc
+
     ; Run the Context init macro
     Context@TryExec init, \#
 endm
@@ -192,6 +192,7 @@ macro Interface@lambda
         def \1@\<i> equs \<_NARG>
         ; Add the lambda to the list of lambdas
         append \1#Lambdas, \<i>
+        append \1#AllMacros, \<i>
     endr
 endm
 
@@ -255,6 +256,7 @@ macro Interface@method#define
 
     ; Add the method to the list of methods
     append \2#Methods, \3
+    append \2#AllMacros, \3
 
     Interface@func \1, \2, \2@\3
 endm
@@ -265,15 +267,26 @@ macro Interface@method#assign
             def \@#macro equs "Interface@method#assign \#,"
             foreach \@#macro, {\3#Methods}
         else
-            def \@#args equs "\#"
-            def \@#continue equs "Interface@method#assign#final \@#args,"
+            def \@#continue equs "Interface@method#assign#final \#,"
             Interface@continue \2@method, \@#continue, \1, \4
         endc
     endc
 endm
 
 macro Interface@method#assign#final
-    redef \2 equs "Interface@method#execute {\1},"
+    if \3@\4#isSuper
+        Super#{\3@\4} \5, \1
+    else
+        redef \5 equs "Interface@method#execute \1, \2, \3, \4,"
+    endc
+endm
+
+macro Super#fail
+    redef \2 equs "fail \1"
+endm
+
+macro Super#Interface@method#execute
+    redef \5 equs "Interface@method#execute \6, \2, \3, \4,"
 endm
 
 /*
@@ -285,6 +298,15 @@ endm
         \5+? - Arguments to forward to Method
 */
 macro Interface@method#execute
+    def \@#prev_super equs "{super}"
+
+    if def(\3#Supers#\4)
+        Super#{\3#Supers#\4} super, \1
+    else
+        ; todo - have supers for init/exit
+        redef super equs "fail \"\3 - \4\""
+    endc
+
     def \@#macro equs "try_exec \3@\4,"
 
     if def(\2@handle)
@@ -293,6 +315,7 @@ macro Interface@method#execute
         shift 4
         \@#macro \#
     endc
+    redef super equs "{\@#prev_super}"
 endm
 
 macro Interface@end
@@ -301,6 +324,14 @@ macro Interface@end
 
     Trace@Close
     pops
+    
+    ; assign the supers from the parent
+    if def(\2#Parent)
+        Interface@MapParentMacros {Trace}, \1, \2, {\2#Parent}, {{\2#Parent}#AllMacros}
+    endc
+  
+    ; assign any missing supers to fail
+    Interface@InitializeSupers \2, {\2#Methods}, {\2#Lambdas}
 
     ; define the Interface Name to open a Trace of this Context & Interface
     def \2 equs "\tInterface@open \1, \2, init,"
@@ -327,7 +358,7 @@ endm
     This is necessary for UseSupers to make sure it assigned values to proper context
     This also gets called when re-entering, in case a nested context had overwritten this
 
-    \1 - Context
+    \1 - Trace
     \2 - Context
     \3 - Interface    */
 macro Interface@open#init
@@ -364,6 +395,51 @@ macro Interface@close
     ; close the context
     Trace@Close
 endm
+
+macro Interface@MapParentMacros
+    for i, 5, _narg+1
+        def \@#i equs "\<i>"
+
+        ; if not defined in this type, pull from parent
+        if not def(\3@{\@#i})
+            ; if it is a super in the parent, then interpret it
+            if \4@\<i>#isSuper
+                redef \3@{\@#i} equs "{\4@\<i>}"
+            else
+                redef \3@{\@#i} equs "Interface@method#execute {Trace}, \2, \4, {\@#i},"
+            endc
+            redef \3#Supers#\<i> equs "{\4#Supers#\<i>}"
+            redef \3@\<i>#isSuper = 1
+
+            append \3#Methods, {\@#i}
+            append \3#AllMacros, {\@#i}
+        ; otherwise, the super is the parent
+        else
+            ; if it is a super in the parent, then interpret it
+            if \4@\<i>#isSuper
+                redef \3#Supers#\<i> equs "{\4@\<i>}"
+            else
+                redef \3#Supers#\<i> equs "Interface@method#execute {Trace}, \2, \4, \<i>"
+            endc
+            redef \3@\<i>#isSuper = 0
+        endc
+    endr
+endm
+
+/*  For all methods that dont have a super, assign the super to fail
+    \1 - Type name    */
+macro Interface@InitializeSupers
+    for i, 2, _narg+1
+        if not def(\1#Supers#\<i>)
+            def \1#Supers#\<i> equs "fail \"super does not exist for this context\","
+            redef \1@\<i>#isSuper = 0
+        endc
+    endr
+endm
+
+
+
+
 
 incdir Scope, Overload, Return
 incdir Struct, ByteStruct

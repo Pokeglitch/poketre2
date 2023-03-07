@@ -1,18 +1,15 @@
 /*
 TODO:
-    - Can remove the concept of default macros once Text becomes a scope in all scenarios
-        - can find with Regex: ^[ \t]+_
---------------
-    Move the parent/super to Context itself, instead of only in Type?
-
     Add way to extend any context
     - can reassign all method, init, exit, etc
 
-    Attach #RegisterSize = 6/18 to all registers
+    Move the parent/super to Context itself, instead of only in Type?
+
+    make a Register Type?
+    Attach #RegisterSize = 6/12 to all registers
     - i.e. a#RegisterSize
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 */
-
 
 /*  A context is a way to have certain macros behave in a particular manner
     When a "context macro" is called, it will execute the macro that belongs to the current context
