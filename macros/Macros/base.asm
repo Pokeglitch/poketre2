@@ -218,6 +218,11 @@ Scope Test9, Test8
 end
 
 Scope TestX
+    init
+        def \1#Isolate = true
+    endm
+
+    forward reset, say
 end
 
     Test9 test

@@ -6,7 +6,7 @@ Context Struct
 
     open
         def \1#Symbol equs "\5"
-        def \1#UseSuper = false
+        def \1#Isolate = true
 
         ; remove Symbol from forward to Instance Init
         def \@#args equs "\1, \2, \3, \4"

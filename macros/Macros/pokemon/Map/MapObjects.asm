@@ -7,8 +7,10 @@ List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Scope MapObjects
     property Number, CurrentSection
-
+    forward MapSec
+    
     init
+        def \1#Isolate = true
         def \1#Map equs "\2"
         def \1#ExpectText = false
 

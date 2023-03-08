@@ -1,14 +1,14 @@
 /*
 TODO:
-    test super with lambas
-
-    can define bypass xx to allow UseSuper for explicit functions
-    - super should refer to the parent definition
-    - bypass should refer to the parent trace
-        - so rename usesuper to bypass
+    Does 'from', 'forward' get inherited properly?
 
     - Finalize CheckReservedName and apply where necessary
         - can utilize Array@contains
+
+    make a Register Type?
+    Attach #RegisterSize = 6/12 to all registers
+    - i.e. a#RegisterSize
+    - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
         - for 'func', first line after macro definition will assign the names to \@
@@ -55,6 +55,8 @@ TODO:
 
     lambda: An equs macro
         NOTE - must resolve to a macro
+
+    forward: Macro to permit access through isolation
 */
 def super equs "fail \"super does not exist for this context\"\n"
 
@@ -70,8 +72,8 @@ func
     pushs
     Trace@Open Context
 
-    ; Disable UseSuper
-    def {Trace}#UseSuper = false
+    ; Enable Isolate
+    def {Trace}#Isolate = true
 
     ; Define the single use macro names
     Trace@Disposables \1, init, exit, open, method, property, handle, close
@@ -116,23 +118,16 @@ endm
 macro Interface@func
     Trace@Disposable func, \3
     redef func equs "\tInterface@SetMacros \1, \2\n{func}"
-    dispose from, method, lambda, property, \1_End#Definition
+    dispose from, method, lambda, property, forward, \1_End#Definition
 endm
 
+; set the macros to include the name of the Interface
 macro Interface@SetMacros
-    ; update the from macro to include the name of the Interface
     redef from equs "Interface@from \1, \2,"
-
-    ; update the method macro to include the name of the Interface
+    redef forward equs "Interface@forward \2,"
     redef method equs "Interface@method#define \1, \2,"
-
-    ; update the method macro to include the name of the Interface
     redef lambda equs "Interface@lambda \2,"
-
-    ; update the property macro to include the name of the Interface
     redef property equs "Interface@property \2,"
-
-    ; update the end macro to include the name of the Interface
     redef \1_End#Definition equs "Interface@end \1, \2,"
 endm
 
@@ -152,6 +147,7 @@ macro Interface@Define
     def \2#Lambdas equs ""
     def \2#Methods equs ""
     def \2#Properties equs ""
+    def \2#Forwards equs ""
     
     ; Define the single use macro names
     Trace@Disposables \2, init, exit
@@ -185,7 +181,19 @@ macro Interface@from
     for i, 3, _narg
         def \2_from@\<i> equs "{temp@macro}"
     endr
+endm
 
+macro Interface@forward
+    for i, 2, _narg+1
+        ; Add the method to the list of forwards
+        append \1#Forwards, \<i>
+    endr
+endm
+
+macro Interface@forward#assign
+    for i, 2, _narg+1
+        def \1#Forwards#\<i> = true
+    endr
 endm
 
 macro Interface@lambda
@@ -395,7 +403,7 @@ macro Interface@open
 endm
 
 /*  Define the Interface Name methods to hardcode the corresponding context
-    This is necessary for UseSupers to make sure it assigned values to proper context
+    This is necessary for Isolates to make sure it assigned values to proper context
     This also gets called when re-entering, in case a nested context had overwritten this
 
     \1 - Trace
@@ -409,6 +417,9 @@ macro Interface@open#init
 
     ; Initialize the Interface properties
     Interface@property#assign \1, \2, \3
+
+    ; Initialize the Forwards
+    Interface@forward#assign \1, {\3#Forwards}
 
     ; execute the super init macro
     if \3@\4#isSuper
@@ -443,7 +454,7 @@ macro Interface@close
     Trace@Close
 endm
 
-/*    \1 - Trace
+/*  \1 - Trace
     \2 - Context
     \3 - Interface    */
 macro Interface@close#exit

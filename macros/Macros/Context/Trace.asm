@@ -1,28 +1,17 @@
-/*
-TODO:
-    Add way to extend any context
-    - can reassign all method, init, exit, etc
+/*  The trace keeps track of the the context that have been entered via a Stack
 
-    Move the parent/super to Context itself, instead of only in Type?
-
-    make a Register Type?
-    Attach #RegisterSize = 6/12 to all registers
-    - i.e. a#RegisterSize
-    - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
-*/
-
-/*  A context is a way to have certain macros behave in a particular manner
+    A context is a way to have certain macros behave in a particular manner
     When a "context macro" is called, it will execute the macro that belongs to the current context
     If there is no macro in the current context, it will check the parent, and so on
     - Optionally, the context can be restricted to fail if the macro is not defined in the current context, rather than check the parent
-        - This is based on the value of the #UseSuper property
+        - This is based on the value of the #Isolate property
 
     Trace@Open will change context
     Trace@Close will close the current context
 */
 macro Trace@init
     def \1#Name equs "\2"
-    def \1#UseSuper = true
+    def \1#Isolate = false
     def \1#Disposables equs ""
 endm
 
@@ -75,7 +64,7 @@ macro Trace@push
     redef Trace#{d:Trace#size} equs "\@"
 
     def \@#Name equs "\1"
-    def \@#UseSuper = true
+    def \@#Isolate = false
     def \@#Disposables equs ""
 endm
 
@@ -85,11 +74,11 @@ endm
 
     Trace@push ,
 
-    ; disable UseSuper for the base context
-    def {Trace}#UseSuper = false
+    ; enable Isolate for the base context
+    def {Trace}#Isolate = true
 
 ; To call the given macro based on the nearest macro in the context stack
-; or until "UseSuper" is false
+; or until "Isolate" is true
 macro ExecuteContextMacro
     ; Traverse the context stack to find the macro
     for context_i, Trace#size, 0, -1
@@ -98,8 +87,10 @@ macro ExecuteContextMacro
             shift
             \@#macro \#
             break
-        elif !({Trace#{d:context_i}}#UseSuper)
-            fail "\1 is not defined in the {{Trace#{d:context_i}}#Name} Context"
+        elif {Trace#{d:context_i}}#Isolate
+            if not def({Trace#{d:context_i}}#Forwards#\1)
+                fail "\1 is not defined in the {{Trace#{d:context_i}}#Name} Context"
+            endc
         endc
     endr
 endm
