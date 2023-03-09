@@ -153,18 +153,13 @@ endm
 
 incdirs Context, Pokemon
 
-
-
-macro display_supers
-    msg \1 Supers
-    for i, 2, _narg+1
-        msg \<i> | "{\1#Supers#\<i>}"
-    endr
-endm
-
 Scope Test0
     init
         msg Init Test0 | "\#"
+    endm
+    from TestX2, TestX7
+    func
+        msg Test0 From TestX2 | "\#"
     endm
     exit
         msg Exit Test0
@@ -196,6 +191,11 @@ Scope Test5, Test4
         msg Test5 | "\#"
         super
     endm
+    from TestX2, TestX7
+    func
+        super
+        msg Test5 From TestX2 | "\#"
+    endm
 end
 Scope Test6, Test5
     method reset
@@ -206,16 +206,18 @@ Scope Test6, Test5
     endm
 end
 Scope Test7, Test6
+    from TestX1, TestX2, TestX7
+    func
+        super
+        msg Test7 From TestX2 | "\#"
+        super
+    endm
 end
 Scope Test8, Test7
     init
         super
         msg Init Test8 | "\#"
         super
-    endm
-    from TestX2
-    func
-        msg From TestX2
     endm
 end
 Scope Test9, Test8

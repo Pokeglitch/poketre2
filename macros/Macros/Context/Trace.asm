@@ -31,9 +31,11 @@ macro Trace@Open
 endm
 
 macro Trace@ExecuteCallback
-    ; if the callback exists, execute it
-    if def({\1#Name}_from@{\2#Name})
-        {\1#Name}_from@{\2#Name} \1, \2
+    if strcmp("{\1#Name}","")
+        ; if the callback exists, execute it
+        if def({\1#Name}@from@{\2#Name})
+            {\1#Name}@from@{\2#Name} \1, \2
+        endc
     endc
 endm
 

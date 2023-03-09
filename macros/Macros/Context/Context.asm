@@ -1,10 +1,10 @@
 /*
 TODO:
     Get "super" working for From
+        - Dont add From to froms list if already defined
     From should trigger when returning from a Context that inherits from the context defined in the 'from' statement
 
 --------
-
     Clean up how the init/exit supers get assigned
 
     - Finalize CheckReservedName and apply where necessary
@@ -18,7 +18,6 @@ TODO:
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
         - for 'func', first line after macro definition will assign the names to \@
         - plus, 'rest' for any extra
-
 */
 
 /*  A Context creates a new Trace Type
@@ -178,29 +177,27 @@ macro Interface@from
     if so
         redef temp@macro equs \<_NARG>
     else
-        redef temp@macro equs "\2@from@\1#Definition"
+        redef temp@name equs "\2@from@\<_NARG>#Definition"
 
-        Interface@func \1, \2, {temp@macro}
+        Interface@func \1, \2, {temp@name}
 
-        Interface@from#define \2, \<_NARG>, temp@macro
+        redef temp@macro equs "Interface@from#execute \2@from@\<_NARG>,"
+        Interface@from#define \2, from@\<_NARG>, temp@macro
     endc
 
     for i, 3, _narg
-        Interface@from#define \2, \<i>, temp@macro
+        Interface@from#define \2, from@\<i>, temp@macro
     endr
 endm
 
 macro Interface@from#define
-    def \1_from@\2 equs "{\3}"
+    def \1@\2 equs "{\3}"
     append \1#Froms, \2
 endm
 
 macro Interface@from#inherit
-    if _narg > 2
-        msg "\#"
-    endc
     for i, 3, _narg+1
-        Interface@from#define \1, \<i>, \2_from@\<i>
+        Interface@from#define \1, \<i>, \2@\<i>
     endr
 endm
 
@@ -377,7 +374,7 @@ endm
 macro Interface@method#execute
     def \@#prev_super equs "{super}"
 
-    {\3#Supers#\4} super, \1
+    {\3@\4#Super} super, \1
 
     def \@#macro equs "try_exec \3@\4,"
 
@@ -397,7 +394,7 @@ macro Interface@end
     Trace@Close
     pops
     
-    ; assign the supers from the parent
+    ; inherit from parent/assign supers
     if def(\2#Parent)
         if def(\2@init)
             append \2#Methods, init
@@ -408,10 +405,11 @@ macro Interface@end
 
         
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
-        Interface@super#define#parent \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
-        Interface@super#define#parent \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
+        Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
+        Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
+        Interface@super#inherit2 \1, \2, {\2#Parent}, {{\2#Parent}#Froms}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
-        Interface@from#inherit \2, {\2#Parent}, {{\2#Parent}#Froms}
+        ;Interface@from#inherit \2, {\2#Parent}, {{\2#Parent}#Froms}
     else
         append \2#Methods, init, exit
     endc
@@ -419,6 +417,7 @@ macro Interface@end
     ; assign any missing supers to fail
     Interface@super#define#fail \2, {\2#Methods}
     Interface@super#define#fail \2, {\2#Lambdas}
+    Interface@super#define#fail2 \2, {\2#Froms}
 
     ; define the Interface Name to open a Trace of this Context & Interface
     def \2 equs "\tInterface@open \1, \2, init,"
@@ -507,22 +506,60 @@ macro Interface@close#exit
     endc
 endm
 
-macro Interface@super#define#parent
+macro Interface@super#inherit
     for i, 4, _narg+1
         ; if not defined in this type, pull from parent
         if not def(\2@\<i>)
             Interface@super#define \2@\<i>, \1, \3, \<i>
 
-            redef \2#Supers#\<i> equs "\3#Supers#\<i>"
+            redef \2@\<i>#Super equs "\3@\<i>#Super"
             redef \2@\<i>#isSuper = true
             
             append \2#Methods, \<i>
         ; otherwise, the super is the parent
         else
-            Interface@super#define \2#Supers#\<i>, \1, \3, \<i>
+            Interface@super#define \2@\<i>#Super, \1, \3, \<i>
             redef \2@\<i>#isSuper = false
         endc
     endr
+endm
+
+macro Interface@super#inherit2
+    for i, 4, _narg+1
+        ; if not defined in this type, pull from parent
+        if not def(\2@\<i>)
+            Interface@super#define2 \2@\<i>, \1, \3, \<i>
+
+            redef \2@\<i>#Super equs "{\3@\<i>#Super}"
+            redef \2@\<i>#isSuper = true
+            
+            append \2#Froms, \<i>
+        ; otherwise, the super is the parent
+        else
+            Interface@super#define2 \2@\<i>#Super, \1, \3, \<i>
+            redef \2@\<i>#isSuper = false
+        endc
+    endr
+endm
+/*
+    \1 - Symbol to assign to
+    \2 - Context
+    \3 - Parent Interface
+    \4 - Method
+*/
+macro Interface@super#define2
+    redef \1 equs "{\3@\4}"
+endm
+
+macro Interface@from#execute
+    def \@#prev_super equs "{super}"
+    redef super equs "Interface@from#super \1#Super, \2, \3,"
+    exec \1#Definition, \2, \3
+    redef super equs "{\@#prev_super}"
+endm
+
+macro Interface@from#super
+    {\1} \2, \3
 endm
 
 /*
@@ -535,7 +572,7 @@ macro Interface@super#define
     ; if it is a super in the parent, then copy it
     if \3@\4#isSuper
         redef \1 equs "{\3@\4}"
-    ; otherwise, assign it to that method
+    ; otherwise, assign it to be that parent method
     else
         redef \1 equs "Interface@super#assign \2, \3, \4,"
     endc
@@ -545,8 +582,19 @@ endm
     \1 - Type name    */
 macro Interface@super#define#fail
     for i, 2, _narg+1
-        if not def(\1#Supers#\<i>)
-            redef \1#Supers#\<i> equs "Interface@super#fail"
+        if not def(\1@\<i>#Super)
+            redef \1@\<i>#Super equs "Interface@super#fail"
+            redef \1@\<i>#isSuper = false
+        endc
+    endr
+endm
+
+/*  For all methods that dont have a super, assign the super to fail
+    \1 - Type name    */
+macro Interface@super#define#fail2
+    for i, 2, _narg+1
+        if not def(\1@\<i>#Super)
+            Interface@super#fail \1@\<i>#Super
             redef \1@\<i>#isSuper = false
         endc
     endr
