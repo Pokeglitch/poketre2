@@ -1,6 +1,11 @@
 /*
 TODO:
-    Does 'from', 'forward' get inherited properly?
+    Get "super" working for From
+    From should trigger when returning from a Context that inherits from the context defined in the 'from' statement
+
+--------
+
+    Clean up how the init/exit supers get assigned
 
     - Finalize CheckReservedName and apply where necessary
         - can utilize Array@contains
@@ -13,6 +18,7 @@ TODO:
     - Method can define arguments by name (get notes from Obsidian 3/1/23)
         - for 'func', first line after macro definition will assign the names to \@
         - plus, 'rest' for any extra
+
 */
 
 /*  A Context creates a new Trace Type
@@ -148,6 +154,7 @@ macro Interface@Define
     def \2#Methods equs ""
     def \2#Properties equs ""
     def \2#Forwards equs ""
+    def \2#Froms equs ""
     
     ; Define the single use macro names
     Trace@Disposables \2, init, exit
@@ -171,23 +178,52 @@ macro Interface@from
     if so
         redef temp@macro equs \<_NARG>
     else
-        redef temp@macro equs "\2@from#\1"
+        redef temp@macro equs "\2@from@\1#Definition"
 
         Interface@func \1, \2, {temp@macro}
 
-        def \2_from@\<_NARG> equs "{temp@macro}"
+        Interface@from#define \2, \<_NARG>, temp@macro
     endc
 
     for i, 3, _narg
-        def \2_from@\<i> equs "{temp@macro}"
+        Interface@from#define \2, \<i>, temp@macro
+    endr
+endm
+
+macro Interface@from#define
+    def \1_from@\2 equs "{\3}"
+    append \1#Froms, \2
+endm
+
+macro Interface@from#inherit
+    if _narg > 2
+        msg "\#"
+    endc
+    for i, 3, _narg+1
+        Interface@from#define \1, \<i>, \2_from@\<i>
     endr
 endm
 
 macro Interface@forward
     for i, 2, _narg+1
         ; Add the method to the list of forwards
-        append \1#Forwards, \<i>
+        Interface@forward#define \1, \<i>
     endr
+endm
+
+macro Interface@forward#inherit
+    for i, 2, _narg+1
+        ; Add the method to the list of forwards if not already there
+        if not def(\1#Forwards#\<i>)
+            Interface@forward#define \1, \<i>
+        endc
+    endr
+endm
+
+macro Interface@forward#define
+    ; Add the method to the list of forwards
+    def \1#Forwards#\2 = true
+    append \1#Forwards, \2
 endm
 
 macro Interface@forward#assign
@@ -370,9 +406,12 @@ macro Interface@end
             append \2#Methods, exit
         endc
 
+        
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
         Interface@super#define#parent \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
         Interface@super#define#parent \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
+        Interface@forward#inherit \2, {{\2#Parent}#Forwards}
+        Interface@from#inherit \2, {\2#Parent}, {{\2#Parent}#Froms}
     else
         append \2#Methods, init, exit
     endc

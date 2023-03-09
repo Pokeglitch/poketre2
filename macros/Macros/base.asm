@@ -213,6 +213,10 @@ Scope Test8, Test7
         msg Init Test8 | "\#"
         super
     endm
+    from TestX2
+    func
+        msg From TestX2
+    endm
 end
 Scope Test9, Test8
 end
@@ -225,8 +229,11 @@ Scope TestX
     forward reset, say
 end
 
+Scope TestX2, TestX
+end
+
     Test9 test
-        TestX
+        TestX2
             reset
             say hi
         end
@@ -286,5 +293,5 @@ end
 Type Type9, Type8
 end
 
-    Type9 test2
-    test2@reset
+    ;Type9 test2
+    ;test2@reset
