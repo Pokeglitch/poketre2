@@ -6,30 +6,24 @@
 macro Interface@from
     is#String \<_NARG>
     if so
-        redef temp@macro equs \<_NARG>
+        for i, 3, _narg
+            def \2@from@\<i> equs \<_NARG>
+            append \2#Froms, from@\<i>
+        endr
     else
-        redef temp@name equs "\2@from@\<_NARG>#Definition"
-
+        redef temp@name equs "\2@from@\@"
         Interface@func \1, \2, {temp@name}
-
-        redef temp@macro equs "Interface@from#execute \2@from@\<_NARG>,"
-        Interface@from#define \2, from@\<_NARG>, temp@macro
+        for i, 3, _narg+1
+            def \2@from@\<i> equs "Interface@from#execute \2@from@\<i>, {temp@name},"
+            append \2#Froms, from@\<i>
+        endr
     endc
-
-    for i, 3, _narg
-        Interface@from#define \2, from@\<i>, temp@macro
-    endr
-endm
-
-macro Interface@from#define
-    def \1@\2 equs "{\3}"
-    append \1#Froms, \2
 endm
 
 macro Interface@from#execute
     def \@#prev_super equs "{super}"
-    redef super equs "{\1#Super} \2, \3,"
-    exec \1#Definition, \2, \3
+    redef super equs "{\1#Super} \3, \4,"
+    exec \2, \3, \4
     redef super equs "{\@#prev_super}"
 endm
 

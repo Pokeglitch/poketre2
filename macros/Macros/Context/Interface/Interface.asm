@@ -204,7 +204,7 @@ macro Interface@super#inherit
         if not def(\2@\<i>)
             Interface@super#define \2@\<i>, \1, \3, \<i>
 
-            redef \2@\<i>#Super equs "\3@\<i>#Super"
+            redef \2@\<i>#Super equs "{\3@\<i>#Super}"
             redef \2@\<i>#isSuper = true
             
             append \2#Methods, \<i>

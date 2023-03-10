@@ -46,12 +46,13 @@ Scope MapScriptBattle
 
     method text
     func
+        msg {\1#TeamName} | "\#"
         Text prompt, Team
         
         pushs
         MapSec frag, \1#TeamName Texts
             ; First text is WinText, next is LoseText
-            if def({\1#TeamName}WinText) == 0
+            if not def({\1#TeamName}WinText)
                 {\1#TeamName}WinText:
             else
                 {\1#TeamName}LoseText:

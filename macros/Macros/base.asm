@@ -157,7 +157,7 @@ Scope Test0
     init
         msg Init Test0 | "\#"
     endm
-    from TestX2, TestX7
+    from TestX7, TestX2
     func
         msg Test0 From TestX2 | "\#"
     endm
@@ -191,7 +191,7 @@ Scope Test5, Test4
         msg Test5 | "\#"
         super
     endm
-    from TestX2, TestX7
+    from TestX7, TestX2
     func
         super
         msg Test5 From TestX2 | "\#"
@@ -206,7 +206,7 @@ Scope Test6, Test5
     endm
 end
 Scope Test7, Test6
-    from TestX1, TestX2, TestX7
+    from TestX7, TestX2, TestX1
     func
         super
         msg Test7 From TestX2 | "\#"
