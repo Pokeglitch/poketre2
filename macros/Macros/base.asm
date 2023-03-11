@@ -153,6 +153,74 @@ endm
 
 incdirs Context, Pokemon
 
+Scope Func
+    function myFuncA
+    func
+        msg Func.myFuncA | "\#"
+    endm
+    
+    function myFuncB
+    func
+        msg Func.myFuncB | "\#"
+    endm
+
+    function myFuncC, myFuncD, "msg Func.myFuncCD | "
+end
+
+Scope Func2, Func
+end
+
+Scope Func3, Func2
+    function myFuncA, myFuncB
+    func
+        super A3
+        msg Func3.myFunc | "\#"
+        super B3
+    endm
+
+    function myFuncC
+    func
+        super C3
+        msg Func3.myFuncC | "\#"
+        super D3
+    endm
+end
+
+Scope Func4, Func3
+    function myFuncA, myFuncB
+    func
+        super A4
+        msg Func4.myFunc | "\#"
+        super B4
+    endm
+
+    function myFuncC
+    func
+        super C4
+        msg Func4.myFuncC | "\#"
+        super D4
+    endm
+end
+
+Scope Func5, Func4
+end
+
+Scope XFunc
+end
+
+Func5
+    myFuncA Ayyyy
+    myFuncB Beeee
+    XFunc
+        myFuncA Ayyyy
+        myFuncB Beeee
+        myFuncC Seeee
+        myFuncD Deeee
+    end
+end
+
+
+
 Scope Test0
     init
         msg Init Test0 | "\#"
@@ -166,7 +234,7 @@ Scope Test0
     endm
 end
 Scope Test1, Test0
-    method reset
+    function reset
     func
         msg Test1 | "\#"
     endm
@@ -175,7 +243,7 @@ end
 Scope Test2, Test1
 end
 Scope Test3, Test2
-    method reset
+    function reset
     func
         super
         msg Test3 | "\#"
@@ -185,7 +253,7 @@ end
 Scope Test4, Test3
 end
 Scope Test5, Test4
-    method reset
+    function reset
     func
         super
         msg Test5 | "\#"
@@ -198,7 +266,7 @@ Scope Test5, Test4
     endm
 end
 Scope Test6, Test5
-    method reset
+    function reset
     func
         super
         msg Test6 | "\#"
@@ -247,7 +315,7 @@ end
 
 
 Type Type1
-    method reset
+    function reset
     func
         msg Type1 | "\#"
     endm
@@ -255,7 +323,7 @@ end
 Type Type2, Type1
 end
 Type Type3, Type2
-    method reset
+    function reset
     func
         super
         msg Type3 | "\#"
@@ -268,7 +336,7 @@ Type Type4, Type3
     endm
 end
 Type Type5, Type4
-    method reset
+    function reset
     func
         super
         msg Type5 | "\#"
@@ -276,7 +344,7 @@ Type Type5, Type4
     endm
 end
 Type Type6, Type5
-    method reset
+    function reset
     func
         super
         msg Type6 | "\#"
@@ -295,5 +363,5 @@ end
 Type Type9, Type8
 end
 
-    ;Type9 test2
-    ;test2@reset
+    Type9 test2
+    test2@reset

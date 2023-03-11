@@ -105,7 +105,7 @@ macro Context@TryExec
 endm
 
 incasm Trace
-incdir Interface, Forward, From, Lambda, Method, Property
+incdir Interface, Forward, From, Function, Lambda, Method, Property
 incdir Scope, Overload, Return
 incdir Struct, ByteStruct
 incdir Type, Number, String, List, Stack

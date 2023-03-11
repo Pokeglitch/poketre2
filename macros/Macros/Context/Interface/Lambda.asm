@@ -9,15 +9,10 @@ endm
 
 macro Interface@lambda#assign
     if def(\2@method)
-        if _narg == 3
-            def \@#macro equs "Interface@lambda#assign \#,"
-            foreach \@#macro, {\3#Lambdas}
-        else
-            def \@#args equs "\#"
-            def \@#continue equs "Interface@lambda#assign#final \3@\4,"
-            
-            Interface@continue \2@method, \@#continue, \1, \4
-        endc
+        for i, 4, _narg+1
+            def \@#continue equs "Interface@lambda#assign#final \3@\<i>,"
+            Interface@continue \2@method, \@#continue, \1, \<i>
+        endr
     endc
 endm
 

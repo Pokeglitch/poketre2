@@ -14,7 +14,7 @@ endm
 macro Interface@func
     Trace@Disposable func, \3
     redef func equs "\tInterface@SetMacros \1, \2\n{func}"
-    dispose from, method, lambda, property, forward, \1_End#Definition
+    dispose from, method, lambda, function, property, forward, \1_End#Definition
 endm
 
 ; set the macros to include the name of the Interface
@@ -23,6 +23,7 @@ macro Interface@SetMacros
     redef forward equs "Interface@forward \2,"
     redef method equs "Interface@method#define \1, \2,"
     redef lambda equs "Interface@lambda \2,"
+    redef function equs "Interface@function \1, \2,"
     redef property equs "Interface@property \2,"
     redef \1_End#Definition equs "Interface@end \1, \2,"
 endm
@@ -45,6 +46,7 @@ macro Interface@Define
     def \2#Properties equs ""
     def \2#Forwards equs ""
     def \2#Froms equs ""
+    def \2#Functions equs ""
     
     ; Define the single use macro names
     Trace@Disposables \2, init, exit
@@ -95,12 +97,12 @@ macro Interface@end
         if def(\2@exit)
             append \2#Methods, exit
         endc
-
         
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
         Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
         Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
         Interface@from#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Froms}
+        Interface@function#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
     else
         append \2#Methods, init, exit
@@ -110,6 +112,7 @@ macro Interface@end
     Interface@super#define#fail \2, {\2#Methods}
     Interface@super#define#fail \2, {\2#Lambdas}
     Interface@super#define#fail2 \2, {\2#Froms}
+    Interface@super#define#fail2 \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface
     def \2 equs "\tInterface@open \1, \2, init,"
@@ -164,10 +167,13 @@ endm
 
 macro Interface@assign
     ; define the lambdas
-    Interface@lambda#assign \1, \2, \3
+    Interface@lambda#assign \1, \2, \3, {\3#Lambdas}
+
+    ; define the functions
+    Interface@function#assign \1, \2, \3, {\3#Functions}
 
     ; define the Interface Name methods to include the corresponding Trace
-    Interface@method#assign \1, \2, \3
+    Interface@method#assign \1, \2, \3, {\3#Methods}
 endm
 
 /*

@@ -46,7 +46,6 @@ Scope MapScriptBattle
 
     method text
     func
-        msg {\1#TeamName} | "\#"
         Text prompt, Team
         
         pushs

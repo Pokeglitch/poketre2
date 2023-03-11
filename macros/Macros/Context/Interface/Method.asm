@@ -12,13 +12,10 @@ endm
 
 macro Interface@method#assign
     if def(\2@method)
-        if _narg == 3
-            def \@#macro equs "Interface@method#assign \#,"
-            foreach \@#macro, {\3#Methods}
-        else
-            def \@#continue equs "Interface@method#assign#final \#,"
-            Interface@continue \2@method, \@#continue, \1, \4
-        endc
+        for i, 4, _narg+1
+            def \@#continue equs "Interface@method#assign#final \1, \2, \3, \<i>,"
+            Interface@continue \2@method, \@#continue, \1, \<i>
+        endr
     endc
 endm
 

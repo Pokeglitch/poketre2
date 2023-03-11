@@ -11,7 +11,7 @@ macro Interface@from
             append \2#Froms, from@\<i>
         endr
     else
-        redef temp@name equs "\2@from@\@"
+        redef temp@name equs "\2@\@"
         Interface@func \1, \2, {temp@name}
         for i, 3, _narg+1
             def \2@from@\<i> equs "Interface@from#execute \2@from@\<i>, {temp@name},"
@@ -31,25 +31,12 @@ macro Interface@from#inherit
     for i, 4, _narg+1
         ; if not defined in this type, pull from parent
         if not def(\2@\<i>)
-            Interface@from#inherit#define \2@\<i>, \1, \3, \<i>
-
+            redef \2@\<i> equs "{\3@\<i>}"
             redef \2@\<i>#Super equs "{\3@\<i>#Super}"
-            redef \2@\<i>#isSuper = true
-            
             append \2#Froms, \<i>
         ; otherwise, the super is the parent
         else
-            Interface@from#inherit#define \2@\<i>#Super, \1, \3, \<i>
-            redef \2@\<i>#isSuper = false
+            redef \2@\<i>#Super equs "{\3@\<i>}"
         endc
     endr
-endm
-/*
-    \1 - Symbol to assign to
-    \2 - Context
-    \3 - Parent Interface
-    \4 - Method
-*/
-macro Interface@from#inherit#define
-    redef \1 equs "{\3@\4}"
 endm
