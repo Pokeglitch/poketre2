@@ -225,10 +225,7 @@ Scope Test0
     init
         msg Init Test0 | "\#"
     endm
-    from TestX7, TestX2
-    func
-        msg Test0 From TestX2 | "\#"
-    endm
+    from TestX2, TestX7, "msg Test0 From TestX2 | "
     exit
         msg Exit Test0
     endm
@@ -238,7 +235,7 @@ Scope Test1, Test0
     func
         msg Test1 | "\#"
     endm
-    lambda say, "msg "
+    function say, "msg "
 end
 Scope Test2, Test1
 end

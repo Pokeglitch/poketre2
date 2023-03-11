@@ -1,3 +1,6 @@
+/*
+    TODO - instead of following with func, follow with 'args'
+*/
 macro Interface@function
     is#String \<_NARG>
     if so
@@ -14,6 +17,7 @@ macro Interface@function
         endr
     endc
 endm
+
 /*
     \1 - Symbol to get super from
     \2 - Method to execute
@@ -51,12 +55,12 @@ macro Interface@function#inherit
     for i, 4, _narg+1
         ; if not defined in this type, pull from parent
         if not def(\2@\<i>)
-            redef \2@\<i> equs "\3@\<i>"
-            redef \2@\<i>#Super equs "\3@\<i>#Super"
+            redef \2@\<i> equs "{\3@\<i>}"
+            redef \2@\<i>#Super equs "{\3@\<i>#Super}"
             append \2#Functions, \<i>
         ; otherwise, the super is the parent
         else
-            redef \2@\<i>#Super equs "\3@\<i>"
+            redef \2@\<i>#Super equs "{\3@\<i>}"
         endc
     endr
 endm
@@ -71,5 +75,5 @@ macro Interface@function#assign
 endm
 
 macro Interface@function#assign#final
-    redef \5 equs "\3@\4 \1, \2, 3, \4,"
+    redef \5 equs "{\3@\4} \1, \2, 3, \4,"
 endm

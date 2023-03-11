@@ -45,7 +45,6 @@ macro Interface@Define
     def \2#Methods equs ""
     def \2#Properties equs ""
     def \2#Forwards equs ""
-    def \2#Froms equs ""
     def \2#Functions equs ""
     
     ; Define the single use macro names
@@ -101,7 +100,6 @@ macro Interface@end
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
         Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
         Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
-        Interface@from#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Froms}
         Interface@function#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
     else
@@ -111,7 +109,6 @@ macro Interface@end
     ; assign any missing supers to fail
     Interface@super#define#fail \2, {\2#Methods}
     Interface@super#define#fail \2, {\2#Lambdas}
-    Interface@super#define#fail2 \2, {\2#Froms}
     Interface@super#define#fail2 \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface

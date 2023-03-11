@@ -7,36 +7,26 @@ macro Interface@from
     is#String \<_NARG>
     if so
         for i, 3, _narg
-            def \2@from@\<i> equs \<_NARG>
-            append \2#Froms, from@\<i>
+            def \2@from@\<i> equs "Interface@function#lambda \<_NARG>,"
+            append \2#Functions, from@\<i>
         endr
     else
         redef temp@name equs "\2@\@"
         Interface@func \1, \2, {temp@name}
         for i, 3, _narg+1
-            def \2@from@\<i> equs "Interface@from#execute \2@from@\<i>, {temp@name},"
-            append \2#Froms, from@\<i>
+            def \2@from@\<i> equs "Interface@function#execute \2@from@\<i>, {temp@name}," ;"Interface@from#execute \2@from@\<i>, {temp@name},"
+            append \2#Functions, from@\<i>
         endr
     endc
 endm
 
-macro Interface@from#execute
-    def \@#prev_super equs "{super}"
-    redef super equs "{\1#Super} \3, \4,"
-    exec \2, \3, \4
-    redef super equs "{\@#prev_super}"
-endm
+def From#Interface@function#lambda equs "Interface@function#lambda"
 
-macro Interface@from#inherit
-    for i, 4, _narg+1
-        ; if not defined in this type, pull from parent
-        if not def(\2@\<i>)
-            redef \2@\<i> equs "{\3@\<i>}"
-            redef \2@\<i>#Super equs "{\3@\<i>#Super}"
-            append \2#Froms, \<i>
-        ; otherwise, the super is the parent
-        else
-            redef \2@\<i>#Super equs "{\3@\<i>}"
-        endc
-    endr
+macro From#Interface@function#execute
+    ; handle the closed scope so the argument matches what is expected
+    if def(\4@handle)
+        Interface@continue \4@handle, {\3#Name}_from@{\7#Name}, \7,\4,\5,\6
+    else
+        {\3#Name}_from@{\7#Name} \3, \7
+    endc
 endm
