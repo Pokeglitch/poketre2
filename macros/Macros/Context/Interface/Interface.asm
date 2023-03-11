@@ -14,7 +14,7 @@ endm
 macro Interface@func
     Trace@Disposable func, \3
     redef func equs "\tInterface@SetMacros \1, \2\n{func}"
-    dispose from, method, lambda, function, property, forward, \1_End#Definition
+    dispose from, method, function, property, forward, \1_End#Definition
 endm
 
 ; set the macros to include the name of the Interface
@@ -22,7 +22,6 @@ macro Interface@SetMacros
     redef from equs "Interface@from \1, \2,"
     redef forward equs "Interface@forward \2,"
     redef method equs "Interface@method#define \1, \2,"
-    redef lambda equs "Interface@lambda \2,"
     redef function equs "Interface@function \1, \2,"
     redef property equs "Interface@property \2,"
     redef \1_End#Definition equs "Interface@end \1, \2,"
@@ -41,7 +40,6 @@ macro Interface@Define
     Interface@SetMacros \1, \2
 
     ; Initialize the list of members
-    def \2#Lambdas equs ""
     def \2#Methods equs ""
     def \2#Properties equs ""
     def \2#Forwards equs ""
@@ -99,7 +97,6 @@ macro Interface@end
         
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
         Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
-        Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Lambdas}
         Interface@function#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
     else
@@ -108,7 +105,6 @@ macro Interface@end
     
     ; assign any missing supers to fail
     Interface@super#define#fail \2, {\2#Methods}
-    Interface@super#define#fail \2, {\2#Lambdas}
     Interface@super#define#fail2 \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface
@@ -163,9 +159,6 @@ macro Interface@open#init
 endm
 
 macro Interface@assign
-    ; define the lambdas
-    Interface@lambda#assign \1, \2, \3, {\3#Lambdas}
-
     ; define the functions
     Interface@function#assign \1, \2, \3, {\3#Functions}
 

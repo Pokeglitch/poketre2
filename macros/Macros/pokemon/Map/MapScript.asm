@@ -28,7 +28,7 @@ Scope MapScript
         pops
     endm
 
-    lambda Battle, "MapScriptBattle"
+    function Battle, "MapScriptBattle"
 end
 
 ; TODO - extend a generic 'TrainerBattle' scope

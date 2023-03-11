@@ -58,9 +58,6 @@ NOTE: From wont trigger when returning from a Context that inherits from the con
 
     Methods within an Interface
 
-    lambda: An equs macro
-        NOTE - must resolve to a macro
-
     forward: Macro to permit access through isolation
 */
 def super equs "fail \"super does not exist for this context\"\n"
@@ -105,7 +102,7 @@ macro Context@TryExec
 endm
 
 incasm Trace
-incdir Interface, Forward, From, Function, Lambda, Method, Property
+incdir Interface, Forward, From, Function, Method, Property
 incdir Scope, Overload, Return
 incdir Struct, ByteStruct
 incdir Type, Number, String, List, Stack

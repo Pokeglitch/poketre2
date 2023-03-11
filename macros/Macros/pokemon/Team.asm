@@ -75,8 +75,8 @@ Scope TrainerTeam
         end
     endm
 
-    lambda switch, "TeamSwitch"
-    lambda asm, "TeamASM"
+    function switch, "TeamSwitch"
+    function asm, "TeamASM"
 
     from TeamSwitch, TeamASM, "end"
 
@@ -119,7 +119,7 @@ Scope TeamSwitch
         endc
     endm
 
-    lambda case, "TeamSwitchCase"
+    function case, "TeamSwitchCase"
 end
 
 Scope TeamSwitchCase
@@ -132,7 +132,7 @@ Scope TeamSwitchCase
         endc
     endm
 
-    lambda switch, "TrainerTeam switch,"
+    function switch, "TrainerTeam switch,"
 
     from TrainerTeam, "end"
 end

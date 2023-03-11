@@ -1,6 +1,5 @@
 Context Scope
     exit
-        DefineContextMacro {\1#Lambdas}
         DefineContextMacro {\1#Methods}
         DefineContextMacro {\1#Functions}
     endm

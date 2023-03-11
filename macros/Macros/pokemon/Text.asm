@@ -17,7 +17,7 @@ Scope Text
         endr
     endm
 
-    lambda text, "TriggerAutoExit text,"
+    function text, "TriggerAutoExit text,"
 
     method SetAutoExit
     func
