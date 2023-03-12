@@ -13,7 +13,7 @@ Context Struct
         continue {\@#args}, \#
     endm
 
-    function
+    method
         continue {\1#Name}_\2
     endm
 

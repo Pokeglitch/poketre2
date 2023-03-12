@@ -14,7 +14,7 @@ Scope Return
         endc
     endm
 
-    function try_return
+    method try_return
       args
         if !\1#ReturnUsed
             shift
@@ -22,7 +22,7 @@ Scope Return
         endc
     endm
 
-    function return
+    method return
       args
         if \1#ReturnUsed
             fail "Already designated a return value"
@@ -31,7 +31,7 @@ Scope Return
         _return \#
     endm
 
-    function _return
+    method _return
       args
         def \1#ReturnUsed = true
 

@@ -14,14 +14,14 @@ endm
 macro Interface@args
     Trace@Disposable args, \3
     redef args equs "\tInterface@SetMacros \1, \2\n{args}"
-    dispose from, function, property, forward, \1_End#Definition
+    dispose from, method, property, forward, \1_End#Definition
 endm
 
 ; set the macros to include the name of the Interface
 macro Interface@SetMacros
     redef from equs "Interface@from \1, \2,"
     redef forward equs "Interface@forward \2,"
-    redef function equs "Interface@function \1, \2,"
+    redef method equs "Interface@method \1, \2,"
     redef property equs "Interface@property \2,"
     redef \1_End#Definition equs "Interface@end \1, \2,"
 endm
@@ -44,9 +44,9 @@ macro Interface@Define
     def \2#Functions equs ""
     
     ; Define the single use macro names
-    ;Trace@Disposables \2, init, exit
-    redef init equs "\tdispose init\n\tfunction _init\n\targs"
-    redef exit equs "\tdispose exit\n\tfunction _exit\n\targs"
+    Trace@addDisposable init, exit
+    redef init equs "\tdispose init\n\tmethod _init\n\targs"
+    redef exit equs "\tdispose exit\n\tmethod _exit\n\targs"
     
     ; Define the parent if provided
     if _narg == 3
@@ -67,12 +67,12 @@ macro Interface@end
     ; inherit from parent/assign supers
     if def(\2#Parent)
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
-        Interface@function#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
+        Interface@method#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
     endc
     
     ; assign any missing supers to fail
-    Interface@function#inherit#fail \2, {\2#Functions}
+    Interface@method#inherit#fail \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface
     def \2 equs "\tInterface@open \1, \2, _init,"
@@ -121,8 +121,8 @@ macro Interface@open#init
 endm
 
 macro Interface@assign
-    ; define the Interface Name functions to include the corresponding Trace
-    Interface@function#assign \1, \2, \3, {\3#Functions}
+    ; define the Interface Name methods to include the corresponding Trace
+    Interface@method#assign \1, \2, \3, {\3#Functions}
 endm
 
 /*

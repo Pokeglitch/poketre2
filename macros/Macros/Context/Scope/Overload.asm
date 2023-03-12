@@ -5,18 +5,18 @@ Scope Overload
         def \1#Symbol equs "\2"
     endm
 
-    function overload
+    method overload
       args
         Overload {\1#Symbol}
     endm
 
-    function skip
+    method skip
       args
         def {\1#Symbol} += \2
     endm
 
     ; Update the EndIndex to match the Symbol if Symbol is greater
-    function next
+    method next
       args
         if {\1#Symbol} > \1#EndIndex
             def \1#EndIndex = {\1#Symbol}

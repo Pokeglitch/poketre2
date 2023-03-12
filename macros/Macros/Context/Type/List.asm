@@ -8,7 +8,7 @@ Type List, String
         \@#macro \#
     endm
 
-    function _to_index
+    method _to_index
       args
         if \2 < 0
             return \1#_size + \2
@@ -17,7 +17,7 @@ Type List, String
         endc
     endm
 
-    function _in_range
+    method _in_range
       args
         def \@#index = \2
         if def(\1#{d:\@#index}) == 0
@@ -25,7 +25,7 @@ Type List, String
         endc
     endm
     
-    function _compile
+    method _compile
       args
         def \@#size = \1#_size
         \1@reset
@@ -37,14 +37,14 @@ Type List, String
         endr
     endm
 
-    function get
+    method get
       args
         var index = \1@_to_index(\2)
         \1@_in_range index
         return {\1#{d:index}}
     endm
 
-    function set
+    method set
       args
         var index = \1@_to_index(\2)
 
@@ -58,13 +58,13 @@ Type List, String
         \1@_compile
     endm
     
-    function reset
+    method reset
       args
         super
         \1#_size@reset
     endm
 
-    function insert
+    method insert
       args
         var start = \1@_to_index(\2)
 
@@ -94,7 +94,7 @@ Type List, String
     /*  To add the given values to the end of the given List
         \1  - List Symbol
         \2+ - Values to add    */
-    function push
+    method push
       args
         for i, 2, _narg+1
             redef \1#{d:\1#_size} equs "\<i>"
@@ -108,7 +108,7 @@ Type List, String
         - if 1 argument, will pop element at that index (can go negative)
         - if 2 arguments, 2nd argument is amount of elements to pop
     */
-    function pop
+    method pop
       args
         def amount = 1
 
@@ -134,7 +134,7 @@ Type List, String
         return {pop#list}
     endm
 
-    function index
+    method index
       args
         for i, \1#_size
             if strcmp("{\1#{d:i}}","\2") == 0
@@ -145,7 +145,7 @@ Type List, String
         try_return -1
     endm
 
-    function contains
+    method contains
       args
         result false
         for i, \1#_size

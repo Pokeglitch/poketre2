@@ -31,12 +31,12 @@ Scope TrainerTeam
         endc
     endm
 
-    function SetCondition
+    method SetCondition
       args
         def {\1#ID}#Condition = PartyDefinition#Condition#\2
     endm
 
-    function parse
+    method parse
       args
         shift
 
@@ -75,8 +75,8 @@ Scope TrainerTeam
         end
     endm
 
-    function switch, "TeamSwitch"
-    function asm, "TeamASM"
+    method switch, "TeamSwitch"
+    method asm, "TeamASM"
 
     from TeamSwitch, TeamASM, "end"
 
@@ -119,7 +119,7 @@ Scope TeamSwitch
         endc
     endm
 
-    function case, "TeamSwitchCase"
+    method case, "TeamSwitchCase"
 end
 
 Scope TeamSwitchCase
@@ -132,7 +132,7 @@ Scope TeamSwitchCase
         endc
     endm
 
-    function switch, "TrainerTeam switch,"
+    method switch, "TrainerTeam switch,"
 
     from TrainerTeam, "end"
 end
@@ -146,7 +146,7 @@ Scope TeamSwitchRoutine
             \@#SwitchRoutine:
     endm
 
-    function case
+    method case
       args
         end
         shift

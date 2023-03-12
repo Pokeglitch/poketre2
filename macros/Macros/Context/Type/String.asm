@@ -11,29 +11,29 @@ Type String
         redef \1#Initial equs "{\1}"
     endm
 
-    function _update
+    method _update
       args
         \1#_len@redef strlen("{\1}")
     endm
 
-    function redef
+    method redef
       args
         redef \1 equs \2
         \1@_update
     endm
 
-    function reset
+    method reset
       args
         \1@redef "{\1#Initial}"
     endm
 
-    function append
+    method append
       args
         append \#
         \1@_update
     endm
 
-    function add
+    method add
       args
         if _narg == 2
             \1@redef strcat("{\1}", \2)
@@ -42,22 +42,22 @@ Type String
         endc
     endm
     
-    function equals
+    method equals
       args
         String@_compare strcmp, == 0, \#
     endm
 
-    function contains
+    method contains
       args
         String@_compare strin, > 0, \#
     endm
 
-    function startswith
+    method startswith
       args
         String@_compare strin, == 1, \#
     endm
 
-    function endswith
+    method endswith
       args
         def \@#comparison equs "== strlen(\"\\3\") - strlen(\"\\<\{d:i}>\") + 1"
         String@_compare strin, \@#comparison, \#

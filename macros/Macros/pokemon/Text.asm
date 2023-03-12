@@ -1,5 +1,5 @@
 Scope Text
-    ; \1 - AutoExit function
+    ; \1 - AutoExit method
     ; \2+? - auto exit triggers
     init
         def \1#DoAutoExit = false
@@ -17,9 +17,9 @@ Scope Text
         endr
     endm
 
-    function text, "TriggerAutoExit text,"
+    method text, "TriggerAutoExit text,"
 
-    function SetAutoExit
+    method SetAutoExit
       args
         if \1#DoAutoExit
             fail "An AutoExit has already been defined for this text: {\1#AutoExit}"
@@ -31,14 +31,14 @@ Scope Text
         endc
     endm
 
-    function TriggerAutoExit
+    method TriggerAutoExit
       args
         end
         shift
         exec \#
     endm
 
-    function PurgeAutoExitTriggers
+    method PurgeAutoExitTriggers
       args
         for i, 2, _narg+1
             purge {\1#Name}_\<i>
@@ -46,33 +46,33 @@ Scope Text
     endm
     
     ; Define the textbox before writing the text
-    function textbox
+    method textbox
       args
         db TEXTBOX_DEF, \2
     endm
     
-    function more
+    method more
       args
         shift
         foreach db, \#
     ENDM
     
-    function ramtext
+    method ramtext
       args
         dbw RAM_TEXT, \2
     ENDM
 
-    function gototext
+    method gototext
       args
         dbw GOTO_TEXT, \2
     ENDM
 
-    function neartext
+    method neartext
       args
         dbw NEAR_TEXT, \2
     ENDM
 
-    function fartext
+    method fartext
       args
         db FAR_TEXT
         dab \2
@@ -81,42 +81,42 @@ Scope Text
     ; 1 - address
     ; 2 - num digits
     ; 3 - num bytes & flags
-    function numtext
+    method numtext
       args
         db NUM_TEXT
         dw \2
         db (\3 << 3) | \4
     ENDM
 
-    function bcdtext
+    method bcdtext
       args
         db BCD_TEXT
         dw \2
         db \3
     ENDM
 
-    function crytext
+    method crytext
       args
         db CRY_TEXT, \2
     ENDM
 
-    function sfxtext
+    method sfxtext
       args
         db SFX_TEXT, \2
     ENDM
 
-    function asmtext
+    method asmtext
       args
         SetAutoExit asmdone
         db TEXT_ASM
     ENDM
     
-    function delaytext
+    method delaytext
       args
         db DELAY_TEXT
     ENDM
     
-    function two_opt
+    method two_opt
       args
         db TWO_OPTION_TEXT
         shift
@@ -124,78 +124,78 @@ Scope Text
     ENDM
 
     ; Scroll to the next line.
-    function cont
+    method cont
       args
         shift
         foreach db, CONTINUE_TEXT, \#
     ENDM
     
     ; Scroll without user interaction
-    function autocont
+    method autocont
       args
         shift
         foreach db, AUTO_CONTINUE_TEXT, \#
     ENDM
     
     ; Move a line down.
-    function next
+    method next
       args
         shift
         foreach db, NEXT_TEXT_LINE, \#
     ENDM
     
     ; Start a new paragraph.
-    function para
+    method para
       args
         shift
         foreach db, PARAGRAPH, \#
     ENDM
     
     ; Start a new paragraph without user interaction
-    function autopara
+    method autopara
       args
         shift
         foreach db, AUTO_PARAGRAPH, \#
     ENDM
 
     ; Just wait for a keypress before continuing
-    function wait
+    method wait
       args
         db TEXT_WAIT
     ENDM
 
     ; End a string
-    function done
+    method done
       args
         db TEXT_END
         CleanExit
     endm
 
     ; Prompt the player to end a text box (initiating some other event).
-    function prompt
+    method prompt
       args
 	    db TEXT_PROMPT
         CleanExit
     endm
 
     ; Just wait for a keypress before continuing
-    function asmdone
+    method asmdone
       args
 	    jp TextScriptEnd
         CleanExit
     endm
 
     ; Exit without waiting for keypress
-    function close
+    method close
       args
 	    db TEXT_EXIT
     endm
 
-    function CleanExit
+    method CleanExit
       args
         ; dont end again if this was called through auto-exit
         if not \1#isAutoExiting
-            ; todo - test if provided function is expected AutoExit
+            ; todo - test if provided method is expected AutoExit
             if \1#DoAutoExit
             endc
 
@@ -208,7 +208,7 @@ Scope Text
         PurgeAutoExitTriggers {\1#AutoExitTriggers}
         if \1#DoAutoExit
             def \1#isAutoExiting = true
-            ; execute the auto exit function
+            ; execute the auto exit method
             {\1#AutoExit}
         endc
     endm

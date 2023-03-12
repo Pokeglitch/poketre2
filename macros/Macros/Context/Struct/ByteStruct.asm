@@ -2,7 +2,7 @@ Struct ByteStruct
     property Number, BitSize
     property Number, Flags#All#BitMask
 
-    function overload
+    method overload
       args
         Overload \1#BitSize
     endm
@@ -11,7 +11,7 @@ Struct ByteStruct
         \1 - Index Name
         \2 - Max Index Value
     */
-    function Index
+    method Index
       args
         def \1#\2#Max = \3
         def \1#\2#BitShift = \1#BitSize
@@ -22,7 +22,7 @@ Struct ByteStruct
         \1#BitSize@add \1#\2#BitSize
     endm
 
-    function Array
+    method Array
       args
         def \@#start = 3
 
@@ -59,7 +59,7 @@ Struct ByteStruct
         \1#BitSize@add \1#\2#BitSize
     endm
 
-    function Flag
+    method Flag
       args
         def \@#z_index = 3
 
@@ -97,7 +97,7 @@ Struct ByteStruct
         def \1#Flags#All#BitMask |= \1#\2#BitMask
     endm
 
-    function Flags
+    method Flags
       args
         def \1#\2#BitMask = 0
 

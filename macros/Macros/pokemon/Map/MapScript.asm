@@ -9,7 +9,7 @@ Scope MapScript
         end
     endm
 
-    function text
+    method text
       args
         DisplayText \@#Text
 
@@ -28,7 +28,7 @@ Scope MapScript
         pops
     endm
 
-    function Battle, "MapScriptBattle"
+    method Battle, "MapScriptBattle"
 end
 
 ; TODO - extend a generic 'TrainerBattle' scope
@@ -44,7 +44,7 @@ Scope MapScriptBattle
         def \2PartyCount += 1
     endm
 
-    function text
+    method text
       args
         Text prompt, Team
         
@@ -65,7 +65,7 @@ Scope MapScriptBattle
         pops
     endm
 
-    function Team
+    method Team
       args
         ; TODO - this should be a macro attached to the Trainer instance
         ; \1#Trainer@AddPartyPointer

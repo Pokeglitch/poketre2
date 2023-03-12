@@ -22,8 +22,12 @@ macro Trace@Disposables
 endm
 
 macro Trace@Disposable
-    append {Trace}#Disposables, \1
+    Trace@addDisposable \1
     disposable \1, \2
+endm
+
+macro Trace@addDisposable
+    append {Trace}#Disposables, \#
 endm
 
 macro Trace@Open

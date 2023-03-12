@@ -25,7 +25,7 @@ Scope MapObjects
         end
     endm
 
-    function text
+    method text
       args
         if \1#ExpectText
             def \1#ExpectText = false
@@ -44,18 +44,18 @@ Scope MapObjects
 
 /*  \1 - X movement (X-blocks)
     \2 = Rows above (Y-blocks)    */
-    function EventDisp
+    method EventDisp
       args
         EVENT_DISP {\1#Map}#Width, \3, \2
     endm
 
-    function MapCoord
+    method MapCoord
       args
         db \3 + 4
         db \2 + 4
     endm
 
-    function AddTextPointer
+    method AddTextPointer
       args
         pushs
             MapSec frag, {\1#Map} Text Pointers
@@ -72,7 +72,7 @@ Scope MapObjects
         endc
     endm
 
-    function UpdateCount
+    method UpdateCount
       args
         ; if a text is expected, then fail
         if \1#ExpectText
@@ -92,7 +92,7 @@ Scope MapObjects
     endm
 
     ; initialize any of the sections from \2 earlier if not already
-    function InitializeSections
+    method InitializeSections
       args
         for i, \2+1
             def \@#name equs "{MapObjects#Order#{d:i}}"
@@ -110,7 +110,7 @@ Scope MapObjects
         endr
     endm
 
-    function InitText
+    method InitText
       args
         AddTextPointer \@#Text
 
@@ -124,7 +124,7 @@ Scope MapObjects
 /*  \1 - x position
     \2 - y position
     \3? - sign id    */
-    function Sign
+    method Sign
       args
         UpdateCount Sign
         db \3, \2
@@ -136,7 +136,7 @@ Scope MapObjects
         endc
     endm
 
-    function NPC
+    method NPC
       args
         UpdateCount Sprite
         db \2
@@ -150,13 +150,13 @@ Scope MapObjects
         endc
     endm
 
-    function Battle
+    method Battle
       args
         UpdateCount Sprite
         MapObjectsBattle \#
     endm
 
-    function Pickup
+    method Pickup
       args
         UpdateCount Sprite
         db SPRITE_BALL
@@ -174,7 +174,7 @@ Scope MapObjects
     \2 - y position
     \3 - destination warp id
     \4? - destination map (-1 = wLastMap)    */
-    function Warp
+    method Warp
       args
         UpdateCount Warp
         db \3, \2, \4
@@ -188,7 +188,7 @@ Scope MapObjects
 
 /*  \1 - x position
     \2 - y position    */
-    function WarpTo
+    method WarpTo
       args
         UpdateCount WarpTo
         EventDisp \2, \3
@@ -228,18 +228,18 @@ Scope MapObjectsBattle
         def TotalTrainerBattleCount += 1
     endm
 
-    function SecHeader
+    method SecHeader
       args
         MapSec frag, {\1#Map} Trainer Headers
     endm
 
-    function AddPointer
+    method AddPointer
       args
         SecHeader
             dw \2
     endm
 
-    function text
+    method text
       args
         if \1#Texts#_size == 4
             fail "Already defined 4 Battle Texts"
@@ -268,7 +268,7 @@ Scope MapObjectsBattle
         pops
     endm
 
-    function Team
+    method Team
       args
         section fragment "{\1#Trainer} Party Pointers", romx, bank[TrainerClass]
             shift

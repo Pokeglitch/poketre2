@@ -159,31 +159,31 @@ endm
 incdirs Context, Pokemon
 
 Scope Func
-    function myFuncA
+    method myFuncA
       args
         msg Func.myFuncA | "\#"
     endm
     
-    function myFuncB
+    method myFuncB
       args
         msg Func.myFuncB | "\#"
     endm
 
-    function myFuncC, myFuncD, "msg Func.myFuncCD | "
+    method myFuncC, myFuncD, "msg Func.myFuncCD | "
 end
 
 Scope Func2, Func
 end
 
 Scope Func3, Func2
-    function myFuncA, myFuncB
+    method myFuncA, myFuncB
       args
         super A3
         msg Func3.myFunc | "\#"
         super B3
     endm
 
-    function myFuncC
+    method myFuncC
       args
         super C3
         msg Func3.myFuncC | "\#"
@@ -192,14 +192,14 @@ Scope Func3, Func2
 end
 
 Scope Func4, Func3
-    function myFuncA, myFuncB
+    method myFuncA, myFuncB
       args
         super A4
         msg Func4.myFunc | "\#"
         super B4
     endm
 
-    function myFuncC
+    method myFuncC
       args
         super C4
         msg Func4.myFuncC | "\#"
@@ -236,16 +236,16 @@ Scope Test0
     endm
 end
 Scope Test1, Test0
-    function reset
+    method reset
       args
         msg Test1 | "\#"
     endm
-    function say, "msg "
+    method say, "msg "
 end
 Scope Test2, Test1
 end
 Scope Test3, Test2
-    function reset
+    method reset
       args
         super
         msg Test3 | "\#"
@@ -255,7 +255,7 @@ end
 Scope Test4, Test3
 end
 Scope Test5, Test4
-    function reset
+    method reset
       args
         super
         msg Test5 | "\#"
@@ -268,7 +268,7 @@ Scope Test5, Test4
     endm
 end
 Scope Test6, Test5
-    function reset
+    method reset
       args
         super
         msg Test6 | "\#"
@@ -291,14 +291,14 @@ Scope Test8, Test7
     endm
     
 
-    function argTest
+    method argTest
       args , name
         msg Test8.argTest | {name}
     endm
 end
 Scope Test9, Test8
 
-    function argTest
+    method argTest
       args self, name
         super {name}_NEXT
         msg Test9.argTest | {name}
@@ -333,7 +333,7 @@ end
 
 
 Type Type1
-    function reset
+    method reset
       args
         msg Type1 | "\#"
     endm
@@ -341,7 +341,7 @@ end
 Type Type2, Type1
 end
 Type Type3, Type2
-    function reset
+    method reset
       args
         super
         msg Type3 | "\#"
@@ -354,7 +354,7 @@ Type Type4, Type3
     endm
 end
 Type Type5, Type4
-    function reset
+    method reset
       args
         super
         msg Type5 | "\#"
@@ -362,7 +362,7 @@ Type Type5, Type4
     endm
 end
 Type Type6, Type5
-    function reset
+    method reset
       args
         super
         msg Type6.reset | "\#"
@@ -383,22 +383,3 @@ end
 
     Type9 test2
     test2@reset
-
-/*
-Args:
-    - send the arguments to a macro
-        - store the args to a variable
-        - store the number of args (narg2)
-    - in 'end' (or 'body')
-        - send narg2, {args}, \# to a macro to define them appropriately
-            - also to backup any previously defined symbols with those names
-        - shift narg2
-
-
-'function' will assign the symbol to execute a different macro than what is defined
-- redefine the macro that arguments get sent to to include a \@ which the backups gets stored to
-- then, after executing, will restore backup symbols
-
-- later:
--- add possibility for 
-*/

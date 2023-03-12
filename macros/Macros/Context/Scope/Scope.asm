@@ -3,7 +3,7 @@ Context Scope
         DefineContextMacro {\1#Functions}
     endm
 
-    function
+    method
         continue {\1#Name}_\2
     endm
 

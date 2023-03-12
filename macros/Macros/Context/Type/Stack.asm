@@ -28,7 +28,7 @@ Type Stack
         endc
     endm
 
-    function push
+    method push
       args
         ; increase the size
         \1#_size@inc
@@ -41,7 +41,7 @@ Type Stack
         \@#macro {id}, \#
     endm
 
-    function pop
+    method pop
       args
         if \1#_size
             \1#_size@dec

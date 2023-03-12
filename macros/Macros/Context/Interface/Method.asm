@@ -1,8 +1,8 @@
-macro Interface@function
+macro Interface@method
     is#String \<_NARG>
     if so
         for i, 3, _narg
-            def \2@\<i> equs "Interface@function#lambda \<_NARG>,"
+            def \2@\<i> equs "Interface@method#lambda \<_NARG>,"
             append \2#Functions, \<i>
         endr
     else
@@ -10,13 +10,13 @@ macro Interface@function
         Interface@args \1, \2, {temp@name}
         redef args equs "{args}\n\tdefine_args"
         for i, 3, _narg+1
-            def \2@\<i> equs "Interface@function#execute \2@\<i>, {temp@name},"
+            def \2@\<i> equs "Interface@method#execute \2@\<i>, {temp@name},"
             append \2#Functions, \<i>
         endr
     endc
 endm
 
-macro Interface@function#args
+macro Interface@method#args
     ; find the end of the inputs list
     for args#i, 2, _narg+1
         if strcmp("\<args#i>","\1") == 0
@@ -62,7 +62,7 @@ macro Interface@function#args
     endr
 endm
 
-macro Interface@function#args#restore
+macro Interface@method#args#restore
     for args#i, 2, _narg+1
         try_purge \<args#i>
         ; if the symbol was backed-up, then restore
@@ -81,7 +81,7 @@ endm
     \6 - Method Name
     \7+? - Arguments to forward to Method
 */
-macro Interface@function#execute
+macro Interface@method#execute
     def \@#prev_super equs "{super}"
     
     redef \@#super equs "\1#Super"
@@ -89,7 +89,7 @@ macro Interface@function#execute
     shift 2
     redef super equs "\@#super \1, \2, \3, \4,"
 
-    redef define_args equs "Interface@function#args \@, \\#, \@,"
+    redef define_args equs "Interface@method#args \@, \\#, \@,"
 
     if def(\2@handle)
         Interface@continue \2@handle, \@#macro, \#
@@ -100,18 +100,18 @@ macro Interface@function#execute
 
     ; todo - where does this occur?
     if def(\@#Names)
-        Interface@function#args#restore \@, {\@#Names}
+        Interface@method#args#restore \@, {\@#Names}
     endc
     redef super equs "{\@#prev_super}"
 endm
 
-macro Interface@function#lambda
+macro Interface@method#lambda
     def \@#macro equs \1
     shift 5
     \@#macro \#
 endm
 
-macro Interface@function#inherit
+macro Interface@method#inherit
     for i, 4, _narg+1
         ; if not defined in this type, pull from parent
         if not def(\2@\<i>)
@@ -127,7 +127,7 @@ endm
 
 /*  For all methods that dont have a super, assign the super to fail
     \1 - Type name    */
-macro Interface@function#inherit#fail
+macro Interface@method#inherit#fail
     for i, 2, _narg+1
         if not def(\1@\<i>#Super)
             redef \1@\<i>#Super equs "fail \"super does not exist for this context\","
@@ -136,15 +136,15 @@ macro Interface@function#inherit#fail
     endr
 endm
 
-macro Interface@function#assign
-    if def(\2@function)
+macro Interface@method#assign
+    if def(\2@method)
         for i, 4, _narg+1
-            def \@#continue equs "Interface@function#assign#final \1, \2, \3, \<i>,"
-            Interface@continue \2@function, \@#continue, \1, \<i>
+            def \@#continue equs "Interface@method#assign#final \1, \2, \3, \<i>,"
+            Interface@continue \2@method, \@#continue, \1, \<i>
         endr
     endc
 endm
 
-macro Interface@function#assign#final
+macro Interface@method#assign#final
     redef \5 equs "{\3@\4} \1, \2, 3, \4,"
 endm
