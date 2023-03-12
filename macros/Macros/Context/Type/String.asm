@@ -12,29 +12,29 @@ Type String
     endm
 
     function _update
-    func
+      args
         \1#_len@redef strlen("{\1}")
     endm
 
     function redef
-    func
+      args
         redef \1 equs \2
         \1@_update
     endm
 
     function reset
-    func
+      args
         \1@redef "{\1#Initial}"
     endm
 
     function append
-    func
+      args
         append \#
         \1@_update
     endm
 
     function add
-    func
+      args
         if _narg == 2
             \1@redef strcat("{\1}", \2)
         else
@@ -43,22 +43,22 @@ Type String
     endm
     
     function equals
-    func
+      args
         String@_compare strcmp, == 0, \#
     endm
 
     function contains
-    func
+      args
         String@_compare strin, > 0, \#
     endm
 
     function startswith
-    func
+      args
         String@_compare strin, == 1, \#
     endm
 
     function endswith
-    func
+      args
         def \@#comparison equs "== strlen(\"\\3\") - strlen(\"\\<\{d:i}>\") + 1"
         String@_compare strin, \@#comparison, \#
     endm

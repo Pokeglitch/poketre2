@@ -11,9 +11,9 @@ macro Interface@continue
     try_purge continue
 endm
 
-macro Interface@func
-    Trace@Disposable func, \3
-    redef func equs "\tInterface@SetMacros \1, \2\n{func}"
+macro Interface@args
+    Trace@Disposable args, \3
+    redef args equs "\tInterface@SetMacros \1, \2\n{args}"
     dispose from, function, property, forward, \1_End#Definition
 endm
 
@@ -45,8 +45,8 @@ macro Interface@Define
     
     ; Define the single use macro names
     ;Trace@Disposables \2, init, exit
-    redef init equs "\tdispose init\n\tfunction _init\n\tfunc"
-    redef exit equs "\tdispose exit\n\tfunction _exit\n\tfunc"
+    redef init equs "\tdispose init\n\tfunction _init\n\targs"
+    redef exit equs "\tdispose exit\n\tfunction _exit\n\targs"
     
     ; Define the parent if provided
     if _narg == 3

@@ -9,7 +9,7 @@ Type List, String
     endm
 
     function _to_index
-    func
+      args
         if \2 < 0
             return \1#_size + \2
         else
@@ -18,7 +18,7 @@ Type List, String
     endm
 
     function _in_range
-    func
+      args
         def \@#index = \2
         if def(\1#{d:\@#index}) == 0
             fail "Index out of range: \1#{d:\@#index}"
@@ -26,7 +26,7 @@ Type List, String
     endm
     
     function _compile
-    func
+      args
         def \@#size = \1#_size
         \1@reset
 
@@ -38,14 +38,14 @@ Type List, String
     endm
 
     function get
-    func
+      args
         var index = \1@_to_index(\2)
         \1@_in_range index
         return {\1#{d:index}}
     endm
 
     function set
-    func
+      args
         var index = \1@_to_index(\2)
 
         if index == \1#_size
@@ -59,13 +59,13 @@ Type List, String
     endm
     
     function reset
-    func
+      args
         super
         \1#_size@reset
     endm
 
     function insert
-    func
+      args
         var start = \1@_to_index(\2)
 
         if start != \1#_size
@@ -95,7 +95,7 @@ Type List, String
         \1  - List Symbol
         \2+ - Values to add    */
     function push
-    func
+      args
         for i, 2, _narg+1
             redef \1#{d:\1#_size} equs "\<i>"
             \1@append \<i>
@@ -109,7 +109,7 @@ Type List, String
         - if 2 arguments, 2nd argument is amount of elements to pop
     */
     function pop
-    func
+      args
         def amount = 1
 
         if _narg > 1
@@ -135,7 +135,7 @@ Type List, String
     endm
 
     function index
-    func
+      args
         for i, \1#_size
             if strcmp("{\1#{d:i}}","\2") == 0
                 return i
@@ -146,7 +146,7 @@ Type List, String
     endm
 
     function contains
-    func
+      args
         result false
         for i, \1#_size
             if strcmp("{\1#{d:i}}","\2") == 0

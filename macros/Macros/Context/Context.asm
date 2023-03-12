@@ -15,9 +15,6 @@ NOTE: From wont trigger when returning from a Context that inherits from the con
     - i.e. a#RegisterSize
     - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
 
-    - Method can define arguments by name (get notes from Obsidian 3/1/23)
-        - for 'func', first line after macro definition will assign the names to \@
-        - plus, 'rest' for any extra
 */
 
 /*  A Context creates a new Trace Type

@@ -1,7 +1,3 @@
-/*
-TODO -
-    instead of following with func, follow with 'args'
-*/
 macro Interface@function
     is#String \<_NARG>
     if so
@@ -11,8 +7,8 @@ macro Interface@function
         endr
     else
         redef temp@name equs "\2@\@"
-        Interface@func \1, \2, {temp@name}
-        redef func equs "{func}\n\tdefine_args"
+        Interface@args \1, \2, {temp@name}
+        redef args equs "{args}\n\tdefine_args"
         for i, 3, _narg+1
             def \2@\<i> equs "Interface@function#execute \2@\<i>, {temp@name},"
             append \2#Functions, \<i>

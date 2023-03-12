@@ -3,7 +3,7 @@ Struct ByteStruct
     property Number, Flags#All#BitMask
 
     function overload
-    func
+      args
         Overload \1#BitSize
     endm
 
@@ -12,7 +12,7 @@ Struct ByteStruct
         \2 - Max Index Value
     */
     function Index
-    func
+      args
         def \1#\2#Max = \3
         def \1#\2#BitShift = \1#BitSize
         def \1#\2#BitSize = STRLEN("{b:\1#\2#Max}")
@@ -23,7 +23,7 @@ Struct ByteStruct
     endm
 
     function Array
-    func
+      args
         def \@#start = 3
 
         is#Number \3
@@ -60,7 +60,7 @@ Struct ByteStruct
     endm
 
     function Flag
-    func
+      args
         def \@#z_index = 3
 
         if _narg > 2
@@ -98,7 +98,7 @@ Struct ByteStruct
     endm
 
     function Flags
-    func
+      args
         def \1#\2#BitMask = 0
 
         for temp#flags#i, 3, _narg+1

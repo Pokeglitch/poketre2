@@ -20,7 +20,7 @@ Scope Text
     function text, "TriggerAutoExit text,"
 
     function SetAutoExit
-    func
+      args
         if \1#DoAutoExit
             fail "An AutoExit has already been defined for this text: {\1#AutoExit}"
         endc
@@ -32,14 +32,14 @@ Scope Text
     endm
 
     function TriggerAutoExit
-    func
+      args
         end
         shift
         exec \#
     endm
 
     function PurgeAutoExitTriggers
-    func
+      args
         for i, 2, _narg+1
             purge {\1#Name}_\<i>
         endr
@@ -47,33 +47,33 @@ Scope Text
     
     ; Define the textbox before writing the text
     function textbox
-    func
+      args
         db TEXTBOX_DEF, \2
     endm
     
     function more
-    func
+      args
         shift
         foreach db, \#
     ENDM
     
     function ramtext
-    func
+      args
         dbw RAM_TEXT, \2
     ENDM
 
     function gototext
-    func
+      args
         dbw GOTO_TEXT, \2
     ENDM
 
     function neartext
-    func
+      args
         dbw NEAR_TEXT, \2
     ENDM
 
     function fartext
-    func
+      args
         db FAR_TEXT
         dab \2
     ENDM
@@ -82,42 +82,42 @@ Scope Text
     ; 2 - num digits
     ; 3 - num bytes & flags
     function numtext
-    func
+      args
         db NUM_TEXT
         dw \2
         db (\3 << 3) | \4
     ENDM
 
     function bcdtext
-    func
+      args
         db BCD_TEXT
         dw \2
         db \3
     ENDM
 
     function crytext
-    func
+      args
         db CRY_TEXT, \2
     ENDM
 
     function sfxtext
-    func
+      args
         db SFX_TEXT, \2
     ENDM
 
     function asmtext
-    func
+      args
         SetAutoExit asmdone
         db TEXT_ASM
     ENDM
     
     function delaytext
-    func
+      args
         db DELAY_TEXT
     ENDM
     
     function two_opt
-    func
+      args
         db TWO_OPTION_TEXT
         shift
         foreach dw, \#
@@ -125,74 +125,74 @@ Scope Text
 
     ; Scroll to the next line.
     function cont
-    func
+      args
         shift
         foreach db, CONTINUE_TEXT, \#
     ENDM
     
     ; Scroll without user interaction
     function autocont
-    func
+      args
         shift
         foreach db, AUTO_CONTINUE_TEXT, \#
     ENDM
     
     ; Move a line down.
     function next
-    func
+      args
         shift
         foreach db, NEXT_TEXT_LINE, \#
     ENDM
     
     ; Start a new paragraph.
     function para
-    func
+      args
         shift
         foreach db, PARAGRAPH, \#
     ENDM
     
     ; Start a new paragraph without user interaction
     function autopara
-    func
+      args
         shift
         foreach db, AUTO_PARAGRAPH, \#
     ENDM
 
     ; Just wait for a keypress before continuing
     function wait
-    func
+      args
         db TEXT_WAIT
     ENDM
 
     ; End a string
     function done
-    func
+      args
         db TEXT_END
         CleanExit
     endm
 
     ; Prompt the player to end a text box (initiating some other event).
     function prompt
-    func
+      args
 	    db TEXT_PROMPT
         CleanExit
     endm
 
     ; Just wait for a keypress before continuing
     function asmdone
-    func
+      args
 	    jp TextScriptEnd
         CleanExit
     endm
 
     ; Exit without waiting for keypress
     function close
-    func
+      args
 	    db TEXT_EXIT
     endm
 
     function CleanExit
-    func
+      args
         ; dont end again if this was called through auto-exit
         if not \1#isAutoExiting
             ; todo - test if provided function is expected AutoExit

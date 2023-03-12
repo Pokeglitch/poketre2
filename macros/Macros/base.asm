@@ -160,12 +160,12 @@ incdirs Context, Pokemon
 
 Scope Func
     function myFuncA
-    func
+      args
         msg Func.myFuncA | "\#"
     endm
     
     function myFuncB
-    func
+      args
         msg Func.myFuncB | "\#"
     endm
 
@@ -177,14 +177,14 @@ end
 
 Scope Func3, Func2
     function myFuncA, myFuncB
-    func
+      args
         super A3
         msg Func3.myFunc | "\#"
         super B3
     endm
 
     function myFuncC
-    func
+      args
         super C3
         msg Func3.myFuncC | "\#"
         super D3
@@ -193,14 +193,14 @@ end
 
 Scope Func4, Func3
     function myFuncA, myFuncB
-    func
+      args
         super A4
         msg Func4.myFunc | "\#"
         super B4
     endm
 
     function myFuncC
-    func
+      args
         super C4
         msg Func4.myFuncC | "\#"
         super D4
@@ -237,7 +237,7 @@ Scope Test0
 end
 Scope Test1, Test0
     function reset
-    func
+      args
         msg Test1 | "\#"
     endm
     function say, "msg "
@@ -246,7 +246,7 @@ Scope Test2, Test1
 end
 Scope Test3, Test2
     function reset
-    func
+      args
         super
         msg Test3 | "\#"
         super
@@ -256,20 +256,20 @@ Scope Test4, Test3
 end
 Scope Test5, Test4
     function reset
-    func
+      args
         super
         msg Test5 | "\#"
         super
     endm
     from TestX7, TestX2
-    func
+      args
         super
         msg Test5 From TestX2 | "\#"
     endm
 end
 Scope Test6, Test5
     function reset
-    func
+      args
         super
         msg Test6 | "\#"
         super
@@ -277,7 +277,7 @@ Scope Test6, Test5
 end
 Scope Test7, Test6
     from TestX7, TestX2, TestX1
-    func
+      args
         super
         msg Test7 From TestX2 | "\#"
         super
@@ -292,14 +292,14 @@ Scope Test8, Test7
     
 
     function argTest
-    func , name
+      args , name
         msg Test8.argTest | {name}
     endm
 end
 Scope Test9, Test8
 
     function argTest
-    func self, name
+      args self, name
         super {name}_NEXT
         msg Test9.argTest | {name}
         super {name}_NEXT2
@@ -334,7 +334,7 @@ end
 
 Type Type1
     function reset
-    func
+      args
         msg Type1 | "\#"
     endm
 end
@@ -342,7 +342,7 @@ Type Type2, Type1
 end
 Type Type3, Type2
     function reset
-    func
+      args
         super
         msg Type3 | "\#"
         super
@@ -355,7 +355,7 @@ Type Type4, Type3
 end
 Type Type5, Type4
     function reset
-    func
+      args
         super
         msg Type5 | "\#"
         super
@@ -363,7 +363,7 @@ Type Type5, Type4
 end
 Type Type6, Type5
     function reset
-    func
+      args
         super
         msg Type6.reset | "\#"
         super

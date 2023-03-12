@@ -10,37 +10,37 @@ Type Number
     endm
 
     function inc
-    func
+      args
         def \1 += 1
     endm
 
     function dec
-    func
+      args
         def \1 -= 1
     endm
 
     function reset
-    func
+      args
         def \1 = \1#Initial
     endm
 
     function redef
-    func
+      args
         def \1 = \2
     endm
 
     function add
-    func
+      args
         def \1 += \2
     endm
 
     function sub
-    func
+      args
         def \1 -= \2
     endm
 
     function negate
-    func
+      args
         redef \1 = -\1
     endm
 end

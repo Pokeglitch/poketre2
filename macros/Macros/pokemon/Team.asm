@@ -32,12 +32,12 @@ Scope TrainerTeam
     endm
 
     function SetCondition
-    func
+      args
         def {\1#ID}#Condition = PartyDefinition#Condition#\2
     endm
 
     function parse
-    func
+      args
         shift
 
         def \@#SpecialMask = 0
@@ -147,7 +147,7 @@ Scope TeamSwitchRoutine
     endm
 
     function case
-    func
+      args
         end
         shift
         case \#

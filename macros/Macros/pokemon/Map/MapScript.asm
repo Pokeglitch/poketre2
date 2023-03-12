@@ -10,7 +10,7 @@ Scope MapScript
     endm
 
     function text
-    func
+      args
         DisplayText \@#Text
 
         {\1#Map}#TextCount@inc
@@ -24,7 +24,7 @@ Scope MapScript
     endm
 
     from Text
-    func
+      args
         pops
     endm
 
@@ -45,7 +45,7 @@ Scope MapScriptBattle
     endm
 
     function text
-    func
+      args
         Text prompt, Team
         
         pushs
@@ -61,12 +61,12 @@ Scope MapScriptBattle
     endm
 
     from Text
-    func
+      args
         pops
     endm
 
     function Team
-    func
+      args
         ; TODO - this should be a macro attached to the Trainer instance
         ; \1#Trainer@AddPartyPointer
         sec frag, {\1#Trainer} Party Pointers, TrainerClass

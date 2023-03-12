@@ -17,7 +17,7 @@ Scope MapDefinition
 
     ; Open a section in the same bank as this Map
     function MapSec
-    func
+      args
         def \@#Bank = \1#Bank
         shift
         sec \#, \@#Bank

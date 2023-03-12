@@ -26,7 +26,7 @@ Scope MapObjects
     endm
 
     function text
-    func
+      args
         if \1#ExpectText
             def \1#ExpectText = false
             Text done, Sign, NPC, Battle, Pickup, WarpTo
@@ -38,25 +38,25 @@ Scope MapObjects
     endm
 
     from Text
-    func
+      args
         pops
     endm
 
 /*  \1 - X movement (X-blocks)
     \2 = Rows above (Y-blocks)    */
     function EventDisp
-    func
+      args
         EVENT_DISP {\1#Map}#Width, \3, \2
     endm
 
     function MapCoord
-    func
+      args
         db \3 + 4
         db \2 + 4
     endm
 
     function AddTextPointer
-    func
+      args
         pushs
             MapSec frag, {\1#Map} Text Pointers
                 dw \2
@@ -73,7 +73,7 @@ Scope MapObjects
     endm
 
     function UpdateCount
-    func
+      args
         ; if a text is expected, then fail
         if \1#ExpectText
             fail "Expected text, Received \2"
@@ -93,7 +93,7 @@ Scope MapObjects
 
     ; initialize any of the sections from \2 earlier if not already
     function InitializeSections
-    func
+      args
         for i, \2+1
             def \@#name equs "{MapObjects#Order#{d:i}}"
             ; if the section is not defined, initialize
@@ -111,7 +111,7 @@ Scope MapObjects
     endm
 
     function InitText
-    func
+      args
         AddTextPointer \@#Text
 
         pushs
@@ -125,7 +125,7 @@ Scope MapObjects
     \2 - y position
     \3? - sign id    */
     function Sign
-    func
+      args
         UpdateCount Sign
         db \3, \2
         ; If a specific pointer was provided, use it. otherwise enter Text context
@@ -137,7 +137,7 @@ Scope MapObjects
     endm
 
     function NPC
-    func
+      args
         UpdateCount Sprite
         db \2
         MapCoord \3, \4
@@ -151,13 +151,13 @@ Scope MapObjects
     endm
 
     function Battle
-    func
+      args
         UpdateCount Sprite
         MapObjectsBattle \#
     endm
 
     function Pickup
-    func
+      args
         UpdateCount Sprite
         db SPRITE_BALL
         MapCoord \2, \3
@@ -175,7 +175,7 @@ Scope MapObjects
     \3 - destination warp id
     \4? - destination map (-1 = wLastMap)    */
     function Warp
-    func
+      args
         UpdateCount Warp
         db \3, \2, \4
         ; if a specific map is provided, use it. otherwise use previous map
@@ -189,7 +189,7 @@ Scope MapObjects
 /*  \1 - x position
     \2 - y position    */
     function WarpTo
-    func
+      args
         UpdateCount WarpTo
         EventDisp \2, \3
     endm
@@ -229,18 +229,18 @@ Scope MapObjectsBattle
     endm
 
     function SecHeader
-    func
+      args
         MapSec frag, {\1#Map} Trainer Headers
     endm
 
     function AddPointer
-    func
+      args
         SecHeader
             dw \2
     endm
 
     function text
-    func
+      args
         if \1#Texts#_size == 4
             fail "Already defined 4 Battle Texts"
         endc
@@ -264,12 +264,12 @@ Scope MapObjectsBattle
     endm
 
     from Text
-    func
+      args
         pops
     endm
 
     function Team
-    func
+      args
         section fragment "{\1#Trainer} Party Pointers", romx, bank[TrainerClass]
             shift
             TrainerTeam \#

@@ -29,7 +29,7 @@ Type Stack
     endm
 
     function push
-    func
+      args
         ; increase the size
         \1#_size@inc
 
@@ -42,7 +42,7 @@ Type Stack
     endm
 
     function pop
-    func
+      args
         if \1#_size
             \1#_size@dec
         else

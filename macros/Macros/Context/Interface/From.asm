@@ -1,7 +1,7 @@
 /*
     From methods get execute when returning to this Context from another Context with the given name(s)
     - can end with string to make lambda
-    - otherwise, need to follow with 'func'
+    - otherwise, need to follow with 'args'
 */
 macro Interface@from
     is#String \<_NARG>
@@ -12,7 +12,7 @@ macro Interface@from
         endr
     else
         redef temp@name equs "\2@\@"
-        Interface@func \1, \2, {temp@name}
+        Interface@args \1, \2, {temp@name}
         for i, 3, _narg+1
             def \2@from@\<i> equs "Interface@function#execute \2@from@\<i>, {temp@name}," ;"Interface@from#execute \2@from@\<i>, {temp@name},"
             append \2#Functions, from@\<i>

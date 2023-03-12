@@ -6,18 +6,18 @@ Scope Overload
     endm
 
     function overload
-    func
+      args
         Overload {\1#Symbol}
     endm
 
     function skip
-    func
+      args
         def {\1#Symbol} += \2
     endm
 
     ; Update the EndIndex to match the Symbol if Symbol is greater
     function next
-    func
+      args
         if {\1#Symbol} > \1#EndIndex
             def \1#EndIndex = {\1#Symbol}
         endc
