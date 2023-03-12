@@ -3,10 +3,12 @@ Type List, String
     property Number, _size
     init
         super
-        List@push \#
+        def \@#macro equs "\1@push"
+        shift
+        \@#macro \#
     endm
 
-    method _to_index
+    function _to_index
     func
         if \2 < 0
             return \1#_size + \2
@@ -15,7 +17,7 @@ Type List, String
         endc
     endm
 
-    method _in_range
+    function _in_range
     func
         def \@#index = \2
         if def(\1#{d:\@#index}) == 0
@@ -23,7 +25,7 @@ Type List, String
         endc
     endm
     
-    method _compile
+    function _compile
     func
         def \@#size = \1#_size
         \1@reset
@@ -35,14 +37,14 @@ Type List, String
         endr
     endm
 
-    method get
+    function get
     func
         var index = \1@_to_index(\2)
         \1@_in_range index
         return {\1#{d:index}}
     endm
 
-    method set
+    function set
     func
         var index = \1@_to_index(\2)
 
@@ -56,13 +58,13 @@ Type List, String
         \1@_compile
     endm
     
-    method reset
+    function reset
     func
         super
         \1#_size@reset
     endm
 
-    method insert
+    function insert
     func
         var start = \1@_to_index(\2)
 
@@ -92,7 +94,7 @@ Type List, String
     /*  To add the given values to the end of the given List
         \1  - List Symbol
         \2+ - Values to add    */
-    method push
+    function push
     func
         for i, 2, _narg+1
             redef \1#{d:\1#_size} equs "\<i>"
@@ -106,7 +108,7 @@ Type List, String
         - if 1 argument, will pop element at that index (can go negative)
         - if 2 arguments, 2nd argument is amount of elements to pop
     */
-    method pop
+    function pop
     func
         def amount = 1
 
@@ -132,7 +134,7 @@ Type List, String
         return {pop#list}
     endm
 
-    method index
+    function index
     func
         for i, \1#_size
             if strcmp("{\1#{d:i}}","\2") == 0
@@ -143,7 +145,7 @@ Type List, String
         try_return -1
     endm
 
-    method contains
+    function contains
     func
         result false
         for i, \1#_size

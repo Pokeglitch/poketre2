@@ -121,6 +121,11 @@ macro msg
     endc
 endm
 
+macro is#String
+    def \@#char equs strsub("\1",1, 1)
+    result strcmp("{\@#char}","\"") == 0
+endm
+
 
 
 
@@ -362,3 +367,8 @@ end
 
     Type9 test2
     test2@reset
+
+
+    List TestList
+    ;, 1, 2, 3
+    ;msg "{TestList}"

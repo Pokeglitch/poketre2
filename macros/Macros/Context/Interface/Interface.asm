@@ -14,14 +14,13 @@ endm
 macro Interface@func
     Trace@Disposable func, \3
     redef func equs "\tInterface@SetMacros \1, \2\n{func}"
-    dispose from, method, function, property, forward, \1_End#Definition
+    dispose from, function, property, forward, \1_End#Definition
 endm
 
 ; set the macros to include the name of the Interface
 macro Interface@SetMacros
     redef from equs "Interface@from \1, \2,"
     redef forward equs "Interface@forward \2,"
-    redef method equs "Interface@method#define \1, \2,"
     redef function equs "Interface@function \1, \2,"
     redef property equs "Interface@property \2,"
     redef \1_End#Definition equs "Interface@end \1, \2,"
@@ -40,13 +39,14 @@ macro Interface@Define
     Interface@SetMacros \1, \2
 
     ; Initialize the list of members
-    def \2#Methods equs ""
     def \2#Properties equs ""
     def \2#Forwards equs ""
     def \2#Functions equs ""
     
     ; Define the single use macro names
-    Trace@Disposables \2, init, exit
+    ;Trace@Disposables \2, init, exit
+    redef init equs "\tdispose init\n\tfunction _init\n\tfunc"
+    redef exit equs "\tdispose exit\n\tfunction _exit\n\tfunc"
     
     ; Define the parent if provided
     if _narg == 3
@@ -55,28 +55,6 @@ macro Interface@Define
 
     ; Run the Context init macro
     Context@TryExec init, \#
-endm
-
-macro Interface@super#assign
-    if def(\2@\3#isLambda)
-        if \2@\3#isLambda
-            redef \4 equs "\2@\3"
-        else
-            redef \4 equs "Interface@method#execute \5, \1, \2, \3,"
-        endc
-    ; if isLambda is not defined, then its init or exit
-    else
-        if def(\2@\3)
-            redef \4 equs "Interface@method#execute \5, \1, \2, \3,"
-        else
-            Interface@super#fail \4
-        endc
-    endc
-endm
-macro Special#Interface@super#assign
-    def \@#macro equs "Interface@method#execute \4, \1, \2, \3,"
-    shift 4
-    \@#macro \#
 endm
 
 macro Interface@end
@@ -88,30 +66,19 @@ macro Interface@end
     
     ; inherit from parent/assign supers
     if def(\2#Parent)
-        if def(\2@init)
-            append \2#Methods, init
-        endc
-        if def(\2@exit)
-            append \2#Methods, exit
-        endc
-        
         Interface@property#inherit \2, {\2#Parent}, {{\2#Parent}#Properties}
-        Interface@super#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Methods}
         Interface@function#inherit \1, \2, {\2#Parent}, {{\2#Parent}#Functions}
         Interface@forward#inherit \2, {{\2#Parent}#Forwards}
-    else
-        append \2#Methods, init, exit
     endc
     
     ; assign any missing supers to fail
-    Interface@super#define#fail \2, {\2#Methods}
-    Interface@super#define#fail2 \2, {\2#Functions}
+    Interface@function#inherit#fail \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface
-    def \2 equs "\tInterface@open \1, \2, init,"
+    def \2 equs "\tInterface@open \1, \2, _init,"
 
     ; define the Interface Name 'end' to close the Trace of this Context & Interface
-    def \2_End#Definition equs "\tInterface@close \1, \2, exit,"
+    def \2_End#Definition equs "\tInterface@close \1, \2, _exit,"
 endm
 
 /*
@@ -147,23 +114,15 @@ macro Interface@open#init
     ; Initialize the Forwards
     Interface@forward#assign \1, {\3#Forwards}
 
-    ; execute the super init macro
-    if \3@\4#isSuper
-        def \@#macro equs "Special#{\3@\4} \1,"
-        shift 4
-        \@#macro \#
-    else
-        ; Run the Interface init macro
-        Interface@method#execute \#
+    ; execute the init macro
+    if def(\3@_init)
+        \3@_init \#
     endc
 endm
 
 macro Interface@assign
-    ; define the functions
+    ; define the Interface Name functions to include the corresponding Trace
     Interface@function#assign \1, \2, \3, {\3#Functions}
-
-    ; define the Interface Name methods to include the corresponding Trace
-    Interface@method#assign \1, \2, \3, {\3#Methods}
 endm
 
 /*
@@ -184,72 +143,8 @@ endm
     \2 - Context
     \3 - Interface    */
 macro Interface@close#exit
-    ; execute the super exit macro
-    if \3@\4#isSuper
-        def \@#macro equs "Special#{\3@\4} \1,"
-        shift 4
-        \@#macro \#
-    else
-        Interface@method#execute \#
+    ; execute the exit macro
+    if def(\3@_exit)
+        \3@_exit \#
     endc
-endm
-
-macro Interface@super#inherit
-    for i, 4, _narg+1
-        ; if not defined in this type, pull from parent
-        if not def(\2@\<i>)
-            Interface@super#define \2@\<i>, \1, \3, \<i>
-
-            redef \2@\<i>#Super equs "{\3@\<i>#Super}"
-            redef \2@\<i>#isSuper = true
-            
-            append \2#Methods, \<i>
-        ; otherwise, the super is the parent
-        else
-            Interface@super#define \2@\<i>#Super, \1, \3, \<i>
-            redef \2@\<i>#isSuper = false
-        endc
-    endr
-endm
-
-/*
-    \1 - Symbol to assign to
-    \2 - Context
-    \3 - Parent Interface
-    \4 - Method
-*/
-macro Interface@super#define
-    ; if it is a super in the parent, then copy it
-    if \3@\4#isSuper
-        redef \1 equs "{\3@\4}"
-    ; otherwise, assign it to be that parent method
-    else
-        redef \1 equs "Interface@super#assign \2, \3, \4,"
-    endc
-endm
-
-macro Interface@super#fail
-    redef \1 equs "fail \"super does not exist for this context\","
-endm
-
-/*  For all methods that dont have a super, assign the super to fail
-    \1 - Type name    */
-macro Interface@super#define#fail
-    for i, 2, _narg+1
-        if not def(\1@\<i>#Super)
-            redef \1@\<i>#Super equs "Interface@super#fail"
-            redef \1@\<i>#isSuper = false
-        endc
-    endr
-endm
-
-/*  For all methods that dont have a super, assign the super to fail
-    \1 - Type name    */
-macro Interface@super#define#fail2
-    for i, 2, _narg+1
-        if not def(\1@\<i>#Super)
-            Interface@super#fail \1@\<i>#Super
-            redef \1@\<i>#isSuper = false
-        endc
-    endr
 endm

@@ -1,10 +1,9 @@
 Context Scope
     exit
-        DefineContextMacro {\1#Methods}
         DefineContextMacro {\1#Functions}
     endm
 
-    method
+    function
         continue {\1#Name}_\2
     endm
 

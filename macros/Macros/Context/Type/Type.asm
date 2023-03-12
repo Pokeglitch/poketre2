@@ -14,7 +14,7 @@ Context Type
         end
     endm
 
-    method
+    function
         continue {\1#Symbol}@\2
     endm
 

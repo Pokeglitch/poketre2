@@ -9,37 +9,37 @@ Type Number
         def \1#Initial = \1
     endm
 
-    method inc
+    function inc
     func
         def \1 += 1
     endm
 
-    method dec
+    function dec
     func
         def \1 -= 1
     endm
 
-    method reset
+    function reset
     func
         def \1 = \1#Initial
     endm
 
-    method redef
+    function redef
     func
         def \1 = \2
     endm
 
-    method add
+    function add
     func
         def \1 += \2
     endm
 
-    method sub
+    function sub
     func
         def \1 -= \2
     endm
 
-    method negate
+    function negate
     func
         redef \1 = -\1
     endm

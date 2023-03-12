@@ -9,7 +9,7 @@ Scope MapScript
         end
     endm
 
-    method text
+    function text
     func
         DisplayText \@#Text
 
@@ -44,7 +44,7 @@ Scope MapScriptBattle
         def \2PartyCount += 1
     endm
 
-    method text
+    function text
     func
         Text prompt, Team
         
@@ -65,7 +65,7 @@ Scope MapScriptBattle
         pops
     endm
 
-    method Team
+    function Team
     func
         ; TODO - this should be a macro attached to the Trainer instance
         ; \1#Trainer@AddPartyPointer

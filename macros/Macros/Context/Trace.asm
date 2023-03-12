@@ -62,7 +62,6 @@ def Trace#size = 0
 def Trace equs "\{Trace#\{d:Trace#size}}"
 
 macro Trace@push
-    ;redef Context equs "\@"
     def Trace#size += 1
     redef Trace#{d:Trace#size} equs "\@"
 

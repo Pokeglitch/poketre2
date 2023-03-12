@@ -1,5 +1,6 @@
 /*
-    TODO - instead of following with func, follow with 'args'
+TODO -
+    instead of following with func, follow with 'args'
 */
 macro Interface@function
     is#String \<_NARG>
@@ -65,11 +66,22 @@ macro Interface@function#inherit
     endr
 endm
 
+/*  For all methods that dont have a super, assign the super to fail
+    \1 - Type name    */
+macro Interface@function#inherit#fail
+    for i, 2, _narg+1
+        if not def(\1@\<i>#Super)
+            redef \1@\<i>#Super equs "fail \"super does not exist for this context\","
+            redef \1@\<i>#isSuper = false
+        endc
+    endr
+endm
+
 macro Interface@function#assign
-    if def(\2@method)
+    if def(\2@function)
         for i, 4, _narg+1
             def \@#continue equs "Interface@function#assign#final \1, \2, \3, \<i>,"
-            Interface@continue \2@method, \@#continue, \1, \<i>
+            Interface@continue \2@function, \@#continue, \1, \<i>
         endr
     endc
 endm

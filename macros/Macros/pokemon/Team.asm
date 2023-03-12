@@ -31,12 +31,12 @@ Scope TrainerTeam
         endc
     endm
 
-    method SetCondition
+    function SetCondition
     func
         def {\1#ID}#Condition = PartyDefinition#Condition#\2
     endm
 
-    method parse
+    function parse
     func
         shift
 
@@ -146,7 +146,7 @@ Scope TeamSwitchRoutine
             \@#SwitchRoutine:
     endm
 
-    method case
+    function case
     func
         end
         shift
