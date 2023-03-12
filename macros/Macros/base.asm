@@ -289,8 +289,23 @@ Scope Test8, Test7
         msg Init Test8 | "\#"
         super
     endm
+    
+
+    function argTest
+    func , name
+        msg Test8.argTest | {name}
+    endm
 end
 Scope Test9, Test8
+
+    function argTest
+    func self, name
+        super {name}_NEXT
+        msg Test9.argTest | {name}
+        super {name}_NEXT2
+        msg Test9.argTest | {name}
+    endm
+
 end
 
 Scope TestX
@@ -298,7 +313,7 @@ Scope TestX
         def \1#Isolate = true
     endm
 
-    forward reset, say
+    forward reset, say, argTest
 end
 
 Scope TestX2, TestX
@@ -308,6 +323,7 @@ end
         TestX2
             reset
             say hi
+            argTest fred
         end
     end
 
@@ -349,7 +365,7 @@ Type Type6, Type5
     function reset
     func
         super
-        msg Type6 | "\#"
+        msg Type6.reset | "\#"
         super
     endm
 end
@@ -368,7 +384,21 @@ end
     Type9 test2
     test2@reset
 
+/*
+Args:
+    - send the arguments to a macro
+        - store the args to a variable
+        - store the number of args (narg2)
+    - in 'end' (or 'body')
+        - send narg2, {args}, \# to a macro to define them appropriately
+            - also to backup any previously defined symbols with those names
+        - shift narg2
 
-    List TestList
-    ;, 1, 2, 3
-    ;msg "{TestList}"
+
+'function' will assign the symbol to execute a different macro than what is defined
+- redefine the macro that arguments get sent to to include a \@ which the backups gets stored to
+- then, after executing, will restore backup symbols
+
+- later:
+-- add possibility for 
+*/

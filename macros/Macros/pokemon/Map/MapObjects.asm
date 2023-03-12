@@ -99,7 +99,7 @@ Scope MapObjects
             ; if the section is not defined, initialize
             if not def({\1#Map}#{\@#name}#Count)
                 
-                ; last section does not begin with a count
+                ; final section does not begin with a count
                 if i < MapObjects#Order#_size-1
                     db {\1#Map}#{\@#name}#Count ; write before defining to use final value
                 endc
