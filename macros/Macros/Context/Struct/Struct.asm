@@ -1,5 +1,5 @@
 Context Struct
-    exit
+    finish
         DefineContextMacro {\1#Functions}
     endm
 

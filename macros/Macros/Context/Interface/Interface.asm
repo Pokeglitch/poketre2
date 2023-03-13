@@ -53,13 +53,13 @@ macro Interface@Define
         def \2#Parent equs "\3"
     endc
 
-    ; Run the Context init macro
-    Context@TryExec init, \#
+    ; Run the Context new macro
+    Context@TryExec new, \#
 endm
 
 macro Interface@end
-    ; Run the Context exit macro
-    Context@TryExec exit, \#
+    ; Run the Context finish macro
+    Context@TryExec finish, \#
 
     Trace@Close
     pops

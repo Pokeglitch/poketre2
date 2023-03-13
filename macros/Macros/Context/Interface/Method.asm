@@ -24,12 +24,12 @@ macro Interface@method#args
         endc
     endr
 
-    def args#num_inputs = args#i-2
-    def args#num_names = _narg-args#i
+    def \1#num_inputs = args#i-2
+    def \1#num_names = _narg-args#i
     def \1#Names equs ""
 
-    for args#i, args#num_names
-        def \@#name_index = args#i + args#num_inputs + 3
+    for args#i, \1#num_names
+        def \@#name_index = args#i + \1#num_inputs + 3
         def \@#name equs "\<{d:\@#name_index}>"
 
         ; if name is not empty:
@@ -48,7 +48,7 @@ macro Interface@method#args
             endc
 
             ; if a corresponding input was provided, then define
-            if args#i < args#num_inputs
+            if args#i < \1#num_inputs
                 def \@#input_index = args#i + 2
                 def {\@#name} equs "\<\@#input_index>"
             ; otherwise, if a default was provided, use that
@@ -82,14 +82,15 @@ endm
     \7+? - Arguments to forward to Method
 */
 macro Interface@method#execute
-    def \@#prev_super equs "{super}"
-    
+    backup \@, super, shift_args
+
     redef \@#super equs "\1#Super"
     redef \@#macro equs "try_exec \2,"
     shift 2
     redef super equs "\@#super \1, \2, \3, \4,"
 
-    redef define_args equs "Interface@method#args \@, \\#, \@,"
+    redef define_args equs "dispose define_args\n\tInterface@method#args \@, \\#, \@,"
+    redef shift_args equs "dispose shift_args\n\tshift \@#num_names"
 
     if def(\2@handle)
         Interface@continue \2@handle, \@#macro, \#
@@ -101,8 +102,12 @@ macro Interface@method#execute
     ; todo - where does this occur?
     if def(\@#Names)
         Interface@method#args#restore \@, {\@#Names}
+    else
+        def \@#define_args = def(define_args)
+        msg AAAAAA | {\@#define_args} | {\@#macro} | "\#"
     endc
-    redef super equs "{\@#prev_super}"
+
+    restore \@, super, shift_args
 endm
 
 macro Interface@method#lambda

@@ -126,6 +126,17 @@ macro is#String
     result strcmp("{\@#char}","\"") == 0
 endm
 
+macro backup
+    for backup#i, 2, _narg+1
+        def \1#backup#\<backup#i> equs "{\<backup#i>}"
+    endr
+endm
+
+macro restore
+    for restore#i, 2, _narg+1
+        redef \<restore#i> equs "{\1#backup#\<restore#i>}"
+    endr
+endm
 
 
 
@@ -227,10 +238,13 @@ end
 
 
 Scope Test0
-    init
+    method _init
+      args
         msg Init Test0 | "\#"
     endm
     from TestX2, TestX7, "msg Test0 From TestX2 | "
+    ;method _exit
+    ;  args
     exit
         msg Exit Test0
     endm
@@ -284,7 +298,8 @@ Scope Test7, Test6
     endm
 end
 Scope Test8, Test7
-    init
+    method _init
+      args
         super
         msg Init Test8 | "\#"
         super
@@ -300,6 +315,7 @@ Scope Test9, Test8
 
     method argTest
       args self, name
+        msg VOID | "\#"
         super {name}_NEXT
         msg Test9.argTest | {name}
         super {name}_NEXT2
@@ -309,7 +325,8 @@ Scope Test9, Test8
 end
 
 Scope TestX
-    init
+    method _init
+      args
         def \1#Isolate = true
     endm
 
@@ -349,7 +366,8 @@ Type Type3, Type2
     endm
 end
 Type Type4, Type3
-    init
+    method _init
+      args
         msg Init Type4 | "\#"
     endm
 end
@@ -372,7 +390,8 @@ end
 Type Type7, Type6
 end
 Type Type8, Type7
-    init
+    method _init
+      args
         super
         msg Init Type8 | "\#"
         super
@@ -381,5 +400,5 @@ end
 Type Type9, Type8
 end
 
-    Type9 test2
-    test2@reset
+    ;Type9 test2
+    ;test2@reset

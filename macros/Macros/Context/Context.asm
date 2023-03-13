@@ -58,6 +58,7 @@ NOTE: From wont trigger when returning from a Context that inherits from the con
     forward: Macro to permit access through isolation
 */
 def super equs "fail \"super does not exist for this context\"\n"
+def shift_args equs "fail \"shift_args does not exist for this context\"\n"
 
 /*
     \1 - Context Name
@@ -72,7 +73,7 @@ func
     def {Trace}#Isolate = true
 
     ; Define the single use macro names
-    Trace@Disposables \1, init, exit, open, method, property, handle, close
+    Trace@Disposables \1, new, finish, open, method, property, handle, close
 
     ; update the Context End to include the Context Name
     redef Context_End#Definition equs "Context@end \1,"

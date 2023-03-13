@@ -1,5 +1,3 @@
-def self equs "fail \"self does not exist for this context\"\n"
-
 Context Type
     open
         def \1#Symbol equs "\5"

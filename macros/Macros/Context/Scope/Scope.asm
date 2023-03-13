@@ -1,5 +1,5 @@
 Context Scope
-    exit
+    finish
         DefineContextMacro {\1#Functions}
     endm
 
