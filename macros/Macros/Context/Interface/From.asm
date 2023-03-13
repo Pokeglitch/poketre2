@@ -13,7 +13,6 @@ macro Interface@from
     else
         redef temp@name equs "\2@\@"
         Interface@args \1, \2, {temp@name}
-        redef args equs "{args}\n\tdefine_args"
         for i, 3, _narg+1
             def \2@from@\<i> equs "Interface@method#execute \2@from@\<i>, {temp@name}," ;"Interface@from#execute \2@from@\<i>, {temp@name},"
             append \2#Functions, from@\<i>

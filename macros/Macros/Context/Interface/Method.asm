@@ -8,7 +8,6 @@ macro Interface@method
     else
         redef temp@name equs "\2@\@"
         Interface@args \1, \2, {temp@name}
-        redef args equs "{args}\n\tdefine_args"
         for i, 3, _narg+1
             def \2@\<i> equs "Interface@method#execute \2@\<i>, {temp@name},"
             append \2#Functions, \<i>
@@ -99,13 +98,7 @@ macro Interface@method#execute
         \@#macro \#
     endc
 
-    ; todo - where does this occur?
-    if def(\@#Names)
-        Interface@method#args#restore \@, {\@#Names}
-    else
-        def \@#define_args = def(define_args)
-        msg AAAAAA | {\@#define_args} | {\@#macro} | "\#"
-    endc
+    Interface@method#args#restore \@, {\@#Names}
 
     restore \@, super, shift_args
 endm

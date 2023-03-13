@@ -13,7 +13,7 @@ endm
 
 macro Interface@args
     Trace@Disposable args, \3
-    redef args equs "\tInterface@SetMacros \1, \2\n{args}"
+    redef args equs "\tInterface@SetMacros \1, \2\n{args}\n\tdefine_args"
     dispose from, method, property, forward, \1_End#Definition
 endm
 
@@ -99,9 +99,10 @@ endm
     \3 - Interface    */
 macro Interface@open#init
     ;define the callback for re-entering this context
-    def \1@ReEnter equs "Interface@assign \1, \2, \3"
+    def \1@ReEnter equs "Interface@method#assign \1, \2, \3, \{\3#Functions}"
     
-    Interface@assign \1, \2, \3
+    ; define the Interface Name methods to include the corresponding Trace
+    Interface@method#assign \1, \2, \3, {\3#Functions}
 
     ; Initialize the Interface properties
     Interface@property#assign \1, \2, \3
@@ -111,11 +112,6 @@ macro Interface@open#init
 
     ; execute the init macro
     try_exec \3@init, \#
-endm
-
-macro Interface@assign
-    ; define the Interface Name methods to include the corresponding Trace
-    Interface@method#assign \1, \2, \3, {\3#Functions}
 endm
 
 /*
