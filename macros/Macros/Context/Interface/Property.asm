@@ -6,8 +6,6 @@
     \4+? - Arguments to forward to Initialization Method
 */
 macro Interface@property
-    CheckReservedName \3
-
     def \@#obj equs "\1#Properties#\3"
 
     ; Add the property ID to the list of properties

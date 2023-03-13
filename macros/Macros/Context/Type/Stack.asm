@@ -25,7 +25,9 @@ Type Stack
 
         ; initialize if provided arguments
         if _narg > 1
-            Stack@push \#
+            def \@#macro equs "\1@push"
+            shift
+            \@#macro \#
         endc
     endm
 
@@ -34,12 +36,11 @@ Type Stack
         ; increase the size
         \1#_size@inc
 
-        ; generate a new uuid
-        uuid \1#{d:\1#_size}
+        def \1#{d:\1#_size} equs "\@"
 
-        def \@#macro equs "\1@init"
+        def \@#macro equs "\1@new"
         shift
-        \@#macro {id}, \#
+        \@#macro \@, \#
     endm
 
     method pop

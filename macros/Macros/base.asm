@@ -4,15 +4,6 @@ def false equs "0"
 def true equs "1"
 def not equs "!"
 
-/*  To generate a unique id and assign to global 'id' symbol, and optionally, the provided argument
-    \1? - Symbol to assign to    */
-    macro uuid
-    redef id equs "\@"
-    if _narg == 1
-        redef \1 equs "\@"
-    endc
-endm
-
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)
     \1 - Symbol to assign macro string to
@@ -35,15 +26,6 @@ def define equs "\tdefine#Definition"
 macro define#Definition
     def \1 equs "\t\1#Definition"
     disposable func, \1#Definition
-endm
-
-
-; TODO - need to make a full list of reserved names, and list of remapped names
-; then, if name is in list, use remap
-macro CheckReservedName
-    if strcmp("\1","end") == 0
-        redef \1 equs "End#Definition"
-    endc
 endm
 
 /*  To send each argument to the given macro individually

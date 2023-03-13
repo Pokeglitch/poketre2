@@ -1,15 +1,4 @@
 /*
-TODO:
-    Get "super" working for From
-        - Dont add From to froms list if already defined
-NOTE: From wont trigger when returning from a Context that inherits from the context defined in the 'from' statement
-
---------
-    Clean up how the init/exit supers get assigned
-
-    - Finalize CheckReservedName and apply where necessary
-        - can utilize Array@contains
-
     make a Register Type?
     Attach #RegisterSize = 6/12 to all registers
     - i.e. a#RegisterSize
@@ -57,8 +46,6 @@ NOTE: From wont trigger when returning from a Context that inherits from the con
 
     forward: Macro to permit access through isolation
 */
-def super equs "fail \"super does not exist for this context\"\n"
-def shift_args equs "fail \"shift_args does not exist for this context\"\n"
 
 /*
     \1 - Context Name
