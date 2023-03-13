@@ -1,6 +1,7 @@
 
 Scope MapScript
-    init
+    method init
+      args
         def \1#Map equs "\2"
         
         MapSec frag, \2 Script
@@ -33,7 +34,8 @@ end
 
 ; TODO - extend a generic 'TrainerBattle' scope
 Scope MapScriptBattle
-    init
+    method init
+      args
         pushs
 
         def \1#Trainer equs "\2"
@@ -76,7 +78,8 @@ Scope MapScriptBattle
 
     from TrainerTeam, "end"
 
-    exit
+    method exit
+      args
         pops
         
         if def({\1#TeamName}WinText) == 0

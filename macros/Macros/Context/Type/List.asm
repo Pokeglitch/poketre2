@@ -1,7 +1,9 @@
 ;   A List is a string of comma separated values
 Type List, String
     property Number, _size
-    init
+    
+    method init
+      args
         super
         def \@#macro equs "\1@push"
         shift

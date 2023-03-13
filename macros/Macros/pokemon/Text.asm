@@ -1,7 +1,8 @@
 Scope Text
     ; \1 - AutoExit method
     ; \2+? - auto exit triggers
-    init
+    method init
+      args
         def \1#DoAutoExit = false
         def \1#isAutoExiting = false
 
@@ -204,7 +205,8 @@ Scope Text
         endc
     endm
 
-    exit
+    method exit
+      args
         PurgeAutoExitTriggers {\1#AutoExitTriggers}
         if \1#DoAutoExit
             def \1#isAutoExiting = true

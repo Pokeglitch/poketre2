@@ -238,14 +238,13 @@ end
 
 
 Scope Test0
-    method _init
+    method init
       args
         msg Init Test0 | "\#"
     endm
     from TestX2, TestX7, "msg Test0 From TestX2 | "
-    ;method _exit
-    ;  args
-    exit
+    method exit
+      args
         msg Exit Test0
     endm
 end
@@ -298,7 +297,7 @@ Scope Test7, Test6
     endm
 end
 Scope Test8, Test7
-    method _init
+    method init
       args
         super
         msg Init Test8 | "\#"
@@ -325,7 +324,7 @@ Scope Test9, Test8
 end
 
 Scope TestX
-    method _init
+    method init
       args
         def \1#Isolate = true
     endm
@@ -366,7 +365,7 @@ Type Type3, Type2
     endm
 end
 Type Type4, Type3
-    method _init
+    method init
       args
         msg Init Type4 | "\#"
     endm
@@ -390,7 +389,7 @@ end
 Type Type7, Type6
 end
 Type Type8, Type7
-    method _init
+    method init
       args
         super
         msg Init Type8 | "\#"

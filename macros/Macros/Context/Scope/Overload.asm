@@ -1,5 +1,6 @@
 Scope Overload
-    init
+    method init
+      args
         def \1#StartIndex = {\2}
         def \1#EndIndex = {\2}
         def \1#Symbol equs "\2"
@@ -25,7 +26,8 @@ Scope Overload
     endm
 
     ; Update the Symbol to match the EndIndex if EndIndex is greater
-    exit
+    method exit
+      args
         if  \1#EndIndex > {\1#Symbol}
             def {\1#Symbol} = \1#EndIndex
         endc

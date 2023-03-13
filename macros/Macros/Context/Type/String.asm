@@ -1,7 +1,8 @@
 Type String
     property Number, _len
 
-    init
+    method init
+      args
         if _narg == 2
             \1@redef \2
         else

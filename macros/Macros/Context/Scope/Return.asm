@@ -3,7 +3,8 @@
     \2 - if value is string or not
 */
 Scope Return
-    init
+    method init
+      args
         def \1#ReturnUsed = false
         def \1#Symbol equs "\2"
         def \1#isString = \3
@@ -53,7 +54,8 @@ Scope Return
         endc
     endm
 
-    exit
+    method exit
+      args
         if \1#isString
             redef {\1#Symbol} equs "{\1#Value}"
         else

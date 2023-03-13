@@ -43,11 +43,6 @@ macro Interface@Define
     def \2#Forwards equs ""
     def \2#Functions equs ""
     
-    ; Define the single use macro names
-    Trace@addDisposable init, exit
-    redef init equs "\tdispose init\n\tmethod _init\n\targs"
-    redef exit equs "\tdispose exit\n\tmethod _exit\n\targs"
-    
     ; Define the parent if provided
     if _narg == 3
         def \2#Parent equs "\3"
@@ -75,10 +70,10 @@ macro Interface@end
     Interface@method#inherit#fail \2, {\2#Functions}
 
     ; define the Interface Name to open a Trace of this Context & Interface
-    def \2 equs "\tInterface@open \1, \2, _init,"
+    def \2 equs "\tInterface@open \1, \2, init,"
 
     ; define the Interface Name 'end' to close the Trace of this Context & Interface
-    def \2_End#Definition equs "\tInterface@close \1, \2, _exit,"
+    def \2_End#Definition equs "\tInterface@close \1, \2, exit,"
 endm
 
 /*
@@ -115,9 +110,7 @@ macro Interface@open#init
     Interface@forward#assign \1, {\3#Forwards}
 
     ; execute the init macro
-    if def(\3@_init)
-        \3@_init \#
-    endc
+    try_exec \3@init, \#
 endm
 
 macro Interface@assign
@@ -144,7 +137,5 @@ endm
     \3 - Interface    */
 macro Interface@close#exit
     ; execute the exit macro
-    if def(\3@_exit)
-        \3@_exit \#
-    endc
+    try_exec \3@exit, \#
 endm

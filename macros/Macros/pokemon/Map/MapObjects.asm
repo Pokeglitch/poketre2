@@ -9,7 +9,8 @@ Scope MapObjects
     property Number, CurrentSection
     forward MapSec
     
-    init
+    method init
+      args
         def \1#Isolate = true
         def \1#Map equs "\2"
         def \1#ExpectText = false
@@ -200,7 +201,8 @@ end
 Scope MapObjectsBattle
     property List, Texts
 
-    init
+    method init
+      args
         def \1#Map equs "{\2#Map}"
         def \1#MapBattleIndex = {\1#Map}#BattleCount
         {\1#Map}#BattleCount@inc
@@ -278,7 +280,8 @@ Scope MapObjectsBattle
     from TrainerTeam, "end"
 
     ; TODO - can use generic Win or Loss texts if not provided
-    exit
+    method exit
+      args
         if \1#Texts#_size < 3
             fail "Battle Win/Lose Texts are missing"
         ; If Lose Text is missing, then duplicate the last text (the win text)

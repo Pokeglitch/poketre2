@@ -2,7 +2,8 @@
 ; TODO - make 'static'?
 def TeamDataTerminator = -1
 Scope TrainerTeam
-    init
+    method init
+      args
         def \1#ID equs "Party#\@"
 
         ; write the pointer to the party
@@ -80,7 +81,8 @@ Scope TrainerTeam
 
     from TeamSwitch, TeamASM, "end"
 
-    exit    
+    method exit
+      args
         ; Build the properties byte
         ; todo - macro based on ByteStruct definition?
         def {\1#ID}#Properties = {\1#ID}#Condition
@@ -90,7 +92,8 @@ Scope TrainerTeam
 end
 
 Scope TeamASM
-    init
+    method init
+      args
         SetCondition RoutineDefinition
 
         dba \@#Routine
@@ -100,14 +103,16 @@ Scope TeamASM
             \@#Routine:
     endm
 
-    exit
+    method exit
+      args
         ret
         pops
     endm
 end
 
 Scope TeamSwitch
-    init
+    method init
+      args
         shift
         ; If an argument was provided, then it is a ram value
         if _narg
@@ -123,7 +128,8 @@ Scope TeamSwitch
 end
 
 Scope TeamSwitchCase
-    init
+    method init
+      args
         db \2 ; write the value to compare against
 
         if _narg > 2
@@ -138,7 +144,8 @@ Scope TeamSwitchCase
 end
 
 Scope TeamSwitchRoutine
-    init
+    method init
+      args
         SetCondition RoutineValue
         dba \@#SwitchRoutine
         pushs
@@ -153,7 +160,8 @@ Scope TeamSwitchRoutine
         case \#
     endm
 
-    exit
+    method exit
+      args
         ret
         pops
     endm

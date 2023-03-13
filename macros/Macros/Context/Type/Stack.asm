@@ -18,7 +18,8 @@
 Type Stack
     property Number, _size
 
-    init
+    method init
+      args
         ; Initialize the symbol
         def \1 equs "\{\1#\{d:\1#_size}}"
 

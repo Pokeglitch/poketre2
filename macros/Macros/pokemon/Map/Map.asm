@@ -1,5 +1,6 @@
 Scope MapDefinition
-    init
+    method init
+      args
         Number \2#TextCount
         Number \2#BattleCount
 
@@ -23,7 +24,8 @@ Scope MapDefinition
         sec \#, \@#Bank
     endm
 
-    exit
+    method exit
+      args
         pops
     endm
 end

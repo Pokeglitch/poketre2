@@ -112,7 +112,8 @@ Struct ByteStruct
         endr
     endm
 
-    exit
+    method exit
+      args
         if \1#BitSize > 8
             fail "ByteStruct \1 exceeded 8 bits"
         endc
