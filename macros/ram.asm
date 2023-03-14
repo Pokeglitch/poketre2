@@ -1,4 +1,6 @@
-include "macros/Macros/base.asm"
+include "macros/lib/base.asm"
+init_lib macros/lib, macros
+incdir Pokemon
 
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/data_macros.asm"

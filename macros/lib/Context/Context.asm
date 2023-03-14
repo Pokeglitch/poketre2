@@ -85,9 +85,3 @@ macro Context@TryExec
     shift 2
     try_exec {\@#macro}, \#
 endm
-
-incasm Trace
-incdir Interface, Forward, From, Method, Property
-incdir Scope, Overload, Return
-incdir Struct, ByteStruct
-incdir Type, Number, String, List, Stack

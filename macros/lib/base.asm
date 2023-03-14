@@ -124,7 +124,6 @@ endm
 
 
 
-def base_dir equs "macros/Macros"
 define incdir
 func
     def \@#prev_base_dir equs "{base_dir}"
@@ -149,4 +148,19 @@ func
     endr
 endm
 
-incdirs Context, Pokemon
+; \1 - Directory that this library resides in
+define init_lib
+func
+    def base_dir equs "\1"
+    incdir Context, Trace
+    incdir Interface, Forward, From, Method, Property
+    incdir Scope, Overload, Return
+    incdir Struct, ByteStruct
+    incdir Type, Number, String, List, Stack
+    if _narg > 1
+        redef base_dir equs "\2"
+    else
+        redef base_dir equs "."
+    endc
+endm
+
