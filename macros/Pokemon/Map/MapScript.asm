@@ -1,4 +1,3 @@
-
 Scope MapScript
     method init
       args

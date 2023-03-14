@@ -15,7 +15,18 @@ macro Interface@method
     endc
 endm
 
+/*  If the name starts with a #, then assign as a property
+
+TODO:
+- If the default starts with #, then it is a property
+if default contains (), then execute return macro
+    -- will run into issues with args#i, etc
+*/
 macro Interface@method#args
+    redef args#trace equs "\1"
+    redef args#context equs "\2"
+    shift 2
+
     ; find the end of the inputs list
     for args#i, 2, _narg+1
         if strcmp("\<args#i>","\1") == 0
@@ -40,25 +51,48 @@ macro Interface@method#args
                 redef \@#name equs strsub("{\@#name}", 1, \@#equal_index-1)
             endc
 
-            ; if the name is defined, then store the backup & purge
-            if def({\@#name})
-                def \1#{\@#name} equs "{{\@#name}}"
-                purge {\@#name}
-            endc
+            ; if it starts with a #, then assign as a property
+            def \@#hash_index = strin("{\@#name}","#")
+            if \@#hash_index == 1
+                redef \@#name equs strsub("{\@#name}", 2)
 
-            ; if a corresponding input was provided, then define
-            if args#i < \1#num_inputs
-                def \@#input_index = args#i + 2
-                def {\@#name} equs "\<\@#input_index>"
-            ; otherwise, if a default was provided, use that
-            elif def(\@#default)
-                def {\@#name} equs "{\@#default}"
-            endc
 
-            ; add the name to the list of names
-            append \1#Names, {\@#name}
+                ; if a corresponding input was provided, then define
+                if args#i < \1#num_inputs
+                    def \@#input_index = args#i + 2
+                    def \@#value equs "\<\@#input_index>"
+                ; otherwise, if a default was provided, use that
+                elif def(\@#default)
+                    def \@#value equs "{\@#default}"
+                endc
+
+                def \@#continue equs "Interface@method#args#property {\@#value},"
+                Interface@continue {args#context}@property, \@#continue, {args#trace}, {\@#name}
+            else
+                ; if the name is defined, then store the backup & purge
+                if def({\@#name})
+                    def \1#{\@#name} equs "{{\@#name}}"
+                    purge {\@#name}
+                endc
+
+                ; if a corresponding input was provided, then define
+                if args#i < \1#num_inputs
+                    def \@#input_index = args#i + 2
+                    def {\@#name} equs "\<\@#input_index>"
+                ; otherwise, if a default was provided, use that
+                elif def(\@#default)
+                    def {\@#name} equs "{\@#default}"
+                endc
+
+                ; add the name to the list of names
+                append \1#Names, {\@#name}
+            endc
         endc
     endr
+endm
+
+macro Interface@method#args#property
+    def \2 equs "\1"
 endm
 
 macro Interface@method#args#restore
@@ -74,8 +108,8 @@ endm
 /*
     \1 - Symbol to get super from
     \2 - Method to execute
-    \3 - Context
-    \4 - Type Name
+    \3 - Trace
+    \4 - Context Name
     \5 - Interface Name
     \6 - Method Name
     \7+? - Arguments to forward to Method
@@ -88,7 +122,7 @@ macro Interface@method#execute
     shift 2
     redef super equs "\@#super \1, \2, \3, \4,"
 
-    redef define_args equs "dispose define_args\n\tInterface@method#args \@, \\#, \@,"
+    redef define_args equs "dispose define_args\n\tInterface@method#args \1, \2, \@, \\#, \@,"
     redef shift_args equs "dispose shift_args\n\tshift \@#num_names"
 
     if def(\2@handle)
@@ -144,5 +178,7 @@ macro Interface@method#assign
 endm
 
 macro Interface@method#assign#final
-    redef \5 equs "{\3@\4} \1, \2, 3, \4,"
+    for method#i, 5, _narg+1
+        redef \<method#i> equs "{\3@\4} \1, \2, 3, \4,"
+    endr
 endm

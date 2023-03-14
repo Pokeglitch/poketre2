@@ -1,19 +1,13 @@
-Scope MapDefinition
-    method init
-      args
-        Number \2#TextCount
-        Number \2#BattleCount
+Class2 MapDefinition
+    property Number, TextCount
+    property Number, BattleCount
 
-        DEF \2#Height = \3
-        DEF \2#Width = \4
-        DEF \2#Tileset = \5
-        DEF \2#Border = \6
-    
-        def \1#Map equs "\2"
+    method init
+      args #Name, #Height, #Width, #Tileset, #Border
         def \1#Bank = BANK(@)
+
         pushs
-        
-        MapScript \2
+        MapScript \1
     endm
 
     ; Open a section in the same bank as this Map

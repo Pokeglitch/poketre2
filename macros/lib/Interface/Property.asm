@@ -42,5 +42,7 @@ macro Interface@property#assign
 endm
 
 macro Interface@property#assign#final
-    \1#macro \2, {\1#args}
+    for prop#i, 2, _narg+1
+        \1#macro \<prop#i>, {\1#args}
+    endr
 endm

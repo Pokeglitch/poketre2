@@ -157,10 +157,12 @@ func
     incdir Scope, Overload, Return
     incdir Struct, ByteStruct
     incdir Type, Number, String, List, Stack
+    incdir Class
     if _narg > 1
         redef base_dir equs "\2"
     else
         redef base_dir equs "."
     endc
 endm
+
 
