@@ -78,12 +78,24 @@ macro Interface@method#args
                 ; if a corresponding input was provided, then define
                 if args#i < \1#num_inputs
                     def \@#input_index = args#i + 2
-                    def {\@#name} equs "\<\@#input_index>"
+                    def \@#value equs "\<\@#input_index>"
                 ; otherwise, if a default was provided, use that
                 elif def(\@#default)
-                    def {\@#name} equs "{\@#default}"
+                    def \@#value equs "{\@#default}"
                 endc
 
+                if def(\@#value)
+                    if strcmp("{\@#name}","{\@#value}")
+                        def {\@#name} equs "{\@#value}"
+                    ; if the value is the same as the name, then use the prior value
+                    else
+                        if def(\1#{\@#name})
+                            def {\@#name} equs "{\1#{\@#name}}"
+                        else
+                            fail "{\@#name} is not defined"
+                        endc
+                    endc
+                endc
                 ; add the name to the list of names
                 append \1#Names, {\@#name}
             endc

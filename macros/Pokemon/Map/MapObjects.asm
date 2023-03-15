@@ -7,7 +7,7 @@ List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Scope MapObjects
     property Number, CurrentSection
-    forward MapSec
+    forward MapSec, EventDisp
     
     method init
       args
@@ -43,17 +43,10 @@ Scope MapObjects
         pops
     endm
 
-/*  \1 - X movement (X-blocks)
-    \2 = Rows above (Y-blocks)    */
-    method EventDisp
-      args
-        EVENT_DISP {\1#Map}#Width, \3, \2
-    endm
-
     method MapCoord
-      args
-        db \3 + 4
-        db \2 + 4
+      args , X, Y
+        db Y + 4
+        db X + 4
     endm
 
     method AddTextPointer
@@ -124,28 +117,27 @@ Scope MapObjects
 
 /*  \1 - x position
     \2 - y position
-    \3? - sign id    */
+    \3? - Text pointer    */
     method Sign
-      args
+      args , x, y, text_ptr
         UpdateCount Sign
-        db \3, \2
-        ; If a specific pointer was provided, use it. otherwise enter Text context
-        if _narg == 4
-            AddTextPointer \4
+        db y, x
+        if def(text_ptr)
+            AddTextPointer text_ptr
         else
             InitText
         endc
     endm
 
     method NPC
-      args
+      args , sprite, x, y, movement, range, text_ptr
         UpdateCount Sprite
-        db \2
-        MapCoord \3, \4
-        db \5, \6
+        db sprite
+        MapCoord x, y
+        db movement, range
         ; If a specific pointer was provided, use it. otherwise enter Text context
-        if _narg == 7
-            AddTextPointer \7
+        if def(text_ptr)
+            AddTextPointer text_ptr
         else
             InitText
         endc
@@ -158,14 +150,14 @@ Scope MapObjects
     endm
 
     method Pickup
-      args
+      args , x, y, item, quantity
         UpdateCount Sprite
         db SPRITE_BALL
-        MapCoord \2, \3
-        db STAY, NONE, MapText#Type#Item, \4
+        MapCoord x, y
+        db STAY, NONE, MapText#Type#Item, item
         ; if a specific amount is provided, use it. otherwise, use 1
-        if _narg == 5
-            db \5
+        if def(quantity)
+            db quantity
         else
             db 1
         endc

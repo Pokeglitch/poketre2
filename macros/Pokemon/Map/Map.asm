@@ -17,6 +17,13 @@ Class2 MapDefinition
         shift
         sec \#, \@#Bank
     endm
+    
+/*  \1 - X movement (X-blocks)
+    \2 = Rows above (Y-blocks)    */
+    method EventDisp
+      args , x, y
+        EVENT_DISP \1#Width, y, x
+    endm
 
     method exit
       args

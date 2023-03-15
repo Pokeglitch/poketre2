@@ -14,7 +14,6 @@ Context Class2
     endm
 
     method
-        msg "\#"
         continue {\1#Name}_\2, {\1#Symbol}@\2
     endm
 
