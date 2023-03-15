@@ -10,12 +10,12 @@ Scope MapObjects
     forward MapSec, EventDisp
     
     method init
-      args
+      args , #Map
         def \1#Isolate = true
-        def \1#Map equs "\2"
         def \1#ExpectText = false
+        def \2#Objects equs "\1"
 
-        MapSec frag, \2 Objects
+        ObjSec
             \2#Objects:
                 db \2#Border
                 include "data/mapObjects/\2.asm"
@@ -24,6 +24,12 @@ Scope MapObjects
         InitializeSections MapObjects#Order#_size-1
 
         end
+    endm
+
+    method ObjSec
+      args
+        ; call as attribute of Map since this gets called from other maps
+        {\1#Map}@MapSec frag, {\1#Map} Objects
     endm
 
     method text
@@ -47,6 +53,15 @@ Scope MapObjects
       args , X, Y
         db Y + 4
         db X + 4
+    endm
+
+    method AddTextPointerOrInitText
+      args , text_ptr
+        if def(text_ptr)
+            AddTextPointer text_ptr
+        else
+            InitText
+        endc
     endm
 
     method AddTextPointer
@@ -115,18 +130,11 @@ Scope MapObjects
         def \1#ExpectText = true
     endm
 
-/*  \1 - x position
-    \2 - y position
-    \3? - Text pointer    */
     method Sign
       args , x, y, text_ptr
         UpdateCount Sign
         db y, x
-        if def(text_ptr)
-            AddTextPointer text_ptr
-        else
-            InitText
-        endc
+        AddTextPointerOrInitText text_ptr
     endm
 
     method NPC
@@ -135,12 +143,7 @@ Scope MapObjects
         db sprite
         MapCoord x, y
         db movement, range
-        ; If a specific pointer was provided, use it. otherwise enter Text context
-        if def(text_ptr)
-            AddTextPointer text_ptr
-        else
-            InitText
-        endc
+        AddTextPointerOrInitText text_ptr
     endm
 
     method Battle
@@ -150,41 +153,24 @@ Scope MapObjects
     endm
 
     method Pickup
-      args , x, y, item, quantity
+      args , x, y, item, quantity=1
         UpdateCount Sprite
         db SPRITE_BALL
         MapCoord x, y
         db STAY, NONE, MapText#Type#Item, item
-        ; if a specific amount is provided, use it. otherwise, use 1
-        if def(quantity)
-            db quantity
-        else
-            db 1
-        endc
+        db quantity
     endm
 
-/*  \1 - x position
-    \2 - y position
-    \3 - destination warp id
-    \4? - destination map (-1 = wLastMap)    */
     method Warp
-      args
+      args , x, y, index, map = -1
         UpdateCount Warp
-        db \3, \2, \4
-        ; if a specific map is provided, use it. otherwise use previous map
-        if _narg == 5
-            db \5
-        else
-            db -1
-        endc
+        db y, x, index, map
     endm
 
-/*  \1 - x position
-    \2 - y position    */
     method WarpTo
-      args
+      args , x, y
         UpdateCount WarpTo
-        EventDisp \2, \3
+        EventDisp x, y
     endm
 end
 

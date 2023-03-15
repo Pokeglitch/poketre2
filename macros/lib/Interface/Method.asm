@@ -69,6 +69,8 @@ macro Interface@method#args
                 def \@#continue equs "Interface@method#args#property {\@#value},"
                 Interface@continue {args#context}@property, \@#continue, {args#trace}, {\@#name}
             else
+                def \@#append = true
+
                 ; if the name is defined, then store the backup & purge
                 if def({\@#name})
                     def \1#{\@#name} equs "{{\@#name}}"
@@ -91,13 +93,17 @@ macro Interface@method#args
                     else
                         if def(\1#{\@#name})
                             def {\@#name} equs "{\1#{\@#name}}"
+                        ; if previously undefined, then leave purged and dont restore after
                         else
-                            fail "{\@#name} is not defined"
+                            def \@#append = false
                         endc
                     endc
                 endc
-                ; add the name to the list of names
-                append \1#Names, {\@#name}
+
+                if \@#append
+                    ; add the name to the list of names
+                    append \1#Names, {\@#name}
+                endc
             endc
         endc
     endr
