@@ -1,4 +1,4 @@
-OaksLabObject:
+OaksLabObjects:
 	db $3 ; border block
 
 	db 2 ; warps

@@ -120,10 +120,6 @@ macro restore
     endr
 endm
 
-
-
-
-
 define incdir
 func
     def \@#prev_base_dir equs "{base_dir}"

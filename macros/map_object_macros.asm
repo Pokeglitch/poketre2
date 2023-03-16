@@ -40,17 +40,6 @@ MACRO MapData
     DEF CUR_BANK = BANK(@)
 
     MapDefinition \#
-
-        SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
-            \1Header:
-                db \1#Tileset
-                db \1#Height, \1#Width
-                dw \1Blocks, \1TextPointers, \1Script, \1TrainerHeaders
-                db \1ConnectionFlags
-
-            ; define after allocating so it uses final value
-            DEF \1ConnectionFlags = 0
-
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
             \1TrainerHeaders:
 
@@ -68,8 +57,5 @@ MACRO MapData
         SECTION "\1 Blocks", ROMX, BANK[CUR_BANK]
             \1Blocks:
                 INCBIN STRCAT("maps/", "\1", ".blk")
-
-        SECTION FRAGMENT "\1 Header", ROMX, BANK[CUR_BANK]
-            dw \1#Objects
     end
 ENDM

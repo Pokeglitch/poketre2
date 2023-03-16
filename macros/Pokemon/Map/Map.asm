@@ -7,7 +7,22 @@ Class2 MapDefinition
         def \1#Bank = BANK(@)
 
         pushs
+
+        MapSec frag, \1 Header
+            \1Header:
+                db \1#Tileset, \1#Height, \1#Width
+                dw \1Blocks, \1TextPointers, \1Script, \1TrainerHeaders
+                db \1#ConnectionFlags
+
+            ; define after allocating so it uses final value
+            def \1#ConnectionFlags = 0
+
         MapScript \1
+
+        ; after connections are defined, add the objects pointer
+        ; TODO - the connections shoud come after the objects pointer, so they can be added after...
+        MapSec frag, \1 Header
+            dw \1Objects
     endm
 
     method nextBattleCount

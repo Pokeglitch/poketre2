@@ -723,7 +723,7 @@ OaksLabScript_1d02b:
 	call SetSpritePosition1
 	ret
 
-OaksLabTrainerHeader0:
+OaksLabTrainerHeaders:
 	db TrainerHeaderTerminator
 
 OaksLabTextPointers:

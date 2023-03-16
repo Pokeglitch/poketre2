@@ -15,7 +15,7 @@ Class2 MapObjects
         def \1#ExpectText = false
 
         ObjSec
-            \2#Objects:
+            \2Objects:
                 db \2#Border
                 include "data/mapObjects/\2.asm"
 
