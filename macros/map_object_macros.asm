@@ -1,22 +1,22 @@
-    ByteStruct MapObject
-        Index TextIndex, %01111111
-        Flag Sign
+ByteStruct MapObject
+    Index TextIndex, %01111111
+    Flag Sign
+end
+
+ByteStruct ObjectData
+    overload
+        Index Level, 100
+    next
+        Index PartyIndex, %01111111
     end
 
-    ByteStruct ObjectData
-        overload
-            Index Level, 100
-        next
-            Index PartyIndex, %01111111
-        end
+    Flag Trainer
+end
 
-        Flag Trainer
-    end
-
-    ByteStruct MapText
-        Index Index, %00011111
-        Array Type, 3, Standard, Item, Trainer
-    end
+ByteStruct MapText
+    Index Index, %00011111
+    Array Type, 3, Standard, Item, Trainer
+end
 
 ; todo - struct macro
 TrainerHeaderPropertyFlagIndexMask = %00000111
@@ -60,7 +60,7 @@ MACRO MapData
         SECTION FRAGMENT "\1 Text Pointers", ROMX, BANK[CUR_BANK]
             \1TextPointers:
 
-        MapObjects \1
+        MapObjects \1#Objects, \1
 
         SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
 	        db TrainerHeaderTerminator

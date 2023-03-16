@@ -5,7 +5,7 @@ TODO:
 */
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
-Scope MapObjects
+Class2 MapObjects
     property Number, CurrentSection
     forward MapSec, EventDisp
     
@@ -13,7 +13,6 @@ Scope MapObjects
       args , #Map
         def \1#Isolate = true
         def \1#ExpectText = false
-        def \2#Objects equs "\1"
 
         ObjSec
             \2#Objects:
@@ -50,9 +49,9 @@ Scope MapObjects
     endm
 
     method MapCoord
-      args , X, Y
-        db Y + 4
-        db X + 4
+      args , x, y
+        db y + 4
+        db x + 4
     endm
 
     method AddTextPointerOrInitText
@@ -65,20 +64,15 @@ Scope MapObjects
     endm
 
     method AddTextPointer
-      args
+      args , text_ptr, flag=0
         pushs
             MapSec frag, {\1#Map} Text Pointers
-                dw \2
+                dw text_ptr
         pops
         
         {\1#Map}#TextCount@inc
 
-        ; If a flag was provided, then write it
-        if _narg == 3
-            db {\1#Map}#TextCount | \3
-        else
-            db {\1#Map}#TextCount
-        endc
+        db {\1#Map}#TextCount | flag
     endm
 
     method UpdateCount
@@ -138,11 +132,11 @@ Scope MapObjects
     endm
 
     method NPC
-      args , sprite, x, y, movement, range, text_ptr
+      args , sprite, x, y, movement, direction, text_ptr
         UpdateCount Sprite
         db sprite
         MapCoord x, y
-        db movement, range
+        db movement, direction
         AddTextPointerOrInitText text_ptr
     endm
 
@@ -174,22 +168,19 @@ Scope MapObjects
     endm
 end
 
-; TODO - extend a generic 'TrainerBattle' scope
-;      - need to distinguish between pokemon and trainer  
-Scope MapObjectsBattle
+; TODO - distinguish between a pokemon and a trainer  
+Scope MapObjectsBattle, TrainerBattle
     property List, Texts
 
     method init
-      args
+      args , objects, sprite, x, y, movement, direction, range, trainer
         def \1#Map equs "{\2#Map}"
-        def \1#MapBattleIndex = {\1#Map}#BattleCount
-        {\1#Map}#BattleCount@inc
-        vars \1#Trainer = Symbolize(\9)
+        var \1#MapBattleIndex = nextBattleCount()
+        vars \1#Trainer = Symbolize({trainer})
 
-        db \3
-        MapCoord \4, \5
-        db \6
-        db \7
+        db sprite
+        MapCoord x, y
+        db movement, direction
 
         AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
 
@@ -202,7 +193,7 @@ Scope MapObjectsBattle
         SecHeader
             \@#TrainerHeader:
                 db 1 << (TotalTrainerBattleCount % 8)   ; the mask for this trainer
-                db (\8 << 4) | {\1#Map}#Sprite#Count      ; trainer's view range and sprite index
+                db (range << 4) | {\1#Map}#Sprite#Count      ; trainer's view range and sprite index
                 dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
                 
         def TotalTrainerBattleCount += 1
@@ -214,9 +205,9 @@ Scope MapObjectsBattle
     endm
 
     method AddPointer
-      args
+      args , ptr
         SecHeader
-            dw \2
+            dw ptr
     endm
 
     method text
@@ -242,20 +233,6 @@ Scope MapObjectsBattle
                 shift
                 more \#
     endm
-
-    from Text
-      args
-        pops
-    endm
-
-    method Team
-      args
-        section fragment "{\1#Trainer} Party Pointers", romx, bank[TrainerClass]
-            shift
-            TrainerTeam \#
-    endm
-
-    from TrainerTeam, "end"
 
     ; TODO - can use generic Win or Loss texts if not provided
     method exit

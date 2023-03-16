@@ -89,6 +89,8 @@ macro Interface@open
     ; open the context
     Trace@Open \2
 
+    def {Trace}#Context equs "\1"
+
     ; Run the Context open macro and/or the Interface init method
     Interface@continue \1@open, Interface@open#init, {Trace}, \#
 endm

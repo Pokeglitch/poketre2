@@ -10,6 +10,12 @@ Class2 MapDefinition
         MapScript \1
     endm
 
+    method nextBattleCount
+      args
+        return \1#BattleCount
+        \1#BattleCount@inc
+    endm
+
     ; Open a section in the same bank as this Map
     method MapSec
       args

@@ -38,7 +38,6 @@ macro Trace@ExecuteCallback
     if strcmp("{\1#Name}","")
         ; if the callback exists, execute it
         if def({\1#Name}_from@{\2#Name})
-            ;Interface@from#execute3 \1, \2
             From#{{\1#Name}_from@{\2#Name}} \2
         endc
     endc

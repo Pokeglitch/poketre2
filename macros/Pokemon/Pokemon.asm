@@ -1,2 +1,2 @@
+incasm Team, Text, Trainer
 incdir Map, MapScript, MapObjects
-incasm Team, Text

@@ -1,3 +1,6 @@
+/*
+TODO - Array should be named Enum
+*/
 Struct ByteStruct
     property Number, BitSize
     property Number, Flags#All#BitMask
