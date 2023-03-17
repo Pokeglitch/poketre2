@@ -1,8 +1,20 @@
+/*
+TODO:
+    - vars can be combined with var by investigating if the return value starts with "
+    -- also, have var work without function call as well (just to assign to a variable....purge first to be able to change from equs to =)
+    --- also, allow code to exist before/after the function call...
+*/
+
 def _narg equs "_NARG"
 def end equs "\tEnd#Definition"
 def false equs "0"
 def true equs "1"
 def not equs "!"
+
+/*
+TODO - use method/args instead of define/func
+- purge both after last usage...
+*/
 
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)

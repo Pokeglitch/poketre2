@@ -1420,7 +1420,7 @@ CeladonMart1Blocks: INCBIN "maps/celadonmart1.blk"
 
 INCLUDE "engine/overworld/cinnabar_lab.asm"
 
-	MapDefinition ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
+MapDefinition ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
 
 INCLUDE "data/mapHeaders/ssanne1.asm"
 INCLUDE "scripts/ssanne1.asm"

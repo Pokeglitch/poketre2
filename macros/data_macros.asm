@@ -240,14 +240,13 @@ MACRO EAST_MAP_CONNECTION
 	dw wOverworldMap + 7 + \2_WIDTH ; window (position of the upper left block after entering the map)
 ENDM
 
-; TODO - why does it fail when trying to assign 'x'?
-MACRO tmlearn
-tm_learn_x = 0
-	REPT _NARG
-IF \1 != 0
-tm_learn_x = tm_learn_x | (1 << ((\1 - 1) % 8))
-ENDC
-	SHIFT
-	ENDR
-	db tm_learn_x
-ENDM
+macro tmlearn
+	redef tm_byte = 0
+	rept _NARG
+		if \1 != 0
+			redef tm_byte |= (1 << ((\1 - 1) % 8))
+		endc
+		shift
+	endr
+	db tm_byte
+endm

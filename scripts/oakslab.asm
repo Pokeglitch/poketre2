@@ -769,7 +769,9 @@ OaksLabScript_1d133:
 
 OaksLabText39:
 	textbox DEFAULT_SPEECH_TEXTBOX
-	fartext _OaksLabText39
+	text "Those are #"
+	next "BALLs. They"
+	cont "contain POKéMON!"
 	done
 
 OaksLabScript_1d157:
@@ -803,9 +805,12 @@ OaksLabScript_1d157:
 OaksLabLookAtCharmander:
 	ld hl, OaksLabCharmanderText
 	ret
+
 OaksLabCharmanderText:
 	textbox DEFAULT_SPEECH_TEXTBOX
-	fartext _OaksLabCharmanderText
+	text "So! You want the"
+	next "fire POKéMON,"
+	cont "CHARMANDER?"
 	gototext OaksLabYesNoText
 
 OaksLabLookAtSquirtle:
@@ -813,7 +818,9 @@ OaksLabLookAtSquirtle:
 	ret
 OaksLabSquirtleText:
 	textbox DEFAULT_SPEECH_TEXTBOX
-	fartext _OaksLabSquirtleText
+	text "So! You want the"
+	next "water POKéMON,"
+	cont "SQUIRTLE?"
 	gototext OaksLabYesNoText
 
 OaksLabLookAtBulbasaur:
@@ -821,7 +828,9 @@ OaksLabLookAtBulbasaur:
 	ret
 OaksLabBulbasaurText:
 	textbox DEFAULT_SPEECH_TEXTBOX
-	fartext _OaksLabBulbasaurText
+	text "So! You want the"
+	next "plant POKéMON,"
+	cont "BULBASAUR?"
 	; fall through
 
 OaksLabYesNoText:
@@ -868,14 +877,18 @@ OaksLabYesNoText:
 	ld [wJoyIgnore], a
 	ld a, 2
 	ld [wOaksLabCurScript], a
-	jp TextScriptEnd
+	asmdone
 
 OaksLabMonEnergeticText:
-	fartext _OaksLabMonEnergeticText
-	done
+	text "This POKéMON is"
+	next "really energetic!"
+	prompt
 
 OaksLabReceivedMonText:
-	fartext _OaksLabReceivedMonText
+	text "<PLAYER> received"
+	next "a "
+	ramtext wcd6d
+	more "!"
 	sfxtext SFX_GET_KEY_ITEM
 	done
 
@@ -891,7 +904,8 @@ OaksLabScript_1d22d:
 
 OaksLabLastMonText:
 	textbox DEFAULT_SPEECH_TEXTBOX
-	fartext _OaksLabLastMonText
+	text "That's PROF.OAK's"
+	next "last POKéMON!"
 	done
 
 OaksLabText5:
@@ -966,37 +980,104 @@ OaksLabText5:
 	jp TextScriptEnd
 
 OaksLabText_1d2f0:
-	fartext _OaksLabText_1d2f0
+	text "OAK: Now, <PLAYER>,"
+	next "which POKéMON do"
+	cont "you want?"
 	done
 
 OaksLabText_1d2f5:
-	fartext _OaksLabText_1d2f5
+	text "OAK: If a wild"
+	next "POKéMON appears,"
+	cont "your POKéMON can"
+	cont "fight against it!"
 	done
 
 OaksLabText_1d2fa:
-	fartext _OaksLabText_1d2fa
+	text "OAK: <PLAYER>,"
+	next "raise your young"
+	cont "POKéMON by making"
+	cont "it fight!"
 	done
 
 OaksLabDeliverParcelText:
-	fartext _OaksLabDeliverParcelText1
+	text "OAK: Oh, <PLAYER>!"
+
+	para "How is my old"
+	next "POKéMON?"
+
+	para "Well, it seems to"
+	next "like you a lot."
+
+	para "You must be"
+	next "talented as a"
+	cont "POKéMON trainer!"
+
+	para "What? You have"
+	next "something for me?"
+
+	para "<PLAYER> delivered"
+	next "OAK's PARCEL."
+
 	sfxtext SFX_GET_KEY_ITEM
-	fartext _OaksLabDeliverParcelText2
+
+	para "Ah! This is the"
+	next "custom POKé BALL"
+	cont "I ordered!"
+	cont "Thank you!"
 	done
 
 OaksLabAroundWorldText:
-	fartext _OaksLabAroundWorldText
+	text "POKéMON around the"
+	next "world wait for"
+	cont "you, <PLAYER>!"
 	done
 
 OaksLabGivePokeballsText:
-	fartext _OaksLabGivePokeballsText1
+	text "OAK: You can't get"
+	next "detailed data on"
+	cont "POKéMON by just"
+	cont "seeing them."
+
+	para "You must catch"
+	next "them! Use these"
+	cont "to capture wild"
+	cont "POKéMON."
+
+	para "<PLAYER> got 5"
+	next "POKé BALLs!"
+
 	sfxtext SFX_GET_KEY_ITEM
-	fartext _OaksLabGivePokeballsText2
+
+	para "When a wild"
+	next "POKéMON appears,"
+	cont "it's fair game."
+
+	para "Just throw a #"
+	next "BALL at it and try"
+	next "to catch it!"
+
+	para "This won't always"
+	next "work, though."
+
+	para "A healthy POKéMON"
+	next "could escape. You"
+	cont "have to be lucky!"
 	done
 
+
 OaksLabPleaseVisitText:
-	fartext _OaksLabPleaseVisitText
+	text "OAK: Come see me"
+	next "sometimes."
+
+	para "I want to know how"
+	next "your POKéDEX is"
+	cont "coming along."
 	done
 
 OaksLabText_1d31d:
-	fartext _OaksLabText_1d31d
-	done
+	text "OAK: Good to see "
+	next "you! How is your "
+	cont "POKéDEX coming? "
+	cont "Here, let me take"
+	cont "a look!"
+	prompt

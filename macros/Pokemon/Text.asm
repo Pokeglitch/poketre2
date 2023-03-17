@@ -97,6 +97,7 @@ Scope Text
     method gototext
       args
         dbw GOTO_TEXT, \2
+        CleanExit
     endm
 
     method neartext
@@ -137,6 +138,8 @@ Scope Text
         db SFX_TEXT, \2
     endm
 
+    ; todo .. how can this be cleaned up?
+    ; can prompt/done also extend this text scope?
     method asmtext
       args
         ;SetAutoExit asmdone
