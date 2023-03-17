@@ -723,59 +723,6 @@ OaksLabScript_1d02b:
 	call SetSpritePosition1
 	ret
 
-OaksLabTrainerHeaders:
-	db TrainerHeaderTerminator
-
-OaksLabTextPointers:
-	dw OaksLabText1
-	dw OaksLabText2
-	dw OaksLabText3
-	dw OaksLabText4
-	dw OaksLabText5
-	dw OaksLabText6
-	dw OaksLabText7
-	dw OaksLabText8
-	dw OaksLabText9
-	dw OaksLabText10
-	dw OaksLabText11
-
-OaksLabText1:
-	asmtext
-	ld hl, RivalBeforeOakText
-	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
-	jr z, .finish
-
-	ld hl, RivalChoosingStarterText
-	CheckEvent EVENT_GOT_STARTER
-	jr z, .finish
-
-	ld hl, RivalGotStarterText
-
-.finish
-	call PrintText
-	jp TextScriptEnd
-
-RivalBeforeOakText:
-	text "<RIVAL>: Yo"
-	next "<PLAYER>! Gramps"
-	cont "isn't around!"
-	done
-
-RivalChoosingStarterText:
-	text "<RIVAL>: Heh, I"
-	next "don't need to be"
-	cont "greedy like you!"
-
-	para "Go ahead and"
-	next "choose, <PLAYER>!"
-	done
-
-RivalGotStarterText:
-	text "<RIVAL>: My"
-	next "POKéMON looks a"
-	cont "lot stronger."
-	done
-
 OaksLabText2:
 	db NO_TEXTBOX
 	asmtext
@@ -1052,35 +999,4 @@ OaksLabPleaseVisitText:
 
 OaksLabText_1d31d:
 	fartext _OaksLabText_1d31d
-	done
-
-OaksLabText7:
-OaksLabText6:
-	asmtext
-	ld hl, OaksLabText_1d32c
-	call PrintText
-	jp TextScriptEnd
-
-OaksLabText_1d32c:
-	fartext _OaksLabText_1d32c
-	done
-
-OaksLabText8:
-	fartext _OaksLabText8
-	done
-
-OaksLabText9:
-	asmtext
-	ld hl, OaksLabText_1d340
-	call PrintText
-	jp TextScriptEnd
-
-OaksLabText_1d340:
-	fartext _OaksLabText_1d340
-	done
-
-OaksLabText11:
-OaksLabText10:
-	text "I study POKéMON as"
-	next "PROF.OAK's AIDE."
 	done

@@ -141,26 +141,6 @@ _OaksLabText_1d31d::
 	cont "a look!"
 	prompt
 
-_OaksLabText_1d32c::
-	text "It's encyclopedia-"
-	next "like, but the"
-	cont "pages are blank!"
-	done
-
-_OaksLabText8::
-	text "?"
-	done
-
-_OaksLabText_1d340::
-	text "PROF.OAK is the"
-	next "authority on"
-	cont "POKéMON!"
-
-	para "Many POKéMON"
-	next "trainers hold him"
-	cont "in high regard!"
-	done
-
 _OaksLabText_441cc::
 	text "POKéDEX comp-"
 	next "letion is:"

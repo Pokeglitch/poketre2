@@ -19,16 +19,29 @@ Class2 MapDefinition
 
         MapScript \1
 
+        MapObjects \1#Objects, \1
+
         ; after connections are defined, add the objects pointer
         ; TODO - the connections shoud come after the objects pointer, so they can be added after...
         MapSec frag, \1 Header
             dw \1Objects
+            
+        MapSec \1 Blocks
+          \1Blocks:
+              incbin "maps/\1.blk"
+
+        end
     endm
 
     method nextBattleCount
       args
         return \1#BattleCount
         \1#BattleCount@inc
+    endm
+
+    method getMap
+      args
+        return \1
     endm
 
     ; Open a section in the same bank as this Map

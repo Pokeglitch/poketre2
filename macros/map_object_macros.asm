@@ -29,33 +29,3 @@ TrainerHeaderSize = 12
 TrainerHeaderTerminator = -1
 
 TotalTrainerBattleCount = 0
-
-; 1: Name
-; 2: Height
-; 3: Width
-; 4: Tileset
-; 5: Border Block
-MACRO MapData
-    REDEF MAP_NAME EQUS "\1"
-    DEF CUR_BANK = BANK(@)
-
-    MapDefinition \#
-        SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
-            \1TrainerHeaders:
-
-        SECTION FRAGMENT "\1 Texts", ROMX, BANK[CUR_BANK]
-            \1Texts:
-
-        SECTION FRAGMENT "\1 Text Pointers", ROMX, BANK[CUR_BANK]
-            \1TextPointers:
-
-        MapObjects \1#Objects, \1
-
-        SECTION FRAGMENT "\1 Trainer Headers", ROMX, BANK[CUR_BANK]
-	        db TrainerHeaderTerminator
-
-        SECTION "\1 Blocks", ROMX, BANK[CUR_BANK]
-            \1Blocks:
-                INCBIN STRCAT("maps/", "\1", ".blk")
-    end
-ENDM

@@ -116,7 +116,6 @@
 		para "You should carry"
 		next "extras!"
 
-	; warp-to
 	WarpTo 1, 0
 	WarpTo 2, 0
 	WarpTo 15, 47

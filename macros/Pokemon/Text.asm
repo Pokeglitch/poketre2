@@ -1,3 +1,30 @@
+Scope TextScript, Script
+  method init
+    args
+      vars \1#Map = getMap()
+      db TEXT_ASM
+  endm
+
+  method text
+    args
+      ld hl, \@#Text
+      shift
+      super \@#Text, \#
+  endm
+
+  method finish
+    args
+      .finish
+        call PrintText
+        end
+  endm
+
+  method exit
+    args
+      jp TextScriptEnd
+  endm
+end
+
 Scope Text
     ; \1 - AutoExit method
     ; \2+? - auto exit triggers
@@ -22,13 +49,17 @@ Scope Text
 
     method SetAutoExit
       args
-        if \1#DoAutoExit
-            fail "An AutoExit has already been defined for this text: {\1#AutoExit}"
-        endc
+        if _narg > 1
+          if \1#DoAutoExit
+              if strcmp("\2","{\1#AutoExit}")
+                fail "An AutoExit has already been defined for this text: {\1#AutoExit}"
+              endc
+          endc
 
-        if strcmp("\2","")
-            def \1#DoAutoExit = true
-            String \1#AutoExit, "\2"
+          if strcmp("\2","")
+              def \1#DoAutoExit = true
+              String \1#AutoExit, "\2"
+          endc
         endc
     endm
 
@@ -56,28 +87,28 @@ Scope Text
       args
         shift
         foreach db, \#
-    ENDM
+    endm
     
     method ramtext
       args
         dbw RAM_TEXT, \2
-    ENDM
+    endm
 
     method gototext
       args
         dbw GOTO_TEXT, \2
-    ENDM
+    endm
 
     method neartext
       args
         dbw NEAR_TEXT, \2
-    ENDM
+    endm
 
     method fartext
       args
         db FAR_TEXT
         dab \2
-    ENDM
+    endm
     
     ; 1 - address
     ; 2 - num digits
@@ -87,83 +118,83 @@ Scope Text
         db NUM_TEXT
         dw \2
         db (\3 << 3) | \4
-    ENDM
+    endm
 
     method bcdtext
       args
         db BCD_TEXT
         dw \2
         db \3
-    ENDM
+    endm
 
     method crytext
       args
         db CRY_TEXT, \2
-    ENDM
+    endm
 
     method sfxtext
       args
         db SFX_TEXT, \2
-    ENDM
+    endm
 
     method asmtext
       args
-        SetAutoExit asmdone
-        db TEXT_ASM
-    ENDM
+        ;SetAutoExit asmdone
+        TextScript
+    endm
     
     method delaytext
       args
         db DELAY_TEXT
-    ENDM
+    endm
     
     method two_opt
       args
         db TWO_OPTION_TEXT
         shift
         foreach dw, \#
-    ENDM
+    endm
 
     ; Scroll to the next line.
     method cont
       args
         shift
         foreach db, CONTINUE_TEXT, \#
-    ENDM
+    endm
     
     ; Scroll without user interaction
     method autocont
       args
         shift
         foreach db, AUTO_CONTINUE_TEXT, \#
-    ENDM
+    endm
     
     ; Move a line down.
     method next
       args
         shift
         foreach db, NEXT_TEXT_LINE, \#
-    ENDM
+    endm
     
     ; Start a new paragraph.
     method para
       args
         shift
         foreach db, PARAGRAPH, \#
-    ENDM
+    endm
     
     ; Start a new paragraph without user interaction
     method autopara
       args
         shift
         foreach db, AUTO_PARAGRAPH, \#
-    ENDM
+    endm
 
     ; Just wait for a keypress before continuing
     method wait
       args
         db TEXT_WAIT
-    ENDM
+    endm
 
     ; End a string
     method done
@@ -182,7 +213,8 @@ Scope Text
     ; Just wait for a keypress before continuing
     method asmdone
       args
-	    jp TextScriptEnd
+        ; end the 'Script' context
+        end
         CleanExit
     endm
 

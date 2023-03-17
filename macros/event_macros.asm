@@ -1,6 +1,7 @@
 ;\1 = event index
 ;\2 = return result in carry instead of zero flag
-MACRO CheckEvent
+	DefineContextMacro CheckEvent
+MACRO _CheckEvent
 event_byte = ((\1) / 8)
 	ld a, [wEventFlags + event_byte]
 

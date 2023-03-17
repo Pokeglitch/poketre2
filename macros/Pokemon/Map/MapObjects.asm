@@ -14,6 +14,15 @@ Class2 MapObjects
         def \1#Isolate = true
         def \1#ExpectText = false
 
+        MapSec frag, \2 Trainer Headers
+            \2TrainerHeaders:
+
+        MapSec frag, \2 Texts
+            \2Texts:
+
+        MapSec frag, \2 Text Pointers
+            \2TextPointers:
+
         ObjSec
             \2Objects:
                 db \2#Border
@@ -22,6 +31,9 @@ Class2 MapObjects
         ; fill in any empty sections
         InitializeSections MapObjects#Order#_size-1
 
+        ; terminate the trainer headers list
+        MapSec frag, \1 Trainer Headers
+	        db TrainerHeaderTerminator
         end
     endm
 
@@ -41,6 +53,13 @@ Class2 MapObjects
         else
             fail "text is not permitted here"
         endc
+    endm
+
+    method asmtext
+      args
+        def \1#ExpectText = false
+        Text , Sign, NPC, Battle, Pickup, WarpTo
+        asmtext
     endm
 
     from Text
@@ -71,7 +90,6 @@ Class2 MapObjects
         pops
         
         {\1#Map}#TextCount@inc
-
         db {\1#Map}#TextCount | flag
     endm
 

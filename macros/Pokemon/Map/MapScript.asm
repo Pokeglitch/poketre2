@@ -1,9 +1,9 @@
-Scope MapScript
+Scope MapScript, Script
     method init
-      args
-        def \1#Map equs "\2"
+      args , map
+        super {map}
         
-        MapSec frag, \2 Script
+        MapSec frag, {map} Script
             include "scripts/\2.asm"
 
         end
@@ -12,20 +12,8 @@ Scope MapScript
     method text
       args
         DisplayText \@#Text
-
-        {\1#Map}#TextCount@inc
-        Text done, Delay
-        
-        pushs
-        MapSec frag, {\1#Map} Texts
-            \@#Text:
-                shift
-                more \#
-    endm
-
-    from Text
-      args
-        pops
+        shift
+        super \@#Text, \#
     endm
 
     method Battle, "MapScriptBattle"

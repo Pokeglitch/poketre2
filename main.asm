@@ -384,8 +384,6 @@ Route1Blocks: INCBIN "maps/route1.blk"
 
 UndergroundPathEntranceRoute8Blocks: INCBIN "maps/undergroundpathentranceroute8.blk"
 
-OaksLabBlocks: INCBIN "maps/oakslab.blk"
-
 Route16HouseBlocks:
 Route2HouseBlocks:
 SaffronHouse1Blocks:
@@ -414,8 +412,6 @@ INCLUDE "scripts/cinnabarisland.asm"
 INCLUDE "scripts/route1.asm"
 
 MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, DOJO, 3
-end
-INCLUDE "data/mapObjects/oakslab.asm"
 
 INCLUDE "data/mapHeaders/viridianmart.asm"
 INCLUDE "scripts/viridianmart.asm"
@@ -1424,7 +1420,7 @@ CeladonMart1Blocks: INCBIN "maps/celadonmart1.blk"
 
 INCLUDE "engine/overworld/cinnabar_lab.asm"
 
-	MapData ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
+	MapDefinition ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
 
 INCLUDE "data/mapHeaders/ssanne1.asm"
 INCLUDE "scripts/ssanne1.asm"
