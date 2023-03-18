@@ -3,6 +3,8 @@ Scope TextScript, Script
 
     method init
       args
+        shift
+        super \#
         db TEXT_ASM
     endm
 
@@ -10,38 +12,30 @@ Scope TextScript, Script
       args
         shift
         super \#
-        AddTriggers finish, asmret, asmexit, asmprint, goto
+        AddTriggers finish, asmret, asmexit, goto
     endm
 
-    method text, textbox
+    from Text
       args
-        ld hl, \@#Text
-        shift
-        super \@#Text, \#
+        super
+        ld hl, \2#ID
     endm
 
     method goto
       args
-        def \1#DoAutoExit = false
         jp \2
-        end
+        asmexit
     endm
 
     method asmret
       args
-        def \1#DoAutoExit = false
         ret
-        end
-    endm
-
-    method asmprint
-      args
-        call PrintText
+        asmexit
     endm
 
     method asmexit
       args
-        def \1#DoAutoExit = false
+        \1#DoAutoExit@negate
         end
     endm
     
@@ -82,18 +76,24 @@ Scope Text
         AddTriggers \#
     endm
 
+    method SetID
+      args , ID
+        def \1#ID equs "{ID}"
+    endm
+
     method AddTriggers
       args self
         shift
         {self}#AutoExitTriggers@push \#
 
         rept _narg
+            backup {self}#AutoExits, Text_\1
             def Text_\1 equs "TriggerAutoExit \1,"
             shift
         endr
     endm
 
-    method text, more
+    method text
       args
         shift
         foreach db, \#
@@ -123,7 +123,7 @@ Scope Text
     method PurgeTriggers
       args
         for i, 2, _narg+1
-            purge {\1#Name}_\<i>
+          restore \1#AutoExits, {\1#Name}_\<i>
         endr
     endm
     
@@ -186,7 +186,11 @@ Scope Text
         db SFX_TEXT, \2
     endm
 
-    method asm, asmtext, "TextScript"
+    method asm, asmtext
+      args
+        /* TODO - Need a better ID */
+        TextScript TextScript#\@
+    endm
     
     method delaytext
       args

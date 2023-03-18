@@ -1,16 +1,21 @@
 Scope Script
+    property Number, TextCount
+
     method init
-      args , #Map
+      args , #ID
     endm
 
     method InitText
-      args , method, name
-        shift 3
+      args , method
         Text done, Delay, CheckEvent
+        def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
+        SetID {\@#ID}
+        \1#TextCount@inc
 
+        shift _nname
         pushs
-        MapSec frag, {name} Text
-            {name}:
+        MapSec frag, {\@#ID} Text
+            {\@#ID}:
                 method \#
     endm
 
@@ -41,5 +46,31 @@ Scope Script
           ld c, count
           call DelayFrames
         endc
+    endm
+
+    method CheckEvent
+      args
+        def \@#event_byte = ((\2) / 8)
+        ld a, [wEventFlags + \@#event_byte]
+
+        IF _NARG > 2
+            IF ((\2) % 8) == 7
+                add a
+            ELSE
+                REPT ((\2) % 8) + 1
+                    rrca
+                ENDR
+            ENDC
+        ELSE
+            bit (\2) % 8, a
+        ENDC
+    endm
+
+    method printtext
+      args , name
+        if def(name)
+            ld hl, {name}
+        endc
+        call PrintText
     endm
 end

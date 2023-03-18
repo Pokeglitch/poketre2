@@ -122,7 +122,12 @@ endm
 
 macro backup
     for backup#i, 2, _narg+1
-        def \1#backup#\<backup#i> equs "{\<backup#i>}"
+        if def(\<backup#i>)
+            def \1#backup#\<backup#i> equs "{\<backup#i>}"
+            purge \<backup#i>
+        else
+            def \1#backup#\<backup#i> equs "fail \"\<backup#i> is not defined\""
+        endc
     endr
 endm
 

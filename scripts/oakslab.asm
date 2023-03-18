@@ -304,7 +304,7 @@ OaksLabScript2:
 	text "<RIVAL> received"
 	next "a "
 	ramtext wcd6d
-	more "!"
+	text "!"
 	done
 
 	SetEvent EVENT_GOT_STARTER

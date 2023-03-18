@@ -49,7 +49,7 @@ Class2 MapObjects
             def \1#ExpectText = false
             Text done, Sign, NPC, Battle, Pickup, WarpTo
             shift
-            more \#
+            text \#
         else
             fail "text is not permitted here"
         endc
@@ -261,7 +261,7 @@ Scope MapObjectsBattle, TrainerBattle
         MapSec frag, {\1#Map} Texts
             \@#Text:
                 shift
-                more \#
+                text \#
     endm
 
     ; TODO - can use generic Win or Loss texts if not provided

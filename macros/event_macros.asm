@@ -16,7 +16,7 @@ event_byte = ((\1) / 8)
 	ELSE
 		bit (\1) % 8, a
 	ENDC
-	ENDM
+ENDM
 
 ;\1 = event index
 MACRO CheckEventReuseA

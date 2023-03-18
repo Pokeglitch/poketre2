@@ -9,11 +9,10 @@ Scope MapScript, Script
         end
     endm
 
-    method text, textbox
+    from Text
       args
-        DisplayText \@#Text
-        shift
-        super \@#Text, \#
+        super
+        DisplayText \2#ID
     endm
 
     method Battle, "MapScriptBattle"
@@ -45,7 +44,7 @@ Scope MapScriptBattle, TrainerBattle
                 {\1#TeamName}LoseText:
             endc
             shift
-            more \#
+            text \#
     endm
 
     method exit

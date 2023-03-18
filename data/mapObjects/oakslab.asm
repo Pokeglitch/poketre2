@@ -67,7 +67,7 @@
 		jr nz, .OaksLabOfferStarter
 		
 		textbox DEFAULT_SPEECH_TEXTBOX
-		more "Those are #"
+		text "Those are #"
 		next "BALLs. They"
 		cont "contain POKéMON!"
 		done
@@ -83,7 +83,7 @@
 		ld [hl], $0
 
 		textbox DEFAULT_SPEECH_TEXTBOX
-		more "That's PROF.OAK's"
+		text "That's PROF.OAK's"
 		next "last POKéMON!"
 		done
 		ret
@@ -117,7 +117,7 @@
 		
 	.LookAtBulbasaur
 		textbox DEFAULT_SPEECH_TEXTBOX
-		more "So! You want the"
+		text "So! You want the"
 		next "plant POKéMON,"
 		cont "BULBASAUR?"
 		gototext OaksLabYesNoText
@@ -125,7 +125,7 @@
 		
 	.LookAtCharmander
 		textbox DEFAULT_SPEECH_TEXTBOX
-		more "So! You want the"
+		text "So! You want the"
 		next "fire POKéMON,"
 		cont "CHARMANDER?"
 		gototext OaksLabYesNoText
@@ -133,7 +133,7 @@
 
 	.LookAtSquirtle
 		textbox DEFAULT_SPEECH_TEXTBOX
-		more "So! You want the"
+		text "So! You want the"
 		next "water POKéMON,"
 		cont "SQUIRTLE?"
 	OaksLabYesNoText:
@@ -166,10 +166,20 @@
 		predef HideObject
 		ld a, $1
 		ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-		ld hl, OaksLabMonEnergeticText
-		call PrintText
-		ld hl, OaksLabReceivedMonText
-		call PrintText
+
+		text "This POKéMON is"
+		next "really energetic!"
+		prompt
+		printtext
+		
+		text "<PLAYER> received"
+		next "a "
+		ramtext wcd6d
+		text "!"
+		sfxtext SFX_GET_KEY_ITEM
+		done
+		printtext
+
 		xor a ; PLAYER_PARTY_DATA
 		ld [wMonDataLocation], a
 		ld a, 5
