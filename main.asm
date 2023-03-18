@@ -413,6 +413,22 @@ INCLUDE "scripts/route1.asm"
 
 MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, DOJO, 3
 
+
+OaksLabMonEnergeticText:
+	text "This POKéMON is"
+	next "really energetic!"
+	prompt
+
+OaksLabReceivedMonText:
+	text "<PLAYER> received"
+	next "a "
+	ramtext wcd6d
+	more "!"
+	sfxtext SFX_GET_KEY_ITEM
+	done
+
+
+
 INCLUDE "data/mapHeaders/viridianmart.asm"
 INCLUDE "scripts/viridianmart.asm"
 INCLUDE "data/mapObjects/viridianmart.asm"

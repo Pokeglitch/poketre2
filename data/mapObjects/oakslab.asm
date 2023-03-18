@@ -2,7 +2,6 @@
 	Warp 5, 11, 2
 
 	NPC SPRITE_BLUE, 4, 3, STAY, NONE
-		; todo - just asm, not asmtext
 		asmtext
 			text "<RIVAL>: Yo"
 			next "<PLAYER>! Gramps"
@@ -25,9 +24,168 @@
 			cont "lot stronger."
 		finish
 
-	NPC SPRITE_BALL, 6, 3, STAY, NONE, OaksLabText2
-	NPC SPRITE_BALL, 7, 3, STAY, NONE, OaksLabText3
-	NPC SPRITE_BALL, 8, 3, STAY, NONE, OaksLabText4
+	NPC SPRITE_BALL, 6, 3, STAY, NONE
+		textbox NO_TEXTBOX
+		asmtext
+		ld a, STARTER2
+		ld [wRivalStarterTemp], a
+		ld a, $3
+		ld [wRivalStarterBallSpriteIndex], a
+		ld a, STARTER1
+		ld b, $2
+		goto OaksLabPokeballText
+
+	NPC SPRITE_BALL, 7, 3, STAY, NONE
+		textbox NO_TEXTBOX
+		asmtext
+		ld a, STARTER3
+		ld [wRivalStarterTemp], a
+		ld a, $4
+		ld [wRivalStarterBallSpriteIndex], a
+		ld a, STARTER2
+		ld b, $3
+		goto OaksLabPokeballText
+
+	NPC SPRITE_BALL, 8, 3, STAY, NONE
+		textbox NO_TEXTBOX
+		asmtext
+		ld a, STARTER1
+		ld [wRivalStarterTemp], a
+		ld a, $2
+		ld [wRivalStarterBallSpriteIndex], a
+		ld a, STARTER3
+		ld b, $4
+		
+	OaksLabPokeballText:
+		ld [wcf91], a
+		ld [wd11e], a
+		ld a, b
+		ld [wSpriteIndex], a
+		CheckEvent EVENT_GOT_STARTER
+		jr nz, .OaksLabLastMon
+		CheckEventReuseA EVENT_OAK_ASKED_TO_CHOOSE_MON
+		jr nz, .OaksLabOfferStarter
+		
+		textbox DEFAULT_SPEECH_TEXTBOX
+		more "Those are #"
+		next "BALLs. They"
+		cont "contain POKéMON!"
+		done
+
+		ret
+
+	.OaksLabLastMon
+		ld a, $5
+		ld [H_SPRITEINDEX], a
+		ld a, $9
+		ld [H_SPRITEDATAOFFSET], a
+		call GetPointerWithinSpriteStateData1
+		ld [hl], $0
+
+		textbox DEFAULT_SPEECH_TEXTBOX
+		more "That's PROF.OAK's"
+		next "last POKéMON!"
+		done
+		ret
+
+	.OaksLabOfferStarter
+		ld a, $5
+		ld [H_SPRITEINDEX], a
+		ld a, $9
+		ld [H_SPRITEDATAOFFSET], a
+		call GetPointerWithinSpriteStateData1
+		ld [hl], SPRITE_FACING_DOWN
+		ld a, $1
+		ld [H_SPRITEINDEX], a
+		ld a, $9
+		ld [H_SPRITEDATAOFFSET], a
+		call GetPointerWithinSpriteStateData1
+		ld [hl], SPRITE_FACING_RIGHT
+		ld hl, wd730
+		set 6, [hl]
+		predef StarterDex
+		ld hl, wd730
+		res 6, [hl]
+		
+		Delay 10
+
+		ld a, [wSpriteIndex]
+		cp 2
+		jr z, .LookAtCharmander
+		cp 3
+		jr z, .LookAtSquirtle
+		
+	.LookAtBulbasaur
+		textbox DEFAULT_SPEECH_TEXTBOX
+		more "So! You want the"
+		next "plant POKéMON,"
+		cont "BULBASAUR?"
+		gototext OaksLabYesNoText
+		ret
+		
+	.LookAtCharmander
+		textbox DEFAULT_SPEECH_TEXTBOX
+		more "So! You want the"
+		next "fire POKéMON,"
+		cont "CHARMANDER?"
+		gototext OaksLabYesNoText
+		ret
+
+	.LookAtSquirtle
+		textbox DEFAULT_SPEECH_TEXTBOX
+		more "So! You want the"
+		next "water POKéMON,"
+		cont "SQUIRTLE?"
+	OaksLabYesNoText:
+		two_opt YesText, NoText, .yes, .no
+	.no
+		close
+	.yes
+		asmtext
+		ld a, [wcf91]
+		ld [wPlayerStarter], a
+		ld [wd11e], a
+		call GetMonName
+		ld a, [wSpriteIndex]
+		cp $2
+		jr nz, .asm_1d1db
+		ld a, HS_STARTER_BALL_1
+		jr .asm_1d1e5
+
+	.asm_1d1db
+		cp $3
+		jr nz, .asm_1d1e3
+		ld a, HS_STARTER_BALL_2
+		jr .asm_1d1e5
+
+	.asm_1d1e3
+		ld a, HS_STARTER_BALL_3
+
+	.asm_1d1e5
+		ld [wMissableObjectIndex], a
+		predef HideObject
+		ld a, $1
+		ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+		ld hl, OaksLabMonEnergeticText
+		call PrintText
+		ld hl, OaksLabReceivedMonText
+		call PrintText
+		xor a ; PLAYER_PARTY_DATA
+		ld [wMonDataLocation], a
+		ld a, 5
+		ld [wCurEnemyLVL], a
+		ld a, [wcf91]
+		ld [wd11e], a
+		call AddPartyMon
+		ld hl, wd72e
+		set 3, [hl]
+		ld a, $fc
+		ld [wJoyIgnore], a
+		ld a, 2
+		ld [wOaksLabCurScript], a
+		asmdone
+	asmexit
+
 	NPC SPRITE_OAK, 5, 2, STAY, DOWN, OaksLabText5
 
 	NPC SPRITE_BOOK_MAP_DEX, 2, 1, STAY, NONE

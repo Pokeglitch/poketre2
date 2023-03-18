@@ -1,51 +1,103 @@
 Scope TextScript, Script
-  method init
-    args
-      vars \1#Map = getMap()
-      db TEXT_ASM
-  endm
+    property True, DoAutoExit
 
-  method text
-    args
-      ld hl, \@#Text
-      shift
-      super \@#Text, \#
-  endm
+    method init
+      args
+        db TEXT_ASM
+    endm
 
-  method finish
-    args
-      .finish
-        call PrintText
+    method InitText
+      args
+        shift
+        super \#
+        AddTriggers finish, asmret, asmexit, asmprint, goto
+    endm
+
+    method text, textbox
+      args
+        ld hl, \@#Text
+        shift
+        super \@#Text, \#
+    endm
+
+    method goto
+      args
+        def \1#DoAutoExit = false
+        jp \2
         end
-  endm
+    endm
 
-  method exit
-    args
-      jp TextScriptEnd
-  endm
+    method asmret
+      args
+        def \1#DoAutoExit = false
+        ret
+        end
+    endm
+
+    method asmprint
+      args
+        call PrintText
+    endm
+
+    method asmexit
+      args
+        def \1#DoAutoExit = false
+        end
+    endm
+    
+    method asmdone, "end"
+
+    method finish
+      args
+        if \1#DoAutoExit
+          .finish
+            call PrintText
+        endc
+        end
+    endm
+
+    method exit
+      args
+        if \1#DoAutoExit
+          jp TextScriptEnd
+        endc
+    endm
 end
 
+/*
+TODO - can prompt/done also extend this text scope?
+- The byte values should come from a Struct (and also used in the Command Processor...)
+*/
 Scope Text
+    property List, AutoExitTriggers
+    property False, DoAutoExit
+    property False, isAutoExiting
+
     ; \1 - AutoExit method
     ; \2+? - auto exit triggers
     method init
-      args
-        def \1#DoAutoExit = false
-        def \1#isAutoExiting = false
+      args , autoexit
+        shift _nname
+        SetAutoExit {autoexit}
+        AddTriggers \#
+    endm
 
-        SetAutoExit \2
+    method AddTriggers
+      args self
+        shift
+        {self}#AutoExitTriggers@push \#
 
-        def \@#self equs "\1"
-        shift 2
-        def {\@#self}#AutoExitTriggers equs "\#"
-        
         rept _narg
             def Text_\1 equs "TriggerAutoExit \1,"
             shift
         endr
     endm
 
-    method text, "TriggerAutoExit text,"
+    method text, more
+      args
+        shift
+        foreach db, \#
+    endm
 
     method SetAutoExit
       args
@@ -56,10 +108,8 @@ Scope Text
               endc
           endc
 
-          if strcmp("\2","")
-              def \1#DoAutoExit = true
-              String \1#AutoExit, "\2"
-          endc
+          def \1#DoAutoExit = true
+          def \1#AutoExit equs "\2"
         endc
     endm
 
@@ -70,7 +120,7 @@ Scope Text
         exec \#
     endm
 
-    method PurgeAutoExitTriggers
+    method PurgeTriggers
       args
         for i, 2, _narg+1
             purge {\1#Name}_\<i>
@@ -79,14 +129,12 @@ Scope Text
     
     ; Define the textbox before writing the text
     method textbox
-      args
-        db TEXTBOX_DEF, \2
-    endm
-    
-    method more
-      args
-        shift
-        foreach db, \#
+      args , style
+        if style == NO_TEXTBOX
+          db style
+        else
+          db TEXTBOX_DEF, style
+        endc
     endm
     
     method ramtext
@@ -138,13 +186,7 @@ Scope Text
         db SFX_TEXT, \2
     endm
 
-    ; todo .. how can this be cleaned up?
-    ; can prompt/done also extend this text scope?
-    method asmtext
-      args
-        ;SetAutoExit asmdone
-        TextScript
-    endm
+    method asm, asmtext, "TextScript"
     
     method delaytext
       args
@@ -212,15 +254,7 @@ Scope Text
 	    db TEXT_PROMPT
         CleanExit
     endm
-
-    ; Just wait for a keypress before continuing
-    method asmdone
-      args
-        ; end the 'Script' context
-        end
-        CleanExit
-    endm
-
+ 
     ; Exit without waiting for keypress
     method close
       args
@@ -242,7 +276,7 @@ Scope Text
 
     method exit
       args
-        PurgeAutoExitTriggers {\1#AutoExitTriggers}
+        PurgeTriggers {\1#AutoExitTriggers}
         if \1#DoAutoExit
             def \1#isAutoExiting = true
             ; execute the auto exit method

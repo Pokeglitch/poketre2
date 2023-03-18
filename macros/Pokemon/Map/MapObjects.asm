@@ -32,7 +32,7 @@ Class2 MapObjects
         InitializeSections MapObjects#Order#_size-1
 
         ; terminate the trainer headers list
-        MapSec frag, \1 Trainer Headers
+        MapSec frag, \2 Trainer Headers
 	        db TrainerHeaderTerminator
         end
     endm
@@ -50,6 +50,18 @@ Class2 MapObjects
             Text done, Sign, NPC, Battle, Pickup, WarpTo
             shift
             more \#
+        else
+            fail "text is not permitted here"
+        endc
+    endm
+    
+    method textbox
+      args
+        if \1#ExpectText
+            def \1#ExpectText = false
+            Text done, Sign, NPC, Battle, Pickup, WarpTo
+            shift
+            textbox \#
         else
             fail "text is not permitted here"
         endc

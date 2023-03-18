@@ -61,9 +61,11 @@
 		text "Hey! You have"
 		next "POKéMON! Come on!"
 		cont "Let's battle'em!"
+		done
 
 		text "Ssh! You'll scare"
 		next "the bugs away!"
+		done
 
 		text "No!"
 		next "CATERPIE can't"
@@ -75,10 +77,12 @@
 		text "Yo! You can't jam"
 		next "out if you're a"
 		cont "POKéMON trainer!"
+		done
 
 		text "Darn! I'm going"
 		next "to catch some"
 		cont "stronger ones!"
+		done
 		
 		text "Huh?"
 		next "I ran out of"
@@ -89,6 +93,7 @@
 	Battle SPRITE_BUG_CATCHER, 2, 18, STAY, LEFT, 1, BugCatcher
 		text "Hey, wait up!"
 		next "What's the hurry?"
+		done
 
 		text "Sometimes, you"
 		next "can find stuff on"
@@ -97,6 +102,7 @@
 		para "I'm looking for"
 		next "the stuff I"
 		cont "dropped!"
+		done
 
 		text "I"
 		next "give! You're good"

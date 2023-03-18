@@ -1,7 +1,10 @@
 ; Define the textbox before writing the text
 MACRO _textbox
-	db TEXTBOX_DEF
-	db \1
+	if \1 == NO_TEXTBOX
+		db \1
+	else
+		db TEXTBOX_DEF, \1
+	endc
 ENDM
 
 MACRO _more

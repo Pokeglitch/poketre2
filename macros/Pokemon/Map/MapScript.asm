@@ -9,7 +9,7 @@ Scope MapScript, Script
         end
     endm
 
-    method text
+    method text, textbox
       args
         DisplayText \@#Text
         shift

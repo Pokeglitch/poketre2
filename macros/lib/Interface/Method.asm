@@ -133,7 +133,7 @@ endm
     \7+? - Arguments to forward to Method
 */
 macro Interface@method#execute
-    backup \@, super, shift_args
+    backup \@, super, _nname
 
     redef \@#super equs "\1#Super"
     redef \@#macro equs "try_exec \2,"
@@ -141,7 +141,7 @@ macro Interface@method#execute
     redef super equs "\@#super \1, \2, \3, \4,"
 
     redef define_args equs "dispose define_args\n\tInterface@method#args \1, \2, \@, \\#, \@,"
-    redef shift_args equs "dispose shift_args\n\tshift \@#num_names"
+    redef _nname equs "\@#num_names"
 
     if def(\2@handle)
         Interface@continue \2@handle, \@#macro, \#
@@ -152,7 +152,7 @@ macro Interface@method#execute
 
     Interface@method#args#restore \@, {\@#Names}
 
-    restore \@, super, shift_args
+    restore \@, super, _nname
 endm
 
 macro Interface@method#lambda

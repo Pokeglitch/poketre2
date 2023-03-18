@@ -1,5 +1,5 @@
 def super equs "fail \"super does not exist for this context\"\n"
-def shift_args equs "fail \"shift_args does not exist for this context\"\n"
+def _nname equs "fail \"_nname does not exist for this context\"\n"
 
 macro Interface@continue
     if def(\1)

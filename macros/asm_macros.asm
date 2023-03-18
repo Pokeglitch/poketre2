@@ -1,4 +1,5 @@
-MACRO Delay
+
+MACRO _Delay
 	IF _NARG == 0
 		call DelayFrame
 	ELSE
