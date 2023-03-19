@@ -224,6 +224,6 @@
 			next "PROF.OAK's AIDE."
 
 	NPC SPRITE_OAK_AIDE, 8, 10, STAY, NONE, OaksLabAideText
-
+	
 	WarpTo 4, 11
 	WarpTo 5, 11

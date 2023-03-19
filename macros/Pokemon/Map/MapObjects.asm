@@ -1,29 +1,25 @@
-/*
-TODO:
-    - fail if macro other than text is called when text is expected
-        - or, if trying to define section with index lower than current section
-*/
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Class2 MapObjects
-    property Number, CurrentSection
+    property Number, CurrentSectionIndex
     forward MapSec, EventDisp
     
     method init
       args , #Map
         def \1#Isolate = true
-        def \1#ExpectText = false
+        def \1#CurrentSectionName equs "{MapObjects#Order#{d:\1#CurrentSectionIndex}}"
 
-        MapSec frag, \2 Trainer Headers
+        ; Initialize the Section
+        TrainerHeadersSec
             \2TrainerHeaders:
 
-        MapSec frag, \2 Texts
+        TextsSec
             \2Texts:
 
-        MapSec frag, \2 Text Pointers
+        TextPointersSec
             \2TextPointers:
 
-        ObjSec
+        ObjectsSec
             \2Objects:
                 db \2#Border
                 include "data/mapObjects/\2.asm"
@@ -32,51 +28,67 @@ Class2 MapObjects
         InitializeSections MapObjects#Order#_size-1
 
         ; terminate the trainer headers list
-        MapSec frag, \2 Trainer Headers
+        TrainerHeadersSec
 	        db TrainerHeaderTerminator
         end
     endm
 
-    method ObjSec
+    ; call MapSec as attribute of Map since this will get called from other maps as warp-tos
+    method ObjectsSec
       args
-        ; call as attribute of Map since this gets called from other maps
         {\1#Map}@MapSec frag, {\1#Map} Objects
     endm
 
-    method text
+    method TrainerHeadersSec
       args
-        if \1#ExpectText
-            def \1#ExpectText = false
-            Text done, Sign, NPC, Battle, Pickup, WarpTo
-            shift
-            text \#
-        else
-            fail "text is not permitted here"
-        endc
-    endm
-    
-    method textbox
-      args
-        if \1#ExpectText
-            def \1#ExpectText = false
-            Text done, Sign, NPC, Battle, Pickup, WarpTo
-            shift
-            textbox \#
-        else
-            fail "text is not permitted here"
-        endc
+        MapSec frag, {\1#Map} Trainer Headers
     endm
 
-    method asmtext
+    method TextsSec
       args
-        def \1#ExpectText = false
-        Text , Sign, NPC, Battle, Pickup, WarpTo
-        asmtext
+        MapSec frag, {\1#Map} Texts
+    endm
+
+    method TextPointersSec
+      args
+        MapSec frag, {\1#Map} Text Pointers
+    endm
+    
+    method InitTrainerHeader
+      args , range
+        AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
+        pushs
+        ; Initialize the trainer header
+        TrainerHeadersSec
+            \@#TrainerHeader:
+                db 1 << (TotalTrainerBattleCount % 8)   ; the mask for this trainer
+                db (range << 4) | {\1#Map}#Sprite#Count      ; trainer's view range and sprite index
+                dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
+                
+        def TotalTrainerBattleCount += 1
+    endm
+
+    method AddTextPointerOrInitText
+      args , text_ptr
+        if def(text_ptr)
+            AddTextPointer text_ptr
+        else
+            def \@#name equs "{\1#Map}#{\1#CurrentSectionName}#{d:{\1#Map}#{\1#CurrentSectionName}#Count}#Text"
+
+            pushs
+            TextsSec
+                {\@#name}:
+                
+            ; TODO - will this put a 'done' after textasm??
+            Text done, Sign, NPC, Battle, Pickup, WarpTo
+            SetID {\@#name}
+        endc
     endm
 
     from Text
       args
         pops
+        AddTextPointer {\2#ID}
     endm
 
     method MapCoord
@@ -85,46 +97,40 @@ Class2 MapObjects
         db x + 4
     endm
 
-    method AddTextPointerOrInitText
-      args , text_ptr
-        if def(text_ptr)
-            AddTextPointer text_ptr
-        else
-            InitText
-        endc
-    endm
-
     method AddTextPointer
       args , text_ptr, flag=0
         pushs
-            MapSec frag, {\1#Map} Text Pointers
+            TextPointersSec
                 dw text_ptr
         pops
         
         {\1#Map}#TextCount@inc
         db {\1#Map}#TextCount | flag
     endm
+    
+    method AddTrainerHeaderPointer
+      args , ptr
+        TrainerHeadersSec
+            dw ptr
+    endm
 
     method UpdateCount
       args
-        ; if a text is expected, then fail
-        if \1#ExpectText
-            fail "Expected text, Received \2"
-        endc
-        
         var \@#index = MapObjects#Order@index(\2)
 
-        if \@#index < \1#CurrentSection
-            fail "Cannot place a \2 after a {MapObjects#Order#{d:\1#CurrentSection}}"
+        if \@#index < \1#CurrentSectionIndex
+            fail "Must define \2s before {\1#CurrentSectionName}s"
         endc
 
-        def \1#CurrentSection = \@#index
+        def \1#CurrentSectionIndex = \@#index
+        redef \1#CurrentSectionName equs "\2"
 
         InitializeSections \@#index
         {\1#Map}#\2#Count@inc
     endm
 
     ; initialize any of the sections from \2 earlier if not already
+    ; TODO - can be more efficient up by starting with CurrentSectionIndex ??
     method InitializeSections
       args
         for i, \2+1
@@ -132,7 +138,7 @@ Class2 MapObjects
             ; if the section is not defined, initialize
             if not def({\1#Map}#{\@#name}#Count)
                 
-                ; final section does not begin with a count
+                ; final section (WarpTos) does not begin with a count
                 if i < MapObjects#Order#_size-1
                     db {\1#Map}#{\@#name}#Count ; write before defining to use final value
                 endc
@@ -141,17 +147,6 @@ Class2 MapObjects
                 Number {\1#Map}#{\@#name}#Count
             endc
         endr
-    endm
-
-    method InitText
-      args
-        AddTextPointer \@#Text
-
-        pushs
-        MapSec frag, {\1#Map} Texts
-            \@#Text:
-            
-        def \1#ExpectText = true
     endm
 
     method Sign
@@ -173,6 +168,7 @@ Class2 MapObjects
     method Battle
       args
         UpdateCount Sprite
+        shift
         MapObjectsBattle \#
     endm
 
@@ -186,7 +182,7 @@ Class2 MapObjects
     endm
 
     method Warp
-      args , x, y, index, map = -1
+      args , x, y, index, map=-1
         UpdateCount Warp
         db y, x, index, map
     endm
@@ -203,8 +199,7 @@ Scope MapObjectsBattle, TrainerBattle
     property List, Texts
 
     method init
-      args , objects, sprite, x, y, movement, direction, range, trainer
-        def \1#Map equs "{\2#Map}"
+      args , sprite, x, y, movement, direction, range, trainer
         var \1#MapBattleIndex = nextBattleCount()
         vars \1#Trainer = Symbolize({trainer})
 
@@ -212,34 +207,15 @@ Scope MapObjectsBattle, TrainerBattle
         MapCoord x, y
         db movement, direction
 
-        AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
-
         db \1#Trainer
+        ; todo - should be a return value from the Trainer Class
         db {\1#Trainer}PartyCount | ObjectData#Trainer#BitMask
         def {\1#Trainer}PartyCount += 1
 
-        pushs
-        ; Initialize the trainer header
-        SecHeader
-            \@#TrainerHeader:
-                db 1 << (TotalTrainerBattleCount % 8)   ; the mask for this trainer
-                db (range << 4) | {\1#Map}#Sprite#Count      ; trainer's view range and sprite index
-                dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
-                
-        def TotalTrainerBattleCount += 1
+        InitTrainerHeader range
     endm
 
-    method SecHeader
-      args
-        MapSec frag, {\1#Map} Trainer Headers
-    endm
-
-    method AddPointer
-      args , ptr
-        SecHeader
-            dw ptr
-    endm
-
+    ; todo - clean up and use better pointer names
     method text
       args
         if \1#Texts#_size == 4
@@ -247,7 +223,7 @@ Scope MapObjectsBattle, TrainerBattle
         endc
 
         \1#Texts@push \@#Text
-        AddPointer \@#Text
+        AddTrainerHeaderPointer \@#Text
 
         ; First two texts finish with done (in overworld)
         if \1#Texts#_size <= 2
@@ -258,7 +234,7 @@ Scope MapObjectsBattle, TrainerBattle
         endc
 
         pushs
-        MapSec frag, {\1#Map} Texts
+        TextsSec
             \@#Text:
                 shift
                 text \#
@@ -271,7 +247,7 @@ Scope MapObjectsBattle, TrainerBattle
             fail "Battle Win/Lose Texts are missing"
         ; If Lose Text is missing, then duplicate the last text (the win text)
         elif \1#Texts#_size == 3
-            AddPointer {\1#Texts#2}
+            AddTrainerHeaderPointer {\1#Texts#2}
         endc
 
         pops
