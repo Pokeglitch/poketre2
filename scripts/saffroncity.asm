@@ -77,7 +77,7 @@ SaffronCityText11:
 
 SaffronCityText12:
 	fartext _SaffronCityText12
-	crytext PIDGEOT
+	cry PIDGEOT
 	done
 
 SaffronCityText13:

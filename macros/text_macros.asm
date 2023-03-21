@@ -16,7 +16,7 @@ MACRO _ramtext
 	dw \1
 ENDM
 
-MACRO _neartext
+MACRO _near
 	db NEAR_TEXT
 	dw \1
 ENDM
@@ -97,7 +97,7 @@ MACRO _bcdtext
 	db \2
 ENDM
 
-MACRO _crytext
+MACRO _cry
 	db CRY_TEXT
 	db \1
 ENDM

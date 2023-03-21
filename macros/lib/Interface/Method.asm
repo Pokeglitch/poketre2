@@ -56,7 +56,6 @@ macro Interface@method#args
             if \@#hash_index == 1
                 redef \@#name equs strsub("{\@#name}", 2)
 
-
                 ; if a corresponding input was provided, then define
                 if args#i < \1#num_inputs
                     def \@#input_index = args#i + 2
@@ -66,8 +65,11 @@ macro Interface@method#args
                     def \@#value equs "{\@#default}"
                 endc
 
-                def \@#continue equs "Interface@method#args#property {\@#value},"
-                Interface@continue {args#context}@property, \@#continue, {args#trace}, {\@#name}
+                ; if a value is to be assigned, then do so
+                if def(\@#value)
+                    def \@#continue equs "Interface@method#args#property {\@#value},"
+                    Interface@continue {args#context}@property, \@#continue, {args#trace}, {\@#name}
+                endc
             else
                 def \@#append = true
 

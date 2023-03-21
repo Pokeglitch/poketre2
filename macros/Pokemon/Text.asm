@@ -1,3 +1,5 @@
+; todo - use args instead of \2, etc
+
 Scope TextScript, Script
     property True, DoAutoExit
 
@@ -12,7 +14,7 @@ Scope TextScript, Script
       args
         shift
         super \#
-        AddTriggers finish, asmret, asmexit, goto
+        AddTriggers finish, asmret, asmdone, goto
     endm
 
     from Text
@@ -39,7 +41,10 @@ Scope TextScript, Script
         end
     endm
     
-    method asmdone, "end"
+    method asmdone
+      args
+        end
+    endm
 
     method finish
       args
@@ -59,6 +64,69 @@ Scope TextScript, Script
 end
 
 /*
+    Text Option Structures:
+    two_opt {Left String/Ptr}, {Right String/Ptr}, {Left Text Ptr | optional}, {Right Text Ptr | optional}
+          - Left Text (if ptr not provided)
+          - Right Text (if ptr not provided)
+*/
+; TODO - why doesnt B do the same thing as selecting No?
+Scope TextOption
+    method init
+      args , #LeftString, #RightString, #LeftAction, #RightAction
+        db TWO_OPTION_TEXT
+
+        TwoOptString Left
+        TwoOptString Right
+
+        try_exit
+    endm
+
+    method TwoOptString
+      args , side
+        is#String {\1#{side}String}
+        if so
+            pushs
+            MapSec \@#{side}String
+                \@#{side}String:
+                    str {\1#{side}String}
+            pops
+            redef \1#{side}String equs "\@#{side}String"
+        endc
+    endm
+
+    method TwoOptAction
+      args , side
+        def \1#{side}Action equs "\@#{side}Action"
+        pushs
+        MapSec \@#{side}Action
+            \@#{side}Action:
+            Text
+    endm
+
+    method try_exit
+      args
+        if not def(\1#LeftAction)
+            TwoOptAction Left
+        elif not def(\1#RightAction)
+            TwoOptAction Right
+        else
+            end
+        endc
+    endm
+
+    from Text
+      args
+        pops
+        try_exit
+    endm
+
+    method exit
+      args
+          dw \1#LeftString, \1#RightString, \1#LeftAction, \1#RightAction
+    endm
+end
+
+/*
 TODO - can prompt/done also extend this text scope?
 - The byte values should come from a Struct (and also used in the Command Processor...)
 */
@@ -70,12 +138,12 @@ Scope Text
     ; \1 - AutoExit method
     ; \2+? - auto exit triggers
     method init
-      args , autoexit
+      args , #AutoExit
         shift _nname
-        SetAutoExit {autoexit}
         AddTriggers \#
     endm
 
+    ; TODO - integrate this with the initialization
     method SetID
       args , ID
         def \1#ID equs "{ID}"
@@ -88,7 +156,7 @@ Scope Text
 
         rept _narg
             backup {self}#AutoExits, Text_\1
-            def Text_\1 equs "TriggerAutoExit \1,"
+            def Text_\1 equs "DoAutoExit \1,"
             shift
         endr
     endm
@@ -99,21 +167,8 @@ Scope Text
         foreach db, \#
     endm
 
-    method SetAutoExit
-      args
-        if _narg > 1
-          if \1#DoAutoExit
-              if strcmp("\2","{\1#AutoExit}")
-                fail "An AutoExit has already been defined for this text: {\1#AutoExit}"
-              endc
-          endc
-
-          def \1#DoAutoExit = true
-          def \1#AutoExit equs "\2"
-        endc
-    endm
-
-    method TriggerAutoExit
+    ; Trigger Auto Exit
+    method DoAutoExit
       args
         end
         shift
@@ -148,7 +203,7 @@ Scope Text
         CleanExit
     endm
 
-    method neartext
+    method near
       args
         dbw NEAR_TEXT, \2
     endm
@@ -176,7 +231,7 @@ Scope Text
         db \3
     endm
 
-    method crytext
+    method cry
       args
         db CRY_TEXT, \2
     endm
@@ -199,9 +254,13 @@ Scope Text
     
     method two_opt
       args
-        db TWO_OPTION_TEXT
         shift
-        foreach dw, \#
+        TextOption \#
+    endm
+
+    from TextOption, TextScript
+      args
+          CleanExit
     endm
 
     ; Scroll to the next line.
@@ -263,17 +322,16 @@ Scope Text
     method close
       args
 	    db TEXT_EXIT
+        CleanExit
     endm
 
     method CleanExit
       args
         ; dont end again if this was called through auto-exit
         if not \1#isAutoExiting
-            ; todo - test if provided method is expected AutoExit
-            if \1#DoAutoExit
-            endc
-
-            def \1#DoAutoExit = false
+            ; purge the AutoExit so it will not be called again
+            try_purge \1#AutoExit
+            
             end
         endc
     endm
@@ -281,10 +339,15 @@ Scope Text
     method exit
       args
         PurgeTriggers {\1#AutoExitTriggers}
-        if \1#DoAutoExit
-            def \1#isAutoExiting = true
+        if def(\1#AutoExit)
+            def \@#macro equs "{\1#AutoExit}"
+            purge \1#AutoExit
+
+            ; set isAutoExiting to true so the 'CleanExit' method won't call 'end' again
+            \1#isAutoExiting@negate
+
             ; execute the auto exit method
-            {\1#AutoExit}
+            \@#macro
         endc
     endm
 end

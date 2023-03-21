@@ -34,7 +34,7 @@ endif
 # Note, this will rebuild all objects when a .asm, .pce or .2bpp is required to be built, not simply main.o
 %.o: dep = $(shell find . -name "*.asm") $(shell ls pce/*/*.png | sed "s|.png|.pce|g") $(shell ls tiles/*/*.png | sed "s|.png|.2bpp|g")
 $(objs): %.o: %.asm $$(dep)
-	$(RGBASM) -l -h -r 128 -Wlong-string -o $@ $*.asm
+	$(RGBASM) -l -h -r 256 -Wlong-string -o $@ $*.asm
 
 opts  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON TRE2"
 

@@ -160,7 +160,7 @@ OakSpeechText1:
 
 OakSpeechText2:
 	fartext _OakSpeechText2A
-	crytext NIDORINA
+	cry NIDORINA
 	fartext _OakSpeechText2B
 	done
 
