@@ -200,7 +200,7 @@
 		
 				; No action
 				close
-		asmret
+		ret
 
 	NPC SPRITE_OAK, 5, 2, STAY, DOWN, OaksLabText5
 
