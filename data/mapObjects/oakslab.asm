@@ -180,7 +180,6 @@
 						ramtext wcd6d
 						text "!"
 						sfxtext SFX_GET_KEY_ITEM
-						done
 					printtext
 
 					xor a ; PLAYER_PARTY_DATA
@@ -202,7 +201,165 @@
 				close
 		ret
 
-	NPC SPRITE_OAK, 5, 2, STAY, DOWN, OaksLabText5
+	NPC SPRITE_OAK, 5, 2, STAY, DOWN
+		asmtext
+			CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
+			jr nz, .DisplayDexRating
+
+			ld hl, wPokedexOwned
+			ld b, wPokedexOwnedEnd - wPokedexOwned
+			call CountSetBits
+			ld a, [wNumSetBits]
+			cp 2
+			jr c, .NoPokemonCaughtYet
+
+			CheckEvent EVENT_GOT_POKEDEX
+			jr z, .NoPokemonCaughtYet
+
+		.DisplayDexRating
+				text "OAK: Good to see "
+				next "you! How is your "
+				cont "POKéDEX coming? "
+				cont "Here, let me take"
+				cont "a look!"
+				prompt
+			printtext
+			ld a, $1
+			ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+			predef DisplayDexRating
+			jp .end
+
+		.NoPokemonCaughtYet
+			ld b, POKE_BALL
+			call IsItemInBag
+			jr nz, .ComeSeeMe
+
+			CheckEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
+			jr nz, .GivePokeballs
+
+			CheckEvent EVENT_GOT_POKEDEX
+			jr nz, .GotPokedex
+
+			CheckEventReuseA EVENT_BATTLED_RIVAL_IN_OAKS_LAB
+			jr nz, .AfterRivalBattle
+			ld a, [wd72e]
+			bit 3, a
+			jr nz, .StarterSelected
+			
+				text "OAK: Now, <PLAYER>,"
+				next "which POKéMON do"
+				cont "you want?"
+			printtext
+			jr .end
+
+		.StarterSelected
+				text "OAK: If a wild"
+				next "POKéMON appears,"
+				cont "your POKéMON can"
+				cont "fight against it!"
+			printtext
+			jr .end
+
+		.AfterRivalBattle
+			ld b, OAKS_PARCEL
+			call IsItemInBag
+			jr nz, .GiveParcel
+			
+				text "OAK: <PLAYER>,"
+				next "raise your young"
+				cont "POKéMON by making"
+				cont "it fight!"
+			printtext
+			jr .end
+
+		.GiveParcel
+				text "OAK: Oh, <PLAYER>!"
+
+				para "How is my old"
+				next "POKéMON?"
+			
+				para "Well, it seems to"
+				next "like you a lot."
+			
+				para "You must be"
+				next "talented as a"
+				cont "POKéMON trainer!"
+			
+				para "What? You have"
+				next "something for me?"
+			
+				para "<PLAYER> delivered"
+				next "OAK's PARCEL."
+			
+				sfxtext SFX_GET_KEY_ITEM
+			
+				para "Ah! This is the"
+				next "custom POKé BALL"
+				cont "I ordered!"
+				cont "Thank you!"
+			printtext
+			call OaksLabScript_RemoveParcel
+			ld a, 5
+			ld [wOaksLabCurScript], a
+			jr .end
+
+		.GotPokedex
+				text "POKéMON around the"
+				next "world wait for"
+				cont "you, <PLAYER>!"
+			printtext
+			jr .end
+
+		.GivePokeballs
+			CheckAndSetEvent EVENT_GOT_POKEBALLS_FROM_OAK
+			jr nz, .ComeSeeMe
+			lb bc, POKE_BALL, 5
+			call GiveItem
+			
+				text "OAK: You can't get"
+				next "detailed data on"
+				cont "POKéMON by just"
+				cont "seeing them."
+
+				para "You must catch"
+				next "them! Use these"
+				cont "to capture wild"
+				cont "POKéMON."
+
+				para "<PLAYER> got 5"
+				next "POKé BALLs!"
+
+				sfxtext SFX_GET_KEY_ITEM
+
+				para "When a wild"
+				next "POKéMON appears,"
+				cont "it's fair game."
+
+				para "Just throw a #"
+				next "BALL at it and try"
+				next "to catch it!"
+
+				para "This won't always"
+				next "work, though."
+
+				para "A healthy POKéMON"
+				next "could escape. You"
+				cont "have to be lucky!"
+			printtext
+			jr .end
+
+		.ComeSeeMe
+				text "OAK: Come see me"
+				next "sometimes."
+			
+				para "I want to know how"
+				next "your POKéDEX is"
+				cont "coming along."
+			printtext
+
+		.end
+			end
+
 
 	NPC SPRITE_BOOK_MAP_DEX, 2, 1, STAY, NONE
 		OaksLabPokedexText:

@@ -375,6 +375,7 @@ OaksLabScript3:
 		next "Unbelievable!"
 		cont "I picked the"
 		cont "wrong POKéMON!"
+		prompt
 
 		text "<RIVAL>: Yeah! Am"
 		next "I great or what?"
@@ -439,7 +440,7 @@ OaksLabScript4:
 	ld [wNPCMovementDirections], a
 
 	call WaitForNPCMovement
-	; TODO - want to have player face rival as he walks away...
+	; TODO - need to have player face rival as he walks away...
 
 	;ld a, [wd730]
 	;bit 0, a
@@ -722,177 +723,3 @@ OaksLabScript_1d02b:
 	ld [wSpriteIndex], a
 	call SetSpritePosition1
 	ret
-
-OaksLabText5:
-	asmtext
-	CheckEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
-	jr nz, .asm_1d266
-	ld hl, wPokedexOwned
-	ld b, wPokedexOwnedEnd - wPokedexOwned
-	call CountSetBits
-	ld a, [wNumSetBits]
-	cp 2
-	jr c, .asm_1d279
-	CheckEvent EVENT_GOT_POKEDEX
-	jr z, .asm_1d279
-.asm_1d266
-	ld hl, OaksLabText_1d31d
-	call PrintText
-	ld a, $1
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	predef DisplayDexRating
-	jp .asm_1d2ed
-.asm_1d279
-	ld b, POKE_BALL
-	call IsItemInBag
-	jr nz, .asm_1d2e7
-	CheckEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
-	jr nz, .asm_1d2d0
-	CheckEvent EVENT_GOT_POKEDEX
-	jr nz, .asm_1d2c8
-	CheckEventReuseA EVENT_BATTLED_RIVAL_IN_OAKS_LAB
-	jr nz, .asm_1d2a9
-	ld a, [wd72e]
-	bit 3, a
-	jr nz, .asm_1d2a1
-	ld hl, OaksLabText_1d2f0
-	call PrintText
-	jr .asm_1d2ed
-.asm_1d2a1
-	ld hl, OaksLabText_1d2f5
-	call PrintText
-	jr .asm_1d2ed
-.asm_1d2a9
-	ld b, OAKS_PARCEL
-	call IsItemInBag
-	jr nz, .asm_1d2b8
-	ld hl, OaksLabText_1d2fa
-	call PrintText
-	jr .asm_1d2ed
-.asm_1d2b8
-	ld hl, OaksLabDeliverParcelText
-	call PrintText
-	call OaksLabScript_RemoveParcel
-	ld a, 5
-	ld [wOaksLabCurScript], a
-	jr .asm_1d2ed
-.asm_1d2c8
-	ld hl, OaksLabAroundWorldText
-	call PrintText
-	jr .asm_1d2ed
-.asm_1d2d0
-	CheckAndSetEvent EVENT_GOT_POKEBALLS_FROM_OAK
-	jr nz, .asm_1d2e7
-	lb bc, POKE_BALL, 5
-	call GiveItem
-	ld hl, OaksLabGivePokeballsText
-	call PrintText
-	jr .asm_1d2ed
-.asm_1d2e7
-	ld hl, OaksLabPleaseVisitText
-	call PrintText
-.asm_1d2ed
-	jp TextScriptEnd
-
-OaksLabText_1d2f0:
-	text "OAK: Now, <PLAYER>,"
-	next "which POKéMON do"
-	cont "you want?"
-	done
-
-OaksLabText_1d2f5:
-	text "OAK: If a wild"
-	next "POKéMON appears,"
-	cont "your POKéMON can"
-	cont "fight against it!"
-	done
-
-OaksLabText_1d2fa:
-	text "OAK: <PLAYER>,"
-	next "raise your young"
-	cont "POKéMON by making"
-	cont "it fight!"
-	done
-
-OaksLabDeliverParcelText:
-	text "OAK: Oh, <PLAYER>!"
-
-	para "How is my old"
-	next "POKéMON?"
-
-	para "Well, it seems to"
-	next "like you a lot."
-
-	para "You must be"
-	next "talented as a"
-	cont "POKéMON trainer!"
-
-	para "What? You have"
-	next "something for me?"
-
-	para "<PLAYER> delivered"
-	next "OAK's PARCEL."
-
-	sfxtext SFX_GET_KEY_ITEM
-
-	para "Ah! This is the"
-	next "custom POKé BALL"
-	cont "I ordered!"
-	cont "Thank you!"
-	done
-
-OaksLabAroundWorldText:
-	text "POKéMON around the"
-	next "world wait for"
-	cont "you, <PLAYER>!"
-	done
-
-OaksLabGivePokeballsText:
-	text "OAK: You can't get"
-	next "detailed data on"
-	cont "POKéMON by just"
-	cont "seeing them."
-
-	para "You must catch"
-	next "them! Use these"
-	cont "to capture wild"
-	cont "POKéMON."
-
-	para "<PLAYER> got 5"
-	next "POKé BALLs!"
-
-	sfxtext SFX_GET_KEY_ITEM
-
-	para "When a wild"
-	next "POKéMON appears,"
-	cont "it's fair game."
-
-	para "Just throw a #"
-	next "BALL at it and try"
-	next "to catch it!"
-
-	para "This won't always"
-	next "work, though."
-
-	para "A healthy POKéMON"
-	next "could escape. You"
-	cont "have to be lucky!"
-	done
-
-
-OaksLabPleaseVisitText:
-	text "OAK: Come see me"
-	next "sometimes."
-
-	para "I want to know how"
-	next "your POKéDEX is"
-	cont "coming along."
-	done
-
-OaksLabText_1d31d:
-	text "OAK: Good to see "
-	next "you! How is your "
-	cont "POKéDEX coming? "
-	cont "Here, let me take"
-	cont "a look!"
-	prompt

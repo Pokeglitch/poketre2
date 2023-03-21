@@ -7,7 +7,7 @@ Scope Script
 
     method InitText
       args , method
-        Text done, Delay, CheckEvent
+        Text done, Delay, CheckEvent, printtext
         def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
         SetID {\@#ID}
         \1#TextCount@inc
