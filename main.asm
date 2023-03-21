@@ -1217,8 +1217,6 @@ LavenderMartBlocks:
 CeruleanMartBlocks:
 VermilionMartBlocks: INCBIN "maps/vermilionmart.blk"
 
-RedsHouse2FBlocks: INCBIN "maps/redshouse2f.blk"
-
 Museum1FBlocks: INCBIN "maps/museum1f.blk"
 
 Museum2FBlocks: INCBIN "maps/museum2f.blk"
@@ -1237,9 +1235,7 @@ Route2GateBlocks:
 ViridianForestEntranceBlocks:
 ViridianForestExitBlocks: INCBIN "maps/viridianforestexit.blk"
 
-INCLUDE "data/mapHeaders/redshouse2f.asm"
-INCLUDE "scripts/redshouse2f.asm"
-INCLUDE "data/mapObjects/redshouse2f.asm"
+MapDefinition RedsHouse2F, REDS_HOUSE_2F_HEIGHT, REDS_HOUSE_2F_WIDTH, REDS_HOUSE_2, 10
 
 INCLUDE "engine/predefs17.asm"
 

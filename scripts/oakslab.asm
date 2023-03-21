@@ -1,8 +1,5 @@
 OaksLabScript:
-	ld a, $1
-	ld [wAutoTextBoxDrawingControl], a
-	xor a
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	call DisableAutoTextBoxDrawing
 	ld hl, OaksLabScriptPointers
 	ld a, [wOaksLabCurScript]
 	jp RunIndexedMapScript
