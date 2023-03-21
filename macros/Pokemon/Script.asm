@@ -7,7 +7,7 @@ Scope Script
 
     method InitText
       args , method
-        Text done, Delay, CheckEvent, printtext
+        Text done, Delay, CheckEvent, printtext, has_item, give_item
         def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
         SetID {\@#ID}
         \1#TextCount@inc
@@ -72,5 +72,17 @@ Scope Script
             ld hl, {name}
         endc
         call PrintText
+    endm
+
+    method has_item
+      args , item
+        ld b, item
+        call IsItemInBag
+    endm
+
+    method give_item
+      args , item, amount=1
+        lb bc, item, amount
+        call GiveItem
     endm
 end
