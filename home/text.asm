@@ -186,6 +186,9 @@ PlaceNextChar::
 	cp TEXTBOX_DEF
 	jp z, TextboxCommand
 
+	cp NO_TEXTBOX
+	jp z, CloseTextboxCommand
+
 	cp RAM_TEXT
 	jp z, RAMTextCommand
 	
@@ -462,13 +465,17 @@ ASMTextCommand:
 	pop hl
 	jp PlaceNextChar
 
+
 TextboxCommand:
 	inc de
+CloseTextboxCommand:
 	push de
 	ld a, [hWY]
 	cp SCREEN_HEIGHT_PIXELS
 	ld a, [de]
-	jr nc, .notDisplayed ; initialize if its not onscreen already
+	jr nc, .notDisplayed
+
+	; close if currently displayed on screen
 	push hl
 	push bc
 	push af
@@ -478,7 +485,8 @@ TextboxCommand:
 	pop hl
 
 .notDisplayed
-	call InitializeTextbox
+	and a
+	call nz, InitializeTextbox ; dont initialize textbox if "no textbox" is the command
 	pop de
 	inc de
 	jp PlaceNextChar

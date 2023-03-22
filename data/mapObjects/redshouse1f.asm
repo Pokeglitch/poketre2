@@ -1,18 +1,67 @@
 RedsHouse1FObject:
-	db $a ; border block
+	Warp 2, 7, 0
+	Warp 3, 7, 0
+	Warp 7, 1, 0, REDS_HOUSE_2F
 
-	db 3 ; warps
-	warp 2, 7, 0, -1 ; exit1
-	warp 3, 7, 0, -1 ; exit2
-	warp 7, 1, 0, REDS_HOUSE_2F ; staircase
+	Sign 3, 1
+		asm
+				text "Oops, wrong side."
+				done
+			ld a, [wSpriteStateData1 + 9]
+			cp SPRITE_FACING_UP
+			jr nz, .finish
 
-	db 1 ; signs
-	sign 3, 1, 2 ; TV
+				text "There's a movie"
+				next "on TV. Four boys"
+				cont "are walking on"
+				cont "railroad tracks."
 
-	db 1 ; objects
-	object SPRITE_MOM, 5, 4, STAY, LEFT, 1 ; Mom
+				para "I better go too."
+		finish
 
-	; warp-to
-	warp_to 2, 7, REDS_HOUSE_1F_WIDTH
-	warp_to 3, 7, REDS_HOUSE_1F_WIDTH
-	warp_to 7, 1, REDS_HOUSE_1F_WIDTH
+	NPC SPRITE_MOM, 5, 4, STAY, LEFT
+		asm
+			; todo - this can be a CheckEvent
+			ld a, [wd72e]
+			bit 3, a
+			jr nz, .heal ; if player has received a Pokémon from Oak, heal team
+				text "MOM: Right."
+				next "All boys leave"
+				cont "home some day."
+				cont "It said so on TV."
+			
+				para "PROF.OAK, next"
+				next "door, is looking"
+				cont "for you."
+				done
+			jr .finish
+		.heal
+				text "MOM: <PLAYER>!"
+				next "You should take a"
+				cont "quick rest."
+
+				wait
+				textbox NO_TEXTBOX
+			printtext
+			call GBFadeOutToWhite
+			call ReloadMapData
+			predef HealParty
+			play_sound MUSIC_PKMN_HEALED
+		.next
+			ld a, [wChannelSoundIDs]
+			cp MUSIC_PKMN_HEALED
+			jr z, .next
+			call PlayDefaultMusic
+			call GBFadeInFromWhite
+				textbox DEFAULT_SPEECH_TEXTBOX
+				text "MOM: Oh good!"
+				next "You and your"
+				cont "POKéMON are"
+				cont "looking great!"
+				cont "Take care now!"
+				done
+		finish
+
+	WarpTo 2, 7
+	WarpTo 3, 7
+	WarpTo 7, 1

@@ -37,7 +37,7 @@ MapHeaderPointers::
 	dw Route23_h
 	dw Route24_h
 	dw Route25_h
-	dw RedsHouse1F_h
+	dw RedsHouse1FHeader
 	dw RedsHouse2FHeader
 	dw BluesHouse_h
 	dw OaksLabHeader ;id=40

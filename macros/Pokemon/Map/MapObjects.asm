@@ -1,3 +1,8 @@
+/*
+TODO - Give all signs a specific textbox style?
+-- option for number of rows
+*/
+
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Class2 MapObjects

@@ -785,10 +785,7 @@ INCLUDE "engine/predefs12.asm"
 
 INCLUDE "scripts/route7.asm"
 
-INCLUDE "data/mapHeaders/redshouse1f.asm"
-INCLUDE "scripts/redshouse1f.asm"
-INCLUDE "data/mapObjects/redshouse1f.asm"
-RedsHouse1FBlocks: INCBIN "maps/redshouse1f.blk"
+MapDefinition RedsHouse1F, REDS_HOUSE_1F_HEIGHT, REDS_HOUSE_1F_WIDTH, REDS_HOUSE_1, 10
 
 INCLUDE "data/mapHeaders/celadonmart3.asm"
 INCLUDE "scripts/celadonmart3.asm"
