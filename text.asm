@@ -2285,7 +2285,6 @@ _ColosseumText1::
 INCLUDE "text/maps/oaks_lab.asm"
 INCLUDE "text/maps/viridian_pokecenter.asm"
 INCLUDE "text/maps/viridian_mart.asm"
-INCLUDE "text/maps/school.asm"
 INCLUDE "text/maps/viridian_gym.asm"
 INCLUDE "text/maps/museum_1f.asm"
 INCLUDE "text/maps/museum_2f.asm"

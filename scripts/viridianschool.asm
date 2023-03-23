@@ -1,0 +1,2 @@
+ViridianSchoolScript:
+	jp EnableAutoTextBoxDrawing

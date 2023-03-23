@@ -381,9 +381,6 @@ Route1Blocks: INCBIN "maps/route1.blk"
 
 UndergroundPathEntranceRoute8Blocks: INCBIN "maps/undergroundpathentranceroute8.blk"
 
-CeladonMansion5Blocks:
-SchoolBlocks: INCBIN "maps/school.blk"
-
 CeruleanHouseTrashedBlocks: INCBIN "maps/ceruleanhousetrashed.blk"
 
 DiglettsCaveEntranceRoute11Blocks:
@@ -402,10 +399,7 @@ INCLUDE "scripts/viridianmart.asm"
 INCLUDE "data/mapObjects/viridianmart.asm"
 ViridianMartBlocks: INCBIN "maps/viridianmart.blk"
 
-INCLUDE "data/mapHeaders/school.asm"
-INCLUDE "scripts/school.asm"
-INCLUDE "data/mapObjects/school.asm"
-
+MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, HOUSE, 10
 MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, HOUSE, 10
 
 INCLUDE "data/mapHeaders/pewterhouse1.asm"
