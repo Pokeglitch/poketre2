@@ -28,7 +28,7 @@ const_value = 0
 	const EVENT_016                                  ; 016, (D749, bit 6)
 	const EVENT_017                                  ; 017, (D749, bit 7)
 	const EVENT_GOT_TOWN_MAP                         ; 018, (D74A, bit 0)
-	const EVENT_ENTERED_BLUES_HOUSE                  ; 019, (D74A, bit 1)
+	const EVENT_019                                  ; 019, (D74A, bit 1)
 	const EVENT_DAISY_WALKING                        ; 01A, (D74A, bit 2)
 	const EVENT_01B                                  ; 01B, (D74A, bit 3)
 	const EVENT_01C                                  ; 01C, (D74A, bit 4)

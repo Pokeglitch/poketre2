@@ -39,7 +39,7 @@ MapHeaderPointers::
 	dw Route25_h
 	dw RedsHouse1FHeader
 	dw RedsHouse2FHeader
-	dw BluesHouse_h
+	dw BluesHouseHeader
 	dw OaksLabHeader ;id=40
 	dw ViridianPokecenter_h
 	dw ViridianMart_h

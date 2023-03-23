@@ -2282,7 +2282,6 @@ _ColosseumText1::
 	text "!"
 	done
 
-INCLUDE "text/maps/blues_house.asm"
 INCLUDE "text/maps/oaks_lab.asm"
 INCLUDE "text/maps/viridian_pokecenter.asm"
 INCLUDE "text/maps/viridian_mart.asm"
