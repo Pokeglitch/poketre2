@@ -338,10 +338,6 @@ INCLUDE "scripts/celadoncity.asm"
 INCLUDE "scripts/fuchsiacity.asm"
 
 MapDefinition BluesHouse, BLUES_HOUSE_HEIGHT, BLUES_HOUSE_WIDTH, HOUSE, 10
-;INCLUDE "data/mapHeaders/blueshouse.asm"
-;INCLUDE "scripts/blueshouse.asm"
-;INCLUDE "data/mapObjects/blueshouse.asm"
-;BluesHouseBlocks: INCBIN "maps/blueshouse.blk"
 
 INCLUDE "data/mapHeaders/vermilionhouse3.asm"
 INCLUDE "scripts/vermilionhouse3.asm"
