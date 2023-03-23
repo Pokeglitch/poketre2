@@ -7,7 +7,7 @@ Scope Script
 
     method InitText
       args , method
-        Text done, Delay, CheckEvent, printtext, has_item, give_item, play_sound
+        Text done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry
         def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
         SetID {\@#ID}
         \1#TextCount@inc
@@ -91,5 +91,11 @@ Scope Script
         ld a, sound
         ld [wNewSoundID], a
         call PlaySound
+    endm
+
+    method play_cry
+      args , pokemon
+        ld a, pokemon
+        call PlayCry
     endm
 end

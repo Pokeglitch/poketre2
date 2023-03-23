@@ -44,7 +44,7 @@ MapHeaderBanks:
 	db BANK(ViridianPokecenter_h)
 	db BANK(ViridianMart_h)
 	db BANK(School_h)
-	db BANK(ViridianHouse_h)
+	db BANK(ViridianHouseHeader)
 	db BANK(ViridianGym_h)
 	db BANK(DiglettsCaveRoute2_h)
 	db BANK(ViridianForestExit_h)

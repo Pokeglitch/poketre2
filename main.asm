@@ -381,19 +381,6 @@ Route1Blocks: INCBIN "maps/route1.blk"
 
 UndergroundPathEntranceRoute8Blocks: INCBIN "maps/undergroundpathentranceroute8.blk"
 
-Route16HouseBlocks:
-Route2HouseBlocks:
-SaffronHouse1Blocks:
-SaffronHouse2Blocks:
-VermilionHouse1Blocks:
-NameRaterBlocks:
-LavenderHouse1Blocks:
-LavenderHouse2Blocks:
-CeruleanHouse1Blocks:
-PewterHouse1Blocks:
-PewterHouse2Blocks:
-ViridianHouseBlocks: INCBIN "maps/viridianhouse.blk"
-
 CeladonMansion5Blocks:
 SchoolBlocks: INCBIN "maps/school.blk"
 
@@ -419,9 +406,7 @@ INCLUDE "data/mapHeaders/school.asm"
 INCLUDE "scripts/school.asm"
 INCLUDE "data/mapObjects/school.asm"
 
-INCLUDE "data/mapHeaders/viridianhouse.asm"
-INCLUDE "scripts/viridianhouse.asm"
-INCLUDE "data/mapObjects/viridianhouse.asm"
+MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, HOUSE, 10
 
 INCLUDE "data/mapHeaders/pewterhouse1.asm"
 INCLUDE "scripts/pewterhouse1.asm"

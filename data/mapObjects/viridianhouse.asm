@@ -1,18 +1,27 @@
 ViridianHouseObject:
-	db $a ; border block
+	Warp 2, 7, 3
+	Warp 3, 7, 3
 
-	db 2 ; warps
-	warp 2, 7, 3, -1
-	warp 3, 7, 3, -1
+	NPC SPRITE_BALDING_GUY, 5, 3, STAY, NONE
+		text "Coming up with"
+		next "nicknames is fun,"
+		cont "but hard."
 
-	db 0 ; signs
+		para "Simple names are"
+		next "the easiest to"
+		cont "remember."
 
-	db 4 ; objects
-	object SPRITE_BALDING_GUY, 5, 3, STAY, NONE, 1 ; person
-	object SPRITE_LITTLE_GIRL, 1, 4, WALK, 1, 2 ; person
-	object SPRITE_BIRD, 5, 5, WALK, 2, 3 ; person
-	object SPRITE_CLIPBOARD, 4, 0, STAY, NONE, 4 ; person
+	NPC SPRITE_LITTLE_GIRL, 1, 4, WALK, 1	
+		text "My Daddy loves"
+		next "POKéMON too."
 
-	; warp-to
-	warp_to 2, 7, VIRIDIAN_HOUSE_WIDTH
-	warp_to 3, 7, VIRIDIAN_HOUSE_WIDTH
+	NPC SPRITE_BIRD, 5, 5, WALK, 2
+		text "SPEARY: Tetweet!"
+		cry SPEAROW
+
+	NPC SPRITE_CLIPBOARD, 4, 0, STAY, NONE
+		text "SPEAROW"
+		next "Name: SPEARY"
+
+	WarpTo 2, 7
+	WarpTo 3, 7

@@ -44,7 +44,7 @@ MapHeaderPointers::
 	dw ViridianPokecenter_h
 	dw ViridianMart_h
 	dw School_h
-	dw ViridianHouse_h
+	dw ViridianHouseHeader
 	dw ViridianGym_h
 	dw DiglettsCaveRoute2_h
 	dw ViridianForestExit_h
