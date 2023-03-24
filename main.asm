@@ -1551,10 +1551,7 @@ INCLUDE "engine/items/itemfinder.asm"
 
 INCLUDE "scripts/ceruleancity2.asm"
 
-INCLUDE "data/mapHeaders/viridiangym.asm"
-INCLUDE "scripts/viridiangym.asm"
-INCLUDE "data/mapObjects/viridiangym.asm"
-ViridianGymBlocks: INCBIN "maps/viridiangym.blk"
+MapDefinition ViridianGym, VIRIDIAN_GYM_HEIGHT, VIRIDIAN_GYM_WIDTH, GYM, 3
 
 INCLUDE "data/mapHeaders/pewtermart.asm"
 INCLUDE "scripts/pewtermart.asm"

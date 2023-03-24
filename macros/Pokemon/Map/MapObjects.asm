@@ -60,16 +60,15 @@ Class2 MapObjects
     endm
     
     method InitTrainerHeader
-      args , range
-        AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
+      args , range, pointer
         pushs
         ; Initialize the trainer header
         TrainerHeadersSec
-            \@#TrainerHeader:
+            {pointer}:
                 db 1 << (TotalTrainerBattleCount % 8)   ; the mask for this trainer
                 db (range << 4) | {\1#Map}#Sprite#Count      ; trainer's view range and sprite index
                 dw wTrainerBattleFlags + (TotalTrainerBattleCount / 8)
-                
+
         def TotalTrainerBattleCount += 1
     endm
 
@@ -212,12 +211,15 @@ Scope MapObjectsBattle, TrainerBattle
         MapCoord x, y
         db movement, direction
 
+        AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
+
         db \1#Trainer
         ; todo - should be a return value from the Trainer Class
         db {\1#Trainer}PartyCount | ObjectData#Trainer#BitMask
         def {\1#Trainer}PartyCount += 1
 
-        InitTrainerHeader range
+        InitTrainerHeader range, \@#TrainerHeader
+        ; todo - open text context immediately?
     endm
 
     ; todo - clean up and use better pointer names
@@ -248,6 +250,7 @@ Scope MapObjectsBattle, TrainerBattle
     ; TODO - can use generic Win or Loss texts if not provided
     method exit
       args
+        ; todo - also if missing before or after
         if \1#Texts#_size < 3
             fail "Battle Win/Lose Texts are missing"
         ; If Lose Text is missing, then duplicate the last text (the win text)

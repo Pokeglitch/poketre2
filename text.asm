@@ -79,8 +79,9 @@ _PokeCenterSignText::
 	next "POKéMON CENTER"
 	done
 
+	; TODO - a/an based on first letter of wcf4b
 _FoundItemText::
-	text "<PLAYER> found"
+	text "<PLAYER> found 1"
 	next ""
 	ramtext wcf4b
 	text "!"
@@ -2282,11 +2283,9 @@ _ColosseumText1::
 	text "!"
 	done
 
-INCLUDE "text/maps/viridian_gym.asm"
 INCLUDE "text/maps/museum_1f.asm"
 INCLUDE "text/maps/museum_2f.asm"
 INCLUDE "text/maps/pewter_gym_1.asm"
-
 
 SECTION "Text 7", ROMX, BANK[TEXT_7]
 

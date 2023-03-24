@@ -5,8 +5,8 @@
 	Party 36, Primeape
 	Party 31, Machop, Mankey, Primeape
 ; Viridian Gym
-	Party 40, Machop, Machoke
-	Party 43, Machoke
-	Party 38, Machoke, Machop, Machoke
+	Party 40, Machop, Machoke ; DONE
+	Party 43, Machoke ; DONE
+	Party 38, Machoke, Machop, Machoke ; DONE
 ; Victory Road 2F
 	Party 43, Machoke, Machop, Machoke

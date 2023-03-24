@@ -5,4 +5,4 @@
     Party 37, Nidorino, 35, Kangaskhan, 37, Rhyhorn, 41, Nidoqueen
 
     ; Viridian Gym
-    Party 45, Rhyhorn, 42, Dugtrio, 44, Nidoqueen, 45, Nidoking, 50, Rhydon, 2, FISSURE
+    ;Party 45, Rhyhorn, 42, Dugtrio, 44, Nidoqueen, 45, Nidoking, 50, Rhydon, 2, FISSURE

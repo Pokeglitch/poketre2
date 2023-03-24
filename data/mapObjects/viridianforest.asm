@@ -109,7 +109,7 @@
 		cont "at this!"
 
 		Team 9, Weedle
-	
+
 	Pickup 25, 11, ANTIDOTE
 	Pickup 12, 29, POTION
 	Pickup 1, 31, POKE_BALL
