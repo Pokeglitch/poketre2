@@ -593,7 +593,6 @@ INCLUDE "data/mapHeaders/lavendertown.asm"
 INCLUDE "data/mapObjects/lavendertown.asm"
 LavenderTownBlocks: INCBIN "maps/lavendertown.blk"
 
-ViridianPokecenterBlocks: INCBIN "maps/viridianpokecenter.blk"
 
 SafariZoneRestHouse1Blocks:
 SafariZoneRestHouse2Blocks:
@@ -604,9 +603,7 @@ INCLUDE "scripts/lavendertown.asm"
 
 INCLUDE "engine/pokedex_rating.asm"
 
-INCLUDE "data/mapHeaders/viridianpokecenter.asm"
-INCLUDE "scripts/viridianpokecenter.asm"
-INCLUDE "data/mapObjects/viridianpokecenter.asm"
+MapDefinition ViridianPokecenter, VIRIDIAN_POKECENTER_HEIGHT, VIRIDIAN_POKECENTER_WIDTH, POKECENTER, 0
 
 INCLUDE "data/mapHeaders/mansion1.asm"
 INCLUDE "scripts/mansion1.asm"

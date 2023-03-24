@@ -1,18 +1,28 @@
-ViridianPokecenterObject:
-	db $0 ; border block
+	Warp 3, 7, 0
+	Warp 4, 7, 0
 
-	db 2 ; warps
-	warp 3, 7, 0, -1
-	warp 4, 7, 0, -1
+	NPC SPRITE_NURSE, 3, 1, STAY, DOWN
+		text 
+		TX_POKECENTER_NURSE
 
-	db 0 ; signs
+	NPC SPRITE_GENTLEMAN, 10, 5, WALK, 1
+		text "You can use that"
+		next "PC in the corner."
 
-	db 4 ; objects
-	object SPRITE_NURSE, 3, 1, STAY, DOWN, 1 ; person
-	object SPRITE_GENTLEMAN, 10, 5, WALK, 1, 2 ; person
-	object SPRITE_BLACK_HAIR_BOY_1, 4, 3, STAY, NONE, 3 ; person
-	object SPRITE_CABLE_CLUB_WOMAN, 11, 2, STAY, DOWN, 4 ; person
+		para "The receptionist"
+		next "told me. So kind!"
+		
+	NPC SPRITE_BLACK_HAIR_BOY_1, 4, 3, STAY, NONE
+		text "There's a POKéMON"
+		next "CENTER in every"
+		cont "town ahead."
 
-	; warp-to
-	warp_to 3, 7, VIRIDIAN_POKECENTER_WIDTH
-	warp_to 4, 7, VIRIDIAN_POKECENTER_WIDTH
+		para "They don't charge"
+		next "any money either!"
+
+	NPC SPRITE_CABLE_CLUB_WOMAN, 11, 2, STAY, DOWN
+		text
+		TX_CABLE_CLUB_RECEPTIONIST
+
+	WarpTo 3, 7
+	WarpTo 4, 7
