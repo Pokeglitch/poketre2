@@ -34,6 +34,7 @@ OaksLabScript0:
 	ld hl, wd72e
 	res 4, [hl]
 
+	; todo - have a map sprite be able to be named...
 	ld a, $8
 	ld [H_SPRITEINDEX], a
 	ld de, OakEntryMovement

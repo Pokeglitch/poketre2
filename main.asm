@@ -393,12 +393,7 @@ INCLUDE "scripts/cinnabarisland.asm"
 INCLUDE "scripts/route1.asm"
 
 MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, DOJO, 3
-
-INCLUDE "data/mapHeaders/viridianmart.asm"
-INCLUDE "scripts/viridianmart.asm"
-INCLUDE "data/mapObjects/viridianmart.asm"
-ViridianMartBlocks: INCBIN "maps/viridianmart.blk"
-
+MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, MART, 0
 MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, HOUSE, 10
 MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, HOUSE, 10
 

@@ -42,7 +42,7 @@ MapHeaderBanks:
 	db BANK(BluesHouseHeader)
 	db BANK(OaksLabHeader)
 	db BANK(ViridianPokecenter_h)
-	db BANK(ViridianMart_h)
+	db BANK(ViridianMartHeader)
 	db BANK(ViridianSchoolHeader)
 	db BANK(ViridianHouseHeader)
 	db BANK(ViridianGym_h)

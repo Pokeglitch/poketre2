@@ -170,6 +170,13 @@ Scope Text
         foreach db, AUTO_PARAGRAPH, \#
     endm
 
+    /*
+    method mart
+      args
+        db $FE, _narg, \#, -1
+    endm
+    */
+
     ; Just wait for a keypress before continuing
     method wait
       args

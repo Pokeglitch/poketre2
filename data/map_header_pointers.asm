@@ -42,7 +42,7 @@ MapHeaderPointers::
 	dw BluesHouseHeader
 	dw OaksLabHeader ;id=40
 	dw ViridianPokecenter_h
-	dw ViridianMart_h
+	dw ViridianMartHeader
 	dw ViridianSchoolHeader
 	dw ViridianHouseHeader
 	dw ViridianGym_h
