@@ -1,3 +1,4 @@
+; TODO - Buttons@Ignore
 MACRO IgnoreButtons
     DEF MASK_VALUE = 0
     REPT _NARG
@@ -14,6 +15,7 @@ MACRO IgnoreButtons
     StoreIntoRegister wJoyIgnore, {MASK_VALUE}
 ENDM
 
+; TODO - Buttons@Permit
 MACRO PermitButtons
     DEF MASK_VALUE = 0
     REPT _NARG

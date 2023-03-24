@@ -1,36 +1,54 @@
 Class2 MapDefinition
     property Number, TextCount
     property Number, BattleCount
+    property List, Scripts ; todo - Enum instead?
 
     method init
       args #Name, #Height, #Width, #Tileset, #Border
         def \1#Bank = BANK(@)
+        def \1#ConnectionFlags = 0
 
         pushs
 
+        MapScript \1
+
+        MapObjects \1#Objects, \1
+            
+        MapSec \1 Blocks
+          \1Blocks:
+              incbin "maps/\1.blk"
+
+        ; todo - isntead, place in generic map table, along with Bank
         MapSec frag, \1 Header
             \1Header:
                 db \1#Tileset, \1#Height, \1#Width
                 dw \1Blocks, \1TextPointers, \1Script, \1TrainerHeaders
                 db \1#ConnectionFlags
 
-            ; define after allocating so it uses final value
-            def \1#ConnectionFlags = 0
-
-        MapScript \1
-
-        MapObjects \1#Objects, \1
-
         ; after connections are defined, add the objects pointer
         ; TODO - the connections shoud come after the objects pointer, so they can be added after...
         MapSec frag, \1 Header
             dw \1Objects
-            
-        MapSec \1 Blocks
-          \1Blocks:
-              incbin "maps/\1.blk"
-
         end
+    endm
+
+    from MapScript
+      args
+        if not def(\1Script)
+            \1Script:
+                if def(\1PreScript)
+                    call \1PreScript
+                endc
+                if \1#Scripts#_size
+                    ld hl, \1ScriptPointers
+                    ld a, [w\1CurScript]
+                    call RunIndexedMapScript
+                endc
+                if def(\1PostScript)
+                    call \1PostScript
+                endc
+                ret
+        endc
     endm
 
     method nextBattleCount
@@ -39,17 +57,33 @@ Class2 MapDefinition
         \1#BattleCount@inc
     endm
 
-    method getMap
-      args
-        return \1
-    endm
-
     ; Open a section in the same bank as this Map
     method MapSec
       args
         def \@#Bank = \1#Bank
         shift
         sec \#, \@#Bank
+    endm
+
+    method MainScriptSec
+      args
+        MapSec frag, \1 Main Script
+    endm
+
+    method AddMapScriptPointer
+      args , name
+        pushs
+        MapSec frag, \1 Script Pointers
+            if not \1#Scripts#_size
+                \1ScriptPointers:
+            endc
+            
+            dw \1#Scripts#{name}
+        pops
+
+        \1#Scripts@push {name}
+
+        \1#Scripts#{name}:
     endm
     
 /*  \1 - X movement (X-blocks)

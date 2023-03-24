@@ -1,50 +1,43 @@
-ViridianGymScript:
-	ld hl, Gym8CityName
-	ld de, Gym8LeaderName
-	call LoadGymLeaderAndCityName
-	call EnableAutoTextBoxDrawing
-	ld hl, ViridianGymScriptPointers
-	ld a, [wViridianGymCurScript]
-	jp RunIndexedMapScript
+/*
+-- enable auto textbox drawing should simply be called before executing map script??
+
+Get the Hide/Show to work
+
+Make 'ExecuteSpinnerMotion' generic and exec before map script getting called?
+*/
+	pre
+		ld hl, Gym8CityName
+		ld de, Gym8LeaderName
+		call LoadGymLeaderAndCityName
+		jp EnableAutoTextBoxDrawing
 
 Gym8CityName:
 	str "VIRIDIAN CITY"
 Gym8LeaderName:
 	str "GIOVANNI"
 
-ViridianGymScript_748d6:
-	xor a
-	ld [wJoyIgnore], a
-	ld [wViridianGymCurScript], a
-	ret
+	script CheckForSpinnerTiles
+		ld a, [wYCoord]
+		ld b, a
+		ld a, [wXCoord]
+		ld c, a
+		ld hl, ViridianGymArrowTilePlayerMovement
+		call DecodeArrowMovementRLE
+		cp -1
+		ret z
+		
+		call StartSimulatingJoypadStates
 
-ViridianGymScriptPointers:
-	dw ViridianGymScript0
-	dw DisplayEnemyTrainerTextAndStartBattle
-	dw EndTrainerBattle
-	dw ViridianGymScript3
-	dw ViridianGymScript4
+		; TODO:
+		; PlayerIsSpinning@set 7, hl / a (optional)
+		set_hl 7, wd736
 
-ViridianGymScript0:
-	ld a, [wYCoord]
-	ld b, a
-	ld a, [wXCoord]
-	ld c, a
-	ld hl, ViridianGymArrowTilePlayerMovement
-	call DecodeArrowMovementRLE
-	cp $ff
-	ret z
-	
-	call StartSimulatingJoypadStates
-	ld hl, wd736
-	set 7, [hl]
-	ld a, SFX_ARROW_TILES
-	call PlaySound
-	ld a, $ff
-	ld [wJoyIgnore], a
-	ld a, $4
-	ld [wViridianGymCurScript], a
-	ret
+		ld a, SFX_ARROW_TILES
+		call PlaySound
+		
+		IgnoreButtons All
+		set_script 1;ExecuteSpinnerMotion
+		ret
 
 ;format:
 ;db y,x
@@ -113,25 +106,23 @@ ViridianGymArrowMovement11:
 ViridianGymArrowMovement12:
 	db D_LEFT,$0C,$FF
 
-ViridianGymScript4:
-	ld a, [wSimulatedJoypadStatesIndex]
-	and a
-	jr nz, .asm_74980
-	xor a
-	ld [wJoyIgnore], a
-	ld hl, wd736
-	res 7, [hl]
-	ld a, $0
-	ld [wViridianGymCurScript], a
-	ret
-.asm_74980
-	jpba LoadSpinnerArrowTiles
+	script ExecuteSpinnerMotion
+		ld a, [wSimulatedJoypadStatesIndex]
+		and a
+		jr nz, .stillSpinning
 
-ViridianGymScript3:
-	ld a, $f0
-	ld [wJoyIgnore], a
+		res_hl 7, wd736
+		jp ResetViridianGymScript
 
-ViridianGymScript3_74995:
+	.stillSpinning
+		jpba LoadSpinnerArrowTiles
+
+
+	script AfterDefeatGiovanni
+		IgnoreButtons DPad
+		;fall through
+
+AfterDefeatGiovanniText:
 		text "The EARTHBADGE"
 		next "makes POKéMON of"
 		cont "any level obey!"
@@ -148,7 +139,9 @@ ViridianGymScript3_74995:
 		next "your POKéMON"
 		cont "LEAGUE challenge!"
 		done
+
 	SetEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
+
 	give_item TM_27
 	jr nc, .BagFull
 
@@ -174,10 +167,8 @@ ViridianGymScript3_74995:
 		done
 	
 .finish
-	ld hl, wObtainedBadges
-	set 7, [hl]
-	ld hl, wBeatGymFlags
-	set 7, [hl]
+	set_hl 7, wObtainedBadges
+	set_hl 7, wBeatGymFlags
 
 	; deactivate gym trainers
 	SetEventRange EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0, EVENT_BEAT_VIRIDIAN_GYM_TRAINER_7
@@ -186,4 +177,8 @@ ViridianGymScript3_74995:
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 	SetEvents EVENT_2ND_ROUTE22_RIVAL_BATTLE, EVENT_ROUTE22_RIVAL_WANTS_BATTLE
-	jp ViridianGymScript_748d6
+
+ResetViridianGymScript:
+	IgnoreButtons None
+	set_script 0;CheckForSpinnerTiles
+	ret

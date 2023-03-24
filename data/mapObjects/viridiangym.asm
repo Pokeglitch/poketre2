@@ -28,7 +28,7 @@
 			set 7, [hl]
 			ld a, 8
 			ld [wGymLeaderNo], a
-			ld a, 3
+			ld a, 2
 			ld [wViridianGymCurScript], a
 		end
 
@@ -36,7 +36,7 @@
 		asm
 			CheckEvent EVENT_GOT_TM27
 			jr nz, .GotTM27
-			call ViridianGymScript3_74995
+			call AfterDefeatGiovanniText
 			call DisableWaitingAfterTextDisplay
 			jr .end
 

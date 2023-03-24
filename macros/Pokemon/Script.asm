@@ -7,7 +7,7 @@ Scope Script
 
     method InitText
       args , method
-        Text done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry
+        Text done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry, set_hl, res_hl
         def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
         SetID {\@#ID}
         \1#TextCount@inc
@@ -89,6 +89,7 @@ Scope Script
     method play_sound
       args , sound
         ld a, sound
+        ; todo - when it is necessary to store into wNewSoundID??
         ld [wNewSoundID], a
         call PlaySound
     endm
@@ -97,5 +98,17 @@ Scope Script
       args , pokemon
         ld a, pokemon
         call PlayCry
+    endm
+
+    method set_hl
+      args , index, pointer
+        ld hl, pointer
+        set index, [hl]
+    endm
+
+    method res_hl
+      args , index, pointer
+        ld hl, pointer
+        res index, [hl]
     endm
 end
