@@ -1,10 +1,3 @@
-/*
--- enable auto textbox drawing should simply be called before executing map script??
-
-Get the Hide/Show to work
-
-Make 'ExecuteSpinnerMotion' generic and exec before map script getting called?
-*/
 	pre
 		ld hl, Gym8CityName
 		ld de, Gym8LeaderName
@@ -38,6 +31,8 @@ Gym8LeaderName:
 		IgnoreButtons All
 		set_script 1;ExecuteSpinnerMotion
 		ret
+
+; todo - make this a macro & combine the coordinates & motion in single macro
 
 ;format:
 ;db y,x

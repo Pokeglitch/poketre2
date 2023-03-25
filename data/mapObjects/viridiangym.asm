@@ -2,8 +2,6 @@
 	Warp 17, 17, 4
 
 	Battle SPRITE_GIOVANNI, 2, 1, STAY, DOWN, 0, Giovanni
-		; todo - remove need to start with 'text'
-		text
 		asm
 				text "Fwahahaha! This is"
 				next "my hideout!"
@@ -32,7 +30,6 @@
 			ld [wViridianGymCurScript], a
 		end
 
-		text
 		asm
 			CheckEvent EVENT_GOT_TM27
 			jr nz, .GotTM27

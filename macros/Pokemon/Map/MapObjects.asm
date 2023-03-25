@@ -118,15 +118,6 @@ Class2 MapObjects
             dw ptr
     endm
 
-    method getCount
-      args , name
-        if def({\1#Map}#{name}#Count)
-            return {\1#Map}#{name}#Count
-        else
-            return 0
-        endc
-    endm
-
     method UpdateCount
       args
         var \@#index = MapObjects#Order@index(\2)
@@ -179,10 +170,10 @@ Class2 MapObjects
     endm
 
     method Battle
-      args
+      args self
         UpdateCount Sprite
         shift
-        MapObjectsBattle \#
+        MapObjectsBattle {self}#Sprite#{d:{{self}#Map}#Sprite#Count}, \#
     endm
 
     method Pickup
@@ -204,92 +195,5 @@ Class2 MapObjects
       args , x, y
         UpdateCount WarpTo
         EventDisp x, y
-    endm
-end
-
-; TODO - distinguish between a pokemon and a trainer  
-Scope MapObjectsBattle, TrainerBattle
-    property List, Texts
-
-    method init
-      args , sprite, x, y, movement, direction, range, trainer
-        var \1#MapBattleIndex = nextBattleCount()
-        vars \1#Trainer = Symbolize({trainer})
-
-        db sprite
-        MapCoord x, y
-        db movement, direction
-
-        AddTextPointer \@#TrainerHeader, MapText#Type#Trainer
-
-        db \1#Trainer
-        ; todo - should be a return value from the Trainer Class
-        db {\1#Trainer}PartyCount | ObjectData#Trainer#BitMask
-        def {\1#Trainer}PartyCount += 1
-
-        InitTrainerHeader range, \@#TrainerHeader
-
-        TryExpectBattleText
-    endm
-
-    method TryExpectBattleText
-      args
-        if \1#Texts#_size <= 1
-            ExpectBattleText done
-        elif \1#Texts#_size <= 3
-            ExpectBattleText prompt
-        endc
-    endm
-
-    method ExpectBattleText
-      args , method
-        ExpectText InitBattleText, {method}, Team
-    endm
-
-    method InitBattleText
-      args
-        vars \@#map = getMap()
-        var \@#index = getCount(Sprite)
-
-        def \@#prefix equs "{\@#map}#Sprite#{d:\@#index}#"
-
-        if \1#Texts#_size == 0
-            def \@#suffix equs "BeforeBattleText"
-        elif \1#Texts#_size == 1
-            def \@#suffix equs "AfterBattleText"
-        elif \1#Texts#_size == 2
-            def \@#suffix equs "WinBattleText"
-        else
-            def \@#suffix equs "LoseBattleText"
-        endc
-
-        def \@#pointer equs "{\@#prefix}{\@#suffix}"
-
-        \1#Texts@push {\@#pointer}
-        AddTrainerHeaderPointer {\@#pointer}
-
-        pushs
-        TextsSec
-            {\@#pointer}:
-    endm
-
-    from Text
-      args
-        super
-        TryExpectBattleText
-    endm
-
-    ; TODO - can use generic Win or Loss texts if not provided
-    method exit
-      args
-        ; todo - also if missing before or after
-        if \1#Texts#_size < 3
-            fail "Battle Win/Lose Texts are missing"
-        ; If Lose Text is missing, then duplicate the last text (the win text)
-        elif \1#Texts#_size == 3
-            AddTrainerHeaderPointer {\1#Texts#2}
-        endc
-
-        pops
     endm
 end
