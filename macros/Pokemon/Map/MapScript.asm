@@ -51,12 +51,25 @@ Scope MapScriptBattle, TrainerBattle
         ; TODO - this should be a return macro attached to the Trainer instance
         def \1#TeamName equs "\2Team{d:\2PartyCount}"
         def \2PartyCount += 1
+
+        ExpectBattleText
     endm
 
-    method text
+    method ExpectBattleText
       args
-        Text prompt, Team
-        
+        ExpectText InitBattleText, prompt, Team
+    endm
+
+    from Text
+      args
+        super
+        if not def({\1#TeamName}LoseText)
+            ExpectBattleText
+        endc
+    endm
+
+    method InitBattleText
+      args
         pushs
         MapSec frag, \1#TeamName Texts
             ; First text is WinText, next is LoseText
@@ -65,8 +78,6 @@ Scope MapScriptBattle, TrainerBattle
             else
                 {\1#TeamName}LoseText:
             endc
-            shift
-            text \#
     endm
 
     method exit
@@ -74,7 +85,7 @@ Scope MapScriptBattle, TrainerBattle
         pops
         
         if def({\1#TeamName}WinText) == 0
-            fail "Win Text not defined for {\1#Trainer} Battle #{\1#Index}"
+            fail "Win Text not defined for {\1#Trainer} Battle #{d:\1#Index}"
         endc
 
         PrepareBattle {\1#Trainer}, {\1#Index}
