@@ -32,10 +32,9 @@ Scope MapScript, Script
         AddMapScriptPointer name
     endm
 
-    ; todo - have it be a name, and have Scripts be an enum
     method set_script
-      args , index
-        ld a, index
+      args , name
+        ld a, {\1#ID}#Scripts#{name}
         ld [w{\1#ID}CurScript], a
     endm
 end

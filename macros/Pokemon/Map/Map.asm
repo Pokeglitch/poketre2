@@ -1,7 +1,7 @@
 Class2 MapDefinition
     property Number, TextCount
     property Number, BattleCount
-    property List, Scripts ; todo - Enum instead?
+    property Enum, Scripts
 
     method init
       args #Name, #Height, #Width, #Tileset, #Border
@@ -78,12 +78,12 @@ Class2 MapDefinition
                 \1ScriptPointers:
             endc
             
-            dw \1#Scripts#{name}
+            dw \1#Scripts#{name}#Pointer
         pops
 
         \1#Scripts@push {name}
 
-        \1#Scripts#{name}:
+        \1#Scripts#{name}#Pointer:
     endm
     
 /*  \1 - X movement (X-blocks)

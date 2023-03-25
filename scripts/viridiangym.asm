@@ -29,7 +29,7 @@ Gym8LeaderName:
 		call PlaySound
 		
 		IgnoreButtons All
-		set_script 1;ExecuteSpinnerMotion
+		set_script ExecuteSpinnerMotion
 		ret
 
 ; todo - make this a macro & combine the coordinates & motion in single macro
@@ -176,5 +176,5 @@ AfterDefeatGiovanniText:
 
 ResetViridianGymScript:
 	IgnoreButtons None
-	set_script 0;CheckForSpinnerTiles
+	set_script CheckForSpinnerTiles
 	ret
