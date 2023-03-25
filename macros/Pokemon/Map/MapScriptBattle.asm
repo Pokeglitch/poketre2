@@ -15,7 +15,7 @@ Scope MapScriptBattle, TrainerBattle
 
     method ExpectBattleText
       args
-        ExpectText true, true, InitBattleText, prompt, Team
+        ExpectText true, true, prompt, Team
     endm
 
     from Text
@@ -26,16 +26,14 @@ Scope MapScriptBattle, TrainerBattle
         endc
     endm
 
-    method InitBattleText
+    method getTextName
       args
-        pushs
-        MapSec frag, \1#TeamName Texts
-            ; First text is WinText, next is LoseText
-            if not def({\1#TeamName}WinText)
-                {\1#TeamName}WinText:
-            else
-                {\1#TeamName}LoseText:
-            endc
+        ; First text is WinText, next is LoseText
+        if not def({\1#TeamName}WinText)
+            return {\1#TeamName}WinText
+        else
+            return {\1#TeamName}LoseText
+        endc
     endm
 
     method exit

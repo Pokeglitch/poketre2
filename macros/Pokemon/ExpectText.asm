@@ -1,6 +1,6 @@
 Scope ExpectText, AutoExit
     method init
-      args self, includeAutoExit, #PermitTextScripts, #Callback, #TextAutoExit
+      args self, includeAutoExit, #PermitTextScripts, #TextAutoExit
         shift _nname
 
         if includeAutoExit
@@ -14,8 +14,8 @@ Scope ExpectText, AutoExit
     method TextEncountered
       args
         end false
-        Text {\1#TextAutoExit}, {\1#AutoExitTriggers}
-        \1#Callback
+        vars \@#name = getTextName()
+        Text {\@#name}, {\1#TextAutoExit}, {\1#AutoExitTriggers}
     endm
 
     method text, textbox, ramtext, gototext, near, fartext, numtext, bcdtext, cry, sfxtext, delaytext, two_opt

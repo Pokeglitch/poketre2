@@ -1,38 +1,34 @@
 Scope Script
     property Number, TextCount
     property True, PermitTextScripts
+    property List, AutoExitTriggers
 
     method init
       args , #ID
+        \1#AutoExitTriggers@push Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry, set_hl, res_hl
         ExpectScriptText
     endm
 
     method ExpectScriptText
       args
-        ExpectText false, \1#PermitTextScripts, InitText, done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry, set_hl, res_hl
+        ExpectText false, \1#PermitTextScripts, done, {\1#AutoExitTriggers}
     endm
 
-    method InitText
+    method getTextName
       args
-        def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
-        SetID {\@#ID}
-        \1#TextCount@inc
-
-        shift _nname
-        pushs
-        MapSec frag, {\@#ID} Text
-            {\@#ID}:
+        return {\1#ID}#Text#{d:\1#TextCount}
     endm
 
     from Text
       args
         pops
+        \1#TextCount@inc
         ExpectScriptText
     endm
     
     from ExpectText
       args
-        ; if expect was directly exited (instead of resulting from a text opening)
+        ; end if expect was directly exited (instead of resulting from a text opening)
         if \2#DirectExit
             end
         endc

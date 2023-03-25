@@ -34,32 +34,27 @@ Class2 MapObjectsBattle, TrainerBattle
 
     method ExpectBattleText
       args , method
-        ExpectText true, true, InitBattleText, {method}, Team
+        ExpectText true, true, {method}, Team
     endm
 
-    method InitBattleText
+    method getTextName
       args
         if \1#Texts#_size == 0
-            def \@#pointer equs "\1#BeforeBattleText"
+            return \1#BeforeBattleText
         elif \1#Texts#_size == 1
-            def \@#pointer equs "\1#AfterBattleText"
+            return \1#AfterBattleText
         elif \1#Texts#_size == 2
-            def \@#pointer equs "\1#WinBattleText"
+            return \1#WinBattleText
         else
-            def \@#pointer equs "\1#LoseBattleText"
+            return \1#LoseBattleText
         endc
-
-        \1#Texts@push {\@#pointer}
-        AddTrainerHeaderPointer {\@#pointer}
-
-        pushs
-        TextsSec
-            {\@#pointer}:
     endm
 
     from Text
       args
         super
+        \1#Texts@push {\2#ID}
+        AddTrainerHeaderPointer {\2#ID}
         TryExpectBattleText
     endm
 

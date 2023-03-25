@@ -31,11 +31,8 @@ Scope TextOption
 
     method TwoOptAction
       args , side
-        def \1#{side}Action equs "\@#{side}Action"
-        pushs
-        MapSec \@#{side}Action
-            \@#{side}Action:
-            Text
+        def \1#{side}Action equs "\@#{side}Action#Pointer"
+        Text {\1#{side}Action}
     endm
 
     method try_exit

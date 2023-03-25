@@ -142,7 +142,6 @@
 
 		OaksLabYesNoText:
 				two_opt YesText, NoText
-
 					; Yes action
 					asm
 						ld a, [wcf91]

@@ -3,17 +3,11 @@ Scope TextScript, Script
 
     method init
       args
+        \1#AutoExitTriggers@push finish, asmret, asmdone, goto
         \1#PermitTextScripts@negate
         shift
         super \#
         db TEXT_ASM
-    endm
-
-    method InitText
-      args
-        shift
-        super \#
-        AddTriggers finish, asmret, asmdone, goto
     endm
 
     from Text

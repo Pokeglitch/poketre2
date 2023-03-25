@@ -3,10 +3,14 @@ TODO - can prompt/done also extend this text scope?
 - The byte values should come from a Struct (and also used in the Command Processor...)
 */
 Scope Text, AutoExit
-    ; TODO - integrate this with 'init'
-    method SetID
-      args , ID
-        def \1#ID equs "{ID}"
+    method init
+      args self, #ID
+        shift _nname
+        super \#
+
+        pushs
+        MapSec frag, \@
+            {{self}#ID}:
     endm
 
     method text

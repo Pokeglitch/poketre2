@@ -77,15 +77,7 @@ Class2 MapObjects
         if def(text_ptr)
             AddTextPointer text_ptr
         else
-            def \@#name equs "{\1#Map}#{\1#CurrentSectionName}#{d:{\1#Map}#{\1#CurrentSectionName}#Count}#Text"
-
-            pushs
-            TextsSec
-                {\@#name}:
-                
-            ; TODO - will this put a 'done' after textasm??
-            Text done, Sign, NPC, Battle, Pickup, WarpTo
-            SetID {\@#name}
+            Text {\1#Map}#{\1#CurrentSectionName}#{d:{\1#Map}#{\1#CurrentSectionName}#Count}#Text, done, Sign, NPC, Battle, Pickup, WarpTo
         endc
     endm
 
