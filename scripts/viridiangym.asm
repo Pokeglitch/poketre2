@@ -171,6 +171,7 @@ AfterDefeatGiovanniText:
 	set_hl 7, wBeatGymFlags
 
 	; deactivate gym trainers
+	; todo - have be part of the trainer header byte
 	SetEventRange EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0, EVENT_BEAT_VIRIDIAN_GYM_TRAINER_7
 
 	ld a, HS_ROUTE_22_RIVAL_2

@@ -2,23 +2,17 @@
 TODO - can prompt/done also extend this text scope?
 - The byte values should come from a Struct (and also used in the Command Processor...)
 */
-Scope Text
+
+Scope AutoExit
     property List, AutoExitTriggers
-    property False, DoAutoExit
     property False, isAutoExiting
 
     ; \1 - AutoExit method
-    ; \2+? - auto exit triggers
+    ; \2+? - Auto Exit triggers
     method init
       args , #AutoExit
         shift _nname
         AddTriggers \#
-    endm
-
-    ; TODO - integrate this with the initialization
-    method SetID
-      args , ID
-        def \1#ID equs "{ID}"
     endm
 
     method AddTriggers
@@ -27,10 +21,74 @@ Scope Text
         {self}#AutoExitTriggers@push \#
 
         rept _narg
-            backup {self}#AutoExits, Text_\1
-            def Text_\1 equs "DoAutoExit \1,"
+            backup {self}#AutoExits, {{self}#Name}_\1
+            def {{self}#Name}_\1 equs "Trigger \1,"
             shift
         endr
+    endm
+
+    method Trigger
+      args
+        end
+        shift
+        exec \#
+    endm
+    
+    method PurgeTriggers
+      args
+        for i, 2, _narg+1
+          restore \1#AutoExits, {\1#Name}_\<i>
+        endr
+    endm
+    
+    method quit
+      args
+        ; dont end again if this was called through auto-exit
+        if not \1#isAutoExiting
+            ; purge the AutoExit so it will not be called again
+            try_purge \1#AutoExit
+            end
+        endc
+    endm
+
+    method exit
+      args
+        PurgeTriggers {\1#AutoExitTriggers}
+        if def(\1#AutoExit)
+            def \@#macro equs "{\1#AutoExit}"
+            purge \1#AutoExit
+
+            ; set isAutoExiting to true so the 'quit' method won't call 'end' again
+            \1#isAutoExiting@negate
+
+            ; execute the auto exit method
+            \@#macro
+        endc
+    endm
+end
+
+Scope ExpectText, AutoExit
+    method init
+      args , #Callback, #TextAutoExit
+        shift _nname
+        super , \#
+    endm
+
+    method text, textbox, ramtext, gototext, near, fartext, numtext, bcdtext, cry, sfxtext, asm, asmtext, delaytext, two_opt
+      args
+        end
+        Text {\1#TextAutoExit}, {\1#AutoExitTriggers}
+        \1#Callback
+        shift
+        _method \#
+    endm
+end
+
+Scope Text, AutoExit
+    ; TODO - integrate this with 'init'
+    method SetID
+      args , ID
+        def \1#ID equs "{ID}"
     endm
 
     method text
@@ -39,22 +97,7 @@ Scope Text
         foreach db, \#
     endm
 
-    ; Trigger Auto Exit
-    method DoAutoExit
-      args
-        end
-        shift
-        exec \#
-    endm
-
-    method PurgeTriggers
-      args
-        for i, 2, _narg+1
-          restore \1#AutoExits, {\1#Name}_\<i>
-        endr
-    endm
-    
-    ; Define the textbox before writing the text
+    ; Define the textbox style
     method textbox
       args , style
         if style == NO_TEXTBOX
@@ -72,7 +115,7 @@ Scope Text
     method gototext
       args
         dbw GOTO_TEXT, \2
-        CleanExit
+        quit
     endm
 
     method near
@@ -132,7 +175,7 @@ Scope Text
 
     from TextOption, TextScript
       args
-          CleanExit
+          quit
     endm
 
     ; Scroll to the next line.
@@ -187,46 +230,20 @@ Scope Text
     method done
       args
         db TEXT_END
-        CleanExit
+        quit
     endm
 
     ; Prompt the player to end a text box (initiating some other event).
     method prompt
       args
 	    db TEXT_PROMPT
-        CleanExit
+        quit
     endm
  
     ; Exit without waiting for keypress
     method close
       args
 	    db TEXT_EXIT
-        CleanExit
-    endm
-
-    method CleanExit
-      args
-        ; dont end again if this was called through auto-exit
-        if not \1#isAutoExiting
-            ; purge the AutoExit so it will not be called again
-            try_purge \1#AutoExit
-            
-            end
-        endc
-    endm
-
-    method exit
-      args
-        PurgeTriggers {\1#AutoExitTriggers}
-        if def(\1#AutoExit)
-            def \@#macro equs "{\1#AutoExit}"
-            purge \1#AutoExit
-
-            ; set isAutoExiting to true so the 'CleanExit' method won't call 'end' again
-            \1#isAutoExiting@negate
-
-            ; execute the auto exit method
-            \@#macro
-        endc
+        quit
     endm
 end

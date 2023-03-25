@@ -118,6 +118,15 @@ Class2 MapObjects
             dw ptr
     endm
 
+    method getCount
+      args , name
+        if def({\1#Map}#{name}#Count)
+            return {\1#Map}#{name}#Count
+        else
+            return 0
+        endc
+    endm
+
     method UpdateCount
       args
         var \@#index = MapObjects#Order@index(\2)
@@ -219,32 +228,55 @@ Scope MapObjectsBattle, TrainerBattle
         def {\1#Trainer}PartyCount += 1
 
         InitTrainerHeader range, \@#TrainerHeader
-        ; todo - open text context immediately?
+
+        TryExpectBattleText
     endm
 
-    ; todo - clean up and use better pointer names
-    method text
+    method TryExpectBattleText
       args
-        if \1#Texts#_size == 4
-            fail "Already defined 4 Battle Texts"
+        if \1#Texts#_size <= 1
+            ExpectBattleText done
+        elif \1#Texts#_size <= 3
+            ExpectBattleText prompt
         endc
+    endm
 
-        \1#Texts@push \@#Text
-        AddTrainerHeaderPointer \@#Text
+    method ExpectBattleText
+      args , method
+        ExpectText InitBattleText, {method}, Team
+    endm
 
-        ; First two texts finish with done (in overworld)
-        if \1#Texts#_size <= 2
-            Text done, Team
-        ; Last two texts finish with prompt (in battle)
+    method InitBattleText
+      args
+        vars \@#map = getMap()
+        var \@#index = getCount(Sprite)
+
+        def \@#prefix equs "{\@#map}#Sprite#{d:\@#index}#"
+
+        if \1#Texts#_size == 0
+            def \@#suffix equs "BeforeBattleText"
+        elif \1#Texts#_size == 1
+            def \@#suffix equs "AfterBattleText"
+        elif \1#Texts#_size == 2
+            def \@#suffix equs "WinBattleText"
         else
-            Text prompt, Team
+            def \@#suffix equs "LoseBattleText"
         endc
+
+        def \@#pointer equs "{\@#prefix}{\@#suffix}"
+
+        \1#Texts@push {\@#pointer}
+        AddTrainerHeaderPointer {\@#pointer}
 
         pushs
         TextsSec
-            \@#Text:
-                shift
-                text \#
+            {\@#pointer}:
+    endm
+
+    from Text
+      args
+        super
+        TryExpectBattleText
     endm
 
     ; TODO - can use generic Win or Loss texts if not provided

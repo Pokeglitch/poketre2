@@ -57,6 +57,11 @@ Class2 MapDefinition
         \1#BattleCount@inc
     endm
 
+    method getMap
+      args
+        return \1
+    endm
+
     ; Open a section in the same bank as this Map
     method MapSec
       args

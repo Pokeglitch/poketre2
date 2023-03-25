@@ -135,7 +135,8 @@ endm
     \7+? - Arguments to forward to Method
 */
 macro Interface@method#execute
-    backup \@, super, _nname
+    backup \@, super, _nname, _method
+    redef _method equs "\6"
 
     redef \@#super equs "\1#Super"
     redef \@#macro equs "try_exec \2,"
@@ -154,7 +155,7 @@ macro Interface@method#execute
 
     Interface@method#args#restore \@, {\@#Names}
 
-    restore \@, super, _nname
+    restore \@, super, _nname, _method
 endm
 
 macro Interface@method#lambda
