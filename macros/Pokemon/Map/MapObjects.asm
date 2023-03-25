@@ -1,8 +1,3 @@
-/*
-TODO - Give all signs a specific textbox style?
--- option for number of rows
-*/
-
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
 Class2 MapObjects
@@ -118,22 +113,21 @@ Class2 MapObjects
             fail "Must define \2s before {\1#CurrentSectionName}s"
         endc
 
+        InitializeSections \@#index
+        {\1#Map}#\2#Count@inc
+
         def \1#CurrentSectionIndex = \@#index
         redef \1#CurrentSectionName equs "\2"
 
-        InitializeSections \@#index
-        {\1#Map}#\2#Count@inc
     endm
 
     ; initialize any of the sections from \2 earlier if not already
-    ; TODO - can be more efficient up by starting with CurrentSectionIndex ??
     method InitializeSections
       args
-        for i, \2+1
+        for i, \1#CurrentSectionIndex, \2+1
             def \@#name equs "{MapObjects#Order#{d:i}}"
             ; if the section is not defined, initialize
             if not def({\1#Map}#{\@#name}#Count)
-                
                 ; final section (WarpTos) does not begin with a count
                 if i < MapObjects#Order#_size-1
                     db {\1#Map}#{\@#name}#Count ; write before defining to use final value

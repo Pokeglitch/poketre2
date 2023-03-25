@@ -1,7 +1,3 @@
-/*
-TODO - can prompt/done also extend this text scope?
-- The byte values should come from a Struct (and also used in the Command Processor...)
-*/
 Scope Text, AutoExit
     method init
       args self, #ID

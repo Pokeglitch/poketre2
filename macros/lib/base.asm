@@ -11,11 +11,6 @@ def false equs "0"
 def true equs "1"
 def not equs "!"
 
-/*
-TODO - use method/args instead of define/func
-- purge both after last usage...
-*/
-
 /*  To define a macro string (to define another macro) which can only be used one
     After it gets use, it will 'dispose' itself (redefine itself to fail the next it gets used)
     \1 - Symbol to assign macro string to
@@ -34,10 +29,10 @@ macro dispose
     endr
 endm
 
-def define equs "\tdefine#Definition"
-macro define#Definition
+def method equs "\tmethod#Definition"
+macro method#Definition
     def \1 equs "\t\1#Definition"
-    disposable func, \1#Definition
+    disposable args, \1#Definition
 endm
 
 /*  To send each argument to the given macro individually
@@ -137,8 +132,8 @@ macro restore
     endr
 endm
 
-define incdir
-func
+method incdir
+  args
     def \@#prev_base_dir equs "{base_dir}"
 
     redef base_dir equs "{base_dir}/\1"
@@ -148,22 +143,29 @@ func
     redef base_dir equs "{\@#prev_base_dir}"
 endm
 
-define incdirs
-func
+method incdirs
+  args
     foreach incdir, \#
 endm
 
-define incasm
-func
+method incasm
+  args
     rept _narg
         include "{base_dir}/\1.asm"
         shift
     endr
 endm
 
+; to use if/so with macros that utilize 'return'
+method does
+args
+    var_common false, "does \#", \@=\#
+    result {\@}
+endm
+
 ; \1 - Directory that this library resides in
-define init_lib
-func
+method init_lib
+  args
     def base_dir equs "\1"
     incdir Context, Trace
     incdir Interface, Forward, From, Method, Property

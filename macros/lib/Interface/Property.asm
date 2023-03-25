@@ -1,6 +1,3 @@
-; TODO - add way to traverse up the Contexts to find a property
-; _#<PropName> ?
-
 /*
     Define a property for this Interface
     \1 - Interface Name

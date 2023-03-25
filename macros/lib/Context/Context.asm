@@ -50,8 +50,8 @@
 /*
     \1 - Context Name
 */
-define Context
-func
+method Context
+  args
     ; Push context so cant write to ROM
     pushs
     Trace@Open Context

@@ -64,13 +64,6 @@ Scope Return
     endm
 end
 
-; to use if/so with macros that utilize 'return'
-define does
-func
-    var_common false, "does \#", \@=\#
-    result {\@}
-endm
-
 /*
     \1  - if output is string or not
     \2  - fail message

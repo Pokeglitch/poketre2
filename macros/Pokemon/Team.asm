@@ -1,5 +1,3 @@
-
-; TODO - make 'static'?
 def TeamDataTerminator = -1
 Scope TrainerTeam
     method init

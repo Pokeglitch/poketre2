@@ -1,3 +1,5 @@
+List BattleTexts, Before, After, Win, Lose
+
 ; TODO - distinguish between a pokemon and a trainer  
 Class2 MapObjectsBattle, TrainerBattle
     property List, Texts
@@ -37,17 +39,14 @@ Class2 MapObjectsBattle, TrainerBattle
         ExpectText true, true, {method}, Team
     endm
 
+    method getTextNameByIndex
+      args
+        return \1#{BattleTexts#\2}BattleText
+    endm
+
     method getTextName
       args
-        if \1#Texts#_size == 0
-            return \1#BeforeBattleText
-        elif \1#Texts#_size == 1
-            return \1#AfterBattleText
-        elif \1#Texts#_size == 2
-            return \1#WinBattleText
-        else
-            return \1#LoseBattleText
-        endc
+        return getTextNameByIndex({d:\1#Texts#_size})
     endm
 
     from Text
@@ -61,11 +60,21 @@ Class2 MapObjectsBattle, TrainerBattle
     ; TODO - can use generic Win or Loss texts if not provided
     method exit
       args
-        ; todo - also if missing before or after
-        if \1#Texts#_size < 3
-            fail "Battle Win/Lose Texts are missing"
+        def \1#missing equs ""
+
+        for battle_text_i, 3
+            vars \@#name = getTextNameByIndex({d:battle_text_i})
+            if not def({\@#name})
+                append \1#missing, {BattleTexts#{d:battle_text_i}}
+            endc
+        endr
+
+        if strlen("{\1#missing}")
+            fail "\1 is missing Text(s): {\1#missing}"
+        endc
+
         ; If Lose Text is missing, then duplicate the last text (the win text)
-        elif \1#Texts#_size == 3
+        if not def(\1#LoseBattleText)
             AddTrainerHeaderPointer {\1#Texts#2}
         endc
 
