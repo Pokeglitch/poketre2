@@ -3,6 +3,7 @@ Scope TextScript, Script
 
     method init
       args
+        \1#PermitTextScripts@negate
         shift
         super \#
         db TEXT_ASM

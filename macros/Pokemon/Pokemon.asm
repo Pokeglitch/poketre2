@@ -1,3 +1,3 @@
-incasm AutoExit, Script, Team, Trainer
-incdir Text, TextScript, TextOption, ExpectText
+incasm AutoExit, Script, Team, Trainer, ExpectText
+incdir Text, TextScript, TextOption
 incdir Map, MapScript, MapScriptBattle, MapObjects, MapObjectsBattle

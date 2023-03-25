@@ -1,13 +1,19 @@
 Scope Script
     property Number, TextCount
+    property True, PermitTextScripts
 
     method init
       args , #ID
+        ExpectScriptText
+    endm
+
+    method ExpectScriptText
+      args
+        ExpectText false, \1#PermitTextScripts, InitText, done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry, set_hl, res_hl
     endm
 
     method InitText
-      args , method
-        Text done, Delay, CheckEvent, printtext, has_item, give_item, play_sound, play_cry, set_hl, res_hl
+      args
         def \@#ID equs "{\1#ID}#Text#{d:\1#TextCount}"
         SetID {\@#ID}
         \1#TextCount@inc
@@ -16,24 +22,20 @@ Scope Script
         pushs
         MapSec frag, {\@#ID} Text
             {\@#ID}:
-                method \#
     endm
 
     from Text
       args
         pops
+        ExpectScriptText
     endm
-
-    method text
+    
+    from ExpectText
       args
-        shift
-        InitText text, \#
-    endm
-
-    method textbox
-      args
-        shift
-        InitText textbox, \#
+        ; if expect was directly exited (instead of resulting from a text opening)
+        if \2#DirectExit
+            end
+        endc
     endm
 
     method Delay
@@ -112,3 +114,4 @@ Scope Script
         res index, [hl]
     endm
 end
+

@@ -6,7 +6,7 @@ Scope MapScript, Script
         MapSec frag, {map} Script
             include "scripts/\2.asm"
 
-        end
+        end ; this will end ExpectText, which will cascade into ending this Script
     endm
 
     from Text
@@ -14,7 +14,7 @@ Scope MapScript, Script
         super
         DisplayText \2#ID
     endm
-
+    
     method Battle, "MapScriptBattle"
 
     method pre

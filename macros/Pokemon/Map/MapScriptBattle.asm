@@ -15,7 +15,7 @@ Scope MapScriptBattle, TrainerBattle
 
     method ExpectBattleText
       args
-        ExpectText InitBattleText, prompt, Team
+        ExpectText true, true, InitBattleText, prompt, Team
     endm
 
     from Text

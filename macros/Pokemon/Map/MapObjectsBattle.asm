@@ -34,7 +34,7 @@ Class2 MapObjectsBattle, TrainerBattle
 
     method ExpectBattleText
       args , method
-        ExpectText InitBattleText, {method}, Team
+        ExpectText true, true, InitBattleText, {method}, Team
     endm
 
     method InitBattleText
