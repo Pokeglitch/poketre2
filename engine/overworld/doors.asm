@@ -28,10 +28,8 @@ IsPlayerStandingOnDoorTile:
 DoorTileIDPointers:
 	dbw OVERWORLD,   OverworldDoorTileIDs
 	dbw FOREST,      ForestDoorTileIDs
-	dbw MART,        MartDoorTileIDs
+	dbw POKECENTER,  PokecenterDoorTileIDs
 	dbw HOUSE,       HouseDoorTileIDs
-	dbw FOREST_GATE, TilesetMuseumDoorTileIDs
-	dbw MUSEUM,      TilesetMuseumDoorTileIDs
 	dbw GATE,        TilesetMuseumDoorTileIDs
 	dbw SHIP,        ShipDoorTileIDs
 	dbw LOBBY,       LobbyDoorTileIDs
@@ -39,7 +37,7 @@ DoorTileIDPointers:
 	dbw LAB,         LabDoorTileIDs
 	dbw FACILITY,    FacilityDoorTileIDs
 	dbw PLATEAU,     PlateauDoorTileIDs
-	db $ff
+	db -1
 
 OverworldDoorTileIDs:
 	db $1B,$58,$00
@@ -47,7 +45,7 @@ OverworldDoorTileIDs:
 ForestDoorTileIDs:
 	db $3a,$00
 
-MartDoorTileIDs:
+PokecenterDoorTileIDs:
 	db $5e,$00
 
 HouseDoorTileIDs:

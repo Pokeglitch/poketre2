@@ -21,7 +21,7 @@ Class2 MapDefinition
         ; todo - isntead, place in generic map table, along with Bank
         MapSec frag, \1 Header
             \1Header:
-                db \1#Tileset, \1#Height, \1#Width
+                db {\1#Tileset}#ID, \1#Height, \1#Width
                 dw \1Blocks, \1TextPointers, \1Script, \1TrainerHeaders
                 db \1#ConnectionFlags
 

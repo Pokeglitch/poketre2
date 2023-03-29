@@ -82,9 +82,14 @@ macro Interface@method#args
                 ; if a corresponding input was provided, then define
                 if args#i < \1#num_inputs
                     def \@#input_index = args#i + 2
-                    def \@#value equs "\<\@#input_index>"
-                ; otherwise, if a default was provided, use that
-                elif def(\@#default)
+                    ; if the input is not empty, then assign
+                    if strcmp("\<\@#input_index>","")
+                        def \@#value equs "\<\@#input_index>"
+                    endc
+                endc
+
+                ; if a default was provided, use that
+                if not def(\@#value) && def(\@#default)
                     def \@#value equs "{\@#default}"
                 endc
 

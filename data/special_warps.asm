@@ -37,7 +37,7 @@ DungeonWarpData:
 FirstMapSpec:
 	db REDS_HOUSE_2F
 	FLYWARP_DATA REDS_HOUSE_2F_WIDTH,6,3
-	db REDS_HOUSE_2
+	db REDS_HOUSE
 
 TradeCenterSpec1:
 	db TRADE_CENTER

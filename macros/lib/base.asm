@@ -54,9 +54,17 @@ endm
 
 macro sec
     if strcmp("\1","frag") == 0
-        section fragment "\2", romx, bank[\3]
+        if \3
+            section fragment "\2", romx, bank[\3]
+        else
+            section fragment "\2", rom0
+        endc
     else
-        section "\1", romx, bank[\2]
+        if \2
+            section "\1", romx, bank[\2]
+        else
+            section "\1", rom0
+        endc
     endc
 endm
 

@@ -1,26 +1,21 @@
 const_value = 0
 
 	const OVERWORLD    ; 0
-	const REDS_HOUSE_1 ; 1
-	const MART         ; 2
+	const REDS_HOUSE   ; 2
 	const FOREST       ; 3
-	const REDS_HOUSE_2 ; 4
-	const DOJO         ; 5
-	const POKECENTER   ; 6
-	const GYM          ; 7
-	const HOUSE        ; 8
-	const FOREST_GATE  ; 9
-	const MUSEUM       ; 10
-	const UNDERGROUND  ; 11
-	const GATE         ; 12
-	const SHIP         ; 13
-	const SHIP_PORT    ; 14
-	const CEMETERY     ; 15
-	const INTERIOR     ; 16
-	const CAVERN       ; 17
-	const LOBBY        ; 18
-	const MANSION      ; 19
-	const LAB          ; 20
-	const CLUB         ; 21
-	const FACILITY     ; 22
-	const PLATEAU      ; 23
+	const POKECENTER   ; 4
+	const GYM          ; 5
+	const HOUSE        ; 6
+	const UNDERGROUND  ; 7
+	const GATE         ; 8
+	const SHIP         ; 9
+	const SHIP_PORT    ; 10
+	const CEMETERY     ; 11
+	const INTERIOR     ; 12
+	const CAVERN       ; 13
+	const LOBBY        ; 14
+	const MANSION      ; 15
+	const LAB          ; 16
+	const CLUB         ; 17
+	const FACILITY     ; 18
+	const PLATEAU      ; 19

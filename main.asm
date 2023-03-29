@@ -337,7 +337,7 @@ INCLUDE "scripts/vermilioncity.asm"
 INCLUDE "scripts/celadoncity.asm"
 INCLUDE "scripts/fuchsiacity.asm"
 
-MapDefinition BluesHouse, BLUES_HOUSE_HEIGHT, BLUES_HOUSE_WIDTH, HOUSE, 10
+MapDefinition BluesHouse, BLUES_HOUSE_HEIGHT, BLUES_HOUSE_WIDTH, House, 10
 
 INCLUDE "data/mapHeaders/vermilionhouse3.asm"
 INCLUDE "scripts/vermilionhouse3.asm"
@@ -392,10 +392,10 @@ INCLUDE "scripts/cinnabarisland.asm"
 
 INCLUDE "scripts/route1.asm"
 
-MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, DOJO, 3
-MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, MART, 0
-MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, HOUSE, 10
-MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, HOUSE, 10
+MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, Gym, 3
+MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, Pokecenter, 0
+MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, House, 10
+MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, House, 10
 
 INCLUDE "data/mapHeaders/pewterhouse1.asm"
 INCLUDE "scripts/pewterhouse1.asm"
@@ -603,7 +603,7 @@ INCLUDE "scripts/lavendertown.asm"
 
 INCLUDE "engine/pokedex_rating.asm"
 
-MapDefinition ViridianPokecenter, VIRIDIAN_POKECENTER_HEIGHT, VIRIDIAN_POKECENTER_WIDTH, POKECENTER, 0
+MapDefinition ViridianPokecenter, VIRIDIAN_POKECENTER_HEIGHT, VIRIDIAN_POKECENTER_WIDTH, Pokecenter, 0
 
 INCLUDE "data/mapHeaders/mansion1.asm"
 INCLUDE "scripts/mansion1.asm"
@@ -753,7 +753,7 @@ INCLUDE "engine/predefs12.asm"
 
 INCLUDE "scripts/route7.asm"
 
-MapDefinition RedsHouse1F, REDS_HOUSE_1F_HEIGHT, REDS_HOUSE_1F_WIDTH, REDS_HOUSE_1, 10
+MapDefinition RedsHouse1F, REDS_HOUSE_1F_HEIGHT, REDS_HOUSE_1F_WIDTH, RedsHouse, 10
 
 INCLUDE "data/mapHeaders/celadonmart3.asm"
 INCLUDE "scripts/celadonmart3.asm"
@@ -1200,7 +1200,7 @@ Route2GateBlocks:
 ViridianForestEntranceBlocks:
 ViridianForestExitBlocks: INCBIN "maps/viridianforestexit.blk"
 
-MapDefinition RedsHouse2F, REDS_HOUSE_2F_HEIGHT, REDS_HOUSE_2F_WIDTH, REDS_HOUSE_2, 10
+MapDefinition RedsHouse2F, REDS_HOUSE_2F_HEIGHT, REDS_HOUSE_2F_WIDTH, RedsHouse, 10
 
 INCLUDE "engine/predefs17.asm"
 
@@ -1380,7 +1380,7 @@ CeladonMart1Blocks: INCBIN "maps/celadonmart1.blk"
 
 INCLUDE "engine/overworld/cinnabar_lab.asm"
 
-MapDefinition ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, FOREST, 3
+MapDefinition ViridianForest, VIRIDIAN_FOREST_HEIGHT, VIRIDIAN_FOREST_WIDTH, Forest, 3
 
 INCLUDE "data/mapHeaders/ssanne1.asm"
 INCLUDE "scripts/ssanne1.asm"
@@ -1447,7 +1447,7 @@ INCLUDE "engine/hidden_object_functions18.asm"
 
 
 SECTION "bank19",ROMX,BANK[$19]
-
+/*
 Overworld_GFX:     INCBIN "gfx/tilesets/overworld.2bpp"
 Overworld_Block:   INCBIN "gfx/blocksets/overworld.bst"
 
@@ -1467,12 +1467,12 @@ Interior_GFX:      INCBIN "gfx/tilesets/interior.2bpp"
 Interior_Block:    INCBIN "gfx/blocksets/interior.bst"
 Plateau_GFX:       INCBIN "gfx/tilesets/plateau.2bpp"
 Plateau_Block:     INCBIN "gfx/blocksets/plateau.bst"
-
+*/
 
 SECTION "bank1A",ROMX,BANK[$1A]
 
 INCLUDE "engine/battle/decrement_pp.asm"
-
+/*
 Dojo_GFX:
 Gym_GFX:           INCBIN "gfx/tilesets/gym.2bpp"
 Dojo_Block:
@@ -1494,10 +1494,10 @@ Forest_GFX:        INCBIN "gfx/tilesets/forest.2bpp"
 Forest_Block:      INCBIN "gfx/blocksets/forest.bst"
 Facility_GFX:      INCBIN "gfx/tilesets/facility.2bpp"
 Facility_Block:    INCBIN "gfx/blocksets/facility.bst"
-
+*/
 
 SECTION "bank1B",ROMX,BANK[$1B]
-
+/*
 Cemetery_GFX:      INCBIN "gfx/tilesets/cemetery.2bpp"
 Cemetery_Block:    INCBIN "gfx/blocksets/cemetery.bst"
 Cavern_GFX:        INCBIN "gfx/tilesets/cavern.2bpp"
@@ -1512,7 +1512,7 @@ Club_GFX:          INCBIN "gfx/tilesets/club.2bpp"
 Club_Block:        INCBIN "gfx/blocksets/club.bst"
 Underground_GFX:   INCBIN "gfx/tilesets/underground.2bpp"
 Underground_Block: INCBIN "gfx/blocksets/underground.bst"
-
+*/
 
 SECTION "bank1C",ROMX,BANK[$1C]
 
@@ -1551,7 +1551,7 @@ INCLUDE "engine/items/itemfinder.asm"
 
 INCLUDE "scripts/ceruleancity2.asm"
 
-MapDefinition ViridianGym, VIRIDIAN_GYM_HEIGHT, VIRIDIAN_GYM_WIDTH, GYM, 3
+MapDefinition ViridianGym, VIRIDIAN_GYM_HEIGHT, VIRIDIAN_GYM_WIDTH, Gym, 3
 
 INCLUDE "data/mapHeaders/pewtermart.asm"
 INCLUDE "scripts/pewtermart.asm"

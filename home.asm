@@ -642,7 +642,6 @@ PrintBCDDigit::
 	inc hl ; if right-aligned, "print" a space by advancing the pointer
 	ret
 
-INCLUDE "data/collision.asm"
 INCLUDE "home/copy2.asm"
 INCLUDE "home/text.asm"
 INCLUDE "home/vcopy.asm"
