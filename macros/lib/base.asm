@@ -118,6 +118,16 @@ macro msg
     endc
 endm
 
+macro detuple
+    if def(\1)
+        if strin("{\1}","(") == 1 && strin("{\1}",")") == strlen("{\1}")
+            redef \1 equs strsub("{\1}",2,strlen("{\1}")-2)
+        endc
+    else
+        def \1 equs ""
+    endc
+endm
+
 macro is#String
     def \@#char equs strsub("\1",1, 1)
     result strcmp("{\@#char}","\"") == 0

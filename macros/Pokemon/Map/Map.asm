@@ -20,8 +20,8 @@ Class2 MapDefinition
         MapObjects \1#Objects, \1
             
         MapSec \1 Blocks
-          \1Blocks:
-              incbin "maps/\1.blk"
+            \1Blocks:
+                incbin "maps/\1.blk"
 
         ; todo - isntead, place in generic map table, along with Bank
         MapSec frag, \1 Header
