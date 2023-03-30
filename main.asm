@@ -337,7 +337,7 @@ INCLUDE "scripts/vermilioncity.asm"
 INCLUDE "scripts/celadoncity.asm"
 INCLUDE "scripts/fuchsiacity.asm"
 
-MapDefinition BluesHouse, BLUES_HOUSE_HEIGHT, BLUES_HOUSE_WIDTH, House, 10
+MapDefinition BluesHouse, BLUES_HOUSE_HEIGHT, BLUES_HOUSE_WIDTH, House
 
 INCLUDE "data/mapHeaders/vermilionhouse3.asm"
 INCLUDE "scripts/vermilionhouse3.asm"
@@ -392,7 +392,7 @@ INCLUDE "scripts/cinnabarisland.asm"
 
 INCLUDE "scripts/route1.asm"
 
-MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, Gym, 3
+MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, Gym
 MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, Pokecenter
 MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, House
 MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, House
