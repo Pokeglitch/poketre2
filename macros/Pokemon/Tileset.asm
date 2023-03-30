@@ -1,10 +1,14 @@
 Number Tileset#Count
+Enum Tileset#Animations, None, Water, Flower
 
 Class2 Tileset
     property List, Counters
 
     method init
-      args , #Bank, #Border, Permission=INDOOR, GrassTile=-1, Counters
+      args , #Bank, #Border, #Animations=None, #Grass=-1, Counters
+        def \1#ID = Tileset#Count
+        Tileset#Count@inc
+        
         pushs
         sec frag, Tileset Collisions, 0
             \1_Coll::  INCBIN  "gfx/tilesets/\1.tilecoll"
@@ -14,14 +18,12 @@ Class2 Tileset
             \1_Block:   INCBIN "gfx/blocksets/\1.bst"
         pops
 
-        def \1#ID = Tileset#Count
-        Tileset#Count@inc
-
 
         db \1#Bank
         dw \1_Block, \1_GFX, \1_Coll ; Block, GFX, Coll
         assign Counters
-        db GrassTile, Permission
+        db \1#Grass
+        db Tileset#Animations#{\1#Animations}
     endm
 
     method assign
