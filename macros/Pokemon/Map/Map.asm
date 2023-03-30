@@ -8,6 +8,11 @@ Class2 MapDefinition
         def \1#Bank = BANK(@)
         def \1#ConnectionFlags = 0
 
+        ; Use the tileset's default border if not provided
+        if not def(\1#Border)
+            def \1#Border = {\1#Tileset}#Border
+        endc
+
         pushs
 
         MapScript \1

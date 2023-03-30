@@ -1,8 +1,8 @@
 Number Tileset#Count
-; TODO - Add default border tile
+
 Class2 Tileset
     method init
-      args , #Bank, Permission, GrassTile=-1, CounterTile1=-1, CounterTile2=-1, CounterTile3=-1
+      args , #Bank, #Border, Permission=INDOOR, GrassTile=-1, CounterTile1=-1, CounterTile2=-1, CounterTile3=-1
         pushs
         sec frag, Tileset Collisions, 0
             \1_Coll::  INCBIN  "gfx/tilesets/\1.tilecoll"

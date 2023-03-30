@@ -393,9 +393,9 @@ INCLUDE "scripts/cinnabarisland.asm"
 INCLUDE "scripts/route1.asm"
 
 MapDefinition OaksLab, OAKS_LAB_HEIGHT, OAKS_LAB_WIDTH, Gym, 3
-MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, Pokecenter, 0
-MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, House, 10
-MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, House, 10
+MapDefinition ViridianMart, VIRIDIAN_MART_HEIGHT, VIRIDIAN_MART_WIDTH, Pokecenter
+MapDefinition ViridianSchool, VIRIDIAN_SCHOOL_HEIGHT, VIRIDIAN_SCHOOL_WIDTH, House
+MapDefinition ViridianHouse, VIRIDIAN_HOUSE_HEIGHT, VIRIDIAN_HOUSE_WIDTH, House
 
 INCLUDE "data/mapHeaders/pewterhouse1.asm"
 INCLUDE "scripts/pewterhouse1.asm"
@@ -603,7 +603,7 @@ INCLUDE "scripts/lavendertown.asm"
 
 INCLUDE "engine/pokedex_rating.asm"
 
-MapDefinition ViridianPokecenter, VIRIDIAN_POKECENTER_HEIGHT, VIRIDIAN_POKECENTER_WIDTH, Pokecenter, 0
+MapDefinition ViridianPokecenter, VIRIDIAN_POKECENTER_HEIGHT, VIRIDIAN_POKECENTER_WIDTH, Pokecenter
 
 INCLUDE "data/mapHeaders/mansion1.asm"
 INCLUDE "scripts/mansion1.asm"
@@ -753,7 +753,7 @@ INCLUDE "engine/predefs12.asm"
 
 INCLUDE "scripts/route7.asm"
 
-MapDefinition RedsHouse1F, REDS_HOUSE_1F_HEIGHT, REDS_HOUSE_1F_WIDTH, RedsHouse, 10
+MapDefinition RedsHouse1F, REDS_HOUSE_1F_HEIGHT, REDS_HOUSE_1F_WIDTH, RedsHouse
 
 INCLUDE "data/mapHeaders/celadonmart3.asm"
 INCLUDE "scripts/celadonmart3.asm"
@@ -1200,7 +1200,7 @@ Route2GateBlocks:
 ViridianForestEntranceBlocks:
 ViridianForestExitBlocks: INCBIN "maps/viridianforestexit.blk"
 
-MapDefinition RedsHouse2F, REDS_HOUSE_2F_HEIGHT, REDS_HOUSE_2F_WIDTH, RedsHouse, 10
+MapDefinition RedsHouse2F, REDS_HOUSE_2F_HEIGHT, REDS_HOUSE_2F_WIDTH, RedsHouse
 
 INCLUDE "engine/predefs17.asm"
 
@@ -1551,7 +1551,7 @@ INCLUDE "engine/items/itemfinder.asm"
 
 INCLUDE "scripts/ceruleancity2.asm"
 
-MapDefinition ViridianGym, VIRIDIAN_GYM_HEIGHT, VIRIDIAN_GYM_WIDTH, Gym, 3
+MapDefinition ViridianGym, VIRIDIAN_GYM_HEIGHT, VIRIDIAN_GYM_WIDTH, Gym
 
 INCLUDE "data/mapHeaders/pewtermart.asm"
 INCLUDE "scripts/pewtermart.asm"
