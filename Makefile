@@ -32,7 +32,7 @@ endif
 %.asm: ;
 
 # Note, this will rebuild all objects when a .asm, .pce or .2bpp is required to be built, not simply main.o
-%.o: dep = $(shell find . -name "*.asm") $(shell ls pce/*/*.png | sed "s|.png|.pce|g") $(shell ls tiles/*/*.png | sed "s|.png|.2bpp|g")
+%.o: dep = $(shell find . -name "*.asm") $(shell ls pce/*/*.png | sed "s|.png|.pce|g") $(shell ls tiles/*/*.png | sed "s|.png|.2bpp|g") $(shell ls gfx/*/*.png | sed "s|.png|.2bpp|g") $(shell ls 1bpp/*.png | sed "s|.png|.1bpp|g")
 $(objs): %.o: %.asm $$(dep)
 	$(RGBASM) -l -h -r 256 -Wlong-string -o $@ $*.asm
 
@@ -43,12 +43,12 @@ opts  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON TRE2"
 	$(RGBFIX) $(opts) $@
 	sort $*.sym -o $*.sym
 
-gfx/intro_meowth_1.2bpp: rgbgfx += -h
-gfx/intro_meowth_2.2bpp: rgbgfx += -h
-gfx/intro_meowth_3.2bpp: rgbgfx += -h
+gfx/2bpp/intro_meowth_1.2bpp: rgbgfx += -h
+gfx/2bpp/intro_meowth_2.2bpp: rgbgfx += -h
+gfx/2bpp/intro_meowth_3.2bpp: rgbgfx += -h
 
-gfx/game_boy.2bpp: tools/gfx += --remove-duplicates
-gfx/theend.2bpp: tools/gfx += --interleave --png=$<
+gfx/2bpp/game_boy.2bpp: tools/gfx += --remove-duplicates
+gfx/2bpp/theend.2bpp: tools/gfx += --interleave --png=$<
 gfx/tilesets/%.2bpp: tools/gfx += --trim-whitespace
 gfx/titlescreen/team_rocket_edition_bg.2bpp: tools/gfx += --trim-whitespace
 gfx/titlescreen/team_rocket_edition_text.2bpp: tools/gfx += --trim-whitespace

@@ -89,5 +89,5 @@ LoadSmokeTile:
 	jp CopyVideoData
 
 SSAnneSmokePuffTile:
-	INCBIN "gfx/ss_anne_smoke_puff.2bpp"
+	INCBIN "gfx/2bpp/ss_anne_smoke_puff.2bpp"
 SSAnneSmokePuffTileEnd:

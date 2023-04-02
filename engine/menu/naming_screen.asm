@@ -329,7 +329,7 @@ LoadEDTile:
 	jp CopyVideoDataDouble
 
 ED_Tile:
-	INCBIN "gfx/ED_tile.1bpp"
+	INCBIN "1bpp/ED_tile.1bpp"
 ED_TileEnd:
 
 PrintAlphabet:

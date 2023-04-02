@@ -107,7 +107,7 @@ DisplayTownMap:
 INCLUDE "data/town_map_order.asm"
 
 TownMapCursor:
-	INCBIN "gfx/town_map_cursor.1bpp"
+	INCBIN "1bpp/town_map_cursor.1bpp"
 TownMapCursorEnd:
 
 LoadTownMap_Nest:
@@ -272,7 +272,7 @@ BuildFlyLocationsList:
 	ret
 
 TownMapUpArrow:
-	INCBIN "gfx/up_arrow.1bpp"
+	INCBIN "1bpp/up_arrow.1bpp"
 TownMapUpArrowEnd:
 
 LoadTownMap:
@@ -582,7 +582,7 @@ INCLUDE "data/town_map_entries.asm"
 INCLUDE "text/map_names.asm"
 
 MonNestIcon:
-	INCBIN "gfx/mon_nest_icon.1bpp"
+	INCBIN "1bpp/mon_nest_icon.1bpp"
 MonNestIconEnd:
 
 TownMapSpriteBlinkingAnimation:

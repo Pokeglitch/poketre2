@@ -25,4 +25,4 @@ BorderPalettes:
 	ds $18
 
 SGBBorderGraphics:
-	INCBIN "gfx/sgbborder.2bpp"
+	INCBIN "gfx/2bpp/sgbborder.2bpp"

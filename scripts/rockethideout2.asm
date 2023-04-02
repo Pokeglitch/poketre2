@@ -410,7 +410,7 @@ SpinnerPlayerFacingDirections:
 
 ; these tiles are the animation for the tiles that push the player in dungeons like Rocket HQ
 SpinnerArrowAnimTiles:
-	INCBIN "gfx/spinner_arrow.2bpp"
+	INCBIN "gfx/2bpp/spinner_arrow.2bpp"
 
 RocketHideout2TextPointers:
 	dw RocketHideout2Text1

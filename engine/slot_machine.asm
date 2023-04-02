@@ -884,4 +884,4 @@ SlotMachineMapEnd:
 INCLUDE "data/slot_machine_wheels.asm"
 
 SlotMachineTiles1:
-	INCBIN "gfx/slotmachine1.2bpp"
+	INCBIN "gfx/2bpp/slotmachine1.2bpp"

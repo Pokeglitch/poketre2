@@ -179,18 +179,18 @@ LyingOldManSprite:     INCBIN "gfx/sprites/lying_old_man.2bpp"
 
 
 SECTION "Graphics", ROMX, BANK[$4]
-ABTiles:                        INCBIN "gfx/AB.2bpp"
-HpBarAndStatusGraphics:         INCBIN "gfx/hp_bar_and_status.2bpp"
+ABTiles:                        INCBIN "gfx/2bpp/AB.2bpp"
+HpBarAndStatusGraphics:         INCBIN "gfx/2bpp/hp_bar_and_status.2bpp"
 HpBarAndStatusGraphicsEnd:
-BattleHudTiles1:                INCBIN "gfx/battle_hud1.1bpp"
+BattleHudTiles1:                INCBIN "1bpp/battle_hud1.1bpp"
 BattleHudTiles1End:
-BattleHudTiles2:                INCBIN "gfx/battle_hud2.1bpp"
-BattleHudTiles3:                INCBIN "gfx/battle_hud3.1bpp"
+BattleHudTiles2:                INCBIN "1bpp/battle_hud2.1bpp"
+BattleHudTiles3:                INCBIN "1bpp/battle_hud3.1bpp"
 BattleHudTiles3End:
-NintendoCopyrightLogoGraphics:  INCBIN "gfx/copyright.2bpp"
-GamefreakLogoGraphics:          INCBIN "gfx/gamefreak.2bpp"
+NintendoCopyrightLogoGraphics:  INCBIN "gfx/2bpp/copyright.2bpp"
+GamefreakLogoGraphics:          INCBIN "gfx/2bpp/gamefreak.2bpp"
 GamefreakLogoGraphicsEnd:
-TextBoxGraphics:                INCBIN "gfx/text_box.2bpp"
+TextBoxGraphics:                INCBIN "gfx/2bpp/text_box.2bpp"
 TextBoxGraphicsEnd:
 
 PokedexTileGFX:
@@ -212,9 +212,9 @@ PokedexQuestionMarkGFX:
 	INCBIN "gfx/pokedex/question_mark.2bpp"
 PokedexQuestionMarkGFXEnd:
 
-WorldMapTileGraphics:           INCBIN "gfx/town_map.2bpp"
+WorldMapTileGraphics:           INCBIN "gfx/2bpp/town_map.2bpp"
 WorldMapTileGraphicsEnd:
-PlayerCharacterTitleGraphics:   INCBIN "gfx/player_title.2bpp"
+PlayerCharacterTitleGraphics:   INCBIN "gfx/2bpp/player_title.2bpp"
 PlayerCharacterTitleGraphicsEnd:
 
 
@@ -526,11 +526,11 @@ SECTION "Battle (bank B)", ROMX, BANK[$B]
 
 INCLUDE "engine/battle/display_effectiveness.asm"
 
-TrainerInfoTextBoxTileGraphics:  INCBIN "gfx/trainer_info.2bpp"
+TrainerInfoTextBoxTileGraphics:  INCBIN "gfx/2bpp/trainer_info.2bpp"
 TrainerInfoTextBoxTileGraphicsEnd:
-BlankLeaderNames:                INCBIN "gfx/blank_leader_names.2bpp"
-CircleTile:                      INCBIN "gfx/circle_tile.2bpp"
-BadgeNumbersTileGraphics:        INCBIN "gfx/badge_numbers.2bpp"
+BlankLeaderNames:                INCBIN "gfx/2bpp/blank_leader_names.2bpp"
+CircleTile:                      INCBIN "gfx/2bpp/circle_tile.2bpp"
+BadgeNumbersTileGraphics:        INCBIN "gfx/2bpp/badge_numbers.2bpp"
 
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/battle/moveEffects/pay_day_effect.asm"
@@ -560,12 +560,12 @@ INCLUDE "engine/battle/bank_e_misc.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 
 TradingAnimationGraphics:
-INCBIN "gfx/game_boy.2bpp"
-INCBIN "gfx/link_cable.2bpp"
+INCBIN "gfx/2bpp/game_boy.2bpp"
+INCBIN "gfx/2bpp/link_cable.2bpp"
 TradingAnimationGraphicsEnd:
 
 ; Pokeball traveling through the link cable.
-TradingAnimationGraphics2: INCBIN "gfx/trade2.2bpp"
+TradingAnimationGraphics2: INCBIN "gfx/2bpp/trade2.2bpp"
 TradingAnimationGraphics2End:
 
 INCLUDE "engine/evos_moves.asm"
@@ -1666,10 +1666,10 @@ INCLUDE "engine/overworld/cut2.asm"
 
 INCLUDE "engine/overworld/ssanne.asm"
 
-RedFishingTilesFront: INCBIN "gfx/red_fishing_tile_front.2bpp"
-RedFishingTilesBack:  INCBIN "gfx/red_fishing_tile_back.2bpp"
-RedFishingTilesSide:  INCBIN "gfx/red_fishing_tile_side.2bpp"
-RedFishingRodTiles:   INCBIN "gfx/red_fishingrod_tiles.2bpp"
+RedFishingTilesFront: INCBIN "gfx/2bpp/red_fishing_tile_front.2bpp"
+RedFishingTilesBack:  INCBIN "gfx/2bpp/red_fishing_tile_back.2bpp"
+RedFishingTilesSide:  INCBIN "gfx/2bpp/red_fishing_tile_side.2bpp"
+RedFishingRodTiles:   INCBIN "gfx/2bpp/red_fishingrod_tiles.2bpp"
 
 INCLUDE "data/animations.asm"
 

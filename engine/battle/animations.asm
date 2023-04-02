@@ -361,13 +361,13 @@ AnimationTilesetPointers:
 	db $FF
 
 AnimationTileset1:
-	INCBIN "gfx/attack_anim_1.2bpp"
+	INCBIN "gfx/2bpp/attack_anim_1.2bpp"
 
 AnimationTileset2:
-	INCBIN "gfx/attack_anim_2.2bpp"
+	INCBIN "gfx/2bpp/attack_anim_2.2bpp"
 
 SlotMachineTiles2:
-	INCBIN "gfx/slotmachine2.2bpp"
+	INCBIN "gfx/2bpp/slotmachine2.2bpp"
 
 MoveAnimation:
 	push hl
