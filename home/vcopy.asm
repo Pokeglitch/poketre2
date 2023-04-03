@@ -448,6 +448,6 @@ UpdateMovingBgTiles::
 	jr nz, .loop
 	ret
 
-FlowerTile1: INCBIN "gfx/tilesets/flower/flower1.2bpp"
-FlowerTile2: INCBIN "gfx/tilesets/flower/flower2.2bpp"
-FlowerTile3: INCBIN "gfx/tilesets/flower/flower3.2bpp"
+FlowerTile1: INCBIN "gfx/flower/flower1.2bpp"
+FlowerTile2: INCBIN "gfx/flower/flower2.2bpp"
+FlowerTile3: INCBIN "gfx/flower/flower3.2bpp"
