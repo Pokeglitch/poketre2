@@ -1,6 +1,5 @@
-include "macros/lib/base.asm"
-init_lib macros/lib, macros
-incdir Pokemon
+include "rgbds-contexts/main.asm"
+incdir macros/Pokemon,,
 
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/asm_macros.asm"

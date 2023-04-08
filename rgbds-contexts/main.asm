@@ -150,13 +150,42 @@ macro restore
     endr
 endm
 
+/*
+To include the given files in the given directory
+    \1 - The directory
+    \2+ - The names of file within that directory to include
+        - If \2 is empty, then it will include a file within that directory with the same name as the directory
+*/
 method incdir
   args
     def \@#prev_base_dir equs "{base_dir}"
 
     redef base_dir equs "{base_dir}/\1"
 
-    incasm \#
+    def \@#slash = strrin("\1","/")
+    def \@#backslash = strrin("\1","\\")
+
+    ; if 2nd argument is empty, then import the dirname
+    if not strlen("\2")
+        if \@#slash || \@#backslash
+            if \@#slash > \@#backslash
+                def \@#dirname equs strsub("\1",\@#slash+1)
+            else
+                def \@#dirname equs strsub("\1",\@#backslash+1)
+            endc
+        else
+            def \@#dirname equs "\1"
+        endc
+        ; add a comma at the end
+        redef \@#dirname equs "{\@#dirname},"
+        shift ; need to shift twice to remove the empty string
+    else
+        ; othersize, set as empty string
+        def \@#dirname equs ""
+    endc
+
+    shift
+    incasm {\@#dirname} \#
 
     redef base_dir equs "{\@#prev_base_dir}"
 endm
@@ -181,21 +210,11 @@ args
     result {\@}
 endm
 
-; \1 - Directory that this library resides in
-method init_lib
-  args
-    def base_dir equs "\1"
-    incdir Context, Trace
-    incdir Interface, Forward, From, Method, Property
-    incdir Scope, Overload, Return
-    incdir Struct, ByteStruct
-    incdir Type, Bool, Number, String, List, Enum, Stack
-    incdir Class
-    if _narg > 1
-        redef base_dir equs "\2"
-    else
-        redef base_dir equs "."
-    endc
-endm
-
-
+def base_dir equs "./rgbds-contexts"
+incdir Context,, Trace
+incdir Interface,, Forward, From, Method, Property
+incdir Scope,, Overload, Return
+incdir Struct,, ByteStruct
+incdir Type,, Bool, Number, String, List, Enum, Stack
+incdir Class,,
+redef base_dir equs "."
