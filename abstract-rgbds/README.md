@@ -39,6 +39,7 @@ This library comes with some base macro that are utilized elsewhere in the libra
 
 
 
+
 ## Context
 
 A Context is used to build an Interface.
@@ -63,19 +64,19 @@ end
 Each Context has 7 different macro which can be assigned to it.  Each one is optional
 
 The macros are the following:
-  * new
+  * `new`
     * Executed at the very start of defining a new Interface of this Context
-  * finish
+  * `finish`
     * Executed at the very end of the definition of a new Interface of this Context
-  * open
+  * `open`
     * Executed at the very start of opening an Interface instance of this Context
-  * method
+  * `method`
     * Handles the assignment of a method for an Interface instance of this Context
-  * property
+  * `property`
     * Handles the assignment of a property for an Interface instance of this Context
-  * handle
+  * `handle`
     * Handles what arguments get relayed to a method call of an Interface instance of this Context
-  * close
+  * `close`
     * Executed at the very end of closing an Interface instance of this Context
 
 To define these macros, simply place the name of the macro on the line, and then continue as as if a normal macro.  Do NOT prefix with `macro`
@@ -116,21 +117,17 @@ The new Interface can override these properties and methods.  When override a me
 Each Interface has 4 different parameters which can be used to define attributes to an Instance of this Interface
 
 These parameters are:
-  * property
-    * To attach a property to the Instance
-  * method
-    * To attach a method to the Instance
-  * from
-    * To assign a callback method for returning to Instance from a particular Interface
-  * forward
-    * To permit methods to be passed through to the next level of the Interface stack
+  * `property` - To attach a property to the Instance
+  * `method` - To attach a method to the Instance
+  * `from` - To assign a callback method for returning to Instance from a particular Interface
+  * `forward` - To permit methods to be passed through to the next level of the Interface stack
 
 Each Instance of an Interface is also automatically assigned the following properties:
-  * Name - The name of the Instance
-  * Isolate - Whether or not methods higher up the Interface stack are accessible
+  * `Name` - The name of the Instance
+  * `Isolate` - Whether or not methods higher up the Interface stack are accessible
     * Default: `true`
 
-The standard is to assign properties to an instance is with #, and to assign macros to an instance with @
+The standard is to assign properties to an instance is with `#`, and to assign macros to an instance with `@`
 
 While not mandatory, the standard for all pre-defined Contexts is to automatically adds the reference to the Instance self as the first argument to all method calls. (Same as how Python handles Classes).
 
@@ -192,7 +189,7 @@ A lambda method will be executed within the context is it called from, just as n
 
 That means it will not be able to access the instance it is attached to, nor will it be able to called `super`.
 
-Attempting to do either will refer to the corresponding of which this method is called (again, just as typical String Expressions do)
+Attempting to do either will refer to the corresponding values of which this method is called (again, just as typical String Expressions do)
 
 Try to avoid using `pushs` or `pops` from within a lambda, since that might interfere with the underlying expectations of this library.
 
@@ -237,21 +234,105 @@ The syntax is simply:
 # Contexts
 
 There are 4 different Contexts provided with this library:
-  * Class
-  * Type
-  * Struct
-  * Scope
+  * `Type` - Defines various common data types with associated attributes for quantifying and manipulating it
+  * `Struct` - Defines complex data types where attributes are assigned programatically
+  * `Scope` - Defines a layer to manage specific scenarios within the code
+  * `Class` - A combination of the above three
+## Type
 
-# Interfaces
+`Type` creates an object that represents common data types.  The pre-defined ones are:
+
+  * `Bool`
+  * `Number`
+  * `String`
+  * `List`
+  * `Enum`
+  * `Stack`
+
+### **Usage**
+Create a new Instance of a `Type` Interface via:
+```
+<TypeName> <InstanceName>(, <Arguments>*)
+```
+This will assign a new Instance of the given `Type` Interface to the given name.  Additional arguments can be included if the `Type` Interface accepts any. 
+
+The Instance, and all of its members, can then be accessed through the given name.
+
+Each `Type` has their own specific properties and methods.  For the time being, please consult the source code or examples to identify them.
+
+**Note:** The `Type` Interface is only "open" temporarily while it assigns attributes to the Instance, and then "closes" automatically.  There is no need to call `end` to close it.
+
+
+## Struct
+`Stuct` created an object whose attributes are assigned programatically, making each Instance of a particular `Struct` Interface unique.  The current predefined Interfaces are:
+
+  * `ByteStruct`
+
+### **Usage**
+Create new Instance of a `Struct` Interface via:
+```
+<StructName> <InstanceName>
+    ...
+    <parameters>
+    ...
+end
+```
+This will assign a new Instance of the given `Struct` Interface to the given name.  The Instance, and all of it's properties, can then be accessed via the given name.
+
+Each `Struct` Interface has its own set of valid parameters.  For the time being, please consult the source code or examples to identify them.
+
+## Scope
+Unlike the above, a `Scope` will create a new object, but rather a layer of Context to handle specific scenarios.  This means it will not interrupt the source code behavior while the Interface is open. The current predefined Interfaces are:
+
+  * `Overload` - Used in `Struct` to assign multiple properties to the same Struct position
+  * `Return` - Used in `var` and `vars` to return a value from one macro to another
+
+### **Usage**
+Open a `Scope` Interface via:
+```
+<ScopeName> (<Arguments>,*)
+```
+
+This will 'open' the Interface context, but does not assign anything to a particular name.  While this Interface is open, the source code syntax does not change from what it was previously, except for whatever new methods are accessible via this new `Scope` Interface.
+
+Each `Scope` Interface has its own set of methods that it introduces to the source code.  After the Interface is closed, those methods will no longer be accessible.
+
+Close a `Scope` Interface with:
+```
+end
+```
+
+Each `Scope` has their own specific properties and methods.  For the time being, please consult the source code or examples to identify them.
+
+## Class
+A `Class` is basically an amalgamation of the above three `Context`s.  It will create a new Instance, whose members can be accessed via the name of that object.  Members can be defined programatically, while the `Class` Interface is open.  It also does not disrupt the behavior of the source code, except for introducing additional methods to the workspace.  These methods are the same as the ones assigned as members to the Instance name.
+
+It is best used to simultaneously store a particular value to a variable and to store that same value to the ROM.
+
+### **Usage**
+Open a `Class` Interface via:
+```
+<ClassName> <InterfaceName>(, <Arguments>*)
+```
+
+This will assign a new Instance of the `Class` Interface to the given name. All properties and methods defined in this Interface are accessibe via that name.
+
+It will also a new lexical layer and introduce those same methods to workspace (without need to access via the given name)
+
+Close a `Class` Interface with:
+```
+end
+```
+
+Each `Class` has their own specific properties and methods.  For the time being, please consult the source code or examples to identify them.
+
 
 # Future Work
 
 ## Interfaces
-  * Ability to have properties change from Interface to Interface, like methods do
+  * Introduce properties to the workspace while an Interface is open, just as methods are
 
-## Types
-
-### Register
+## Registers
   * 8 bit, 16 bit, RAM, etc
   * #RegisterSize = 8/16
   * @ld/load, etc
