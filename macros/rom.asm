@@ -1,4 +1,4 @@
-include "rgbds-contexts/main.asm"
+include "abstract-rgbds/main.asm"
 incdir macros/Pokemon,,
 
 INCLUDE "macros/type_macros.asm"

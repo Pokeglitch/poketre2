@@ -1,7 +1,7 @@
 Number Tileset#Count
 Enum Tileset#Animations, None, Water, Flower
 
-Class2 Tileset
+Class Tileset
     property List, Counters
 
     method init

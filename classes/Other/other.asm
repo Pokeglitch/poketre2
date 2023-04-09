@@ -4,7 +4,7 @@ MACRO Other
     Prop Sprites, Sprite
 ENDM
 
-    Class Other
+    Class_ Other
     Entry Aerofossil
     Entry Skebutops
     Entry Poltergost

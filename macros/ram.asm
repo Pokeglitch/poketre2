@@ -1,10 +1,10 @@
-include "rgbds-contexts/main.asm"
+include "abstract-rgbds/main.asm"
 incdir macros/Pokemon,,
 
 INCLUDE "macros/type_macros.asm"
 INCLUDE "macros/data_macros.asm"
 
-MACRO Class
+MACRO Class_
     Table \1
 ENDM
 

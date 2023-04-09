@@ -210,7 +210,7 @@ args
     result {\@}
 endm
 
-def base_dir equs "./rgbds-contexts"
+def base_dir equs "./abstract-rgbds"
 incdir Context,, Trace
 incdir Interface,, Forward, From, Method, Property
 incdir Scope,, Overload, Return

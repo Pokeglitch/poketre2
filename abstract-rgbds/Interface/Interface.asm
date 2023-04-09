@@ -97,13 +97,12 @@ endm
 
 /*  Define the Interface Name methods to hardcode the corresponding context
     This is necessary for Isolates to make sure it assigned values to proper context
-    This also gets called when re-entering, in case a nested context had overwritten this
 
     \1 - Trace
     \2 - Context
     \3 - Interface    */
 macro Interface@open#init
-    ;define the callback for re-entering this context
+    ;define the callback for re-entering this context (to re-assign methods in-case a child context overwrote it)
     def \1@ReEnter equs "Interface@method#assign \1, \2, \3, \{\3#Functions}"
     
     ; define the Interface Name methods to include the corresponding Trace

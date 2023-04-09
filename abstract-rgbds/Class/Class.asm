@@ -1,4 +1,4 @@
-Context Class2
+Context Class
     finish
         DefineContextMacro {\1#Functions}
     endm

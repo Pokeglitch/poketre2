@@ -1,11 +1,3 @@
-/*
-    make a Register Type?
-    Attach #RegisterSize = 6/12 to all registers
-    - i.e. a#RegisterSize
-    - use instead of isRegister macro (or, use in the isRegister macro and make that a return value)
-
-*/
-
 /*  A Context creates a new Trace Type
     Then, this Context can be used to create new Interfaces
     Finally, an Interface can entered/exited throughout the source
@@ -13,17 +5,17 @@
     The following macros can be are utilized by a Context:
         - (any can also be skipped)
 
-    init: run when a new Interface of this Type is initialized
+    new: run when a new Interface of this Context is initialized
         \1   - Interface Name
         \2+? - Additional arguments 
 
-    exit: run when a new Interface of this Type is exited
+    finish: run when a new Interface definition of this Context is exited
         \1 - Interface Name
         \2+? - Additional arguments
 
     open: run when an Interface is opened
-        \1 - Context
-        \2 - Type Name
+        \1 - Trace
+        \2 - Context Name
         \3 - Interface Name
         \4 - Method Name (init)
         \5+? - Additional arguments
@@ -32,8 +24,8 @@
         - continue \#
 
     close: run when an Interface is closed
-        \1 - Context
-        \2 - Type Name
+        \1 - Trace
+        \2 - Context Name
         \3 - Interface Name
         \4 - Method Name (init)
         \5+? - Additional arguments

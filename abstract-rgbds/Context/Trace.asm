@@ -9,12 +9,6 @@
     Trace@Open will change context
     Trace@Close will close the current context
 */
-macro Trace@init
-    def \1#Name equs "\2"
-    def \1#Isolate = false
-    def \1#Disposables equs ""
-endm
-
 macro Trace@Disposables
     for i, 2, _narg+1
         Trace@Disposable \<i>, \1@\<i>

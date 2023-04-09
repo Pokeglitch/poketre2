@@ -1,6 +1,6 @@
 List MapObjects#Order, Warp, Sign, Sprite, WarpTo
 
-Class2 MapObjects
+Class MapObjects
     property Number, CurrentSectionIndex
     forward MapSec, EventDisp
     

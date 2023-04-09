@@ -1,4 +1,4 @@
-    Class Trainer
+    Class_ Trainer
     
     ; Traits
     Flag Gender, 	Male,		Female

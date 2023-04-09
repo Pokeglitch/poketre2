@@ -1,4 +1,4 @@
-Class2 MapDefinition
+Class MapDefinition
     property Number, TextCount
     property Number, BattleCount
     property Enum, Scripts

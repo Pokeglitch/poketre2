@@ -1,7 +1,7 @@
 List BattleTexts, Before, After, Win, Lose
 
 ; TODO - distinguish between a pokemon and a trainer  
-Class2 MapObjectsBattle, TrainerBattle
+Class MapObjectsBattle, TrainerBattle
     property List, Texts
 
     method init

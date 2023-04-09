@@ -1,6 +1,6 @@
 DEF ClassInstanceTableAddress = $4000
 DEF CLASS_BANK = $30
-MACRO Class
+MACRO Class_
     DEF \1Class = CLASS_BANK
     DEF CLASS_BANK = CLASS_BANK + 1
     
