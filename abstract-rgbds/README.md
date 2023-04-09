@@ -1,6 +1,6 @@
 # abstract-rgbds
 
-This is an RGBDS macro library which provides the ability to use different Interfaces within assembly source code.
+This is an [RGBDS](https://github.com/gbdev/rgbds) macro library which provides the ability to use different Interfaces within assembly source code.
 
 Macro calls within each Interface may behave differently than they would outside of that Interface, or within a different Interface.
 
@@ -8,16 +8,22 @@ Interfaces can be nested, and if a macro is not defined within a certain Interfa
 
 This allows for the implementation of complicated functionality with simple syntax.  
 
-This library currently comes with 4 pre-defined Context, each with a multitude of Interfaces.  It also possible to define additional ones of each.
+This library currently comes with 4 pre-defined `Context`s, each with a multitude of Interfaces.  It also possible to define additional ones of each.
 
 These Interfaces can then be used to create object-like Instances for a cleaner and more cohesive codebase
 
-**NOTE:**
+
+## Examples
+
+It is somewhat difficult to explain the concepts here (and, it is currently incomplete).  For examples, take a look at how it is implemented in [Pokemon TRE2](https://github.com/Pokeglitch/poketre2/tree/master/macros/Pokemon)
+
+
+## Warning
 This library uses a lot of nested macro calls, which will lengthen build time a bit. It might also be necessary to increase the recursive depth limit if it keeps are catching false infinite-loop errors when building.  This is done be using the `-r` argument for `rgbasm`
 
 # How to use
 
-RGBDS version: **0.6.1**
+[RGBDS](https://github.com/gbdev/rgbds) version: **0.6.1**
 
 Place this library in the base directory of the source code in a folder titled *abstract-rgbds* and import it at the start of the main .asm file:
 
@@ -329,6 +335,9 @@ Each `Class` has their own specific properties and methods.  For the time being,
 
 # Future Work
 
+## General
+  * More explanation about predefined Interfaces
+
 ## Interfaces
   * Introduce properties to the workspace while an Interface is open, just as methods are
 
@@ -336,3 +345,7 @@ Each `Class` has their own specific properties and methods.  For the time being,
   * 8 bit, 16 bit, RAM, etc
   * #RegisterSize = 8/16
   * @ld/load, etc
+
+## Bit/Flag Register:
+  * Attached to Registers via index [0-7/15]
+  * Can be given names (i.e.: wEventX)
