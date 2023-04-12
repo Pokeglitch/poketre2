@@ -6625,8 +6625,8 @@ LoadHudAndHpBarAndStatusTilePatterns:
 
 LoadHudTilePatterns:
 	ld a, [rLCDC]
-	add a ; is LCD disabled?
-	jr c, .lcdEnabled
+	bit LCD_ENABLE_F, a ; is LCD disabled?
+	jr nz, .lcdEnabled
 .lcdDisabled
 	ld hl, BattleHudTiles1
 	ld de, vChars2 + $6d0

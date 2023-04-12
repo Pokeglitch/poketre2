@@ -223,7 +223,7 @@ Trade_Cleanup:
 	ret
 
 Trade_ShowPlayerMon:
-	ld a, %10101011
+	ld a, LCD_ENABLE | LCD_WINDOW_ENABLE | LCD_BG_TILEMAP | LCD_OBJ_DISPLAY | LCD_BG_DISPLAY
 	ld [rLCDC], a
 	ld a, $50
 	ld [hWY], a
@@ -279,7 +279,7 @@ Trade_DrawOpenEndOfLinkCable:
 	ld a, $a0
 	ld [hSCX], a
 	call DelayFrame
-	ld a, %10001011
+	ld a, LCD_ENABLE | LCD_BG_TILEMAP | LCD_OBJ_DISPLAY | LCD_BG_DISPLAY
 	ld [rLCDC], a
 	coord hl, 6, 2
 	ld b, $7 ; open end of link cable tile ID list index
@@ -450,7 +450,7 @@ Trade_InitGameboyTransferGfx:
 	ld [H_AUTOBGTRANSFERENABLED], a
 	call Trade_LoadMonPartySpriteGfx
 	call DelayFrame
-	ld a, %10101011
+	ld a, LCD_ENABLE | LCD_WINDOW_ENABLE | LCD_BG_TILEMAP | LCD_OBJ_DISPLAY | LCD_BG_DISPLAY
 	ld [rLCDC], a
 	xor a
 	ld [hSCX], a
@@ -745,7 +745,7 @@ Trade_ShowClearedWindow:
 	ld a, $1
 	ld [H_AUTOBGTRANSFERENABLED], a
 	call ClearScreen
-	ld a, %11100011
+	ld a, rLCDC_DEFAULT
 	ld [rLCDC], a
 	ld a, $7
 	ld [rWX], a

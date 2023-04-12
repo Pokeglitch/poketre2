@@ -252,7 +252,7 @@ LoadBlackOnLightFontTilePatterns_::
 LoadFontTilePatternsCommon:
     push af
 	ld a, [rLCDC]
-	bit 7, a ; is the LCD enabled?
+	bit LCD_ENABLE_F, a ; is the LCD enabled?
     jr nz, .lcdOn
 
     pop af

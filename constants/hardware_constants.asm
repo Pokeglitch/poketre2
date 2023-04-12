@@ -20,6 +20,8 @@ NUM_SRAM_BANKS EQU 4
 
 ; rLCDC flags / masks
 	const_def
+
+if def(_GBC)
 	const LCD_BG_DISPLAY_F
 	const LCD_OBJ_DISPLAY_F
 	const LCD_OBJ_SIZE_F
@@ -29,6 +31,20 @@ NUM_SRAM_BANKS EQU 4
 	const LCD_WINDOW_TILEMAP_F
 	const LCD_ENABLE_F
 
+	def STAT_MODE_MASK = %00000011
+elif def(_POCKET)
+	const LCD_ENABLE_F
+	const LCD_WINDOW_TILEMAP_F
+	const LCD_WINDOW_ENABLE_F
+	const LCD_TILE_DATA_F
+	const LCD_BG_TILEMAP_F
+	const LCD_OBJ_SIZE_F
+	const LCD_OBJ_DISPLAY_F
+	const LCD_BG_DISPLAY_F
+	
+	def STAT_MODE_MASK = %11000000
+endc
+
 LCD_BG_DISPLAY     EQU 1 << LCD_BG_DISPLAY_F
 LCD_OBJ_DISPLAY    EQU 1 << LCD_OBJ_DISPLAY_F
 LCD_OBJ_SIZE       EQU 1 << LCD_OBJ_SIZE_F
@@ -37,7 +53,9 @@ LCD_TILE_DATA      EQU 1 << LCD_TILE_DATA_F
 LCD_WINDOW_ENABLE  EQU 1 << LCD_WINDOW_ENABLE_F
 LCD_WINDOW_TILEMAP EQU 1 << LCD_WINDOW_TILEMAP_F
 LCD_ENABLE         EQU 1 << LCD_ENABLE_F
-	
+
+rLCDC_DEFAULT EQU LCD_ENABLE | LCD_WINDOW_TILEMAP | LCD_WINDOW_ENABLE | LCD_OBJ_DISPLAY | LCD_BG_DISPLAY
+
 ; interrupt flags
 VBLANK   EQU 0
 LCD_STAT EQU 1
@@ -89,9 +107,11 @@ rNR44       EQU $ff23 ; Channel 4 Counter/consecutive; Initial (R/W)
 rNR50       EQU $ff24 ; Channel control / ON-OFF / Volume (R/W)
 rNR51       EQU $ff25 ; Selection of Sound output terminal (R/W)
 rNR52       EQU $ff26 ; Sound on/off
-rLCDC       EQU $ff40 ; LCD Control (R/W)
-rLCDC_ENABLE EQU 7
-rLCDC_ENABLE_MASK EQU 1 << rLCDC_ENABLE
+
+if def(_GBC)
+	def rLCDC       EQU $ff40 ; LCD Control (R/W)
+endc
+
 rSTAT       EQU $ff41 ; LCDC Status (R/W)
 rSCY        EQU $ff42 ; Scroll Y (R/W)
 rSCX        EQU $ff43 ; Scroll X (R/W)
@@ -104,6 +124,11 @@ rOBP1       EQU $ff49 ; Object Palette 1 Data (R/W) - Non CGB Mode Only
 rWY         EQU $ff4a ; Window Y Position (R/W)
 rWX         EQU $ff4b ; Window X Position minus 7 (R/W)
 rKEY1       EQU $ff4d ; CGB Mode Only - Prepare Speed Switch
+
+if def(_POCKET)
+	def rLCDC       EQU $ff4e ; LCD Control (R/W)
+endc
+
 rVBK        EQU $ff4f ; CGB Mode Only - VRAM Bank
 rHDMA1      EQU $ff51 ; CGB Mode Only - New DMA Source, High
 rHDMA2      EQU $ff52 ; CGB Mode Only - New DMA Source, Low

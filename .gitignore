@@ -10,6 +10,7 @@
 # roms
 *.gbc
 *.gb
+*.pocket
 
 # rgbds extras
 *.sym

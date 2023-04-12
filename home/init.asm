@@ -8,16 +8,6 @@ SoftReset::
 Init::
 ;  Program init.
 
-rLCDC_DEFAULT EQU %11100011
-; * LCD enabled
-; * Window tile map at $9C00
-; * Window display enabled
-; * BG and window tile data at $8800
-; * BG tile map at $9800
-; * 8x8 OBJ size
-; * OBJ display enabled
-; * BG display enabled
-
 	di
 
 	xor a
@@ -37,7 +27,7 @@ rLCDC_DEFAULT EQU %11100011
 	dec a
 	ld [hl], a ; rBGP = $FF, all black
 	
-	ld a, rLCDC_ENABLE_MASK
+	ld a, LCD_ENABLE
 	ld [rLCDC], a
 	call DisableLCD
 

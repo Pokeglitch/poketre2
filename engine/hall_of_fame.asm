@@ -12,7 +12,7 @@ AnimateHallOfFame:
 	call FillMemory
 	call EnableLCD
 	ld hl, rLCDC
-	set 3, [hl]
+	set LCD_BG_TILEMAP_F, [hl]
 	xor a
 	ld hl, wHallOfFame
 	ld bc, HOF_TEAM
@@ -88,7 +88,7 @@ AnimateHallOfFame:
 	xor a
 	ld [hWY], a
 	ld hl, rLCDC
-	res 3, [hl]
+	res LCD_BG_TILEMAP_F, [hl]
 	ret
 
 HallOfFameText:
