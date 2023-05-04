@@ -1,5 +1,5 @@
 let fs = require('fs'),
-    upng = require('./upng.js'),
+    upng = require('./UPNG.js'),
     memoizedEncoding = new Map();
 
 // To convert the given number to a binary string with the given bit length
