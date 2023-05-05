@@ -21,7 +21,7 @@ Class MapDefinition
             
         MapSec \1 Blocks
             \1Blocks:
-                incbin "maps/\1.blk"
+                incbin strcat("maps/",strlwr("\1"),".blk")
 
         ; todo - isntead, place in generic map table, along with Bank
         MapSec frag, \1 Header
