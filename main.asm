@@ -5,7 +5,7 @@ INCLUDE "constants/constants.asm"
 INCLUDE "gfx.asm"
 
 INCLUDE "classes/pokemon.asm"
-INCLUDE "classes/Trainer.asm"
+INCLUDE "classes/trainer.asm"
 INCLUDE "classes/other.asm"
 
 INCLUDE "audio.asm"

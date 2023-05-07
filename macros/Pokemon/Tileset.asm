@@ -11,11 +11,11 @@ Class Tileset
         
         pushs
         sec frag, Tileset Collisions, 0
-            \1_Coll::  INCBIN  "gfx/tilesets/\1.tilecoll"
+            \1_Coll::  INCBIN  strcat("gfx/tilesets/",strlwr("\1"),".tilecoll")
 
         sec frag, \1 Tileset, \1#Bank
-            \1_GFX:     INCBIN "gfx/tilesets/\1.2bpp"
-            \1_Block:   INCBIN "gfx/blocksets/\1.bst"
+            \1_GFX:     INCBIN strcat("gfx/tilesets/",strlwr("\1"),".2bpp")
+            \1_Block:   INCBIN strcat("gfx/blocksets/",strlwr("\1"),".bst")
         pops
 
 

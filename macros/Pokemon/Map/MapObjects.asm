@@ -22,7 +22,7 @@ Class MapObjects
         ObjectsSec
             \2Objects:
                 db \2#Border
-                include "data/mapObjects/\2.asm"
+                include strcat("data/mapObjects/",strlwr("\2"),".asm")
 
         ; fill in any empty sections
         InitializeSections MapObjects#Order#_size-1

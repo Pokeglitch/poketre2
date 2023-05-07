@@ -4,7 +4,7 @@ Scope MapScript, Script
         super {map}
         
         MapSec frag, {map} Script
-            include "scripts/\2.asm"
+            include strcat("scripts/",strlwr("\2"),".asm")
 
         end ; this will end ExpectText, which will cascade into ending this Script
     endm
